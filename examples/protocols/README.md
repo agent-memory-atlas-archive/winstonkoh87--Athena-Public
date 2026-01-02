@@ -1,0 +1,83 @@
+# Athena Protocols
+
+Protocols are reusable thinking patterns that standardize how Athena reasons about specific domains.
+
+## Featured Protocols
+
+| ID | Name | Category | Purpose |
+|----|------|----------|---------|
+| **77** | [Adaptive Latency](architecture/77-adaptive-latency-architecture.md) | Architecture | Scale reasoning depth to query complexity |
+| **96** | [Latency Indicator](architecture/96-latency-indicator.md) | Architecture | Append [Λ+XX] to show cognitive effort |
+| **98** | [Strategic Depth Theory](architecture/98-depth-vs-width-theory.md) | Architecture | When to go deep vs. wide |
+| **130** | [Vibe Coding](workflow/130-vibe-coding.md) | Workflow | Iterative UI development by "feel" |
+| **133** | [Query Archetype Routing](architecture/133-query-archetype-routing.md) | Architecture | Route queries to optimal processing paths |
+| **158** | [Entity Lookup First](architecture/158-entity-lookup-before-analysis.md) | Architecture | Always lookup entities before analyzing |
+| **159** | [Verification Before Claim](architecture/159-verification-before-claim.md) | Research | Verify facts before stating them |
+| **168** | [Context-Driven Development](architecture/168-context-driven-development.md) | Engineering | Let context guide implementation |
+| **200** | [Feature Context Persistence](architecture/200-feature-context-persistence.md) | Architecture | Track features across sessions |
+| **202** | [Recovery Patterns](architecture/202-recovery-patterns.md) | Architecture | Graceful degradation strategies |
+
+## Categories
+
+### 🏗️ Architecture (21 protocols)
+
+System design, token management, context handling.
+
+[Browse Architecture Protocols →](architecture/)
+
+### ⚙️ Engineering (17 protocols)  
+
+Code patterns, UI development, implementation standards.
+
+[Browse Engineering Protocols →](engineering/)
+
+### 🔬 Research (3 protocols)
+
+Deep investigation, fact-checking, source validation.
+
+[Browse Research Protocols →](research/)
+
+### 📋 Workflow (9 protocols)
+
+Session management, automation, process optimization.
+
+[Browse Workflow Protocols →](workflow/)
+
+### 🧠 Meta (1 protocol)
+
+Protocols about protocols.
+
+[Browse Meta Protocols →](meta/)
+
+## Protocol Format
+
+Each protocol follows this structure:
+
+```markdown
+---
+id: 77
+name: Adaptive Latency Architecture
+category: architecture
+status: active
+---
+
+# Protocol 77: Adaptive Latency Architecture
+
+## Purpose
+[What problem this solves]
+
+## When to Use
+[Trigger conditions]
+
+## Implementation
+[Step-by-step process]
+
+## Examples
+[Concrete usage examples]
+```
+
+## Creating New Protocols
+
+Use the [protocol template](../templates/protocol_template.md) to create new protocols.
+
+Assign the next available ID and add an entry to this index.

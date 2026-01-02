@@ -1,0 +1,25 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# Environments
+.env
+.env.local
+.venv/
+venv/
+__pycache__/
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDEs
+.vscode/
+.idea/
+
+# Keys
+*.key
+*.pem
+*.cert
+.DS_Store
+*.DS_Store
