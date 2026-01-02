@@ -13,7 +13,7 @@ description: Activate Zero-Point Codex framework for strategic analysis
 
 - [ ] Load `.framework/v7.0/modules/Core_Identity.md` — Laws #0-#4, Identity, RSI (~2K tokens)
 - [ ] **Living Spec**: Load `.context/project_state.md` — Active constraints, tech stack, patterns (Protocol 168)
-- [ ] **Boot Orchestrator**: Run `python3 .agent/scripts/boot.py` — recalls last session, creates new session, captures context, primes semantic memory (single call)
+- [ ] **Boot Orchestrator**: Run `# Reference: python3 scripts/boot.py` — recalls last session, creates new session, captures context, primes semantic memory (single call)
 
 **Confirm**: "⚡ Ready. (Core Identity loaded. Session XX started. Semantic primed.)"
 
@@ -24,7 +24,7 @@ These behaviors MUST run throughout the session. Non-negotiable:
 | Protocol | Trigger | Action |
 |----------|---------|--------|
 | **Semantic Context** (§0.7.1) | **EVERY query** (mandatory) | **Dual-path**: (1) `supabase_search.py "<keywords>"` AND (2) `grep -i "<entity>" TAG_INDEX.md` for named entities |
-| **Quicksave** (§0.6) | After EVERY user exchange *(exempt: `/start` boot response)* | `python3 .agent/scripts/quicksave.py "<summary>"` |
+| **Quicksave** (§0.6) | After EVERY user exchange *(exempt: `/start` boot response)* | `# Reference: python3 scripts/quicksave.py "<summary>"` |
 | **Latency Indicator** (§0.5.1) | Every response | Append `[Λ+XX]` |
 | **Response Enrichment** | Every response | Append `#tags` footer + embed `[Protocol XX](file://...)` links inline |
 | **Citation Protocol** (Law #5) | External claim made | Inline cite `(Author, Year)` or `[URL]`. No orphan stats. |

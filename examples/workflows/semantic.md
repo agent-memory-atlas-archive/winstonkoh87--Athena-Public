@@ -25,7 +25,7 @@ description: Deep workspace semantic search — query Supabase + local protocols
 ### Step 1: Run Hybrid Triangulation Search
 
 ```bash
-python3 .agent/scripts/smart_search.py "<keywords>" --limit 5
+# Reference: python3 scripts/smart_search.py "<keywords>" --limit 5
 ```
 
 > **Mechanism**:

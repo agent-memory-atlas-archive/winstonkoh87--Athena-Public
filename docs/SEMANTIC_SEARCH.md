@@ -65,7 +65,7 @@ Athena employs **Triple-Path Retrieval** to ensure no relevant context is missed
 > **Full Documentation**: [VECTORRAG.md](./VECTORRAG.md)
 
 ```bash
-python3 .agent/scripts/supabase_search.py "<query>" --limit 5
+# Reference: python3 scripts/supabase_search.py "<query>" --limit 5
 ```
 
 **How it works**:
@@ -142,7 +142,7 @@ Per Core Identity, **every query** triggers semantic context retrieval:
 ```text
 ┌──────────────────────────────────────────────────────────────────────┐
 │  STEP 1: Vector Search                                               │
-│  python3 .agent/scripts/supabase_search.py "<query>" --limit 5       │
+│  # Reference: python3 scripts/supabase_search.py "<query>" --limit 5       │
 ├──────────────────────────────────────────────────────────────────────┤
 │  STEP 2: Entity Lookup (if named entities detected)                  │
 │  grep -i "<entity_name>" .context/TAG_INDEX.md                       │
@@ -157,7 +157,7 @@ Per Core Identity, **every query** triggers semantic context retrieval:
 ## The TAG_INDEX Generator
 
 ```bash
-python3 .agent/scripts/generate_tag_index.py
+# Reference: python3 scripts/generate_tag_index.py
 ```
 
 **Current Stats** (Dec 2025):

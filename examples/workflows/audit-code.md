@@ -27,7 +27,7 @@ Analyze the current session log to find the "Breakpoints" (where logic failed).
 
 ```bash
 # Finds the active session log
-python3 .agent/scripts/smart_search.py "session log" --limit 1 --sessions-only
+# Reference: python3 scripts/smart_search.py "session log" --limit 1 --sessions-only
 ```
 
 ### Step 2: Extract the "Failure Patterns"

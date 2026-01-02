@@ -52,7 +52,7 @@ description: Cross-check work (Gemini vs Claude) focusing on structural integrit
 // turbo
 
 ```bash
-python3 .agent/scripts/cross_reference.py
+# Reference: python3 scripts/cross_reference.py
 ```
 
 > **Rule**: If "Missing bidirectional links" > 0, fix them now.

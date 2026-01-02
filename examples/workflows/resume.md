@@ -71,7 +71,7 @@ When `/resume` is invoked:
 // turbo
 
 ```bash
-python3 .agent/scripts/resume_session.py
+# Reference: python3 scripts/resume_session.py
 ```
 
 ---

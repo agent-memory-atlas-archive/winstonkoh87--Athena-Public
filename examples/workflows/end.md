@@ -63,7 +63,7 @@ description: Close session and update System Prompt files with new insights (lig
 // turbo
 
 ```bash
-python3 .agent/scripts/shutdown.py
+# Reference: python3 scripts/shutdown.py
 ```
 
 **What it does**:

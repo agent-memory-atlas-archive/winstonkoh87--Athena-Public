@@ -54,8 +54,8 @@ Athena/
 │   │   ├── [research.md](../examples/workflows/research.md)            # Multi-source web research
 │   │   └── needful.md             # Autonomous high-value action
 │   ├── scripts/                   # Python automation
-│   │   ├── [quicksave.py](../examples/scripts/quicksave.py)           # Auto-checkpoint every exchange
-│   │   ├── [generate_puml.py](../examples/scripts/generate_puml.py)   # Visual architecture audit
+│   │   ├── [quicksave.py](./examples/scripts/README.md)           # Auto-checkpoint every exchange
+│   │   ├── [generate_puml.py](./examples/scripts/README.md)   # Visual architecture audit
 │   │   ├── create_session.py      # Session log creation
 │   │   ├── orphan_detector.py     # Unlinked file detection
 │   │   └── memory_integrity.py    # Workspace health check

@@ -51,7 +51,7 @@ Load the following files (in order):
 
 6. **Metrics**
    - Check latest session log for session count, calibration score
-   - Run `python3 .agent/scripts/analyze_cost.py` for token economics
+   - Run `# Reference: python3 scripts/analyze_cost.py` for token economics
 
 ---
 

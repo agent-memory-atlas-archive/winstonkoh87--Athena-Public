@@ -245,7 +245,7 @@ sessions  case_studies entities  protocols capabilities playbooks frameworks ref
 ### Script: `supabase_sync.py`
 
 ```bash
-python3 .agent/scripts/supabase_sync.py --all
+# Reference: python3 scripts/supabase_sync.py --all
 ```
 
 ```mermaid
@@ -300,13 +300,13 @@ def get_embedding(text: str) -> list[float]:
 
 ```bash
 # Search everything
-python3 .agent/scripts/supabase_search.py "API design"
+# Reference: python3 scripts/supabase_search.py "API design"
 
 # Search specific domain
-python3 .agent/scripts/supabase_search.py "authentication" --sessions-only
+# Reference: python3 scripts/supabase_search.py "authentication" --sessions-only
 
 # Adjust sensitivity
-python3 .agent/scripts/supabase_search.py "database schema" --threshold 0.5 --limit 10
+# Reference: python3 scripts/supabase_search.py "database schema" --threshold 0.5 --limit 10
 ```
 
 ### Output Example
