@@ -1,12 +1,20 @@
 # Trilateral Feedback Protocol
 
-> **Last Updated**: 01 January 2026
+> **Last Updated**: 03 January 2026
 
 > **One AI is not enough for life decisions.**
 
 Athena is powerful — but any single AI (including this one) has blind spots, hallucinations, and reasoning errors. The most dangerous outcome is when you use Athena to consult on *important life decisions* and accept its output without external validation.
 
 ---
+
+## ⚠️ Critical Safety Warnings
+
+| Risk | Mitigation |
+|------|------------|
+| **PII Leakage** | Exporting artifacts to external LLMs sends data to third parties. **For sensitive data (legal, health), use local LLMs (Llama, Mistral) or manually redact PII before export.** |
+| **Prompt Injection** | Retrieved context could contain adversarial instructions. Treat memory as "trusted-but-verify". |
+| **Hallucination** | Cross-model consensus is a *disagreement detector*, not a truth oracle. **The human remains the ultimate arbiter.** |
 
 ## The Problem: Bilateral Feedback
 
@@ -139,7 +147,7 @@ RULES
 | Code refactoring | Low | Optional |
 | Research synthesis | Medium | Recommended |
 | Financial decisions | High | **Mandatory** |
-| Legal/health advice | Critical | **Mandatory + Human Expert** |
+| Legal/health advice | Critical | **Mandatory + Human Expert + Local LLM (Privacy)** |
 | Relationship/life strategy | High | **Mandatory** |
 
 > **Rule of Thumb**: If you would regret the decision for more than a week if wrong, run trilateral feedback.
