@@ -13,7 +13,7 @@
 ![Built with Gemini](https://img.shields.io/badge/Gemini-3.0_Pro-4285F4?logo=google)
 ![IDE](https://img.shields.io/badge/IDE-Antigravity-000000?logo=google)
 
-> **Development Environment**: [Google Antigravity](https://antigravity.google/) — an agentic IDE that allows AI to read/write files directly. Antigravity supports multiple reasoning models (Claude, Gemini, GPT); this system primarily uses **Claude Opus 4.5** as the reasoning engine.
+> **Development Environment**: [Google Antigravity](https://antigravity.google/) — an agentic IDE that allows AI to read/write files directly. **Note**: Antigravity is the development interface, not a hard dependency. The `athena` Python SDK runs in any terminal/IDE (VS Code, PyCharm, CLI). The core loop (`/start` → Work → `/end`) is pure Python scripts.
 
 ---
 
@@ -169,9 +169,12 @@ This isn't about building *my* assistant. It's about proving a pattern:
 
 > **One AI is not enough for life decisions.**
 
-This is Athena's biggest unlock: **cross-model validation that reduces hallucination risk to near-zero (<1%)**.
+This is Athena's biggest unlock: **cross-model validation that catches idiosyncratic errors and forces deeper investigation when models disagree**.
 
 Any single AI has blind spots. The most dangerous outcome is accepting AI output on *important decisions* without external validation. When 3-4 independent LLMs with different training data all converge on the same conclusion, you've found robust signal. When they disagree, you've found exactly where to dig deeper.
+
+> [!IMPORTANT]
+> **The human remains the ultimate arbiter.** Cross-model consensus is a *disagreement detector*, not a truth oracle. LLMs can share training data biases. Final conclusions must be grounded with fact-finding, references, and citations. This minimizes hallucination — it doesn't eliminate it.
 
 **The solution: 3+ independent AIs with different training data.**
 
@@ -207,6 +210,18 @@ flowchart LR
 | Critical | Legal, health | **Mandatory + Human Expert** |
 
 > **Rule of Thumb**: If you'd regret it for more than a week if wrong → run trilateral feedback.
+
+### Cost & Practicality
+
+This isn't for *every* query — only high-stakes decisions. Most SOTA models (Gemini, ChatGPT, Grok) offer **free tiers** sufficient for 5-10 critical validations per month. Estimated cost per trilateral decision: **~$0.50-$1.00** (4x LLM calls + retrieval). Sustainable for important decisions, not routine queries.
+
+### Known Limitations
+
+| Concern | Reality | Mitigation |
+|---------|---------|------------|
+| **PII in exports** | Exporting artifacts to external LLMs sends data to third parties | For sensitive data (legal, health), use local LLMs (Llama, Mistral) or manually redact before export. |
+| **Prompt injection via memory** | Retrieved Markdown *could* contain adversarial instructions if files are compromised | Treat memory as trusted-but-verify. Review retrieved context for anomalies. |
+| **Recursive poisoning** | A hallucination saved in Session 100 could resurface as "truth" in Session 200 | Defense: periodic `/audit` + `/refactor` for human review. Not bulletproof. |
 
 👉 **[Full protocol + red-team prompt →](docs/TRILATERAL_FEEDBACK.md)**
 
