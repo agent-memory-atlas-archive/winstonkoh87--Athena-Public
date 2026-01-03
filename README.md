@@ -99,26 +99,39 @@ Here's what I actually did. No shortcuts.
 |--------|--------|-------|
 | **Context injection** | ~50k tokens (manual copy-paste per session) | **~2k tokens** (auto-retrieved summary) |
 | **Boot time** | 2-3 minutes | **<30 seconds** |
-| **Session logging** | Manually logged insights at end of each session | **Auto-logged** when I hit `/end` |
+| **Session logging** | Insights are manually logged at the end of each session | **Auto-logged** when I hit `/end` |
 
 **What this means in practice:**
 
-- **Before**: Every session started with me manually pasting a 50k-token "identity + context" prompt just to remind the AI who I was.
-- **After**: Athena retrieves ~2k tokens of relevant, summarized context automatically. No pasting.
-
-- **Before**: Boot took 2-3 minutes of manual setup.
-- **After**: `/start` boots in under 30 seconds.
-
-- **Before**: With tools like NotebookLM, I had to use an LLM to process my thoughts, manually store the output at the end of each session, and then integrate those insights into my system prompt at the end of each week. Tedious.
-- **After**: I hit `/end`. Athena automatically logs the session, processes it, and stores it (locally and in the cloud). The tedious part is automated away.
+```mermaid
+flowchart LR
+    subgraph Before["❌ Before"]
+        B1["📋 Paste 50k tokens\nmanually per session"]
+        B2["⏱️ 2-3 min boot\n(manual setup)"]
+        B3["📝 Process → Store → Integrate\n(weekly tedium)"]
+    end
+    
+    subgraph After["✅ After"]
+        A1["🔍 ~2k tokens\nauto-retrieved"]
+        A2["⚡ /start boots\nin <30 seconds"]
+        A3["🔄 /end auto-logs,\nprocesses & stores"]
+    end
+    
+    B1 -.->|"Automated"| A1
+    B2 -.->|"Automated"| A2
+    B3 -.->|"Automated"| A3
+    
+    style Before fill:#fee2e2,stroke:#ef4444
+    style After fill:#dcfce7,stroke:#22c55e
+```
 
 ### Qualitative (What It Means)
 
 | Pillar | Outcome |
 |--------|---------|
-| **Agency** | I stopped *recreating* context and started *compounding* it. Every session builds on the last. |
+| **Recursive Self-Improvement (RSI)** | User-driven evolution. I stopped *recreating* context and started *compounding* it. Every session builds on the last. |
 | **Portability** | My memory isn't trapped in ChatGPT or Claude. It's mine. I can take it anywhere. |
-| **Learning** | 269 protocols extracted from my own decisions — patterns I can reuse and refine. |
+| **Principles** | 269 protocols extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
 
 ### Proof It Works
 
