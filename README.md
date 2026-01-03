@@ -5,8 +5,8 @@
 # 🏛️ Athena: AI-Powered Personal Knowledge System
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Protocols](https://img.shields.io/badge/Protocols-269-blue)
-![Sessions](https://img.shields.io/badge/Sessions-560-green)
+![Protocols](https://img.shields.io/badge/Protocols-272-blue)
+![Sessions](https://img.shields.io/badge/Sessions-571-green)
 
 ![Python](https://img.shields.io/badge/Python-3.14.2-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.5-CC785C?logo=anthropic)
