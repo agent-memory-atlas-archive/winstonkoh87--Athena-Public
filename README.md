@@ -124,9 +124,9 @@ Here's what I actually did. No shortcuts.
 
 | Pillar | Outcome |
 |--------|---------|
-| **Recursive Self-Improvement (RSI)** | User-driven evolution. I stopped *recreating* context and started *compounding* it. Every session builds on the last. |
-| **Portability** | My memory isn't trapped in ChatGPT or Claude. It's mine. I can take it anywhere. |
-| **Principles** | 269 protocols extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
+| **Recursive Self-Improvement (RSI)** | Driven by both human and AI — we feed off each other's insights. I stopped *recreating* context and started *compounding* it. Every session builds on the last. |
+| **Portability** | Data lives locally (primary) and in the cloud. Not trapped in ChatGPT or Claude. It's mine — I can port it anywhere. |
+| **Principles** | 269 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
 
 ### Proof It Works
 
