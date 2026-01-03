@@ -101,25 +101,6 @@ Here's what I actually did. No shortcuts.
 | **Boot time** | 2-3 minutes | **<30 seconds** |
 | **Session logging** | Insights are manually logged at the end of each session | **Auto-logged** when I hit `/end` |
 
-**What this means in practice:**
-
-```
-┌──────────────────────────────────────────────────────────────────────────────┐
-│                         BEFORE → AFTER COMPARISON                             │
-├──────────────────────────────────┬───────────────────────────────────────────┤
-│           ❌ BEFORE               │              ✅ AFTER                      │
-├──────────────────────────────────┼───────────────────────────────────────────┤
-│  📋 Paste 50k tokens manually    │  🔍 ~2k tokens auto-retrieved             │
-│     every session                │     (semantic search)                     │
-├──────────────────────────────────┼───────────────────────────────────────────┤
-│  ⏱️  2-3 min boot                │  ⚡ /start boots in <30 seconds           │
-│     (manual setup)               │     (automated)                          │
-├──────────────────────────────────┼───────────────────────────────────────────┤
-│  📝 Process → Store → Integrate  │  🔄 /end auto-logs, processes & stores   │
-│     (weekly tedium)              │     (one command)                        │
-└──────────────────────────────────┴───────────────────────────────────────────┘
-```
-
 ### Qualitative (What It Means)
 
 | Pillar | Outcome |
@@ -211,19 +192,7 @@ flowchart LR
 
 > **Rule of Thumb**: If you'd regret it for more than a week if wrong → run trilateral feedback.
 
-### Cost & Practicality
-
-This isn't for *every* query — only high-stakes decisions. Most SOTA models (Gemini, ChatGPT, Grok) offer **free tiers** sufficient for 5-10 critical validations per month. Estimated cost per trilateral decision: **~$0.50-$1.00** (4x LLM calls + retrieval). Sustainable for important decisions, not routine queries.
-
-### Known Limitations
-
-| Concern | Reality | Mitigation |
-|---------|---------|------------|
-| **PII in exports** | Exporting artifacts to external LLMs sends data to third parties | For sensitive data (legal, health), use local LLMs (Llama, Mistral) or manually redact before export. |
-| **Prompt injection via memory** | Retrieved Markdown *could* contain adversarial instructions if files are compromised | Treat memory as trusted-but-verify. Review retrieved context for anomalies. |
-| **Recursive poisoning** | A hallucination saved in Session 100 could resurface as "truth" in Session 200 | Defense: periodic `/audit` + `/refactor` for human review. Not bulletproof. |
-
-👉 **[Full protocol + red-team prompt →](docs/TRILATERAL_FEEDBACK.md)**
+👉 **[Full protocol, cost details, and known limitations →](docs/TRILATERAL_FEEDBACK.md)**
 
 ---
 
@@ -405,6 +374,8 @@ This project represents my journey from "user" to "builder" — a production-gra
 
 - **GitHub**: [@winstonkoh87](https://github.com/winstonkoh87)
 - **Portfolio**: [winstonkoh87.github.io](https://winstonkoh87.github.io)
+- **Medium**: [@winstonkoh87](https://medium.com/@winstonkoh87)
+- **LinkedIn**: [winstonkoh87](https://www.linkedin.com/in/winstonkoh87/)
 
 ---
 
