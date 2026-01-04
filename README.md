@@ -1,14 +1,14 @@
 ![Athena Banner](./docs/athena_banner.png)
 
-> **Last Updated**: 03 January 2026
+> **Last Updated**: 04 January 2026
 
 # 🏛️ Athena: AI-Powered Personal Knowledge System
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Protocols](https://img.shields.io/badge/Protocols-272-blue)
+![Protocols](https://img.shields.io/badge/Protocols-277-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-571-green)
 
-![Python](https://img.shields.io/badge/Python-3.14.2-3776AB?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.5-CC785C?logo=anthropic)
 ![Built with Gemini](https://img.shields.io/badge/Gemini-3.0_Pro-4285F4?logo=google)
 ![IDE](https://img.shields.io/badge/IDE-Antigravity-000000?logo=google)
@@ -388,6 +388,7 @@ MIT License — see [LICENSE](LICENSE)
 <details>
 <summary><strong>📋 Changelog</strong></summary>
 
+- **v1.2.5** (Jan 2026): Stats sync — 277 protocols; Python badge fix (3.13)
 - **v1.2.4** (Jan 2026): README restructure — collapsed technical sections into "Further Reading"
 - **v1.2.3** (Jan 2026): Stats correction — 269 protocols, 538 sessions, 117 scripts
 - **v1.2.2** (Jan 2026): Stats sync — 248 protocols, 560 sessions, 97 scripts; removed off-topic content
