@@ -192,7 +192,26 @@ flowchart LR
 
 > **Rule of Thumb**: If you'd regret it for more than a week if wrong → run trilateral feedback.
 
-👉 **[Full protocol, cost details, and known limitations →](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/TRILATERAL_FEEDBACK.md)**
+👉 **[Full protocol, cost details, and known limitations →](docs/TRILATERAL_FEEDBACK.md)**
+
+---
+
+## About Me
+
+I'm Winston — a systems thinker who spent 10+ years in financial services before pivoting to AI engineering.
+
+This project represents my journey from "user" to "builder" — a production-grade personal infrastructure I rely on daily, co-developed with AI from day one.
+
+- **GitHub**: [@winstonkoh87](https://github.com/winstonkoh87)
+- **Portfolio**: [winstonkoh87.github.io](https://winstonkoh87.github.io)
+- **Medium**: [@winstonkoh87](https://medium.com/@winstonkoh87)
+- **LinkedIn**: [winstonkoh87](https://www.linkedin.com/in/winstonkoh87/)
+
+---
+
+## License
+
+MIT License — see [LICENSE](LICENSE)
 
 ---
 
@@ -209,7 +228,7 @@ flowchart LR
 | **Local** | Your machine only | Sensitive data, air-gapped environments |
 | **Hybrid** | Local files + cloud embeddings | Best of both (embeddings only leave machine) |
 
-> **Sensitive data?** Keep it local. The `athena` SDK supports local vector stores (ChromaDB, LanceDB) for users who don't want data leaving their machine. See [docs/LOCAL_MODE.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/LOCAL_MODE.md).
+> **Sensitive data?** Keep it local. The `athena` SDK supports local vector stores (ChromaDB, LanceDB) for users who don't want data leaving their machine. See [docs/LOCAL_MODE.md](docs/LOCAL_MODE.md).
 
 ### What Leaves Your Machine (Cloud Mode)
 
@@ -222,7 +241,7 @@ flowchart LR
 ### Key Security Practices
 
 - **Supabase Keys**: Use `SUPABASE_ANON_KEY` for client-side operations. Never expose `SUPABASE_SERVICE_ROLE_KEY` in code or logs.
-- **Row-Level Security**: Enable RLS on Supabase tables. See [docs/SECURITY.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/SECURITY.md) for policy templates.
+- **Row-Level Security**: Enable RLS on Supabase tables. See [SECURITY.md](SECURITY.md) for policy templates.
 - **Agentic Safety**: If using an agentic IDE with filesystem access, restrict the agent's working directory. Never grant access to `~/.ssh`, `.env` files, or git credentials.
 
 </details>
@@ -233,7 +252,7 @@ flowchart LR
 ### Prerequisites
 
 - Python 3.10+
-- Supabase project with pgvector enabled ([setup guide](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/GETTING_STARTED.md)) — *or use local mode*
+- Supabase project with pgvector enabled ([setup guide](docs/GETTING_STARTED.md)) — *or use local mode*
 - API keys in `.env`:
 
 ```bash
@@ -313,7 +332,7 @@ Think of it like **Git, but for conversations**. Each session builds on the last
 | **`/end` commit** | Summarizes session, extracts decisions, saves to knowledge store |
 | **Hybrid search** | Fuses Canonical Memory + Tags + Vectors + Filenames via RRF |
 | **Cross-encoder reranking** | Refines top results with `sentence-transformers` |
-| **Protocol library** | 269 reusable playbooks (trading, writing, design) |
+| **Protocol library** | 277 reusable playbooks (trading, writing, design) |
 
 ### Repository Structure
 
@@ -342,12 +361,11 @@ Athena-Public/
 
 ### Key Concepts
 
-- **[The Architecture](file:///Users/winstonkoh/Desktop/Project Athena/ARCHITECTURE.md)** — How the system is designed
-- **[VectorRAG](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/VECTORRAG.md)** — Semantic memory implementation
-- **[Getting Started](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/GETTING_STARTED.md)** — Build your own
-- **[Reasoning Modes](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/concepts/adaptive_latency.md)** — `/start`, `/think`, `/ultrathink`
-- **[Case Study: BCM](file:///Users/winstonkoh/Desktop/Project Athena/.context/memories/case_studies/CS-140-bcm-silent-partner-analysis.md)** — Real-world due diligence example
-- **[Glossary](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/GLOSSARY.md)** — Key terms and definitions
+- **[The Architecture](docs/ARCHITECTURE.md)** — How the system is designed
+- **[VectorRAG](docs/VECTORRAG.md)** — Semantic memory implementation
+- **[Getting Started](docs/GETTING_STARTED.md)** — Build your own
+- **[Reasoning Modes](examples/concepts/adaptive_latency.md)** — `/start`, `/think`, `/ultrathink`
+- **[Glossary](docs/GLOSSARY.md)** — Key terms and definitions
 
 ### Example Workflows
 
@@ -364,31 +382,10 @@ See [examples/workflows/](examples/workflows/) for full list.
 
 </details>
 
----
-
-## About Me
-
-I'm Winston — a systems thinker who spent 10+ years in financial services before pivoting to AI engineering.
-
-This project represents my journey from "user" to "builder" — a production-grade personal infrastructure I rely on daily, co-developed with AI from day one.
-
-- **GitHub**: [@winstonkoh87](https://github.com/winstonkoh87)
-- **Portfolio**: [winstonkoh87.github.io](https://winstonkoh87.github.io)
-- **Medium**: [@winstonkoh87](https://medium.com/@winstonkoh87)
-- **LinkedIn**: [winstonkoh87](https://www.linkedin.com/in/winstonkoh87/)
-
----
-
-## License
-
-MIT License — see [LICENSE](LICENSE)
-
----
-
 <details>
 <summary><strong>📋 Changelog</strong></summary>
 
-- **v1.2.6** (Jan 2026): Stats sync — 605 sessions, 119 scripts; README audit
+- **v1.2.6** (Jan 2026): Stats sync — 605 sessions, 119 scripts; README restructure
 - **v1.2.5** (Jan 2026): Stats sync — 277 protocols; Python badge fix (3.13)
 - **v1.2.4** (Jan 2026): README restructure — collapsed technical sections into "Further Reading"
 - **v1.2.3** (Jan 2026): Stats correction — 269 protocols, 538 sessions, 117 scripts
@@ -397,6 +394,8 @@ MIT License — see [LICENSE](LICENSE)
 - **v1.2.0** (Jan 2026): New year sync — 246 protocols, 511 sessions
 - **v1.1.0** (Dec 2025): Year-end sync — 238 protocols, 489 sessions
 - **v1.0.0**: SDK architecture (`src/athena/`), quickstart examples
+
+👉 **[Detailed changelog with architecture notes →](docs/CHANGELOG.md)**
 
 </details>
 
