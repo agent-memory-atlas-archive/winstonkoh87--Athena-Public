@@ -114,8 +114,8 @@ description: Close session and update System Prompt files with new insights (lig
 
 ## References
 
-* [/refactor](../refactor.md) — Deep system optimization (audits, scans, integrity)
-* [/save](../save.md) — Mid-session checkpoint
+* [/refactor](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/refactor.md) — Deep system optimization (audits, scans, integrity)
+* [/save](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/workflows/save.md) — Mid-session checkpoint
 
 ---
 

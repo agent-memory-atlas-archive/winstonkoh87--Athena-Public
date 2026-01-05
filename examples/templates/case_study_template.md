@@ -18,7 +18,7 @@
 
 ## 2. Theoretical Mapping
 
-### A. Confirmation of [Protocol 98](examples/protocols/98-strategic-depth-theory.md) (Strategic Depth)
+### A. Confirmation of [Protocol 98](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/98-state-freezer.md) (Strategic Depth)
 
 This validates the "Scaling Depth" hypothesis. To solve an open problem, the model cannot rely on RAG (Width). It must perform **multi-step reasoning** (Depth) to traverse a search space humans haven't finished mapping.
 

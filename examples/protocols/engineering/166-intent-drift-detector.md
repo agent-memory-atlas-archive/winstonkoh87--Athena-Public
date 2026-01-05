@@ -55,7 +55,7 @@ Before touching "working" code, ask:
 
 ## Integration
 
-- Links to: [Protocol 130: Vibe Coding](../workflow/130-vibe-coding.md) — when speed matters
+- Links to: [Protocol 130: Vibe Coding](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/130-vibe-coding.md) — when speed matters
 - Links to: [Protocol 93: Forward-Only Architecture]() — freeze after validation
 - Links to: [TASK_LOG.md]() — intent persistence
 - Source: Reddit r/vibecoding (Dec 2025)
