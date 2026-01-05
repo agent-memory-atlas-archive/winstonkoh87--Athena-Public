@@ -329,10 +329,8 @@ Think of it like **Git, but for conversations**. Each session builds on the last
 | Feature | How It Works |
 |---------|--------------|
 | **`/start` boot** | Loads identity + retrieves relevant context from long-term memory |
-| **330+ Protocols** | Standardized reasoning frameworks for engineering, strategy, and decision-making. |
-| **Bionic Architecture** | A hybrid system combining human judgment with AI scale. |
-| **Sovereign Memory** | Local-first vector databases for long-term recall. |
-| **Zero-Trust Defaults** | Everything is verified; nothing is assumed. |
+| **`/end` commit** | Summarizes session, extracts decisions, saves to knowledge store |
+| **Hybrid search** | Fuses Canonical Memory + Tags + Vectors + Filenames via RRF |
 | **Cross-encoder reranking** | Refines top results with `sentence-transformers` |
 | **Protocol library** | 277 reusable playbooks (trading, writing, design) |
 
