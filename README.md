@@ -5,8 +5,8 @@
 # 🏛️ Athena: AI-Powered Personal Knowledge System
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Protocols](https://img.shields.io/badge/Protocols-277-blue)
-![Sessions](https://img.shields.io/badge/Sessions-605-green)
+![Protocols](https://img.shields.io/badge/Protocols-332-blue)
+![Sessions](https://img.shields.io/badge/Sessions-610-green)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.5-CC785C?logo=anthropic)
@@ -81,9 +81,9 @@ Here's what I actually did. No shortcuts.
 ### What the Schlep Looked Like
 
 ```
-├── 600+ sessions logged (human + AI collaboration)
-├── 277 protocols extracted
-├── 119 automation scripts written
+├── 610+ sessions logged (human + AI collaboration)
+├── 332 protocols extracted
+├── 104 automation scripts written
 ├── 3 major refactors (monolith → SDK)
 ├── 2 external red-team audits
 └── Countless errors, dead ends, and "why isn't this working" nights
@@ -107,7 +107,7 @@ Here's what I actually did. No shortcuts.
 |--------|---------|
 | **Recursive Self-Improvement (RSI)** | Driven by both human and AI — we feed off each other's insights. I stopped *recreating* context and started *compounding* it. Every session builds on the last. |
 | **Portability** | Data lives locally (primary) and in the cloud. Not trapped in ChatGPT or Claude. It's mine — I can port it anywhere. |
-| **Principles** | 269 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
+| **Principles** | 332 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
 
 ### Proof It Works
 
@@ -385,6 +385,7 @@ See [examples/workflows/](examples/workflows/) for full list.
 <details>
 <summary><strong>📋 Changelog</strong></summary>
 
+- **v1.2.7** (Jan 2026): Metrics sync — 332 protocols, 610 sessions
 - **v1.2.6** (Jan 2026): Stats sync — 605 sessions, 119 scripts; README restructure
 - **v1.2.5** (Jan 2026): Stats sync — 277 protocols; Python badge fix (3.13)
 - **v1.2.4** (Jan 2026): README restructure — collapsed technical sections into "Further Reading"
