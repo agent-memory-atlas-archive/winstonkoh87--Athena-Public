@@ -84,6 +84,8 @@ Here's what I actually did. No shortcuts.
 ├── 620+ sessions logged (human + AI collaboration)
 ├── 278 protocols extracted
 ├── 122 automation scripts written
+├── 1,460 GraphRAG communities (auto-clustered knowledge graph)
+├── 46MB knowledge graph + 78MB ChromaDB vectors
 ├── 4 major refactors (monolith → SDK → Grand Alignment)
 ├── 2 external red-team audits
 └── Countless errors, dead ends, and "why isn't this working" nights
@@ -326,6 +328,7 @@ See [examples/quickstart/](examples/quickstart/) for runnable demos.
 | **Reasoning** | Claude Opus 4.5 (primary) | Main reasoning engine |
 | **IDE** | Antigravity (supports Claude, Gemini, GPT) | Agentic development environment |
 | **Embeddings** | `text-embedding-004` (768-dim) | Google embedding model |
+| **GraphRAG** | NetworkX + Leiden + ChromaDB | Knowledge graph (3.5x weight in search) |
 | **Memory** | Supabase + pgvector *or* local (ChromaDB) | Vector database |
 | **Knowledge Store** | Markdown files (git-versioned) | Human-readable, locally owned |
 
@@ -382,6 +385,7 @@ Athena-Public/
 ### Key Concepts
 
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — How the system is designed
+- [docs/GRAPHRAG.md](docs/GRAPHRAG.md) — Knowledge graph layer (community detection + entity search)
 - [docs/VECTORRAG.md](docs/VECTORRAG.md) — Semantic memory implementation
 - [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) — Build your own
 - [examples/concepts/adaptive_latency.md](examples/concepts/adaptive_latency.md) — `/start`, `/think`, `/ultrathink`
