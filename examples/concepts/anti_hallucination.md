@@ -54,7 +54,7 @@ Athena mitigates hallucination through a multi-layered defense system:
 | **Grounding** | All claims reference actual workspace files | AI operates on verified local data, not parametric memory |
 | **Modular Loading** | Adaptive context (<2K boot) prevents "context rot" | Avoids "lost in the middle" degradation (Liu et al., 2024) |
 | **Law #5** | No orphan statistics — all external claims require citations | Every number has a source or is marked "internal estimate" |
-| **[Protocol 141](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/verification/141-claim-atomization-audit.md)** | Claim Atomization Audit for deliverables | Decompose → Classify → Verify → Score before release |
+| **[Protocol 141](examples/protocols/verification/141-claim-atomization-audit.md)** | Claim Atomization Audit for deliverables | Decompose → Classify → Verify → Score before release |
 | **COS Skeptic Seat** | Adversarial self-review before output | "What could go wrong?" asked before every response |
 | **Cross-Model Audit** | External SoTA models verify outputs | Independent verification catches systematic blind spots |
 
@@ -125,4 +125,4 @@ This creates a **self-correcting system** where each caught error makes the next
 
 - Liu, N. F., et al. (2024). *Lost in the Middle: How Language Models Use Long Contexts*. arXiv. <https://arxiv.org/abs/2307.03172>
 
-*[← Back to README](file:///Users/winstonkoh/Desktop/Project Athena/README.md)*
+*[← Back to README](../README.md)*

@@ -451,7 +451,7 @@ VectorRAG is **not optional**. Per Core Identity §0.7.1:
 
 ## Future Enhancements
 
-* [x] **Hybrid Search**: Combine vector + keyword + TAG_INDEX for precision → See [SEMANTIC_SEARCH.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/SEMANTIC_SEARCH.md)
+* [x] **Hybrid Search**: Combine vector + keyword + TAG_INDEX for precision → See [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md)
 * [ ] **Auto-Reindex**: Trigger sync on file save (via GitHub webhook)
 * [ ] **Cross-Reference**: Link sessions to protocols to case studies
 * [ ] **Chunking Strategy**: Split large documents for finer retrieval

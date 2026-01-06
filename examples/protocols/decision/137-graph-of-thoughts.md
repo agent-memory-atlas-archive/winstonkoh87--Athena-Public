@@ -3,7 +3,7 @@
 > **Source**: Adapted from ETH Zurich SPCL Graph-of-Thoughts ([arXiv:2308.09687](https://arxiv.org/abs/2308.09687), 2023)
 > **Domain**: Decision / High-Lakes Reasoning
 > **Priority**: ⭐⭐⭐ Critical (L4 Engine)
-> **Related**: [Protocol 123 (Einstein)](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/decision/123-einstein-protocol.md), [Protocol 75 (Synthetic Parallel Reasoning)](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md)
+> **Related**: [Protocol 123 (Einstein)](../decision/123-einstein-protocol.md), [Protocol 75 (Synthetic Parallel Reasoning)](examples/protocols/decision/75-synthetic-parallel-reasoning.md)
 
 ---
 
@@ -20,7 +20,7 @@ It models human "brainstorming" where multiple possibilities are explored, criti
 
 ## The GoT Topology
 
-When executing **Phase 2 (Solution)** of the [Einstein Protocol](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/decision/123-einstein-protocol.md), use this flow:
+When executing **Phase 2 (Solution)** of the [Einstein Protocol](../decision/123-einstein-protocol.md), use this flow:
 
 ```mermaid
 graph TD

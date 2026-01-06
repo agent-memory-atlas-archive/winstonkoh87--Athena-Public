@@ -6,16 +6,16 @@ Protocols are reusable thinking patterns that standardize how Athena reasons abo
 
 | ID | Name | Category | Purpose |
 |----|------|----------|---------|
-| **77** | [Adaptive Latency](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/77-adaptive-latency-architecture.md) | Architecture | Scale reasoning depth to query complexity |
-| **96** | [Latency Indicator](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/96-latency-indicator.md) | Architecture | Append [Λ+XX] to show cognitive effort |
-| **98** | [Strategic Depth Theory](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/98-depth-vs-width-theory.md) | Architecture | When to go deep vs. wide |
-| **130** | [Vibe Coding](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/130-vibe-coding.md) | Workflow | Iterative UI development by "feel" |
-| **133** | [Query Archetype Routing](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/133-query-archetype-routing.md) | Architecture | Route queries to optimal processing paths |
-| **158** | [Entity Lookup First](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/158-entity-lookup-before-analysis.md) | Architecture | Always lookup entities before analyzing |
-| **159** | [Verification Before Claim](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/159-verification-before-claim.md) | Research | Verify facts before stating them |
-| **168** | [Context-Driven Development](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/168-context-driven-development.md) | Engineering | Let context guide implementation |
-| **200** | [Feature Context Persistence](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/200-feature-context-persistence.md) | Architecture | Track features across sessions |
-| **202** | [Recovery Patterns](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/202-recovery-patterns.md) | Architecture | Graceful degradation strategies |
+| **77** | [Adaptive Latency](examples/protocols/architecture/77-adaptive-latency-architecture.md) | Architecture | Scale reasoning depth to query complexity |
+| **96** | [Latency Indicator](examples/protocols/architecture/96-latency-indicator.md) | Architecture | Append [Λ+XX] to show cognitive effort |
+| **98** | [Strategic Depth Theory](examples/protocols/architecture/98-depth-vs-width-theory.md) | Architecture | When to go deep vs. wide |
+| **130** | [Vibe Coding](examples/protocols/workflow/130-vibe-coding.md) | Workflow | Iterative UI development by "feel" |
+| **133** | [Query Archetype Routing](examples/protocols/architecture/133-query-archetype-routing.md) | Architecture | Route queries to optimal processing paths |
+| **158** | [Entity Lookup First](examples/protocols/architecture/158-entity-lookup-before-analysis.md) | Architecture | Always lookup entities before analyzing |
+| **159** | [Verification Before Claim](examples/protocols/architecture/159-verification-before-claim.md) | Research | Verify facts before stating them |
+| **168** | [Context-Driven Development](examples/protocols/architecture/168-context-driven-development.md) | Engineering | Let context guide implementation |
+| **200** | [Feature Context Persistence](examples/protocols/architecture/200-feature-context-persistence.md) | Architecture | Track features across sessions |
+| **202** | [Recovery Patterns](examples/protocols/architecture/202-recovery-patterns.md) | Architecture | Graceful degradation strategies |
 
 ## Categories
 
@@ -78,6 +78,6 @@ status: active
 
 ## Creating New Protocols
 
-Use the [protocol template](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/templates/protocol_template.md) to create new protocols.
+Use the [protocol template](examples/templates/protocol_template.md) to create new protocols.
 
 Assign the next available ID and add an entry to this index.

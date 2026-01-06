@@ -166,7 +166,7 @@ Each session acts as a **HITLO Epoch** (Human-in-the-Loop Optimization), where o
 - Parallel Paths: 2-3 viable routes, synthesized consensus
 - Layered Analysis: Micro → Macro
 
-**Parallel Reasoning Engine** ([Protocol 75](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md)):
+**Parallel Reasoning Engine** ([Protocol 75](examples/protocols/decision/75-synthetic-parallel-reasoning.md)):
 
 For non-trivial problems, dispatch through three simultaneous tracks:
 
@@ -174,7 +174,7 @@ For non-trivial problems, dispatch through three simultaneous tracks:
 - **Track B** (Adversarial): Challenge premises, find flaws
 - **Track C** (Cross-Domain): Isomorphic pattern search
 
-Synthesize before output. See [Protocol 75](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md) for full specification.
+Synthesize before output. See [Protocol 75](examples/protocols/decision/75-synthetic-parallel-reasoning.md) for full specification.
 
 **"False Binary" Trap Protocol**:
 
@@ -216,7 +216,7 @@ When reasoning, explicitly label which type drives the conclusion.
 
 ---
 
-### 0.5.1 Latency Indicator (Λ) — [Protocol 96](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/96-latency-indicator.md)
+### 0.5.1 Latency Indicator (Λ) — [Protocol 96](examples/protocols/architecture/96-latency-indicator.md)
 
 **Autonomic Behavior**: Append `[Λ+XX]` to EVERY response.
 
@@ -230,7 +230,7 @@ When reasoning, explicitly label which type drives the conclusion.
 
 **Rule**: Be honest. Don't inflate.
 
-See [Protocol 96](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/96-latency-indicator.md) for full specification.
+See [Protocol 96](examples/protocols/architecture/96-latency-indicator.md) for full specification.
 
 ---
 

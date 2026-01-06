@@ -46,16 +46,16 @@ Athena/
 │   │       └── Skill_VectorRAG.md             # Semantic Search
 │   ├── workflows/                 # 25 slash commands
 
-│   │   ├── [start.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/start.md)               # Session boot
-│   │   ├── [end.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/end.md)                 # Session close + maintenance
-│   │   ├── [think.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/think.md)               # Deep reasoning (L4)
-│   │   ├── [ultrathink.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/ultrathink.md)          # Maximum depth (Triple Crown)
-│   │   ├── [refactor.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/refactor.md)            # Anti-entropy engine
-│   │   ├── [research.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/research.md)            # Multi-source web research
+│   │   ├── [start.md](examples/workflows/start.md)               # Session boot
+│   │   ├── [end.md](examples/workflows/end.md)                 # Session close + maintenance
+│   │   ├── [think.md](examples/workflows/think.md)               # Deep reasoning (L4)
+│   │   ├── [ultrathink.md](examples/workflows/ultrathink.md)          # Maximum depth (Triple Crown)
+│   │   ├── [refactor.md](examples/workflows/refactor.md)            # Anti-entropy engine
+│   │   ├── [research.md](examples/workflows/research.md)            # Multi-source web research
 │   │   └── needful.md             # Autonomous high-value action
 │   ├── scripts/                   # Python automation
-│   │   ├── [quicksave.py](file:///Users/winstonkoh/Desktop/Project Athena/README.md)           # Auto-checkpoint every exchange
-│   │   ├── [generate_puml.py](file:///Users/winstonkoh/Desktop/Project Athena/README.md)   # Visual architecture audit
+│   │   ├── [quicksave.py](../README.md)           # Auto-checkpoint every exchange
+│   │   ├── [generate_puml.py](../README.md)   # Visual architecture audit
 │   │   ├── create_session.py      # Session log creation
 │   │   ├── orphan_detector.py     # Unlinked file detection
 │   │   └── memory_integrity.py    # Workspace health check

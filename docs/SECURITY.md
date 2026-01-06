@@ -8,7 +8,7 @@
 | **Local** | Your machine only | Sensitive data, air-gapped environments |
 | **Hybrid** | Local files + cloud embeddings | Best of both (embeddings only leave machine) |
 
-> **Sensitive data?** Keep it local. The `athena` SDK supports local vector stores (ChromaDB, LanceDB) for users who don't want data leaving their machine. See [LOCAL_MODE.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/LOCAL_MODE.md).
+> **Sensitive data?** Keep it local. The `athena` SDK supports local vector stores (ChromaDB, LanceDB) for users who don't want data leaving their machine. See [LOCAL_MODE.md](docs/LOCAL_MODE.md).
 
 ## What Leaves Your Machine (Cloud Mode)
 

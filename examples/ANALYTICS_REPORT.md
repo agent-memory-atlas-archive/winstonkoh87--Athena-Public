@@ -75,8 +75,8 @@ Dec 21 ▓▓▓▓▓▓▓▓▓▓▓▓▓ 13 (in progress)
 
 ## 🔗 Related
 
-- [ARCHITECTURE.md](file:///Users/winstonkoh/Desktop/Project Athena/ARCHITECTURE.md)
-- [FEATURES.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/FEATURES.md)
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- [FEATURES.md](docs/FEATURES.md)
 - [Interactive Knowledge Graph Demo](https://winstonkoh87.github.io/Athena-Public/examples/knowledge_graph_demo.html)
 
 ---

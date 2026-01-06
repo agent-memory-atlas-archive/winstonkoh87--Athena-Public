@@ -113,9 +113,9 @@ Inspired by *Bleach* anime power scaling (for flavor):
 
 ## References
 
-- [README](file:///Users/winstonkoh/Desktop/Project Athena/README.md) — Full project overview
-- [ARCHITECTURE.md](file:///Users/winstonkoh/Desktop/Project Athena/ARCHITECTURE.md) — Technical deep dive
-- [VECTORRAG.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/VECTORRAG.md) — Semantic memory system
-- [Core Identity Template](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/templates/core_identity_template.md) — How the AI's personality is defined
+- [README](../README.md) — Full project overview
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md) — Technical deep dive
+- [VECTORRAG.md](docs/VECTORRAG.md) — Semantic memory system
+- [Core Identity Template](examples/templates/core_identity_template.md) — How the AI's personality is defined
 
 ---

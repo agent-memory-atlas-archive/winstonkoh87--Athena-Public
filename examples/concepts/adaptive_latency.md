@@ -124,4 +124,4 @@ We name these modes after the *Bleach* anime power-scaling system to model the d
 * Lewis, P., et al. (2020). *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks*. NeurIPS. <https://arxiv.org/abs/2005.11401>
 * Liu, N. F., et al. (2024). *Lost in the Middle: How Language Models Use Long Contexts*. arXiv. <https://arxiv.org/abs/2307.03172>
 
-*[← Back to Architecture](file:///Users/winstonkoh/Desktop/Project Athena/ARCHITECTURE.md)*
+*[← Back to Architecture](docs/ARCHITECTURE.md)*

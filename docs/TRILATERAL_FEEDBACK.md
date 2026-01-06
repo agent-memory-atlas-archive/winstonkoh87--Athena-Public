@@ -173,4 +173,4 @@ RULES
 
 ---
 
-*See also: [Protocol 171: Cross-Model Validation](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/verification/171-cross-model-validation.md)*
+*See also: [Protocol 171: Cross-Model Validation](examples/protocols/verification/171-cross-model-validation.md)*

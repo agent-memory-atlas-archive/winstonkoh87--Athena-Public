@@ -78,8 +78,8 @@ When `/resume` is invoked:
 
 ## References
 
-- [/start](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/start.md) — Fresh session boot
-- [/save](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
+- [/start](examples/workflows/start.md) — Fresh session boot
+- [/save](examples/workflows/save.md) — Mid-session checkpoint
 
 ---
 

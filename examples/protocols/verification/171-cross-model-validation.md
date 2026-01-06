@@ -193,8 +193,8 @@ Quality = f(Primary Depth × Adversarial Diversity × Synthesis Discipline)
 
 ## Integration
 
-- Links to: [Protocol 159](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/159-verification-before-claim.md) (Verification Before Claim)
-- Links to: [Protocol 75](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md) (Parallel Reasoning)
+- Links to: [Protocol 159](examples/protocols/architecture/159-verification-before-claim.md) (Verification Before Claim)
+- Links to: [Protocol 75](examples/protocols/decision/75-synthetic-parallel-reasoning.md) (Parallel Reasoning)
 - Used in: `/due-diligence`, `/ultrathink`
 
 ---

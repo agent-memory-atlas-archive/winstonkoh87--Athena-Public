@@ -192,7 +192,7 @@ flowchart LR
 
 > **Rule of Thumb**: If you'd regret it for more than a week if wrong → run trilateral feedback.
 
-👉 **[Full protocol, cost details, and known limitations →](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/TRILATERAL_FEEDBACK.md)**
+👉 [docs/TRILATERAL_FEEDBACK.md](docs/TRILATERAL_FEEDBACK.md)
 
 ---
 
@@ -228,7 +228,7 @@ MIT License — see [LICENSE](LICENSE)
 | **Local** | Your machine only | Sensitive data, air-gapped environments |
 | **Hybrid** | Local files + cloud embeddings | Best of both (embeddings only leave machine) |
 
-> **Sensitive data?** Keep it local. The `athena` SDK supports local vector stores (ChromaDB, LanceDB) for users who don't want data leaving their machine. See [docs/LOCAL_MODE.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/LOCAL_MODE.md).
+> **Sensitive data?** Keep it local. The `athena` SDK supports local vector stores (ChromaDB, LanceDB) for users who don't want data leaving their machine. See [docs/LOCAL_MODE.md](docs/LOCAL_MODE.md).
 
 ### What Leaves Your Machine (Cloud Mode)
 
@@ -241,7 +241,7 @@ MIT License — see [LICENSE](LICENSE)
 ### Key Security Practices
 
 - **Supabase Keys**: Use `SUPABASE_ANON_KEY` for client-side operations. Never expose `SUPABASE_SERVICE_ROLE_KEY` in code or logs.
-- **Row-Level Security**: Enable RLS on Supabase tables. See [SECURITY.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/SECURITY.md) for policy templates.
+- **Row-Level Security**: Enable RLS on Supabase tables. See [SECURITY.md](SECURITY.md) for policy templates.
 - **Agentic Safety**: If using an agentic IDE with filesystem access, restrict the agent's working directory. Never grant access to `~/.ssh`, `.env` files, or git credentials.
 
 ### Memory Insurance (Disaster Recovery)
@@ -272,7 +272,7 @@ This isn't over-engineering — it's survival. Platform APIs change. Local disks
 ### Prerequisites
 
 - Python 3.10+
-- Supabase project with pgvector enabled ([setup guide](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/GETTING_STARTED.md)) — *or use local mode*
+- Supabase project with pgvector enabled ([setup guide](docs/GETTING_STARTED.md)) — *or use local mode*
 - API keys in `.env`:
 
 ```bash
@@ -381,11 +381,11 @@ Athena-Public/
 
 ### Key Concepts
 
-- **[The Architecture](file:///Users/winstonkoh/Desktop/Project Athena/ARCHITECTURE.md)** — How the system is designed
-- **[VectorRAG](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/VECTORRAG.md)** — Semantic memory implementation
-- **[Getting Started](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/GETTING_STARTED.md)** — Build your own
-- **[Reasoning Modes](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/concepts/adaptive_latency.md)** — `/start`, `/think`, `/ultrathink`
-- **[Glossary](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/GLOSSARY.md)** — Key terms and definitions
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — How the system is designed
+- [docs/VECTORRAG.md](docs/VECTORRAG.md) — Semantic memory implementation
+- [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) — Build your own
+- [examples/concepts/adaptive_latency.md](examples/concepts/adaptive_latency.md) — `/start`, `/think`, `/ultrathink`
+- [docs/GLOSSARY.md](docs/GLOSSARY.md) — Key terms and definitions
 
 ### Example Workflows
 
@@ -405,19 +405,19 @@ See [examples/workflows/](examples/workflows/) for full list.
 <details>
 <summary><strong>📋 Changelog</strong></summary>
 
-- **v1.2.8** (06 Jan 2026): Grand Alignment refactor — Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized, metrics corrected
-- **v1.2.7** (05 Jan 2026): Metrics sync — 332 protocols, 610 sessions
-- **v1.2.6** (05 Jan 2026): Stats sync — 605 sessions, 119 scripts; README restructure
-- **v1.2.5** (04 Jan 2026): Stats sync — 277 protocols; Python badge fix (3.13)
-- **v1.2.4** (04 Jan 2026): README restructure — collapsed technical sections into "Further Reading"
-- **v1.2.3** (03 Jan 2026): Stats correction — 269 protocols, 538 sessions, 117 scripts
-- **v1.2.2** (02 Jan 2026): Stats sync — 248 protocols, 560 sessions, 97 scripts; removed off-topic content
-- **v1.2.1** (01 Jan 2026): README overhaul — Process section, Security Model, co-development narrative
-- **v1.2.0** (01 Jan 2026): New year sync — 246 protocols, 511 sessions
+- **v1.2.8** (Jan 2026): Grand Alignment refactor — Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized, metrics corrected
+- **v1.2.7** (Jan 2026): Metrics sync — 332 protocols, 610 sessions
+- **v1.2.6** (Jan 2026): Stats sync — 605 sessions, 119 scripts; README restructure
+- **v1.2.5** (Jan 2026): Stats sync — 277 protocols; Python badge fix (3.13)
+- **v1.2.4** (Jan 2026): README restructure — collapsed technical sections into "Further Reading"
+- **v1.2.3** (Jan 2026): Stats correction — 269 protocols, 538 sessions, 117 scripts
+- **v1.2.2** (Jan 2026): Stats sync — 248 protocols, 560 sessions, 97 scripts; removed off-topic content
+- **v1.2.1** (Jan 2026): README overhaul — Process section, Security Model, co-development narrative
+- **v1.2.0** (Jan 2026): New year sync — 246 protocols, 511 sessions
 - **v1.1.0** (Dec 2025): Year-end sync — 238 protocols, 489 sessions
 - **v1.0.0** (Dec 2025): SDK architecture (`src/athena/`), quickstart examples
 
-👉 **[Detailed changelog with architecture notes →](file:///Users/winstonkoh/Desktop/Project Athena/CHANGELOG.md)**
+👉 [docs/CHANGELOG.md](docs/CHANGELOG.md)
 
 </details>
 

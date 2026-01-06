@@ -298,6 +298,6 @@ Tune `.framework/modules/Core_Identity.md` to match your preferences.
 
 *You now have a self-improving AI assistant.*
 
-**[Back to README](file:///Users/winstonkoh/Desktop/Project Athena/README.md)**
+**[Back to README](../README.md)**
 
 </div>

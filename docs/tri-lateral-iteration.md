@@ -203,7 +203,7 @@ Quality = f(Primary Depth × Adversarial Diversity × Synthesis Discipline)
 ## References
 
 - [LMArena](https://lmarena.ai/) — Free SOTA model access for blind comparison
-- [Protocol 75: Synthetic Parallel Reasoning](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md) — Single-model multi-track reasoning
+- [Protocol 75: Synthetic Parallel Reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md) — Single-model multi-track reasoning
 
 ---
 

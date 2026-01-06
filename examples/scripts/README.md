@@ -21,7 +21,7 @@ These scripts represent months of iterative refinement and are the "execution la
 
 ## Building Your Own
 
-The [GETTING_STARTED.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/docs/GETTING_STARTED.md) guide explains the architecture patterns. Implementation is left as an exercise — the real value is in the iteration, not the code.
+The [GETTING_STARTED.md](docs/GETTING_STARTED.md) guide explains the architecture patterns. Implementation is left as an exercise — the real value is in the iteration, not the code.
 
 ---
 

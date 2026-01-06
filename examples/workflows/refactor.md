@@ -240,11 +240,11 @@ git reset --hard <checkpoint-hash>
 
 ## References
 
-- [/diagnose](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/diagnose.md) — Read-only diagnostics
-- [/dump](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/dump.md) — Quick thought capture
-- [/end](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/end.md) — Quick session close
-- [/reindex](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/reindex.md) — Supabase sync only
-- [/vibe](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/vibe.md) — Vibe engineering mode
+- [/diagnose](examples/workflows/diagnose.md) — Read-only diagnostics
+- [/dump](examples/workflows/dump.md) — Quick thought capture
+- [/end](examples/workflows/end.md) — Quick session close
+- [/reindex](examples/workflows/reindex.md) — Supabase sync only
+- [/vibe](examples/workflows/vibe.md) — Vibe engineering mode
 
 ---
 

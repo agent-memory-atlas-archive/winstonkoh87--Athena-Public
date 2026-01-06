@@ -25,4 +25,4 @@ The human retains 3 of 4 layers. The execution layer is delegated to an AI that 
 **This is the new literacy.** Athena is my proof of concept — built in < 30 days, running at < SGD 30/month, with 151 protocols and 4,700+ indexed knowledge nodes.
 
 ---
-*[← Back to README](file:///Users/winstonkoh/Desktop/Project Athena/README.md)*
+*[← Back to README](../README.md)*

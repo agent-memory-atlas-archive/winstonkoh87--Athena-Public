@@ -141,12 +141,12 @@ This is NOT sequential handoff — it's **concurrent enrichment**.
 ---
 
 ## References
-- [Protocol 115: First Principles Deconstruction](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/decision/115-first-principles-deconstruction.md)
+- [Protocol 115: First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md)
 
-- [Core_Identity.md](file:///Users/winstonkoh/Desktop/Project Athena/ARCHITECTURE.md) — Laws #1-4
-- [Protocol 67](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/research/67-cross-pollination.md) — Cross-Domain Isomorphism
-- [Protocol 140](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/decision/140-base-rate-audit.md) — Zero-Point Inversion
-- [Protocol 40](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/decision/40-frame-vs-structural-problem.md) — Frame vs Structural
+- [Core_Identity.md](docs/ARCHITECTURE.md) — Laws #1-4
+- [Protocol 67](../research/67-cross-pollination.md) — Cross-Domain Isomorphism
+- [Protocol 140](examples/protocols/decision/140-base-rate-audit.md) — Zero-Point Inversion
+- [Protocol 40](../decision/40-frame-vs-structural-problem.md) — Frame vs Structural
 
 ---
 

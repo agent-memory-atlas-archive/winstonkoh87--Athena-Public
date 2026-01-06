@@ -2,7 +2,7 @@
 
 > **Redirect**: This file redirects to the canonical protocol.
 
-See: [Protocol 171: Bionic Operational Physics](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/171-bionic-operational-physics.md)
+See: [Protocol 171: Bionic Operational Physics](examples/protocols/workflow/171-bionic-operational-physics.md)
 
 ---
 
