@@ -328,7 +328,7 @@ See [examples/quickstart/](examples/quickstart/) for runnable demos.
 | **Reasoning** | Claude Opus 4.5 (primary) | Main reasoning engine |
 | **IDE** | Antigravity (supports Claude, Gemini, GPT) | Agentic development environment |
 | **Embeddings** | `text-embedding-004` (768-dim) | Google embedding model |
-| **GraphRAG** | NetworkX + Leiden + ChromaDB | Knowledge graph (3.5x weight in search) |
+| **GraphRAG** | NetworkX + Leiden + ChromaDB | [Knowledge graph](docs/GRAPHRAG.md) (3.5x weight in search) |
 | **Memory** | Supabase + pgvector *or* local (ChromaDB) | Vector database |
 | **Knowledge Store** | Markdown files (git-versioned) | Human-readable, locally owned |
 
@@ -353,9 +353,9 @@ Think of it like **Git, but for conversations**. Each session builds on the last
 |---------|--------------|
 | **`/start` boot** | Loads identity + retrieves relevant context from long-term memory |
 | **`/end` commit** | Summarizes session, extracts decisions, saves to knowledge store |
-| **Hybrid search** | Fuses Canonical Memory + Tags + Vectors + Filenames via RRF |
+| **Hybrid search** | Fuses Canonical + [GraphRAG](docs/GRAPHRAG.md) + Tags + [Vectors](docs/VECTORRAG.md) + Filenames via RRF |
 | **Cross-encoder reranking** | Refines top results with `sentence-transformers` |
-| **Protocol library** | 277 reusable playbooks (trading, writing, design) |
+| **Protocol library** | [277 reusable playbooks](examples/protocols/) (trading, writing, design) |
 
 ### Repository Structure
 
