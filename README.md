@@ -256,6 +256,14 @@ Supabase is not just a search layer — it's a **backup** of all indexed memorie
 
 > **Philosophy**: Cloud is not "home" — it's insurance.
 
+**Why Redundancy Matters**: In system design, redundancy is the intentional duplication of critical components to increase reliability. Athena follows this principle:
+
+- **Primary**: Local Markdown files (git-versioned, human-readable)
+- **Secondary**: Supabase vector embeddings (cloud-native, searchable)
+- **Tertiary**: Session logs with timestamps (audit trail)
+
+This isn't over-engineering — it's survival. Platform APIs change. Local disks fail. The only hedge is **strategic duplication**.
+
 </details>
 
 <details>
@@ -397,17 +405,17 @@ See [examples/workflows/](examples/workflows/) for full list.
 <details>
 <summary><strong>📋 Changelog</strong></summary>
 
-- **v1.2.8** (Jan 2026): Grand Alignment refactor — Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized, metrics corrected
-- **v1.2.7** (Jan 2026): Metrics sync — 332 protocols, 610 sessions
-- **v1.2.6** (Jan 2026): Stats sync — 605 sessions, 119 scripts; README restructure
-- **v1.2.5** (Jan 2026): Stats sync — 277 protocols; Python badge fix (3.13)
-- **v1.2.4** (Jan 2026): README restructure — collapsed technical sections into "Further Reading"
-- **v1.2.3** (Jan 2026): Stats correction — 269 protocols, 538 sessions, 117 scripts
-- **v1.2.2** (Jan 2026): Stats sync — 248 protocols, 560 sessions, 97 scripts; removed off-topic content
-- **v1.2.1** (Jan 2026): README overhaul — Process section, Security Model, co-development narrative
-- **v1.2.0** (Jan 2026): New year sync — 246 protocols, 511 sessions
+- **v1.2.8** (06 Jan 2026): Grand Alignment refactor — Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized, metrics corrected
+- **v1.2.7** (05 Jan 2026): Metrics sync — 332 protocols, 610 sessions
+- **v1.2.6** (05 Jan 2026): Stats sync — 605 sessions, 119 scripts; README restructure
+- **v1.2.5** (04 Jan 2026): Stats sync — 277 protocols; Python badge fix (3.13)
+- **v1.2.4** (04 Jan 2026): README restructure — collapsed technical sections into "Further Reading"
+- **v1.2.3** (03 Jan 2026): Stats correction — 269 protocols, 538 sessions, 117 scripts
+- **v1.2.2** (02 Jan 2026): Stats sync — 248 protocols, 560 sessions, 97 scripts; removed off-topic content
+- **v1.2.1** (01 Jan 2026): README overhaul — Process section, Security Model, co-development narrative
+- **v1.2.0** (01 Jan 2026): New year sync — 246 protocols, 511 sessions
 - **v1.1.0** (Dec 2025): Year-end sync — 238 protocols, 489 sessions
-- **v1.0.0**: SDK architecture (`src/athena/`), quickstart examples
+- **v1.0.0** (Dec 2025): SDK architecture (`src/athena/`), quickstart examples
 
 👉 **[Detailed changelog with architecture notes →](file:///Users/winstonkoh/Desktop/Project Athena/CHANGELOG.md)**
 
