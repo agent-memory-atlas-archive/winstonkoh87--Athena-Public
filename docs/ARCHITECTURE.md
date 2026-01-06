@@ -46,10 +46,10 @@ Athena/
 │   │       └── Skill_VectorRAG.md             # Semantic Search
 │   ├── workflows/                 # 25 slash commands
 
-│   │   ├── [start.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/workflows/start.md)               # Session boot
-│   │   ├── [end.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/workflows/end.md)                 # Session close + maintenance
-│   │   ├── [think.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/workflows/think.md)               # Deep reasoning (L4)
-│   │   ├── [ultrathink.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/workflows/ultrathink.md)          # Maximum depth (Triple Crown)
+│   │   ├── [start.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/start.md)               # Session boot
+│   │   ├── [end.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/end.md)                 # Session close + maintenance
+│   │   ├── [think.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/think.md)               # Deep reasoning (L4)
+│   │   ├── [ultrathink.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/ultrathink.md)          # Maximum depth (Triple Crown)
 │   │   ├── [refactor.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/refactor.md)            # Anti-entropy engine
 │   │   ├── [research.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/workflows/research.md)            # Multi-source web research
 │   │   └── needful.md             # Autonomous high-value action

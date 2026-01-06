@@ -12,10 +12,10 @@
 
 ## Research
 
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/research/52-deep-research-loop.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/research/52-deep-research-loop.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/research/54-cyborg-methodology.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/research/54-cyborg-methodology.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/research/52-deep-research-loop.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/research/52-deep-research-loop.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/research/54-cyborg-methodology.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/research/54-cyborg-methodology.md)
 - [file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/research/67-cross-pollination.md](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/research/67-cross-pollination.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/research/70-agentic-absorption.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/research/70-agentic-absorption.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/research/70-agentic-absorption.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/research/70-agentic-absorption.md)
 
 ## Psychology
 
@@ -61,27 +61,27 @@
 
 ## Architecture
 
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/101-compaction-recovery.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/101-compaction-recovery.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/102-skills-architecture.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/102-skills-architecture.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/24-modular-architecture.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/24-modular-architecture.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/101-compaction-recovery.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/101-compaction-recovery.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/102-skills-architecture.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/102-skills-architecture.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/24-modular-architecture.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/24-modular-architecture.md)
 - [77-adaptive-latency-architecture.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/77-adaptive-latency-architecture.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/85-token-hygiene.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/85-token-hygiene.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/87-container-sandboxing.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/87-container-sandboxing.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/89-hybrid-token-conservation.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/89-hybrid-token-conservation.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/93-forward-only-architecture.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/93-forward-only-architecture.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/96-latency-indicator.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/96-latency-indicator.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/98-depth-vs-width-theory.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/98-depth-vs-width-theory.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/85-token-hygiene.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/85-token-hygiene.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/87-container-sandboxing.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/87-container-sandboxing.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/89-hybrid-token-conservation.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/89-hybrid-token-conservation.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/93-forward-only-architecture.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/93-forward-only-architecture.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/96-latency-indicator.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/96-latency-indicator.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/98-depth-vs-width-theory.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/98-depth-vs-width-theory.md)
 
 ## Workflow
 
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/103-promptography.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/103-promptography.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/103-promptography.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/103-promptography.md)
 - [file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/workflow/53-adventure-mode.md](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/workflow/53-adventure-mode.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/62-co-thinking-interface.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/62-co-thinking-interface.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/69-iterative-siege.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/69-iterative-siege.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/72-proactive-extrapolation-framework.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/72-proactive-extrapolation-framework.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/73-contextual-pre-action-check.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/73-contextual-pre-action-check.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/74-iterative-creative-production.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/74-iterative-creative-production.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/81-forge-iteration.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/workflow/81-forge-iteration.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/62-co-thinking-interface.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/62-co-thinking-interface.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/69-iterative-siege.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/69-iterative-siege.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/72-proactive-extrapolation-framework.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/72-proactive-extrapolation-framework.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/73-contextual-pre-action-check.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/73-contextual-pre-action-check.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/74-iterative-creative-production.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/74-iterative-creative-production.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/81-forge-iteration.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/81-forge-iteration.md)
 
 ## Decision
 
@@ -123,20 +123,20 @@
 
 ## Engineering
 
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/100-git-worktree-parallelism.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/100-git-worktree-parallelism.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/28-three-second-override.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/28-three-second-override.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/42-scrambled-eggs-strategy.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/42-scrambled-eggs-strategy.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/44-micro-commit-protocol.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/44-micro-commit-protocol.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/45-context-compaction.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/45-context-compaction.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/51-infrastructure-reset.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/51-infrastructure-reset.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/55-silent-validator.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/55-silent-validator.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/100-git-worktree-parallelism.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/100-git-worktree-parallelism.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/28-three-second-override.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/28-three-second-override.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/42-scrambled-eggs-strategy.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/42-scrambled-eggs-strategy.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/44-micro-commit-protocol.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/44-micro-commit-protocol.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/45-context-compaction.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/45-context-compaction.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/51-infrastructure-reset.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/51-infrastructure-reset.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/55-silent-validator.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/55-silent-validator.md)
 - [file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/engineering/61-scenario-response-protocol.md](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/engineering/61-scenario-response-protocol.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/66-wizard-of-oz-architecture.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/66-wizard-of-oz-architecture.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/79-vibe-engineering.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/79-vibe-engineering.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/86-exponential-backoff.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/86-exponential-backoff.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/88-conversation-branching.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/88-conversation-branching.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/98-state-freezer.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/98-state-freezer.md)
-- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/99-visual-verification.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/engineering/99-visual-verification.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/66-wizard-of-oz-architecture.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/66-wizard-of-oz-architecture.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/79-vibe-engineering.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/79-vibe-engineering.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/86-exponential-backoff.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/86-exponential-backoff.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/88-conversation-branching.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/88-conversation-branching.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/98-state-freezer.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/98-state-freezer.md)
+- [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/99-visual-verification.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/99-visual-verification.md)
 
 ## Pattern Detection
 

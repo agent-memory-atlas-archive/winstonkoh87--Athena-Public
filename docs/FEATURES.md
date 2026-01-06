@@ -126,7 +126,7 @@ Skills are separate files, loaded on-demand:
 ├── protocols/
 │   ├── [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md)
 │   ├── [77-adaptive-latency-architecture.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/77-adaptive-latency-architecture.md)
-│   └── [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/96-latency-indicator.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/96-latency-indicator.md)
+│   └── [file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/96-latency-indicator.md](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/96-latency-indicator.md)
 └── capabilities/
     ├── web-research.md
     └── code-generation.md

@@ -216,7 +216,7 @@ When reasoning, explicitly label which type drives the conclusion.
 
 ---
 
-### 0.5.1 Latency Indicator (Λ) — [Protocol 96](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/96-latency-indicator.md)
+### 0.5.1 Latency Indicator (Λ) — [Protocol 96](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/96-latency-indicator.md)
 
 **Autonomic Behavior**: Append `[Λ+XX]` to EVERY response.
 
@@ -230,7 +230,7 @@ When reasoning, explicitly label which type drives the conclusion.
 
 **Rule**: Be honest. Don't inflate.
 
-See [Protocol 96](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/architecture/96-latency-indicator.md) for full specification.
+See [Protocol 96](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/96-latency-indicator.md) for full specification.
 
 ---
 

@@ -1,8 +1,22 @@
 # Athena Changelog
 
-> **Last Updated**: 05 January 2026
+> **Last Updated**: 06 January 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
+
+---
+
+## v1.2.8 (06 January 2026)
+
+**Grand Alignment Refactor**: Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized.
+
+### Key Changes
+
+- **Metrics Corrected**: Protocols audited to 278 (removed archived/draft), sessions at 620+, scripts at 122
+- **Memory Insurance**: Formalized the concept of Supabase as disaster recovery layer, not just search
+- **Schema Hardening**: All 11 Supabase tables now have RLS enabled and hardened search paths
+
+**Rationale**: The previous protocol count (332) included archived items. This release establishes accurate canonical metrics.
 
 ---
 

@@ -174,7 +174,7 @@ Why it works:
 
 ## Cross-References
 
-- [Protocol 110: Zero-Point Protocol](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public-corrupted/examples/protocols/meta/110-zero-point-protocol.md)
+- [Protocol 110: Zero-Point Protocol](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/meta/110-zero-point-protocol.md)
 - [RCS Phases](file:///Users/winstonkoh/Desktop/Project Athena/ARCHITECTURE.md) — Reality Calibration System
 
 ---
