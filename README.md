@@ -5,8 +5,8 @@
 # 🏛️ Athena: AI-Powered Personal Knowledge System
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Protocols](https://img.shields.io/badge/Protocols-285-blue)
-![Sessions](https://img.shields.io/badge/Sessions-768-green)
+![Protocols](https://img.shields.io/badge/Protocols-278-blue)
+![Sessions](https://img.shields.io/badge/Sessions-803-green)
 ![Boot Time](https://img.shields.io/badge/Boot_Time-4.2s-brightgreen)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
@@ -125,7 +125,7 @@ graph TD
 
 | Metric | Value |
 |--------|-------|
-| Protocols Extracted | 285 |
+| Protocols Extracted | 278 |
 | Automation Scripts | 106 |
 | GraphRAG Communities | 1,460 |
 | Knowledge Graph | 46MB + 78MB vectors |
@@ -164,7 +164,7 @@ graph TD
 |--------|---------|
 | **User-Driven RSI** | The system improves based on *your* feedback. Every friction you surface becomes a protocol. Every insight gets indexed. You shape the AI; the AI shapes how you think. |
 | **Portability** | Data lives locally (primary) and in the cloud. Not trapped in ChatGPT or Claude. It's mine — I can port it anywhere. |
-| **Principles** | 285 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
+| **Principles** | 278 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
 
 <details>
 <summary><strong>📊 Full Benchmarks & Case Studies</strong></summary>
@@ -198,7 +198,7 @@ graph TD
 | [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md) | Hybrid RAG implementation |
 | [VECTORRAG.md](docs/VECTORRAG.md) | Semantic memory architecture |
 | [GRAPHRAG.md](docs/GRAPHRAG.md) | Knowledge graph + community detection |
-| [examples/protocols/](examples/protocols/) | 285 reusable decision frameworks |
+| [examples/protocols/](examples/protocols/) | 278 reusable decision frameworks |
 
 </details>
 
