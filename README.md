@@ -98,6 +98,8 @@ graph TD
 
 > *Pattern*: Every friction ➡️ Protocol. Every failure ➡️ Case Study.
 
+👉 [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)
+
 ---
 
 ## The Result
@@ -118,7 +120,7 @@ graph TD
 | **Portability** | Data lives locally (primary) and in the cloud. Not trapped in ChatGPT or Claude. It's mine — I can port it anywhere. |
 | **Principles** | 285 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
 
----
+👉 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
 ## What I Learnt
 
@@ -137,10 +139,10 @@ graph TD
 This isn't about building *my* assistant. It's about proving a pattern:
 
 1. **Portable memory is the real unlock** — ChatGPT and Claude have memory now, but it's locked to their platforms. Athena's memory is *yours* — Markdown files on your machine you can take to any model.
-2. **10x Content Velocity** — Because Athena knows how I think, my history, and my voice, a 2-3 hour writing session (draft → edit → proofread → publish) now takes **15 minutes**. The AI writes in my style without me directing it.
+2. **10x Content Velocity** — Because Athena knows how I think, my history, and my voice, content output that used to take 2-3 hours now takes **15 minutes**. I just spec the output; the AI drafts in my style. I do a quick review and ship.
 3. **You direct the AI's behavior** — I configure *how* Athena responds to me. Semantic search gives me contextual, nuanced answers grounded in my own documented principles — not generic advice.
 
----
+👉 [docs/SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md)
 
 ## 🛡️ The Most Powerful Feature: Trilateral Feedback Loop
 
