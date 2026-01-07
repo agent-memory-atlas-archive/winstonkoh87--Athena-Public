@@ -5,8 +5,8 @@
 # 🏛️ Athena: AI-Powered Personal Knowledge System
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Protocols](https://img.shields.io/badge/Protocols-282-blue)
-![Sessions](https://img.shields.io/badge/Sessions-761-green)
+![Protocols](https://img.shields.io/badge/Protocols-285-blue)
+![Sessions](https://img.shields.io/badge/Sessions-768-green)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.5-CC785C?logo=anthropic)
@@ -89,8 +89,8 @@ graph TD
 
 | Metric | Value |
 |--------|-------|
-| Protocols Extracted | 282 |
-| Automation Scripts | 122 |
+| Protocols Extracted | 285 |
+| Automation Scripts | 106 |
 | GraphRAG Communities | 1,460 |
 | Knowledge Graph | 46MB + 78MB vectors |
 | Major Refactors | 4 |
