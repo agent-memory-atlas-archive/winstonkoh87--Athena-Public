@@ -1,19 +1,13 @@
 """
-Athena SDK - Core Package
+Athena SDK
+==========
 
-This is a stub package. Production implementations are not included
-in the public repository.
+The programmatic core of the Athena Bionic OS.
 
-The full SDK includes:
-- athena.core: Session management, protocol enforcement
-- athena.memory: Vector search, caching, context management
-- athena.tools: Latency indicators, diagnostics, utilities
-
-See docs/ARCHITECTURE.md for system design patterns.
+Modules:
+- core: Runtime, identity, and orchestration primitives.
+- memory: Context management, vector DB interfaces.
+- tools: Agent tool implementations.
 """
 
 __version__ = "0.1.0"
-__author__ = "Winston Koh"
-
-# Stub exports
-__all__ = ["__version__", "__author__"]
