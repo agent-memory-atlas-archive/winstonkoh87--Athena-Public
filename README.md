@@ -44,52 +44,59 @@ Every new chat session was a cold start. I was pasting a ~50k-token "identity + 
 
 ## The Process (The Schlep)
 
-Here's what I actually did. No shortcuts.
+> **Key insight**: The AI helped build the system that makes the AI more useful.
 
-> **Key insight**: I didn't build this alone. The entire system was **co-developed with AI** — Claude and Gemini working alongside me in real-time. Every protocol, every architecture decision, every refactor was a collaborative iteration. That's what makes this approach powerful: the AI helps build the system that makes the AI more useful.
+```mermaid
+graph TD
+    subgraph "Phase 1: Foundation"
+        A[Tool Selection] --> B[IDE: Antigravity]
+        A --> C[Vector DB: Supabase + pgvector]
+    end
 
-### Phase 1: Tool Selection (Week 1)
+    subgraph "Phase 2: Architecture"
+        D[Directory Structure] --> E[".framework/ → Laws"]
+        D --> F[".context/ → Memories"]
+        D --> G[".agent/ → Scripts"]
+        H[Core Loop] --> I["/start → Work → /end"]
+    end
 
-- Evaluated agentic IDEs (Cursor, Continue, Aider, Antigravity) — chose Antigravity for native Gemini integration and long context window
-- Set up a Supabase project with pgvector for vector embeddings
-- Configured `.env` with API keys (see [Prerequisites](#prerequisites))
+    subgraph "Phase 3: Data Feeding"
+        J[Personal Knowledge] --> K[Case Studies]
+        J --> L[Decision Logs]
+        J --> M[Session Transcripts]
+        N[Indexing] --> O["TAG_INDEX.md + supabase_sync.py"]
+    end
 
-### Phase 2: Architecture (Weeks 2-4)
+    subgraph "Phase 4: Evolution"
+        P["Sessions 1-50"] --> Q["Basic boot/end cycle"]
+        Q --> R["Sessions 50-150: Semantic Search"]
+        R --> S["Sessions 150-300: Hybrid RAG"]
+        S --> T["Sessions 300-400: SDK Refactor"]
+        T --> U["Sessions 400+: Governance & Red-Team"]
+    end
 
-- Designed the directory structure *with AI* (`.framework/` for laws, `.context/` for memories, `.agent/` for scripts)
-- Built the core loop together: `/start` (boot) → Work → `/end` (commit)
-- Created the first 10 protocols — reusable decision frameworks extracted from our collaborative thinking
+    B --> D
+    C --> D
+    I --> J
+    O --> P
 
-### Phase 3: Data Feeding (Ongoing)
-
-- Fed it personal knowledge: decision logs, case studies, business frameworks, session transcripts
-- Tagged and indexed files for retrieval (`TAG_INDEX.md`)
-- Built `supabase_sync.py` to push Markdown to vector embeddings (or keep local for sensitive data)
-
-### Phase 4: Continuous Iteration (560+ Sessions)
-
-| Session Range | What Changed |
-|---------------|--------------|
-| 1-50 | Basic boot/end cycle, first protocols |
-| 50-150 | Semantic search added, hybrid RAG |
-| 150-300 | Cross-encoder reranking, RRF fusion |
-| 300-400 | SDK refactor (`athena` package), typing, tests |
-| 400-500+ | Trilateral feedback, governance audit, external red-teaming |
-
-**The pattern**: Every friction became a protocol. Every failure became a case study. The AI helped document its own evolution.
-
-### What the Schlep Looked Like
-
+    style A fill:#1a1a2e,stroke:#4361ee
+    style P fill:#1a1a2e,stroke:#4361ee
+    style U fill:#10b981,stroke:#10b981
 ```
-├── 760+ sessions logged (human + AI collaboration)
-├── 282 protocols extracted
-├── 122 automation scripts written
-├── 1,460 GraphRAG communities (auto-clustered knowledge graph)
-├── 46MB knowledge graph + 78MB ChromaDB vectors
-├── 4 major refactors (monolith → SDK → Grand Alignment)
-├── 2 external red-team audits
-└── Countless errors, dead ends, and "why isn't this working" nights
-```
+
+**The Output** (After 760+ Sessions):
+
+| Metric | Value |
+|--------|-------|
+| Protocols Extracted | 282 |
+| Automation Scripts | 122 |
+| GraphRAG Communities | 1,460 |
+| Knowledge Graph | 46MB + 78MB vectors |
+| Major Refactors | 4 |
+| External Audits | 2 |
+
+> *Pattern*: Every friction ➡️ Protocol. Every failure ➡️ Case Study.
 
 ---
 
@@ -107,26 +114,13 @@ Here's what I actually did. No shortcuts.
 
 | Pillar | Outcome |
 |--------|---------|
-| **Recursive Self-Improvement (RSI)** | Driven by both human and AI — we feed off each other's insights. I stopped *recreating* context and started *compounding* it. Every session builds on the last. |
+| **User-Driven RSI** | The system improves based on *your* feedback. Every friction you surface becomes a protocol. Every insight gets indexed. You shape the AI; the AI shapes how you think. |
 | **Portability** | Data lives locally (primary) and in the cloud. Not trapped in ChatGPT or Claude. It's mine — I can port it anywhere. |
-| **Principles** | 332 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
-
-### Proof It Works
-
-In Session 400, Athena recalled a trading risk limit I'd set in Session 19 — months earlier — and flagged it before I repeated an old mistake.
-
-```
-├── Query: "position sizing rules"
-├── Retrieved: protocols/trading/risk_limits.md (similarity: 0.89)
-├── Created: 2025-03-14 | Last accessed: 2025-12-28
-└── Injected: "Max daily loss: 2% of account. Hard stop."
-```
-
-A generic chat assistant would have missed it. Athena didn't.
+| **Principles** | 285 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
 
 ---
 
-## What I Learned
+## What I Learnt
 
 | Insight | Principle |
 |---------|----------|
@@ -142,9 +136,9 @@ A generic chat assistant would have missed it. Athena didn't.
 
 This isn't about building *my* assistant. It's about proving a pattern:
 
-1. **Portable memory is the real unlock** — ChatGPT and Claude have memory now, but it's locked to their platforms. Athena's memory is *yours* — Markdown files you can take to any model.
-2. **Co-development is the future** — The 500+ sessions of iteration weren't me instructing an AI. They were me *building with* an AI. That's a different paradigm.
-3. **Your context is your moat** — The knowledge you feed the system is unique to you. That's unforkable.
+1. **Portable memory is the real unlock** — ChatGPT and Claude have memory now, but it's locked to their platforms. Athena's memory is *yours* — Markdown files on your machine you can take to any model.
+2. **10x Content Velocity** — Because Athena knows how I think, my history, and my voice, a 2-3 hour writing session (draft → edit → proofread → publish) now takes **15 minutes**. The AI writes in my style without me directing it.
+3. **You direct the AI's behavior** — I configure *how* Athena responds to me. Semantic search gives me contextual, nuanced answers grounded in my own documented principles — not generic advice.
 
 ---
 
@@ -154,12 +148,8 @@ This isn't about building *my* assistant. It's about proving a pattern:
 
 This is Athena's biggest unlock: **cross-model validation that catches idiosyncratic errors and forces deeper investigation when models disagree**.
 
-Any single AI has blind spots. The most dangerous outcome is accepting AI output on *important decisions* without external validation. When 3-4 independent LLMs with different training data all converge on the same conclusion, you've found robust signal. When they disagree, you've found exactly where to dig deeper.
-
 > [!IMPORTANT]
-> **The human remains the ultimate arbiter.** Cross-model consensus is a *disagreement detector*, not a truth oracle. LLMs can share training data biases. Final conclusions must be grounded with fact-finding, references, and citations. This minimizes hallucination — it doesn't eliminate it.
-
-**The solution: 3+ independent AIs with different training data.**
+> **The human remains the ultimate arbiter.** Cross-model consensus is a *disagreement detector*, not a truth oracle. LLMs can share training data biases. Final conclusions must be grounded with fact-finding, references, and citations.
 
 ```mermaid
 flowchart LR
@@ -181,18 +171,6 @@ flowchart LR
     style E fill:#1da1f2,color:#fff
     style G fill:#22c55e,color:#fff
 ```
-
-**Why different models matter**: Each AI has different training data, different biases, different blind spots. When 3 independent models agree, you've found a robust pattern. When they disagree, you've found where to dig deeper.
-
-**The Loop**: Query your primary AI → Discuss → Export artifact to 3 independent LLMs (different providers) → Collect red-team findings → **You + Athena synthesize together** → Final conclusion.
-
-| Risk Level | Examples | Validation |
-|------------|----------|------------|
-| Low | Code refactoring | Optional |
-| High | Financial, relationship | **Mandatory (3 AIs)** |
-| Critical | Legal, health | **Mandatory + Human Expert** |
-
-> **Rule of Thumb**: If you'd regret it for more than a week if wrong → run trilateral feedback.
 
 👉 [docs/TRILATERAL_FEEDBACK.md](docs/TRILATERAL_FEEDBACK.md)
 
