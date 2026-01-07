@@ -18,6 +18,41 @@
 
 ---
 
+## ⚡ 5-Minute Quickstart
+
+> **"Interesting, but how do I use it?"** — Here's how.
+
+| Step | Action |
+|------|--------|
+| **1** | **[Download Antigravity](https://antigravity.google/)** — Install the IDE |
+| **2** | **Create a new workspace** — Open Antigravity → `New Workspace` |
+| **3** | **Clone this repo** — In Agent Manager, paste: `https://github.com/winstonkoh87/Athena-Public` |
+| **4** | **Ask the AI: "What should I do next?"** — It will read the repo and guide you |
+| **5** | **Enjoy your bionic brain** — Type `/start` to boot, work, then `/end` to save |
+
+That's it. The AI bootstraps itself.
+
+<details>
+<summary><strong>🔧 Alternative: Manual Setup (No Antigravity)</strong></summary>
+
+```bash
+# Clone
+git clone https://github.com/winstonkoh87/Athena-Public.git
+cd Athena-Public
+
+# Install
+pip install -e .
+
+# Test
+python examples/quickstart/01_boot.py
+```
+
+See [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) for full setup with Supabase, API keys, and local mode.
+
+</details>
+
+---
+
 ## Why This Matters
 
 If you're using AI for anything beyond one-off questions, you've probably hit the same wall: **every session starts from zero**.
@@ -270,9 +305,7 @@ This isn't over-engineering — it's survival. Platform APIs change. Local disks
 </details>
 
 <details>
-<summary><strong>⚙️ Prerequisites & Quick Start</strong></summary>
-
-### Prerequisites
+<summary><strong>⚙️ Prerequisites (API Keys)</strong></summary>
 
 - Python 3.10+
 - Supabase project with pgvector enabled ([setup guide](docs/GETTING_STARTED.md)) — *or use local mode*
@@ -293,28 +326,6 @@ OPENAI_API_KEY=your-openai-key
 cp .env.example .env
 # Add your keys to .env
 ```
-
-### Quick Start
-
-```bash
-# Clone
-git clone https://github.com/winstonkoh87/Athena-Public.git
-cd Athena-Public
-
-# Install (minimal)
-pip install -e .
-
-# Or with full dependencies (vector search + reranking)
-pip install -e ".[full]"
-
-# Test installation
-python examples/quickstart/01_boot.py
-
-# Try the search demo
-python examples/quickstart/02_search.py "position sizing"
-```
-
-See [examples/quickstart/](examples/quickstart/) for runnable demos.
 
 </details>
 
