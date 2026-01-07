@@ -63,8 +63,7 @@ Athena is different: **portable, platform-agnostic memory**. Your context lives 
 
 ---
 
-<details>
-<summary><strong>📋 The Problem I Was Solving</strong></summary>
+## The Problem
 
 **I got tired of paying for amnesia.**
 
@@ -77,10 +76,9 @@ Every new chat session was a cold start. I was pasting a ~50k-token "identity + 
 | **Context limits** | 50k tokens of manual paste just to "remind" the AI who I was |
 | **Platform lock-in** | Switching models meant losing all accumulated context |
 
-</details>
+---
 
-<details>
-<summary><strong>🔧 The Process (The Schlep)</strong></summary>
+## The Process (The Schlep)
 
 > **Key insight**: The AI helped build the system that makes the AI more useful.
 
@@ -136,7 +134,15 @@ graph TD
 
 > *Pattern*: Every friction ➡️ Protocol. Every failure ➡️ Case Study.
 
-👉 [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)
+<details>
+<summary><strong>📚 Deep Dive: Build Your Own</strong></summary>
+
+| Document | What You'll Learn |
+|----------|-------------------|
+| [GETTING_STARTED.md](docs/GETTING_STARTED.md) | Step-by-step setup guide |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design & data flow |
+| [GRAPHRAG.md](docs/GRAPHRAG.md) | Knowledge graph layer |
+| [examples/quickstart/](examples/quickstart/) | Runnable code demos |
 
 </details>
 
@@ -144,14 +150,15 @@ graph TD
 
 ## The Result
 
+### Quantitative (What Changed)
+
 | Metric | Before | After |
 |--------|--------|-------|
-| **Context injection** | ~50k tokens (manual paste) | **~2k tokens** (auto-retrieved) |
+| **Context injection** | ~50k tokens (manual copy-paste per session) | **~2k tokens** (auto-retrieved summary) |
 | **Boot time** | 2-3 minutes | **<30 seconds** |
-| **Session logging** | Manual | **Auto-logged** on `/end` |
+| **Session logging** | Insights are manually logged at the end of each session | **Auto-logged** when I hit `/end` |
 
-<details>
-<summary><strong>📊 What This Means (Qualitative)</strong></summary>
+### Qualitative (What It Means)
 
 | Pillar | Outcome |
 |--------|---------|
@@ -159,12 +166,21 @@ graph TD
 | **Portability** | Data lives locally (primary) and in the cloud. Not trapped in ChatGPT or Claude. It's mine — I can port it anywhere. |
 | **Principles** | 285 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
 
-👉 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+<details>
+<summary><strong>📊 Full Benchmarks & Case Studies</strong></summary>
+
+| Resource | What It Shows |
+|----------|---------------|
+| [BENCHMARKS.md](docs/BENCHMARKS.md) | Boot time, search latency, token economics |
+| [CS-001: Boot Optimization](examples/case_studies/CS-001-boot-optimization.md) | 85% boot time reduction |
+| [CS-002: Search Quality](examples/case_studies/CS-002-search-quality.md) | RRF fusion results |
+| [CS-003: Protocol Enforcement](examples/case_studies/CS-003-protocol-enforcement.md) | Governance engine |
 
 </details>
 
-<details>
-<summary><strong>💡 What I Learnt</strong></summary>
+---
+
+## What I Learnt
 
 | Insight | Principle |
 |---------|----------|
@@ -174,10 +190,21 @@ graph TD
 | **Protocols beat prompts** | Reusable decision frameworks outlast one-shot prompt engineering. |
 | **Ship at 70%** | Perfectionism kills velocity. Iterate in production. |
 
+<details>
+<summary><strong>🔬 Technical Deep Dives</strong></summary>
+
+| Document | Topic |
+|----------|-------|
+| [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md) | Hybrid RAG implementation |
+| [VECTORRAG.md](docs/VECTORRAG.md) | Semantic memory architecture |
+| [GRAPHRAG.md](docs/GRAPHRAG.md) | Knowledge graph + community detection |
+| [examples/protocols/](examples/protocols/) | 285 reusable decision frameworks |
+
 </details>
 
-<details>
-<summary><strong>🌍 Why This Matters (Beyond Me)</strong></summary>
+---
+
+## Why This Matters (Beyond Me)
 
 This isn't about building *my* assistant. It's about proving a pattern:
 
@@ -187,10 +214,9 @@ This isn't about building *my* assistant. It's about proving a pattern:
 
 👉 [docs/SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md)
 
-</details>
+---
 
-<details>
-<summary><strong>🛡️ Trilateral Feedback Loop (Advanced)</strong></summary>
+## 🛡️ The Most Powerful Feature: Trilateral Feedback Loop
 
 > **One AI is not enough for life decisions.**
 
@@ -221,8 +247,6 @@ flowchart LR
 ```
 
 👉 [docs/TRILATERAL_FEEDBACK.md](docs/TRILATERAL_FEEDBACK.md)
-
-</details>
 
 ---
 
