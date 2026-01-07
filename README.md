@@ -1,12 +1,13 @@
 ![Athena Banner](./docs/athena_banner.png)
 
-> **Last Updated**: 07 January 2026
+> **Last Updated**: 08 January 2026
 
 # 🏛️ Athena: AI-Powered Personal Knowledge System
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-285-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-768-green)
+![Boot Time](https://img.shields.io/badge/Boot_Time-4.2s-brightgreen)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.5-CC785C?logo=anthropic)
@@ -202,6 +203,22 @@ MIT License — see [LICENSE](LICENSE)
 ---
 
 ## 📚 Further Reading
+
+### New Additions (January 2026)
+
+| Document | What It Shows |
+|----------|---------------|
+| [**📊 Benchmarks**](docs/BENCHMARKS.md) | Real performance metrics (boot time, search latency, token economics) |
+| [**👤 About Me**](docs/ABOUT_ME.md) | Career narrative and professional depth |
+| [**🎬 Demo Guide**](docs/DEMO.md) | Live walkthrough of the system in action |
+
+### Case Studies
+
+| Case Study | What It Demonstrates |
+|------------|----------------------|
+| [Boot Optimization](examples/case_studies/CS-001-boot-optimization.md) | 85% boot time reduction via caching & parallelization |
+| [Search Quality](examples/case_studies/CS-002-search-quality.md) | RRF fusion for hybrid semantic search |
+| [Protocol Enforcement](examples/case_studies/CS-003-protocol-enforcement.md) | Governance engine for compliance |
 
 <details>
 <summary><strong>🔒 Security Model</strong></summary>
