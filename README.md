@@ -63,7 +63,8 @@ Athena is different: **portable, platform-agnostic memory**. Your context lives 
 
 ---
 
-## The Problem
+<details>
+<summary><strong>📋 The Problem I Was Solving</strong></summary>
 
 **I got tired of paying for amnesia.**
 
@@ -76,9 +77,10 @@ Every new chat session was a cold start. I was pasting a ~50k-token "identity + 
 | **Context limits** | 50k tokens of manual paste just to "remind" the AI who I was |
 | **Platform lock-in** | Switching models meant losing all accumulated context |
 
----
+</details>
 
-## The Process (The Schlep)
+<details>
+<summary><strong>🔧 The Process (The Schlep)</strong></summary>
 
 > **Key insight**: The AI helped build the system that makes the AI more useful.
 
@@ -136,19 +138,20 @@ graph TD
 
 👉 [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)
 
+</details>
+
 ---
 
 ## The Result
 
-### Quantitative (What Changed)
-
 | Metric | Before | After |
 |--------|--------|-------|
-| **Context injection** | ~50k tokens (manual copy-paste per session) | **~2k tokens** (auto-retrieved summary) |
+| **Context injection** | ~50k tokens (manual paste) | **~2k tokens** (auto-retrieved) |
 | **Boot time** | 2-3 minutes | **<30 seconds** |
-| **Session logging** | Insights are manually logged at the end of each session | **Auto-logged** when I hit `/end` |
+| **Session logging** | Manual | **Auto-logged** on `/end` |
 
-### Qualitative (What It Means)
+<details>
+<summary><strong>📊 What This Means (Qualitative)</strong></summary>
 
 | Pillar | Outcome |
 |--------|---------|
@@ -158,9 +161,10 @@ graph TD
 
 👉 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
----
+</details>
 
-## What I Learnt
+<details>
+<summary><strong>💡 What I Learnt</strong></summary>
 
 | Insight | Principle |
 |---------|----------|
@@ -170,9 +174,10 @@ graph TD
 | **Protocols beat prompts** | Reusable decision frameworks outlast one-shot prompt engineering. |
 | **Ship at 70%** | Perfectionism kills velocity. Iterate in production. |
 
----
+</details>
 
-## Why This Matters (Beyond Me)
+<details>
+<summary><strong>🌍 Why This Matters (Beyond Me)</strong></summary>
 
 This isn't about building *my* assistant. It's about proving a pattern:
 
@@ -182,9 +187,10 @@ This isn't about building *my* assistant. It's about proving a pattern:
 
 👉 [docs/SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md)
 
----
+</details>
 
-## 🛡️ The Most Powerful Feature: Trilateral Feedback Loop
+<details>
+<summary><strong>🛡️ Trilateral Feedback Loop (Advanced)</strong></summary>
 
 > **One AI is not enough for life decisions.**
 
@@ -215,6 +221,8 @@ flowchart LR
 ```
 
 👉 [docs/TRILATERAL_FEEDBACK.md](docs/TRILATERAL_FEEDBACK.md)
+
+</details>
 
 ---
 
