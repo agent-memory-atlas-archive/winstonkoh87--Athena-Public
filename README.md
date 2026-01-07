@@ -122,6 +122,8 @@ graph TD
 
 👉 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
+---
+
 ## What I Learnt
 
 | Insight | Principle |
@@ -143,6 +145,8 @@ This isn't about building *my* assistant. It's about proving a pattern:
 3. **You direct the AI's behavior** — I configure *how* Athena responds to me. Semantic search gives me contextual, nuanced answers grounded in my own documented principles — not generic advice.
 
 👉 [docs/SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md)
+
+---
 
 ## 🛡️ The Most Powerful Feature: Trilateral Feedback Loop
 
