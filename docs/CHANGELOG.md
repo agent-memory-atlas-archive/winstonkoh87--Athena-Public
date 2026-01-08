@@ -1,8 +1,24 @@
 # Athena Changelog
 
-> **Last Updated**: 07 January 2026
+> **Last Updated**: 09 January 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
+
+---
+
+## v1.2.9 (09 January 2026)
+
+**Docs & Insights Update**: README enhanced with new positioning insights.
+
+### Key Changes
+
+- **Sessions**: 805 (synced from workspace)
+- **Featured Badge**: Added r/GeminiAI #2 Daily badge
+- **"Why This Matters" Section**:
+  - Added "Zero operational burden" insight — single-user local tool = real complexity, zero ops chaos
+  - Added "Bilateral growth" insight — system evolves alongside user
+
+**Rationale**: Captured positioning insights from session discussions for recruiter clarity.
 
 ---
 
