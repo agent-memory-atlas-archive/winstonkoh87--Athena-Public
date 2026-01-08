@@ -7,8 +7,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-278-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-805-green)
-![Boot Time](https://img.shields.io/badge/Boot_Time-4.2s-brightgreen)
-![Featured](https://img.shields.io/badge/Featured-r%2Fgoogle__antigravity_Top_5-orange)
+![Featured](https://img.shields.io/badge/Featured-r%2FGeminiAI_%232_Daily-orange)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.5-CC785C?logo=anthropic)
