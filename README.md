@@ -4,9 +4,6 @@
 
 # 🏛️ Athena: Build Your Own AI-Powered Knowledge System
 
-> **A framework for creating portable, platform-agnostic AI memory.**  
-> Winston's implementation is included as a reference — yours will be different.
-
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-278-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-805-green)
@@ -17,14 +14,12 @@
 ![Built with Gemini](https://img.shields.io/badge/Gemini-3.0_Pro-4285F4?logo=google)
 ![IDE](https://img.shields.io/badge/IDE-Antigravity-000000?logo=google)
 
-> **Development Environment**: [Google Antigravity](https://antigravity.google/) — an agentic IDE that allows AI to read/write files directly. **Note**: Antigravity is the development interface, not a hard dependency. The `athena` Python SDK runs in any terminal/IDE (VS Code, PyCharm, CLI). The core loop (`/start` → Work → `/end`) is pure Python scripts.
+> **A framework for creating portable, platform-agnostic AI memory.**  
+> Winston's implementation is included as a reference — yours will be different.
 
 ---
 
 ## ⚡ 5-Minute Quickstart
-
-> This repo gives you the **framework** — the architecture, scripts, and patterns.  
-> Winston's protocols are included as examples. Your protocols will reflect your own domain and decisions.
 
 | Step | Action |
 |------|--------|
@@ -35,6 +30,8 @@
 | **5** | **Enjoy your bionic brain** — Type `/start` to boot, work, then `/end` to save |
 
 That's it. The AI bootstraps itself.
+
+> **Development Environment**: [Google Antigravity](https://antigravity.google/) — an agentic IDE that allows AI to read/write files directly. **Note**: Antigravity is the development interface, not a hard dependency. The `athena` Python SDK runs in any terminal/IDE (VS Code, PyCharm, CLI). The core loop (`/start` → Work → `/end`) is pure Python scripts.
 
 <details>
 <summary><strong>🔧 Alternative: Manual Setup (No Antigravity)</strong></summary>
