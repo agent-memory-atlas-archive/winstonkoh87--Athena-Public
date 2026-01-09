@@ -259,12 +259,7 @@ This repo documents **Winston's personal Athena instance** — 800+ sessions, 27
 
 It's included as a **reference**, not a prescription. Your instance will reflect your domain, your decisions, your voice.
 
-| | |
-|--|--|
-| **GitHub** | [@winstonkoh87](https://github.com/winstonkoh87) |
-| **Portfolio** | [winstonkoh87.github.io](https://winstonkoh87.github.io) |
-| **Medium** | [@winstonkoh87](https://medium.com/@winstonkoh87) |
-| **LinkedIn** | [winstonkoh87](https://www.linkedin.com/in/winstonkoh87/) |
+👉 [**About the Author**](docs/ABOUT_ME.md)
 
 ---
 
