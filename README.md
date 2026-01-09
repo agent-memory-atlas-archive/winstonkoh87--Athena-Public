@@ -284,13 +284,16 @@ MIT License — see [LICENSE](LICENSE)
 | [**👤 About Me**](docs/ABOUT_ME.md) | Career narrative and professional depth |
 | [**🎬 Demo Guide**](docs/DEMO.md) | Live walkthrough of the system in action |
 
-### Case Studies
+<details>
+<summary><strong>📁 Case Studies</strong></summary>
 
 | Case Study | What It Demonstrates |
 |------------|----------------------|
 | [Boot Optimization](examples/case_studies/CS-001-boot-optimization.md) | 85% boot time reduction via caching & parallelization |
 | [Search Quality](examples/case_studies/CS-002-search-quality.md) | RRF fusion for hybrid semantic search |
 | [Protocol Enforcement](examples/case_studies/CS-003-protocol-enforcement.md) | Governance engine for compliance |
+
+</details>
 
 <details>
 <summary><strong>🔒 Security Model</strong></summary>
