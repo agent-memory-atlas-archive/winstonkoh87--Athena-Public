@@ -1,8 +1,33 @@
 # Athena Changelog
 
-> **Last Updated**: 09 January 2026
+> **Last Updated**: 10 January 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
+
+---
+
+## v1.3.0 (10 January 2026)
+
+**Framework Materialization**: Made Athena-Public a *functional* framework, not just documentation.
+
+### Key Changes
+
+- **Functional Boot Orchestrator**: Replaced mock `lambda: True` stubs with real logic that:
+  - Creates `session_logs/` directory structure
+  - Generates timestamped session log files
+  - Verifies Core_Identity.md integrity (SHA-256)
+  - Primes semantic memory (if Supabase configured)
+- **`examples/framework/Core_Identity.md`** (NEW): Sanitized Laws #0-6, Committee of Seats, Λ scoring
+- **MANIFESTO.md**: Added "Bionic Unit" and "Law #6: Triple-Lock" sections
+- **RISK_PLAYBOOKS.md**: Added Tier Classification legend (Tier 1/2/3 with icons)
+- **Metrics**: Sessions 810, Protocols 285
+
+### Philosophy
+
+*From*: "Here is Winston's Brain."
+*To*: "Here is the Framework to Build Your Own Brain."
+
+The public repo now provides the *engine*, not just the *manual*.
 
 ---
 
