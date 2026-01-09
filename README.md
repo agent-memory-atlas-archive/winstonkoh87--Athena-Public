@@ -2,7 +2,7 @@
 
 > **Last Updated**: 09 January 2026
 
-# 🏛️ Athena: Build Your Own AI-Powered Knowledge System
+# 🏛️ Project Athena: Build Your Own AI-Powered Knowledge System
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-278-blue)
