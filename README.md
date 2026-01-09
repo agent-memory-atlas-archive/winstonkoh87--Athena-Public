@@ -280,8 +280,8 @@ MIT License — see [LICENSE](LICENSE)
 
 | Document | What It Shows |
 |----------|---------------|
-| [**📊 Benchmarks**](docs/BENCHMARKS.md) | Real performance metrics (boot time, search latency, token economics) |
 | [**👤 About Me**](docs/ABOUT_ME.md) | Career narrative and professional depth |
+| [**📊 Benchmarks**](docs/BENCHMARKS.md) | Real performance metrics (boot time, search latency, token economics) |
 | [**🎬 Demo Guide**](docs/DEMO.md) | Live walkthrough of the system in action |
 
 <details>
