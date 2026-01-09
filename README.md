@@ -2,7 +2,10 @@
 
 > **Last Updated**: 09 January 2026
 
-# 🏛️ Athena: AI-Powered Personal Knowledge System
+# 🏛️ Athena: Build Your Own AI-Powered Knowledge System
+
+> **A framework for creating portable, platform-agnostic AI memory.**  
+> Winston's implementation is included as a reference — yours will be different.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-278-blue)
@@ -20,7 +23,8 @@
 
 ## ⚡ 5-Minute Quickstart
 
-> **"Interesting, but how do I use it?"** — Here's how.
+> This repo gives you the **framework** — the architecture, scripts, and patterns.  
+> Winston's protocols are included as examples. Your protocols will reflect your own domain and decisions.
 
 | Step | Action |
 |------|--------|
@@ -65,16 +69,16 @@ Athena is different: **portable, platform-agnostic memory**. Your context lives 
 
 ## The Problem
 
-**I got tired of paying for amnesia.**
+If you use AI beyond one-off questions, you've hit this wall:
 
-Every new chat session was a cold start. I was pasting a ~50k-token "identity + context" prompt just to get consistent answers. The best insights from previous sessions? Trapped in old transcripts I'd never find again.
-
-| Pain Point | What It Cost Me |
-|------------|-----------------|
+| Pain Point | What It Costs You |
+|------------|-------------------|
 | **No memory** | Repeating the same context every session |
-| **Lost decisions** | Couldn't remember *why* I'd decided X in Session 19 |
-| **Context limits** | 50k tokens of manual paste just to "remind" the AI who I was |
-| **Platform lock-in** | Switching models meant losing all accumulated context |
+| **Lost decisions** | Can't remember *why* you decided X in Session 19 |
+| **Context limits** | Manual paste just to "remind" the AI who you are |
+| **Platform lock-in** | Switching models = losing all accumulated context |
+
+Athena solves this with **portable, platform-agnostic memory** you own.
 
 ---
 
@@ -252,16 +256,18 @@ flowchart LR
 
 ---
 
-## About Me
+## Reference Implementation
 
-I'm Winston — a systems thinker who spent 10+ years in financial services before pivoting to AI engineering.
+This repo documents **Winston's personal Athena instance** — 800+ sessions, 278 protocols, production-tested daily.
 
-This project represents my journey from "user" to "builder" — a production-grade personal infrastructure I rely on daily, co-developed with AI from day one.
+It's included as a **reference**, not a prescription. Your instance will reflect your domain, your decisions, your voice.
 
-- **GitHub**: [@winstonkoh87](https://github.com/winstonkoh87)
-- **Portfolio**: [winstonkoh87.github.io](https://winstonkoh87.github.io)
-- **Medium**: [@winstonkoh87](https://medium.com/@winstonkoh87)
-- **LinkedIn**: [winstonkoh87](https://www.linkedin.com/in/winstonkoh87/)
+| | |
+|--|--|
+| **GitHub** | [@winstonkoh87](https://github.com/winstonkoh87) |
+| **Portfolio** | [winstonkoh87.github.io](https://winstonkoh87.github.io) |
+| **Medium** | [@winstonkoh87](https://medium.com/@winstonkoh87) |
+| **LinkedIn** | [winstonkoh87](https://www.linkedin.com/in/winstonkoh87/) |
 
 ---
 
