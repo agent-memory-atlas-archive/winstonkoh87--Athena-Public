@@ -113,7 +113,7 @@ Where `k = 60` (the RRF constant).
 |------------|----------------|---------|
 | Cross-domain | ⭐⭐⭐ High | "How do trading and psychology connect?" |
 | Concept clusters | ⭐⭐⭐ High | "What relates to sovereignty?" |
-| Specific lookup | ⭐ Low | "Where is Protocol 42?" (use filename search) |
+| Specific lookup | ⭐ Low | "Where is Agentic Engineering Strategy?" (use filename search) |
 | Semantic match | ⭐⭐ Medium | "Find protocols about risk" (vector also works) |
 
 ---

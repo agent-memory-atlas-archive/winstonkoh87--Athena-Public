@@ -3,7 +3,7 @@ description: Wizard of Oz Architecture - Outcome > Elegance. Building widely adm
 tags: ["#architecture", "#MVP", "#strategy", "#engineering"]
 ---
 
-# Protocol 66: Wizard of Oz Architecture
+# Agentic Engineering Strategy: Wizard of Oz Architecture
 
 > **Purpose**: To validate and execute specialized outcomes using the simplest, most robust tools available, prioritizing user perception over engineering elegance.
 
@@ -58,7 +58,7 @@ When building a new capability:
 ## Source
 
 - [Session 37 Analysis of OpenAI "Leak"]()
-- [Protocol 42: Scrambled Eggs Strategy]()
+- [Agentic Engineering Strategy: Scrambled Eggs Strategy]()
 
 ---
 

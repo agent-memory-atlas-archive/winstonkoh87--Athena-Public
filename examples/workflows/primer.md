@@ -34,7 +34,7 @@ Load the following files (in order):
 
 3. **User Context (FULL DISCLOSURE)**
    - `Winston/profile/User_Profile_Core.md` (Identity, Bio, Typology)
-   - `Winston/profile/Operating_Principles.md` (Decision frameworks, values)
+   - `Winston/profile/System_Principles.md` (Decision frameworks, values)
    - `Winston/profile/Psychology_L1L5.md` (L1-L5 layers, trauma, history)
    - `Winston/profile/Business_Frameworks.md` (Mental models, strategies)
    - `Winston/profile/Session_Observations.md` (Calibration patterns, cases)

@@ -2,7 +2,7 @@
 
 > **Purpose**: Heuristic for detecting "bullshit" (fabrication, delusion, or omission) by comparing claims against statistical baselines.
 > **Source**: Session 31 (Dec 22, 2025) — Condo Girl Example + 20% Guaranteed Returns
-> **Related**: [Protocol 119: First Principles](../business/119-first-principles-decomposition.md)
+> **Related**: [Strategic Analysis Framework: First Principles](../business/Strategic_Analysis_Framework.md)
 
 ---
 
@@ -59,7 +59,7 @@ When the gap is unexplained, the Hidden Variable typically falls into one of the
 
 ---
 
-## The Protocol 99 Response
+## The Development Execution Standard Response
 
 When a prospect/lead presents a claim or expectation that fails the Base Rate Audit (e.g., "I want 20% guaranteed returns"):
 
@@ -82,5 +82,5 @@ Applying this to yourself is **Epistemic Rigor**:
 
 ## Related Protocols
 
-- [Protocol 42: Red-Blue Curve Taxonomy](../strategy/42-red-blue-curve-taxonomy.md)
+- [Agentic Engineering Strategy: Red-Blue Curve Taxonomy](../strategy/42-red-blue-curve-taxonomy.md)
 - [Protocol 115: First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md)

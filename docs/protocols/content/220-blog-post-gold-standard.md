@@ -1,4 +1,4 @@
-# Protocol 220: Blog Post Gold Standard
+# Content Publication Standard: Blog Post Gold Standard
 
 **Reference Implementation:** See the [AI Bionic Layer article](https://winstonkoh87.github.io/articles/ai-bionic-layer.html) on the portfolio site.
 

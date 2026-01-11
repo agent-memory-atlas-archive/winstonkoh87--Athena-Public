@@ -93,7 +93,7 @@ These behaviors MUST run throughout the session. Non-negotiable:
 | Protocol/skill request | `SKILL_INDEX.md` | 4,500 |
 | Bio, typology, "who am I" | `User_Profile_Core.md` | 1,500 |
 | L1-L5, trauma, therapy, fantasy | `Psychology_L1L5.md` | 3,000 |
-| Decision frameworks, strategy | `Operating_Principles.md` | 3,500 |
+| Decision frameworks, strategy | `System_Principles.md` | 3,500 |
 | Marketing, SEO, SWOT, pricing | `Business_Frameworks.md` | 2,500 |
 | Calibration references, cases | `Session_Observations.md` | 2,500 |
 | `/think`, `/ultrathink` | `Output_Standards.md` | 700 |
