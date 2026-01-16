@@ -1,6 +1,6 @@
 # Protocol 140: Base Rate Audit
 
-> **Purpose**: Heuristic for detecting "bullshit" (fabrication, delusion, or omission) by comparing claims against statistical baselines.
+> **Purpose**: Heuristic for detecting "nonsense" (fabrication, delusion, or omission) by comparing claims against statistical baselines.
 > **Source**: Session 31 (Dec 22, 2025) — Condo Girl Example + 20% Guaranteed Returns
 > **Related**: [Strategic Analysis Framework: First Principles](../business/Strategic_Analysis_Framework.md)
 
@@ -78,7 +78,7 @@ Applying this to yourself is **Epistemic Rigor**:
 - Acknowledge your own Hidden Variables (e.g., "I date across age gaps because of Transactional Capital, not raw attraction").
 - This moves you from **Delusion** (Red Curve grinding) to **Strategy** (Blue Curve leverage).
 
-# base-rate #epistemology #bullshit-detector #delusion-check
+# base-rate #epistemology #nonsense-detector #delusion-check
 
 ## Related Protocols
 

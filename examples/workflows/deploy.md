@@ -24,7 +24,7 @@ description: Public Repo Synchronization & Sanitization
 - **Action**: Copy *sanitized* versions of files to the target repo structure.
 - **Structure Mapping**:
   - `Athena/.agent/skills/protocols/` -> `Athena-Public/docs/protocols/`
-  - `Athena/Winston/profile/` -> `Athena-Public/docs/concepts/`
+  - `Athena/the author/profile/` -> `Athena-Public/docs/concepts/`
   - `Athena/.context/memories/case_studies/` -> `Athena-Public/docs/case-studies/`
 
 ## 4. Git Synchronization

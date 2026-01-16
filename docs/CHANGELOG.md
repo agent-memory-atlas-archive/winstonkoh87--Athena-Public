@@ -24,7 +24,7 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ### Philosophy
 
-*From*: "Here is Winston's Brain."
+*From*: "Here is the author's Brain."
 *To*: "Here is the Framework to Build Your Own Brain."
 
 The public repo now provides the *engine*, not just the *manual*.

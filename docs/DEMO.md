@@ -6,7 +6,7 @@
 
 ## Prerequisites
 
-1. Clone the repo: `git clone https://github.com/winstonkoh87/Athena-Public.git`
+1. Clone the repo: `git clone https://github.com/the authorkoh87/Athena-Public.git`
 2. Set up environment: `cp .env.example .env` and add your API keys
 3. Install dependencies: `pip install -e .`
 
