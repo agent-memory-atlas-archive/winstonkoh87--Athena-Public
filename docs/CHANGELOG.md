@@ -1,6 +1,6 @@
 # Athena Changelog
 
-> **Last Updated**: 29 January 2026
+> **Last Updated**: 30 January 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
@@ -18,6 +18,27 @@ This document provides detailed release notes. For the brief summary, see the RE
 - **Metrics**: Sessions 861, Protocols 150+, Case Studies 42
 
 > **Note on Protocol Count**: The drop from 285 (v1.2.8) to 150+ reflects a \"Great Purge\" audit that removed redundant, experimental, and superseded protocols. The count now reflects only **production-grade, actively-maintained** protocols.
+
+---
+
+## v8.1-Performance (30 January 2026)
+
+**Semantic Cache & Latency Optimization**: Implemented true semantic caching for intelligent query reuse.
+
+### Key Changes
+
+- **Semantic Caching**: Upgraded `QueryCache` to store query embeddings and perform cosine similarity matching (threshold 0.90). Similar queries now return cached results instantly.
+- **Search Latency**: Reduced from 30s+ to <5s (exact match) and ~0s (semantic match).
+- **Pre-Warming**: Boot sequence now pre-caches 3 "hot" queries (`protocol`, `session`, `user profile`) for instant first-search response.
+- **GraphRAG Optimization**: Added `--global-only` flag to skip redundant local model loading.
+
+### Verification
+
+| Query Type | Before | After |
+|------------|--------|-------|
+| First Search | 30s+ (hanging) | **4.71s** |
+| Exact Cache Hit | N/A | **~0.00s** |
+| Semantic Cache Hit | N/A | **~0.00s** |
 
 ---
 
