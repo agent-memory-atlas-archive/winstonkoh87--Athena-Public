@@ -1,4 +1,4 @@
-# Agentic Engineering Strategy: Vibe Engineering
+# Protocol 79: Vibe Engineering
 
 > **Purpose**: To maximize AI-Human high-bandwidth collaboration ("Vibe Engineering") while minimizing "Slot Machine" coding ("Vibe Coding").
 > **Source**: Synthesized from Alex Finn ("Claude Code Lessons") and Kitze ("From Vibe Coding to Vibe Engineering").

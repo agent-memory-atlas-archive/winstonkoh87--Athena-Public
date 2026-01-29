@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 11 January 2026  
-> **System Version**: v7.9 (VectorRAG + Zero-Point Codex)
+> **Last Updated**: 29 January 2026  
+> **System Version**: v8.0-alpha (Recruiter-Ready)
 
 ---
 

@@ -10,4 +10,4 @@ Modules:
 - tools: Agent tool implementations.
 """
 
-__version__ = "0.1.0"
+__version__ = "8.0.0a1"
