@@ -15,11 +15,12 @@ Simple vector search fails on **broad queries**. If you ask "What did I decide a
 
 Athena uses **Reciprocal Rank Fusion (RRF)** to combine multiple retrieval strategies:
 
-```
+```text
 RRF_score = Σ (1 / (k + rank_i))
 ```
 
-| Strategy | Weight | What It Finds |
+| Strategy              | Weight | What It Finds                    |
+| --------------------- | ------ | -------------------------------- |
 |----------|--------|---------------|
 | **Vector (Semantic)** | 30% | Conceptually similar content |
 | **Tag Index** | 25% | Explicitly tagged documents |
@@ -47,11 +48,11 @@ def fuse_results(result_lists: list[list], k: int = 60) -> list:
 
 ## 2. Atomic Writes with POSIX Guarantees
 
-### The Problem
+### Problem: Write Corruption Risk
 
 Athena writes to markdown files constantly (session logs, quicksaves, protocol updates). In an agentic IDE, the AI can be interrupted mid-write. A corrupted `Core_Identity.md` is catastrophic.
 
-### The Solution
+### Solution: Write-Temp-Fsync-Rename
 
 All writes use the **write-temp-fsync-rename** pattern:
 
@@ -95,7 +96,7 @@ def acquire_lock(lock_path: Path, ttl_seconds: int = 300) -> bool:
 
 ## 3. Sharded Tag Index for O(1) Lookup
 
-### The Problem
+### Problem: Scalability
 
 With 1000+ files, a single `TAG_INDEX.md` becomes a bottleneck:
 
@@ -103,11 +104,11 @@ With 1000+ files, a single `TAG_INDEX.md` becomes a bottleneck:
 - Git diffs become unreadable
 - Search requires full file scan
 
-### The Solution
+### Solution: Alphabetical Sharding
 
 Split the index into **alphabetical shards**:
 
-```
+```text
 .context/
 ├── TAG_INDEX_A-M.md   # Tags starting with A-M
 └── TAG_INDEX_N-Z.md   # Tags starting with N-Z
@@ -133,7 +134,8 @@ Markdown files are **version-controllable** and **human-readable**. The entire k
 
 Every AI response should be **transparent about its cognitive effort**. The Λ score is a self-reported complexity metric:
 
-| Score | Meaning |
+| Score      | Meaning                    |
+| ---------- | -------------------------- |
 |-------|---------|
 | Λ+1-10 | Simple recall/lookup |
 | Λ+20-40 | Multi-framework synthesis |
@@ -146,7 +148,7 @@ Every AI response should be **transparent about its cognitive effort**. The Λ s
 2. **Cost awareness**: High Λ ≈ higher token usage
 3. **Audit trail**: Session logs include Λ for retrospective analysis
 
-### Implementation
+### Latency Implementation
 
 ```python
 # Appended to every response
@@ -159,7 +161,7 @@ if complexity_score > 20:
 
 ## 5. Query Archetype Routing (Protocol 133)
 
-### The Problem
+### Problem: One-Size-Fits-All Retrieval
 
 Different queries require **different retrieval strategies** and **different tones**:
 
@@ -167,12 +169,12 @@ Different queries require **different retrieval strategies** and **different ton
 - "Why do I feel this way?" → Psychology, empathetic, no code
 - "What's the plan?" → Strategy, structured, long-term
 
-### The Solution
+### Solution: Archetype Classification
 
 Classify queries into **10 archetypes** before processing:
 
-| Archetype | Trigger | RAG Priority | Tone |
-|-----------|---------|--------------|------|
+| Archetype  | Trigger              | RAG Priority          | Tone        |
+| ---------- | -------------------- | --------------------- | ----------- |
 | Strategist | "How do I build X?" | Frameworks, Principles | Architect |
 | Executor | "Write this code" | Code, Docs | Precise |
 | Mirror | "Why do I feel?" | Psychology | Empathetic |
@@ -190,8 +192,8 @@ Classify queries into **10 archetypes** before processing:
 
 ### Components
 
-| Component | Purpose |
-|-----------|---------|
+| Component           | Purpose                                           |
+| ------------------- | ------------------------------------------------- |
 | **Watchdog** | 90-second SIGALRM timeout → suggests safe mode |
 | **Semantic Prime** | SHA-384 hash verification of Core_Identity.md |
 | **Safe Boot Fallback** | Zero-dependency emergency shell script |
