@@ -274,8 +274,12 @@ MIT License — see [LICENSE](LICENSE)
 
 ### New Additions (January 2026)
 
+> [!TIP]
+> **Start with a Spec Sheet.** Before writing any code, define the role, scope, constraints, and acceptance criteria. It forces clarity and prevents scope creep. The spec sheet below documents Athena's design constraints — use it as a template for your own projects.
+
 | Document | What It Shows |
 |----------|---------------|
+| [**📋 Spec Sheet**](docs/SPEC_SHEET.md) | Project specification: role, scope, constraints, and acceptance criteria |
 | [**👤 About Me**](docs/ABOUT_ME.md) | Career narrative and professional depth |
 | [**📊 Benchmarks**](docs/BENCHMARKS.md) | Real performance metrics (boot time, search latency, token economics) |
 | [**🎬 Demo Guide**](docs/DEMO.md) | Live walkthrough of the system in action |
