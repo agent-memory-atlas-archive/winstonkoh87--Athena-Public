@@ -26,7 +26,8 @@
 **Systems to Build**:
 
 * **Memory Core**: Cold Storage in Markdown (Source of Truth).
-* **Hot Index (The Sidecar)**: SQLite/LanceDB sidecar for sub-50ms retrieval (Target State).
+* **Cloud Brain (Primary)**: Supabase + pgvector for semantic search and redundancy.
+* **Local Brain (Fallback)**: SQLite/LanceDB sidecar for offline retrieval when cloud is unavailable.
 * **Protocol Library**: A folder of "Skill Files" in `.agent/skills/`.
 * **Entropy Defense**: Automatic archival of unused skills (Sunset Protocol).
 
@@ -34,7 +35,7 @@
 >
 > **CRITICAL**: Violation of these constraints = System Failure.
 
-1. **NO Absolute Dependency**: Local Files are Supreme. Cloud is optional.
+1. **NO Single Point of Failure**: Supabase (Cloud) is Primary. SQLite (Local) is Fallback. Both must exist.
 2. **NO Monoliths**: 1 Skill = 1 File.
 3. **Kill Switch #1 (The Entropy Limit)**: If maintenance > 2 hours/week for 4 weeks, **STOP**. Pivot to "Graceful Degradation" (Export to Obsidian).
 4. **Kill Switch #2 (The Amnesia Failure)**: If `project_state.md` restoration fails >3x/month, the system is declared FAILED.
@@ -49,5 +50,5 @@
 ## 5. Technical Stack
 
 * **Runtime**: Python 3.12+
-* **Storage**: Markdown (Truth) + SQLite (Index).
-* **Vector**: LanceDB (Local) or Supabase (Sync).
+* **Storage**: Markdown (Truth) + Supabase (Primary Index) + SQLite (Fallback Index).
+* **Vector**: Supabase + pgvector (Primary), LanceDB/SQLite (Fallback).
