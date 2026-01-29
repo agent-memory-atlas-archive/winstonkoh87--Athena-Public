@@ -10,7 +10,7 @@
 ```text
 Athena/
 ├── .framework/                    # ← THE CODEX (stable, rarely updated)
-│   ├── v7.0/
+│   ├── v8.0/
 │   │   └── modules/
 │   │       ├── Core_Identity.md   # Laws #0-#4, RSI, Bionic Stack, COS
 │   │       └── Output_Standards.md # Response formatting, reasoning levels
@@ -207,7 +207,7 @@ graph TD
 | **IDE Integration** | VS Code / Cursor |
 | **Knowledge Store** | Markdown + VectorRAG (Supabase + pgvector) |
 | **Version Control** | Git |
-| **Scripting** | Python 3.14 |
+| **Scripting** | Python 3.13 |
 
 ---
 

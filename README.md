@@ -108,8 +108,9 @@ graph TD
         P["Sessions 1-50"] --> Q["Basic boot/end cycle"]
         Q --> R["Sessions 50-150: Semantic Search"]
         R --> S["Sessions 150-300: Hybrid RAG"]
-        S --> T["Sessions 300-400: SDK Refactor"]
-        T --> U["Sessions 400+: Governance & Red-Team"]
+        S --> T["Sessions 300-500: SDK Refactor"]
+        T --> U["Sessions 500-700: Governance Engine"]
+        U --> V["Sessions 700-861+: v8.0-Stable Era"]
     end
 
     B --> D
@@ -119,7 +120,7 @@ graph TD
 
     style A fill:#1a1a2e,stroke:#4361ee
     style P fill:#1a1a2e,stroke:#4361ee
-    style U fill:#10b981,stroke:#10b981
+    style V fill:#10b981,stroke:#10b981
 ```
 
 **The Output** (After 860+ Sessions):

@@ -17,6 +17,8 @@ This document provides detailed release notes. For the brief summary, see the RE
 - **Weight Rebalance**: GraphRAG 3.5x → 2.0x, Vector 1.3x → 2.0x, Canonical boosted to 3.0x
 - **Metrics**: Sessions 861, Protocols 150+, Case Studies 42
 
+> **Note on Protocol Count**: The drop from 285 (v1.2.8) to 150+ reflects a \"Great Purge\" audit that removed redundant, experimental, and superseded protocols. The count now reflects only **production-grade, actively-maintained** protocols.
+
 ---
 
 ## v1.3.0 (10 January 2026)

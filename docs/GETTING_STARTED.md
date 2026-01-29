@@ -282,6 +282,14 @@ Create protocol files in `.agent/skills/protocols/`:
 
 Tune `.framework/modules/Core_Identity.md` to match your preferences.
 
+### Use Power-Tools (Optional)
+
+For advanced automation, see the [examples/scripts/](../examples/scripts/) folder:
+
+- `parallel_swarm.py` — Spawn multi-window parallel agent execution
+- `worktree_manager.py` — Manage isolated Git worktrees
+- `git_commit.py` — AI-assisted semantic commits
+
 ---
 
 ## Troubleshooting
