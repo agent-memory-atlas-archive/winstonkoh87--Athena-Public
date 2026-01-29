@@ -31,9 +31,9 @@
 
 | Capability | Evidence |
 |------------|----------|
-| **Systems Architecture** | Designed a 150+ protocol knowledge framework from scratch |
+| **Systems Architecture** | Designed a 150+-protocol knowledge framework from scratch |
 | **AI Engineering** | Built RAG pipelines (Supabase pgvector + GraphRAG + RRF fusion) |
-| **Technical Writing** | 860+ session logs, 42 case studies, zero fluff |
+| **Technical Writing** | 861 session logs, 42 case studies, zero fluff |
 | **Automation** | 106 Python scripts for workflow optimization |
 | **Strategic Thinking** | Spent 10 years navigating institutional politics and incentive structures |
 

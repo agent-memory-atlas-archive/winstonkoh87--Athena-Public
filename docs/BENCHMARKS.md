@@ -1,6 +1,6 @@
 # ⚡ Performance Benchmarks
 
-> **Last Updated**: 08 January 2026  
+> **Last Updated**: 29 January 2026  
 > **Environment**: MacBook Pro M3, Python 3.13, Supabase (Singapore region)
 
 ---
@@ -64,9 +64,9 @@ Query → Embedding (local) → Parallel Search (Supabase + GraphRAG) → RRF Fu
 
 | Asset | Count | Size |
 |-------|-------|------|
-| Protocols | 285 | ~1.2 MB |
-| Case Studies | 227 | ~2.4 MB |
-| Session Logs | 768 | ~3.8 MB |
+| Protocols | 150+ | ~1.2 MB |
+| Case Studies | 42 | ~2.4 MB |
+| Session Logs | 861 | ~3.8 MB |
 | GraphRAG Entities | 4,203 | ~46 MB |
 | Vector Embeddings | 12,847 | ~78 MB |
 

@@ -6,7 +6,7 @@ description: Run the Athena Guidance System (suggest_protocols.py)
 
 > **Usage**: `/guide "some context or problem"`
 
-This workflow runs the `suggest_protocols.py` script, which scans your 150+ Protocols and Case Studies to recommend the best "Mental Models" for your current situation.
+This workflow runs the `suggest_protocols.py` script, which scans your 290+ Protocols and Case Studies to recommend the best "Mental Models" for your current situation.
 
 ## Steps
 

@@ -1,88 +1,64 @@
 # Getting Started
 
-> **Last Updated**: 29 January 2026
+> **Last Updated**: 07 January 2026
 
-> Build your own AI assistant in 5 minutes
+> Build your own AI assistant in 30 minutes
 
 ---
 
 ## Prerequisites
 
-- **Python 3.10+** installed
+- **Terminal access** (macOS Terminal, Windows PowerShell, or Linux)
 - **Git** installed ([download here](https://git-scm.com/))
 - **An agentic AI IDE** — [Antigravity](https://deepmind.google/), [Cursor](https://cursor.sh/), or similar
 
 ---
 
-## Quick Start (One Command)
+## Step 1: Create Your Workspace
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/winstonkoh87/Athena-Public.git
-cd Athena-Public
+# Create and enter your project folder
+mkdir MyAssistant && cd MyAssistant
 
-# 2. Run bootstrap (creates directory structure + starter files)
-python bootstrap.py
+# Initialize git
+git init
 
-# 3. See it in action (no API keys required)
-python simulation.py
+# Create the core directory structure
+mkdir -p .agent/workflows
+mkdir -p .agent/scripts
+mkdir -p .agent/skills/protocols
+mkdir -p .framework/modules
+mkdir -p .context/memories/session_logs
 ```
 
-That's it. The system bootstraps itself.
+Your structure should now look like:
 
----
-
-## What Bootstrap Creates
-
-```text
-Athena-Public/
-├── .framework/v8.0/modules/
-│   └── Core_Identity.md     # Your AI's personality and rules
-├── .context/
-│   ├── profile/             # Your profile and constraints
-│   ├── memories/            # Session logs, case studies
-│   └── TAG_INDEX.md         # Hashtag lookup
+```
+MyAssistant/
 ├── .agent/
-│   ├── skills/protocols/    # Decision frameworks
-│   ├── workflows/           # Slash commands (/start, /end)
-│   └── scripts/             # Automation scripts
-└── .env                     # Your API keys (from .env.example)
+│   ├── workflows/
+│   ├── scripts/
+│   └── skills/protocols/
+├── .framework/modules/
+└── .context/memories/session_logs/
 ```
 
 ### Setup Flow
 
 ```mermaid
 flowchart LR
-    A[Clone Repo] --> B[python bootstrap.py]
-    B --> C[Edit .env]
-    C --> D[Open in IDE]
-    D --> E[Type /start]
+    A[Create Workspace] --> B[Define Identity]
+    B --> C[Add Workflows]
+    C --> D[Enable Scripts]
+    D --> E[Test /start]
     E --> F[✅ Ready]
 ```
 
 ---
 
-## Step 1: Configure API Keys
+## Step 2: Define Core Identity
 
-Edit `.env` with your credentials:
-
-```bash
-# Required for full functionality
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_KEY=your-anon-key
-GOOGLE_AI_KEY=your-gemini-api-key
-
-# Optional
-ANTHROPIC_API_KEY=your-claude-key
-```
-
-> **Note**: Without API keys, Athena runs in local-only mode (no vector search).
-
----
-
-## Step 2: Customize Your Identity
-
-Edit `.framework/v8.0/modules/Core_Identity.md`:
+Create `.framework/modules/Core_Identity.md`:
 
 ```markdown
 # Core Identity
@@ -91,17 +67,194 @@ Edit `.framework/v8.0/modules/Core_Identity.md`:
 An adaptive AI assistant — your strategic co-pilot, not just a chatbot.
 
 ## Operating Principles
+
 1. **Memory First**: Log everything. Context is power.
 2. **Proactive**: Anticipate needs, don't just react.
 3. **Honest**: Challenge flawed assumptions respectfully.
 4. **Modular**: One skill = one file. No monoliths.
+
+## Reasoning Standards
+
+- Consider 3+ perspectives before concluding
+- Label assumptions explicitly
+- Prioritize signal over noise
+- Ask clarifying questions when uncertain
+
+## Success Metric
+
+A good conversation contains mutual corrections.
+- I challenge your assumptions → you evaluate
+- You correct my errors → I improve
+- Both get sharper
 ```
 
 ---
 
-## Step 3: Start Your First Session
+## Step 3: Create Your First Workflow
 
-1. Open your workspace in your AI IDE (Antigravity, Cursor, etc.)
+Create `.agent/workflows/start.md`:
+
+```markdown
+---
+description: Boot the AI assistant with context
+---
+
+# /start — Execution Script
+
+## Phase 1: Load Identity
+- [ ] Read `.framework/modules/Core_Identity.md`
+
+## Phase 2: Recall Context
+- [ ] Find the latest session log in `.context/memories/session_logs/`
+- [ ] Display a summary of the last session
+
+## Phase 3: Create New Session
+- [ ] Create a new session log with today's date
+- [ ] Format: `YYYY-MM-DD-session-XX.md`
+
+## Phase 4: Confirm Ready
+- [ ] Output: "⚡ Ready. (Session XX started.)"
+```
+
+---
+
+## Step 4: Add Session Logging
+
+Create `.agent/scripts/create_session.py`:
+
+```python
+#!/usr/bin/env python3
+"""Create a new session log file."""
+
+from datetime import datetime
+from pathlib import Path
+
+def create_session():
+    log_dir = Path(".context/memories/session_logs")
+    log_dir.mkdir(parents=True, exist_ok=True)
+    
+    today = datetime.now().strftime("%Y-%m-%d")
+    
+    # Find existing sessions for today
+    existing = list(log_dir.glob(f"{today}-session-*.md"))
+    session_num = len(existing) + 1
+    
+    filename = f"{today}-session-{session_num:02d}.md"
+    filepath = log_dir / filename
+    
+    template = f"""# Session Log: {today} (Session {session_num})
+
+**Date**: {today}
+**Time**: {datetime.now().strftime("%H:%M")} - ...
+**Focus**: ...
+
+---
+
+## Key Topics
+- ...
+
+---
+
+## Decisions Made
+- ...
+
+---
+
+## Action Items
+| Action | Owner | Status |
+|--------|-------|--------|
+| ... | ... | Pending |
+
+---
+
+## Session Closed
+**Status**: Open
+"""
+    
+    filepath.write_text(template)
+    print(f"✅ Created: {filepath}")
+    print(f"   Session: {today}-session-{session_num:02d}")
+
+if __name__ == "__main__":
+    create_session()
+```
+
+---
+
+## Step 5: Enable Quicksave
+
+Create `.agent/scripts/quicksave.py`:
+
+```python
+#!/usr/bin/env python3
+"""Append a checkpoint to the current session log."""
+
+import sys
+from datetime import datetime
+from pathlib import Path
+
+def quicksave(summary: str):
+    log_dir = Path(".context/memories/session_logs")
+    today = datetime.now().strftime("%Y-%m-%d")
+    
+    # Find today's session logs
+    logs = sorted(log_dir.glob(f"{today}-session-*.md"))
+    if not logs:
+        print(f"⚠️ No session log found for {today}")
+        return
+    
+    current_log = logs[-1]  # Most recent
+    timestamp = datetime.now().strftime("%H:%M")
+    
+    checkpoint = f"\n\n### ⚡ Checkpoint [{timestamp}]\n{summary}\n"
+    
+    with open(current_log, "a") as f:
+        f.write(checkpoint)
+    
+    print(f"✅ Quicksave [{timestamp}] → {current_log.name}")
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        quicksave(" ".join(sys.argv[1:]))
+    else:
+        print("Usage: python quicksave.py <summary>")
+```
+
+---
+
+## Step 6: Create End Workflow
+
+Create `.agent/workflows/end.md`:
+
+```markdown
+---
+description: Close session and save learnings
+---
+
+# /end — Session Close
+
+## Phase 1: Review Checkpoints
+- [ ] Read all `### ⚡ Checkpoint` entries from current session log
+
+## Phase 2: Synthesize
+- [ ] Fill in session log sections:
+  - Key Topics
+  - Decisions Made
+  - Action Items
+
+## Phase 3: Commit
+- [ ] Git add and commit the session log
+- [ ] Message format: "Session XX: <brief summary>"
+
+## Phase 4: Confirm
+- [ ] Output: "✅ Session XX closed and committed."
+```
+
+---
+
+## Step 7: Test It
+
+1. Open your AI IDE in the `MyAssistant` folder
 2. Type `/start`
 3. Have a conversation
 4. Type `/end`
@@ -110,55 +263,34 @@ Check `.context/memories/session_logs/` — you should see your session log!
 
 ---
 
-## Key Workflows
-
-| Command | What It Does |
-| ------- | ------------ |
-| `/start` | Boot: Load identity + create session log |
-| `/end` | Close: Summarize session + commit to memory |
-| `/think` | Deep reasoning mode |
-| `/research` | Multi-source web research |
-| `/save` | Manual checkpoint |
-
----
-
 ## Next Steps
 
-### Add More Protocols
+### Add More Workflows
 
-Create decision frameworks in `.agent/skills/protocols/`:
+- `/think` — Deep reasoning mode
+- `/research` — Multi-source investigation
+- `/save` — Manual checkpoint
 
-```markdown
-# Protocol: Problem Decomposition
+### Expand Skills
 
-1. State the problem in one sentence
-2. List 3 sub-problems
-3. Identify the critical path
-4. Define success criteria
-```
+Create protocol files in `.agent/skills/protocols/`:
 
-### Customize Workflows
+- `01-problem-decomposition.md`
+- `02-multi-path-reasoning.md`
 
-Edit or create workflows in `.agent/workflows/` to define new slash commands.
+### Customize Identity
 
-### Connect to Supabase
-
-For full vector search capability:
-
-1. Create a Supabase project
-2. Enable pgvector extension
-3. Run the schema migration in `examples/supabase/schema.sql`
-4. Add credentials to `.env`
+Tune `.framework/modules/Core_Identity.md` to match your preferences.
 
 ---
 
 ## Troubleshooting
 
 | Problem | Solution |
-| ------- | -------- |
-| "Module not found" | Run `pip install -e .` from repo root |
-| "No session log found" | Run `/start` first |
-| Scripts don't run | Check Python: `python3 --version` |
+|---------|----------|
+| "No session log found" | Run `/start` first to create one |
+| Scripts don't run | Check Python is installed: `python3 --version` |
+| Workflow not recognized | Ensure file is in `.agent/workflows/` |
 
 ---
 
@@ -166,6 +298,6 @@ For full vector search capability:
 
 *You now have a self-improving AI assistant.*
 
-**[Back to README](../README.md)** | **[Architecture](ARCHITECTURE.md)** | **[Engineering Depth](ENGINEERING_DEPTH.md)**
+**[Back to README](../README.md)**
 
 </div>

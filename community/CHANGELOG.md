@@ -4,24 +4,9 @@
 
 ---
 
-## v8.0-alpha — Recruiter-Ready Release (Jan 2026)
-
-**Latest**: The "Recruiter-Ready" public release with API-free simulation mode.
-
-- ✅ **860+ Sessions**: Continuous operation milestone
-- ✅ **150+ Protocols (Public)**: SFW export for public repository
-- ✅ **106 Scripts**: Automation count synced
-- ✅ **`simulation.py`**: Zero-dependency demo mode (no API keys needed)
-- ✅ **`bootstrap.py`**: One-click directory structure initialization
-- ✅ **Privacy Scrubber**: Automated PII removal for public export
-- ✅ **RRF Fusion**: Reciprocal Rank Fusion for hybrid RAG retrieval
-- ✅ **Interactive Landing Page**: GitHub Pages with terminal demo
-
----
-
 ## v7.9 — Public Repo Cleanup (Jan 2026)
 
-**Previous**: Stats sync, off-topic content removal, recruiter-ready polish.
+**Latest**: Stats sync, off-topic content removal, recruiter-ready polish.
 
 - ✅ **248 Protocols**: +7 from v7.8 (new domains)
 - ✅ **560 Sessions**: +65 from v7.8 (continuous operation)

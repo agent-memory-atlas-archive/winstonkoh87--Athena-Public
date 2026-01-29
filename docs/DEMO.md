@@ -131,8 +131,8 @@ python3 .agent/scripts/athena_status.py
 🏛️  PROJECT ATHENA | SYSTEM DASHBOARD
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Metrics:               Status:
-  📂 Protocols:  285     🕒 Last Boot:  2026-01-08 01:07:16
-  📝 Sessions:   768     🕸️  GraphRAG:   Active (44.5 MB)
+  📂 Protocols:  150+    🕒 Last Boot:  2026-01-29 01:07:16
+  📝 Sessions:   861     🕸️  GraphRAG:   Active (44.5 MB)
   ⚙️  Scripts:    106   📍 Root:       Project Athena/
   ❤️  Health:     98%    🛡️  Integrity:  100%
 

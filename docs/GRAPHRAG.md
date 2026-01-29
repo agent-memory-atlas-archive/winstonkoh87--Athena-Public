@@ -1,7 +1,7 @@
 # GraphRAG: Knowledge Graph Layer
 
 > **Status**: ✅ Active (Jan 2026)  
-> **Weight**: 3.5x in RRF fusion (highest priority source)
+> **Weight**: 2.0x in RRF fusion (balanced with Vector)
 
 ---
 
@@ -38,15 +38,15 @@ Documents → Entity Extraction → Knowledge Graph → Community Detection → 
 
 ## Retrieval Weight
 
-GraphRAG is weighted **3.5x** in the RRF fusion algorithm — the highest of any source:
+GraphRAG is weighted **2.0x** in the RRF fusion algorithm — at parity with Vector for balanced retrieval:
 
 | Source | Weight | Rationale |
 |--------|--------|-----------|
-| **GraphRAG** | 3.5x | Structured knowledge clusters |
-| Canonical | 2.2x | Curated single source of truth |
+| **Canonical** | 3.0x | Curated single source of truth |
+| **GraphRAG** | 2.0x | Structured knowledge clusters |
+| **Vector** | 2.0x | Semantic similarity (parity with Graph) |
 | Tags | 1.5x | Explicit keyword matches |
-| Vector | 1.3x | Semantic similarity |
-| Filename | 0.8x | Literal file matching |
+| Filename | 1.0x | Literal file matching |
 
 ---
 

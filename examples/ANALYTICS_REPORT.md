@@ -1,6 +1,6 @@
 # System Analytics Report
 
-> Athena Knowledge Infrastructure — Metrics Snapshot (29 Jan 2026)
+> Athena Knowledge Infrastructure — Metrics Snapshot (23 Dec 2025)
 
 ---
 
@@ -8,12 +8,12 @@
 
 | Metric | Value | Growth |
 |--------|-------|--------|
-| **Total Sessions** | 860+ | Persistent |
-| **Protocols (Exported)** | 150+ | SFW Public |
-| **Case Studies** | 42+ | Active |
-| **VectorRAG Documents** | 4,200+ | Full workspace coverage |
-| **Automation Scripts** | 106 | +25 |
-| **Workflows** | 35 | +15 |
+| **Total Sessions** | 300+ | +13 today |
+| **Protocols** | 164 | +13 this week |
+| **Case Studies** | 60 | +8 this week |
+| **VectorRAG Documents** | 290+ | Full workspace coverage |
+| **Automation Scripts** | 81 | +13 |
+| **Workflows** | 20 | +5 |
 
 ---
 
@@ -57,7 +57,7 @@ Dec 21 ▓▓▓▓▓▓▓▓▓▓▓▓▓ 13 (in progress)
 
 ![VectorRAG Visualization](graphrag_visualization.png)
 
-- **Embedded Documents**: 4,200+
+- **Embedded Documents**: 290+
 - **Content Types**: 8 (sessions, protocols, case_studies, capabilities, playbooks, references, frameworks, workflows)
 - **Search Latency**: <100ms
 - **Storage**: Supabase + pgvector (cloud)
@@ -77,7 +77,7 @@ Dec 21 ▓▓▓▓▓▓▓▓▓▓▓▓▓ 13 (in progress)
 
 - [ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - [FEATURES.md](docs/FEATURES.md)
-- [Interactive Knowledge Graph Demo](https://winstonkoh87.github.io/Athena-Public/examples/knowledge_graph_demo.html)
+- [Interactive Knowledge Graph Demo](https://the authorkoh87.github.io/Athena-Public/examples/knowledge_graph_demo.html)
 
 ---
 

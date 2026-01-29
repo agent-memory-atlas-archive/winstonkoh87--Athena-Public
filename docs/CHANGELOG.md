@@ -1,8 +1,21 @@
 # Athena Changelog
 
-> **Last Updated**: 10 January 2026
+> **Last Updated**: 29 January 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
+
+---
+
+## v8.0-Stable (29 January 2026)
+
+**Zero-Point Refactor**: Sovereign Environment hardened, score-modulated RRF weights rebalanced.
+
+### Key Changes
+
+- **Sovereign Environment**: Consolidated silos into `.context/`, created `settings.json`, `ensure_env.sh`
+- **Score-Modulated RRF**: Formula updated to `contrib = weight * (0.5 + doc.score) * (1/(k+rank))`
+- **Weight Rebalance**: GraphRAG 3.5x → 2.0x, Vector 1.3x → 2.0x, Canonical boosted to 3.0x
+- **Metrics**: Sessions 861, Protocols 150+, Case Studies 42
 
 ---
 

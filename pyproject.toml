@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "athena-sdk"
-version = "8.0.0a1"
+version = "1.4.0"
 description = "Athena Bionic OS SDK — Personal AI Operating System with Memory"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -40,12 +40,6 @@ full = [
     "sentence-transformers>=2.2.0",
     "torch>=2.0.0",
     "pydantic>=2.0.0",
-]
-
-# Local mode (offline)
-local = [
-    "chromadb>=0.4.0",
-    "sentence-transformers>=2.2.0",
 ]
 
 # Development tools
