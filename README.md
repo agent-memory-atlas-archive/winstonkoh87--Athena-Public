@@ -1,12 +1,12 @@
 ![Athena Banner](./docs/athena_banner.png)
 
-> **Last Updated**: 30 January 2026
+> **Last Updated**: 31 January 2026
 
 # 🏛️ Project Athena: Build Your Own AI-Powered Knowledge System
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Protocols](https://img.shields.io/badge/Protocols-307+-blue)
-![Sessions](https://img.shields.io/badge/Sessions-900+-green)
+![Protocols](https://img.shields.io/badge/Protocols-308+-blue)
+![Sessions](https://img.shields.io/badge/Sessions-995+-green)
 ![Featured](https://img.shields.io/badge/Featured-r%2FGeminiAI_%232_Daily-orange)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
@@ -123,12 +123,12 @@ graph TD
     style V fill:#10b981,stroke:#10b981
 ```
 
-**The Output** (After 900+ Sessions):
+**The Output** (After 995+ Sessions):
 
 | Metric | Value |
 |--------|-------|
-| Protocols Extracted | 307+ |
-| Automation Scripts | 106 |
+| Protocols Extracted | 308+ |
+| Automation Scripts | 146 |
 | GraphRAG Communities | 1,460 |
 | Knowledge Graph | 46MB + 78MB vectors |
 | Major Refactors | 4 |
@@ -206,6 +206,33 @@ graph TD
 
 ---
 
+## The Reverse SDLC (Build First, Spec Later)
+
+> **Key Insight**: Athena was not designed top-down. It evolved bottom-up through 995+ sessions.
+
+Traditional software development follows: **Requirements → Design → Build → Test**.
+
+Athena inverted this: **Build → Observe → Extract Patterns → Document Post-Facto**.
+
+| Phase | Traditional SDLC | Athena's Approach |
+|-------|------------------|-------------------|
+| 1 | Gather requirements | Start building immediately |
+| 2 | Write spec doc | Ship at 70% readiness |
+| 3 | Build to spec | Observe what works |
+| 4 | Test against spec | Extract patterns into protocols |
+| 5 | Deploy | Document post-facto (Spec Sheet) |
+
+### Why This Works (For Solo Builders)
+
+1. **No stakeholders to align** — You ARE the stakeholder.
+2. **Rapid iteration** — Friction reveals requirements faster than planning.
+3. **Compound knowledge** — Each session builds on the last.
+4. **Living documentation** — Protocols emerge from real use, not imagination.
+
+> *"The spec sheet I wrote after 900 sessions is more accurate than any spec I could have written at session 0."*
+
+---
+
 ## Why This Matters (Beyond Me)
 
 This isn't about building *my* assistant. It's about proving a pattern:
@@ -256,7 +283,7 @@ flowchart LR
 
 ## Reference Implementation
 
-This repo documents **Winston's personal Athena instance** — 900+ sessions, 307+ protocols, production-tested daily.
+This repo documents **Winston's personal Athena instance** — 995+ sessions, 308+ protocols, production-tested daily.
 
 It's included as a **reference**, not a prescription. Your instance will reflect your domain, your decisions, your voice.
 
@@ -292,6 +319,9 @@ MIT License — see [LICENSE](LICENSE)
 | [Boot Optimization](examples/case_studies/CS-001-boot-optimization.md) | 85% boot time reduction via caching & parallelization |
 | [Search Quality](examples/case_studies/CS-002-search-quality.md) | RRF fusion for hybrid semantic search |
 | [Protocol Enforcement](examples/case_studies/CS-003-protocol-enforcement.md) | Governance engine for compliance |
+| [Vibe Coding](examples/case_studies/CS-120-vibe-coding-zero-cost-stack.md) | Zero-point UI development on a budget |
+| [Silent Partner](examples/case_studies/CS-140-bcm-silent-partner-analysis.md) | BCM analysis for corporate strategy |
+| [Auto-Blog](examples/case_studies/CS-144-n8n-auto-blog-workflow.md) | Multi-agent n8n workflow for content velocity |
 
 </details>
 
@@ -407,7 +437,7 @@ Think of it like **Git, but for conversations**. Each session builds on the last
 | **`/end` commit** | Summarizes session, extracts decisions, saves to knowledge store |
 | **Hybrid search** | Fuses Canonical + [GraphRAG](docs/GRAPHRAG.md) + Tags + [Vectors](docs/VECTORRAG.md) + Filenames via RRF |
 | **Cross-encoder reranking** | Refines top results with `sentence-transformers` |
-| **Protocol library** | [150+ reusable playbooks](examples/protocols/) (trading, writing, design) |
+| **Protocol library** | [308+ reusable playbooks](examples/protocols/) (trading, writing, design) |
 
 ### Repository Structure
 
@@ -461,7 +491,8 @@ See [examples/workflows/](examples/workflows/) for full list.
 <details>
 <summary><strong>📋 Changelog</strong></summary>
 
-- **v8.0-Stable** (Jan 2026 - Now): Zero-Point Refactor — Sovereign Environment hardened, Score-Modulated RRF (weights rebalanced), tech debt consolidated
+- **v8.1.0** (Jan 31 2026): Metrics Sync — 995 sessions, 308 protocols, 146 scripts; Protocol library consolidation
+- **v8.0-Stable** (Jan 2026): Zero-Point Refactor — Sovereign Environment hardened, Score-Modulated RRF (weights rebalanced), tech debt consolidated
 - **v1.2.8** (Jan 2026): Grand Alignment refactor — Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized, metrics corrected
 - **v1.2.7** (Jan 2026): Metrics sync — 332 protocols, 610 sessions
 - **v1.2.6** (Jan 2026): Stats sync — 605 sessions, 119 scripts; README restructure

@@ -4,15 +4,22 @@
 
 ---
 
-## v7.9 — Public Repo Cleanup (Jan 2026)
+## v8.1 — Metrics Sync & Case Study Expansion (Jan 2026)
 
-**Latest**: Stats sync, off-topic content removal, recruiter-ready polish.
+**Latest**: Updated public metrics to reflect Session 995, 308 Protocols, and 146 Scripts. Added new case studies (CS-120, CS-140, CS-144).
 
-- ✅ **248 Protocols**: +7 from v7.8 (new domains)
-- ✅ **560 Sessions**: +65 from v7.8 (continuous operation)
-- ✅ **97 Scripts**: Automation count synced
-- ✅ **Removed**: Off-topic poker strategy content from public repo
-- ✅ **SDK v1.2.1**: Maintained
+- ✅ **308 Protocols**: Synced from production instance
+- ✅ **995 Sessions**: Approaching 1,000 session milestone
+- ✅ **146 Scripts**: +40 from v8.0 (indexing improvement)
+- ✅ **Case Studies**: Linked Vibe Coding, Silent Partner, and Auto-Blog
+
+## v8.0 — Zero-Point Refactor (Jan 2026)
+
+**Sovereign Environment**: Hardened architecture, score-modulated RRF weights rebalanced.
+
+- ✅ **Metrics**: Sessions 995 (synced), Protocols 308
+- ✅ **Weights**: GraphRAG 3.5x → 2.0x, Vector 1.3x → 2.0x, Canonical 3.0x
+- ✅ **Sovereign Environment**: Consolidated silos into `.context/`
 
 ---
 
@@ -197,7 +204,9 @@
 
 | Date | Session | Notes |
 |------|---------|-------|
-| 2026-01-02 | 13 | v7.9 release: 248 protocols, 97 scripts, 560 sessions, poker content removed |
+| 2026-01-31 | 01 | v8.1 release: 308 protocols, 146 scripts, 995 sessions |
+| 2026-01-30 | 17 | v8.0 release: Zero-Point Refactor, weights rebalanced |
+| 2026-01-02 | 13 | v7.9 release: 248 protocols, 97 scripts, 560 sessions |
 | 2025-12-31 | 04 | Year-end audit: 226 protocols, 111 scripts, 25 workflows, 468 sessions |
 | 2025-12-28 | 13 | Metrics sync: 210 protocols, 99 scripts, 25 workflows, 415 sessions |
 | 2025-12-27 | 05 | Community standards complete, Wiki initialized with 5 pages |

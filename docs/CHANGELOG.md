@@ -1,10 +1,21 @@
 # Athena Changelog
 
-> **Last Updated**: 30 January 2026
+> **Last Updated**: 31 January 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 ---
+
+## v8.1.0 (31 January 2026)
+
+**Metrics Sync & Case Study Expansion**: Updated public metrics to reflect Session 995 and added new case studies.
+
+### Key Changes
+
+- **Metrics Sync**: Updated README and BENCHMARKS to reflect Session 995, 308 Protocols, and 146 Scripts.
+- **Case Study Expansion**: Linked CS-120 (Vibe Coding), CS-140 (Silent Partner), and CS-144 (Auto-Blog) in README.
+- **Library Consolidation**: Cleaned stale "150+" protocol references to reflect 308 canonical protocols.
+- **Date Alignment**: Enforced Jan 31 2026 update across all core documentation.
 
 ## v8.0-Stable (30 January 2026)
 
@@ -15,7 +26,7 @@ This document provides detailed release notes. For the brief summary, see the RE
 - **Sovereign Environment**: Consolidated silos into `.context/`, created `settings.json`, `ensure_env.sh`
 - **Score-Modulated RRF**: Formula updated to `contrib = weight * (0.5 + doc.score) * (1/(k+rank))`
 - **Weight Rebalance**: GraphRAG 3.5x → 2.0x, Vector 1.3x → 2.0x, Canonical boosted to 3.0x
-- **Metrics**: Sessions 861, Protocols 150+, Case Studies 42
+- **Metrics**: Sessions 995, Protocols 308, Case Studies 42
 
 > **Note on Protocol Count**: The drop from 285 (v1.2.8) to 150+ reflects a \"Great Purge\" audit that removed redundant, experimental, and superseded protocols. The count now reflects only **production-grade, actively-maintained** protocols.
 
