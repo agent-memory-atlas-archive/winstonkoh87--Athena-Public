@@ -2,6 +2,15 @@
 
 > **Purpose**: Pre-compiled response scripts for identified risks.
 > **Status**: Active Control Rods.
+> **Version**: Athena Framework v7.5
+
+## Tier Classification
+
+| Tier | Response | Description |
+|------|----------|-------------|
+| **Tier 1 (Warn)** | ⚠️ Yellow flag | Proceed with caution, flag risks |
+| **Tier 2 (Block)** | 🚫 Circuit breaker | Require explicit `/circuit` override |
+| **Tier 3 (Veto)** | ⛔ Red veto | Absolute refusal, Law #1 violation |
 
 ---
 

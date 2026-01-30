@@ -1,4 +1,4 @@
-# Protocol 98: State Freezer (Anti-Compaction)
+# Development Execution Standard: State Freezer (Anti-Compaction)
 
 > **Source**: Harvested from r/ClaudeCode (Main_Payment_6430)
 > **Status**: ACTIVE

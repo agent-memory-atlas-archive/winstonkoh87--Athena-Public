@@ -2,7 +2,7 @@
 description: Mid-session context compression to extend conversations
 ---
 
-# Protocol 45: Context Compaction
+# Infrastructure & Continuity Hub: Context Compaction
 
 > **Source**: Adapted from GPT-5.2 + Claude Opus 4.5 features  
 > **Purpose**: Enable long-running tasks by compressing context when approaching limits

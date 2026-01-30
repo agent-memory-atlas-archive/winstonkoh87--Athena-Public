@@ -1,4 +1,4 @@
-# Protocol 100: Git Worktree Parallelism
+# Development Execution Standard: Git Worktree Parallelism
 
 > **Source**: Harvested from r/ClaudeCode (ice9killz, Cal-Culator) + Superpowers blog
 > **Status**: REFERENCE (Requires multi-agent tooling)

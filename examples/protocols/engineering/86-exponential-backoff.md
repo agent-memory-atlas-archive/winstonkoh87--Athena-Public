@@ -1,4 +1,4 @@
-# Protocol 86: Exponential Backoff (Autonomous Monitoring)
+# Infrastructure & Continuity Hub: Exponential Backoff (Autonomous Monitoring)
 
 > **Source**: Harvested from `ykdojo/claude-code-tips` (Dec 2025)
 > **Use Case**: Long-running jobs (CI, Docker builds, deployments)
