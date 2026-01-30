@@ -1,6 +1,6 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 29 January 2026  
+> **Last Updated**: 30 January 2026  
 > **System Version**: v8.0-Stable (Score-Modulated RRF)
 
 ---
@@ -33,7 +33,7 @@ Athena/
 ├── .agent/                        # ← AGENT CONFIGURATION
 │   ├── skills/
 │   │   ├── SKILL_INDEX.md         # Protocol loading registry
-│   │   ├── protocols/             # 150+ modular skill files
+│   │   ├── protocols/             # 332+ modular skill files
 │   │   │   ├── architecture/      # System protocols (latency, modularity)
 │   │   │   ├── business/          # Business frameworks
 │   │   │   ├── career/            # Career navigation
@@ -215,7 +215,7 @@ graph TD
 
 | Version | Date | Changes |
 |---------|------|---------|
-| v8.0 | 29 Jan 2026 | Zero-Point Refactor: Sovereign Environment, Score-Modulated RRF (2.0x weights), 150+ protocols, 861 sessions |
+| v8.0 | 30 Jan 2026 | Zero-Point Refactor: Sovereign Environment, Score-Modulated RRF (2.0x weights), 307+ protocols, 900+ sessions |
 | v7.9 | 07 Jan 2026 | Public repo cleanup: metrics synced |
 | v7.8 | 01 Jan 2026 | New year sync: 241 protocols, 495 sessions, Bionic Recovery Protocol (305) |
 | v7.7 | 31 Dec 2025 | Year-end sync: 238 protocols, 489 sessions, Value Trinity (245), Ecosystem Physics (303) |

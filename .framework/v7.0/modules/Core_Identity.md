@@ -1,7 +1,7 @@
 # Core Identity (Public Reference)
 
 > **Purpose**: Minimal identity scaffold for Athena boot sequence.  
-> **Full Version**: See private `.framework/v7.0/modules/Core_Identity.md`
+> **Full Version**: See private `.framework/v8.0-alpha/modules/Core_Identity.md`
 
 ---
 

@@ -11,7 +11,7 @@ description: Boot the Athena system and load context
 
 // turbo
 
-- [ ] Load `.framework/v7.0/modules/Core_Identity.md` — Laws, Identity, RSI
+- [ ] Load `.framework/v8.0-alpha/modules/Core_Identity.md` — Laws, Identity, RSI
 - [ ] Load `.context/project_state.md` — Current workspace state
 - [ ] Create new session log in `session_logs/`
 

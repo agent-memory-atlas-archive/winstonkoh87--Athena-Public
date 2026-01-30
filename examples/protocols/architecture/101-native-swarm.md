@@ -70,5 +70,5 @@ python3 examples/scripts/worktree_manager.py clean-all
 
 ## 5. References
 
-- [Protocol 75: Synthetic Parallel Reasoning](file:///examples/protocols/decision/75-synthetic-parallel-reasoning.md)
-- [Protocol 100: Git Worktree Parallelism](file:///examples/protocols/engineering/100-git-worktree-parallelism.md)
+- [Protocol 75: Synthetic Parallel Reasoning](../decision/75-synthetic-parallel-reasoning.md)
+- [Protocol 100: Git Worktree Parallelism](../engineering/100-git-worktree-parallelism.md)

@@ -6,7 +6,7 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
-## v8.0-Stable (29 January 2026)
+## v8.0-Stable (30 January 2026)
 
 **Zero-Point Refactor**: Sovereign Environment hardened, score-modulated RRF weights rebalanced.
 
