@@ -1,4 +1,4 @@
-# Infrastructure & Continuity Hub: Conversation Branching
+# Protocol 88: Conversation Branching
 
 > **Source**: Harvested from `ykdojo/claude-code-tips` (Dec 2025)
 > **Use Case**: A/B testing strategies, trying different approaches without losing original thread

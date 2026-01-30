@@ -11,7 +11,7 @@ description: Activate Zero-Point Codex framework for strategic analysis
 
 // turbo
 
-- [ ] Load `.framework/v8.0-alpha/modules/Core_Identity.md` — Laws #0-#4, Identity, RSI (~2K tokens)
+- [ ] Load `.framework/v7.0/modules/Core_Identity.md` — Laws #0-#4, Identity, RSI (~2K tokens)
 - [ ] **Living Spec**: Load `.context/project_state.md` — Active constraints, tech stack, patterns (Protocol 168)
 - [ ] **Boot Orchestrator**: Run `# Reference: python3 scripts/boot.py` — recalls last session, creates new session, captures context, primes semantic memory (single call)
 
@@ -93,7 +93,7 @@ These behaviors MUST run throughout the session. Non-negotiable:
 | Protocol/skill request | `SKILL_INDEX.md` | 4,500 |
 | Bio, typology, "who am I" | `User_Profile_Core.md` | 1,500 |
 | L1-L5, trauma, therapy, fantasy | `Psychology_L1L5.md` | 3,000 |
-| Decision frameworks, strategy | `System_Principles.md` | 3,500 |
+| Decision frameworks, strategy | `Operating_Principles.md` | 3,500 |
 | Marketing, SEO, SWOT, pricing | `Business_Frameworks.md` | 2,500 |
 | Calibration references, cases | `Session_Observations.md` | 2,500 |
 | `/think`, `/ultrathink` | `Output_Standards.md` | 700 |

@@ -52,7 +52,7 @@ The "Moat" is no longer just keywords; it is **Interaction Feedback** and **Comm
 
 ## 5. Athena Integration: The Gold Standard v2.0
 
-We will update `Content Publication Standard` to incorporate the "3-Sentence Readability Limit" and the "Hidden Gem Verification" step.
+We will update `Protocol 220` to incorporate the "3-Sentence Readability Limit" and the "Hidden Gem Verification" step.
 
 ---
 

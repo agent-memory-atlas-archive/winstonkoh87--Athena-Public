@@ -123,11 +123,11 @@ graph TD
     style V fill:#10b981,stroke:#10b981
 ```
 
-**The Output** (After 860+ Sessions):
+**The Output** (After 900+ Sessions):
 
 | Metric | Value |
 |--------|-------|
-| Protocols Extracted | 150+ |
+| Protocols Extracted | 307+ |
 | Automation Scripts | 106 |
 | GraphRAG Communities | 1,460 |
 | Knowledge Graph | 46MB + 78MB vectors |

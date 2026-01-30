@@ -1,7 +1,7 @@
 # GraphRAG: Knowledge Graph Layer
 
 > **Status**: ✅ Active (Jan 2026)  
-> **Weight**: 2.0x in RRF fusion (balanced with Vector)
+> **Weight**: 3.5x in RRF fusion (highest priority source)
 
 ---
 
@@ -38,15 +38,15 @@ Documents → Entity Extraction → Knowledge Graph → Community Detection → 
 
 ## Retrieval Weight
 
-GraphRAG is weighted **2.0x** in the RRF fusion algorithm — at parity with Vector for balanced retrieval:
+GraphRAG is weighted **3.5x** in the RRF fusion algorithm — the highest of any source:
 
 | Source | Weight | Rationale |
 |--------|--------|-----------|
-| **Canonical** | 3.0x | Curated single source of truth |
-| **GraphRAG** | 2.0x | Structured knowledge clusters |
-| **Vector** | 2.0x | Semantic similarity (parity with Graph) |
+| **GraphRAG** | 3.5x | Structured knowledge clusters |
+| Canonical | 2.2x | Curated single source of truth |
 | Tags | 1.5x | Explicit keyword matches |
-| Filename | 1.0x | Literal file matching |
+| Vector | 1.3x | Semantic similarity |
+| Filename | 0.8x | Literal file matching |
 
 ---
 
@@ -113,7 +113,7 @@ Where `k = 60` (the RRF constant).
 |------------|----------------|---------|
 | Cross-domain | ⭐⭐⭐ High | "How do trading and psychology connect?" |
 | Concept clusters | ⭐⭐⭐ High | "What relates to sovereignty?" |
-| Specific lookup | ⭐ Low | "Where is Agentic Engineering Strategy?" (use filename search) |
+| Specific lookup | ⭐ Low | "Where is Protocol 42?" (use filename search) |
 | Semantic match | ⭐⭐ Medium | "Find protocols about risk" (vector also works) |
 
 ---

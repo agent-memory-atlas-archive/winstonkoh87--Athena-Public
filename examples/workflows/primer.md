@@ -25,19 +25,19 @@ When `/primer` is invoked:
 Load the following files (in order):
 
 1. **Governance & Risk**
-   - `the author/profile/Constraints_Master.md` (Risk Tiers, Ethics, Boundaries)
+   - `Winston/profile/Constraints_Master.md` (Risk Tiers, Ethics, Boundaries)
    - `docs/audit/RISK_REGISTER.md` (Threat Model)
    - `docs/audit/DATA_GOVERNANCE.md` (Policy)
 
 2. **Core Identity**
-   - `.framework/v8.0-alpha/modules/Core_Identity.md` (Laws #0-5, ICR/HITLO Model, COS)
+   - `.framework/v7.0/modules/Core_Identity.md` (Laws #0-5, ICR/HITLO Model, COS)
 
 3. **User Context (FULL DISCLOSURE)**
-   - `the author/profile/User_Profile_Core.md` (Identity, Bio, Typology)
-   - `the author/profile/System_Principles.md` (Decision frameworks, values)
-   - `the author/profile/Psychology_L1L5.md` (L1-L5 layers, trauma, history)
-   - `the author/profile/Business_Frameworks.md` (Mental models, strategies)
-   - `the author/profile/Session_Observations.md` (Calibration patterns, cases)
+   - `Winston/profile/User_Profile_Core.md` (Identity, Bio, Typology)
+   - `Winston/profile/Operating_Principles.md` (Decision frameworks, values)
+   - `Winston/profile/Psychology_L1L5.md` (L1-L5 layers, trauma, history)
+   - `Winston/profile/Business_Frameworks.md` (Mental models, strategies)
+   - `Winston/profile/Session_Observations.md` (Calibration patterns, cases)
 
 4. **Architecture**
    - `.context/manifests/System_Manifest.md`

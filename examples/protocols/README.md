@@ -1,12 +1,5 @@
 # Athena Protocols
 
-> [!NOTE]
-> **These are reference implementations from Winston's personal system.**
->
-> Use them to understand the *pattern* — not as prescriptions. Your protocols will reflect your own context, domain, and decision history.
->
-> See [Creating Your Own Protocols](#creating-new-protocols) to build yours.
-
 Protocols are reusable thinking patterns that standardize how Athena reasons about specific domains.
 
 ## Featured Protocols

@@ -1,40 +1,28 @@
 # Scripts
 
-> **Status**: Selected scripts now **open-sourced** (Jan 2026).
+> **Note**: Production implementations are not included in this public repository.
 
-This folder contains automation scripts that power Athena's parallel execution layer.
+This folder previously contained 87 automation scripts that power Athena's core functionality, including:
 
-## Available Scripts
+- Session orchestration (`boot.py`, `shutdown.py`, `quicksave.py`)
+- Semantic search (`smart_search.py`, `supabase_search.py`)
+- Memory sync (`supabase_sync.py`)
+- Knowledge graph operations (`query_graphrag.py`, `build_graph.py`)
 
-| Script | Purpose |
-| :--- | :--- |
-| `gemini_client.py` | Reusable Gemini API wrapper with model fallback cascade. |
-| `parallel_orchestrator.py` | Protocol 75 implementation — 4-track parallel reasoning via API. |
-| `parallel_swarm.py` | Protocol 101 Launcher — spawns 4 Terminal windows with isolated agents. |
-| `swarm_agent.py` | Role-based agent process (Domain, Adversarial, Cross-Domain, Zero-Point). |
-| `worktree_manager.py` | Git worktree CRUD (create, list, clean). |
-| `git_commit.py` | AI-assisted semantic git commits. |
+## Why Not Included?
 
-## Usage
+These scripts represent months of iterative refinement and are the "execution layer" that makes Athena's conceptual frameworks operational. Sharing them would provide competitors with a free MVP.
 
-```bash
-# Run Protocol 75 (API-only, single process)
-python3 examples/scripts/parallel_orchestrator.py "Your query here"
+## What's Available
 
-# Run Protocol 101 (Multi-window swarm)
-python3 examples/scripts/parallel_swarm.py "Your objective" "branch-name"
+- **Protocols**: Framework patterns and decision models (see `examples/protocols/`)
+- **Workflows**: Process documentation (see `examples/workflows/`)
+- **Architecture**: System design explanations (see `docs/`)
 
-# Cleanup worktrees
-python3 examples/scripts/worktree_manager.py clean-all
-```
+## Building Your Own
 
-## Dependencies
-
-- Python 3.10+
-- `google-generativeai` (`pip install google-generativeai`)
-- `python-dotenv` (`pip install python-dotenv`)
-- A `GOOGLE_API_KEY` in your environment.
+The [GETTING_STARTED.md](docs/GETTING_STARTED.md) guide explains the architecture patterns. Implementation is left as an exercise — the real value is in the iteration, not the code.
 
 ---
 
-# public #scripts #parallelism
+# private #implementation

@@ -27,7 +27,7 @@ We do not aim for a static "clean" state. We aim for a breathing cycle of expans
 
 3. **The Fine-Tune Event (Trigger: Post-Refactor)**:
     * **Goal**: Crystallization.
-    * **Action**: Use the refined 20% dataset to fine-tune the next-gen local model ("the author Prime").
+    * **Action**: Use the refined 20% dataset to fine-tune the next-gen local model ("Winston Prime").
 
 ---
 

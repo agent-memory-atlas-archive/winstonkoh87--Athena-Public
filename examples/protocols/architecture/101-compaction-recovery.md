@@ -57,7 +57,7 @@ Without transcript access, we approximate with:
 | Ideal Feature | Current Approximation |
 |---------------|----------------------|
 | Transcript analysis | Session logs with checkpoints |
-| Compaction detection | STATE FREEZE protocol (Development Execution Standard) |
+| Compaction detection | STATE FREEZE protocol (Protocol 98) |
 | Cross-session search | `get_latest_session.py` + manual review |
 | Recovery injection | Load session log on `/start` |
 

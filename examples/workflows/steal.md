@@ -31,7 +31,7 @@ User provides external content (article, GitHub repo, code, framework, Reddit po
    - **Code pattern** → Create script in `.agent/scripts/`
    - **Workflow pattern** → Create/update workflow in `.agent/workflows/`
    - **Protocol/skill** → Create in `.agent/skills/protocols/`
-   - **Business insight** → Add to `System_Principles.md` or case study
+   - **Business insight** → Add to `Operating_Principles.md` or case study
 
 4. **Output**:
    - If integrating: One-liner summary of what was added/changed

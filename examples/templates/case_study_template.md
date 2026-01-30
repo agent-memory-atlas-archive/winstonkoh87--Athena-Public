@@ -18,7 +18,7 @@
 
 ## 2. Theoretical Mapping
 
-### A. Confirmation of [Development Execution Standard](examples/protocols/engineering/Engineering_Execution_Standard.md) (Strategic Depth)
+### A. Confirmation of [Protocol 98](examples/protocols/engineering/98-state-freezer.md) (Strategic Depth)
 
 This validates the "Scaling Depth" hypothesis. To solve an open problem, the model cannot rely on RAG (Width). It must perform **multi-step reasoning** (Depth) to traverse a search space humans haven't finished mapping.
 

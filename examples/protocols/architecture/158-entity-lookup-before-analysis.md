@@ -31,7 +31,7 @@ python3 .agent/scripts/supabase_search.py "<topic>" --limit 5
 | **Concept/pattern** | `protocols/`, `case_studies/` | `supabase_search.py` |
 | **Past discussion** | Session logs, memories | `supabase_search.py` |
 | **Framework/skill** | `SKILL_INDEX.md`, `TAG_INDEX.md` | File read |
-| **Decision/strategy** | `System_Principles.md`, `Constraints_Master.md` | File read |
+| **Decision/strategy** | `Operating_Principles.md`, `Constraints_Master.md` | File read |
 
 ### Execution Order
 

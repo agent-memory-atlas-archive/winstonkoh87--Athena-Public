@@ -102,7 +102,7 @@ The irony: DeepCode itself is a tool for Agentic Absorption. Using it to absorb 
 
 ## Cross-Protocol Links
 
-- **Agentic Engineering Strategy** (Wizard of Oz): Human facade + AI backend
+- **Protocol 66** (Wizard of Oz): Human facade + AI backend
 - **Protocol 65** (Arbitrage Formula): Exploit perception gaps
 - **Protocol 67** (Cross-Pollination): Transfer patterns across domains
 

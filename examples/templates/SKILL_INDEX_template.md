@@ -38,10 +38,10 @@
 
 ## Business
 
-- [../business/Strategic_Analysis_Framework.md](../business/Strategic_Analysis_Framework.md)
+- [../business/60-business-frameworks.md](../business/60-business-frameworks.md)
 - [../business/76-flywheel-architecture.md](../business/76-flywheel-architecture.md)
 - [../business/84-vdestiny-canon.md](../business/84-vdestiny-canon.md)
-- [../business/Strategic_Analysis_Framework.md](../business/Strategic_Analysis_Framework.md)
+- [../business/90-four-fits-diagnostic.md](../business/90-four-fits-diagnostic.md)
 - [../business/91-pearson-synthesis.md](../business/91-pearson-synthesis.md)
 - [../business/92-formal-informal-reality-gap.md](../business/92-formal-informal-reality-gap.md)
 - [../business/96-income-hierarchy.md](../business/96-income-hierarchy.md)
@@ -100,19 +100,19 @@
 
 ## Communication
 
-- [../communication/Interaction_Architecture_Hub.md](../communication/Interaction_Architecture_Hub.md)
-- [../communication/Strategic_Influence_Protocols.md](../communication/Strategic_Influence_Protocols.md)
-- [../communication/Adaptive_Response_Standard.md](../communication/Adaptive_Response_Standard.md)
-- [../communication/Strategic_Influence_Protocols.md](../communication/Strategic_Influence_Protocols.md)
-- [../communication/Strategic_Influence_Protocols.md](../communication/Strategic_Influence_Protocols.md)
-- [../communication/Strategic_Influence_Protocols.md](../communication/Strategic_Influence_Protocols.md)
-- [../communication/Interaction_Architecture_Hub.md](../communication/Interaction_Architecture_Hub.md)
-- [../communication/Interaction_Architecture_Hub.md](../communication/Interaction_Architecture_Hub.md)
-- [../communication/Strategic_Influence_Protocols.md](../communication/Strategic_Influence_Protocols.md)
-- [../communication/Adaptive_Response_Standard.md](../communication/Adaptive_Response_Standard.md)
-- [../communication/Adaptive_Response_Standard.md](../communication/Adaptive_Response_Standard.md)
-- [../communication/Interaction_Architecture_Hub.md](../communication/Interaction_Architecture_Hub.md)
-- [../communication/Adaptive_Response_Standard.md](../communication/Adaptive_Response_Standard.md)
+- [../communication/01-spindle-buffer.md](../communication/01-spindle-buffer.md)
+- [../communication/02-fpp-feelers-probes-payloads.md](../communication/02-fpp-feelers-probes-payloads.md)
+- [../communication/03-response-hierarchy.md](../communication/03-response-hierarchy.md)
+- [../communication/04-vpp-validate-pivot-prove.md](../communication/04-vpp-validate-pivot-prove.md)
+- [../communication/05-third-party-displacement.md](../communication/05-third-party-displacement.md)
+- [../communication/06-agree-and-reassert.md](../communication/06-agree-and-reassert.md)
+- [../communication/07-interaction-geometry.md](../communication/07-interaction-geometry.md)
+- [../communication/08-five-layer-communication.md](../communication/08-five-layer-communication.md)
+- [../communication/39-status-assassination-protocol.md](../communication/39-status-assassination-protocol.md)
+- [../communication/41-adaptive-response-mode.md](../communication/41-adaptive-response-mode.md)
+- [../communication/50-interpretation-header.md](../communication/50-interpretation-header.md)
+- [../communication/63-ciso-communication-framework.md](../communication/63-ciso-communication-framework.md)
+- [../communication/78-gamma-calibration-protocol.md](../communication/78-gamma-calibration-protocol.md)
 
 ## Trading
 
@@ -123,20 +123,20 @@
 
 ## Engineering
 
-- [examples/protocols/engineering/Engineering_Execution_Standard.md](examples/protocols/engineering/Engineering_Execution_Standard.md)
-- [examples/protocols/engineering/Engineering_Infrastructure_Hub.md](examples/protocols/engineering/Engineering_Infrastructure_Hub.md)
-- [examples/protocols/engineering/Engineering_Strategy_Framework.md](examples/protocols/engineering/Engineering_Strategy_Framework.md)
-- [examples/protocols/engineering/Engineering_Execution_Standard.md](examples/protocols/engineering/Engineering_Execution_Standard.md)
-- [examples/protocols/engineering/Engineering_Infrastructure_Hub.md](examples/protocols/engineering/Engineering_Infrastructure_Hub.md)
-- [examples/protocols/engineering/Engineering_Infrastructure_Hub.md](examples/protocols/engineering/Engineering_Infrastructure_Hub.md)
-- [examples/protocols/engineering/Engineering_Execution_Standard.md](examples/protocols/engineering/Engineering_Execution_Standard.md)
-- [../engineering/Engineering_Strategy_Framework.md](../engineering/Engineering_Strategy_Framework.md)
-- [examples/protocols/engineering/Engineering_Strategy_Framework.md](examples/protocols/engineering/Engineering_Strategy_Framework.md)
-- [examples/protocols/engineering/Engineering_Strategy_Framework.md](examples/protocols/engineering/Engineering_Strategy_Framework.md)
-- [examples/protocols/engineering/Engineering_Infrastructure_Hub.md](examples/protocols/engineering/Engineering_Infrastructure_Hub.md)
-- [examples/protocols/engineering/Engineering_Infrastructure_Hub.md](examples/protocols/engineering/Engineering_Infrastructure_Hub.md)
-- [examples/protocols/engineering/Engineering_Execution_Standard.md](examples/protocols/engineering/Engineering_Execution_Standard.md)
-- [examples/protocols/engineering/Engineering_Execution_Standard.md](examples/protocols/engineering/Engineering_Execution_Standard.md)
+- [examples/protocols/engineering/100-git-worktree-parallelism.md](examples/protocols/engineering/100-git-worktree-parallelism.md)
+- [examples/protocols/engineering/28-three-second-override.md](examples/protocols/engineering/28-three-second-override.md)
+- [examples/protocols/engineering/42-scrambled-eggs-strategy.md](examples/protocols/engineering/42-scrambled-eggs-strategy.md)
+- [examples/protocols/engineering/44-micro-commit-protocol.md](examples/protocols/engineering/44-micro-commit-protocol.md)
+- [examples/protocols/engineering/45-context-compaction.md](examples/protocols/engineering/45-context-compaction.md)
+- [examples/protocols/engineering/51-infrastructure-reset.md](examples/protocols/engineering/51-infrastructure-reset.md)
+- [examples/protocols/engineering/55-silent-validator.md](examples/protocols/engineering/55-silent-validator.md)
+- [../engineering/61-scenario-response-protocol.md](../engineering/61-scenario-response-protocol.md)
+- [examples/protocols/engineering/66-wizard-of-oz-architecture.md](examples/protocols/engineering/66-wizard-of-oz-architecture.md)
+- [examples/protocols/engineering/79-vibe-engineering.md](examples/protocols/engineering/79-vibe-engineering.md)
+- [examples/protocols/engineering/86-exponential-backoff.md](examples/protocols/engineering/86-exponential-backoff.md)
+- [examples/protocols/engineering/88-conversation-branching.md](examples/protocols/engineering/88-conversation-branching.md)
+- [examples/protocols/engineering/98-state-freezer.md](examples/protocols/engineering/98-state-freezer.md)
+- [examples/protocols/engineering/99-visual-verification.md](examples/protocols/engineering/99-visual-verification.md)
 
 ## Pattern Detection
 

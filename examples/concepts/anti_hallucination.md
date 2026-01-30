@@ -101,7 +101,7 @@ An external Claude audit identified flaws:
 
 **Error magnitude**: 20x overclaim.
 
-> *This case demonstrates why AI outputs on subjective/heuristic topics MUST be cross-validated against external models. The AI will confidently nonsense if not checked.*
+> *This case demonstrates why AI outputs on subjective/heuristic topics MUST be cross-validated against external models. The AI will confidently bullshit if not checked.*
 
 ---
 

@@ -326,7 +326,7 @@ def get_embedding(text: str) -> list[float]:
      📁 .context/memories/case_studies/CS-005-auth-flow.md
 
 📋 PROTOCOLS:
-  1. [58.7%] Agentic Engineering Strategy: API Design Patterns
+  1. [58.7%] Protocol 42: API Design Patterns
      📁 .agent/skills/protocols/architecture/42-api-design.md
 ```
 

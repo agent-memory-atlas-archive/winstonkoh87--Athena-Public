@@ -1,4 +1,4 @@
-# Development Execution Standard: Visual Verification ("Not Real Until I See It")
+# Protocol 99: Visual Verification ("Not Real Until I See It")
 
 > **Source**: Harvested from r/ClaudeCode (ice9killz)
 > **Status**: ACTIVE

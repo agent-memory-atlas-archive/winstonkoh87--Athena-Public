@@ -6,50 +6,34 @@ Hybrid RAG Orchestrator (RRF + Rerank).
 Integrates Canonical, Tags, Vectors, and Filesystem.
 """
 
-import argparse
-import contextlib
+import sys
 import json
 import subprocess
-import sys
-from pathlib import Path
+import argparse
+from typing import List, Dict, Optional
 from collections import defaultdict
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
 
-from athena.core.config import (
-    PROJECT_ROOT,
-    TAG_INDEX_PATH,
-    TAG_INDEX_AM_PATH,
-    TAG_INDEX_NZ_PATH,
-    CANONICAL_PATH,
-)
+from athena.core.config import PROJECT_ROOT, TAG_INDEX_PATH, CANONICAL_PATH
 from athena.core.models import SearchResult
 from athena.core.cache import get_search_cache
 from athena.memory.vectors import (
-    get_embedding,
-    get_client,
-    search_sessions,
-    search_case_studies,
-    search_protocols,
-    search_capabilities,
-    search_playbooks,
-    search_references,
-    search_frameworks,
-    search_workflows,
-    search_entities,
-    search_user_profile,
-    search_system_docs,
+    get_embedding, get_client,
+    search_sessions, search_case_studies, search_protocols,
+    search_capabilities, search_playbooks, search_references,
+    search_frameworks, search_workflows, search_entities,
+    search_user_profile, search_system_docs
 )
 from athena.tools.reranker import rerank_results
 
 # Config
 # Config
 WEIGHTS = {
-    "canonical": 3.5,  # The Constitution
-    "graphrag": 2.5,  # The Context
-    "tags": 2.0,  # The Index
-    "vector": 2.0,  # The Content (Supabase)
-    "sqlite": 1.5,  # The Sovereign Fallback (Local DB)
-    "filename": 1.0,  # The Map
+    "canonical": 2.2,   # The Truth (Absolute)
+    "graphrag": 3.5,    # The Structure (High Intel) - Boosted to compete with vector volume
+    "tags": 1.5,        # The Index (Explicit)
+    "vector": 1.3,      # The Vibe (Semantic)
+    "filename": 0.8     # The Literal (Navigational)
 }
 RRF_K = 60
 CONFIDENCE_HIGH = 0.03
@@ -64,90 +48,67 @@ CHROMA_DIR = PROJECT_ROOT / ".agent" / "chroma_db"
 
 # --- Collection Functions ---
 
-
-def collect_canonical(query: str) -> list[SearchResult]:
+def collect_canonical(query: str) -> List[SearchResult]:
     """Collect matches from CANONICAL.md"""
     results = []
     if not CANONICAL_PATH.exists():
         return []
 
-    keywords = [
-        w
-        for w in query.split()
-        if len(w) >= 2 and w.lower() not in ["the", "and", "for", "is"]
-    ]
-    if not keywords:
-        return []
-
+    keywords = [w for w in query.split() if len(w) >= 2 and w.lower() not in ['the', 'and', 'for', 'is']]
+    if not keywords: return []
+    
     try:
         text = CANONICAL_PATH.read_text(encoding="utf-8")
         for line_num, line in enumerate(text.splitlines(), 1):
             if any(k.lower() in line.lower() for k in keywords):
                 if "|" in line and "http" not in line:
-                    results.append(
-                        SearchResult(
+                        results.append(SearchResult(
                             id=f"Canonical:L{line_num}",
                             content=line.strip(),
                             source="canonical",
-                            score=1.0,
-                        )
-                    )
+                            score=1.0 
+                        ))
                 elif "##" in line:
-                    results.append(
-                        SearchResult(
+                        results.append(SearchResult(
                             id=f"Canonical:Header:L{line_num}",
                             content=line.strip(),
                             source="canonical",
-                            score=0.9,
-                        )
-                    )
+                            score=0.9
+                        ))
     except Exception:
         pass
     return results[:5]
 
-
-def collect_tags(query: str) -> list[SearchResult]:
-    """Collect exact tag matches from sharded indexes."""
+def collect_tags(query: str) -> List[SearchResult]:
+    """Collect exact tag matches"""
     results = []
-    index_paths = [TAG_INDEX_AM_PATH, TAG_INDEX_NZ_PATH]
+    if not TAG_INDEX_PATH.exists():
+        return []
 
-    # Fallback to legacy if shards don't exist
-    if not any(p.exists() for p in index_paths) and TAG_INDEX_PATH.exists():
-        index_paths = [TAG_INDEX_PATH]
-
-    for path in index_paths:
-        if not path.exists():
-            continue
-
-        try:
-            # Use grep for speed
-            cmd = f"grep -i '{query}' '{path}' | head -n 10"
-            process = subprocess.run(cmd, shell=True, capture_output=True, text=True)
-            if process.stdout:
-                lines = process.stdout.strip().split("\n")
-                for i, line in enumerate(lines):
-                    results.append(
-                        SearchResult(
-                            id=f"Tag:{line.split('|')[0].strip() if '|' in line else query}",
-                            content=line.strip(),
-                            source="tags",
-                            score=1.0 - (i * 0.05),
-                        )
-                    )
-        except Exception:
-            pass
+    try:
+        # Use grep for speed
+        cmd = f"grep -i '{query}' '{TAG_INDEX_PATH}' | head -n 10"
+        process = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+        if process.stdout:
+            lines = process.stdout.strip().split('\n')
+            for i, line in enumerate(lines):
+                    results.append(SearchResult(
+                        id=f"Tag:{line.split('|')[0].strip() if '|' in line else query}",
+                        content=line.strip(),
+                        source="tags",
+                        score=1.0 - (i * 0.05)
+                    ))
+    except Exception:
+        pass
     return results
 
-
-def collect_vectors(
-    query: str, limit: int = 20, embedding: list[float] | None = None
-) -> list[SearchResult]:
+def collect_vectors(query: str, limit: int = 20) -> List[SearchResult]:
     """Collect semantic matches via Supabase"""
     results = []
     try:
-        # client = get_client()  # Singleton initialization (Moved to threading.local)
-        query_embedding = embedding if embedding else get_embedding(query)
-
+        client = get_client() # Singleton initialization
+        query_embedding = get_embedding(query)
+        
         # Parallel search using ThreadPoolExecutor
         search_tasks = [
             ("protocol", search_protocols, 10, 0.3),
@@ -160,17 +121,13 @@ def collect_vectors(
             ("reference", search_references, 5, 0.3),
             ("framework", search_frameworks, 5, 0.3),
             ("user_profile", search_user_profile, 5, 0.3),
-            ("system_doc", search_system_docs, 5, 0.3),
+            ("system_doc", search_system_docs, 5, 0.3)
         ]
 
         def run_task(task):
             type_label, func, limit, threshold = task
             try:
-                # Ensure thread-local client is retrieved within the worker thread
-                worker_client = get_client()
-                return type_label, func(
-                    worker_client, query_embedding, limit=limit, threshold=threshold
-                )
+                return type_label, func(client, query_embedding, limit=limit, threshold=threshold)
             except Exception as e:
                 print(f"   ⚠️ Search failed for {type_label}: {e}", file=sys.stderr)
                 return type_label, []
@@ -180,220 +137,169 @@ def collect_vectors(
 
         for type_label, raw_results in task_results:
             for item in raw_results or []:
-                path = item.get("file_path", "")
-                if "?" in path:
-                    path = path.split("?")[0]
-
+                path = item.get('file_path', '')
+                if '?' in path: path = path.split('?')[0]
+                
                 # Dynamic Title/ID construction
-                item_id = (
-                    item.get("title")
-                    or item.get("name")
-                    or item.get("code")
-                    or item.get("entity_name")
-                    or item.get("filename")
-                    or f"{type_label}"
-                )
+                item_id = item.get('title') or item.get('name') or item.get('code') or item.get('entity_name') or item.get('filename') or f"{type_label}"
                 if type_label == "protocol":
                     item_id = f"Protocol {item.get('code')}: {item.get('name')}"
                 elif type_label == "session":
                     item_id = f"Session {item.get('date')}: {item.get('title')}"
                 elif type_label == "case_study":
                     item_id = f"Case Study: {item.get('title')}"
-
-                results.append(
-                    SearchResult(
-                        id=item_id,
-                        content=item.get("content", "")[:200],
-                        source="vector",
-                        score=item.get("similarity", 0),
-                        metadata={"type": type_label, "path": path},
-                    )
-                )
-
+                
+                results.append(SearchResult(
+                    id=item_id,
+                    content=item.get('content', '')[:200],
+                    source="vector",
+                    score=item.get('similarity', 0),
+                    metadata={"type": type_label, "path": path}
+                ))
+            
     except Exception as e:
         print(f"Vector search warning: {e}", file=sys.stderr)
-
+        
     return results
 
-
-def collect_graphrag(query: str, limit: int = 5) -> list[SearchResult]:
-    """Collect entity and community matches via query_graphrag.py subprocess."""
+def collect_graphrag(query: str, limit: int = 5) -> List[SearchResult]:
+    """Collect entity and community matches from local GraphRAG."""
     results = []
-
-    # Path to query script
-    script_path = PROJECT_ROOT / ".agent" / "scripts" / "query_graphrag.py"
-    if not script_path.exists():
+    
+    # Check if GraphRAG data exists
+    if not COMMUNITIES_FILE.exists():
         return []
-
+    
     try:
-        # Run query_graphrag.py with --json flag
-        # Optimization: Use --global-only to skip slow model loading
-        cmd = ["python3", str(script_path), query, "--json", "--global-only"]
-
-        # Add strict timeout
-        result = subprocess.run(
-            cmd, capture_output=True, text=True, check=False, timeout=5
-        )
-
-        if result.returncode != 0:
+        import json as json_lib
+        
+        # 1. Community search (global context)
+        with open(COMMUNITIES_FILE, 'r') as f:
+            data = json_lib.load(f)
+        
+        # Handle both dict and list formats
+        communities = data.get('communities', []) if isinstance(data, dict) else data
+        
+        # Tokenize query into keywords (min 3 chars, strip common words)
+        stopwords = {'the', 'and', 'for', 'is', 'in', 'to', 'of', 'a', 'an', 'with'}
+        query_tokens = [w.lower().strip('#') for w in query.split() if len(w) >= 3 and w.lower() not in stopwords]
+        
+        if not query_tokens:
             return []
-
-        data = json.loads(result.stdout)
-
-        for item in data:
-            # Skip vectors (handled by collect_vectors via Supabase/Chroma)
-            if item.get("type") == "vector":
+        
+        matched_communities = []
+        
+        for comm in communities:
+            if isinstance(comm, dict):
+                comm_id = comm.get('community_id', 'unknown')
+                size = comm.get('size', 0)
+                members = comm.get('members', [])
+                summary = comm.get('summary', '')
+            else:
                 continue
-
-            # Handle Communities
-            if item.get("type") == "community":
-                comm_id = item.get("community_id", "?")
-                size = item.get("size", 0)
-                summary = item.get("summary", "")
-                members = item.get("members", [])
-
-                content = f"Community {comm_id} ({size} members): {summary[:200]}..."
-                if members:
-                    content += f"\nMembers: {', '.join(str(m) for m in members[:5])}..."
-
-                results.append(
-                    SearchResult(
-                        id=f"Graph:Community:{comm_id}",
-                        content=content,
-                        source="graphrag",
-                        score=item.get("score", 0) / 10.0,  # Normalize rough score
-                        metadata={"type": "community", "id": comm_id},
+            
+            # Normalize members: strip hashtags and lowercase
+            normalized_members = [str(m).lower().strip('#').replace('-', ' ') for m in members]
+            all_member_text = ' '.join(normalized_members)
+            summary_lower = summary.lower()
+            
+            # Count how many query tokens match (partial match allowed)
+            match_count = 0
+            matched_tokens = []
+            for token in query_tokens:
+                if token in all_member_text or token in summary_lower:
+                    match_count += 1
+                    matched_tokens.append(token)
+            
+            if match_count > 0:
+                matched_communities.append({
+                    'id': comm_id,
+                    'size': size or len(members),
+                    'summary': summary,
+                    'members': members[:5],
+                    'match_count': match_count,
+                    'matched_tokens': matched_tokens
+                })
+        
+        # Sort by match_count first, then by size (more matches = more relevant)
+        matched_communities.sort(key=lambda x: (x['match_count'], x['size']), reverse=True)
+        
+        for i, comm in enumerate(matched_communities[:3]):
+            results.append(SearchResult(
+                id=f"Community {comm['id']} ({comm['size']} members, {comm['match_count']} hits)",
+                content=f"Matched: {', '.join(comm['matched_tokens'])} | Cluster: {', '.join(str(m) for m in comm['members'][:5])}...",
+                source="graphrag",
+                score=1.0 - (i * 0.1),
+                metadata={"type": "community", "size": comm['size'], "matches": comm['match_count']}
+            ))
+        
+        # 2. ChromaDB entity search (if available)
+        if CHROMA_DIR.exists():
+            try:
+                import chromadb
+                from chromadb.utils import embedding_functions
+                
+                chroma_client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+                # Check if collection exists
+                try:
+                    collection = chroma_client.get_collection("athena_codex")
+                    
+                    # Query for similar content
+                    query_results = collection.query(
+                        query_texts=[query],
+                        n_results=limit
                     )
-                )
-
-            # Handle Entities
-            elif item.get("type") == "entity":
-                name = item.get("name", "Unknown")
-                desc = item.get("description", "")
-                neighbors = item.get("neighbors", [])
-
-                content = f"Entity: {name} ({item.get('entity_type', 'Entity')})\n{desc[:200]}"
-                if neighbors:
-                    neighbor_names = [n["name"] for n in neighbors[:3]]
-                    content += f"\nConnected to: {', '.join(neighbor_names)}"
-
-                results.append(
-                    SearchResult(
-                        id=f"Graph:Entity:{name}",
-                        content=content,
-                        source="graphrag",
-                        score=min(item.get("score", 0), 1.0),
-                        metadata={"type": "entity", "name": name},
-                    )
-                )
-
+                    
+                    if query_results and query_results.get('documents'):
+                        for i, (doc, meta) in enumerate(zip(
+                            query_results['documents'][0],
+                            query_results['metadatas'][0] if query_results.get('metadatas') else [{}] * len(query_results['documents'][0])
+                        )):
+                            source_file = meta.get('source', 'unknown')
+                            results.append(SearchResult(
+                                id=f"GraphEntity: {source_file.split('/')[-1] if '/' in source_file else source_file}",
+                                content=doc[:150] + "..." if len(doc) > 150 else doc,
+                                source="graphrag",
+                                score=0.8 - (i * 0.05),
+                                metadata={"type": "entity", "path": source_file}
+                            ))
+                except Exception:
+                    pass  # Collection doesn't exist yet
+            except ImportError:
+                pass  # ChromaDB not available in this interpreter
+    
     except Exception as e:
         print(f"GraphRAG search warning: {e}", file=sys.stderr)
-
+    
     return results[:limit]
 
-
-def collect_filenames(query: str) -> list[SearchResult]:
+def collect_filenames(query: str) -> List[SearchResult]:
     """Collect filename matches in Project Root"""
     results = []
     try:
-        # Use relative search from PROJECT_ROOT with timeout
+        # Use relative search from PROJECT_ROOT
         cmd = f"find . -type f -name '*{query}*' -not -path '*/.*' | head -n 5"
-        process = subprocess.run(
-            cmd, shell=True, cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=2
-        )
+        process = subprocess.run(cmd, shell=True, cwd=PROJECT_ROOT, capture_output=True, text=True)
         if process.stdout:
-            lines = process.stdout.strip().split("\n")
+            lines = process.stdout.strip().split('\n')
             for line in lines:
                 if line.strip():
-                    # line is relative to PROJECT_ROOT
-                    full_path = PROJECT_ROOT / line
-                    results.append(
-                        SearchResult(
+                        # line is relative to PROJECT_ROOT
+                        full_path = PROJECT_ROOT / line
+                        results.append(SearchResult(
                             id=f"File: {full_path.name}",
                             content=f"Path: {line}",
                             source="filename",
                             score=1.0,
-                            metadata={"path": str(full_path)},
-                        )
-                    )
+                            metadata={"path": str(full_path)}
+                        ))
     except Exception:
         pass
     return results
 
-
-def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
-    """Sovereign Fallback: Search the local SQLite index (athena.db)."""
-    import sqlite3
-    from athena.core.config import INPUTS_DIR
-
-    db_path = INPUTS_DIR / "athena.db"
-    if not db_path.exists():
-        return []
-
-    results = []
-    try:
-        conn = sqlite3.connect(str(db_path))
-        conn.row_factory = sqlite3.Row
-        cursor = conn.cursor()
-
-        # Keyword search on tags and filenames
-        query_sanitized = f"%{query}%"
-
-        # 1. Search Files by Path/Name
-        cursor.execute(
-            "SELECT path FROM files WHERE path LIKE ? LIMIT ?", (query_sanitized, limit)
-        )
-        for row in cursor.fetchall():
-            filepath = Path(row["path"])
-            results.append(
-                SearchResult(
-                    id=f"Local:File:{filepath.name}",
-                    content=f"Local match: {filepath.name}",
-                    source="sqlite",
-                    score=0.8,
-                    metadata={"path": str(filepath)},
-                )
-            )
-
-        # 2. Search by Tags
-        cursor.execute(
-            """
-            SELECT f.path, t.name 
-            FROM files f
-            JOIN file_tags ft ON f.path = ft.file_path
-            JOIN tags t ON ft.tag_id = t.id
-            WHERE t.name LIKE ?
-            LIMIT ?
-        """,
-            (query_sanitized, limit),
-        )
-
-        for row in cursor.fetchall():
-            filepath = Path(row["path"])
-            results.append(
-                SearchResult(
-                    id=f"Local:Tag:{row['name']}:{filepath.name}",
-                    content=f"Tag match: #{row['name']}",
-                    source="sqlite",
-                    score=0.9,
-                    metadata={"path": str(filepath)},
-                )
-            )
-
-        conn.close()
-    except Exception as e:
-        print(f"   ⚠️ SQLite fallback failed: {e}", file=sys.stderr)
-
-    return results
-
-
 # --- Fusion Logic ---
 
-
-def weighted_rrf(
-    ranked_lists: dict[str, list[SearchResult]], k: int = 60
-) -> list[SearchResult]:
+def weighted_rrf(ranked_lists: Dict[str, List[SearchResult]], k: int = 60) -> List[SearchResult]:
     fused_scores = defaultdict(float)
     doc_map = {}
     doc_signals = defaultdict(dict)
@@ -401,14 +307,16 @@ def weighted_rrf(
     for source, docs in ranked_lists.items():
         weight = WEIGHTS.get(source, 1.0)
         for rank, doc in enumerate(docs, start=1):
-            score_mod = 0.5 + doc.score  # Dynamic: range 0.5 to 1.5
-            contrib = weight * score_mod * (1.0 / (k + rank))
+            contrib = weight * (1.0 / (k + rank))
             fused_scores[doc.id] += contrib
-
+            
             if doc.id not in doc_map:
                 doc_map[doc.id] = doc
-
-            doc_signals[doc.id][source] = {"rank": rank, "contrib": round(contrib, 5)}
+            
+            doc_signals[doc.id][source] = {
+                "rank": rank,
+                "contrib": round(contrib, 5)
+            }
 
     final_list = []
     for doc_id, score in fused_scores.items():
@@ -419,97 +327,56 @@ def weighted_rrf(
 
     return sorted(final_list, key=lambda x: x.rrf_score, reverse=True)
 
-
 # --- Main Entry Point ---
 
-
-def run_search(
-    query: str,
-    limit: int = 10,
-    strict: bool = False,
-    rerank: bool = False,
-    debug: bool = False,
-    json_output: bool = False,
-):
+def run_search(query: str, limit: int = 10, strict: bool = False, rerank: bool = False, debug: bool = False, json_output: bool = False):
+    
     # 0. Check cache first
     cache = get_search_cache()
     cache_key = f"{query}|{limit}|{strict}|{rerank}"
     cached_results = cache.get(cache_key)
-
+    
     if cached_results is not None:
         if not json_output:
-            print(f'\n⚡ CACHE HIT: "{query}"')
+            print(f"\n⚡ CACHE HIT: \"{query}\"")
             print("=" * 60)
         fused_results = cached_results
     else:
-        # 0.5. Check Semantic Cache (if miss on exact)
-        query_embedding = None
         if not json_output:
-            print("   ⚡ Checking semantic cache...")
+            print(f"\n🔍 SMART SEARCH (Parallel Hybrid RRF{' + Rerank' if rerank else ''}): \"{query}\"")
+            print("=" * 60)
 
-        try:
-            # We need the embedding for semantic check
-            # This corresponds to "Step 2: Fetch embedding" in the plan
-            query_embedding = get_embedding(query)
-            semantic_hit = cache.get_semantic(query_embedding)
+        # 1. Collect (Parallel execution)
+        collection_tasks = {
+            "canonical": lambda: collect_canonical(query),
+            "tags": lambda: collect_tags(query),
+            "graphrag": lambda: collect_graphrag(query),
+            "vector": lambda: collect_vectors(query),
+            "filename": lambda: collect_filenames(query)
+        }
 
-            if semantic_hit:
-                if not json_output:
-                    print(f'🔥 SEMANTIC CACHE HIT: "{query}"')
-                    print("=" * 60)
-                fused_results = semantic_hit
-                # Proceed to display (skip collection)
-                pass
-            else:
-                raise ValueError("Semantic Miss")
-        except Exception:
-            # Fallback to full search
-            if not json_output:
-                print(
-                    f'\n🔍 SMART SEARCH (Parallel Hybrid RRF{" + Rerank" if rerank else ""}): "{query}"'
-                )
-                print("=" * 60)
+        lists = {}
+        with ThreadPoolExecutor(max_workers=len(collection_tasks)) as executor: # Changed max_workers
+            future_to_source = {executor.submit(func): source for source, func in collection_tasks.items()}
+            for future in future_to_source:
+                source = future_to_source[future]
+                try:
+                    lists[source] = future.result()
+                except Exception as e:
+                    if not json_output:
+                        print(f"   ⚠️ {source} failed: {e}", file=sys.stderr)
+                    lists[source] = []
 
-            # 1. Collect (Parallel execution)
-            collection_tasks = {
-                "canonical": lambda: collect_canonical(query),
-                "tags": lambda: collect_tags(query),
-                "graphrag": lambda: collect_graphrag(query),
-                "vector": lambda: collect_vectors(query, embedding=query_embedding),
-                "sqlite": lambda: collect_sqlite(query),
-                "filename": lambda: collect_filenames(query),
-            }
-
-            lists = {}
-            with ThreadPoolExecutor(max_workers=len(collection_tasks)) as executor:
-                future_to_source = {
-                    executor.submit(func): source
-                    for source, func in collection_tasks.items()
-                }
-                # Wait for results with a global timeout
-                for future in as_completed(future_to_source, timeout=8):
-                    source = future_to_source[future]
-                    try:
-                        lists[source] = future.result()
-                    except Exception as e:
-                        if not json_output:
-                            print(f"   ⚠️ {source} failed: {e}", file=sys.stderr)
-                        lists[source] = []
-
-            # 2. Fuse
-            fused_results = weighted_rrf(lists)
+        # 2. Fuse
+        fused_results = weighted_rrf(lists)
 
         # 3. Rerank
         if rerank and fused_results:
             candidates = fused_results[:25]
             if not json_output:
-                print(f"   ⚡ Reranking top {len(candidates)} candidates...")
+                 print(f"   ⚡ Reranking top {len(candidates)} candidates...")
             fused_results = rerank_results(query, candidates, top_k=limit)
-
-        # Cache the result (Exact + Semantic)
-        if fused_results and query_embedding:
-            cache.set(query, fused_results, embedding=query_embedding)
-
+        
         # Store in cache for next time
         cache.set(cache_key, fused_results)
 
@@ -520,72 +387,48 @@ def run_search(
         suppressed_count = len(low_conf)
         fused_results = high_conf
         if not json_output and suppressed_count > 0:
-            print(
-                f"\n   🛡️ STRICT MODE: {suppressed_count} low-confidence result(s) suppressed"
-            )
+            print(f"\n   🛡️ STRICT MODE: {suppressed_count} low-confidence result(s) suppressed")
     else:
         suppressed_count = 0
-
-    if not json_output and fused_results:
-        print("\n<athena_grounding>")
 
     # 5. Present
     if not fused_results:
         if json_output:
-            print(
-                json.dumps(
-                    {
-                        "results": [],
-                        "suppressed": suppressed_count,
-                        "message": "No high-confidence results",
-                    }
-                )
-            )
+            print(json.dumps({"results": [], "suppressed": suppressed_count, "message": "No high-confidence results"}))
         else:
-            print(
-                "  (No high-confidence results found)"
-                if strict
-                else "  (No results found)"
-            )
+            print("  (No high-confidence results found)" if strict else "  (No results found)")
         return
 
     if not json_output:
         print(f"\n🏆 TOP {limit} RESULTS:")
         for i, doc in enumerate(fused_results[:limit], 1):
-            if doc.rrf_score >= CONFIDENCE_HIGH:
-                conf_badge = "[HIGH]"
-            elif doc.rrf_score >= CONFIDENCE_MED:
-                conf_badge = "[MED]"
-            else:
-                conf_badge = "[LOW]"
-
-            score_display = (
-                f"Rerank:{doc.signals.get('reranker', {}).get('score', 0):.2f}"
-                if rerank
-                else f"RRF:{doc.rrf_score:.4f}"
-            )
+            if doc.rrf_score >= CONFIDENCE_HIGH: conf_badge = "[HIGH]"
+            elif doc.rrf_score >= CONFIDENCE_MED: conf_badge = "[MED]"
+            else: conf_badge = "[LOW]"
+            
+            score_display = f"Rerank:{doc.signals.get('reranker', {}).get('score', 0):.2f}" if rerank else f"RRF:{doc.rrf_score:.4f}"
             print(f"\n  {i}. {conf_badge} [{score_display}] {doc.id}")
-
+            
             if debug:
                 print(f"     Signals: {json.dumps(doc.signals)}")
-
-            if doc.metadata.get("path"):
+            
+            if doc.metadata.get('path'):
                 print(f"     📁 {doc.metadata['path']}")
             else:
                 print(f"     📄 {doc.content[:100]}...")
-
-        print("-" * 60)
-        print("</athena_grounding>\n")
-
+                
+        print("\n" + "=" * 60)
+        
         # Log (Optional compliance hook)
-        with contextlib.suppress(Exception):
-            # Assuming logging logic will be migrated later or importable
-            pass
+        try:
+             # Assuming logging logic will be migrated later or importable
+             pass
+        except Exception:
+             pass
     else:
         # JSON output logic
         output = [doc.to_dict() for doc in fused_results[:limit]]
         print(json.dumps({"results": output, "suppressed": suppressed_count}))
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -596,5 +439,5 @@ if __name__ == "__main__":
     parser.add_argument("--debug", action="store_true")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
-
+    
     run_search(args.query, args.limit, args.strict, args.rerank, args.debug, args.json)

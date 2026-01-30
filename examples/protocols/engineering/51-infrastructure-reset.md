@@ -2,11 +2,11 @@
 description: SOP for handling sudden AI stupidity, loops, or refusal. Hard reset, new session, re-initialize. Don't argue with bad nodes.
 ---
 
-# Infrastructure & Continuity Hub: Infrastructure Reset (Technical Refresh)
+# Protocol 51: Infrastructure Reset (Technical Refresh)
 
 > **Purpose**: Standard operating procedure for handling sudden AI "stupidity", loops, or refusal of valid instructions.  
 > **Trigger**: "Dumb Mode" detected (IQ drop > 50 pts, looping, refusal of basic prompt).  
-> **Source**: "Black Ops" Research (Infrastructure & Continuity Hub)  
+> **Source**: "Black Ops" Research (Protocol 51)  
 > **Last Updated**: 12 December 2025
 
 ---

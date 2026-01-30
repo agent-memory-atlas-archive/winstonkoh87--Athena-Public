@@ -84,7 +84,7 @@ All factual claims from web search **must** include inline APA-style citations.
 3. Include year to signal recency (stale data = lower confidence).
 4. For web search results, use the domain name as "Author".
 
-**Anti-Pattern**: "According to sources..." (Which sources? When? nonsense flag.)
+**Anti-Pattern**: "According to sources..." (Which sources? When? Bullshit flag.)
 
 ---
 

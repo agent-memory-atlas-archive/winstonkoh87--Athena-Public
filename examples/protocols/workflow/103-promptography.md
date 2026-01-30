@@ -106,7 +106,7 @@ When product shape is too complex to describe:
 
 ---
 
-## 8. Integration with Development Execution Standard (Visual Verification)
+## 8. Integration with Protocol 99 (Visual Verification)
 
 After generation, validate:
 

@@ -66,7 +66,7 @@
 | **Verification** | [141-claim-atomization-audit](examples/protocols/verification/141-claim-atomization-audit.md) |
 | **Workflow** | [130-vibe-coding](examples/protocols/workflow/130-vibe-coding.md), [72-proactive-extrapolation-framework](examples/protocols/workflow/72-proactive-extrapolation-framework.md) |
 | **Research** | [52-deep-research-loop](examples/protocols/research/52-deep-research-loop.md), [54-cyborg-methodology](examples/protocols/research/54-cyborg-methodology.md) |
-| **Engineering** | [51-infrastructure-reset](examples/protocols/engineering/Engineering_Infrastructure_Hub.md), [44-micro-commit-protocol](examples/protocols/engineering/Engineering_Execution_Standard.md) |
+| **Engineering** | [51-infrastructure-reset](examples/protocols/engineering/51-infrastructure-reset.md), [44-micro-commit-protocol](examples/protocols/engineering/44-micro-commit-protocol.md) |
 | **Strategy** | [244-offensive-reframing](examples/protocols/strategy/244-offensive-reframing.md), [245-value-trinity](examples/protocols/strategy/245-value-trinity.md), [303-ecosystem-physics-decoder](examples/protocols/strategy/303-ecosystem-physics-decoder.md) |
 | **Health** | [305-bionic-recovery-protocol](examples/protocols/health/305-bionic-recovery-protocol.md) |
 

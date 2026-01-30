@@ -1,4 +1,4 @@
-# Development Execution Standard: Strategic Depth Theory (The Vault)
+# Protocol 98: Strategic Depth Theory (The Vault)
 
 > **Source**: NeurIPS 2025 "Scaling Depth" (Internal synthesis from Session 20, Dec 2025)
 > **Core Concept**: Depth = Strategy, Width = Context

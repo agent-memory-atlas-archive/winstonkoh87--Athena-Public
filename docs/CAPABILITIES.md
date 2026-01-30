@@ -124,18 +124,18 @@
 
 ### Business (24)
 
-- **Strategic Analysis Framework**: Four Fits Diagnostic — Market/Product/Channel/Model fit
+- **Protocol 90**: Four Fits Diagnostic — Market/Product/Channel/Model fit
 - **Protocol 160**: Certainty Offer — Risk reversal for high-ticket sales
 - **Protocol 230**: Unit Economics Physics — Breakeven-first pricing
 - **Protocol 306**: Outcome Economy — Value-based AI pricing
-- **Strategic Analysis Framework**: Income Hierarchy — Labour → Freelance → Agency → Product ladder
+- **Protocol 313**: Income Hierarchy — Labour → Freelance → Agency → Product ladder
 
 ### Engineering (25)
 
-- **Agentic Engineering Strategy**: Wizard of Oz Architecture — Manual backend, automated frontend
-- **Agentic Engineering Strategy**: Vibe Engineering — Ship at 70%, iterate fast
-- **Agentic Engineering Strategy**: Intent Drift Detector — Scope creep prevention
-- **Development Execution Standard**: TDD Workflow — Test-driven development gates
+- **Protocol 66**: Wizard of Oz Architecture — Manual backend, automated frontend
+- **Protocol 79**: Vibe Engineering — Ship at 70%, iterate fast
+- **Protocol 166**: Intent Drift Detector — Scope creep prevention
+- **Protocol 175**: TDD Workflow — Test-driven development gates
 
 ### Communication (22)
 
@@ -152,7 +152,7 @@
 
 ### Content (9)
 
-- **Content Publication Standard**: Blog Post Gold Standard — 3-sentence rule, hidden gems
+- **Protocol 220**: Blog Post Gold Standard — 3-sentence rule, hidden gems
 - **Protocol 221**: High-Performance UX Design — Breathability physics
 - **Protocol 260**: Content Resonance Spec — "That's Me" reaction targeting
 
@@ -213,7 +213,7 @@ athena/
 | Category | Examples |
 |----------|----------|
 | **Business Models** | VDestiny Analysis, Four Fits Diagnostics, Productized Services |
-| **Psychology** | Attachment Patterns, Schema Installation, Relationship Dynamics |
+| **Psychology** | Limerence Patterns, Schema Installation, Relationship Dynamics |
 | **Singapore Context** | Healthcare Cartel, Education Arbitrage, Social Contract |
 | **AI/Automation** | Agentic Coding, Claude Workflows, GraphRAG Implementation |
 | **Marketing** | SEO Distribution, Content Resonance, Influencer Economics |

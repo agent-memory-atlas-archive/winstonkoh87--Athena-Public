@@ -1,4 +1,4 @@
-# Content Publication Standard: Context Engineering (The "Cheat Sheet" Theory)
+# Protocol 240: Context Engineering (The "Cheat Sheet" Theory)
 
 > **Source**: [n8n Reddit Insight]
 > **Core Principle**: Prompting is asking; Context Engineering is equipping.

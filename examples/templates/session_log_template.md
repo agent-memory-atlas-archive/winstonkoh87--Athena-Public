@@ -75,7 +75,7 @@
 - **Created**: [List of new protocols, case studies, files]
 - **Modified**: [List of changed files]
 
-> **Rule**: Link all created files using `[Name](../relative/path)` format.
+> **Rule**: Link all created files using `[Name](file:///absolute/path)` format.
 
 ---
 

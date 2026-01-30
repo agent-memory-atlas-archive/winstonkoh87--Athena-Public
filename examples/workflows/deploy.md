@@ -20,18 +20,18 @@ description: Public Repo Synchronization & Sanitization
 
 ## 3. Deployment Execution
 
-- **Target Repo**: `$ATHENA_PUBLIC` (or relative: `./Athena-Public`)
+- **Target Repo**: `/Users/winstonkoh/Desktop/Athena-Public`
 - **Action**: Copy *sanitized* versions of files to the target repo structure.
 - **Structure Mapping**:
   - `Athena/.agent/skills/protocols/` -> `Athena-Public/docs/protocols/`
-  - `Athena/the author/profile/` -> `Athena-Public/docs/concepts/`
+  - `Athena/Winston/profile/` -> `Athena-Public/docs/concepts/`
   - `Athena/.context/memories/case_studies/` -> `Athena-Public/docs/case-studies/`
 
 ## 4. Git Synchronization
 
 // turbo
 
-1. `cd "$ATHENA_PUBLIC"` (or `cd ./Athena-Public` if relative)
+1. `cd /Users/winstonkoh/Desktop/Athena-Public`
 2. `git add .`
 3. `git commit -m "Deployment: [Summary of Changes]"`
 4. `git push origin main`

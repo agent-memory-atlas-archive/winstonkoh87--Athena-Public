@@ -21,12 +21,6 @@ npm-debug.log*
 *.key
 *.pem
 *.cert
-
-# Databases
-*.db
-*.sqlite
-*.sqlite3
-
 .DS_Store
 *.DS_Store
 __pycache__/

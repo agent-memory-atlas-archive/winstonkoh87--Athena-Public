@@ -103,7 +103,7 @@ Use containers to run different AI CLIs:
 
 ## Integration
 
-- Works with: Infrastructure & Continuity Hub (Exponential Backoff for monitoring)
+- Works with: Protocol 86 (Exponential Backoff for monitoring)
 - Complements: Protocol 85 (Token Hygiene — containers can run while you start fresh)
 
 ---

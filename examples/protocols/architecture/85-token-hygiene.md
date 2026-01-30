@@ -59,7 +59,7 @@ python3 .agent/scripts/token_budget.py
 
 ## Integration
 
-- Works with: Protocol 77 (Adaptive Latency), Infrastructure & Continuity Hub (Context Compaction)
+- Works with: Protocol 77 (Adaptive Latency), Protocol 45 (Context Compaction)
 - Enforced by: `/end` workflow (session telemetry)
 
 ---

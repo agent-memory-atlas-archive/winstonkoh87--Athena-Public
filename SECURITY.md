@@ -29,15 +29,3 @@ This security policy applies to:
 - Documentation that could lead to security issues if followed incorrectly
 
 This project does not handle sensitive user data directly, but we take all security concerns seriously.
-
-## ⚠️ Supabase Key Security
-
-> [!CAUTION]
-> **Never use the `SUPABASE_SERVICE_ROLE_KEY` in client-side code or `.env` files that may be committed.**
-
-The `athena` SDK only requires the **`SUPABASE_ANON_KEY`** for normal operation. The Service Role Key grants root-level database access and should only be used in server-side admin scripts with proper Row-Level Security (RLS) disabled.
-
-| Key Type | Use Case | Risk Level |
-|----------|----------|------------|
-| `SUPABASE_ANON_KEY` | Client-side SDK, search, embeddings | ✅ Safe |
-| `SUPABASE_SERVICE_ROLE_KEY` | Admin scripts, migrations | ⚠️ High (never commit) |

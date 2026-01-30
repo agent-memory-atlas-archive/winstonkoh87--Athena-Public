@@ -1,12 +1,12 @@
-# Content Publication Standard: Blog Post Gold Standard
+# Protocol 220: Blog Post Gold Standard
 
-**Reference Implementation:** See the [AI Bionic Layer article](https://the authorkoh87.github.io/articles/ai-bionic-layer.html) on the portfolio site.
+**Reference Implementation:** See the [AI Bionic Layer article](https://winstonkoh87.github.io/articles/ai-bionic-layer.html) on the portfolio site.
 
 ---
 
 ## Purpose
 
-This protocol defines the quality bar for blog posts on the author's portfolio. Every future article should meet or exceed this standard.
+This protocol defines the quality bar for blog posts on Winston's portfolio. Every future article should meet or exceed this standard.
 
 ---
 

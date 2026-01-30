@@ -1,4 +1,4 @@
-# Agentic Engineering Strategy: Intent Drift Detector
+# Protocol 166: Intent Drift Detector
 
 > **Purpose**: Prevent silent logic corruption from cumulative AI prompts.
 > **Trigger**: When code "works" but feels wrong, or when explaining logic is harder than it should be.

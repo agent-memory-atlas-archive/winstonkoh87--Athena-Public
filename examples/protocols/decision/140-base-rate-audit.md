@@ -1,8 +1,8 @@
 # Protocol 140: Base Rate Audit
 
-> **Purpose**: Heuristic for detecting "nonsense" (fabrication, delusion, or omission) by comparing claims against statistical baselines.
+> **Purpose**: Heuristic for detecting "bullshit" (fabrication, delusion, or omission) by comparing claims against statistical baselines.
 > **Source**: Session 31 (Dec 22, 2025) — Condo Girl Example + 20% Guaranteed Returns
-> **Related**: [Strategic Analysis Framework: First Principles](../business/Strategic_Analysis_Framework.md)
+> **Related**: [Protocol 119: First Principles](../business/119-first-principles-decomposition.md)
 
 ---
 
@@ -59,7 +59,7 @@ When the gap is unexplained, the Hidden Variable typically falls into one of the
 
 ---
 
-## The Development Execution Standard Response
+## The Protocol 99 Response
 
 When a prospect/lead presents a claim or expectation that fails the Base Rate Audit (e.g., "I want 20% guaranteed returns"):
 
@@ -78,9 +78,9 @@ Applying this to yourself is **Epistemic Rigor**:
 - Acknowledge your own Hidden Variables (e.g., "I date across age gaps because of Transactional Capital, not raw attraction").
 - This moves you from **Delusion** (Red Curve grinding) to **Strategy** (Blue Curve leverage).
 
-# base-rate #epistemology #nonsense-detector #delusion-check
+# base-rate #epistemology #bullshit-detector #delusion-check
 
 ## Related Protocols
 
-- [Agentic Engineering Strategy: Red-Blue Curve Taxonomy](../strategy/42-red-blue-curve-taxonomy.md)
+- [Protocol 42: Red-Blue Curve Taxonomy](../strategy/42-red-blue-curve-taxonomy.md)
 - [Protocol 115: First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md)

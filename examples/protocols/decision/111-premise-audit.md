@@ -111,7 +111,7 @@ IF any check fails:
 ☐ Baseline Audit: User has mental model? (Q3)
 ☐ Form-Substance Audit: Not chasing form? (Q4)
 ☐ Randy Scan: Not a stable bad equilibrium? (Q5)
-☐ Attachment Scan: Not protecting fantasy? (Q6)
+☐ Limerence Scan: Not protecting fantasy? (Q6)
 
 Threshold:
 ├─ 1/5 failure = Warning ⚠️
@@ -130,7 +130,7 @@ Threshold:
 ✅ Baseline model considered (observation phase if missing)
 ✅ Form-Substance gap diagnosed (pivot or mourn, not intensify)
 ✅ Randy Paradox handled (focus sovereignty, not activism)
-✅ Attachment addressed (force falsifying questions)
+✅ Limerence addressed (force falsifying questions)
 ✅ First Principles applied (input cost vs markup archaeology)
 ✅ Incentive alignment validated (stakeholders benefit, not exploited)
 ✅ Singapore context calibrated (face culture, Randy, arena physics)
