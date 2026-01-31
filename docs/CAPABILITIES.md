@@ -212,7 +212,7 @@ athena/
 
 | Category | Examples |
 |----------|----------|
-| **Business Models** | VDestiny Analysis, Four Fits Diagnostics, Productized Services |
+| **Business Models** | Content Agency Arbitrage, Four Fits Diagnostics, Productized Services |
 | **Psychology** | Attachment Patterns, Schema Installation, Relationship Dynamics |
 | **Singapore Context** | Healthcare Cartel, Education Arbitrage, Social Contract |
 | **AI/Automation** | Agentic Coding, Claude Workflows, GraphRAG Implementation |
