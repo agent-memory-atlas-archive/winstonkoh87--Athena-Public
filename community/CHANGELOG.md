@@ -4,14 +4,16 @@
 
 ---
 
-## v8.2 — Repository Audit & Private/Public Distinction (Feb 2026)
+## v8.2-Stable — Final Release (Feb 2026)
 
-**Latest**: Deep audit of Athena-Public. Rewrote README to clearly distinguish between the private repo (full implementation) and this public starter pack (curated examples).
+**Status**: ✅ Final Stable Version
 
-- ✅ **Badge Update**: Protocol badge now shows "63 Starter" instead of "308+"
-- ✅ **Metrics Table Rewrite**: New two-column format showing "Private Repo" vs "This Starter Pack"
-- ✅ **Handpicked Framing**: Clarified that this repo contains 63 protocols (from 245 unique), 27 scripts, and 6 case studies handpicked from the larger private collection
-- ✅ **Count Corrections**: Fixed protocol count (245 unique), script count (651), case studies (350)
+README restructured with Table of Contents, all counts verified, capability claims validated.
+
+- ✅ **ToC Added**: Navigation for long README
+- ✅ **Count Corrections**: 245 protocols (unique), 651 scripts, 350 case studies — all verified via `find` commands
+- ✅ **Capabilities Verified**: Social networking (Moltbook), cross-session memory (400+ logs), sidecar architecture — all real
+- ✅ **Quickstart-First Layout**: 5-minute quickstart pushed to top, manual setup collapsed
 
 ## v8.1 — Metrics Sync & Case Study Expansion (Jan 2026)
 

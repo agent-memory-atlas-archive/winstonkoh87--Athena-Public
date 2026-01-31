@@ -17,6 +17,17 @@
 > **A framework for creating persistent, sovereign AI agents.**  
 > **Your AI. Your memory. Your rules.**
 
+## Table of Contents
+
+- [What You'll Get](#what-youll-get)
+- [⚡ 5-Minute Quickstart](#-5-minute-quickstart)
+- [What Can Your Agent Do?](#what-can-your-agent-do)
+- [Why This Matters](#why-this-matters)
+- [The Process](#the-process-the-schlep)
+- [The Result](#the-result)
+- [What I Learnt](#what-i-learnt)
+- [📚 Further Reading](#-further-reading)
+
 ---
 
 ## What You'll Get
@@ -308,7 +319,7 @@ flowchart LR
 
 ## Reference Implementation
 
-This repo documents **Winston's personal Athena instance** — 1000+ sessions, 308+ protocols, production-tested daily.
+This repo documents **Winston's personal Athena instance** — 1000+ sessions, 245 unique protocols, production-tested daily.
 
 It's included as a **reference**, not a prescription. Your instance will reflect your domain, your decisions, your voice.
 
@@ -462,7 +473,7 @@ Think of it like **Git, but for conversations**. Each session builds on the last
 | **`/end` commit** | Summarizes session, extracts decisions, saves to knowledge store |
 | **Hybrid search** | Fuses Canonical + [GraphRAG](docs/GRAPHRAG.md) + Tags + [Vectors](docs/VECTORRAG.md) + Filenames via RRF |
 | **Cross-encoder reranking** | Refines top results with `sentence-transformers` |
-| **Protocol library** | [308+ reusable playbooks](examples/protocols/) (trading, writing, design) |
+| **Protocol library** | [245 unique protocols](examples/protocols/) (63 curated in starter pack) |
 
 ### Repository Structure
 
@@ -516,7 +527,8 @@ See [examples/workflows/](examples/workflows/) for full list.
 <details>
 <summary><strong>📋 Changelog</strong></summary>
 
-- **v8.1.0** (Jan 31 2026): Metrics Sync — 995 sessions, 308 protocols, 146 scripts; Protocol library consolidation
+- **v8.2-Stable** (Feb 1 2026): **Final Release** — README restructured with ToC, corrected all counts (245 protocols, 651 scripts, 350 case studies), Quickstart-first layout, capability claims verified
+- **v8.1.0** (Jan 31 2026): Metrics Sync — 995 sessions, 308 protocols (file count), 146 scripts; Protocol library consolidation
 - **v8.0-Stable** (Jan 2026): Zero-Point Refactor — Sovereign Environment hardened, Score-Modulated RRF (weights rebalanced), tech debt consolidated
 - **v1.2.8** (Jan 2026): Grand Alignment refactor — Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized, metrics corrected
 - **v1.2.7** (Jan 2026): Metrics sync — 332 protocols, 610 sessions
