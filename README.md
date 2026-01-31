@@ -2,7 +2,7 @@
 
 > **Last Updated**: 31 January 2026
 
-# 🏛️ Project Athena: Build Your Own AI Agent
+# 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-308+-blue)
