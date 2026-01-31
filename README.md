@@ -2,7 +2,7 @@
 
 > **Last Updated**: 31 January 2026
 
-# 🏛️ Project Athena: Build Your Own AI-Powered Knowledge System
+# 🏛️ Project Athena: Build Your Own AI Agent
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-308+-blue)
@@ -14,7 +14,7 @@
 ![Built with Gemini](https://img.shields.io/badge/Gemini-3.0_Pro-4285F4?logo=google)
 ![IDE](https://img.shields.io/badge/IDE-Antigravity-000000?logo=google)
 
-> **A framework for creating portable, platform-agnostic AI memory.**  
+> **A framework for creating persistent, sovereign AI agents.**  
 > Winston's implementation is included as a reference — yours will be different.
 
 ---
