@@ -4,14 +4,14 @@
 
 ---
 
-## v8.2 — Repository Audit & Stats Clarification (Feb 2026)
+## v8.2 — Repository Audit & Private/Public Distinction (Feb 2026)
 
-**Latest**: Deep audit of Athena-Public. Clarified that the public starter pack contains 63 protocols and 27 scripts, while the full reference implementation (308+ protocols, 151 scripts) is documented as proof of scope.
+**Latest**: Deep audit of Athena-Public. Rewrote README to clearly distinguish between the private repo (full implementation) and this public starter pack (curated examples).
 
-- ✅ **Date Sync**: Updated to 1 February 2026
-- ✅ **Stats Clarification**: README now distinguishes starter pack vs full reference counts
+- ✅ **Badge Update**: Protocol badge now shows "63 Starter" instead of "308+"
+- ✅ **Metrics Table Rewrite**: New two-column format showing "Private Repo" vs "This Starter Pack"
+- ✅ **Handpicked Framing**: Clarified that this repo contains 63 protocols, 27 scripts, and 6 case studies handpicked from the larger private collection
 - ✅ **Link Audit**: Verified all primary doc links are valid
-- ✅ **Changelog Sync**: Added Session 995+ sync entry
 
 ## v8.1 — Metrics Sync & Case Study Expansion (Jan 2026)
 
