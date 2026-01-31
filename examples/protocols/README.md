@@ -26,23 +26,41 @@ Protocols are reusable thinking patterns that standardize how Athena reasons abo
 
 ## Categories
 
-### 🏗️ Architecture (21 protocols)
+### 🏗️ Architecture (23 protocols)
 
 System design, token management, context handling.
 
 [Browse Architecture Protocols →](architecture/)
 
-### ⚙️ Engineering (17 protocols)  
+### ⚙️ Engineering (16 protocols)  
 
 Code patterns, UI development, implementation standards.
 
 [Browse Engineering Protocols →](engineering/)
+
+### 🧭 Decision (5 protocols)
+
+Decision frameworks, reasoning patterns, strategic analysis.
+
+[Browse Decision Protocols →](decision/)
 
 ### 🔬 Research (3 protocols)
 
 Deep investigation, fact-checking, source validation.
 
 [Browse Research Protocols →](research/)
+
+### 🎯 Strategy (3 protocols)
+
+Business strategy, competitive positioning, market entry.
+
+[Browse Strategy Protocols →](strategy/)
+
+### ✅ Verification (2 protocols)
+
+Testing, validation, quality assurance patterns.
+
+[Browse Verification Protocols →](verification/)
 
 ### 📋 Workflow (9 protocols)
 
