@@ -24,7 +24,7 @@
 | Feature | Description |
 |---------|-------------|
 | 🧠 **Memory That Persists** | Your agent remembers context across sessions, even after IDE restarts |
-| 📚 **63 Handpicked Protocols** | Curated decision frameworks from the private repo's 308+ collection |
+| 📚 **63 Handpicked Protocols** | Curated decision frameworks from the private repo's 245 unique collection |
 | 🔄 **Platform Independence** | Your data lives in Markdown files you own — take it anywhere |
 | 🤖 **Full Autonomy** | Your agent can act on your behalf while you sleep |
 
@@ -150,7 +150,7 @@ graph TD
 
 | Metric | Private Repo | This Starter Pack |
 |--------|--------------|-------------------|
-| **Protocols** | 308+ | 63 handpicked |
+| **Protocols** | 245 unique | 63 handpicked |
 | **Python Scripts** | 151 | 27 reference examples |
 | **Case Studies** | 340+ | 6 showcase examples |
 | **Sessions Logged** | 1,000+ | N/A (your sessions) |
@@ -191,7 +191,7 @@ graph TD
 |--------|---------|
 | **User-Driven RSI** | The system improves based on *your* feedback. Every friction you surface becomes a protocol. Every insight gets indexed. You shape the AI; the AI shapes how you think. |
 | **Portability** | Data lives locally (primary) and in the cloud. Not trapped in ChatGPT or Claude. It's mine — I can port it anywhere. |
-| **Principles** | 308+ protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
+| **Principles** | 245 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
 
 <details>
 <summary><strong>📊 Full Benchmarks & Case Studies</strong></summary>

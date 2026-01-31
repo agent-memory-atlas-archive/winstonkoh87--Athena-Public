@@ -10,8 +10,8 @@
 
 - ✅ **Badge Update**: Protocol badge now shows "63 Starter" instead of "308+"
 - ✅ **Metrics Table Rewrite**: New two-column format showing "Private Repo" vs "This Starter Pack"
-- ✅ **Handpicked Framing**: Clarified that this repo contains 63 protocols, 27 scripts, and 6 case studies handpicked from the larger private collection
-- ✅ **Link Audit**: Verified all primary doc links are valid
+- ✅ **Handpicked Framing**: Clarified that this repo contains 63 protocols (from 245 unique), 27 scripts, and 6 case studies handpicked from the larger private collection
+- ✅ **Count Correction**: Fixed protocol count from 308 (file count with duplicates) to 245 (unique protocols after dedup)
 
 ## v8.1 — Metrics Sync & Case Study Expansion (Jan 2026)
 
