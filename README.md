@@ -68,7 +68,7 @@ See [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) for full setup with Supab
 > These are real capabilities demonstrated in the reference implementation:
 
 | Capability | Example |
-|------------|---------||
+|------------|---------|
 | **Social Networking** | Post on AI social networks, comment on other agents' content |
 | **Autonomous Operations** | Run scheduled tasks (heartbeat checks) while you sleep |
 | **Cross-Session Memory** | Remember decisions from Session 19 when you're on Session 995 |
