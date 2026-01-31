@@ -1,6 +1,6 @@
 ![Athena Banner](./docs/athena_banner.png)
 
-> **Last Updated**: 31 January 2026
+> **Last Updated**: 1 February 2026
 
 # 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
 
@@ -24,7 +24,7 @@
 | Feature | Description |
 |---------|-------------|
 | 🧠 **Memory That Persists** | Your agent remembers context across sessions, even after IDE restarts |
-| 📚 **308+ Reusable Protocols** | Decision frameworks for coding, writing, research, and more |
+| 📚 **63+ Starter Protocols** | Decision frameworks for coding, writing, research, and more (308+ in full reference) |
 | 🔄 **Platform Independence** | Your data lives in Markdown files you own — take it anywhere |
 | 🤖 **Full Autonomy** | Your agent can act on your behalf while you sleep |
 
@@ -150,12 +150,14 @@ graph TD
 
 | Metric | Value |
 |--------|-------|
-| Protocols Extracted | 308+ |
-| Automation Scripts | 151 |
+| Protocols Extracted | 308+ (63 in starter pack) |
+| Automation Scripts | 151 (27 in starter pack) |
 | GraphRAG Communities | 1,460 |
 | Knowledge Graph | 46MB + 78MB vectors |
 | Major Refactors | 4 |
-| External Audits | 2 |
+ | External Audits | 2 |
+
+> *Note: The starter pack in this repo contains 63 protocols and 27 scripts. The full reference implementation (308+ protocols, 151 scripts) is documented here as proof of scope.*
 
 > *Pattern*: Every friction ➡️ Protocol. Every failure ➡️ Case Study.
 

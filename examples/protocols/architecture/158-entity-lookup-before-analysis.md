@@ -46,7 +46,7 @@ python3 .agent/scripts/supabase_search.py "<topic>" --limit 5
 |--------|---------------|---------------|
 | Psychology | "Why do I act out?" | Protocol 43, 121, acting-out phases |
 | Relationships | "JJ said..." | result.json, prior JJ analysis |
-| Business | "What's the market gap?" | VDestiny case study, business protocols |
+| Business | "What's the market gap?" | Content agency cases, business protocols |
 | Strategy | "Should I do X?" | Operating Principles, Law #1-4 |
 | Patterns | "This feels familiar" | case_studies/, TAG_INDEX |
 

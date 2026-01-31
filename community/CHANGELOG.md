@@ -4,9 +4,18 @@
 
 ---
 
+## v8.2 — Repository Audit & Stats Clarification (Feb 2026)
+
+**Latest**: Deep audit of Athena-Public. Clarified that the public starter pack contains 63 protocols and 27 scripts, while the full reference implementation (308+ protocols, 151 scripts) is documented as proof of scope.
+
+- ✅ **Date Sync**: Updated to 1 February 2026
+- ✅ **Stats Clarification**: README now distinguishes starter pack vs full reference counts
+- ✅ **Link Audit**: Verified all primary doc links are valid
+- ✅ **Changelog Sync**: Added Session 995+ sync entry
+
 ## v8.1 — Metrics Sync & Case Study Expansion (Jan 2026)
 
-**Latest**: Updated public metrics to reflect Session 995, 308 Protocols, and 146 Scripts. Added new case studies (CS-120, CS-140, CS-144).
+**Note**: Updated public metrics to reflect Session 995, 308 Protocols, and 146 Scripts. Added new case studies (CS-120, CS-140, CS-144).
 
 - ✅ **308 Protocols**: Synced from production instance
 - ✅ **995 Sessions**: Approaching 1,000 session milestone
