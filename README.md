@@ -12,7 +12,6 @@
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.5-CC785C?logo=anthropic)
 ![Built with Gemini](https://img.shields.io/badge/Gemini-3.0_Pro-4285F4?logo=google)
-![Clones](https://img.shields.io/badge/Clones-300%2B-blue)
 ![IDE](https://img.shields.io/badge/IDE-Antigravity-000000?logo=google)
 
 > **A framework for creating persistent, sovereign AI agents.**  
