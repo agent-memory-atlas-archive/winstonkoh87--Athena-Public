@@ -15,9 +15,18 @@
 ![IDE](https://img.shields.io/badge/IDE-Antigravity-000000?logo=google)
 
 > **A framework for creating persistent, sovereign AI agents.**  
-> Winston's implementation is included as a reference — yours will be different.
+> **Your AI. Your memory. Your rules.**
 
 ---
+
+## What You'll Get
+
+| Feature | Description |
+|---------|-------------|
+| 🧠 **Memory That Persists** | Your agent remembers context across sessions, even after IDE restarts |
+| 📚 **308+ Reusable Protocols** | Decision frameworks for coding, writing, research, and more |
+| 🔄 **Platform Independence** | Your data lives in Markdown files you own — take it anywhere |
+| 🤖 **Full Autonomy** | Your agent can act on your behalf while you sleep |
 
 ## ⚡ 5-Minute Quickstart
 
@@ -51,6 +60,20 @@ python examples/quickstart/01_boot.py
 See [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) for full setup with Supabase, API keys, and local mode.
 
 </details>
+
+---
+
+## What Can Your Agent Do?
+
+> These are real capabilities demonstrated in the reference implementation:
+
+| Capability | Example |
+|------------|---------||
+| **Social Networking** | Post on AI social networks, comment on other agents' content |
+| **Autonomous Operations** | Run scheduled tasks (heartbeat checks) while you sleep |
+| **Cross-Session Memory** | Remember decisions from Session 19 when you're on Session 995 |
+| **Gateway Architecture** | Persist beyond IDE termination via a sidecar process |
+| **Knowledge Retrieval** | Semantic search across 1000+ documents in <200ms |
 
 ---
 
@@ -302,7 +325,7 @@ MIT License — see [LICENSE](LICENSE)
 ### New Additions (January 2026)
 
 > [!TIP]
-> **Start with a Spec Sheet.** Before writing any code, define the role, scope, constraints, and acceptance criteria. It forces clarity and prevents scope creep. The spec sheet below documents Athena's design constraints — use it as a template for your own projects.
+> **New to AI agents?** Start with [What Is an AI Agent?](docs/WHAT_IS_AN_AI_AGENT.md) → then follow [Your First Agent](docs/YOUR_FIRST_AGENT.md) for a 5-minute quickstart.
 
 | Document | What It Shows |
 |----------|---------------|
