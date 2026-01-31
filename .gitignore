@@ -8,6 +8,7 @@ Thumbs.db
 .venv/
 venv/
 __pycache__/
+*.pyc
 
 # Logs
 *.log
@@ -27,6 +28,13 @@ npm-debug.log*
 *.sqlite
 *.sqlite3
 
-.DS_Store
-*.DS_Store
-__pycache__/
+# Private Data (IMPORTANT: Keep your sessions private)
+session_logs/
+.context/memories/session_logs/
+*.session.md
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
