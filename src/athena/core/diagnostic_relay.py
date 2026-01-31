@@ -10,18 +10,41 @@ GitHub issue drafts for human-in-the-loop submission.
 Philosophy: Federated Telemetry with Sovereignty (Privacy-First).
 """
 
+import platform
 import re
 import traceback
-import platform
-import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional, Dict, Any
+from typing import Any, Dict, Optional
 
 # --- Configuration ---
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+
+
+def _find_project_root() -> Path:
+    """
+    Find project root by searching for .athena_root marker or pyproject.toml.
+    Falls back to CWD if not found.
+    """
+    # Start from current working directory
+    current = Path.cwd().resolve()
+    for parent in [current] + list(current.parents):
+        if (parent / ".athena_root").exists():
+            return parent
+        if (parent / "pyproject.toml").exists():
+            return parent
+    return current
+
+
+PROJECT_ROOT = _find_project_root()
 ISSUES_DIR = PROJECT_ROOT / ".agent" / "diagnostics"
-ATHENA_VERSION = "1.4.1"
+
+# Use centralized version
+try:
+    from athena import __version__
+
+    ATHENA_VERSION = __version__
+except ImportError:
+    ATHENA_VERSION = "1.5.0"  # Fallback
 
 # PII Patterns to sanitize
 PII_PATTERNS = [
@@ -194,7 +217,7 @@ def relay_error(
     if auto_save:
         filepath = save_diagnostic_draft(diagnostic)
         print(f"📋 Diagnostic saved: {filepath.name}")
-        print(f"   Review and submit to: https://github.com/winstonkoh87/Athena-Public/issues/new")
+        print("   Review and submit to: https://github.com/winstonkoh87/Athena-Public/issues/new")
         return filepath
 
     return None

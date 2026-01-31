@@ -61,11 +61,14 @@ That's it. The AI bootstraps itself.
 git clone https://github.com/winstonkoh87/Athena-Public.git
 cd Athena-Public
 
-# Install
+# Install the SDK
 pip install -e .
 
-# Test
-python examples/quickstart/01_boot.py
+# Initialize your workspace (creates all directories and templates)
+python -m athena init
+
+# Verify installation
+python -m athena --doctor
 ```
 
 See [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) for full setup with Supabase, API keys, and local mode.
@@ -527,7 +530,7 @@ See [examples/workflows/](examples/workflows/) for full list.
 <details>
 <summary><strong>📋 Changelog</strong></summary>
 
-- **v8.2-Stable** (Feb 1 2026): **Final Release** — README restructured with ToC, corrected all counts (245 protocols, 651 scripts, 350 case studies), Quickstart-first layout, capability claims verified
+- **v1.5.0** (Feb 1 2026): **The 5-Minute Upgrade** — `athena init` command scaffolds workspace instantly, `--doctor` flag for system health check, fixed path discovery for pip installs, centralized version management
 - **v8.1.0** (Jan 31 2026): Metrics Sync — 995 sessions, 308 protocols (file count), 146 scripts; Protocol library consolidation
 - **v8.0-Stable** (Jan 2026): Zero-Point Refactor — Sovereign Environment hardened, Score-Modulated RRF (weights rebalanced), tech debt consolidated
 - **v1.2.8** (Jan 2026): Grand Alignment refactor — Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized, metrics corrected
