@@ -6,7 +6,7 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-63_Starter-blue)
-![Sessions](https://img.shields.io/badge/Sessions-1000+-green)
+![Sessions](https://img.shields.io/badge/Sessions-984+-green)
 ![Featured](https://img.shields.io/badge/Featured-r%2FGeminiAI_%232_Daily-orange)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
@@ -531,7 +531,7 @@ See [examples/workflows/](examples/workflows/) for full list.
 <summary><strong>📋 Changelog</strong></summary>
 
 - **v1.5.0** (Feb 1 2026): **The 5-Minute Upgrade** — `athena init` command scaffolds workspace instantly, `--doctor` flag for system health check, fixed path discovery for pip installs, centralized version management
-- **v8.1.0** (Jan 31 2026): Metrics Sync — 995 sessions, 308 protocols (file count), 146 scripts; Protocol library consolidation
+- **v8.2-Stable** (Feb 1 2026): Metrics Sync — 984 sessions, 308 protocols, 160 scripts; README overhaul, KG integration audit
 - **v8.0-Stable** (Jan 2026): Zero-Point Refactor — Sovereign Environment hardened, Score-Modulated RRF (weights rebalanced), tech debt consolidated
 - **v1.2.8** (Jan 2026): Grand Alignment refactor — Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized, metrics corrected
 - **v1.2.7** (Jan 2026): Metrics sync — 332 protocols, 610 sessions
