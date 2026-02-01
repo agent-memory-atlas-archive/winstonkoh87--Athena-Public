@@ -6,7 +6,7 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-63_Starter-blue)
-![Sessions](https://img.shields.io/badge/Sessions-984+-green)
+![Sessions](https://img.shields.io/badge/Sessions-1000+-green)
 ![Featured](https://img.shields.io/badge/Featured-r%2FGeminiAI_%232_Daily-orange)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
@@ -147,7 +147,7 @@ graph TD
         R --> S["Sessions 150-300: Hybrid RAG"]
         S --> T["Sessions 300-500: SDK Refactor"]
         T --> U["Sessions 500-700: Governance Engine"]
-        U --> V["Sessions 700-984+: v8.2-Stable Era"]
+        U --> V["Sessions 700-1000+: v8.2-Stable Era"]
     end
 
     B --> D
@@ -165,7 +165,7 @@ graph TD
 | Metric | Private Repo | This Starter Pack |
 |--------|--------------|-------------------|
 | **Protocols** | 308 unique | 63 handpicked |
-| **Python Scripts** | 651 | 27 reference examples |
+| **Python Scripts** | 160+ | 27 reference examples |
 | **Case Studies** | 350 | 6 showcase examples |
 | **Sessions Logged** | 1,000+ | N/A (your sessions) |
 | **GraphRAG Communities** | 1,460 | — |
@@ -322,7 +322,7 @@ flowchart LR
 
 ## Reference Implementation
 
-This repo documents **Winston's personal Athena instance** — 984+ sessions, 308 unique protocols, production-tested daily.
+This repo documents **Winston's personal Athena instance** — 1000+ sessions, 308 unique protocols, production-tested daily.
 
 It's included as a **reference**, not a prescription. Your instance will reflect your domain, your decisions, your voice.
 
