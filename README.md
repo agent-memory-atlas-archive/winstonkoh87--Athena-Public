@@ -22,7 +22,7 @@
 - [What You'll Get](#what-youll-get)
 - [⚡ 5-Minute Quickstart](#-5-minute-quickstart)
 - [What Can Your Agent Do?](#what-can-your-agent-do)
-- [Why This Matters](#why-this-matters)
+- [Why This Matters](#why-this-matters-beyond-me)
 - [The Process](#the-process-the-schlep)
 - [The Result](#the-result)
 - [What I Learnt](#what-i-learnt)
@@ -91,31 +91,6 @@ See [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) for full setup with Supab
 
 ---
 
-## Why This Matters
-
-If you're using AI for anything beyond one-off questions, you've probably hit the same wall: **every session starts from zero**.
-
-Yes, ChatGPT has memory now. So does Claude. But their memory is **platform-locked**. If you switch models, you lose everything. If the platform changes their memory policy, you lose everything.
-
-Athena is different: **portable, platform-agnostic memory**. Your context lives in Markdown files you own. You can take it to any model, any platform, any time. That's the moat.
-
----
-
-## The Problem
-
-If you use AI beyond one-off questions, you've hit this wall:
-
-| Pain Point | What It Costs You |
-|------------|-------------------|
-| **No memory** | Repeating the same context every session |
-| **Lost decisions** | Can't remember *why* you decided X in Session 19 |
-| **Context limits** | Manual paste just to "remind" the AI who you are |
-| **Platform lock-in** | Switching models = losing all accumulated context |
-
-Athena solves this with **portable, platform-agnostic memory** you own.
-
----
-
 ## The Process (The Schlep)
 
 > **Key insight**: The AI helped build the system that makes the AI more useful.
@@ -166,8 +141,8 @@ graph TD
 |--------|--------------|-------------------|
 | **Protocols** | 308 unique | 63 handpicked |
 | **Python Scripts** | 160+ | 27 reference examples |
-| **Case Studies** | 350 | 6 showcase examples |
-| **Sessions Logged** | 1,000+ | N/A (your sessions) |
+| **Case Studies** | 345 | 6 showcase examples |
+| **Sessions Logged** | 986 | N/A (your sessions) |
 | **GraphRAG Communities** | 1,460 | — |
 | **Knowledge Graph** | 46MB + 78MB vectors | — |
 

@@ -95,6 +95,14 @@ def main():
         help="Target directory (defaults to current directory)",
     )
 
+    # save subcommand
+    save_parser = subparsers.add_parser("save", help="Quicksave checkpoint to session log")
+    save_parser.add_argument(
+        "summary",
+        nargs="*",
+        help="Brief summary of the checkpoint",
+    )
+
     args = parser.parse_args()
 
     if args.version:
@@ -117,6 +125,13 @@ def main():
         from athena.boot.shutdown import run_shutdown
 
         success = run_shutdown(project_root=args.root)
+        sys.exit(0 if success else 1)
+
+    if args.command == "save":
+        from athena.cli.save import run_quicksave
+
+        summary = " ".join(args.summary) if args.summary else "Checkpoint"
+        success = run_quicksave(summary, project_root=args.root)
         sys.exit(0 if success else 1)
 
     # Default action: boot

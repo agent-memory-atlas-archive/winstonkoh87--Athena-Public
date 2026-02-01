@@ -51,18 +51,27 @@ description: Boot the AI assistant with context
 
 # /start — Execution Script
 
-## Phase 1: Load Identity
+> **Automation**: This workflow runs the Athena SDK boot sequence.
+
+## Execution
+
+// turbo
+
+```bash
+python -m athena
+```
+
+The boot sequence will:
+1. Load Core Identity
+2. Recall last session context
+3. Create a new session log
+4. Confirm ready status
+
+## Manual Override (if SDK unavailable)
+
 - [ ] Read `.framework/modules/Core_Identity.md`
-
-## Phase 2: Recall Context
 - [ ] Find the latest session log in `.context/memories/session_logs/`
-- [ ] Display a summary of the last session
-
-## Phase 3: Create New Session
-- [ ] Create a new session log with today's date
-- [ ] Format: `YYYY-MM-DD-session-XX.md`
-
-## Phase 4: Confirm Ready
+- [ ] Create a new session log: `YYYY-MM-DD-session-XX.md`
 - [ ] Output: "⚡ Ready. (Session XX started.)"
 """
 
@@ -72,22 +81,48 @@ description: Close session and save learnings
 
 # /end — Session Close
 
-## Phase 1: Review Checkpoints
+> **Automation**: This workflow runs the Athena SDK shutdown sequence.
+
+## Execution
+
+// turbo
+
+```bash
+python -m athena --end
+```
+
+The shutdown sequence will:
+1. Close the current session log
+2. Update session status to "Closed"
+3. Optionally trigger Supabase sync
+
+## Manual Override (if SDK unavailable)
+
 - [ ] Read all `### ⚡ Checkpoint` entries from current session log
-
-## Phase 2: Synthesize
-- [ ] Fill in session log sections:
-  - Key Topics
-  - Decisions Made
-  - Action Items
-
-## Phase 3: Commit
+- [ ] Fill in Key Topics, Decisions Made, Action Items
 - [ ] Git add and commit the session log
-- [ ] Message format: "Session XX: <brief summary>"
-
-## Phase 4: Confirm
 - [ ] Output: "✅ Session XX closed and committed."
 """
+
+SAVE_WORKFLOW_TEMPLATE = """---
+description: Save a checkpoint to the current session
+---
+
+# /save — Quicksave Checkpoint
+
+> **Automation**: This workflow runs the Athena SDK save command.
+
+## Execution
+
+// turbo
+
+```bash
+python -m athena save "Brief summary of what happened"
+```
+
+The save command will append a timestamped checkpoint to the current session log.
+"""
+
 
 PROJECT_STATE_TEMPLATE = """---
 created: '{date}'
@@ -162,6 +197,7 @@ def init_workspace(target_dir: Path = None) -> bool:
         ),
         (".agent/workflows/start.md", START_WORKFLOW_TEMPLATE),
         (".agent/workflows/end.md", END_WORKFLOW_TEMPLATE),
+        (".agent/workflows/save.md", SAVE_WORKFLOW_TEMPLATE),
         (
             ".context/project_state.md",
             PROJECT_STATE_TEMPLATE.format(date=today),

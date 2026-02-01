@@ -1,8 +1,21 @@
 # Athena Changelog
 
-> **Last Updated**: 31 January 2026
+> **Last Updated**: 01 February 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
+
+---
+
+## v1.5.1 (01 February 2026)
+
+**SDK Parity & CLI-First Documentation**: Added `athena save` command and refactored GETTING_STARTED.md.
+
+### Key Changes
+
+- **`athena save` Command** (NEW): SDK-native session checkpointing via `python -m athena save "summary"`
+- **Workflow Templates**: Updated `/start`, `/end`, `/save` to use SDK commands instead of manual scripts
+- **GETTING_STARTED.md**: Refactored from 312 lines (7 steps) to 162 lines (3 steps), CLI-first approach
+- **`init` Templates**: Now generates `save.md` workflow alongside `start.md` and `end.md`
 
 ---
 

@@ -151,11 +151,13 @@ This regenerates:
 ## Cost Warning
 
 > [!WARNING]
-> **Real-World Cost**: Building the Athena knowledge graph cost **~$50 USD** using Gemini 3 Flash API.
+> **Real-World Cost**: Building the Athena knowledge graph cost **~$30-50 USD** using Gemini 3 Flash API.
 >
-> - ~500+ markdown files processed
-> - ~4,000+ entity extraction API calls
-> - Multiple retry cycles due to rate limits
+> **The Hidden Cost Driver**: Output Verbosity.
+> The extraction process often prompts the LLM to rewrite nearly 75% of the input text as structured JSON.
+>
+> - **Input**: 4M tokens (~$2.50)
+> - **Output**: 3M tokens (~$12.00+)
 >
 > **Recommendation**: Unless you specifically need entity relationship mapping ("How does X relate to Y?"), use **VectorRAG** instead. It's free and handles 90% of semantic search use cases.
 
