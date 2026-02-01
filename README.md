@@ -1,6 +1,6 @@
 ![Athena Banner](./docs/athena_banner.png)
 
-> **Last Updated**: 1 February 2026
+> **Last Updated**: 2 February 2026
 
 # 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
 
@@ -140,8 +140,8 @@ graph TD
 | Metric | Private Repo | This Starter Pack |
 |--------|--------------|-------------------|
 | **Protocols** | 308 unique | 63 handpicked |
-| **Python Scripts** | 107 | 9 reference examples |
-| **Case Studies** | 345 | 6 showcase examples |
+| **Python Scripts** | 160 | 9 reference examples |
+| **Case Studies** | 357 | 6 showcase examples |
 | **Sessions Logged** | 1000+ | N/A (your sessions) |
 | **GraphRAG Communities** | 1,460 | — |
 | **Knowledge Graph** | 46MB + 78MB vectors | — |
