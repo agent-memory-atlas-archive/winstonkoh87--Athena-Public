@@ -1,7 +1,13 @@
 # GraphRAG: Knowledge Graph Layer
 
-> **Status**: ✅ Active (Jan 2026)  
+> **Status**: ⚠️ **NOT RECOMMENDED** (See Warning Below)  
+> **Last Updated**: 1 February 2026  
 > **Weight**: 2.0x in RRF fusion (balanced with Vector)
+
+---
+
+> [!CAUTION]
+> **GraphRAG is EXPENSIVE.** Building this knowledge graph cost **~$50 in API fees** (using Gemini 3 Flash). Entity extraction requires calling an LLM for every single document chunk. For most use cases, **VectorRAG is FREE and sufficient**. See [VECTORRAG.md](VECTORRAG.md) for the recommended approach.
 
 ---
 
@@ -142,6 +148,30 @@ This regenerates:
 
 ---
 
+## Cost Warning
+
+> [!WARNING]
+> **Real-World Cost**: Building the Athena knowledge graph cost **~$50 USD** using Gemini 3 Flash API.
+>
+> - ~500+ markdown files processed
+> - ~4,000+ entity extraction API calls
+> - Multiple retry cycles due to rate limits
+>
+> **Recommendation**: Unless you specifically need entity relationship mapping ("How does X relate to Y?"), use **VectorRAG** instead. It's free and handles 90% of semantic search use cases.
+
+---
+
+## When GraphRAG Is Worth It
+
+| Use Case | Worth It? | Why |
+|----------|-----------|-----|
+| Cross-domain synthesis | ✅ Yes | "How do trading psychology and schema therapy connect?" |
+| Entity relationship mapping | ✅ Yes | Building a knowledge graph for research |
+| Simple semantic search | ❌ No | VectorRAG is free and sufficient |
+| Quick prototype | ❌ No | Too expensive for testing |
+
+---
+
 ## Tags
 
-# graphrag #knowledge-graph #rag #search #communities #entities
+# graphrag #knowledge-graph #rag #search #communities #entities #expensive
