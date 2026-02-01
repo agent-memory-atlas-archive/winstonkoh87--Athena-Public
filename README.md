@@ -35,7 +35,7 @@
 | Feature | Description |
 |---------|-------------|
 | 🧠 **Memory That Persists** | Your agent remembers context across sessions, even after IDE restarts |
-| 📚 **63 Handpicked Protocols** | Curated decision frameworks from the private repo's 245 unique collection |
+| 📚 **63 Handpicked Protocols** | Curated decision frameworks from the private repo's 308 unique collection |
 | 🔄 **Platform Independence** | Your data lives in Markdown files you own — take it anywhere |
 | 🤖 **Full Autonomy** | Your agent can act on your behalf while you sleep |
 
@@ -147,7 +147,7 @@ graph TD
         R --> S["Sessions 150-300: Hybrid RAG"]
         S --> T["Sessions 300-500: SDK Refactor"]
         T --> U["Sessions 500-700: Governance Engine"]
-        U --> V["Sessions 700-861+: v8.0-Stable Era"]
+        U --> V["Sessions 700-984+: v8.2-Stable Era"]
     end
 
     B --> D
@@ -164,7 +164,7 @@ graph TD
 
 | Metric | Private Repo | This Starter Pack |
 |--------|--------------|-------------------|
-| **Protocols** | 245 unique | 63 handpicked |
+| **Protocols** | 308 unique | 63 handpicked |
 | **Python Scripts** | 651 | 27 reference examples |
 | **Case Studies** | 350 | 6 showcase examples |
 | **Sessions Logged** | 1,000+ | N/A (your sessions) |
@@ -182,7 +182,7 @@ graph TD
 |----------|-------------------|
 | [GETTING_STARTED.md](docs/GETTING_STARTED.md) | Step-by-step setup guide |
 | [ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design & data flow |
-| [GRAPHRAG.md](docs/GRAPHRAG.md) | Knowledge graph layer |
+| [GRAPHRAG.md](docs/GRAPHRAG.md) | Knowledge graph layer ⚠️ **(~$50 API cost)** |
 | [examples/quickstart/](examples/quickstart/) | Runnable code demos |
 
 </details>
@@ -205,7 +205,7 @@ graph TD
 |--------|---------|
 | **User-Driven RSI** | The system improves based on *your* feedback. Every friction you surface becomes a protocol. Every insight gets indexed. You shape the AI; the AI shapes how you think. |
 | **Portability** | Data lives locally (primary) and in the cloud. Not trapped in ChatGPT or Claude. It's mine — I can port it anywhere. |
-| **Principles** | 245 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
+| **Principles** | 308 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
 
 <details>
 <summary><strong>📊 Full Benchmarks & Case Studies</strong></summary>
@@ -238,7 +238,7 @@ graph TD
 |----------|-------|
 | [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md) | Hybrid RAG implementation |
 | [VECTORRAG.md](docs/VECTORRAG.md) | Semantic memory architecture |
-| [GRAPHRAG.md](docs/GRAPHRAG.md) | Knowledge graph + community detection |
+| [GRAPHRAG.md](docs/GRAPHRAG.md) | Knowledge graph + community detection ⚠️ **(expensive)** |
 | [examples/protocols/](examples/protocols/) | 63 handpicked decision frameworks |
 
 </details>
@@ -322,7 +322,7 @@ flowchart LR
 
 ## Reference Implementation
 
-This repo documents **Winston's personal Athena instance** — 1000+ sessions, 245 unique protocols, production-tested daily.
+This repo documents **Winston's personal Athena instance** — 984+ sessions, 308 unique protocols, production-tested daily.
 
 It's included as a **reference**, not a prescription. Your instance will reflect your domain, your decisions, your voice.
 
@@ -449,7 +449,7 @@ cp .env.example .env
 | **Reasoning** | Claude Opus 4.5 (primary) | Main reasoning engine |
 | **IDE** | Antigravity (supports Claude, Gemini, GPT) | Agentic development environment |
 | **Embeddings** | `text-embedding-004` (768-dim) | Google embedding model |
-| **GraphRAG** | NetworkX + Leiden + ChromaDB | [Knowledge graph](docs/GRAPHRAG.md) (2.0x weight in search) |
+| **GraphRAG** | NetworkX + Leiden + ChromaDB | [Knowledge graph](docs/GRAPHRAG.md) ⚠️ **~$50 API** |
 | **Memory** | Supabase + pgvector *or* local (ChromaDB) | Vector database |
 | **Knowledge Store** | Markdown files (git-versioned) | Human-readable, locally owned |
 
@@ -476,7 +476,7 @@ Think of it like **Git, but for conversations**. Each session builds on the last
 | **`/end` commit** | Summarizes session, extracts decisions, saves to knowledge store |
 | **Hybrid search** | Fuses Canonical + [GraphRAG](docs/GRAPHRAG.md) + Tags + [Vectors](docs/VECTORRAG.md) + Filenames via RRF |
 | **Cross-encoder reranking** | Refines top results with `sentence-transformers` |
-| **Protocol library** | [245 unique protocols](examples/protocols/) (63 curated in starter pack) |
+| **Protocol library** | [308 unique protocols](examples/protocols/) (63 curated in starter pack) |
 
 ### Repository Structure
 
