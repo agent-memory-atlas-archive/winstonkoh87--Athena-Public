@@ -57,10 +57,10 @@ MyAssistant/
 
 ```mermaid
 flowchart LR
-    A[pip install -e .] --> B[athena init]
-    B --> C[Open in IDE]
-    C --> D[/start]
-    D --> E[✅ Ready]
+    A["pip install -e ."] --> B["athena init"]
+    B --> C["Open in IDE"]
+    C --> D["Type /start"]
+    D --> E["Ready!"]
 ```
 
 ---
