@@ -32,6 +32,17 @@ Found a bug or have a suggestion?
 - Open an issue on GitHub
 - Describe the problem clearly
 
+### 5. Agent-Assisted Contributions (NEW)
+
+Let your Athena agent help you contribute! Using [Protocol 408](examples/protocols/workflow/408-autonomous-contribution-engine.md):
+
+1. **Ask a question**: "Does Athena support X?"
+2. **Agent verifies**: Searches codebase to confirm it's a gap
+3. **Agent drafts**: Creates a structured RFC using templates
+4. **You submit**: One-click GitHub Issue submission
+
+Use the [Agent-Assisted Contribution](.github/ISSUE_TEMPLATE/agent_contribution.md) issue template for submissions.
+
 ## Guidelines
 
 - Keep files modular (< 500 lines)

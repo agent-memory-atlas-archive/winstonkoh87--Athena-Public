@@ -23,6 +23,7 @@ Protocols are reusable thinking patterns that standardize how Athena reasons abo
 | **168** | [Context-Driven Development](examples/protocols/architecture/168-context-driven-development.md) | Engineering | Let context guide implementation |
 | **200** | [Feature Context Persistence](examples/protocols/architecture/200-feature-context-persistence.md) | Architecture | Track features across sessions |
 | **202** | [Recovery Patterns](examples/protocols/architecture/202-recovery-patterns.md) | Architecture | Graceful degradation strategies |
+| **408** | [Autonomous Contribution Engine](examples/protocols/workflow/408-autonomous-contribution-engine.md) | Workflow | Transform user insights into contributions |
 
 ## Categories
 
@@ -62,7 +63,7 @@ Testing, validation, quality assurance patterns.
 
 [Browse Verification Protocols →](verification/)
 
-### 📋 Workflow (9 protocols)
+### 📋 Workflow (10 protocols)
 
 Session management, automation, process optimization.
 
