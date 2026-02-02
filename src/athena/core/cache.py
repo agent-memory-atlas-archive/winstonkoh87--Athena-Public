@@ -33,6 +33,7 @@ from collections import OrderedDict
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
+from athena.core.config import AGENT_DIR
 
 
 @dataclass
@@ -210,3 +211,15 @@ class QueryCache:
             "semantic_entries": semantic_entries,
             "ttl_hours": self.ttl_seconds / 3600,
         }
+
+
+# Singleton Instance
+_search_cache: QueryCache | None = None
+
+
+def get_search_cache() -> QueryCache:
+    """Singleton accessor for the search cache."""
+    global _search_cache
+    if _search_cache is None:
+        _search_cache = QueryCache(cache_dir=AGENT_DIR / "state")
+    return _search_cache

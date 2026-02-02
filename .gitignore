@@ -5,6 +5,7 @@ Thumbs.db
 # Environments
 .env
 .env.local
+.agent/state/embedding_cache*.json
 .venv/
 venv/
 __pycache__/

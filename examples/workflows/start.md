@@ -11,7 +11,7 @@ description: Activate Zero-Point Codex framework for strategic analysis
 
 // turbo
 
-- [ ] Load `.framework/v8.0-alpha/modules/Core_Identity.md` — Laws #0-#4, Identity, RSI (~2K tokens)
+- [ ] Load `.framework/v8.2-stable/modules/Core_Identity.md` — Laws #0-#4, Identity, RSI (~2K tokens)
 - [ ] **Living Spec**: Load `.context/project_state.md` — Active constraints, tech stack, patterns (Protocol 168)
 - [ ] **Boot Orchestrator**: Run `# Reference: python3 scripts/boot.py` — recalls last session, creates new session, captures context, primes semantic memory (single call)
 
