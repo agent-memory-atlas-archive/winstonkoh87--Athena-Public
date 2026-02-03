@@ -31,10 +31,10 @@
 
 | Capability | Evidence |
 |------------|----------|
-| **Systems Architecture** | Designed a 308+-protocol knowledge framework from scratch |
-| **AI Engineering** | Built RAG pipelines (Supabase pgvector + GraphRAG + RRF fusion) |
+| **Systems Architecture** | Designed a 308+-protocol knowledge framework ([Architecture](./ARCHITECTURE.md)) |
+| **AI Engineering** | Built RAG pipelines ([GraphRAG](./GRAPHRAG.md) + [Semantic Search](./SEMANTIC_SEARCH.md)) |
 | **Technical Writing** | 995 session logs, 42 case studies, zero fluff |
-| **Automation** | 146 Python scripts for workflow optimization |
+| **Automation** | 146 Python scripts for [Capabilities](./CAPABILITIES.md) optimization |
 | **Strategic Thinking** | Spent 10 years navigating institutional politics and incentive structures |
 
 ---
@@ -68,6 +68,10 @@ I'm not looking for:
 - "Move fast and break things" chaos
 - Feature factories with no strategic coherence
 - Teams that confuse activity with progress
+
+### Want to Build Together?
+>
+> See my [Engineering Depth](./ENGINEERING_DEPTH.md) or start with [Your First Agent](./YOUR_FIRST_AGENT.md).
 
 ---
 

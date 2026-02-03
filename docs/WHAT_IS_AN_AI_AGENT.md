@@ -31,7 +31,7 @@ Platform "memory" features (ChatGPT, Claude) help, but they're:
 
 ## How Athena Solves It
 
-Athena stores your AI's memory in **files you own**:
+Athena stores your AI's memory in **files you own** (Read the [Manifesto](./MANIFESTO.md)):
 
 ```
 .context/
@@ -44,7 +44,7 @@ Your data is:
 
 - **Portable** — Markdown files, git-versioned
 - **Yours** — stored locally, not on a platform
-- **Searchable** — semantic search across everything
+- **Searchable** — [Semantic Search](./SEMANTIC_SEARCH.md) across everything
 
 ---
 

@@ -139,3 +139,19 @@ Every session adds to your agent's knowledge. The more you work together, the sm
 ---
 
 *Now go build something amazing with your new agent.* 🦞
+
+---
+
+## See Also
+
+- **[What Is an AI Agent?](./WHAT_IS_AN_AI_AGENT.md)** — Understand the basics
+- **[Glossary](./GLOSSARY.md)** — Key terms and definitions
+- **[Getting Started](./GETTING_STARTED.md)** — Detailed setup guide
+
+---
+
+## About the Author
+
+Built by **Winston Koh** — 10+ years in financial services, now building AI systems.
+
+→ **[About Me](./ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**

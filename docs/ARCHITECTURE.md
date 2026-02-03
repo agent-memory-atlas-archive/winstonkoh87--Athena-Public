@@ -226,3 +226,18 @@ graph TD
 | v7.2 | 20 Dec 2025 | 140+ protocols, nuclear refactor, fact-checking integration |
 | v7.0 | 14 Dec 2025 | Antigravity migration, GraphRAG integration (deprecated) |
 | v6.x | Nov 2025 | Initial modular architecture |
+
+---
+
+## See Also
+
+- **[Glossary](./GLOSSARY.md)** — Key terms and definitions
+- **[Changelog](./CHANGELOG.md)** — Full version history
+
+---
+
+## About the Author
+
+Built by **Winston Koh** — 10+ years in financial services, now building AI systems.
+
+→ **[About Me](./ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**

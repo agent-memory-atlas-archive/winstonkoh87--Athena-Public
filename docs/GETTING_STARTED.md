@@ -152,6 +152,13 @@ For advanced automation, see the [examples/scripts/](../examples/scripts/) folde
 
 ---
 
+## See Also
+
+- **[Glossary](./GLOSSARY.md)** — Key terms and definitions
+- **[Changelog](./CHANGELOG.md)** — Version history and updates
+
+---
+
 <div align="center">
 
 *You now have a self-improving AI assistant.*
