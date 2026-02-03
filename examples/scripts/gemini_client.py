@@ -23,9 +23,7 @@ def get_api_key() -> str:
 class GeminiClient:
     """Stateful Gemini client with conversation history support."""
 
-    def __init__(
-        self, model: str = "gemini-3-flash-preview", system_prompt: str = None
-    ):
+    def __init__(self, model: str = "gemini-3-flash-preview", system_prompt: str = None):
         api_key = get_api_key()
         if not api_key:
             raise ValueError("GOOGLE_API_KEY not found in environment")
@@ -70,15 +68,11 @@ class GeminiClient:
 
         for attempt in range(max_retries):
             for model_name in cascade_models:
-                print(
-                    f"✨ Athena thinking with {model_name}... (attempt {attempt + 1})"
-                )
+                print(f"✨ Athena thinking with {model_name}... (attempt {attempt + 1})")
                 try:
                     temp_model = genai.GenerativeModel(
                         model_name=model_name,
-                        system_instruction=self.system_prompt
-                        if self.system_prompt
-                        else None,
+                        system_instruction=self.system_prompt if self.system_prompt else None,
                         generation_config=genai.GenerationConfig(
                             temperature=1.0,
                             max_output_tokens=8192,
@@ -101,15 +95,9 @@ class GeminiClient:
                     last_error = e
 
                     # Check for retryable errors
-                    if (
-                        "429" in error_str
-                        or "503" in error_str
-                        or "ResourceExhausted" in error_str
-                    ):
+                    if "429" in error_str or "503" in error_str or "ResourceExhausted" in error_str:
                         # Extract retry delay if provided
-                        match = re.search(
-                            r"retry in ([\d.]+)s", error_str, re.IGNORECASE
-                        )
+                        match = re.search(r"retry in ([\d.]+)s", error_str, re.IGNORECASE)
                         if match:
                             wait_time = min(float(match.group(1)) + 1, 30)  # Cap at 30s
                         else:
@@ -160,9 +148,7 @@ def get_mobile_system_prompt() -> str:
 
     # Try to load Core Identity
     workspace = Path(__file__).resolve().parent.parent.parent
-    core_identity_path = (
-        workspace / ".framework" / "v7.0" / "modules" / "Core_Identity.md"
-    )
+    core_identity_path = workspace / ".framework" / "v8.2-stable" / "modules" / "Core_Identity.md"
     user_profile_path = workspace / "Winston" / "profile" / "User_Profile.md"
 
     identity_snippet = ""
