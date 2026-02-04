@@ -163,6 +163,58 @@ This regenerates:
 
 ---
 
+## The Free Alternative: Human-Driven API
+
+> [!TIP]
+> **You can build GraphRAG for FREE using the Decoupled Fetch-and-Reason pattern.**
+
+The `$50 API cost` assumes you're running entity extraction programmatically. But the LLM call is the expensive part, not the orchestration. We can decouple them.
+
+### The Pattern: Human as API
+
+```
+Athena (Orchestrator)  →  Generates Parsing Prompts  →  User
+                                                          ↓
+                                                        User pastes into FREE LLM UI
+                                                        (Gemini 3 Pro on AI Studio, Claude, etc.)
+                                                          ↓
+User  ←  Pastes LLM Response Back  ←  Athena assembles results
+```
+
+**Result**: SOTA entity extraction (Gemini 3 Pro, Claude Opus 4.5) at **$0 cost**.
+
+### Why This Works
+
+| Component | Cost via API | Cost via Human | Notes |
+|-----------|--------------|----------------|-------|
+| **Orchestration** (splitting docs, generating prompts) | Free | Free | Athena handles this |
+| **LLM Inference** (entity extraction) | **$30-50** | **$0** | User uses free web UI |
+| **Assembly** (combining results into graph) | Free | Free | Athena handles this |
+
+The only paid component (LLM inference) is replaced by **human bandwidth** — a free resource.
+
+### How to Use It
+
+1. **Athena generates extraction prompts** for each document chunk.
+2. **User pastes** each prompt into Gemini/Claude web UI (free tier).
+3. **User copies** the structured JSON response back.
+4. **Athena assembles** the responses into `knowledge_graph.gpickle`.
+
+> This is the **Decoupled Fetch-and-Reason** pattern from [Protocol 404](../examples/protocols/architecture/404-decoupled-fetch-and-reason.md).
+
+### Trade-offs
+
+| Factor | API Approach | Human-Driven API |
+|--------|--------------|------------------|
+| **Speed** | Minutes | Hours (manual) |
+| **Cost** | $30-50 | $0 |
+| **Model Quality** | Flash (cheaper) | Pro (SOTA, free UI) |
+| **Scalability** | High | Low (human bottleneck) |
+
+**Verdict**: If you have more time than money, Human-Driven API is the optimal path. You get SOTA model quality (Gemini 3 Pro) for free — the same extraction quality that would cost 10x more via API.
+
+---
+
 ## When GraphRAG Is Worth It
 
 | Use Case | Worth It? | Why |
