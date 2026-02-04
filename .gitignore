@@ -31,6 +31,7 @@ npm-debug.log*
 
 # Private Data (IMPORTANT: Keep your sessions private)
 session_logs/
+!examples/session_logs/
 .context/memories/session_logs/
 *.session.md
 
