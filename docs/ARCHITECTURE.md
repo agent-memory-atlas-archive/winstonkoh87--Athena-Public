@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 31 January 2026  
-> **System Version**: v8.1.0 (Metrics Sync)
+> **Last Updated**: 5 February 2026  
+> **System Version**: v8.2-stable (Agent Sovereignty)
 
 ---
 
@@ -10,30 +10,30 @@
 ```text
 Athena/
 ├── .framework/                    # ← THE CODEX (stable, rarely updated)
-│   ├── v8.0/
-│   │   └── modules/
-│   │       ├── Core_Identity.md   # Laws #0-#4, RSI, Bionic Stack, COS
-│   │       └── Output_Standards.md # Response formatting, reasoning levels
+│   ├── v8.2-stable/
+│   │   ├── modules/
+│   │   │   ├── Core_Identity.md   # Laws #0-#4, RSI, Bionic Stack, COS
+│   │   │   └── Output_Standards.md # Response formatting, reasoning levels
+│   │   └── protocols/             # Versioned protocol copies
+│   ├── v7.0/                      # Previous stable version
 │   └── archive/                   # Archived monoliths
 │
 ├── .context/                      # ← USER-SPECIFIC DATA (frequently updated)
-│   ├── profile/
-│   │   ├── User_Profile_Core.md           # Bio, typology, core context
-│   │   ├── Constraints_Master.md          # Hard constraints, veto triggers
-│   │   └── Voice_DNA.md                   # Portable tone/style definition
+│   ├── User_Vault/                # Personal vault (credentials, secrets)
 │   ├── memories/
-│   │   ├── case_studies/          # 50+ documented patterns
+│   │   ├── case_studies/          # 358+ documented patterns
 │   │   ├── session_logs/          # Historical session analysis
-│   │   └── patterns/              # Formalized patterns (1-5)
+│   │   └── patterns/              # Formalized patterns
 │   ├── references/                # External frameworks (Dalio, Halbert, Graham)
-│   ├── TAG_INDEX.md               # Global hashtag system
-│   ├── KNOWLEDGE_GRAPH.md         # Visual architecture reference
-│   └── System_Manifest.md         # Architecture manifest (SSOT)
+│   ├── research/                  # Steal analyses, explorations
+│   ├── TAG_INDEX_A-M.md           # Global hashtag system (split for performance)
+│   ├── TAG_INDEX_N-Z.md
+│   └── KNOWLEDGE_GRAPH.md         # Visual architecture reference
 │
 ├── .agent/                        # ← AGENT CONFIGURATION
 │   ├── skills/
 │   │   ├── SKILL_INDEX.md         # Protocol loading registry
-│   │   ├── protocols/             # 308+ modular skill files
+│   │   ├── protocols/             # 319+ modular skill files
 │   │   │   ├── architecture/      # System protocols (latency, modularity)
 │   │   │   ├── business/          # Business frameworks
 │   │   │   ├── career/            # Career navigation
@@ -41,35 +41,33 @@ Athena/
 │   │   │   ├── psychology/        # Psych protocols
 │   │   │   └── trading/           # Trading protocols
 │   │   └── capabilities/          # Bionic Triple Crown
-│   │       ├── Skill_DeepCode_Analysis.md    # Research → Plan
-│   │       ├── Skill_DSPy_Optimized.md       # Prompt Optimization
-│   │       └── Skill_VectorRAG.md             # Semantic Search
-│   ├── workflows/                 # 25 slash commands
-
-│   │   ├── [start.md](examples/workflows/start.md)               # Session boot
-│   │   ├── [end.md](examples/workflows/end.md)                 # Session close + maintenance
-│   │   ├── [think.md](examples/workflows/think.md)               # Deep reasoning (L4)
-│   │   ├── [ultrathink.md](examples/workflows/ultrathink.md)          # Maximum depth (Triple Crown)
-│   │   ├── [refactor.md](examples/workflows/refactor.md)            # Anti-entropy engine
-│   │   ├── [research.md](examples/workflows/research.md)            # Multi-source web research
-│   │   └── needful.md             # Autonomous high-value action
-│   ├── scripts/                   # Python automation
-│   │   ├── [quicksave.py](../README.md)           # Auto-checkpoint every exchange
-│   │   ├── [generate_puml.py](../README.md)   # Visual architecture audit
-│   │   ├── create_session.py      # Session log creation
-│   │   ├── orphan_detector.py     # Unlinked file detection
-│   │   └── memory_integrity.py    # Workspace health check
-│   └── supabase/                  # VectorRAG (pgvector) config
+│   ├── workflows/                 # 40+ slash commands
+│   │   ├── start.md               # Session boot
+│   │   ├── end.md                 # Session close + maintenance
+│   │   ├── think.md               # Deep reasoning (L4)
+│   │   └── ...
+│   ├── scripts/                   # 192+ Python automation scripts
+│   │   ├── quicksave.py           # Auto-checkpoint every exchange
+│   │   ├── boot.py                # Resilient boot with recovery shell
+│   │   ├── smart_search.py        # Semantic search
+│   │   └── ...
+│   └── gateway/                   # Sidecar process for persistence
 │
-├── User_Vault/                    # ← PERSONAL VAULT
-│   └── profile/                   # User-specific data
+├── src/                           # ← PYTHON SDK SOURCE
+│   └── athena/
+│       ├── boot/                  # Boot loaders and constants
+│       ├── core/                  # Core config and utilities
+│       └── tools/                 # SDK tools
+│
+├── supabase/                      # ← VECTORRAG CONFIG
+│   └── migrations/                # Database migrations
 │
 ├── Athena-Public/                 # ← PUBLIC PORTFOLIO
 │   ├── docs/                      # This documentation
 │   ├── examples/                  # Templates and scripts
 │   └── README.md                  # Repository overview
 │
-└── docs/audit/                    # Audit trails and pre-mortems
+└── docs/                          # Root-level docs (audit, architecture)
 ```
 
 ### Visual Overview
