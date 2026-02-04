@@ -17,7 +17,7 @@ import sys
 import time
 
 
-def run_simulation(num_runs=100000, max_hands=3000, start_bankroll=100.0):
+def run_simulation(num_runs=10000, max_hands=3000, start_bankroll=100.0):
     # Configuration
     base_bet = 0.10
     multipliers = [1, 2, 4, 8, 16]  # 0.10, 0.20, 0.40, 0.80, 1.60

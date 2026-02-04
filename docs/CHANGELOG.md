@@ -1,8 +1,35 @@
 # Athena Changelog
 
-> **Last Updated**: 01 February 2026
+> **Last Updated**: 04 February 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
+
+---
+
+## v1.5.2 (04 February 2026)
+
+**Repository Enhancement**: Added skills framework, protocol exports, and knowledge graph.
+
+### Key Changes
+
+- **Protocol 416 (Agent Swarm)**: Exported parallel agent orchestration pattern to `examples/protocols/workflow/`
+- **Skills Framework**: New `examples/skills/` directory with:
+  - `coding/diagnostic-refactor/SKILL.md` — "Surgeon's Scan" pattern for code analysis before editing
+  - README explaining skill structure and usage
+- **KNOWLEDGE_GRAPH.md**: Compressed relationship map of Athena concepts and protocols
+- **Session Logs Examples**: Added `examples/session_logs/` with example format and README
+- **AGENTS.md**: Added passive context pattern (Vercel research)
+
+### New Files
+
+| Path | Description |
+|------|-------------|
+| `examples/protocols/workflow/416-agent-swarm.md` | Parallel worktree orchestration |
+| `examples/skills/README.md` | Skills framework overview |
+| `examples/skills/coding/diagnostic-refactor/SKILL.md` | Code diagnosis skill |
+| `docs/KNOWLEDGE_GRAPH.md` | Compressed concept index |
+| `examples/session_logs/README.md` | Session log format guide |
+| `examples/session_logs/example-session.md` | Complete example |
 
 ---
 
