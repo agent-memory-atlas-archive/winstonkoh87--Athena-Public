@@ -4,6 +4,18 @@
 
 ---
 
+## v8.3 — Claude OS Patterns (Feb 2026)
+
+**Status**: ✅ Stable
+
+Integrated 'Claude OS' patterns from community research for enforcement-layer memory.
+
+- ✅ **Protocol 418 (Promise Gate)**: Prevents "hallucinated compliance" — blocks save if agent says "I will update X" but didn't.
+- ✅ **Protocol 419 (Handoff Loop)**: Manages `wake_up.md` for clean session-to-session continuity.
+- ✅ **Scripts**: `verify_promises.py`, `boot_handoff.py` added to `examples/scripts/`.
+
+---
+
 ## v8.2-Stable — Final Release (Feb 2026)
 
 **Status**: ✅ Final Stable Version
