@@ -5,7 +5,6 @@ Thumbs.db
 # Environments
 .env
 .env.local
-.agent/state/embedding_cache*.json
 .venv/
 venv/
 __pycache__/
@@ -34,6 +33,13 @@ session_logs/
 !examples/session_logs/
 .context/memories/session_logs/
 *.session.md
+
+# Agent State (NEVER commit - contains sensitive paths/data)
+.agent/state/
+.agent/inputs/
+.agent/graphrag/
+*manifest*.json
+*cache*.json
 
 # Build artifacts
 dist/
