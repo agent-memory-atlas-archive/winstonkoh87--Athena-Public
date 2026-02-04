@@ -91,6 +91,47 @@ See [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) for full setup with Supab
 
 ---
 
+## The Exocortex Model
+
+> **Athena is not just a coding assistant. It is a Centralised HQ for your entire life.**
+
+```mermaid
+graph TD
+    subgraph "Your Desktop"
+        WORK[📁 Work]
+        WEALTH[📁 Wealth]
+        HEALTH[📁 Health]
+    end
+
+    subgraph "The Brain"
+        ATHENA[🧠 Project Athena]
+    end
+
+    subgraph "The Interface"
+        IDE[⚡ Agentic IDE]
+        USER[👤 You]
+    end
+
+    USER --> IDE
+    IDE <--> ATHENA
+    ATHENA <-.-> WORK
+    ATHENA <-.-> WEALTH
+    ATHENA <-.-> HEALTH
+
+    style ATHENA fill:#16a34a,stroke:#333,stroke-width:2px
+    style IDE fill:#2563eb,stroke:#333,stroke-width:2px
+```
+
+| Component | Role |
+|-----------|------|
+| **Athena** | The Brain — logic, memory, protocols |
+| **External Folders** | The Body — raw files, documents |
+| **Agentic IDE** | The Nervous System — compute & interface |
+
+> **See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#the-exocortex-model)** for the full breakdown including Mount Points and security trade-offs.
+
+---
+
 ## The Process (The Schlep)
 
 > **Key insight**: The AI helped build the system that makes the AI more useful.
