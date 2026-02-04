@@ -378,6 +378,7 @@ MIT License — see [LICENSE](LICENSE)
 
 | Document | What It Shows |
 |----------|---------------|
+| [**🏆 Top 10 Protocols**](docs/TOP_10_PROTOCOLS.md) | MCDA-ranked essential protocols for any AI user |
 | [**📋 Spec Sheet**](docs/SPEC_SHEET.md) | Project specification: role, scope, constraints, and acceptance criteria |
 | [**👤 About Me**](docs/ABOUT_ME.md) | Career narrative and professional depth |
 | [**📊 Benchmarks**](docs/BENCHMARKS.md) | Real performance metrics (boot time, search latency, token economics) |
