@@ -67,8 +67,8 @@ pip install -e .
 # Initialize your workspace (creates all directories and templates)
 python -m athena init
 
-# Verify installation
-python -m athena --doctor
+# Verify installation (resilient boot with recovery shell)
+python scripts/boot.py
 ```
 
 See [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) for full setup with Supabase, API keys, and local mode.
@@ -500,6 +500,8 @@ Athena-Public/
 | `/ultrathink` | Maximum depth analysis |
 | `/refactor` | Workspace optimization |
 | `/research` | Multi-source web research |
+| `python scripts/core/quicksave.py "summary"` | Save checkpoint to session log |
+| `python scripts/core/smart_search.py "query"` | Semantic search over local files |
 
 See [examples/workflows/](examples/workflows/) for full list.
 
