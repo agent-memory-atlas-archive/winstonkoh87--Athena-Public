@@ -256,6 +256,9 @@ This isn't about building *my* assistant. It's about proving a pattern:
 3. **You direct the AI's behavior** — I configure *how* Athena responds to me. Semantic search gives me contextual, nuanced answers grounded in my own documented principles — not generic advice.
 4. **Zero operational burden** — Unlike SaaS products that break at scale, this is a *single-user local tool*. The complexity is real (800+ sessions, vector search, knowledge graphs), but there's no production to break. Real system design, zero ops chaos — ideal for demonstrating engineering depth without the liability.
 5. **Bilateral growth** — You evolve *with* Athena. Every insight you learn — about coding, system design, or any domain — gets captured and integrated. The system upgrades alongside you. It's not a static tool; it's a compound knowledge machine that reflects your growth trajectory.
+6. **Quadrant IV: What you don't know you don't know** — The highest-value zone. You can't Google what you don't know exists. Athena surfaces blind spots *before* they become problems — flagging dependencies you missed, risks you didn't consider, and connections you couldn't see. It's a co-pilot that sees the ditch before the driver does.
+
+> *"The goal isn't just to answer questions. It's to ask the questions you didn't know to ask."*
 
 👉 [docs/SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md)
 
