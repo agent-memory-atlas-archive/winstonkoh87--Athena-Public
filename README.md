@@ -351,6 +351,18 @@ It's included as a **reference**, not a prescription. Your instance will reflect
 
 ---
 
+## Acknowledgments
+
+Athena takes architectural cues from **[OpenClaw](https://github.com/openclaw/openclaw)** (149k ⭐):
+
+- Multi-agent safety patterns
+- Sandboxed execution modes
+- DM pairing security
+
+Where OpenClaw excels at *distribution* (12+ messaging channels), Athena focuses on *depth* (protocols, memory, knowledge graphs). They're complementary philosophies.
+
+---
+
 ## License
 
 MIT License — see [LICENSE](LICENSE)
