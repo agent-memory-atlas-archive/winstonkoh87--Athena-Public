@@ -139,9 +139,9 @@ graph TD
 
 | Metric | Private Repo | This Starter Pack |
 |--------|--------------|-------------------|
-| **Protocols** | 308 unique | 63 handpicked |
-| **Python Scripts** | 160 | 9 reference examples |
-| **Case Studies** | 357 | 6 showcase examples |
+| **Protocols** | 319 unique | 68 handpicked |
+| **Python Scripts** | 192 | 12 reference examples |
+| **Case Studies** | 358 | 6 showcase examples |
 | **Sessions Logged** | 1000+ | N/A (your sessions) |
 | **GraphRAG Communities** | 1,460 | — |
 | **Knowledge Graph** | 46MB + 78MB vectors | — |
