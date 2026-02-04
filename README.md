@@ -28,12 +28,6 @@
 - [What I Learnt](#what-i-learnt)
 - [📚 Further Reading](#-further-reading)
 
-> **Reading Paths**:
->
-> - 🚀 **New user?** → [Quickstart](#-5-minute-quickstart) → [Demo](docs/DEMO.md)
-> - 📊 **Evaluator?** → [Spec Sheet](docs/SPEC_SHEET.md) → [Benchmarks](docs/BENCHMARKS.md)
-> - 📖 **Full journey?** → Read top to bottom
-
 ---
 
 ## What You'll Get
