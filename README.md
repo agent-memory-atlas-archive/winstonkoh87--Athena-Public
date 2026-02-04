@@ -353,7 +353,7 @@ It's included as a **reference**, not a prescription. Your instance will reflect
 
 ## Acknowledgments
 
-Athena takes architectural cues from **[OpenClaw](https://github.com/openclaw/openclaw)** (149k ⭐):
+Athena takes architectural cues from **[OpenClaw](https://github.com/openclaw/openclaw)** (162k ⭐):
 
 - Multi-agent safety patterns
 - Sandboxed execution modes
