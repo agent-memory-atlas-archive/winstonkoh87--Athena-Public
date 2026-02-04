@@ -229,6 +229,92 @@ graph TD
 
 ---
 
+## The Exocortex Model
+
+> **Concept**: Athena is not just a coding assistant. It is a **Centralised HQ** for your entire life — a "second brain" that manages external domains (Work, Wealth, Health) from a single command center.
+
+### Architecture Philosophy
+
+```mermaid
+graph TD
+    subgraph "Your Desktop (The World)"
+        WORK[📁 Work / Assignments]
+        WEALTH[📁 Wealth / Finances]
+        HEALTH[📁 Health / Personal]
+    end
+
+    subgraph "The Brain"
+        ATHENA[🧠 Project Athena]
+        SCRIPTS[Scripts & Protocols]
+        MEMORY[Session Logs & Knowledge]
+    end
+
+    subgraph "The Interface"
+        IDE[⚡ Agentic IDE - Antigravity]
+        USER[👤 You]
+    end
+
+    USER --> IDE
+    IDE <--> ATHENA
+    ATHENA --> SCRIPTS
+    ATHENA --> MEMORY
+    ATHENA <-.-> WORK
+    ATHENA <-.-> WEALTH
+    ATHENA <-.-> HEALTH
+
+    style ATHENA fill:#16a34a,stroke:#333,stroke-width:2px
+    style IDE fill:#2563eb,stroke:#333,stroke-width:2px
+```
+
+### Key Concepts
+
+| Component | Role | Analogy |
+|-----------|------|---------|
+| **Project Athena** | The Kernel — holds logic, memory, and laws | The Brain |
+| **External Folders** | The Database — holds raw assets (files, docs) | The Body |
+| **Agentic IDE** | The Console — provides compute and interface | The Nervous System |
+| **You** | The Pilot — issues commands and makes decisions | The Consciousness |
+
+### Mount Points (The "Body" Parts)
+
+To enable Athena to manage your life, you define **Mount Points** — aliases to external folders that exist *outside* the Athena directory:
+
+```python
+# In src/athena/boot/constants.py
+MOUNTS = {
+    "WORK": "/Users/you/Desktop/Assignments",
+    "WEALTH": "/Users/you/Desktop/Wealth",
+    "HEALTH": "/Users/you/Desktop/Health"
+}
+```
+
+This separation protects your user data from system updates. If Athena's code is reset, your Health records remain safe in their own folder.
+
+### Required IDE Settings
+
+To achieve "Total Life OS" functionality, the Agentic IDE must have elevated permissions:
+
+| Setting | Value | Purpose |
+|---------|-------|---------|
+| **Non-Workspace File Access** | `Enabled` | Allows Athena to reach folders outside its root |
+| **Terminal Auto Execution** | `Always Proceed` (optional) | Enables autonomous script execution |
+| **Secure Mode** | `Disabled` | Removes friction for trusted environments |
+
+> [!WARNING]
+> This is "God Mode". It is powerful but requires trust. Only enable in a personal, secure environment.
+
+### The Trade-Off
+
+**Power vs. Safety**: An AI that manages your entire life *must* have access to your entire life. There is no way to sandbox an agent while simultaneously granting it full autonomy.
+
+**Mitigation**: Instead of locking permissions, lock the *process*:
+
+1. **Quicksave** before dangerous operations.
+2. **Deny List** catastrophic commands (e.g., `rm -rf /`).
+3. **Git Commit** on every `/end` session.
+
+---
+
 ## See Also
 
 - **[Glossary](./GLOSSARY.md)** — Key terms and definitions
