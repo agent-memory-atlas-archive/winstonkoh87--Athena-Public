@@ -41,28 +41,44 @@
 
 ## ⚡ 5-Minute Quickstart
 
-### Option A: Global CLI (Recommended)
+### Option A: Start Fresh (Recommended)
+
+**Step 1: Install the CLI**
 
 ```bash
-# Install globally via pip
 pip install athena-cli
+```
 
-# Or via uv (faster)
-uv tool install athena-cli --from git+https://github.com/winstonkoh87/Athena-Public.git
+> Or via [uv](https://docs.astral.sh/uv/) (faster): `uv tool install athena-cli --from git+https://github.com/winstonkoh87/Athena-Public.git`
 
-# Initialize in your project
-cd your-project
+**Step 2: Create your agent folder**
+
+```bash
+mkdir MyAgent
+cd MyAgent
+```
+
+**Step 3: Initialize Athena**
+
+```bash
 athena init .
+```
 
-# Or with IDE-specific config
-athena init --here --ide cursor    # Cursor
-athena init --here --ide antigravity  # Antigravity
+> This creates `.agent/`, `.context/`, `.framework/` in your folder.
 
-# Verify installation
-athena check
+**Step 4: Open in your AI IDE**
 
-# Start working
-# Open folder in your AI IDE → Type "/start" → Work → "/end" to save
+- Open `MyAgent` folder in [Antigravity](https://antigravity.google/), Cursor, or VS Code
+- Type `/start` to boot your agent
+- Work with your agent
+- Type `/end` to save the session
+
+**Optional: IDE-specific config**
+
+```bash
+athena init --ide antigravity  # Creates AGENTS.md
+athena init --ide cursor       # Creates .cursor/rules.md
+athena check                   # Verify installation
 ```
 
 ### Option B: Clone & Explore (Full Reference)
