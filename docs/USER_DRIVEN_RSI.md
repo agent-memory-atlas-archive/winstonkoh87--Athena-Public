@@ -118,4 +118,4 @@ What you do with it after that is up to you.
 
 - [Architecture Overview](./ARCHITECTURE.md) — System design
 - [The Exocortex Model](./ARCHITECTURE.md#the-exocortex-model) — Centralized HQ concept
-- [Philosophy](./PHILOSOPHY.md) — Amoral Realism and Schlep Acceptance
+- [Top 10 Protocols](./TOP_10_PROTOCOLS.md) — MCDA-ranked essential protocols
