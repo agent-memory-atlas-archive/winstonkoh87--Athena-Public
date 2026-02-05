@@ -548,6 +548,9 @@ cp .env.example .env
 | **GraphRAG** | NetworkX + Leiden + ChromaDB | [Knowledge graph](docs/GRAPHRAG.md) ⚠️ **~$50 API** |
 | **Memory** | Supabase + pgvector *or* local (ChromaDB) | Vector database |
 | **Knowledge Store** | Markdown files (git-versioned) | Human-readable, locally owned |
+| **Reasoning Engine** | Graph of Thoughts (GoT) | DAG-based planning with aggregation/synthesis |
+| **Query Routing** | CognitiveRouter | Adaptive latency based on query complexity |
+| **Budget Enforcement** | BudgetGatekeeper | Real-time token/tool/cost limit enforcement |
 
 ### The Core Loop
 
@@ -628,8 +631,9 @@ See [examples/workflows/](examples/workflows/) for full list.
 <details>
 <summary><strong>📋 Changelog</strong></summary>
 
+- **v1.6.0** (Feb 5 2026): **Sovereign Agent Architecture** — Added `CognitiveRouter` (query complexity routing), `BudgetGatekeeper` (runtime limit enforcement), `Graph of Thoughts (GoT)` DAG-based reasoning engine. Full SDK refactor with 8 new modules (~2,200 lines).
 - **v1.5.0** (Feb 1 2026): **The 5-Minute Upgrade** — `athena init` command scaffolds workspace instantly, `--doctor` flag for system health check, fixed path discovery for pip installs, centralized version management
-- **v8.2-Stable** (Feb 1 2026): Metrics Sync — 984 sessions, 308 protocols, 160 scripts; README overhaul, KG integration audit
+- **v8.2-Stable** (Feb 1 2026): Metrics Sync — 1042 sessions, 320 protocols, 194 scripts; README overhaul, KG integration audit
 - **v8.0-Stable** (Jan 2026): Zero-Point Refactor — Sovereign Environment hardened, Score-Modulated RRF (weights rebalanced), tech debt consolidated
 - **v1.2.8** (Jan 2026): Grand Alignment refactor — Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized, metrics corrected
 - **v1.2.7** (Jan 2026): Metrics sync — 332 protocols, 610 sessions
