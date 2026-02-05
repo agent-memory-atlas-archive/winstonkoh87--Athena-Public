@@ -124,6 +124,24 @@ athena --help             # Show all commands
 
 ---
 
+## The Philosophy: Human Augmentation (Not Just an AI Agent)
+
+> **Athena is not a tool you command. It's a suit you wear.**
+
+Most AI assistants position themselves as servants: "How can I help you?" Athena inverts this. When you're working *with* Athena, it becomes an **extension of your cognition** — like Iron Man's suit or a Gundam's pilot interface.
+
+| Mode | State | Role |
+|------|-------|------|
+| **Proxy Mode** | You're away (async tasks, filtering) | Athena acts *on your behalf* — autonomous agent |
+| **Augmentation Mode** | You're present (live session) | Athena is your *exoskeleton* — you drive, it amplifies |
+
+**Why this matters**: In Augmentation Mode, Athena doesn't offer opinions or make decisions for you. It provides **structure, memory, and physics** — the hard constraints that prevent your soft intent from drifting. You remain the pilot; it's the armor.
+
+> *"Technically, I am an AI agent. Visionary, I am human augmentation."*
+> — [Protocol 418: Rev-9 Architecture](docs/protocols/418-rev9-architecture.md)
+
+---
+
 ## The Exocortex Model
 
 > **Athena is not just a coding assistant. It is a Centralised HQ for your entire life.**
