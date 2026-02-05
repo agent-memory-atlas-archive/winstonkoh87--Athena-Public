@@ -132,7 +132,30 @@ sequenceDiagram
 | Architecture query | `System_Manifest.md` | ~1,900 |
 | Specific protocol | `protocols/*.md` | varies |
 
----
+### Context Hydration (Active Injection)
+
+> **Problem**: Learnings written to files (e.g., `User_Profile_Core.md`) become *passive documentation*. The AI doesn't read them unless explicitly prompted, causing the same mistakes to repeat.
+
+> **Solution**: **Active Injection** — Force-feed critical constraints into the terminal during boot.
+
+```mermaid
+sequenceDiagram
+    participant Boot as boot.py
+    participant Knowledge as boot_knowledge.py
+    participant Agent as Athena Agent
+
+    Boot->>Knowledge: Execute on startup
+    Knowledge->>Knowledge: Parse User_Profile_Core.md
+    Knowledge->>Agent: Print constraints to stdout
+    Note over Agent: Constraints are now in context window
+```
+
+**Key Scripts:**
+
+- [`boot_knowledge.py`](../scripts/core/boot_knowledge.py): Extracts and prints constraints.
+- [`index_workspace.py`](../scripts/core/index_workspace.py): Rebuilds `TAG_INDEX.md` and `PROTOCOL_SUMMARIES.md` on shutdown.
+
+**See Also**: [Protocol 418: Active Knowledge Injection](../examples/protocols/architecture/418-active-knowledge-injection.md)
 
 ## Key Workflows
 

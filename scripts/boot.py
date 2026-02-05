@@ -99,6 +99,14 @@ def main():
     root = get_project_root()
     print(f"📂 Project Root: {root}")
 
+    # === Active Knowledge Injection ===
+    knowledge_script = PROJECT_ROOT / "scripts" / "core" / "boot_knowledge.py"
+    if knowledge_script.exists():
+        import subprocess
+
+        subprocess.run([sys.executable, str(knowledge_script)])
+    # ===================================
+
     checks = [
         ("pyproject.toml", root / "pyproject.toml"),
         ("src/athena", root / "src" / "athena"),
