@@ -161,6 +161,16 @@ graph TD
 | **External Folders** | The Body — raw files, documents |
 | **Agentic IDE** | The Nervous System — compute & interface |
 
+### Which Structure Should You Use?
+
+| Approach | Description | Best For |
+|----------|-------------|----------|
+| **Nested (Recommended)** | Work/Wealth/Health folders **inside** your Athena folder (e.g., `.context/Life/`) | **New users**. Zero config. AI sees everything automatically. |
+| **Separated (Advanced)** | Folders live **outside** Athena on your Desktop, connected via symlinks | **Power users**. Cleaner desktop, but requires symlink setup. |
+
+> [!TIP]
+> **Start nested, graduate to separated.** The diagram above shows the *aspirational end-state*. On Day 1, just run `athena init MyAgent` — everything lives inside one folder and the AI works out of the box. Once you're comfortable, you can refactor to the separated Exocortex model if desired.
+
 > **See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#the-exocortex-model)** for the full breakdown including Mount Points and security trade-offs.
 
 ---
