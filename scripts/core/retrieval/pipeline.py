@@ -237,6 +237,9 @@ class AthenaRetriever(RRFPipeline):
         # 4. Canonical Markdown (direct file matches)
         results["canonical_markdown"] = self._search_canonical(query)
 
+        # 5. Graph RAG (NEW: from KNOWLEDGE_GRAPH.md)
+        results["graph_rag"] = self._search_graph(query)
+
         return results
 
     def _search_vector(self, query: str) -> List[RetrievalResult]:
@@ -318,6 +321,32 @@ class AthenaRetriever(RRFPipeline):
         """Search canonical markdown files by content."""
         # This is expensive - in production, use pre-indexed content
         return []
+
+    def _search_graph(self, query: str) -> List[RetrievalResult]:
+        """Search knowledge graph for related entities and relationships."""
+        try:
+            from athena.core.retrieval.graphrag import search_graph
+
+            result = search_graph(query)
+            if not result.context:
+                return []
+
+            return [
+                RetrievalResult(
+                    content=result.context,
+                    source="graph_rag",
+                    score=0.8,  # Base score for graph results
+                    metadata={
+                        "entity_count": len(result.entities),
+                        "relationship_count": len(result.relationships),
+                    },
+                    file_path=str(
+                        self.project_root / ".context" / "KNOWLEDGE_GRAPH.md"
+                    ),
+                )
+            ]
+        except Exception:
+            return []
 
 
 # Convenience function
