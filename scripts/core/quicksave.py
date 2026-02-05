@@ -1,74 +1,97 @@
 #!/usr/bin/env python3
 """
-quicksave.py — Session Checkpointing (Public Example)
-======================================================
-Appends a timestamped checkpoint to the current session log.
-This is a simplified, standalone version for Athena-Public.
-
-Usage:
-    python3 scripts/core/quicksave.py "Completed OAuth integration"
-    python3 scripts/core/quicksave.py "Fixed edge case" --bullets "Bug in auth" "Added test"
+quicksave.py — SDK Shim
+========================
+Saves a checkpoint to the current session log via athena.sessions.
 """
 
-import argparse
 import sys
-from datetime import datetime
+import argparse
 from pathlib import Path
 
-# Discover session log directory (relative to script location)
-SCRIPT_DIR = Path(__file__).parent
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
-SESSION_LOG_DIR = PROJECT_ROOT / "session_logs"
+from lib.shared_utils import setup_paths, log_violation
 
+setup_paths()
 
-def get_current_session_log() -> Path:
-    """
-    Get (or create) today's session log file.
-    Follows the format: YYYY-MM-DD-session-01.md
-    """
-    SESSION_LOG_DIR.mkdir(parents=True, exist_ok=True)
-    today = datetime.now().strftime("%Y-%m-%d")
-
-    # Find existing session for today, or create a new one
-    existing = list(SESSION_LOG_DIR.glob(f"{today}-session-*.md"))
-    if existing:
-        # Get the latest session file for today
-        return sorted(existing, reverse=True)[0]
-    else:
-        # Create a new session file
-        new_session = SESSION_LOG_DIR / f"{today}-session-01.md"
-        new_session.write_text(f"# Session Log: {today}\n\n")
-        return new_session
-
-
-def append_checkpoint(session_log: Path, summary: str, bullets: list[str] = None):
-    """
-    Append a checkpoint entry to the session log.
-    """
-    timestamp = datetime.now().strftime("%H:%M")
-    entry = f"\n## [{timestamp}] Checkpoint\n\n{summary}\n"
-
-    if bullets:
-        entry += "\n"
-        for bullet in bullets:
-            entry += f"- {bullet}\n"
-
-    with open(session_log, "a") as f:
-        f.write(entry)
+from athena.sessions import append_checkpoint, log_to_decision_ledger
+from athena.core.governance import get_governance
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Athena Quicksave — Append a checkpoint to session log"
-    )
+    parser = argparse.ArgumentParser(description="Athena Quicksave (SDK Shim)")
     parser.add_argument("summary", help="Summary of activity")
-    parser.add_argument("--bullets", nargs="+", help="Optional bullet points for details")
+    parser.add_argument("--bullets", nargs="+", help="Optional bullet points")
+    parser.add_argument(
+        "--decision", action="store_true", help="Log to decision ledger too"
+    )
     args = parser.parse_args()
 
+    # Governance: Check if Triple-Lock protocol was followed
+    gov = get_governance()
+    semantic = gov._state.get("semantic_search_performed", False)
+    web = gov._state.get("web_search_performed", False)
+
+    if not (semantic and web):
+        missing = []
+        if not semantic:
+            missing.append("Semantic Search")
+        if not web:
+            missing.append("Web Research")
+
+        print(
+            f"\033[91m⚠️  TRIPLE-LOCK VIOLATION: Quicksave initiated. Missing: {', '.join(missing)}.\033[0m"
+        )
+        # Log violation via shared util
+        log_violation(
+            "triple_lock", f"Quicksave triggered. Missing: {', '.join(missing)}"
+        )
+
+    # === NEW: Protocol 416 (Promise Gate) ===
+    # Check if the summary contains promise triggers ("I will...", "Noted")
+    # and if so, verify files were actually changed.
+    script_dir = Path(__file__).parent
+    verifier = script_dir / "verify_promises.py"
+
+    if verifier.exists():
+        import subprocess
+
+        # We pass the summary to the verifier as the "response text"
+        # Since quicksave summary is effectively the agent's statement of intent/action.
+        res = subprocess.run(
+            [sys.executable, str(verifier), args.summary],
+            capture_output=True,
+            text=True,
+        )
+
+        if res.returncode != 0:
+            print(f"\n{res.stdout}")  # Print the specific violation message
+            print(
+                f"\033[91m❌ QUICKSAVE BLOCKED: Promise Violation (Protocol 416).\033[0m"
+            )
+            print("You promised an action in the summary but no files were changed.")
+            sys.exit(1)
+        elif res.stdout and "✅" in res.stdout:
+            print(res.stdout.strip())
+
+    # === NEW: Protocol 168 (Context Hygiene) ===
+    # Monitor session entropy and print warnings if limits reached.
+    monitor = script_dir / "context_monitor.py"
+    if monitor.exists():
+        import subprocess
+
+        subprocess.run([sys.executable, str(monitor)])
+    # ==========================================
+
+    gov.verify_exchange_integrity()  # Resets state regardless of result
+
     try:
-        session_log = get_current_session_log()
-        append_checkpoint(session_log, args.summary, args.bullets)
-        print(f"✅ Quicksave [{datetime.now().strftime('%H:%M')}] → {session_log.name}")
+        log_path = append_checkpoint(args.summary, args.bullets)
+        print(f"✅ Quicksave → {log_path.name}")
+
+        if args.decision or "[CIRCUIT" in args.summary:
+            log_to_decision_ledger(args.summary)
+            print("⚖️  Decision logged to ledger.")
+
     except Exception as e:
         print(f"❌ Quicksave failed: {e}", file=sys.stderr)
         sys.exit(1)

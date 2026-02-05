@@ -160,15 +160,53 @@ class RRFPipeline:
         if not self.rerank_enabled:
             return results[: self.post_rerank_top_k]
 
-        # TODO: Integrate sentence-transformers cross-encoder
-        # For now, return as-is with score decay
-        reranked = []
-        for i, result in enumerate(results[: self.post_rerank_top_k]):
-            # Simple decay for now
-            result.score = result.score * (0.95**i)
-            reranked.append(result)
+        import os
+        import google.generativeai as genai
 
-        return reranked
+        has_api = os.getenv("GOOGLE_API_KEY") is not None
+        if not has_api:
+            return results[: self.post_rerank_top_k]
+
+        try:
+            genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+            model = genai.GenerativeModel("gemini-1.5-flash")
+
+            # Pack top results for reranking
+            candidates = []
+            for i, r in enumerate(results[: self.post_fusion_top_k]):
+                candidates.append({"id": i, "content": r.content[:500]})
+
+            prompt = f"""Rate the relevance of these documents to the query: "{query}"
+            Respond with a JSON list of IDs in order of relevance, with a score 0-1.
+            Candidates: {json.dumps(candidates)}
+            """
+
+            response = model.generate_content(
+                prompt, generation_config={"response_mime_type": "application/json"}
+            )
+            ranks = json.loads(response.text)
+
+            # Reorder based on model feedback
+            reranked = []
+            seen_ids = set()
+            for item in ranks:
+                idx = item.get("id")
+                if idx is not None and 0 <= idx < len(results) and idx not in seen_ids:
+                    res = results[idx]
+                    res.score = item.get("score", res.score)
+                    reranked.append(res)
+                    seen_ids.add(idx)
+
+            # Fill in remaining if needed
+            for i, r in enumerate(results):
+                if i not in seen_ids:
+                    reranked.append(r)
+
+            return reranked[: self.post_rerank_top_k]
+
+        except Exception as e:
+            print(f"⚠️ Rerank failed: {e}")
+            return results[: self.post_rerank_top_k]
 
     def retrieve(
         self, query: str, sources: Optional[Dict[str, List[RetrievalResult]]] = None
@@ -219,7 +257,10 @@ class AthenaRetriever(RRFPipeline):
     def __init__(self):
         super().__init__()
         self.project_root = Path(__file__).resolve().parents[4]
-        self.tag_index_path = self.project_root / ".context" / "TAG_INDEX.md"
+        self.tag_shards = [
+            self.project_root / ".context" / "TAG_INDEX_A-M.md",
+            self.project_root / ".context" / "TAG_INDEX_N-Z.md",
+        ]
 
     def _gather_sources(self, query: str) -> Dict[str, List[RetrievalResult]]:
         """Gather from Athena's actual sources."""
@@ -262,30 +303,33 @@ class AthenaRetriever(RRFPipeline):
             return []
 
     def _search_tags(self, query: str) -> List[RetrievalResult]:
-        """Search TAG_INDEX.md for matching tags."""
-        if not self.tag_index_path.exists():
-            return []
-
+        """Search TAG_INDEX shards for matching tags."""
         results = []
         query_lower = query.lower()
 
-        try:
-            content = self.tag_index_path.read_text()
-            for line in content.split("\n"):
-                if "::" in line:
-                    tag, files = line.split("::", 1)
-                    if query_lower in tag.lower():
-                        results.append(
-                            RetrievalResult(
-                                content=line,
-                                source="tags_index",
-                                score=1.0 if query_lower == tag.lower() else 0.5,
-                                metadata={"tag": tag},
-                                file_path=None,
+        for shard_path in self.tag_shards:
+            if not shard_path.exists():
+                continue
+
+            try:
+                content = shard_path.read_text()
+                for line in content.split("\n"):
+                    if "|" in line and query_lower in line.lower():
+                        # Extract tag from markdown table row
+                        parts = [p.strip() for p in line.split("|") if p.strip()]
+                        if len(parts) >= 2:
+                            tag = parts[0]
+                            results.append(
+                                RetrievalResult(
+                                    content=line,
+                                    source="tags_index",
+                                    score=1.0 if query_lower in tag.lower() else 0.5,
+                                    metadata={"tag": tag, "shard": shard_path.name},
+                                    file_path=None,
+                                )
                             )
-                        )
-        except Exception:
-            pass
+            except Exception:
+                pass
 
         return results[: self.per_source_top_k]
 

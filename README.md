@@ -1,6 +1,6 @@
 ![Athena Banner](./docs/athena_banner.png)
 
-> **Last Updated**: 5 February 2026
+> **Last Updated**: 6 February 2026
 
 # 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
 
@@ -121,6 +121,8 @@ athena --help             # Show all commands
 | **Cross-Session Memory** | Remember decisions from Session 19 when you're on Session 995 |
 | **Gateway Architecture** | Persist beyond IDE termination via a sidecar process |
 | **Knowledge Retrieval** | Semantic search across 1000+ documents in <200ms |
+| **Parallel Reasoning** | True parallel tracks (v3.0) with API rate-limit protection |
+| **Context Hygiene** | Active session entropy monitoring to prevent context drift |
 
 ---
 
@@ -631,6 +633,7 @@ See [examples/workflows/](examples/workflows/) for full list.
 <details>
 <summary><strong>📋 Changelog</strong></summary>
 
+- **v1.7.0** (Feb 6 2026): **Executioner's Update (Min-Max)** — Integrated `ParallelOrchestrator v3.0` (Token Bucket throttling), `ContextMonitor` (entropy alerts), and `TrilateralAuditor` logic completion. Refined RRF pipeline with Gemini-led reranking.
 - **v1.6.0** (Feb 5 2026): **Sovereign Agent Architecture** — Added `CognitiveRouter` (query complexity routing), `BudgetGatekeeper` (runtime limit enforcement), `Graph of Thoughts (GoT)` DAG-based reasoning engine. Full SDK refactor with 8 new modules (~2,200 lines).
 - **v1.5.0** (Feb 1 2026): **The 5-Minute Upgrade** — `athena init` command scaffolds workspace instantly, `--doctor` flag for system health check, fixed path discovery for pip installs, centralized version management
 - **v8.2-Stable** (Feb 1 2026): Metrics Sync — 1042 sessions, 320 protocols, 194 scripts; README overhaul, KG integration audit

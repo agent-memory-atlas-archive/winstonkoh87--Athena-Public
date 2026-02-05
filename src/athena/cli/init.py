@@ -129,7 +129,7 @@ The save command will append a timestamped checkpoint to the current session log
 
 PROJECT_STATE_TEMPLATE = """---
 created: '{date}'
-last_updated: '{date}'
+last_updated: '2026-02-06'
 framework_version: v1.0.0
 ---
 
