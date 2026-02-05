@@ -41,37 +41,54 @@
 
 ## ⚡ 5-Minute Quickstart
 
+### Option A: Global CLI (Recommended)
+
+```bash
+# Install globally via pip
+pip install athena-cli
+
+# Or via uv (faster)
+uv tool install athena-cli --from git+https://github.com/winstonkoh87/Athena-Public.git
+
+# Initialize in your project
+cd your-project
+athena init .
+
+# Or with IDE-specific config
+athena init --here --ide cursor    # Cursor
+athena init --here --ide antigravity  # Antigravity
+
+# Verify installation
+athena check
+
+# Start working
+# Open folder in your AI IDE → Type "/start" → Work → "/end" to save
+```
+
+### Option B: Clone & Explore (Full Reference)
+
 | Step | Action |
 |------|--------|
 | **1** | **[Download Antigravity](https://antigravity.google/)** — Install the IDE |
-| **2** | **Create a new workspace** — Open Antigravity → `New Workspace` |
-| **3** | **Clone this repo** — In Agent Manager, paste: `https://github.com/winstonkoh87/Athena-Public` |
-| **4** | **Ask the AI: "What should I do next?"** — It will read the repo and guide you |
+| **2** | **Clone this repo** — `git clone https://github.com/winstonkoh87/Athena-Public` |
+| **3** | **Open the folder** — Open in Antigravity as a workspace |
+| **4** | **Ask the AI: "What should I do next?"** — It reads the repo and guides you |
 | **5** | **Enjoy your bionic brain** — Type `/start` to boot, work, then `/end` to save |
 
-That's it. The AI bootstraps itself.
-
-> **Development Environment**: [Google Antigravity](https://antigravity.google/) — an agentic IDE that allows AI to read/write files directly. **Note**: Antigravity is the development interface, not a hard dependency. The `athena` Python SDK runs in any terminal/IDE (VS Code, PyCharm, CLI). The core loop (`/start` → Work → `/end`) is pure Python scripts.
-
 <details>
-<summary><strong>🔧 Alternative: Manual Setup (No Antigravity)</strong></summary>
+<summary><strong>🔧 CLI Commands Reference</strong></summary>
 
 ```bash
-# Clone
-git clone https://github.com/winstonkoh87/Athena-Public.git
-cd Athena-Public
-
-# Install the SDK
-pip install -e .
-
-# Initialize your workspace (creates all directories and templates)
-python -m athena init
-
-# Verify installation (resilient boot with recovery shell)
-python scripts/boot.py
+athena                    # Boot session
+athena init .             # Initialize workspace in current directory
+athena init --here        # Same as above (alias)
+athena init --ide cursor  # Init with IDE-specific config
+athena check              # Run system health check
+athena save "summary"     # Quicksave checkpoint
+athena --end              # Close session and save
+athena --version          # Show version
+athena --help             # Show all commands
 ```
-
-See [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) for full setup with Supabase, API keys, and local mode.
 
 </details>
 

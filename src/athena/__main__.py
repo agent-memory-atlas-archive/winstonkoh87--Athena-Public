@@ -2,14 +2,17 @@
 athena.__main__ — CLI Entry Point
 ==================================
 
-Enables running Athena via: python -m athena
+Enables running Athena via: athena (global) or python -m athena
 
 Usage:
-    python -m athena              # Boot the orchestrator
-    python -m athena init         # Initialize a new workspace
-    python -m athena --doctor     # Run system health check
-    python -m athena --version    # Show version
-    python -m athena --help       # Show help
+    athena                     # Boot the orchestrator
+    athena init .              # Initialize workspace in current directory
+    athena init --here         # Same as above (alias)
+    athena init --ide cursor   # Init with IDE-specific config
+    athena check               # Run system health check
+    athena save "summary"      # Quicksave checkpoint
+    athena --version           # Show version
+    athena --help              # Show help
 """
 
 import argparse
@@ -25,20 +28,20 @@ except ImportError:
     pass  # dotenv is optional for minimal installs
 
 
-def run_doctor():
+def run_check():
     """Run system health diagnostics."""
     from athena import __version__
 
-    print("🩺 ATHENA SYSTEM DOCTOR")
+    print("🩺 ATHENA SYSTEM CHECK")
     print("=" * 60)
-    print(f"   SDK Version: {__version__}")
+    print(f"   CLI Version: {__version__}")
 
     # Check for .athena_root marker
     root_marker = Path.cwd() / ".athena_root"
     if root_marker.exists():
         print("   ✅ Workspace marker: Found")
     else:
-        print("   ⚠️  Workspace marker: Missing (run `athena init` first)")
+        print("   ⚠️  Workspace marker: Missing (run `athena init .` first)")
 
     # Check key directories
     dirs_to_check = [".agent", ".context", ".framework"]
@@ -67,14 +70,19 @@ def run_doctor():
 def main():
     parser = argparse.ArgumentParser(
         prog="athena",
-        description="Athena Bionic OS — Personal AI Operating System with Memory",
+        description="Athena Bionic OS — Build Your Own AI Agent in 5 Minutes",
     )
     parser.add_argument("--version", "-v", action="store_true", help="Show version and exit")
     parser.add_argument(
         "--boot", "-b", action="store_true", help="Run the boot orchestrator (default action)"
     )
     parser.add_argument("--end", "-e", action="store_true", help="Run the shutdown sequence")
-    parser.add_argument("--doctor", "-d", action="store_true", help="Run system health check")
+    parser.add_argument(
+        "--doctor",
+        "-d",
+        action="store_true",
+        help=argparse.SUPPRESS,  # Hidden, use 'check' instead
+    )
     parser.add_argument(
         "--root",
         type=Path,
@@ -92,8 +100,23 @@ def main():
         nargs="?",
         type=Path,
         default=None,
-        help="Target directory (defaults to current directory)",
+        help="Target directory (use '.' for current directory)",
     )
+    init_parser.add_argument(
+        "--here",
+        action="store_true",
+        help="Initialize in current directory (alias for 'init .')",
+    )
+    init_parser.add_argument(
+        "--ide",
+        "-i",
+        choices=["antigravity", "cursor", "vscode", "gemini"],
+        default=None,
+        help="Generate IDE-specific configuration files",
+    )
+
+    # check subcommand (replaces --doctor)
+    subparsers.add_parser("check", help="Run system health check")
 
     # save subcommand
     save_parser = subparsers.add_parser("save", help="Quicksave checkpoint to session log")
@@ -108,17 +131,23 @@ def main():
     if args.version:
         from athena import __version__
 
-        print(f"athena-sdk v{__version__}")
+        print(f"athena-cli v{__version__}")
         sys.exit(0)
 
-    if args.doctor:
-        run_doctor()
+    # check subcommand or --doctor flag
+    if args.command == "check" or args.doctor:
+        run_check()
         sys.exit(0)
 
     if args.command == "init":
         from athena.cli.init import init_workspace
 
-        success = init_workspace(args.target)
+        # Handle --here flag
+        target = args.target
+        if args.here:
+            target = Path.cwd()
+
+        success = init_workspace(target, ide=args.ide)
         sys.exit(0 if success else 1)
 
     if args.end:
