@@ -13,6 +13,7 @@
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.5-CC785C?logo=anthropic)
 ![Built with Gemini](https://img.shields.io/badge/Gemini-3.0_Pro-4285F4?logo=google)
 ![IDE](https://img.shields.io/badge/IDE-Antigravity-000000?logo=google)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 > **A framework for creating persistent, sovereign AI agents.**  
 > **Your AI. Your memory. Your rules.**
@@ -41,7 +42,15 @@
 
 ## ⚡ 5-Minute Quickstart
 
-### Option A: Start Fresh (Recommended)
+### Option A: Cloud Factory (Fastest)
+
+1. Click the **[Open in GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public)** badge above.
+2. Wait for the cloud environment to build (~2 minutes).
+3. Type `/start` in the terminal.
+
+> **Zero Setup**: No Python, minimal RAM, or GPU required. Runs entirely in the cloud.
+
+### Option B: Local Install (Recommended)
 
 **Step 1: Install the CLI**
 
