@@ -621,12 +621,16 @@ Athena-Public/
 | `/end` | Close session, commit to memory |
 | `/think` | Deep reasoning mode |
 | `/ultrathink` | Maximum depth analysis |
+| `/brief` | Pre-prompt clarification protocol |
 | `/refactor` | Workspace optimization |
 | `/research` | Multi-source web research |
-| `python scripts/core/quicksave.py "summary"` | Save checkpoint to session log |
-| `python scripts/core/smart_search.py "query"` | Semantic search over local files |
+| `/plan` | Structured planning with pre-mortem |
+| `/save` | Mid-session checkpoint |
+| `/vibe` | Ship at 70%, iterate fast |
 
-See [examples/workflows/](examples/workflows/) for full list.
+👉 **[Full Workflow Documentation](docs/WORKFLOWS.md)** — Detailed guide to all 12 workflows
+
+See [.agent/workflows/](.agent/workflows/) for source files.
 
 </details>
 
