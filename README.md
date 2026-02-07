@@ -1,6 +1,6 @@
 ![Athena Banner](./docs/athena_banner.png)
 
-> **Last Updated**: 6 February 2026
+> **Last Updated**: 7 February 2026
 
 # 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
 
@@ -36,7 +36,7 @@
 | Feature | Description |
 |---------|-------------|
 | 🧠 **Memory That Persists** | Your agent remembers context across sessions, even after IDE restarts |
-| 📚 **69 Handpicked Protocols** | Curated decision frameworks from the private repo's 320 unique collection |
+| 📚 **69 Handpicked Protocols** | Curated decision frameworks from the private repo's 324 unique collection |
 | 🔄 **Platform Independence** | Your data lives in Markdown files you own — take it anywhere |
 | 🤖 **Full Autonomy** | Your agent can act on your behalf while you sleep |
 
@@ -254,10 +254,10 @@ graph TD
 
 | Metric | Private Repo | This Starter Pack |
 |--------|--------------|-------------------|
-| **Protocols** | 320 unique | 69 handpicked |
-| **Python Scripts** | 194 | 12 reference examples |
-| **Case Studies** | 358 | 6 showcase examples |
-| **Sessions Logged** | 1042 | N/A (your sessions) |
+| **Protocols** | 324 unique | 69 handpicked |
+| **Python Scripts** | 192 | 12 reference examples |
+| **Case Studies** | 361 | 6 showcase examples |
+| **Sessions Logged** | 1073 | N/A (your sessions) |
 | **GraphRAG Communities** | 1,460 | — |
 | **Knowledge Graph** | 46MB + 78MB vectors | — |
 
@@ -295,7 +295,7 @@ graph TD
 |--------|---------|
 | **User-Driven RSI** | The system improves based on *your* feedback. Every friction you surface becomes a protocol. Every insight gets indexed. You shape the AI; the AI shapes how you think. |
 | **Portability** | Data lives locally (primary) and in the cloud. Not trapped in ChatGPT or Claude. It's mine — I can port it anywhere. |
-| **Principles** | 308 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
+| **Principles** | 324 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
 
 <details>
 <summary><strong>📊 Full Benchmarks & Case Studies</strong></summary>
@@ -337,7 +337,7 @@ graph TD
 
 ## The Reverse SDLC (Build First, Spec Later)
 
-> **Key Insight**: Athena was not designed top-down. It evolved bottom-up through 1000+ sessions.
+> **Key Insight**: Athena was not designed top-down. It evolved bottom-up through 1073+ sessions.
 
 Traditional software development follows: **Requirements → Design → Build → Test**.
 
@@ -415,7 +415,7 @@ flowchart LR
 
 ## Reference Implementation
 
-This repo documents **Winston's personal Athena instance** — 1000+ sessions, 308 unique protocols, production-tested daily.
+This repo documents **Winston's personal Athena instance** — 1073+ sessions, 324 unique protocols, production-tested daily.
 
 It's included as a **reference**, not a prescription. Your instance will reflect your domain, your decisions, your voice.
 
@@ -586,7 +586,7 @@ Think of it like **Git, but for conversations**. Each session builds on the last
 | **`/end` commit** | Summarizes session, extracts decisions, saves to knowledge store |
 | **Hybrid search** | Fuses Canonical + [GraphRAG](docs/GRAPHRAG.md) + Tags + [Vectors](docs/VECTORRAG.md) + Filenames via RRF |
 | **Cross-encoder reranking** | Refines top results with `sentence-transformers` |
-| **Protocol library** | [308 unique protocols](examples/protocols/) (63 curated in starter pack) |
+| **Protocol library** | [324 unique protocols](examples/protocols/) (63 curated in starter pack) |
 
 ### Repository Structure
 
@@ -649,7 +649,7 @@ See [.agent/workflows/](.agent/workflows/) for source files.
 - **v1.7.0** (Feb 6 2026): **Executioner's Update (Min-Max)** — Integrated `ParallelOrchestrator v3.0` (Token Bucket throttling), `ContextMonitor` (entropy alerts), and `TrilateralAuditor` logic completion. Refined RRF pipeline with Gemini-led reranking.
 - **v1.6.0** (Feb 5 2026): **Sovereign Agent Architecture** — Added `CognitiveRouter` (query complexity routing), `BudgetGatekeeper` (runtime limit enforcement), `Graph of Thoughts (GoT)` DAG-based reasoning engine. Full SDK refactor with 8 new modules (~2,200 lines).
 - **v1.5.0** (Feb 1 2026): **The 5-Minute Upgrade** — `athena init` command scaffolds workspace instantly, `--doctor` flag for system health check, fixed path discovery for pip installs, centralized version management
-- **v8.2-Stable** (Feb 1 2026): Metrics Sync — 1042 sessions, 320 protocols, 194 scripts; README overhaul, KG integration audit
+- **v8.2-Stable** (Feb 7 2026): Metrics Sync — 1073 sessions, 324 protocols, 192 scripts; README overhaul, KG integration audit
 - **v8.0-Stable** (Jan 2026): Zero-Point Refactor — Sovereign Environment hardened, Score-Modulated RRF (weights rebalanced), tech debt consolidated
 - **v1.2.8** (Jan 2026): Grand Alignment refactor — Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized, metrics corrected
 - **v1.2.7** (Jan 2026): Metrics sync — 332 protocols, 610 sessions
