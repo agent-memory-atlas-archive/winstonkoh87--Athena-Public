@@ -648,24 +648,14 @@ See [.agent/workflows/](.agent/workflows/) for source files.
 <details>
 <summary><strong>📋 Changelog</strong></summary>
 
+### February 2026
+
+- **v8.2-Stable** (Feb 7 2026): Metrics Sync — 1073 sessions, 324 protocols, 192 scripts; README overhaul, KG integration audit
 - **v1.7.0** (Feb 6 2026): **Executioner's Update (Min-Max)** — Integrated `ParallelOrchestrator v3.0` (Token Bucket throttling), `ContextMonitor` (entropy alerts), and `TrilateralAuditor` logic completion. Refined RRF pipeline with Gemini-led reranking.
 - **v1.6.0** (Feb 5 2026): **Sovereign Agent Architecture** — Added `CognitiveRouter` (query complexity routing), `BudgetGatekeeper` (runtime limit enforcement), `Graph of Thoughts (GoT)` DAG-based reasoning engine. Full SDK refactor with 8 new modules (~2,200 lines).
 - **v1.5.0** (Feb 1 2026): **The 5-Minute Upgrade** — `athena init` command scaffolds workspace instantly, `--doctor` flag for system health check, fixed path discovery for pip installs, centralized version management
-- **v8.2-Stable** (Feb 7 2026): Metrics Sync — 1073 sessions, 324 protocols, 192 scripts; README overhaul, KG integration audit
-- **v8.0-Stable** (Jan 2026): Zero-Point Refactor — Sovereign Environment hardened, Score-Modulated RRF (weights rebalanced), tech debt consolidated
-- **v1.2.8** (Jan 2026): Grand Alignment refactor — Supabase schema hardened (11 tables + RLS), Memory Insurance layer stabilized, metrics corrected
-- **v1.2.7** (Jan 2026): Metrics sync — 332 protocols, 610 sessions
-- **v1.2.6** (Jan 2026): Stats sync — 605 sessions, 119 scripts; README restructure
-- **v1.2.5** (Jan 2026): Stats sync — 277 protocols; Python badge fix (3.13)
-- **v1.2.4** (Jan 2026): README restructure — collapsed technical sections into "Further Reading"
-- **v1.2.3** (Jan 2026): Stats correction — 269 protocols, 538 sessions, 117 scripts
-- **v1.2.2** (Jan 2026): Stats sync — 248 protocols, 560 sessions, 97 scripts; removed off-topic content
-- **v1.2.1** (Jan 2026): README overhaul — Process section, Security Model, co-development narrative
-- **v1.2.0** (Jan 2026): New year sync — 246 protocols, 511 sessions
-- **v1.1.0** (Dec 2025): Year-end sync — 238 protocols, 489 sessions
-- **v1.0.0** (Dec 2025): SDK architecture (`src/athena/`), quickstart examples
 
-👉 [docs/CHANGELOG.md](docs/CHANGELOG.md)
+👉 **[Full Changelog](docs/CHANGELOG.md)** — Complete version history from v1.0.0 (Dec 2025)
 
 </details>
 
