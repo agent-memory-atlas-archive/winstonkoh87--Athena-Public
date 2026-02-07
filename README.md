@@ -444,7 +444,7 @@ MIT License — see [LICENSE](LICENSE)
 
 ## 📚 Further Reading
 
-### New Additions (January 2026)
+### New Additions (February 2026)
 
 > [!TIP]
 > **New to AI agents?** Start with [What Is an AI Agent?](docs/WHAT_IS_AN_AI_AGENT.md) → then follow [Your First Agent](docs/YOUR_FIRST_AGENT.md) for a 5-minute quickstart.
@@ -452,6 +452,7 @@ MIT License — see [LICENSE](LICENSE)
 | Document | What It Shows |
 |----------|---------------|
 | [**🏆 Top 10 Protocols**](docs/TOP_10_PROTOCOLS.md) | MCDA-ranked essential protocols for any AI user |
+| [**📈 Protocol 106: Min-Max Optimization**](examples/protocols/strategy/106-min-max-optimization.md) | Maximize Utility while Minimizing CapEx — with Indifference Curve visualization |
 | [**🔄 User-Driven RSI**](docs/USER_DRIVEN_RSI.md) | The bilateral loop: how you and AI improve together |
 | [**📋 Spec Sheet**](docs/SPEC_SHEET.md) | Project specification: role, scope, constraints, and acceptance criteria |
 | [**👤 About Me**](docs/ABOUT_ME.md) | Career narrative and professional depth |
