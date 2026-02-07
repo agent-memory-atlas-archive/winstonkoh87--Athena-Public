@@ -1,6 +1,6 @@
 # VectorRAG: Semantic Memory Architecture
 
-> **Last Updated**: 1 February 2026  
+> **Last Updated**: 7 February 2026  
 > **Purpose**: Technical documentation for Athena's semantic memory system
 
 ---
@@ -12,7 +12,7 @@
 | Component | Technology | Purpose |
 |:----------|:-----------|:--------|
 | **Vector Database** | Supabase + pgvector | Cloud-native, persistent storage |
-| **Embeddings** | Google `text-embedding-004` | 768-dimension semantic vectors |
+| **Embeddings** | Google `text-embedding-004` | 3072-dimension semantic vectors |
 | **Similarity** | Cosine Distance (`<=>`) | Meaning-based matching |
 | **Sync** | Python Scripts | Automated indexing pipeline |
 
@@ -103,7 +103,7 @@ sequenceDiagram
     Note over A: Autonomic Trigger: §0.7.1
     
     A->>G: Embed query text
-    G-->>A: Return 768-dim vector
+    G-->>A: Return 3072-dim vector
     
     A->>S: search_sessions(embedding, threshold=0.3)
     S-->>A: Top 5 matches with similarity scores
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS sessions (
     session_number INTEGER NOT NULL,
     title TEXT,
     content TEXT NOT NULL,
-    embedding VECTOR(768),  -- pgvector type
+    embedding VECTOR(3072),  -- pgvector type
     file_path TEXT UNIQUE NOT NULL,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -164,7 +164,7 @@ WITH (lists = 100);
 
 ```sql
 CREATE OR REPLACE FUNCTION search_sessions(
-    query_embedding VECTOR(768),
+    query_embedding VECTOR(3072),
     match_threshold FLOAT DEFAULT 0.3,
     match_count INT DEFAULT 5
 )
@@ -278,7 +278,7 @@ flowchart LR
 
 ```python
 def get_embedding(text: str) -> list[float]:
-    """Generate 768-dim embedding using Google Gemini."""
+    """Generate 3072-dim embedding using Google Gemini."""
     text = text[:32000]  # Token limit
     
     url = f"https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key={GOOGLE_API_KEY}"

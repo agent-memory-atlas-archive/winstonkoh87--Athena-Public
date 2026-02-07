@@ -70,7 +70,7 @@ Athena employs **Triple-Path Retrieval** to ensure no relevant context is missed
 
 **How it works**:
 
-1. Query is converted to a 768-dimension embedding (Gemini API)
+1. Query is converted to a 3072-dimension embedding (Gemini API)
 2. Cosine similarity search across 11 Supabase tables
 3. Returns top matches ranked by semantic similarity
 
