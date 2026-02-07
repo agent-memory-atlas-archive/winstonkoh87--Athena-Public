@@ -8,6 +8,8 @@ tags: #protocol #strategy #efficiency #minmax #sovereign
 > **Core Theorem**: "Maximize the Utility Function (Indifference Curve) while Minimizing CapEx."
 > **Metric**: Return on Effort (RoE).
 
+![Indifference Curve](protocol_106_curve.png)
+
 ## The Philosophy
 
 In a Sovereign System, **Energy** and **Time** are the only finite resources. Money is renewable; Time is not.
