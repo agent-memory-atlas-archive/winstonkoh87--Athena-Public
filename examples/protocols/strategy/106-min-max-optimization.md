@@ -8,6 +8,9 @@ tags: #protocol #strategy #efficiency #minmax #sovereign #economics
 > **Core Theorem**: "Maximize the Utility Function (Indifference Curve) while Minimizing CapEx."
 > **Metric**: Return on Effort (RoE).
 
+> [!NOTE]
+> This is a **working hypothesis** developed within the Athena framework. It synthesizes microeconomic utility theory with practical decision-making heuristics. It has not been published in a peer-reviewed economics journal — treat it as a mental model, not gospel.
+
 ---
 
 ## The Diagram
