@@ -257,7 +257,8 @@ graph TD
 | **Protocols** | 324 unique | 69 handpicked |
 | **Python Scripts** | 192 | 14 reference examples |
 | **Case Studies** | 361 | 12 showcase examples |
-| **Sessions Logged** | 1073 | N/A (your sessions) |
+| **Workflows** | 43 | 12 slash commands |
+| **Sessions Logged** | 1,073 | N/A (your sessions) |
 | **GraphRAG Communities** | 1,460 | — |
 | **Knowledge Graph** | 46MB + 78MB vectors | — |
 
