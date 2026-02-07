@@ -1,8 +1,8 @@
 # Top 10 Protocols (MCDA Ranked)
 
-> **Last Updated**: 5 February 2026  
+> **Last Updated**: 7 February 2026  
 > **Methodology**: Weighted MCDA + Pairwise Validation  
-> **Total Protocols Evaluated**: 68 (Athena Starter Pack)
+> **Total Protocols Evaluated**: 69 (Athena Starter Pack)
 
 These are the 10 most impactful protocols from the Athena framework, ranked by their ability to improve AI reasoning and user outcomes across any domain.
 
@@ -48,7 +48,7 @@ Weights were determined using **Analytic Hierarchy Process (AHP)** pairwise comp
 | **7** | [Protocol 96: Latency Indicator (Λ)](../examples/protocols/architecture/96-latency-indicator.md) | **3.85** | Architecture |
 | **8** | [Protocol 133: Query Archetype Routing](../examples/protocols/architecture/133-query-archetype-routing.md) | **3.65** | Architecture |
 | **9** | [Protocol 110: Zero-Point Protocol](../examples/protocols/meta/110-zero-point-protocol.md) | **3.55** | Meta |
-| **10** | [Protocol 168: Context-Driven Development](../examples/protocols/architecture/168-context-driven-development.md) | **3.50** | Architecture |
+| **10** | [Protocol 106: Min-Max Optimization](../examples/protocols/strategy/106-min-max-optimization.md) | **3.60** | Strategy |
 
 ---
 
@@ -65,7 +65,7 @@ Weights were determined using **Analytic Hierarchy Process (AHP)** pairwise comp
 | **96: Latency Indicator** | 3 | 5 | 5 | 3 | **3.85** |
 | **133: Query Archetype** | 3 | 4 | 4 | 4 | **3.65** |
 | **110: Zero-Point** | 3 | 2 | 5 | 5 | **3.55** |
-| **168: Context-Driven Dev** | 2 | 4 | 4 | 4 | **3.50** |
+| **106: Min-Max Optimization** | 4 | 4 | 4 | 3 | **3.60** |
 
 ### Calculation Example (Protocol 75)
 
