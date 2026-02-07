@@ -10,6 +10,21 @@ tags: #protocol #strategy #efficiency #minmax #sovereign
 
 ![Indifference Curve](protocol_106_curve.png)
 
+## The Calculus of Sovereignty
+
+The Sovereign Zone is defined mathematically as the point where **Average Utility per Dollar** is maximized.
+
+Given a Utility function $U(c)$ where $c$ is CapEx (Cost):
+
+$$ S = \arg \max_{c} \left( \frac{U(c)}{c} \right) $$
+
+At this optimal point $S$, the **Marginal Utility** (the derivative) equals the **Average Utility** (the slope of the ray from the origin):
+
+$$ U'(c) = \frac{U(c)}{c} $$
+
+* **Left of $S$**: $U'(c) > \frac{U(c)}{c}$ (Under-invested; spending more yields disproportionate value).
+* **Right of $S$**: $U'(c) < \frac{U(c)}{c}$ (Diminishing returns; spending more yields disproportionate waste).
+
 ## The Philosophy
 
 In a Sovereign System, **Energy** and **Time** are the only finite resources. Money is renewable; Time is not.
