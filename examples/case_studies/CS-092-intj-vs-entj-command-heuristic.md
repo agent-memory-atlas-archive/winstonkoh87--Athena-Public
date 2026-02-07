@@ -24,10 +24,12 @@ When differentiating INTJ from ENTJ in leadership contexts, **command structure 
 |-----------|------|------|
 | **Command Structure** | Centralized (hub-and-spoke) | Decentralized (distributed network) |
 | **Information Flow** | All roads lead to the mastermind | Delegated commanders with autonomy |
-| **Visibility** | Hidden/obscured (mask, shadows) | Visible/public (throne, podium) |
+| **Visibility** | Hidden *to subordinates* (they don't know the full plan) | Visible *to subordinates* (they know the boss) |
 | **Subordinate Relationship** | "Tools" — replaceable, loyal to vision | "Team" — empowered, loyal to leader |
 | **Failure Response** | Recalculates alone | Rallies the group |
 | **Building Priority** | Builds *systems*, treats organizations as tools | Builds *organizations*, treats systems as tools |
+
+> **Note on Visibility**: This refers to internal visibility (within the organization), not external (to the world). An ENTJ may operate in shadows relative to outsiders while being completely known to their followers. An INTJ's *own team* may not understand the full plan.
 
 ---
 
