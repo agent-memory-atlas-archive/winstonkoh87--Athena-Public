@@ -75,6 +75,8 @@ Both lead with pure intellect and strategy. The difference is in what they optim
 - Delegates execution: "I wish you luck" — Commander, not craftsman
 - The Contagion level system — Gamified hierarchy (Te-Se)
 
+> **⚠️ Typing Controversy**: The fan consensus types Morena as **INFJ** (Ni-Fe), citing her ideological crusade ("destroy an unjust world") and tragic backstory as classic INFJ "prophet" energy. The ENTJ read here emphasizes *behavioral structure* (visible power, decentralized command, organizational building) over *motivation*. Both are defensible — INFJ if you weight ideology, ENTJ if you weight execution topology.
+
 ---
 
 ## Disambiguation Process
