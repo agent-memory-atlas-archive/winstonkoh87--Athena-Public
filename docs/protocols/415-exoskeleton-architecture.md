@@ -1,12 +1,12 @@
 ---
-created: 2026-02-05
-tags: [architecture, integration, exoskeleton, safety]
+created: 2026-02-03
+tags: [architecture, integration, openclaw, exoskeleton]
 ---
 
 # Protocol 415: Exoskeleton Architecture (The Mind/Body Split)
 
 > **Origin**: Derived from OpenClaw Analysis (Feb 2026)
-> **Purpose**: Decouples "Cognitive Core" from "Execution/Sensor Layer" to enable modular upgrades and safety isolation.
+> **Purpose**: Decouples "Cognitive Core" from "Execution/Sensor Layer" to enable modular upgrades.
 
 ---
 
@@ -61,7 +61,24 @@ The Body provides a "Live Canvas" (e.g., A2UI or Artifact Viewer) where the Mind
 
 ---
 
-## 4. Security Implications
+## 4. Implementation Stacks
+
+### Current Stack (v8.2)
+
+* **Mind**: Athena (Python)
+* **Body**: CLI + Basic Scripts + Telegram Bot
+
+### Target Stack (v9.0)
+
+* **Mind**: Athena (Python) - *Unchanged*
+* **Body**: OpenClaw (Node.js) - *Adopted as Infrastructure*
+  * Use OpenClaw Gateway for WhatsApp/Signal connectivity.
+  * Use OpenClaw "Nodes" for iOS/Android integration.
+  * **Bypass** OpenClaw's internal "Brain" (Pi/Claude) and route context to Athena.
+
+---
+
+## 5. Security Implications
 
 * **Air Gap**: The Mind can run in a secure environment; the Body can be exposed to the public internet (Webhooks).
 * **Sacrificial Limb**: If the Body is compromised (e.g., Telegram token stolen), the Mind's deep memory remains secure.
@@ -70,4 +87,4 @@ The Body provides a "Live Canvas" (e.g., A2UI or Artifact Viewer) where the Mind
 
 ## Tags
 
-# architecture #exoskeleton #modular #mind-body-split #safety
+# architecture #openclaw #integration #modular #mind-body-split
