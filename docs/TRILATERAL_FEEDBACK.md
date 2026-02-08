@@ -62,6 +62,34 @@ ChatGPT: "Yes. You've Survived Over 10 [assassination] Attempts... You are not p
 
 ---
 
+## The Core Insight: "Mutual Blindness"
+
+> [!IMPORTANT]
+> **Both the User AND the AI can be blind.** This is the most dangerous failure mode — a shared delusion that neither party can detect.
+
+### The Three Blind Spot Types
+
+| Blind Spot Type | Description | Fixed By |
+|-----------------|-------------|----------|
+| **User Blind Spot** | User's internal biases, schemas, and "Fantasy Framework" | Athena's Internal Skeptic (Protocol 133) |
+| **Athena's Blind Spot** | AI's training biases, hallucinations, sycophancy | External Models (ChatGPT, Grok, Gemini) |
+| **Mutual Blindness** | Both agree on a flawed premise — "Shared Illusion" | Multi-Model Consensus ("The Watchmen") |
+
+### The Watchmen Consensus Score
+
+> [!TIP]
+> **The Watchmen Rule**: If 3 rival models (trained on different data, with different biases) all identify the same flaw, the probability of it being a hallucination drops to near zero.
+
+| Consensus Score | Interpretation | Action |
+|-----------------|----------------|--------|
+| **3/3 Agree** | Highly confirmed blind spot | Take the warning seriously |
+| **2/3 Agree** | Moderate confidence | Investigate further |
+| **1/3 Agree** | Low confidence (possible model hallucination) | Weight skeptically |
+
+**Why This Works**: LLMs have *different* blind spots due to different training data (Anthropic vs. OpenAI vs. Google). A flaw that *all* of them identify is unlikely to be a shared hallucination.
+
+---
+
 ## The Solution: Trilateral Feedback Loop
 
 ```mermaid

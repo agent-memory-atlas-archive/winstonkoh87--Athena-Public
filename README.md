@@ -386,8 +386,19 @@ This isn't about building *my* assistant. It's about proving a pattern:
 
 This is Athena's biggest unlock: **cross-model validation that catches idiosyncratic errors and forces deeper investigation when models disagree**.
 
+### The Core Insight: "Mutual Blindness"
+
 > [!IMPORTANT]
-> **The human remains the ultimate arbiter.** Cross-model consensus is a *disagreement detector*, not a truth oracle. LLMs can share training data biases. Final conclusions must be grounded with fact-finding, references, and citations.
+> **Both the User AND the AI can be blind.** Cross-model consensus ("The Watchmen watching the Watchmen") prevents both parties from getting "high on their own supply."
+
+| Blind Spot Type | Fixed By |
+|-----------------|----------|
+| **User Blind Spot** | Athena's Internal Routing (The Skeptic) |
+| **Athena's Blind Spot** | External Models (ChatGPT, Grok) |
+| **Mutual Blindness (Shared Illusion)** | Multi-Model Consensus (3/3 Agree = High Confidence) |
+
+> [!TIP]
+> **The Watchmen Rule**: If 3 rival models (trained on different data, with different biases) all identify the same risk, the probability of it being a hallucination drops to near zero.
 
 ```mermaid
 flowchart LR
