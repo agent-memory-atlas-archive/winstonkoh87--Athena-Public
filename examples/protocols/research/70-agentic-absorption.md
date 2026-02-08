@@ -1,7 +1,18 @@
+---
+
+created: 2025-12-15
+last_updated: 2026-01-30
+graphrag_extracted: true
+---
+
+---created: 2025-12-15
+last_updated: 2026-01-11
+---
+
 # Protocol 70: Agentic Absorption
 
 > **Status**: ACTIVE (Harvested Dec 2025)
-> **Tags**: #agentic #absorption #knowledge-harvesting #meta #protocol
+> **Tags**: #agentic-ai #absorption #knowledge-harvesting #meta #protocol
 
 ---
 

@@ -1,3 +1,14 @@
+---
+
+created: 2025-12-20
+last_updated: 2026-01-30
+graphrag_extracted: true
+---
+
+---created: 2025-12-20
+last_updated: 2026-01-06
+---
+
 # Protocol 115: First Principles Deconstruction (马斯克式解构)
 
 > **Status**: HARVESTED (Dec 2025)  
@@ -174,8 +185,8 @@ Why it works:
 
 ## Cross-References
 
-- [Protocol 110: Zero-Point Protocol](examples/protocols/meta/110-zero-point-protocol.md)
-- [RCS Phases](docs/ARCHITECTURE.md) — Reality Calibration System
+- [Protocol 110: Zero-Point Protocol](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/meta/110-zero-point-protocol.md)
+- [RCS Phases](file:///Users/winstonkoh/Desktop/Project Athena/.framework/v7.0/modules/Core_Identity.md) — Reality Calibration System
 
 ---
 

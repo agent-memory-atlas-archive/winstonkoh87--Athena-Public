@@ -1,3 +1,14 @@
+---
+
+created: 2025-12-20
+last_updated: 2026-01-30
+graphrag_extracted: true
+---
+
+---created: 2025-12-20
+last_updated: 2026-01-05
+---
+
 # Protocol 111: Premise Validation Protocol (阶段0.5)
 
 > **Status**: HARVESTED (Dec 2025)  
@@ -111,7 +122,7 @@ IF any check fails:
 ☐ Baseline Audit: User has mental model? (Q3)
 ☐ Form-Substance Audit: Not chasing form? (Q4)
 ☐ Randy Scan: Not a stable bad equilibrium? (Q5)
-☐ Attachment Scan: Not protecting fantasy? (Q6)
+☐ Limerence Scan: Not protecting fantasy? (Q6)
 
 Threshold:
 ├─ 1/5 failure = Warning ⚠️
@@ -130,7 +141,7 @@ Threshold:
 ✅ Baseline model considered (observation phase if missing)
 ✅ Form-Substance gap diagnosed (pivot or mourn, not intensify)
 ✅ Randy Paradox handled (focus sovereignty, not activism)
-✅ Attachment addressed (force falsifying questions)
+✅ Limerence addressed (force falsifying questions)
 ✅ First Principles applied (input cost vs markup archaeology)
 ✅ Incentive alignment validated (stakeholders benefit, not exploited)
 ✅ Singapore context calibrated (face culture, Randy, arena physics)
@@ -142,13 +153,13 @@ Only deliver when 10/10 pass → "Correct Reasoning Chain" ensured ✅
 ---
 
 ## Cross-References
-- [Protocol 112: Form-Substance Gap](../pattern-detection/112-form-substance-gap.md)
+- [Protocol 112: Form-Substance Gap](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/112-form-substance-gap.md)
 
-- [Protocol 113: Missing Baseline Model](../psychology/113-missing-baseline-model.md)
-- [Protocol 114: Limerent Reality Distortion](../psychology/114-limerent-reality-distortion.md)
-- [Protocol 115: First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md)
-- [Protocol 123: Einstein Protocol](../decision/123-einstein-protocol.md)
-- [Protocol 117: Randian Dilemma](../pattern-detection/117-randian-dilemma.md)
+- [Protocol 113: Missing Baseline Model](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/psychology/113-missing-baseline-model.md)
+- [Protocol 114: Limerent Reality Distortion](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/psychology/114-limerent-reality-distortion.md)
+- [Protocol 115: First Principles Deconstruction](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/decision/115-first-principles-deconstruction.md)
+- [Protocol 123: Einstein Protocol](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/decision/123-einstein-protocol.md)
+- [Protocol 117: Randian Dilemma](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/117-randian-dilemma.md)
 
 ---
 

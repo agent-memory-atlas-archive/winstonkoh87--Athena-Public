@@ -1,5 +1,12 @@
 ---
-description: Prevent Centaur Mode failure via integrated granular iterative AI collaboration. Sentence-level friction vs task-level delegation. Jagged Frontier defense.
+created: 2025-12-13
+last_updated: 2026-01-30
+graphrag_extracted: true
+---
+
+---description: Prevent Centaur Mode failure via integrated granular iterative AI collaboration. Sentence-level friction vs task-level delegation. Jagged Frontier defense.
+created: 2025-12-13
+last_updated: 2025-12-31
 ---
 
 # Protocol 54: Cyborg Methodology (Jagged Frontier Defense)
@@ -76,8 +83,9 @@ For each component of the skeleton:
 ---
 
 ## References
+- [Protocol 128: Internal Family Systems](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/psychology/128-internal-family-systems.md)
 
-See [References.md]() for full citation.
+See [References.md](file:///Users/winstonkoh/Desktop/Project Athena/.context/references/References.md) for full citation.
 
 ---
 

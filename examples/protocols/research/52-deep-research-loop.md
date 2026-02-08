@@ -1,7 +1,14 @@
 ---
-name: deep-research-loop
+created: 2025-12-12
+last_updated: 2026-01-30
+graphrag_extracted: true
+---
+
+---name: deep-research-loop
 description: Iterative research methodology with causal chains, gap identification, exhaustiveness checks, and APA-style citations.
 tags: [protocol, framework, process, 52-deep-research-loop]
+created: 2025-12-12
+last_updated: 2025-12-31
 ---
 
 # Protocol 52: Deep Research Loop
@@ -84,7 +91,7 @@ All factual claims from web search **must** include inline APA-style citations.
 3. Include year to signal recency (stale data = lower confidence).
 4. For web search results, use the domain name as "Author".
 
-**Anti-Pattern**: "According to sources..." (Which sources? When? nonsense flag.)
+**Anti-Pattern**: "According to sources..." (Which sources? When? Bullshit flag.)
 
 ---
 
@@ -100,8 +107,8 @@ All factual claims from web search **must** include inline APA-style citations.
 
 ## Cross-Reference
 
-- [Synthetic Deep Think Protocol]()
-- [Probabilistic Analysis Stack]()
+- [Synthetic Deep Think Protocol](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/decision/38-synthetic-deep-think.md)
+- [Probabilistic Analysis Stack](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/18-probabilistic-analysis-stack.md)
 
 ---
 

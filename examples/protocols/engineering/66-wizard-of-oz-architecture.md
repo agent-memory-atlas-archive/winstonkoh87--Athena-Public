@@ -1,9 +1,16 @@
 ---
-description: Wizard of Oz Architecture - Outcome > Elegance. Building widely admired systems with "boring" or "duct-tape" technologies.
-tags: ["#architecture", "#MVP", "#strategy", "#engineering"]
+created: 2025-12-14
+last_updated: 2026-01-30
+graphrag_extracted: true
 ---
 
-# Agentic Engineering Strategy: Wizard of Oz Architecture
+---description: Wizard of Oz Architecture - Outcome > Elegance. Building widely admired systems with "boring" or "duct-tape" technologies.
+tags: [#architecture, #MVP, #strategy, #engineering]
+created: 2025-12-14
+last_updated: 2026-01-13
+---
+
+# Protocol 66: Wizard of Oz Architecture
 
 > **Purpose**: To validate and execute specialized outcomes using the simplest, most robust tools available, prioritizing user perception over engineering elegance.
 
@@ -57,11 +64,11 @@ When building a new capability:
 
 ## Source
 
-- [Session 37 Analysis of OpenAI "Leak"]()
-- [Agentic Engineering Strategy: Scrambled Eggs Strategy]()
+- [Session 37 Analysis of OpenAI "Leak"](file:///Users/winstonkoh/Desktop/Project Athena/.context/memories/session_logs/2025-12-14-session-37.md)
+- [Protocol 42: Scrambled Eggs Strategy](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/42-scrambled-eggs-strategy.md)
 
 ---
 
 ## Tagging
 
-# protocol #framework #process #66-wizard-of-oz-architecture
+#protocol #framework #process #66-wizard-of-oz-architecture

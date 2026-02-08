@@ -1,8 +1,19 @@
+---
+
+created: 2025-12-22
+last_updated: 2026-01-30
+graphrag_extracted: true
+---
+
+---created: 2025-12-22
+last_updated: 2026-01-11
+---
+
 # Protocol 140: Base Rate Audit
 
-> **Purpose**: Heuristic for detecting "nonsense" (fabrication, delusion, or omission) by comparing claims against statistical baselines.
+> **Purpose**: Heuristic for detecting "bullshit" (fabrication, delusion, or omission) by comparing claims against statistical baselines.
 > **Source**: Session 31 (Dec 22, 2025) — Condo Girl Example + 20% Guaranteed Returns
-> **Related**: [Strategic Analysis Framework: First Principles](../business/Strategic_Analysis_Framework.md)
+> **Related**: [Strategic Analysis Framework: First Principles](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/strategy/Strategic_Analysis_Framework.md)
 
 ---
 
@@ -78,9 +89,9 @@ Applying this to yourself is **Epistemic Rigor**:
 - Acknowledge your own Hidden Variables (e.g., "I date across age gaps because of Transactional Capital, not raw attraction").
 - This moves you from **Delusion** (Red Curve grinding) to **Strategy** (Blue Curve leverage).
 
-# base-rate #epistemology #nonsense-detector #delusion-check
+# base-rate #epistemology #bullshit-detector #delusion-check
 
 ## Related Protocols
 
-- [Agentic Engineering Strategy: Red-Blue Curve Taxonomy](../strategy/42-red-blue-curve-taxonomy.md)
-- [Protocol 115: First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md)
+- [Agentic Engineering Strategy: Red-Blue Curve Taxonomy](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/strategy/42-red-blue-curve-taxonomy.md)
+- [Protocol 115: First Principles Deconstruction](file:///Users/winstonkoh/Desktop/Project Athena/Athena-Public/examples/protocols/decision/115-first-principles-deconstruction.md)
