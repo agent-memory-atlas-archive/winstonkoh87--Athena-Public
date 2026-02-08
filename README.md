@@ -6,7 +6,7 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-93_Starter-blue)
-![Sessions](https://img.shields.io/badge/Sessions-1000+-green)
+![Sessions](https://img.shields.io/badge/Sessions-1073+-green)
 ![Featured](https://img.shields.io/badge/Featured-r%2FGeminiAI_%232_Daily-orange)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
@@ -427,7 +427,7 @@ flowchart LR
 
 ## Reference Implementation
 
-This repo documents **Winston's personal Athena instance** — 1073+ sessions, 324 unique protocols, production-tested daily.
+This repo documents **Winston's personal Athena instance** — 1073+ sessions, 324 unique protocols, production-tested daily since December 2024.
 
 It's included as a **reference**, not a prescription. Your instance will reflect your domain, your decisions, your voice.
 
