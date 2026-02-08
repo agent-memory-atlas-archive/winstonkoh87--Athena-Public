@@ -1,8 +1,29 @@
 # Athena Changelog
 
-> **Last Updated**: 08 February 2026
+> **Last Updated**: 09 February 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
+
+---
+
+## v8.2.1 (09 February 2026)
+
+**Metrics Sync & Architecture Refactor**: Updated session count and fixed automation scripts.
+
+### Key Changes
+
+- **Session Count**: Synced to 1073+ sessions
+- **Automation Fix**: Repaired `generate_tag_index.py` path in `batch_audit.py` (script migrated to SDK location)
+- **Orphan Remediation**: Linked 2 orphan files to Session_Observations.md
+- **Tech Debt Reconciliation**: Fixed conflicting status for Hash-Based Delta Sync
+
+### Verification
+
+| Metric | Result |
+|--------|--------|
+| `batch_audit.py` | 5/5 scripts pass |
+| Orphan count | 0 |
+| Tag Index | 8,079 tags |
 
 ---
 
