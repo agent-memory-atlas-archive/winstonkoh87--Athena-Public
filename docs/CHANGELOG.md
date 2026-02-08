@@ -1,8 +1,31 @@
 # Athena Changelog
 
-> **Last Updated**: 04 February 2026
+> **Last Updated**: 08 February 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
+
+---
+
+## v1.6.0 (08 February 2026)
+
+**Curated Enhancement + Cleanup**: Added new protocols, SDK modules, scripts, and workflows. Removed legacy framework and duplicate files.
+
+### Key Changes
+
+- **+17 Protocols**: Added engineering (git-worktree, micro-commit, context-compaction, vibe-engineering, wizard-of-oz), decision (premise-audit, first-principles, MCDA, base-rate, ergodicity), research (deep-research-loop, cyborg-methodology, agentic-absorption), strategy (validation-triage, product-market-fit, paint-drop, priority-management)
+- **+SDK Modules**: Added `src/athena/auditors/` (8 audit scripts) and `src/athena/generators/` (9 generator scripts)
+- **+3 Scripts**: `athena_status.py`, `auto_tagger.py`, `code_indexer.py`
+- **+2 Workflows**: `/due-diligence`, `/brand-generator`
+- **Removed**: `.framework/v7.0/` (vestigial), 9 duplicate Snake_Case protocol files
+
+### New Totals
+
+| Metric | Count |
+|--------|-------|
+| Protocols | 87 |
+| Scripts | 12 |
+| Workflows | 14 |
+| Case Studies | 11 |
 
 ---
 

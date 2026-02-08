@@ -1,11 +1,11 @@
 ![Athena Banner](./docs/athena_banner.png)
 
-> **Last Updated**: 7 February 2026
+> **Last Updated**: 8 February 2026
 
 # 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Protocols](https://img.shields.io/badge/Protocols-88_Starter-blue)
+![Protocols](https://img.shields.io/badge/Protocols-87_Starter-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-1000+-green)
 ![Featured](https://img.shields.io/badge/Featured-r%2FGeminiAI_%232_Daily-orange)
 
