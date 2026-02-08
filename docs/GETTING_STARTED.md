@@ -1,6 +1,6 @@
 # Getting Started
 
-> **Last Updated**: 01 February 2026
+> **Last Updated**: 09 February 2026
 
 > Build your own AI assistant in 5 minutes
 

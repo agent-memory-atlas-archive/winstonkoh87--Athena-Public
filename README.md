@@ -4,6 +4,7 @@
 
 # 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
 
+![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=social)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-93_Starter-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-1073+-green)
@@ -17,6 +18,20 @@
 
 > **A framework for creating persistent, sovereign AI agents.**  
 > **Your AI. Your memory. Your rules.**
+
+---
+
+## The Problem
+
+> **Tired of re-explaining your project every 4 hours?**
+
+Modern AI assistants (ChatGPT, Claude, Gemini) are brilliant — but they have **amnesia**. Every session starts from zero. Your context, your decisions, your preferences? Gone.
+
+You spend more time *recovering* lost context than actually *building*.
+
+**Athena fixes this.** It gives your AI a **persistent memory** — stored in Markdown files *you* own — that survives across sessions, across IDEs, and across models. Stop renting your intelligence. Own it.
+
+---
 
 ## Table of Contents
 

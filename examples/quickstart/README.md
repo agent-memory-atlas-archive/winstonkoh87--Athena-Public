@@ -1,60 +1,38 @@
-# Athena SDK Quickstart
+# 🚀 Quickstart Examples
 
-These examples demonstrate core Athena functionality. They run standalone without external dependencies.
+> **Start here if you're new to Athena.**
 
-## Running the Examples
+This folder contains runnable demos to help you understand the core concepts.
+
+---
+
+## Recommended Order
+
+| # | Demo | What You'll Learn |
+|---|------|-------------------|
+| 1 | [hello_athena.py](./hello_athena.py) | Basic SDK usage — boot, save, end |
+| 2 | [semantic_search.py](./semantic_search.py) | Query your knowledge base |
+| 3 | [workflow_demo.py](./workflow_demo.py) | Using `/start`, `/end` workflows |
+
+---
+
+## Quick Test
 
 ```bash
-# From repository root
-cd Athena-Public
-
-# 1. Boot check - verify installation
-python examples/quickstart/01_boot.py
-
-# 2. Search demo - hybrid search with mock data
-python examples/quickstart/02_search.py "position sizing"
-
-# 3. Commit demo - session logging pattern
-python examples/quickstart/03_commit.py
+cd examples/quickstart
+python hello_athena.py
 ```
 
-## What Each Example Shows
+If you see "✅ Athena is ready!", you're good to go.
 
-| Script | Purpose |
-|--------|---------|
-| `01_boot.py` | SDK import, config discovery, directory structure |
-| `02_search.py` | Hybrid search with RRF fusion (works in stub mode) |
-| `03_commit.py` | Session logging format used by `/end` workflow |
+---
 
-## Going Live
+## Next Steps
 
-To connect to real infrastructure:
+- **[Getting Started Guide](../../docs/GETTING_STARTED.md)** — Full setup walkthrough
+- **[Architecture](../../docs/ARCHITECTURE.md)** — How the system works
+- **[Top 10 Protocols](../../docs/TOP_10_PROTOCOLS.md)** — Essential thinking frameworks
 
-1. Copy `.env.example` to `.env`
-2. Add your API keys
-3. Set `LOCAL_STUB_MODE = False` in the scripts
-4. Install full dependencies: `pip install -e ".[full]"`
+---
 
-## Expected Output
-
-### 01_boot.py
-
-```
-🏛️  ATHENA SDK BOOT CHECK
-📦 SDK Version: 0.2.0
-📂 Project Root: /path/to/Athena-Public
-✅ BOOT SUCCESS
-```
-
-### 02_search.py
-
-```
-🔍 ATHENA SEARCH DEMO
-   Query: "position sizing"
-   Mode: LOCAL STUB
-
-🏆 TOP 3 RESULTS:
-  1. [HIGH] Protocol 46: Trading Methodology
-  2. [HIGH] Session 2025-03-14: Risk Framework
-  3. [MED] Canonical:L45
-```
+**[Back to README](../../README.md)**
