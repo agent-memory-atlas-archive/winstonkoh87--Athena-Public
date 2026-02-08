@@ -5,7 +5,7 @@
 # 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Protocols](https://img.shields.io/badge/Protocols-87_Starter-blue)
+![Protocols](https://img.shields.io/badge/Protocols-93_Starter-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-1000+-green)
 ![Featured](https://img.shields.io/badge/Featured-r%2FGeminiAI_%232_Daily-orange)
 
@@ -36,7 +36,7 @@
 | Feature | Description |
 |---------|-------------|
 | 🧠 **Memory That Persists** | Your agent remembers context across sessions, even after IDE restarts |
-| 📚 **88 Handpicked Protocols** | Curated decision frameworks from the private repo's 324 unique collection |
+| 📚 **93 Handpicked Protocols** | Curated decision frameworks from the private repo's 324 unique collection |
 | 🔄 **Platform Independence** | Your data lives in Markdown files you own — take it anywhere |
 | 🤖 **Full Autonomy** | Your agent can act on your behalf while you sleep |
 
@@ -254,10 +254,10 @@ graph TD
 
 | Metric | Private Repo | This Starter Pack |
 |--------|--------------|-------------------|
-| **Protocols** | 324 unique | 88 handpicked |
-| **Python Scripts** | 218 | 69 reference examples |
+| **Protocols** | 324 unique | 93 handpicked |
+| **Python Scripts** | 218 | 10 reference examples |
 | **Case Studies** | 357 | 11 showcase examples |
-| **Workflows** | 43 | 12 starter |
+| **Workflows** | 43 | 14 starter |
 | **Sessions Logged** | 1,042+ | N/A (your sessions) |
 | **GraphRAG Communities** | 1,460 | — |
 | **Knowledge Graph** | 46MB + 78MB vectors | — |
