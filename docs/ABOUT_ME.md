@@ -78,7 +78,7 @@ I'm not looking for:
 ## Links
 
 - **GitHub**: [@winstonkoh87](https://github.com/winstonkoh87)
-- **Portfolio**: [winstonkoh87.github.io](https://winstonkoh87.github.io)
+- **Portfolio**: [winstonkoh87.com](https://winstonkoh87.com)
 - **LinkedIn**: [winstonkoh87](https://www.linkedin.com/in/winstonkoh87/)
 - **Medium**: [@winstonkoh87](https://medium.com/@winstonkoh87)
 
