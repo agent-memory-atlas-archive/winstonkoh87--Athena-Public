@@ -6,6 +6,7 @@ version: 1.0.0
 category: content
 tags: [writing, anti-pattern, humanization, style]
 created: 2026-02-04
+last_updated: 2026-02-04
 ---
 
 # Protocol 350: Humanize AI Writing

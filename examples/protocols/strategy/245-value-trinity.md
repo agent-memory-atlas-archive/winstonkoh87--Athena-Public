@@ -4,6 +4,7 @@ title: "The Value Trinity (Evaluation Framework)"
 type: "Workflow"
 tags: ["metrics", "evaluation", "agency", "learning", "success_metrics"]
 created: "2025-12-31"
+last_updated: "2025-12-31"
 related: ["010", "162", "215"]
 description: "A framework to measure project success via Outcomes (Agency, Learning, Results) rather than Inputs (Time/Effort)."
 ---

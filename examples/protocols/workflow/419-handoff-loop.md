@@ -3,6 +3,7 @@ type: protocol
 id: 419
 version: 1.0
 created: 2026-02-05
+last_updated: 2026-02-05
 tags: [governance, continuity, memory]
 ---
 

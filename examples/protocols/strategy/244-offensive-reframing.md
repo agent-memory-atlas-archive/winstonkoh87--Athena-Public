@@ -4,6 +4,7 @@ title: "Offensive Reframing (Incentive Physics)"
 type: "Strategy"
 tags: ["sales", "negotiation", "game_theory", "risk", "reframing", "signaling_theory"]
 created: "2025-12-31"
+last_updated: "2025-12-31"
 related: ["112", "197", "003"]
 description: "A method to counter trust-based objections by optimizing the 'defect' strategy to absurdity, proving non-defect via revealed preference and constraints."
 ---

@@ -3,6 +3,7 @@ id: 202
 title: Recovery Patterns
 category: architecture
 created: 2025-12-27
+last_updated: 2025-12-27
 ---
 
 # Protocol 202: Recovery Patterns

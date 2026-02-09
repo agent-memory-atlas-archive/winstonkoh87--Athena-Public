@@ -5,6 +5,7 @@ title: Query Archetype Routing (QAR)
 tags: [architecture, routing, cognition, system, meta-skills]
 status: active
 created: 2025-12-21
+last_updated: 2025-12-21
 ---
 
 # Protocol 133: Query Archetype Routing (QAR)

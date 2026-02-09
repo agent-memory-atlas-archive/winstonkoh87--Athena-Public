@@ -1,5 +1,6 @@
 ---
 created: 2026-02-07
+last_updated: 2026-02-09
 tags: #protocol #strategy #efficiency #minmax #sovereign #economics
 ---
 
