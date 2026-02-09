@@ -7,7 +7,8 @@ tags:
   - mvp
   - unit-economics
   - product-mode
-date: 2025-12-25
+created: 2025-12-25
+last_updated: 2025-12-25
 ---
 
 # Case Study: The "Vibe Coding" Zero-Cost Stack ($0 MVP)
