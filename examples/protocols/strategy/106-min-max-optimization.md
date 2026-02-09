@@ -94,6 +94,46 @@ $$ U'(c) = \frac{U(c)}{c} $$
 
 ---
 
+## Real-World Example: Car Buying (2026 Singapore)
+
+> **Context**: Analyzing 250+ used Toyota listings (Sienta Hybrid, Corolla Altis, Camry) to find maximum utility per dollar invested.
+
+### The MCDA Model
+
+**Utility Function Inputs:**
+
+- **Depreciation** (40% weight) — Annual operating cost.
+- **Price** (30% weight) — CapEx/Cash outlay.
+- **COE Remaining** (20% weight) — Useful lifespan.
+- **Mileage/Owners** (10% weight) — Reliability risk.
+
+### The Results
+
+| Model | CapEx | OpEx (Depre/yr) | COE Left | MCDA Score | Verdict |
+|-------|-------|-----------------|----------|------------|---------|
+| **Corolla 1.6A (COE 2035)** | $102k | **$11,450** | 8y 10m | **0.71** | ✅ **Sovereign** |
+| **Corolla 1.6A (2009)** | $36k | $11,110 | 3y 2m | 0.64 | ✅ Cash King |
+| **Sienta Hybrid (New)** | $153k | $14,940 | 9y 4m | 0.54 | ⚠️ Premium Tax |
+| **Camry 2.5A (2017)** | $36k | $16,920 | 1y 1m | 0.49 | ❌ Status Trap |
+| **Camry Hybrid (2021)** | $137k | $21,400 | 5y 10m | 0.37 | ❌ Luxury Trap |
+
+### The Anomaly: Curve Inversion
+
+> [!IMPORTANT]
+> In this specific market (Feb 2026), the standard depreciation curve was **inverted**.
+> **1-year-old "New" cars** had similar or lower annual depreciation than **4-7 year-old "Used" cars**.
+
+**Implication**: The conventional wisdom ("Buy used to avoid depreciation") was **wrong** in this cycle. The "Sovereign Zone" shifted to newer cars due to inflated used car prices.
+
+### The Math
+
+- **New Sienta (2025)**: $152k ÷ 9.3yr COE = **$16,300/yr total cost**.
+- **Old Sienta (2016, COE renewed)**: $72.8k ÷ 5yr = **$14,550/yr** BUT with 141,000 km of wear and 10-year-old hybrid batteries. **Risk-adjusted cost > $16k/yr.**
+
+**Verdict**: Always calculate **Forward Depreciation + Risk**, not just sticker price.
+
+---
+
 ## The Three Pillars of Application
 
 ### 1. Procurement (Buying Stuff)
