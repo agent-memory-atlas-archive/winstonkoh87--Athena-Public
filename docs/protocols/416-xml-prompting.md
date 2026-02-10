@@ -131,6 +131,6 @@ If the model fails to follow an instruction 2+ times in a row, the system should
 
 ## 8. References
 
-- [Reddit Thread: Opus 4.5 Degradation](https://old.reddit.com/r/ClaudeAI/) (2026-02-03)
+- [Reddit Thread: Opus 4.6 Degradation](https://old.reddit.com/r/ClaudeAI/) (2026-02-03)
 - [Anthropic Docs: Use XML Tags](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/use-xml-tags)
 - [Intel: intel_opus_degradation.md](#private-reference)

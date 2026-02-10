@@ -4,6 +4,19 @@
 
 ---
 
+## v8.3.1 — Viral Validation (Feb 2026)
+
+**Status**: ✅ Stable
+
+200K+ Reddit views, 114 ⭐ GitHub stars, 1,500+ shares. Production-grade refresh.
+
+- ✅ **Stats Refresh**: 200K+ views, 1,500+ shares, 1,042+ sessions verified
+- ✅ **Model Upgrade**: Claude Opus 4.5 → 4.6 across all files
+- ✅ **Three-Phase Token Budget**: Robustness at start/end, Adaptive Latency in middle
+- ✅ **README Overhaul**: Badge bar, output table, community response updated
+
+---
+
 ## v8.3 — Claude OS Patterns (Feb 2026)
 
 **Status**: ✅ Stable

@@ -74,4 +74,4 @@ gantt
 
 ## 💡 Request a Feature
 
-Have an idea for Athena? [Clone the repo](https://github.com/the authorkoh87/Athena-Public) and build it yourself. That's the point.
+Have an idea for Athena? [Clone the repo](https://github.com/winstonkoh87/Athena-Public) and build it yourself. That's the point.

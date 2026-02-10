@@ -847,7 +847,7 @@ Monthly Gross Revenue
 │     │  SOTA Models Critique:                                          │ │
 │     │  • Gemini 3 Pro: "EV numbers inconsistent."                      │ │
 │     │  • GPT 5.2: "Missing Pre-Mortem analysis."                        │ │
-│     │  • Opus 4.5: "Add Term Sheet for actionability."                  │ │
+│     │  • Opus 4.6: "Add Term Sheet for actionability."                  │ │
 │     └─────────────────────────────────────────────────────────────────┘ │
 │                           │                                             │
 │                           ▼                                             │
@@ -879,7 +879,7 @@ Monthly Gross Revenue
 | Model | Role | Key Contribution |
 |-------|------|------------------|
 | **Gemini 3 Pro** | Challenger | Flagged EV inconsistency, SEHC rules |
-| **Opus 4.5** | Structurer | Suggested Term Sheet, DD Checklist format |
+| **Opus 4.6** | Structurer | Suggested Term Sheet, DD Checklist format |
 | **GPT 5.2** | Devil's Advocate | Challenged "analyst cost savings" framing |
 | **Grok 4.1** | Risk Assessor | Flagged Pre-Mortem as missing |
 

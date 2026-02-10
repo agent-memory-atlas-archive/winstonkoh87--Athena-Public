@@ -6,6 +6,30 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v8.3.0 (11 February 2026)
+
+**Viral Validation Release**: 200K+ Reddit views, 114 ⭐ GitHub stars, Three-Phase Token Budget.
+
+### Key Changes
+
+- **Reddit Viral**: 200K+ views across r/ChatGPT (#7) and r/GeminiAI (#2), 457 upvotes, 1,500+ shares
+- **GitHub Stars**: 114 stars (from 13 pre-launch)
+- **Model Upgrade**: Claude Opus 4.5 → 4.6 across all docs
+- **Three-Phase Token Budget**: Formalized robustness vs. efficiency philosophy
+  - Boot/End: Robustness (deterministic, no shortcuts)
+  - Middle: Adaptive Latency (efficiency, scale to query)
+- **Stats Verification**: All README stats verified against user-confirmed values
+
+### Verification
+
+| Metric | Result |
+|--------|--------|
+| Reddit Views | 200K+ ✅ |
+| GitHub Stars | 114 ✅ |
+| Opus References | All updated to 4.6 ✅ |
+
+---
+
 ## v8.2.1 (09 February 2026)
 
 **Metrics Sync & Architecture Refactor**: Updated session count and fixed automation scripts.

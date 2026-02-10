@@ -5,7 +5,8 @@ description: Activate Zero-Point Codex framework for strategic analysis
 # /start — Execution Script
 
 > **Latency Profile**: ULTRA-LOW (<2K tokens boot)  
-> **Philosophy**: Boot fast. Load later.
+> **Philosophy**: Boot fast. Load later.  
+> **Token Budget**: Robustness > Efficiency — every load step is deterministic. No shortcuts.
 
 ## Phase 1: Instant Boot (~2K tokens)
 

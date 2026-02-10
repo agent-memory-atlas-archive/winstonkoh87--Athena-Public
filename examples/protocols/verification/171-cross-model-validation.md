@@ -149,7 +149,7 @@ Quality = f(Primary Depth × Adversarial Diversity × Synthesis Discipline)
 
 ### Case Study 1: BCM Due Diligence
 
-**Primary (Opus 4.5)**:
+**Primary (Opus 4.6)**:
 
 - Failure probability: 15%
 - Best case probability: 20%
@@ -165,7 +165,7 @@ Quality = f(Primary Depth × Adversarial Diversity × Synthesis Discipline)
 
 ### Case Study 2: Child Aggression Response (28 Dec 2025)
 
-**Primary (Opus 4.5)**: Rated 9.5/10 response on behavioral psychology.
+**Primary (Opus 4.6)**: Rated 9.5/10 response on behavioral psychology.
 
 **After Cross-Validation (Gemini 3 Pro + GPT 5.2)**:
 

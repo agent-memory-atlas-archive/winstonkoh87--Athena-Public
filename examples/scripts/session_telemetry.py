@@ -3,10 +3,10 @@
 Session Telemetry Tracker (v2.0 — Accurate Pricing)
 
 Generates token usage statistics for the current session.
-Uses Claude Opus 4.5 pricing as conservative baseline.
+Uses Claude Opus 4.6 pricing as conservative baseline.
 
 Pricing Source: https://docs.anthropic.com/en/docs/about-claude/pricing
-- Claude Opus 4.5: $5/MTok input, $25/MTok output
+- Claude Opus 4.6: $5/MTok input, $25/MTok output
 - Claude Sonnet 4.5: $3/MTok input, $15/MTok output
 - Claude Haiku 4.5: $1/MTok input, $5/MTok output
 
@@ -34,7 +34,7 @@ RED = "\033[91m"
 RESET = "\033[0m"
 BOLD = "\033[1m"
 
-# Pricing (USD per Million Tokens) — Claude Opus 4.5 as baseline
+# Pricing (USD per Million Tokens) — Claude Opus 4.6 as baseline
 PRICING = {
     "opus_4.5": {"input": 5.00, "output": 25.00},
     "sonnet_4.5": {"input": 3.00, "output": 15.00},
@@ -53,6 +53,7 @@ def estimate_tokens(text):
     """
     try:
         import tiktoken
+
         enc = tiktoken.encoding_for_model("gpt-4")
         return len(enc.encode(text))
     except ImportError:
@@ -102,7 +103,18 @@ def detect_protocol_invocations(content):
     Detect protocol invocations from session log content.
     """
     import re
-    protocols = ["/ultrathink", "/think", "/needful", "/audit", "/search", "/research", "/graph", "/end", "/start"]
+
+    protocols = [
+        "/ultrathink",
+        "/think",
+        "/needful",
+        "/audit",
+        "/search",
+        "/research",
+        "/graph",
+        "/end",
+        "/start",
+    ]
     found = []
     for p in protocols:
         matches = re.findall(re.escape(p), content, re.IGNORECASE)
@@ -114,13 +126,13 @@ def detect_protocol_invocations(content):
 def estimate_session_tokens(session_log_tokens, artifacts_created, protocols_invoked):
     """
     Estimate actual session token usage based on multiple signals.
-    
+
     The session log is a COMPRESSED summary of the conversation.
     Actual conversation tokens are typically 10-50x larger because:
     - Full user messages (often include pasted articles, code, etc.)
     - Full AI responses (much longer than summary)
     - Context accumulation across turns
-    
+
     Signals used:
     1. Session log size (base)
     2. Artifacts created (more artifacts = more complex session)
@@ -128,7 +140,7 @@ def estimate_session_tokens(session_log_tokens, artifacts_created, protocols_inv
     """
     # Base multiplier
     BASE_MULTIPLIER = 15
-    
+
     # Adjust for session complexity
     if artifacts_created >= 3:
         complexity_bonus = 2.0  # Heavy session
@@ -136,7 +148,7 @@ def estimate_session_tokens(session_log_tokens, artifacts_created, protocols_inv
         complexity_bonus = 1.5  # Medium session
     else:
         complexity_bonus = 1.0  # Light session
-    
+
     # Adjust for deep work protocols
     protocol_count = protocols_invoked.count("x") if protocols_invoked != "None" else 0
     if protocol_count >= 3:
@@ -145,23 +157,23 @@ def estimate_session_tokens(session_log_tokens, artifacts_created, protocols_inv
         protocol_bonus = 1.2
     else:
         protocol_bonus = 1.0
-    
+
     # Minimum floor based on typical session
     # User feedback: $1 is the MOST conservative for a real session
-    # At Opus 4.5 ($5 in + $25 out), $1 = ~30K input + 7.5K output = ~$0.34
+    # At Opus 4.6 ($5 in + $25 out), $1 = ~30K input + 7.5K output = ~$0.34
     # So we need ~80K input to hit ~$1 with output ratio
-    MIN_INPUT_TOKENS = 80_000  # Produces ~$1 at Opus 4.5 rates
-    
+    MIN_INPUT_TOKENS = 80_000  # Produces ~$1 at Opus 4.6 rates
+
     # Calculate estimated input
     estimated_input = max(
         int(session_log_tokens * BASE_MULTIPLIER * complexity_bonus * protocol_bonus),
-        MIN_INPUT_TOKENS
+        MIN_INPUT_TOKENS,
     )
-    
+
     # Output is typically 20-30% of input in a balanced conversation
     OUTPUT_RATIO = 0.25
     estimated_output = int(estimated_input * OUTPUT_RATIO)
-    
+
     return estimated_input, estimated_output
 
 
@@ -178,45 +190,47 @@ def calculate_cost(input_tokens, output_tokens, model=DEFAULT_MODEL):
 def main():
     # 1. Calculate Boot Load
     boot_tokens = get_file_tokens(BOOT_FILE_PATH)
-    
+
     # 2. Get Current Session Log
     session_log_path = get_latest_session_log()
     if not session_log_path:
         print("No session log found.")
         sys.exit(1)
-        
+
     session_filename = os.path.basename(session_log_path)
     session_log_tokens = get_file_tokens(session_log_path)
-    
+
     # 3. Read session log for protocol detection
-    with open(session_log_path, 'r', encoding='utf-8') as f:
+    with open(session_log_path, "r", encoding="utf-8") as f:
         content = f.read()
-    
+
     # 4. Count artifacts and protocols
     artifacts_created = count_artifacts_created_today()
     protocols_invoked = detect_protocol_invocations(content)
-    
+
     # 5. Estimate actual session tokens (not just the log)
     estimated_input, estimated_output = estimate_session_tokens(
         session_log_tokens, artifacts_created, protocols_invoked
     )
     total_estimated = estimated_input + estimated_output
-    
-    # 6. Cost Estimation (Claude Opus 4.5 as baseline)
-    input_cost, output_cost, total_cost = calculate_cost(estimated_input, estimated_output, DEFAULT_MODEL)
-    
+
+    # 6. Cost Estimation (Claude Opus 4.6 as baseline)
+    input_cost, output_cost, total_cost = calculate_cost(
+        estimated_input, estimated_output, DEFAULT_MODEL
+    )
+
     # Calculate range (±30% for uncertainty)
     cost_low = total_cost * 0.7
     cost_high = total_cost * 1.5  # Heavy sessions can be 50% more
-    
+
     # Also calculate for other models for comparison
     _, _, sonnet_cost = calculate_cost(estimated_input, estimated_output, "sonnet_4.5")
     _, _, haiku_cost = calculate_cost(estimated_input, estimated_output, "haiku_4.5")
-    
+
     # Subscription ROI (Antigravity $20/month)
     subscription_cost = 20.00
     sessions_at_this_rate = int(subscription_cost / total_cost) if total_cost > 0 else 0
-    
+
     markdown_block = f"""
 ## 📊 Session Telemetry (v2.0)
 
@@ -230,11 +244,11 @@ def main():
 | **Artifacts Created** | {artifacts_created} | Files created today |
 | **Protocols Invoked** | {protocols_invoked} | Deep work triggers |
 
-### 💰 Cost Estimate (Opus 4.5 Baseline)
+### 💰 Cost Estimate (Opus 4.6 Baseline)
 
 | Model | Estimate | Range |
 |:------|:--------:|:-----:|
-| **Claude Opus 4.5** | **${total_cost:.2f}** | ${cost_low:.2f} — ${cost_high:.2f} |
+| **Claude Opus 4.6** | **${total_cost:.2f}** | ${cost_low:.2f} — ${cost_high:.2f} |
 | Claude Sonnet 4.5 | ${sonnet_cost:.2f} | — |
 | Claude Haiku 4.5 | ${haiku_cost:.2f} | — |
 
@@ -247,10 +261,13 @@ def main():
 
 > ⚠️ Range accounts for session complexity variance. Heavy text dumps = higher end.
 """
-    
+
     print(markdown_block)
     print(f"{GREEN}✓ Copy the block above and paste it into {session_filename}{RESET}")
-    print(f"{YELLOW}Note: Estimates based on session complexity heuristics. Range = ±30-50%.{RESET}")
+    print(
+        f"{YELLOW}Note: Estimates based on session complexity heuristics. Range = ±30-50%.{RESET}"
+    )
+
 
 if __name__ == "__main__":
     main()

@@ -10,7 +10,7 @@
 | Phase | Agent | Rationale |
 |-------|-------|-----------|
 | **PLAN** | Gemini (large context) | Best for research, web search, architecture. Doesn't burn Claude. |
-| **EXECUTE** | Claude Code (Opus 4.5) | Best for coding. Skip research (already done). |
+| **EXECUTE** | Claude Code (Opus 4.6) | Best for coding. Skip research (already done). |
 | **TEST** | External MCP (Testsprite) | Doesn't burn Gemini or Claude. Reusable test suites. |
 
 ---
@@ -69,7 +69,7 @@
 | Pattern | Our Current State | Action |
 |---------|-------------------|--------|
 | Gemini for planning | ✅ Default in Antigravity | None |
-| Claude for coding | ✅ Opus 4.5 available | None |
+| Claude for coding | ✅ Opus 4.6 available | None |
 | External testing MCP | ❌ Not integrated | **Candidate for future** |
 | `/init` self-documentation | ✅ `Core_Identity.md` | None |
 | Commit after each phase | ✅ `git_commit.py` | None |
@@ -86,4 +86,4 @@
 
 ## Tagging
 
-#protocol #framework #process #89-hybrid-token-conservation
+# protocol #framework #process #89-hybrid-token-conservation
