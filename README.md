@@ -8,8 +8,8 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-93_Starter-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-1073+-green)
-![Reddit Views](https://img.shields.io/badge/Reddit_Views-54k+-FF4500?logo=reddit&logoColor=white)
-![Reddit Shares](https://img.shields.io/badge/Shares-400+-00B2FF?logo=reddit&logoColor=white)
+![Reddit Views](https://img.shields.io/badge/Reddit_Views-59k+-FF4500?logo=reddit&logoColor=white)
+![Reddit Shares](https://img.shields.io/badge/Shares-450+-00B2FF?logo=reddit&logoColor=white)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.5-CC785C?logo=anthropic)
@@ -45,7 +45,7 @@ You spend more time *recovering* lost context than actually *building*.
 > **"Holy crap OP this is incredible!"**  
 > — *u/Oshden*
 
-In 48 hours, **400+ builders** shared this repo to their private collections. They recognized that while LLMs are getting smarter, **Memory** is the bottleneck. Athena solves the bottleneck.
+In 48 hours, **450+ builders** shared this repo to their private collections. They recognized that while LLMs are getting smarter, **Memory** is the bottleneck. Athena solves the bottleneck.
 
 ---
 
