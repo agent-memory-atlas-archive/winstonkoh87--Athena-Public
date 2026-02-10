@@ -4,11 +4,12 @@
 
 # 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
 
-![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=social)
+![GitHab Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=social)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-93_Starter-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-1073+-green)
-![Featured](https://img.shields.io/badge/Featured-r%2FGeminiAI_%232_Daily-orange)
+![Reddit Views](https://img.shields.io/badge/Reddit_Views-54k+-FF4500?logo=reddit&logoColor=white)
+![Reddit Shares](https://img.shields.io/badge/Shares-400+-00B2FF?logo=reddit&logoColor=white)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.5-CC785C?logo=anthropic)
@@ -30,6 +31,21 @@ Modern AI assistants (ChatGPT, Claude, Gemini) are brilliant — but they have *
 You spend more time *recovering* lost context than actually *building*.
 
 **Athena fixes this.** It gives your AI a **persistent memory** — stored in Markdown files *you* own — that survives across sessions, across IDEs, and across models. Stop renting your intelligence. Own it.
+
+---
+
+## The Community Response
+
+> **"Damn this is exactly what i needed, been copy-pasting the same project context into gemini like a caveman for weeks."**  
+> — *u/Hopeful-Intern-7178*
+
+> **"The missing layer. It's wild that we have these super-intelligent models, but we're still stuck copy-pasting context like it's 2023."**  
+> — *u/Jealous-Mine-694*
+
+> **"Holy crap OP this is incredible!"**  
+> — *u/Oshden*
+
+In 48 hours, **400+ builders** shared this repo to their private collections. They recognized that while LLMs are getting smarter, **Memory** is the bottleneck. Athena solves the bottleneck.
 
 ---
 
