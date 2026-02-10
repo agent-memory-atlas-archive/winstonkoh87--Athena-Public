@@ -56,5 +56,5 @@ When working on any task in this workspace:
 ## Version
 
 - **Framework**: v8.2-stable
-- **Last Updated**: 2026-02-04
+- **Last Updated**: 2026-02-11
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research

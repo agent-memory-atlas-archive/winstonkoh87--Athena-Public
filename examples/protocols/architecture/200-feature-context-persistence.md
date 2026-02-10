@@ -3,7 +3,6 @@ id: 200
 title: Feature Context Persistence
 category: architecture
 created: 2025-12-27
-last_updated: 2025-12-27
 ---
 
 # Protocol 200: Feature Context Persistence

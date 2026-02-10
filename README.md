@@ -1,6 +1,6 @@
 ![Athena Banner](./docs/athena_banner.png)
 
-> **Last Updated**: 10 February 2026
+> **Last Updated**: 11 February 2026
 
 # 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
 
@@ -105,7 +105,7 @@ athena init --ide cursor       # Creates .cursor/rules.md
 athena check                   # Verify installation
 ```
 
-### Option B: Clone & Explore (Full Reference)
+### Option C: Clone & Explore (Full Reference)
 
 | Step | Action |
 |------|--------|
@@ -345,7 +345,7 @@ graph TD
 | [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md) | Hybrid RAG implementation |
 | [VECTORRAG.md](docs/VECTORRAG.md) | Semantic memory architecture |
 | [GRAPHRAG.md](docs/GRAPHRAG.md) | Knowledge graph + community detection ⚠️ **(expensive)** |
-| [examples/protocols/](examples/protocols/) | 63 handpicked decision frameworks |
+| [examples/protocols/](examples/protocols/) | 93 handpicked decision frameworks |
 
 </details>
 
@@ -614,7 +614,7 @@ Think of it like **Git, but for conversations**. Each session builds on the last
 | **`/end` commit** | Summarizes session, extracts decisions, saves to knowledge store |
 | **Hybrid search** | Fuses Canonical + [GraphRAG](docs/GRAPHRAG.md) + Tags + [Vectors](docs/VECTORRAG.md) + Filenames via RRF |
 | **Cross-encoder reranking** | Refines top results with `sentence-transformers` |
-| **Protocol library** | [324 unique protocols](examples/protocols/) (63 curated in starter pack) |
+| **Protocol library** | [324 unique protocols](examples/protocols/) (93 curated in starter pack) |
 
 ### Repository Structure
 

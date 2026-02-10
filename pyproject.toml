@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "athena-cli"
-version = "1.6.0"
+version = "8.2.1"
 description = "Athena Bionic OS — Build Your Own AI Agent in 5 Minutes"
 readme = "README.md"
 requires-python = ">=3.10"

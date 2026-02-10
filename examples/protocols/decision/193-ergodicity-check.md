@@ -135,8 +135,8 @@ Your schema runs this flawed logic:
 
 ## Integration
 
-- Use with **[Protocol 187: Terminal Node](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/decision/187-terminal-node-protocol.md)** (project 20 years).
-- Use with **[Law #1: Ruin Prevention](file:///Users/winstonkoh/Desktop/Project Athena/.framework/v7.0/modules/Core_Identity.md)**.
+- Use with **[Protocol 187: Terminal Node](#private-protocol)** (project 20 years).
+- Use with **[Law #1: Ruin Prevention](#private-framework)**.
 
 ---
 
