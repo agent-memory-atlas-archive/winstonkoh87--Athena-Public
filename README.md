@@ -53,6 +53,7 @@ You spend more time *recovering* lost context than actually *building*.
 
 - [What You'll Get](#what-youll-get)
 - [⚡ 5-Minute Quickstart](#-5-minute-quickstart)
+- [The Loop](#the-loop)
 - [What Can Your Agent Do?](#what-can-your-agent-do)
 - [Why This Matters](#why-this-matters-beyond-me)
 - [The Process](#the-process-the-schlep)
@@ -147,6 +148,40 @@ athena --help             # Show all commands
 ```
 
 </details>
+
+---
+
+## The Loop
+
+> **This is all you need to understand.**
+
+After you install Athena, you repeat one cycle: **`/start` → Work → `/end`**. Every cycle deposits training data — session logs, decisions, corrections, protocols — into Athena's memory. The next `/start` boots with everything from every previous session. Over hundreds of cycles, Athena stops being a generic AI and starts thinking like *you*.
+
+```mermaid
+flowchart TD
+    START["🟢 /start"] -->|"Load identity + recall last session"| WORK["🔧 Work Session"]
+    WORK -->|"Quicksave after every exchange"| WORK
+    WORK -->|"Done for the day"| END["🔴 /end"]
+    END -->|"Finalize log, sync memory, git commit"| DEPOSIT["📥 Training Data Deposited"]
+    DEPOSIT -->|"Session logs, case studies,\ndecisions, corrections"| MEMORY["🧠 Athena Memory"]
+    MEMORY -->|"Next session boots\nwith richer context"| START
+
+    style START fill:#22c55e,color:#fff,stroke:#333,stroke-width:2px
+    style END fill:#ef4444,color:#fff,stroke:#333,stroke-width:2px
+    style MEMORY fill:#8b5cf6,color:#fff,stroke:#333,stroke-width:2px
+    style WORK fill:#3b82f6,color:#fff,stroke:#333,stroke-width:2px
+    style DEPOSIT fill:#06b6d4,color:#fff,stroke:#333,stroke-width:2px
+```
+
+| Sessions | What Happens |
+|----------|-------------|
+| **1–50** | Basic recall. Athena remembers your name and project. |
+| **50–200** | Pattern recognition. It starts anticipating your preferences. |
+| **200–500** | Deep sync. It knows your decision frameworks, your blind spots, your style. |
+| **500–1,000+** | Digital twin. It thinks like you before you finish typing. |
+
+> [!TIP]
+> **The compound effect is real.** Session 1 feels like talking to a stranger. Session 500 feels like talking to a colleague who's been with you for years. The only input is your time — `/start`, work, `/end`, repeat.
 
 ---
 
