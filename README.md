@@ -8,8 +8,8 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-93_Starter-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-1076+-green)
-![Reddit Views](https://img.shields.io/badge/Reddit_Views-416k+-FF4500?logo=reddit&logoColor=white)
-![Reddit Shares](https://img.shields.io/badge/Shares-3300+-00B2FF?logo=reddit&logoColor=white)
+![Reddit Views](https://img.shields.io/badge/Reddit_Views-526k+-FF4500?logo=reddit&logoColor=white)
+![Reddit Shares](https://img.shields.io/badge/Shares-4200+-00B2FF?logo=reddit&logoColor=white)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.6-CC785C?logo=anthropic)
@@ -45,7 +45,7 @@ You spend more time *recovering* lost context than actually *building*.
 > **"Holy crap OP this is incredible!"**  
 > — *u/Oshden*
 
-**3,300+ builders** shared this across **r/ChatGPT** (#1 All-Time Post) and **r/GeminiAI** (#2 All-Time Post). 416K+ views, 1,055+ upvotes. They recognized that while LLMs are getting smarter, **Memory** is the bottleneck. Athena solves the bottleneck.
+**4,200+ builders** shared this across **r/ChatGPT** (#1 All-Time Post) and **r/GeminiAI** (#2 All-Time Post). 526K+ views, 1,356+ upvotes. They recognized that while LLMs are getting smarter, **Memory** is the bottleneck. Athena solves the bottleneck.
 
 ---
 
