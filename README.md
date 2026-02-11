@@ -49,8 +49,30 @@ You spend more time *recovering* lost context than actually *building*.
 
 ---
 
+## "But My AI Already Has Memory"
+
+> You're confusing **RAM** with a **hard drive**.
+
+ChatGPT Memory, Claude Projects, Gemini Gems — these are **context window tricks**. They store flat facts ("User likes Python") in short-term memory that gets wiped, compressed, or silently forgotten. That works for casual chat.
+
+But if you're maintaining a 10,000-line codebase across 500 hours of development, you don't need a sticky note — you need a **filing cabinet**.
+
+| | Native Memory | NotebookLM / Obsidian | **Athena** |
+|---|---|---|---|
+| **Storage** | Opaque, vendor-controlled | Passive reference docs | **Active state files you own** |
+| **Recall** | "User likes dark mode" | "Here's what your docs say" | **"In Session 847, you decided X because of Y"** |
+| **Editability** | Can't surgery a vector | Manual doc updates | **Edit a line in a Markdown file** |
+| **Context Rot** | Accrues noise silently | You manage it manually | **Auto-distilled at session boundaries** |
+| **Portability** | Locked to one provider | Locked to one tool | **Plain Markdown → works everywhere** |
+
+> [!TIP]
+> **Context Rot** is the silent killer. Over time, memory systems accumulate stale, contradictory, or irrelevant information. Athena's `/end` protocol forces distillation — old context is compressed, conflicts are resolved, and only actionable state survives. This is why Session 1,000 is *cleaner* than Session 100.
+
+---
+
 ## Table of Contents
 
+- ["But My AI Already Has Memory"](#but-my-ai-already-has-memory)
 - [What You'll Get](#what-youll-get)
 - [⚡ 5-Minute Quickstart](#-5-minute-quickstart)
 - [The Loop](#the-loop)
