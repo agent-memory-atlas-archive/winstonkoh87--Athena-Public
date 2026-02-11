@@ -4,6 +4,20 @@
 
 ---
 
+## v8.4.0 — Phase 1: The Spine (Feb 2026)
+
+**Status**: ✅ Stable
+
+Complete standardization & control layer: MCP Tool Server, Permissioning, Search Quality, Evaluator Gate.
+
+- ✅ **MCP Tool Server**: 8 tools + 2 resources via Model Context Protocol (stdio + SSE transport)
+- ✅ **Permissioning Layer**: 4 capability levels (read/write/admin/dangerous), 3 sensitivity tiers (public/internal/secret), Secret Mode for demo/external, audit trail
+- ✅ **Search MRR +105%**: Rebalanced RRF weights (Canonical 3.5→2.0, filename 1.0→2.0), added `collect_framework_docs` collector, density-based scoring
+- ✅ **Evaluator Gate**: 50 golden queries, MRR@5=0.44, Hit@5=52%, regression prevention
+- ✅ **SDK v2.0.0**: Version bump, `to_dict()` path metadata, `fastmcp` dependency
+
+---
+
 ## v8.3.1 — Viral Validation (Feb 2026)
 
 **Status**: ✅ Stable
@@ -230,7 +244,9 @@ README restructured with Table of Contents, all counts verified, capability clai
 
 ## What's Next
 
-- 🔮 MCP Server integration for external tool access
+- ✅ ~~MCP Server integration for external tool access~~ (Done in v8.4.0)
+- 🔮 Agentic RAG v2 (Planner → Retrieve → Validate pipeline)
+- 🔮 Heartbeat (Read-only file watcher indexer)
 - 🔮 Voice interface for hands-free operation
 - 🔮 Multi-persona support (work/personal context switching)
 
@@ -240,6 +256,8 @@ README restructured with Table of Contents, all counts verified, capability clai
 
 | Date | Session | Notes |
 |------|---------|-------|
+| 2026-02-12 | 01 | v8.4.0 release: Phase 1 complete — MCP, Permissioning, Search +105%, Evaluator |
+| 2026-02-11 | 01 | v8.3.1 release: 570K views, 1,455 upvotes, 4,700 shares |
 | 2026-01-31 | 01 | v8.1 release: 308 protocols, 146 scripts, 995 sessions |
 | 2026-01-30 | 17 | v8.0 release: Zero-Point Refactor, weights rebalanced |
 | 2026-01-02 | 13 | v7.9 release: 248 protocols, 97 scripts, 560 sessions |

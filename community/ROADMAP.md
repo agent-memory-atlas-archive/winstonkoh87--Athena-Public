@@ -11,9 +11,11 @@ gantt
     section Phase 1
     Cognitive Recall    :done, 2025-11, 2025-12
     section Phase 2
-    Active Augmentation :active, 2025-12, 2026-02
+    Active Augmentation :done, 2025-12, 2026-02
     section Phase 3
-    Autonomous Agency   :2026-02, 2026-06
+    Standardization     :done, 2026-02, 2026-02
+    section Phase 4
+    Bounded Intelligence :2026-02, 2026-06
 ```
 
 ---
@@ -58,9 +60,28 @@ gantt
 
 ---
 
-## 🔮 Phase 3: Autonomous Agency (Planned)
+## 🏗️ Phase 3: Standardization & Control (Completed) ✅
 
-*Focus: Systems that run without me*
+*Focus: MCP, Permissioning, Search Quality, Evaluator*
+
+- [x] **MCP Tool Server**: 8 tools + 2 resources via Model Context Protocol (stdio + SSE)
+- [x] **Permissioning Layer**: 4 capability levels, 3 sensitivity tiers, Secret Mode
+- [x] **Search MRR +105%**: Rebalanced RRF, added framework_docs collector, density scoring
+- [x] **Evaluator Gate**: 50 golden queries, MRR@5=0.44, regression prevention
+
+---
+
+## 🔮 Phase 4: Bounded Intelligence (Planned)
+
+*Focus: Agentic RAG v2, autonomous indexing*
+
+- [ ] **Agentic RAG v2**
+  - **Goal**: Planner → Retrieve → Validate pipeline with evaluator-gated quality.
+  - **Tech**: Multi-step search with query decomposition and result validation.
+
+- [ ] **Heartbeat (Read-Only)**
+  - **Goal**: File watcher that indexes new/modified documents automatically.
+  - **Tech**: `fswatch` + embedding pipeline. Read-only — no proactive output.
 
 - [ ] **Daily Briefing Agent**
   - **Goal**: Athena wakes up at 6 AM, reads news/market data, and prepares a "Morning Brief" based on my portfolio.

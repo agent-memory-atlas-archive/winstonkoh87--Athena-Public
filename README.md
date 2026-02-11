@@ -1,6 +1,6 @@
 ![Athena Banner](./docs/athena_banner.png)
 
-> **Last Updated**: 11 February 2026
+> **Last Updated**: 12 February 2026
 
 # 🏛️ Project Athena: Sovereign AI Memory for Any Agent
 
@@ -156,6 +156,9 @@ But if you're maintaining a 10,000-line codebase across 500 hours of development
 | 🧠 **Memory That Persists** | Your agent remembers context across sessions, even after IDE restarts |
 | 📚 **93 Handpicked Protocols** | Curated decision frameworks from the private repo's 324 unique collection |
 | 🔄 **Platform Independence** | Your data lives in Markdown files you own — take it anywhere |
+| 🔌 **MCP Server** | 8 standardized tools via [Model Context Protocol](https://modelcontextprotocol.io/) — works with any MCP client |
+| 🛡️ **Permissioning** | 4 capability levels + 3 sensitivity tiers + Secret Mode for demo/external sharing |
+| 📊 **Evaluator Gate** | 50-query regression suite with MRR@5 scoring to prevent search quality degradation |
 | 🤖 **Full Autonomy** | Your agent can act on your behalf while you sleep |
 
 ## ⚡ 5-Minute Quickstart
@@ -263,6 +266,8 @@ flowchart TD
 | **Cross-Session Memory** | Remember decisions from Session 19 when you're on Session 995 |
 | **Gateway Architecture** | Persist beyond IDE termination via a sidecar process |
 | **Knowledge Retrieval** | Semantic search across 1000+ documents in <200ms |
+| **MCP Integration** | 8 tools exposed via Model Context Protocol (any MCP client) |
+| **Permissioning** | Capability tokens + sensitivity labels + Secret Mode |
 | **Parallel Reasoning** | True parallel tracks (v3.0) with API rate-limit protection |
 | **Context Hygiene** | Active session entropy monitoring to prevent context drift |
 
@@ -560,6 +565,39 @@ flowchart LR
 
 ---
 
+## 🔌 MCP Server (Model Context Protocol)
+
+> **Expose Athena's brain to any MCP-compatible client.**
+
+8 tools + 2 resources, dual transport (stdio + SSE), with a full permissioning layer.
+
+```bash
+# Launch via stdio (for IDE integration)
+python -m athena.mcp_server
+
+# Or via SSE (for remote access)
+python -m athena.mcp_server --sse --port 8765
+```
+
+| Tool | Permission | Description |
+|------|-----------|-------------|
+| `smart_search` | read | Hybrid RAG search with RRF fusion |
+| `quicksave` | write | Save checkpoint to session log |
+| `health_check` | read | System health audit |
+| `recall_session` | read | Read session log content |
+| `governance_status` | read | Triple-Lock compliance state |
+| `list_memory_paths` | read | Memory directory inventory |
+| `set_secret_mode` | admin | Toggle demo mode (blocks internal tools) |
+| `permission_status` | read | Show access state & tool manifest |
+
+### Secret Mode
+
+Toggle `set_secret_mode(True)` for demos or external sharing. Only PUBLIC tools remain accessible; sensitive content is auto-redacted.
+
+👉 **[Full MCP Documentation](docs/MCP_SERVER.md)** — Architecture, permissioning, and IDE configuration
+
+---
+
 ## Reference Implementation
 
 This repo documents **Winston's personal Athena instance** — 1,042+ sessions, 324 unique protocols, production-tested daily since June 2025.
@@ -748,6 +786,9 @@ Think of it like **Git, but for conversations**. Each session builds on the last
 | **`/start` boot** | Loads identity + retrieves relevant context from long-term memory |
 | **`/end` commit** | Summarizes session, extracts decisions, saves to knowledge store |
 | **Hybrid search** | Fuses Canonical + [GraphRAG](docs/GRAPHRAG.md) + Tags + [Vectors](docs/VECTORRAG.md) + Filenames via RRF |
+| **MCP Server** | 8 tools via [Model Context Protocol](docs/MCP_SERVER.md) — any MCP client can connect |
+| **Permissioning** | 4 capability levels + 3 sensitivity tiers + Secret Mode (demo/external) |
+| **Evaluator Gate** | 50-query regression suite: MRR@5 = 0.44, Hit@5 = 52% |
 | **Cross-encoder reranking** | Refines top results with `sentence-transformers` |
 | **Protocol library** | [324 unique protocols](examples/protocols/) (93 curated in starter pack) |
 
@@ -756,9 +797,10 @@ Think of it like **Git, but for conversations**. Each session builds on the last
 ```
 Athena-Public/
 ├── src/athena/           # SDK package (pip installable)
-│   ├── core/             #    Config, models
+│   ├── core/             #    Config, models, governance, permissions
 │   ├── tools/            #    Search, reranker, latency
-│   └── memory/           #    Vector DB interface
+│   ├── memory/           #    Vector DB interface
+│   └── mcp_server.py     #    MCP Tool Server (8 tools, 2 resources)
 ├── examples/
 │   ├── quickstart/       # Runnable demos
 │   ├── scripts/          # Automation scripts
@@ -811,7 +853,8 @@ See [.agent/workflows/](.agent/workflows/) for source files.
 
 ### February 2026
 
-- **v8.3.1** (Feb 11 2026): **Viral Validation Release** — 416K+ Reddit views, 1,055+ upvotes, 3,300+ shares. #1 All-Time r/ChatGPT, #2 All-Time r/GeminiAI. Three-Phase Token Budget: robustness at `/start`+`/end`, Adaptive Latency in-between.
+- **v8.4.0** (Feb 12 2026): **Phase 1 Complete** — MCP Tool Server (8 tools, 2 resources), Permissioning Layer (4 levels + secret mode), Search MRR +105% (0.21→0.44), Evaluator Gate (50 queries). SDK v2.0.0.
+- **v8.3.1** (Feb 11 2026): **Viral Validation Release** — 570K+ Reddit views, 1,455+ upvotes, 4,700+ shares. #1 All-Time r/ChatGPT, #2 All-Time r/GeminiAI. Three-Phase Token Budget: robustness at `/start`+`/end`, Adaptive Latency in-between.
 - **v8.2.1** (Feb 9 2026): Metrics Sync — Fixed `batch_audit.py` automation, linked orphan files, reconciled tech debt, 8,079 tags indexed
 - **v8.2-Stable** (Feb 7 2026): Metrics Sync — 1,042 sessions, 324 protocols, 192 scripts; README overhaul, KG integration audit
 - **v1.7.0** (Feb 6 2026): **Executioner's Update (Min-Max)** — Integrated `ParallelOrchestrator v3.0` (Token Bucket throttling), `ContextMonitor` (entropy alerts), and `TrilateralAuditor` logic completion. Refined RRF pipeline with Gemini-led reranking.

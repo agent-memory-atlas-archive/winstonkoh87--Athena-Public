@@ -17,3 +17,6 @@ torch>=2.0.0
 
 # Schema validation
 pydantic>=2.0.0
+
+# MCP Server (Model Context Protocol)
+fastmcp>=2.0.0
