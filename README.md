@@ -374,7 +374,7 @@ graph TD
 
 | Metric | Before | After |
 |--------|--------|-------|
-| **Context injection** | ~50k tokens (manual copy-paste per session) | **~2k tokens** (auto-retrieved summary) |
+| **Context injection** | ~50k tokens (manual copy-paste per session) | **~4k tokens** (auto-retrieved context — [details](docs/BENCHMARKS.md)) |
 | **Boot time** | 2-3 minutes | **<30 seconds** |
 | **Session logging** | Insights are manually logged at the end of each session | **Auto-logged** when I hit `/end` |
 
@@ -523,15 +523,29 @@ It's included as a **reference**, not a prescription. Your instance will reflect
 
 ---
 
-## Acknowledgments
+## Athena vs OpenClaw
 
-Athena takes architectural cues from **[OpenClaw](https://github.com/openclaw/openclaw)** (162k ⭐):
+> **"Aren't these the same thing?"** — No.
 
-- Multi-agent safety patterns
-- Sandboxed execution modes
-- DM pairing security
+**[OpenClaw](https://github.com/openclaw/openclaw)** (162k ⭐) is a **personal AI assistant platform** — it gets your AI into 15+ messaging channels (WhatsApp, Telegram, Slack, Discord, iMessage, etc.) with voice, Canvas UI, and mobile apps. It excels at *distribution*: making the AI accessible everywhere you already communicate.
 
-Where OpenClaw excels at *distribution* (12+ messaging channels), Athena focuses on *depth* (protocols, memory, knowledge graphs). They're complementary philosophies.
+**Athena** is a **persistent memory framework** — it gives your AI a long-term brain that survives across sessions, models, and IDEs. It excels at *depth*: compounding knowledge over 1,000+ sessions so your AI thinks like *you*.
+
+| Dimension | OpenClaw 🦞 | Athena 🏛️ |
+|-----------|-------------|-----------|
+| **Core Focus** | Distribution (reach your AI anywhere) | Memory (your AI remembers everything) |
+| **Channels** | 15+ (WhatsApp, Telegram, Slack, etc.) | IDE-native (Antigravity, Cursor, VS Code) |
+| **Memory Model** | Session pruning (context window) | Persistent knowledge graph + vector search |
+| **Architecture** | Gateway → Agent → Channel | `.framework/` + `.context/` + `.agent/` |
+| **Voice** | ✅ Voice Wake + Talk Mode (ElevenLabs) | ❌ Text-only |
+| **Mobile** | ✅ iOS + Android apps | ❌ Desktop IDE only |
+| **Knowledge Graph** | ❌ | ✅ GraphRAG (entities + communities) |
+| **Protocol Library** | Skills (ClawHub registry) | 324 decision frameworks + case studies |
+| **Session Continuity** | Per-channel session history | Cross-session learning (1,000+ sessions deep) |
+| **Best For** | "I want my AI on WhatsApp" | "I want my AI to remember Session 19 in Session 995" |
+
+> [!TIP]
+> **They're complementary, not competing.** Use OpenClaw as the *interface layer* (how you reach your AI) and Athena as the *memory layer* (what your AI knows). You can use both.
 
 ---
 
