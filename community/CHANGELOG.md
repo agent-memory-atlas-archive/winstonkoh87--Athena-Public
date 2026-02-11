@@ -8,9 +8,9 @@
 
 **Status**: ✅ Stable
 
-360K+ Reddit views, 867+ upvotes, 2,900+ shares. #4 r/ChatGPT, #1 r/GeminiAI. Production-grade refresh.
+570K+ Reddit views, 1,455+ upvotes, 4,700+ shares. #1 r/ChatGPT, #2 r/GeminiAI. Production-grade refresh.
 
-- ✅ **Stats Refresh**: 360K+ views, 2,900+ shares, 867+ upvotes verified
+- ✅ **Stats Refresh**: 570K+ views, 4,700+ shares, 1,455+ upvotes verified
 - ✅ **Model Upgrade**: Claude Opus 4.5 → 4.6 across all files
 - ✅ **Three-Phase Token Budget**: Robustness at start/end, Adaptive Latency in middle
 - ✅ **README Overhaul**: Badge bar, output table, community response updated
