@@ -8,8 +8,8 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-93_Starter-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-1076+-green)
-![Reddit Views](https://img.shields.io/badge/Reddit_Views-360k+-FF4500?logo=reddit&logoColor=white)
-![Reddit Shares](https://img.shields.io/badge/Shares-2900+-00B2FF?logo=reddit&logoColor=white)
+![Reddit Views](https://img.shields.io/badge/Reddit_Views-416k+-FF4500?logo=reddit&logoColor=white)
+![Reddit Shares](https://img.shields.io/badge/Shares-3300+-00B2FF?logo=reddit&logoColor=white)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.6-CC785C?logo=anthropic)
@@ -45,7 +45,7 @@ You spend more time *recovering* lost context than actually *building*.
 > **"Holy crap OP this is incredible!"**  
 > — *u/Oshden*
 
-**2,900+ builders** shared this across **r/ChatGPT** (#4 Today) and **r/GeminiAI** (#1 Today). 360K+ views, 867+ upvotes. They recognized that while LLMs are getting smarter, **Memory** is the bottleneck. Athena solves the bottleneck.
+**3,300+ builders** shared this across **r/ChatGPT** (#1 All-Time Post) and **r/GeminiAI** (#2 All-Time Post). 416K+ views, 1,055+ upvotes. They recognized that while LLMs are getting smarter, **Memory** is the bottleneck. Athena solves the bottleneck.
 
 ---
 
@@ -749,7 +749,7 @@ See [.agent/workflows/](.agent/workflows/) for source files.
 
 ### February 2026
 
-- **v8.3.1** (Feb 11 2026): **Viral Validation Release** — 360K+ Reddit views, 867+ upvotes, 2,900+ shares. #4 r/ChatGPT, #1 r/GeminiAI. Three-Phase Token Budget: robustness at `/start`+`/end`, Adaptive Latency in-between.
+- **v8.3.1** (Feb 11 2026): **Viral Validation Release** — 416K+ Reddit views, 1,055+ upvotes, 3,300+ shares. #1 All-Time r/ChatGPT, #2 All-Time r/GeminiAI. Three-Phase Token Budget: robustness at `/start`+`/end`, Adaptive Latency in-between.
 - **v8.2.1** (Feb 9 2026): Metrics Sync — Fixed `batch_audit.py` automation, linked orphan files, reconciled tech debt, 8,079 tags indexed
 - **v8.2-Stable** (Feb 7 2026): Metrics Sync — 1,042 sessions, 324 protocols, 192 scripts; README overhaul, KG integration audit
 - **v1.7.0** (Feb 6 2026): **Executioner's Update (Min-Max)** — Integrated `ParallelOrchestrator v3.0` (Token Bucket throttling), `ContextMonitor` (entropy alerts), and `TrilateralAuditor` logic completion. Refined RRF pipeline with Gemini-led reranking.
