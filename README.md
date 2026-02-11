@@ -49,6 +49,68 @@ You spend more time *recovering* lost context than actually *building*.
 
 ---
 
+## Frequently Asked Questions
+
+> These are the top questions from the Reddit threads. If yours isn't here, [open a Discussion](https://github.com/winstonkoh87/Athena-Public/discussions).
+
+<details>
+<summary><strong>❓ Do I need coding experience?</strong></summary>
+
+You need basic comfort with a terminal (copy-pasting commands). You do **not** need to write code. The setup is `git clone` → open folder → type `/start`.
+
+</details>
+
+<details>
+<summary><strong>❓ Does this work on mobile / iOS?</strong></summary>
+
+**No.** Athena requires a desktop IDE (Antigravity, Cursor, VS Code). It is not a mobile app. Think of it as a development tool, not a chat app.
+
+</details>
+
+<details>
+<summary><strong>❓ Does this work with free ChatGPT / Claude / Gemini?</strong></summary>
+
+**Yes.** Athena works with any AI model — free or paid. It stores memory in local files, not in the AI's platform. The AI just reads the files.
+
+</details>
+
+<details>
+<summary><strong>❓ Can I scope memory to a specific project?</strong></summary>
+
+**Yes.** One folder = one agent. Create separate Athena folders for different projects (e.g., `MyGame/`, `WorkProject/`, `Cooking/`). Each has its own isolated memory.
+
+</details>
+
+<details>
+<summary><strong>❓ How is this different from CLAUDE.md / AGENTS.md / Cursor Rules?</strong></summary>
+
+Those are **static instruction files** — they tell the AI how to behave, but they don't change over time. Athena is a **dynamic memory system** — it updates itself after every session. Think: a rulebook (static) vs a journal that writes itself (dynamic).
+
+</details>
+
+<details>
+<summary><strong>❓ Why /start and /end instead of automatic?</strong></summary>
+
+**Deliberate design choice.** Auto-ingest means the AI decides what's important. Manual checkpoints mean **you** decide. After 1,000+ sessions, forced distillation (compressing a session into key bullet points) produces *cleaner* memory than dumping raw transcripts. It's the difference between organized notes and a pile of recordings.
+
+</details>
+
+<details>
+<summary><strong>❓ How do I sync across multiple devices?</strong></summary>
+
+Athena files are plain Markdown in a Git repo. Run `git push` on one machine, `git pull` on another. For real-time sync, use a cloud folder (Dropbox, iCloud Drive) as your Athena directory.
+
+</details>
+
+<details>
+<summary><strong>❓ Does this work with local models (Ollama, LM Studio)?</strong></summary>
+
+**Yes.** Athena is model-agnostic. The memory layer is just files — any model that can read text can use it. Local models like `qwen3`, `llama`, or `deepseek` work fine.
+
+</details>
+
+---
+
 ## "But My AI Already Has Memory"
 
 > You're confusing **RAM** with a **hard drive**.
@@ -72,10 +134,12 @@ But if you're maintaining a 10,000-line codebase across 500 hours of development
 
 ## Table of Contents
 
+- [Frequently Asked Questions](#frequently-asked-questions)
 - ["But My AI Already Has Memory"](#but-my-ai-already-has-memory)
 - [What You'll Get](#what-youll-get)
 - [⚡ 5-Minute Quickstart](#-5-minute-quickstart)
 - [The Loop](#the-loop)
+- [The Hub Architecture](#the-hub-architecture)
 - [What Can Your Agent Do?](#what-can-your-agent-do)
 - [Why This Matters](#why-this-matters-beyond-me)
 - [The Process](#the-process-the-schlep)
@@ -96,6 +160,9 @@ But if you're maintaining a 10,000-line codebase across 500 hours of development
 
 ## ⚡ 5-Minute Quickstart
 
+> [!IMPORTANT]
+> **Prerequisites**: Desktop computer (Mac, Windows, or Linux) + an AI-powered IDE ([Antigravity](https://antigravity.google/), [Cursor](https://cursor.com), or VS Code with Copilot). Basic terminal comfort (copy-paste commands). **Not available on mobile.**
+
 ### Option A: Cloud Factory (Fastest)
 
 1. Click the **[Open in GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public)** badge above.
@@ -106,43 +173,21 @@ But if you're maintaining a 10,000-line codebase across 500 hours of development
 
 ### Option B: Local Install (Recommended)
 
-**Step 1: Install the CLI**
+**Step 1: Clone the repo**
 
 ```bash
-pip install athena-cli
-```
-
-> Or via [uv](https://docs.astral.sh/uv/) (faster): `uv tool install athena-cli --from git+https://github.com/winstonkoh87/Athena-Public.git`
-
-**Step 2: Create your agent folder**
-
-```bash
-mkdir MyAgent
+git clone https://github.com/winstonkoh87/Athena-Public.git MyAgent
 cd MyAgent
 ```
 
-**Step 3: Initialize Athena**
+**Step 2: Open in your AI IDE**
 
-```bash
-athena init .
-```
-
-> This creates `.agent/`, `.context/`, `.framework/` in your folder.
-
-**Step 4: Open in your AI IDE**
-
-- Open `MyAgent` folder in [Antigravity](https://antigravity.google/), Cursor, or VS Code
+- Open the `MyAgent` folder in [Antigravity](https://antigravity.google/), Cursor, or VS Code
 - Type `/start` to boot your agent
 - Work with your agent
 - Type `/end` to save the session
 
-**Optional: IDE-specific config**
-
-```bash
-athena init --ide antigravity  # Creates AGENTS.md
-athena init --ide cursor       # Creates .cursor/rules.md
-athena check                   # Verify installation
-```
+> That's it. The folder structure (`.agent/`, `.context/`, `.framework/`) is already set up.
 
 ### Option C: Clone & Explore (Full Reference)
 
@@ -152,7 +197,7 @@ athena check                   # Verify installation
 | **2** | **Clone this repo** — `git clone https://github.com/winstonkoh87/Athena-Public` |
 | **3** | **Open the folder** — Open in Antigravity as a workspace |
 | **4** | **Ask the AI: "What should I do next?"** — It reads the repo and guides you |
-| **5** | **Enjoy your bionic brain** — Type `/start` to boot, work, then `/end` to save |
+| **5** | **Start building** — Type `/start` to boot, work, then `/end` to save |
 
 <details>
 <summary><strong>🔧 CLI Commands Reference</strong></summary>
@@ -200,7 +245,7 @@ flowchart TD
 | **1–50** | Basic recall. Athena remembers your name and project. |
 | **50–200** | Pattern recognition. It starts anticipating your preferences. |
 | **200–500** | Deep sync. It knows your decision frameworks, your blind spots, your style. |
-| **500–1,000+** | Digital twin. It thinks like you before you finish typing. |
+| **500–1,000+** | Deep context. It anticipates your patterns before you state them. |
 
 > [!TIP]
 > **The compound effect is real.** Session 1 feels like talking to a stranger. Session 500 feels like talking to a colleague who's been with you for years. The only input is your time — `/start`, work, `/end`, repeat.
@@ -241,9 +286,9 @@ Most AI assistants position themselves as servants: "How can I help you?" Athena
 
 ---
 
-## The Exocortex Model
+## The Hub Architecture
 
-> **Athena is not just a coding assistant. It is a Centralised HQ for your entire life.**
+> **Athena is not just a coding assistant. It's a central workspace for your projects, knowledge, and decisions.**
 
 ```mermaid
 graph TD
@@ -286,9 +331,9 @@ graph TD
 | **Separated (Advanced)** | Folders live **outside** Athena on your Desktop, connected via symlinks | **Power users**. Cleaner desktop, but requires symlink setup. |
 
 > [!TIP]
-> **Start nested, graduate to separated.** The diagram above shows the *aspirational end-state*. On Day 1, just run `athena init MyAgent` — everything lives inside one folder and the AI works out of the box. Once you're comfortable, you can refactor to the separated Exocortex model if desired.
+> **Start nested, graduate to separated.** The diagram above shows the *aspirational end-state*. On Day 1, just clone the repo — everything lives inside one folder and the AI works out of the box. Once you're comfortable, you can refactor to the separated hub model if desired.
 
-> **See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#the-exocortex-model)** for the full breakdown including Mount Points and security trade-offs.
+> **See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#the-hub-architecture)** for the full breakdown including Mount Points and security trade-offs.
 
 ---
 
@@ -670,6 +715,7 @@ cp .env.example .env
 | **SDK** | `athena` Python package | Core search, reranking, memory |
 | **Reasoning** | Claude Opus 4.6 (primary) | Main reasoning engine |
 | **IDE** | Antigravity (supports Claude, Gemini, GPT) | Agentic development environment |
+| **Local Models** | Ollama, LM Studio (any model) | Model-agnostic — memory is in files, not the model |
 | **Embeddings** | `text-embedding-004` (768-dim) | Google embedding model |
 | **GraphRAG** | NetworkX + Leiden + ChromaDB | [Knowledge graph](docs/GRAPHRAG.md) ⚠️ **~$50 API** |
 | **Memory** | Supabase + pgvector *or* local (ChromaDB) | Vector database |
