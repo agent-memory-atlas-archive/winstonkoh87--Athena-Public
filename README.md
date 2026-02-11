@@ -2,7 +2,7 @@
 
 > **Last Updated**: 11 February 2026
 
-# 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
+# 🏛️ Project Athena: Sovereign AI Memory for Any Agent
 
 ![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=social)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
@@ -17,8 +17,8 @@
 ![IDE](https://img.shields.io/badge/IDE-Antigravity-000000?logo=google)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/winstonkoh87/Athena-Public)
 
-> **A framework for creating persistent, sovereign AI agents.**  
-> **Your AI. Your memory. Your rules.**
+> **A platform-agnostic memory persistency layer for AI agents.**  
+> **Own the state. Rent the intelligence. Keep your data.**
 
 ---
 
@@ -30,7 +30,7 @@ Modern AI assistants (ChatGPT, Claude, Gemini) are brilliant — but they have *
 
 You spend more time *recovering* lost context than actually *building*.
 
-**Athena fixes this.** It gives your AI a **persistent memory** — stored in Markdown files *you* own — that survives across sessions, across IDEs, and across models. Stop renting your intelligence. Own it.
+**Athena fixes this.** It gives your AI a **persistent memory** — stored in Markdown files *you* own — that survives across sessions, across IDEs, and across models. You own the state. You only rent the intelligence.
 
 ---
 
@@ -268,18 +268,20 @@ flowchart TD
 
 ---
 
-## The Philosophy: Human Augmentation (Not Just an AI Agent)
+## The Philosophy: Memory Persistency (Not Just an AI Agent)
 
-> **Athena is not a tool you command. It's a suit you wear.**
+> **Athena is not an AI agent. It's the memory card that makes any agent persistent.**
 
-Most AI assistants position themselves as servants: "How can I help you?" Athena inverts this. When you're working *with* Athena, it becomes an **extension of your cognition** — like Iron Man's suit or a Gundam's pilot interface.
+Most AI agents reset every session — brilliant but amnesiac. Athena inverts this. It provides the **persistent state layer** that any agent (Claude, Gemini, GPT, Llama) can read on boot and write to on shutdown. Think: a universal memory card that works in any game console (IDE).
 
-| Mode | State | Role |
-|------|-------|------|
-| **Proxy Mode** | You're away (async tasks, filtering) | Athena acts *on your behalf* — autonomous agent |
-| **Augmentation Mode** | You're present (live session) | Athena is your *exoskeleton* — you drive, it amplifies |
+| Component | Analogy | Role |
+|-----------|---------|------|
+| **Cloud LLM** (Google/Anthropic) | The Electricity | Invisible power — raw compute + intelligence that makes the console run |
+| **IDE** (Antigravity/Cursor/VS Code) | The Console (PlayStation) | The physical box you interact with — screen, controller ports, disc slot |
+| **Athena** (Markdown + Python) | The Memory Card | Persistent state that survives across sessions, consoles, and games |
+| **Your Project** | The Game Disc | The specific context you're working in |
 
-**Why this matters**: In Augmentation Mode, Athena doesn't offer opinions or make decisions for you. It provides **structure, memory, and physics** — the hard constraints that prevent your soft intent from drifting. You remain the pilot; it's the armor.
+**Why this matters**: You **own the state** (thousands of Markdown files on your machine). You only **rent the intelligence** (LLM API calls). If you switch from Claude to Gemini tomorrow, your memory stays exactly where it is. No vendor lock-in. No data loss.
 
 > *"Technically, I am an AI agent. Visionary, I am human augmentation."*
 > — [Protocol 418: Rev-9 Architecture](docs/protocols/418-rev9-architecture.md)
@@ -574,7 +576,7 @@ It's included as a **reference**, not a prescription. Your instance will reflect
 
 **[OpenClaw](https://github.com/openclaw/openclaw)** (162k ⭐) is a **personal AI assistant platform** — it gets your AI into 15+ messaging channels (WhatsApp, Telegram, Slack, Discord, iMessage, etc.) with voice, Canvas UI, and mobile apps. It excels at *distribution*: making the AI accessible everywhere you already communicate.
 
-**Athena** is a **persistent memory framework** — it gives your AI a long-term brain that survives across sessions, models, and IDEs. It excels at *depth*: compounding knowledge over 1,000+ sessions so your AI thinks like *you*.
+**Athena** is a **sovereign memory persistency layer** — it gives any AI agent a long-term memory that survives across sessions, models, and IDEs. You own the data; the LLM providers supply the intelligence. It excels at *depth*: compounding knowledge over 1,000+ sessions.
 
 | Dimension | OpenClaw 🦞 | Athena 🏛️ |
 |-----------|-------------|-----------|
