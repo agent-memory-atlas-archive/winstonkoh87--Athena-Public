@@ -42,14 +42,27 @@ from athena.memory.vectors import (
 from athena.tools.reranker import rerank_results
 
 # Config
-# Config
+# NOTE: Vector subtypes (case_study, session, protocol, etc.) each get their own
+# weight so RRF applies them correctly. The generic "vector" key is the fallback
+# for any subtype not explicitly listed.
 WEIGHTS = {
-    "canonical": 3.5,  # The Constitution
-    "graphrag": 2.5,  # The Context
-    "tags": 2.0,  # The Index
-    "vector": 2.0,  # The Content (Supabase)
+    "canonical": 3.5,  # The Constitution (keyword match on CANONICAL.md)
+    "case_study": 3.0,  # User-specific knowledge (vector search)
+    "session": 3.0,  # User-specific sessions (vector search)
+    "protocol": 2.8,  # Protocol library (vector search)
+    "graphrag": 2.5,  # The Context (community/entity graph)
+    "user_profile": 2.5,  # User profile data (vector search)
+    "framework": 2.3,  # Strategic frameworks (vector search)
+    "tags": 2.2,  # The Index (keyword grep on TAG_INDEX)
+    "vector": 1.8,  # Fallback for unlisted vector subtypes
+    "capability": 1.8,  # Capability docs (vector search)
+    "playbook": 1.8,  # Playbook docs (vector search)
+    "workflow": 1.8,  # Workflow docs (vector search)
+    "entity": 1.8,  # Entity docs (vector search)
+    "reference": 1.8,  # Reference docs (vector search)
+    "system_doc": 1.8,  # System docs (vector search)
     "sqlite": 1.5,  # The Sovereign Fallback (Local DB)
-    "filename": 1.0,  # The Map
+    "filename": 1.0,  # The Map (filesystem filename match)
 }
 RRF_K = 60
 CONFIDENCE_HIGH = 0.03
@@ -72,9 +85,7 @@ def collect_canonical(query: str) -> list[SearchResult]:
         return []
 
     keywords = [
-        w
-        for w in query.split()
-        if len(w) >= 2 and w.lower() not in ["the", "and", "for", "is"]
+        w for w in query.split() if len(w) >= 2 and w.lower() not in ["the", "and", "for", "is"]
     ]
     if not keywords:
         return []
@@ -120,9 +131,13 @@ def collect_tags(query: str) -> list[SearchResult]:
             continue
 
         try:
-            # Use grep for speed
-            cmd = f"grep -i '{query}' '{path}' | head -n 10"
-            process = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+            # Use grep for speed — argument list prevents shell injection
+            process = subprocess.run(
+                ["grep", "-i", "-m", "10", query, str(path)],
+                capture_output=True,
+                text=True,
+                timeout=5,
+            )
             if process.stdout:
                 lines = process.stdout.strip().split("\n")
                 for i, line in enumerate(lines):
@@ -204,7 +219,7 @@ def collect_vectors(
                     SearchResult(
                         id=item_id,
                         content=item.get("content", "")[:200],
-                        source="vector",
+                        source=type_label,  # Use actual type for correct RRF weighting
                         score=item.get("similarity", 0),
                         metadata={"type": type_label, "path": path},
                     )
@@ -231,9 +246,7 @@ def collect_graphrag(query: str, limit: int = 5) -> list[SearchResult]:
         cmd = ["python3", str(script_path), query, "--json", "--global-only"]
 
         # Add strict timeout
-        result = subprocess.run(
-            cmd, capture_output=True, text=True, check=False, timeout=5
-        )
+        result = subprocess.run(cmd, capture_output=True, text=True, check=False, timeout=5)
 
         if result.returncode != 0:
             return []
@@ -297,13 +310,32 @@ def collect_filenames(query: str) -> list[SearchResult]:
     """Collect filename matches in Project Root"""
     results = []
     try:
-        # Use relative search from PROJECT_ROOT with timeout
-        cmd = f"find . -type f -name '*{query}*' -not -path '*/.*' | head -n 5"
+        # Use argument list (no shell=True) to prevent shell injection
         process = subprocess.run(
-            cmd, shell=True, cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=2
+            [
+                "find",
+                ".",
+                "-path",
+                "./node_modules",
+                "-prune",
+                "-o",
+                "-path",
+                "./.git",
+                "-prune",
+                "-o",
+                "-type",
+                "f",
+                "-name",
+                f"*{query}*",
+                "-print",
+            ],
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True,
+            timeout=2,
         )
         if process.stdout:
-            lines = process.stdout.strip().split("\n")
+            lines = process.stdout.strip().split("\n")[:5]  # Limit to 5
             for line in lines:
                 if line.strip():
                     # line is relative to PROJECT_ROOT
@@ -341,9 +373,7 @@ def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
         query_sanitized = f"%{query}%"
 
         # 1. Search Files by Path/Name
-        cursor.execute(
-            "SELECT path FROM files WHERE path LIKE ? LIMIT ?", (query_sanitized, limit)
-        )
+        cursor.execute("SELECT path FROM files WHERE path LIKE ? LIMIT ?", (query_sanitized, limit))
         for row in cursor.fetchall():
             filepath = Path(row["path"])
             results.append(
@@ -391,9 +421,7 @@ def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
 # --- Fusion Logic ---
 
 
-def weighted_rrf(
-    ranked_lists: dict[str, list[SearchResult]], k: int = 60
-) -> list[SearchResult]:
+def weighted_rrf(ranked_lists: dict[str, list[SearchResult]], k: int = 60) -> list[SearchResult]:
     fused_scores = defaultdict(float)
     doc_map = {}
     doc_signals = defaultdict(dict)
@@ -483,8 +511,7 @@ def run_search(
             lists = {}
             with ThreadPoolExecutor(max_workers=len(collection_tasks)) as executor:
                 future_to_source = {
-                    executor.submit(func): source
-                    for source, func in collection_tasks.items()
+                    executor.submit(func): source for source, func in collection_tasks.items()
                 }
                 # Wait for results with a global timeout
                 for future in as_completed(future_to_source, timeout=8):
@@ -497,6 +524,15 @@ def run_search(
                         lists[source] = []
 
             # 2. Fuse
+            # Split vector results by their type-specific source for correct
+            # per-type RRF weighting (e.g., case_study=3.0, session=3.0, protocol=2.8)
+            vector_items = lists.pop("vector", [])
+            for item in vector_items:
+                type_key = item.source  # e.g., "case_study", "session", "protocol"
+                if type_key not in lists:
+                    lists[type_key] = []
+                lists[type_key].append(item)
+
             fused_results = weighted_rrf(lists)
 
         # 3. Rerank
@@ -520,9 +556,7 @@ def run_search(
         suppressed_count = len(low_conf)
         fused_results = high_conf
         if not json_output and suppressed_count > 0:
-            print(
-                f"\n   🛡️ STRICT MODE: {suppressed_count} low-confidence result(s) suppressed"
-            )
+            print(f"\n   🛡️ STRICT MODE: {suppressed_count} low-confidence result(s) suppressed")
     else:
         suppressed_count = 0
 
@@ -542,11 +576,7 @@ def run_search(
                 )
             )
         else:
-            print(
-                "  (No high-confidence results found)"
-                if strict
-                else "  (No results found)"
-            )
+            print("  (No high-confidence results found)" if strict else "  (No results found)")
         return
 
     if not json_output:

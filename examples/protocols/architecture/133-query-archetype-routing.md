@@ -58,9 +58,9 @@ When a query arrives, the system implicitly runs this decision tree:
 
 ## 5. Metadata
 
-* **Related**: [Protocol 77 (Adaptive Latency)]()
-* **Related**: [Output Standards]()
+* **Related**: [Protocol 77 (Adaptive Latency)](../architecture/96-latency-indicator.md)
+* **Related**: [Output Standards](../../templates/)
 
 ## Related Protocols
 
-* [Protocol 115: First Principles Deconstruction]()
+* [Protocol 115: First Principles Deconstruction](../decision/115-first-principles-decomposition.md)

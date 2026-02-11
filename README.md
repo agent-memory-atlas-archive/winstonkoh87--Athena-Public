@@ -4,10 +4,10 @@
 
 # 🏛️ Project Athena: Build Your Own AI Agent in 5 Minutes
 
-![GitHab Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=social)
+![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=social)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-93_Starter-blue)
-![Sessions](https://img.shields.io/badge/Sessions-1042+-green)
+![Sessions](https://img.shields.io/badge/Sessions-1076+-green)
 ![Reddit Views](https://img.shields.io/badge/Reddit_Views-200k+-FF4500?logo=reddit&logoColor=white)
 ![Reddit Shares](https://img.shields.io/badge/Shares-1500+-00B2FF?logo=reddit&logoColor=white)
 
