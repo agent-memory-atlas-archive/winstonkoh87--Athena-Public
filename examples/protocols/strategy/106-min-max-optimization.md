@@ -152,6 +152,12 @@ $$ U'(c) = \frac{U(c)}{c} $$
 - **Goal**: Maximize Impact per Calorie.
 - **Application**: 80/20 Rule — "Good enough" at 20% effort beats "perfect" at 100% effort (when stakes are low).
 
+### 4. Business Strategy (Building Businesses)
+
+- **Goal**: Maximize Revenue per CapEx Dollar.
+- **Application**: Build at the Sovereign Point — low CapEx, low OpEx, high organic demand, digitally scalable.
+- **Case Study**: [CS-460: Lean vs Fat Business Models](../../examples/case_studies/CS-460-lean-vs-fat-business.md) — Koocester (Sovereign Zone) vs Solace Studios (Luxury Trap).
+
 ---
 
 ## The Sovereign Standard
