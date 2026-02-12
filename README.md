@@ -552,6 +552,9 @@ Athena inverted this: **Build → Observe → Extract Patterns → Document Post
 
 > *"The spec sheet I wrote after 900 sessions is more accurate than any spec I could have written at session 0."*
 
+👉 **[REQUIREMENTS.md](docs/REQUIREMENTS.md)** — User stories, functional requirements, constraints (derived from Reddit feedback)
+👉 **[SPEC_SHEET.md](docs/SPEC_SHEET.md)** — Technical specification, data schema, API surface, benchmarks
+
 ---
 
 ## Why This Matters (Beyond Me)
