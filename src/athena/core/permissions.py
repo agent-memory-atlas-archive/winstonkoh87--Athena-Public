@@ -450,7 +450,8 @@ class PermissionEngine:
         if len(self.audit_log) > 1000:
             self.audit_log = self.audit_log[-500:]
 
-        logger.debug(f"Permission {action}: {target} → {details}")
+        redacted_details = self.redact(json.dumps(details, default=str))
+        logger.debug(f"Permission {action}: {target} → {redacted_details}")
 
 
 # ---------------------------------------------------------------------------
