@@ -215,6 +215,63 @@ graph TD
 
 ---
 
+## The Bilateral Growth Spiral (Man ↔ Machine)
+
+The five mechanisms above describe how the **system** improves the **user** — surfacing blind spots, challenging premises, finding connections. But there's a sixth dynamic that makes the whole thing accelerate:
+
+**The user improves the system.**
+
+This is [User-Driven RSI](../USER_DRIVEN_RSI.md) — Recursive Self-Improvement driven not by the AI autonomously rewriting itself, but by the human operator forcing the system to evolve through real-world demands.
+
+```mermaid
+graph TD
+    USER["👤 User"] -->|"Demands better reasoning,<br/>corrects errors, adds domain expertise"| ATHENA["🤖 Athena"]
+    ATHENA -->|"Surfaces blind spots,<br/>challenges premises, finds patterns"| USER
+    USER -->|"Creates new protocols,<br/>refines workflows, adds case studies"| ATHENA
+    ATHENA -->|"Better context = deeper Q4 detection,<br/>more relevant cross-domain matches"| USER
+
+    style USER fill:#f59e0b,color:#fff
+    style ATHENA fill:#3b82f6,color:#fff
+```
+
+### How This Works In Practice
+
+| User Action | System Evolution | Compounding Effect |
+|---|---|---|
+| User corrects a flawed recommendation | Error pattern stored → same mistake never repeated | System gets more accurate over time |
+| User imports a new framework (e.g., Kelly Criterion) | Framework becomes a permanent protocol | Every future decision benefits from it |
+| User challenges a generic response | System learns user's specificity threshold | Responses get more precise and contextual |
+| User adds domain expertise (industry data, case studies) | Cross-domain corpus grows | More lateral connections become possible |
+| User refines a workflow through daily use | Workflow evolves from theoretical to battle-tested | Efficiency compounds session over session |
+
+### The Evidence: What Actually Happened
+
+Over the first 1,000+ sessions of the reference implementation:
+
+- **87 protocols** were created, tested, and refined through real-world use — not designed in advance
+- **357+ case studies** were accumulated from actual decisions, not hypothetical examples
+- **The framework itself** (v1.0 → v8.2) evolved through the user identifying failures, edge cases, and missing capabilities
+- **Reasoning quality** improved not because the underlying LLM changed, but because the **context, protocols, and adversarial architecture** surrounding it got sharper through continuous bilateral feedback
+
+> *"The AI didn't get smarter. The operating system around it did — because a human was in the loop, pushing it to evolve."*
+
+### Why This Creates an Upward Spiral
+
+Traditional tools have a **flat growth curve** — the tool is the same on Day 1 and Day 1,000. The user might get better at using it, but the tool doesn't get better at serving the user.
+
+Athena has a **compounding growth curve** because both sides of the equation are improving simultaneously:
+
+1. **The system gets better at finding your blind spots** (more memory, more patterns, more adversarial context)
+2. **You get better at using the system** (better prompts, sharper protocols, more domain expertise fed in)
+3. **Your improvements make the system's improvements more effective** (richer context = more relevant Q4 detection)
+4. **The system's improvements make your improvements more effective** (better blind spot detection = better decisions = better case studies fed back)
+
+This is Stephen Covey's **Learn → Commit → Do** spiral, but with two riders — human and machine, each pulling the other upward.
+
+> **The pinnacle of human augmentation isn't replacing the human or replacing the machine. It's creating a system where neither can reach their potential without the other.**
+
+---
+
 ## Why This Can't Be Replicated With ChatGPT/Claude Memory
 
 | Requirement | SaaS Memory | Athena |
@@ -224,6 +281,7 @@ graph TD
 | **Cross-domain case study matching** | ❌ (no structured corpus) | ✅ (357+ indexed case studies) |
 | **Multi-model consensus checking** | ❌ (single model per platform) | ✅ (Protocol 171, any model) |
 | **Passive insight harvesting** | ❌ (user must manually save) | ✅ (auto-documentation on every exchange) |
+| **Bilateral growth spiral** | ❌ (tool doesn't evolve with user) | ✅ (user-driven RSI — both sides improve) |
 
 The difference isn't intelligence — it's **infrastructure**. The LLM provides the reasoning. Athena provides the memory, the adversarial architecture, and the cross-referencing that makes Q4 detection possible.
 
