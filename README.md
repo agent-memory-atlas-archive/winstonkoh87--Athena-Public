@@ -107,7 +107,7 @@ Athena is a **Hard Drive**.
 - [Community Reception](#-community-reception)
 - ["But My AI Already Has Memory"](#but-my-ai-already-has-memory)
 - [What You'll Get](#what-youll-get)
-- [⚡ 5-Minute Quickstart](#-5-minute-quickstart)
+- [⚡ Quickstart (3 Steps)](#-quickstart-3-steps)
 - [The Loop](#the-loop)
 - [The Design Philosophy: Macro-Robust, Micro-Efficient](#the-design-philosophy-macro-robust-micro-efficient)
 - [The Hub Architecture](#the-hub-architecture)
@@ -132,46 +132,20 @@ Athena is a **Hard Drive**.
 | 📊 **Evaluator Gate** | 50-query regression suite with MRR@5 scoring to prevent search quality degradation |
 | 🤖 **Full Autonomy** | Your agent can act on your behalf while you sleep |
 
-## ⚡ 5-Minute Quickstart
+## ⚡ Quickstart (3 Steps)
 
-> [!IMPORTANT]
-> **Prerequisites**: Desktop computer (Mac, Windows, or Linux) + an AI-powered IDE ([Antigravity](https://antigravity.google/), [Cursor](https://cursor.com), or VS Code with Copilot). Basic terminal comfort (copy-paste commands). **Not available on mobile.**
-
-### Option A: Cloud Factory (Fastest)
-
-1. Click the **[Open in GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public)** badge above.
-2. Wait for the cloud environment to build (~2 minutes).
-3. Type `/start` in the terminal.
-
-> **Zero Setup**: No Python, minimal RAM, or GPU required. Runs entirely in the cloud.
-
-### Option B: Local Install (Recommended)
-
-**Step 1: Clone the repo**
-
-```bash
-git clone https://github.com/winstonkoh87/Athena-Public.git MyAgent
-cd MyAgent
-```
-
-**Step 2: Open in your AI IDE**
-
-- Open the `MyAgent` folder in [Antigravity](https://antigravity.google/), Cursor, or VS Code
-- Type `/start` to boot your agent
-- Work with your agent
-- Type `/end` to save the session
-
-> That's it. The folder structure (`.agent/`, `.context/`, `.framework/`) is already set up.
-
-### Option C: Clone & Explore (Full Reference)
+> Athena is a **memory card**. Plug it into any agentic IDE and go.
 
 | Step | Action |
 |------|--------|
-| **1** | **[Download Antigravity](https://antigravity.google/)** — Install the IDE |
-| **2** | **Clone this repo** — `git clone https://github.com/winstonkoh87/Athena-Public` |
-| **3** | **Open the folder** — Open in Antigravity as a workspace |
-| **4** | **Ask the AI: "What should I do next?"** — It reads the repo and guides you |
-| **5** | **Start building** — Type `/start` to boot, work, then `/end` to save |
+| **1. Download an IDE** | [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [VS Code + Copilot](https://code.visualstudio.com/) · [Windsurf](https://codeium.com/windsurf) · [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) |
+| **2. Clone this repo** | `git clone https://github.com/winstonkoh87/Athena-Public.git` |
+| **3. Open folder → Type `/start`** | The AI reads the repo structure and guides you from there. |
+
+**That's it.** No config files. No API keys. No database setup. The folder *is* the product.
+
+> [!TIP]
+> When you're done working, type `/end` to save. Next time you `/start`, the agent picks up exactly where you left off.
 
 <details>
 <summary><strong>🔧 CLI Commands Reference</strong></summary>
