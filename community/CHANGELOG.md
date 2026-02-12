@@ -260,8 +260,8 @@ README restructured with Table of Contents, all counts verified, capability clai
 ## What's Next
 
 - ✅ ~~MCP Server integration for external tool access~~ (Done in v8.4.0)
-- 🔮 Agentic RAG v2 (Planner → Retrieve → Validate pipeline)
-- 🔮 Heartbeat (Read-only file watcher indexer)
+- ✅ ~~Agentic RAG v2 (Planner → Retrieve → Validate pipeline)~~ (Done in v8.5.0)
+- ✅ ~~Heartbeat (Read-only file watcher indexer)~~ (Done in v8.5.0)
 - 🔮 Voice interface for hands-free operation
 - 🔮 Multi-persona support (work/personal context switching)
 
