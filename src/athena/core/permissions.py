@@ -161,8 +161,7 @@ class PermissionDenied(Exception):
         self.required = required
         self.granted = granted
         super().__init__(
-            f"Permission denied for '{tool}': requires {required.value}, "
-            f"caller has {granted.value}"
+            f"Permission denied for '{tool}': requires {required.value}, caller has {granted.value}"
         )
 
 
@@ -361,9 +360,7 @@ class PermissionEngine:
 
         return {
             "secret_mode": enabled,
-            "effect": "Only PUBLIC tools accessible"
-            if enabled
-            else "All tools accessible",
+            "effect": "Only PUBLIC tools accessible" if enabled else "All tools accessible",
             "blocked_tools": [
                 name
                 for name, defn in TOOL_REGISTRY.items()
@@ -408,14 +405,12 @@ class PermissionEngine:
             "accessible_tools": [
                 name
                 for name, defn in TOOL_REGISTRY.items()
-                if _PERMISSION_LEVEL[self.caller_level]
-                >= _PERMISSION_LEVEL[defn["permission"]]
+                if _PERMISSION_LEVEL[self.caller_level] >= _PERMISSION_LEVEL[defn["permission"]]
             ],
             "blocked_tools": [
                 name
                 for name, defn in TOOL_REGISTRY.items()
-                if _PERMISSION_LEVEL[self.caller_level]
-                < _PERMISSION_LEVEL[defn["permission"]]
+                if _PERMISSION_LEVEL[self.caller_level] < _PERMISSION_LEVEL[defn["permission"]]
             ],
             "audit_entries": len(self.audit_log),
         }
@@ -450,8 +445,8 @@ class PermissionEngine:
         if len(self.audit_log) > 1000:
             self.audit_log = self.audit_log[-500:]
 
-        redacted_details = self.redact(json.dumps(details, default=str))
-        logger.debug(f"Permission {action}: {target} → {redacted_details}")
+        # Log only high-level metadata to avoid exposing potentially sensitive details.
+        logger.debug("Permission %s: %s (details recorded in memory only)", action, target)
 
 
 # ---------------------------------------------------------------------------
