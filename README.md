@@ -1,6 +1,6 @@
 ![Athena Banner](./docs/athena_banner.png)
 
-> **Last Updated**: 12 February 2026
+> **Last Updated**: 13 February 2026
 
 # 🏛️ Project Athena: The Linux OS for AI Agents
 
@@ -8,7 +8,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-75_Starter-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-1,079+-green)
-![Reddit Views](https://img.shields.io/badge/Reddit_Views-650k+-FF4500?logo=reddit&logoColor=white)
+![Reddit Views](https://img.shields.io/badge/Reddit_Views-662k+-FF4500?logo=reddit&logoColor=white)
 ![Reddit Shares](https://img.shields.io/badge/Shares-5300+-00B2FF?logo=reddit&logoColor=white)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
@@ -50,8 +50,8 @@ Athena is the **infrastructure** that gives them state, time-awareness, and self
 
 | Subreddit | Post | Views | Upvotes | Shares |
 |-----------|------|-------|---------|--------|
-| **r/ChatGPT** | [I got tired of ChatGPT forgetting everything...](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/i_got_tired_of_chatgpt_forgetting_everything_so_i/) | **455K+** | 1,400+ | 4,100+ |
-| **r/GeminiAI** | [I gave Gemini a brain. 1,073 sessions later...](https://www.reddit.com/r/GeminiAI/comments/1r18yn1/i_gave_gemini_a_brain_1073_sessions_later_it/) | **199K+** | 260+ | 1,200+ |
+| **r/ChatGPT** | [I got tired of ChatGPT forgetting everything...](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/i_got_tired_of_chatgpt_forgetting_everything_so_i/) | **457K+** | 1,400+ | 4,100+ |
+| **r/GeminiAI** | [I gave Gemini a brain. 1,073 sessions later...](https://www.reddit.com/r/GeminiAI/comments/1r18yn1/i_gave_gemini_a_brain_1073_sessions_later_it/) | **205K+** | 260+ | 1,200+ |
 
 ---
 
