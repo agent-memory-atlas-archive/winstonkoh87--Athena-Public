@@ -50,8 +50,8 @@ Athena is the **infrastructure** that gives them state, time-awareness, and self
 
 | Subreddit | Post | Views | Upvotes | Shares |
 |-----------|------|-------|---------|--------|
-| **r/ChatGPT** | [I got tired of ChatGPT forgetting everything...](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/i_got_tired_of_chatgpt_forgetting_everything_so_i/) | **450K+** | 1,400+ | 4,700+ |
-| **r/GeminiAI** | [I gave Gemini a brain. 1,073 sessions later...](https://www.reddit.com/r/GeminiAI/comments/1r18yn1/i_gave_gemini_a_brain_1073_sessions_later_it/) | **200K+** | 867+ | 600+ |
+| **r/ChatGPT** | [I got tired of ChatGPT forgetting everything...](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/i_got_tired_of_chatgpt_forgetting_everything_so_i/) | **455K+** | 1,400+ | 4,100+ |
+| **r/GeminiAI** | [I gave Gemini a brain. 1,073 sessions later...](https://www.reddit.com/r/GeminiAI/comments/1r18yn1/i_gave_gemini_a_brain_1073_sessions_later_it/) | **199K+** | 260+ | 1,200+ |
 
 ---
 
@@ -853,7 +853,7 @@ See [.agent/workflows/](.agent/workflows/) for source files.
 ### February 2026
 
 - **v8.5.0** (Feb 12 2026): **Phase 1 Complete** — MCP Tool Server (8 tools, 2 resources), Permissioning Layer (4 levels + secret mode), Search MRR +105% (0.21→0.44), Evaluator Gate (50 queries). SDK v2.0.0.
-- **v8.3.1** (Feb 11 2026): **Viral Validation Release** — 570K+ Reddit views, 1,455+ upvotes, 4,700+ shares. #1 All-Time r/ChatGPT, #2 All-Time r/GeminiAI. Three-Phase Token Budget: robustness at `/start`+`/end`, Adaptive Latency in-between.
+- **v8.3.1** (Feb 11 2026): **Viral Validation Release** — 654K+ Reddit views, 1,660+ upvotes, 5,300+ shares. #1 All-Time r/ChatGPT, #2 All-Time r/GeminiAI. Three-Phase Token Budget: robustness at `/start`+`/end`, Adaptive Latency in-between.
 - **v8.2.1** (Feb 9 2026): Metrics Sync — Fixed `batch_audit.py` automation, linked orphan files, reconciled tech debt, 8,079 tags indexed
 
 👉 **[Full Changelog](docs/CHANGELOG.md)** — Complete version history from v1.0.0 (Dec 2025)
