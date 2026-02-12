@@ -125,6 +125,52 @@ def smart_search(
 
 
 # ---------------------------------------------------------------------------
+# TOOL: agentic_search (RAG v2)
+# ---------------------------------------------------------------------------
+
+
+@mcp.tool(
+    tags={"read", "memory", "search", "admin"},
+)
+def agentic_search(
+    query: str,
+    limit: int = 10,
+    validate: bool = True,
+) -> dict:
+    """
+    Agentic RAG v2 — Multi-step query decomposition with parallel search
+    and cosine validation. Use this for complex, multi-part queries.
+
+    Pipeline: Decompose → Parallel Retrieve → Validate → Synthesize
+
+    Args:
+        query: Complex search query (e.g. "trading risk protocols and case studies").
+        limit: Maximum number of results to return (default 10).
+        validate: If True, validate results via cosine similarity against original query.
+
+    Returns:
+        dict with 'results', 'sub_queries', 'decomposed', and 'meta'.
+    """
+    from athena.tools.agentic_search import agentic_search as _agentic_search
+
+    # Permission gate
+    perms = get_permissions()
+    perms.gate("agentic_search")
+
+    result = _agentic_search(query=query, limit=limit, validate=validate)
+
+    return {
+        "results": [r.to_dict() for r in result["results"]],
+        "sub_queries": result["sub_queries"],
+        "decomposed": result["decomposed"],
+        "meta": {
+            **result["meta"],
+            "timestamp": datetime.now().isoformat(),
+        },
+    }
+
+
+# ---------------------------------------------------------------------------
 # TOOL: quicksave
 # ---------------------------------------------------------------------------
 

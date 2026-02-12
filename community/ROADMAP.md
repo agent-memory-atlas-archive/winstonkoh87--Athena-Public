@@ -15,7 +15,7 @@ gantt
     section Phase 3
     Standardization     :done, 2026-02, 2026-02
     section Phase 4
-    Bounded Intelligence :2026-02, 2026-06
+    Bounded Intelligence :done, 2026-02, 2026-02
 ```
 
 ---
@@ -35,7 +35,7 @@ gantt
 
 ---
 
-## 🚀 Phase 2: Active Augmentation (In Progress) 🚧
+## 🚀 Phase 2: Active Augmentation (Completed) ✅
 
 *Focus: Real-time assistance and friction reduction*
 
@@ -54,10 +54,6 @@ gantt
   - **Tech**: Telegram Bot + Gemini 3 Flash + Git sync.
   - **Status**: Athena-Lite deployed. `/start` → Chat → `/end` → Cloud sync.
 
-- [ ] **"Shower Thought" Capture Pipeline**
-  - **Goal**: Reduce friction from Insight → Protocol.
-  - **Tech**: Global hotkey overlay for instant dump + auto-tagging.
-
 ---
 
 ## 🏗️ Phase 3: Standardization & Control (Completed) ✅
@@ -71,25 +67,34 @@ gantt
 
 ---
 
-## 🔮 Phase 4: Bounded Intelligence (Planned)
+## 🔮 Phase 4: Bounded Intelligence (Completed) ✅
 
-*Focus: Agentic RAG v2, autonomous indexing*
+*Focus: Agentic RAG v2, autonomous indexing, self-optimization*
 
-- [ ] **Agentic RAG v2**
-  - **Goal**: Planner → Retrieve → Validate pipeline with evaluator-gated quality.
-  - **Tech**: Multi-step search with query decomposition and result validation.
+- [x] **Agentic RAG v2**
+  - **Goal**: Planner → Retrieve → Validate pipeline with query decomposition.
+  - **Tech**: Rule-based NLP decomposition + parallel search + cosine validation.
+  - **Status**: MCP tool `agentic_search` deployed. Query decomposition + multi-sub-query fusion.
 
-- [ ] **Heartbeat (Read-Only)**
+- [x] **Heartbeat (Read-Only)**
   - **Goal**: File watcher that indexes new/modified documents automatically.
-  - **Tech**: `fswatch` + embedding pipeline. Read-only — no proactive output.
+  - **Tech**: `watchdog` + debounced sync pipeline. Read-only — no proactive output.
+  - **Status**: Daemon mode with `launchd` plist. Auto-indexes `.md` files on create/modify.
 
-- [ ] **Daily Briefing Agent**
-  - **Goal**: Athena wakes up at 6 AM, reads news/market data, and prepares a "Morning Brief" based on my portfolio.
-  - **Tech**: Scheduled cron jobs + Search Tool + Synthesis.
+- [x] **Daily Briefing Agent**
+  - **Goal**: Athena wakes up at 6 AM, reads news/market data, and prepares a "Morning Brief."
+  - **Tech**: RSS fetcher + interest filter + Gemini Flash synthesis.
+  - **Status**: Configurable via `briefing_config.yaml`. `launchd` scheduled at 6 AM SGT.
 
-- [ ] **Recursive Self-Optimization**
+- [x] **Recursive Self-Optimization**
   - **Goal**: System analyzes its own logs to suggest new protocols.
-  - **Tech**: Weekly "Meta-Analysis" batch job.
+  - **Tech**: Weekly meta-analysis batch job with pattern detection + Gemini synthesis.
+  - **Status**: `launchd` scheduled Sundays at 8 AM. Proposals only — never auto-executes.
+
+- [x] **"Shower Thought" Capture Pipeline** *(moved from Phase 2)*
+  - **Goal**: Reduce friction from Insight → Protocol.
+  - **Tech**: Zero-friction CLI with auto-tagging + daily log format.
+  - **Status**: `capture.py` deployed. Alias: `alias think='python3 capture.py'`
 
 ---
 

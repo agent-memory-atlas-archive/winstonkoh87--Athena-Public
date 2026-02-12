@@ -2,7 +2,7 @@
 
 > **Last Updated**: 12 February 2026
 
-# 🏛️ Project Athena: Sovereign AI Memory for Any Agent
+# 🏛️ Project Athena: The Linux of AI Agents
 
 ![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=social)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
@@ -17,120 +17,51 @@
 ![IDE](https://img.shields.io/badge/IDE-Antigravity-000000?logo=google)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/winstonkoh87/Athena-Public)
 
-> **A platform-agnostic memory persistency layer for AI agents.**  
-> **Own the state. Rent the intelligence. Keep your data.**
+> **Athena is not an AI Agent. It is the Operating System they run on.**  
+> **Open Source. Sovereign. Bounded.**
 
 ---
 
-## The Problem
+## What Is Athena?
 
-> **Tired of re-explaining your project every 4 hours?**
+Calling Athena an "AI Agent" is overselling it (the LLM is the agent). Calling it a "memory tool" is underselling it.
 
-Modern AI assistants (ChatGPT, Claude, Gemini) are brilliant — but they have **amnesia**. Every session starts from zero. Your context, your decisions, your preferences? Gone.
+**Athena is the Linux for AI Agents.**
 
-You spend more time *recovering* lost context than actually *building*.
+Just as Linux provides the kernel, file system, and permissions for applications like Firefox to run, Athena provides the **memory, persistence, scheduling, and governance** for AI models (Claude, Gemini, GPT) to run as continuous agents.
 
-**Athena fixes this.** It gives your AI a **persistent memory** — stored in Markdown files *you* own — that survives across sessions, across IDEs, and across models. You own the state. You only rent the intelligence.
+| OS Layer | Linux | Athena |
+|----------|-------|--------|
+| **Kernel** | Hardware abstraction | Memory persistence + retrieval (VectorRAG, Supabase) |
+| **File System** | ext4, NTFS | Canonical Memory, Session Logs, Tag Index |
+| **Process Management** | cron, systemd | Heartbeat, Daily Briefing, Self-Optimization (launchd) |
+| **Shell / CLI** | bash, zsh | MCP Tool Server, `/start`, `/end`, `think` |
+| **Permissions** | chmod, users/groups | 4-level Permissioning Layer, Secret Mode |
+| **Package Manager** | apt, yum | Protocols, Skills, Workflows |
 
----
-
-## The Community Response
-
-> **"Damn this is exactly what i needed, been copy-pasting the same project context into gemini like a caveman for weeks."**  
-> — *u/Hopeful-Intern-7178*
-
-> **"The missing layer. It's wild that we have these super-intelligent models, but we're still stuck copy-pasting context like it's 2023."**  
-> — *u/Jealous-Mine-694*
-
-> **"Holy crap OP this is incredible!"**  
-> — *u/Oshden*
-
-**4,700+ builders** shared this across **r/ChatGPT** (#1 All-Time Post) and **r/GeminiAI** (#2 All-Time Post). 570K+ views, 1,455+ upvotes. They recognized that while LLMs are getting smarter, **Memory** is the bottleneck. Athena solves the bottleneck.
+Most "AI Agents" are just scripts that call an API. They have no state.
+Athena is the **infrastructure** that gives them state, time-awareness, and self-correction.
 
 ---
 
-## Frequently Asked Questions
+## "But I Have ChatGPT / Claude Projects"
 
-> These are the top questions from the Reddit threads. If yours isn't here, [open a Discussion](https://github.com/winstonkoh87/Athena-Public/discussions).
+> You're confusing **RAM** with a **Hard Drive**.
 
-<details>
-<summary><strong>❓ Do I need coding experience?</strong></summary>
+ChatGPT Memory and Claude Projects are **context window tricks**. They are RAM—fast, useful, but fragile. They get wiped, compressed, or hallucinated away.
 
-You need basic comfort with a terminal (copy-pasting commands). You do **not** need to write code. The setup is `git clone` → open folder → type `/start`.
+Athena is a **Hard Drive**.
 
-</details>
+- **Files you own**: stored in Markdown on *your* machine.
+- **Physics-based**: It doesn't "remember" by magic; it remembers because it wrote a file to disk in Session 42.
+- **Model-Agnostic**: Switch from Claude to Gemini tomorrow? Your memory stays here.
 
-<details>
-<summary><strong>❓ Does this work on mobile / iOS?</strong></summary>
-
-**No.** Athena requires a desktop IDE (Antigravity, Cursor, VS Code). It is not a mobile app. Think of it as a development tool, not a chat app.
-
-</details>
-
-<details>
-<summary><strong>❓ Does this work with free ChatGPT / Claude / Gemini?</strong></summary>
-
-**Yes.** Athena works with any AI model — free or paid. It stores memory in local files, not in the AI's platform. The AI just reads the files.
-
-</details>
-
-<details>
-<summary><strong>❓ Can I scope memory to a specific project?</strong></summary>
-
-**Yes.** One folder = one agent. Create separate Athena folders for different projects (e.g., `MyGame/`, `WorkProject/`, `Cooking/`). Each has its own isolated memory.
-
-</details>
-
-<details>
-<summary><strong>❓ How is this different from CLAUDE.md / AGENTS.md / Cursor Rules?</strong></summary>
-
-Those are **static instruction files** — they tell the AI how to behave, but they don't change over time. Athena is a **dynamic memory system** — it updates itself after every session. Think: a rulebook (static) vs a journal that writes itself (dynamic).
-
-</details>
-
-<details>
-<summary><strong>❓ Why /start and /end instead of automatic?</strong></summary>
-
-**Deliberate design choice.** Auto-ingest means the AI decides what's important. Manual checkpoints mean **you** decide. After 1,000+ sessions, forced distillation (compressing a session into key bullet points) produces *cleaner* memory than dumping raw transcripts. It's the difference between organized notes and a pile of recordings.
-
-</details>
-
-<details>
-<summary><strong>❓ How do I sync across multiple devices?</strong></summary>
-
-Athena files are plain Markdown in a Git repo. Run `git push` on one machine, `git pull` on another. For real-time sync, use a cloud folder (Dropbox, iCloud Drive) as your Athena directory.
-
-</details>
-
-<details>
-<summary><strong>❓ Does this work with local models (Ollama, LM Studio)?</strong></summary>
-
-**Yes.** Athena is model-agnostic. The memory layer is just files — any model that can read text can use it. Local models like `qwen3`, `llama`, or `deepseek` work fine.
-
-</details>
-
----
-
-## "But My AI Already Has Memory"
-
-> You're confusing **RAM** with a **hard drive**.
-
-ChatGPT Memory, Claude Projects, Gemini Gems — these are **context window tricks**. They store flat facts ("User likes Python") in short-term memory that gets wiped, compressed, or silently forgotten. That works for casual chat.
-
-But if you're maintaining a 10,000-line codebase across 500 hours of development, you don't need a sticky note — you need a **filing cabinet**.
-
-| | Native Memory | NotebookLM / Obsidian | **Athena** |
-|---|---|---|---|
-| **Storage** | Opaque, vendor-controlled | Passive reference docs | **Active state files you own** |
-| **Recall** | "User likes dark mode" | "Here's what your docs say" | **"In Session 847, you decided X because of Y"** |
-| **Editability** | Can't surgery a vector | Manual doc updates | **Edit a line in a Markdown file** |
-| **Context Rot** | Accrues noise silently | You manage it manually | **Auto-distilled at session boundaries** |
-| **Portability** | Locked to one provider | Locked to one tool | **Plain Markdown → works everywhere** |
-
-> [!TIP]
-> **Context Rot** is the silent killer. Over time, memory systems accumulate stale, contradictory, or irrelevant information. Athena's `/end` protocol forces distillation — old context is compressed, conflicts are resolved, and only actionable state survives. This is why Session 1,000 is *cleaner* than Session 100.
-
----
+| | SaaS Memory (ChatGPT/Claude) | **Athena OS** |
+|---|---|---|
+| **Ownership** | Rented (Vendor Lock-in) | **Owned (Local Files)** |
+| **Lifespan** | Until session/project deleted | **Forever (Git Versioned)** |
+| **Structure** | Opaque Blob | **Structured Knowledge Graph** |
+| **Agency** | ZERO (Waits for you) | **Bounded Autonomy (Heartbeat, Cron)** |
 
 ## Table of Contents
 

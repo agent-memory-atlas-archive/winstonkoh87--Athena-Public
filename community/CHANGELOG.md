@@ -4,6 +4,21 @@
 
 ---
 
+## v8.5.0 — Phase 4: Bounded Intelligence (Feb 2026)
+
+**Status**: ✅ Stable
+
+System evolves from reactive to bounded-autonomous: watches, indexes, briefs, and self-optimizes within safe constraints.
+
+- ✅ **Agentic RAG v2** (`agentic_search.py`): Rule-based query decomposition (conjunctions, multi-question, keyword clusters) → parallel sub-query retrieval → cosine validation → provenance-tagged results. MCP tool + CLI.
+- ✅ **Heartbeat** (`heartbeat.py`): `watchdog`-based file watcher daemon with 5s debounce, auto-syncs `.md` files to Supabase. `launchd` plist for auto-start. Read-only constraint.
+- ✅ **Daily Briefing Agent** (`daily_briefing.py`): RSS fetcher (HN / Reddit / Yahoo Finance) → interest keyword filter → Gemini Flash synthesis → `.context/briefings/YYYY-MM-DD.md`. `launchd` scheduled 6 AM SGT.
+- ✅ **Recursive Self-Optimization** (`self_optimize.py`): Weekly session log meta-analysis. Detects recurring queries, friction points, topic clusters, underutilized tools. Proposes protocols — never auto-executes. `launchd` Sundays 8 AM.
+- ✅ **Shower Thought Capture** (`capture.py`): Zero-friction CLI idea capture with auto-tagging. Daily log format at `.context/inputs/captures/YYYY-MM-DD.md`.
+- ✅ **SDK v2.1.0**: `watchdog>=3.0.0` dependency, 9 MCP tools, 2 resources.
+
+---
+
 ## v8.4.0 — Phase 1: The Spine (Feb 2026)
 
 **Status**: ✅ Stable
