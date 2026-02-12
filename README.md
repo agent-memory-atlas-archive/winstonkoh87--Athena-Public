@@ -2,12 +2,12 @@
 
 > **Last Updated**: 12 February 2026
 
-# 🏛️ Project Athena: The Linux of AI Agents
+# 🏛️ Project Athena: The Linux OS for AI Agents
 
 ![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=social)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-93_Starter-blue)
-![Sessions](https://img.shields.io/badge/Sessions-1076+-green)
+![Sessions](https://img.shields.io/badge/Sessions-1,076+-green)
 ![Reddit Views](https://img.shields.io/badge/Reddit_Views-650k+-FF4500?logo=reddit&logoColor=white)
 ![Reddit Shares](https://img.shields.io/badge/Shares-5300+-00B2FF?logo=reddit&logoColor=white)
 
@@ -26,9 +26,9 @@
 
 Calling Athena an "AI Agent" is overselling it (the LLM is the agent). Calling it a "memory tool" is underselling it.
 
-**Athena is the Linux for AI Agents.**
+**Athena is the Linux OS for AI Agents.**
 
-Just as Linux provides the kernel, file system, and permissions for applications like Firefox to run, Athena provides the **memory, persistence, scheduling, and governance** for AI models (Claude, Gemini, GPT) to run as continuous agents.
+Just as Linux provides the kernel, file system, and permissions for applications like Firefox to run, Athena provides the **memory, persistence, scheduling, and governance** for AI models (Claude, Gemini, GPT) to run as continuous agents (Simon, 1956).
 
 | OS Layer | Linux | Athena |
 |----------|-------|--------|
@@ -41,6 +41,17 @@ Just as Linux provides the kernel, file system, and permissions for applications
 
 Most "AI Agents" are just scripts that call an API. They have no state.
 Athena is the **infrastructure** that gives them state, time-awareness, and self-correction.
+
+---
+
+## 📣 Community Reception
+
+> **"I gave Gemini a brain..."** — Viral on r/GeminiAI and r/ChatGPT
+
+| Subreddit | Post | Views | Upvotes | Shares |
+|-----------|------|-------|---------|--------|
+| **r/ChatGPT** | [I got tired of ChatGPT forgetting everything...](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/i_got_tired_of_chatgpt_forgetting_everything_so_i/) | **450K+** | 1,400+ | 4,700+ |
+| **r/GeminiAI** | [I gave Gemini a brain. 1,073 sessions later...](https://www.reddit.com/r/GeminiAI/comments/1r18yn1/i_gave_gemini_a_brain_1073_sessions_later_it/) | **200K+** | 867+ | 600+ |
 
 ---
 
@@ -65,7 +76,7 @@ Athena is a **Hard Drive**.
 
 ## Table of Contents
 
-- [Frequently Asked Questions](#frequently-asked-questions)
+- [Community Reception](#-community-reception)
 - ["But My AI Already Has Memory"](#but-my-ai-already-has-memory)
 - [What You'll Get](#what-youll-get)
 - [⚡ 5-Minute Quickstart](#-5-minute-quickstart)
@@ -218,7 +229,27 @@ Most AI agents reset every session — brilliant but amnesiac. Athena inverts th
 | **Athena** (Markdown + Python) | The Memory Card | Persistent state that survives across sessions, consoles, and games |
 | **Your Project** | The Game Disc | The specific context you're working in |
 
-**Why this matters**: You **own the state** (thousands of Markdown files on your machine). You only **rent the intelligence** (LLM API calls). If you switch from Claude to Gemini tomorrow, your memory stays exactly where it is. No vendor lock-in. No data loss.
+```
+┌──────────────────────────────────────────────┐
+│              Your Machine (Owned)             │
+│  ┌──────────┐  ┌──────────┐  ┌────────────┐  │
+│  │ Markdown  │  │ Session  │  │  Tag Index  │  │
+│  │  Files    │  │  Logs    │  │  (8K tags)  │  │
+│  └────┬─────┘  └────┬─────┘  └──────┬─────┘  │
+│       └──────────────┼───────────────┘        │
+│                      ▼                        │
+│            ┌──────────────────┐               │
+│            │   Git (Versioned) │               │
+│            └────────┬─────────┘               │
+└─────────────────────┼────────────────────────┘
+                      ▼
+            ┌──────────────────┐
+            │  Supabase Cloud   │
+            │  (Insurance Copy) │
+            └──────────────────┘
+```
+
+**Why this matters**: You **own the state** (thousands of Markdown files on your machine). You only **rent the intelligence** (LLM API calls) (Mas-Colell et al., 1995). If you switch from Claude to Gemini tomorrow, your memory stays exactly where it is. No vendor lock-in. No data loss.
 
 > *"Technically, I am an AI agent. Visionary, I am human augmentation."*
 > — [Protocol 418: Rev-9 Architecture](docs/protocols/418-rev9-architecture.md)
@@ -239,6 +270,16 @@ But within those boundaries, the AI is free to **maximise efficiency**. This is 
 | Simple tasks | **Minimal** (Fast) | Quick answers, file edits, routine operations |
 | `/think` | **Medium** (Balanced) | Multi-step reasoning, planning |
 | `/ultrathink` | **Maximum** (Deep) | High-stakes decisions, complex analysis |
+
+```mermaid
+graph LR
+    S["/start<br/>MAX Compute"] --> W["Work Session<br/>Adaptive (Λ)"]
+    W --> E["/end<br/>MAX Compute"]
+    E --> S
+    style S fill:#ef4444,color:#fff
+    style E fill:#ef4444,color:#fff
+    style W fill:#22c55e,color:#fff
+```
 
 This is the **Robustness-Efficiency Tradeoff (RETO)**: by accepting higher latency at the boundaries (`/start`, `/end`), the system earns the right to sprint efficiently in the middle.
 
@@ -345,15 +386,15 @@ graph TD
     style X fill:#10b981,stroke:#10b981
 ```
 
-**The Output** (After 1,042+ Sessions):
+**The Output** (After 1,076+ Sessions):
 
 | Metric | Private Repo | This Starter Pack |
 |--------|--------------|-------------------|
 | **Protocols** | 324 unique | 93 handpicked |
 | **Python Scripts** | 218 | 10 reference examples |
-| **Case Studies** | 357 | 11 showcase examples |
+| **Case Studies** | 361 | 11 showcase examples |
 | **Workflows** | 43 | 14 starter |
-| **Sessions Logged** | 1,042+ | N/A (your sessions) |
+| **Sessions Logged** | 1,076+ | N/A (your sessions) |
 | **GraphRAG Communities** | 1,460 | — |
 | **Knowledge Graph** | 46MB + 78MB vectors | — |
 
@@ -391,7 +432,7 @@ graph TD
 |--------|---------|
 | **User-Driven RSI** | The system improves based on *your* feedback. Every friction you surface becomes a protocol. Every insight gets indexed. You shape the AI; the AI shapes how you think. |
 | **Portability** | Data lives locally (primary) and in the cloud. Not trapped in ChatGPT or Claude. It's mine — I can port it anywhere. |
-| **Principles** | 324 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings, but for AI collaboration. |
+| **Principles** | 324 protocols + case studies extracted from my own decisions — stored principles I can reuse and refine. Like Ray Dalio's systematized learnings (Dalio, 2017), but for AI collaboration. |
 
 <details>
 <summary><strong>📊 Full Benchmarks & Case Studies</strong></summary>
@@ -413,9 +454,9 @@ graph TD
 |---------|----------|
 | **Co-development is the unlock** | Building *with* AI, not just *using* AI, creates compounding returns. |
 | **Portable memory beats platform memory** | Own your context. Don't rent it from OpenAI or Anthropic. |
-| **Retrieval is end-to-end** | Simple RAG fails on broad queries. RRF fusion + reranking solved quality/latency tradeoff. |
+| **Retrieval is end-to-end** | Simple RAG (Lewis et al., 2020) fails on broad queries. RRF fusion + reranking solved quality/latency tradeoff. |
 | **Protocols beat prompts** | Reusable decision frameworks outlast one-shot prompt engineering. |
-| **Ship at 70%** | Perfectionism kills velocity. Iterate in production. |
+| **Ship at 70%** | Perfectionism kills velocity. Iterate in production (Taleb, 2012; Ries, 2011). |
 
 <details>
 <summary><strong>🔬 Technical Deep Dives</strong></summary>
@@ -433,7 +474,7 @@ graph TD
 
 ## The Reverse SDLC (Build First, Spec Later)
 
-> **Key Insight**: Athena was not designed top-down. It evolved bottom-up through 1,042+ sessions.
+> **Key Insight**: Athena was not designed top-down. It evolved bottom-up through 1,076+ sessions.
 
 Traditional software development follows: **Requirements → Design → Build → Test**.
 
@@ -465,9 +506,9 @@ This isn't about building *my* assistant. It's about proving a pattern:
 1. **Portable memory is the real unlock** — ChatGPT and Claude have memory now, but it's locked to their platforms. Athena's memory is *yours* — Markdown files on your machine you can take to any model.
 2. **10x Content Velocity** — Because Athena knows how I think, my history, and my voice, content output that used to take 2-3 hours now takes **15 minutes**. I just spec the output; the AI drafts in my style. I do a quick review and ship.
 3. **You direct the AI's behavior** — I configure *how* Athena responds to me. Semantic search gives me contextual, nuanced answers grounded in my own documented principles — not generic advice.
-4. **Zero operational burden** — Unlike SaaS products that break at scale, this is a *single-user local tool*. The complexity is real (1,042+ sessions, vector search, knowledge graphs), but there's no production to break. Real system design, zero ops chaos — ideal for demonstrating engineering depth without the liability.
-5. **Bilateral growth** — You evolve *with* Athena. Every insight you learn — about coding, system design, or any domain — gets captured and integrated. The system upgrades alongside you. It's not a static tool; it's a compound knowledge machine that reflects your growth trajectory.
-6. **Quadrant IV: What you don't know you don't know** — The highest-value zone. You can't Google what you don't know exists. Athena surfaces blind spots *before* they become problems — flagging dependencies you missed, risks you didn't consider, and connections you couldn't see. It's a co-pilot that sees the ditch before the driver does.
+4. **Zero operational burden** — Unlike SaaS products that break at scale, this is a *single-user local tool*. The complexity is real (1,076+ sessions, vector search, knowledge graphs), but there's no production to break. Real system design, zero ops chaos — ideal for demonstrating engineering depth without the liability.
+5. **Bilateral growth** — You evolve *with* Athena (Ries, 2011). Every insight you learn — about coding, system design, or any domain — gets captured and integrated. The system upgrades alongside you. It's not a static tool; it's a compound knowledge machine that reflects your growth trajectory.
+6. **Quadrant IV: What you don't know you don't know** — The highest-value zone (Luft & Ingham, 1955; Rumsfeld, 2002). You can't Google what you don't know exists. Athena surfaces blind spots *before* they become problems — flagging dependencies you missed, risks you didn't consider, and connections you couldn't see. It's a co-pilot that sees the ditch before the driver does.
 
 > *"The goal isn't just to answer questions. It's to ask the questions you didn't know to ask."*
 
@@ -555,7 +596,7 @@ Toggle `set_secret_mode(True)` for demos or external sharing. Only PUBLIC tools 
 
 ## Reference Implementation
 
-This repo documents **Winston's personal Athena instance** — 1,042+ sessions, 324 unique protocols, production-tested daily since June 2025.
+This repo documents **Winston's personal Athena instance** — 1,076+ sessions, 324 unique protocols, production-tested daily since June 2025.
 
 It's included as a **reference**, not a prescription. Your instance will reflect your domain, your decisions, your voice.
 
@@ -811,13 +852,9 @@ See [.agent/workflows/](.agent/workflows/) for source files.
 
 ### February 2026
 
-- **v8.4.0** (Feb 12 2026): **Phase 1 Complete** — MCP Tool Server (8 tools, 2 resources), Permissioning Layer (4 levels + secret mode), Search MRR +105% (0.21→0.44), Evaluator Gate (50 queries). SDK v2.0.0.
+- **v8.5.0** (Feb 12 2026): **Phase 1 Complete** — MCP Tool Server (8 tools, 2 resources), Permissioning Layer (4 levels + secret mode), Search MRR +105% (0.21→0.44), Evaluator Gate (50 queries). SDK v2.0.0.
 - **v8.3.1** (Feb 11 2026): **Viral Validation Release** — 570K+ Reddit views, 1,455+ upvotes, 4,700+ shares. #1 All-Time r/ChatGPT, #2 All-Time r/GeminiAI. Three-Phase Token Budget: robustness at `/start`+`/end`, Adaptive Latency in-between.
 - **v8.2.1** (Feb 9 2026): Metrics Sync — Fixed `batch_audit.py` automation, linked orphan files, reconciled tech debt, 8,079 tags indexed
-- **v8.2-Stable** (Feb 7 2026): Metrics Sync — 1,042 sessions, 324 protocols, 192 scripts; README overhaul, KG integration audit
-- **v1.7.0** (Feb 6 2026): **Executioner's Update (Min-Max)** — Integrated `ParallelOrchestrator v3.0` (Token Bucket throttling), `ContextMonitor` (entropy alerts), and `TrilateralAuditor` logic completion. Refined RRF pipeline with Gemini-led reranking.
-- **v1.6.0** (Feb 5 2026): **Sovereign Agent Architecture** — Added `CognitiveRouter` (query complexity routing), `BudgetGatekeeper` (runtime limit enforcement), `Graph of Thoughts (GoT)` DAG-based reasoning engine. Full SDK refactor with 8 new modules (~2,200 lines).
-- **v1.5.0** (Feb 1 2026): **The 5-Minute Upgrade** — `athena init` command scaffolds workspace instantly, `--doctor` flag for system health check, fixed path discovery for pip installs, centralized version management
 
 👉 **[Full Changelog](docs/CHANGELOG.md)** — Complete version history from v1.0.0 (Dec 2025)
 
