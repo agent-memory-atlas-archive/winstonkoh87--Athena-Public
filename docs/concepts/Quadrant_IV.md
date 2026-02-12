@@ -7,7 +7,7 @@
 
 ## The Problem: You Can't Google What You Don't Know Exists
 
-The Johari Window (Luft & Ingham, 1955) divides knowledge into four quadrants:
+The Johari Window (Luft & Ingham, 1955) divides knowledge into four quadrants. Originally developed as a tool for interpersonal communication, the framework maps cleanly onto the problem of human-AI knowledge management:
 
 | | **Known to You** | **Unknown to You** |
 |---|---|---|
@@ -30,7 +30,7 @@ Most AI tools operate in **Quadrants I–III**. You ask a question; it answers. 
 
 > **What it does**: Surfaces forgotten decisions, contradicted assumptions, and dormant patterns from your own history.
 
-Standard AI has no memory. Every conversation starts from zero. Athena writes every exchange to disk, indexes it into a vector database, and retrieves it semantically on every future query.
+Standard AI has no memory. Every conversation starts from zero. Athena writes every exchange to disk, indexes it into a vector database, and retrieves it semantically on every future query — an implementation of Retrieval-Augmented Generation (Lewis et al., 2020).
 
 **How this surfaces Q4**:
 
@@ -69,7 +69,7 @@ The insight isn't something you asked for. It's something the **system's accumul
 | **C: Cross-Domain** | Search for isomorphic patterns | Finds what you couldn't see |
 | **D: Zero-Point** | Invert the entire framing | Questions whether the problem is real |
 
-**Track B is always running.** At low complexity (Λ ≤ 40), it runs silently and only surfaces findings if a ruin risk is detected. At higher complexity, adversarial findings are integrated into the response body.
+**Track B is always running.** At low complexity (Λ ≤ 40), it runs silently and only surfaces findings if a ruin risk is detected. At higher complexity, adversarial findings are integrated into the response body. This mirrors the "deliberative alignment" approach described in chain-of-thought reasoning research (Wei et al., 2022).
 
 **How this surfaces Q4**:
 
@@ -121,7 +121,7 @@ You would never have Googled "casino loyalty churn SaaS" — because you didn't 
 
 The most dangerous failure mode isn't when the AI is wrong — it's when **both you and the AI agree on a flawed premise**. This is "Mutual Blindness" — a shared illusion that neither party can detect from inside the loop.
 
-[Protocol 171 (Cross-Model Validation)](../../examples/protocols/verification/171-cross-model-validation.md) breaks this by exporting key decisions to 3+ independent LLMs (trained on different data, with different biases) for adversarial red-team review:
+[Protocol 171 (Cross-Model Validation)](../../examples/protocols/verification/171-cross-model-validation.md) breaks this by exporting key decisions to 3+ independent LLMs (trained on different data, with different biases) for adversarial red-team review. This is grounded in multi-agent debate research showing that diverse LLM ensembles improve factuality and reduce shared errors (Du et al., 2023; Liang et al., 2023):
 
 ```mermaid
 flowchart LR
@@ -266,7 +266,7 @@ Athena has a **compounding growth curve** because both sides of the equation are
 3. **Your improvements make the system's improvements more effective** (richer context = more relevant Q4 detection)
 4. **The system's improvements make your improvements more effective** (better blind spot detection = better decisions = better case studies fed back)
 
-This is Stephen Covey's **Learn → Commit → Do** spiral, but with two riders — human and machine, each pulling the other upward.
+This is Stephen Covey's **Learn → Commit → Do** upward spiral (Covey, 1989), but with two riders — human and machine, each pulling the other upward. The research on human-AI collaboration supports this: Dell'Acqua et al. (2023) found at Harvard Business School that workers using AI within well-defined task boundaries significantly outperformed both unassisted workers and workers using AI naively.
 
 > **The pinnacle of human augmentation isn't replacing the human or replacing the machine. It's creating a system where neither can reach their potential without the other.**
 
@@ -297,6 +297,20 @@ The difference isn't intelligence — it's **infrastructure**. The LLM provides 
 | [SEMANTIC_SEARCH.md](../SEMANTIC_SEARCH.md) | Hybrid RAG implementation powering memory retrieval |
 | [USER_DRIVEN_RSI.md](../USER_DRIVEN_RSI.md) | The bilateral improvement loop |
 | [Cognitive Architecture](Cognitive_Architecture.md) | Psychological principles underlying the bionic model |
+
+---
+
+## References
+
+For full APA citations, see the [central reference list](../REFERENCES.md).
+
+- Covey, S. R. (1989). *The 7 habits of highly effective people*. Free Press.
+- Dell'Acqua, F., et al. (2023). Navigating the jagged technological frontier. *Harvard Business School Working Paper No. 24-013*. <https://doi.org/10.2139/ssrn.4573321>
+- Du, Y., et al. (2023). Improving factuality and reasoning in language models through multiagent debate. *arXiv:2305.14325*. <https://arxiv.org/abs/2305.14325>
+- Lewis, P., et al. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. *NeurIPS, 33*, 9459–9474. <https://arxiv.org/abs/2005.11401>
+- Liang, Y., et al. (2023). Encouraging divergent thinking in large language models through multi-agent debate. *arXiv:2305.19118*. <https://arxiv.org/abs/2305.19118>
+- Luft, J., & Ingham, H. (1955). *The Johari window*. Proceedings of the Western Training Laboratory in Group Development. UCLA.
+- Wei, J., et al. (2022). Chain-of-thought prompting elicits reasoning in large language models. *NeurIPS, 35*, 24824–24837. <https://arxiv.org/abs/2201.11903>
 
 ---
 

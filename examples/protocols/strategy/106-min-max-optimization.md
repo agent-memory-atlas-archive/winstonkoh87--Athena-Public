@@ -10,7 +10,7 @@ tags: #protocol #strategy #efficiency #minmax #sovereign #economics
 > **Metric**: Return on Effort (RoE).
 
 > [!NOTE]
-> This is a **working hypothesis** developed within the Athena framework. It synthesizes microeconomic utility theory with practical decision-making heuristics. It has not been published in a peer-reviewed economics journal — treat it as a mental model, not gospel.
+> This is a **working hypothesis** developed within the Athena framework. It synthesizes microeconomic utility theory (Mas-Colell et al., 1995) with practical decision-making heuristics (Gigerenzer & Goldstein, 1996). It has not been published in a peer-reviewed economics journal — treat it as a mental model, not gospel.
 
 ---
 
@@ -166,3 +166,14 @@ $$ U'(c) = \frac{U(c)}{c} $$
 > **Sovereign**: Maximizes Output at *minimum* cost (Sustainability).
 
 *"The ultimate sophistication is getting the result without doing the work."*
+
+---
+
+## References
+
+For full APA citations, see the [central reference list](../../docs/REFERENCES.md).
+
+- Gigerenzer, G., & Goldstein, D. G. (1996). Reasoning the fast and frugal way. *Psychological Review, 103*(4), 650–669.
+- Koch, R. (1998). *The 80/20 principle*. Nicholas Brealey Publishing.
+- Mas-Colell, A., Whinston, M. D., & Green, J. R. (1995). *Microeconomic theory*. Oxford University Press.
+- Saaty, T. L. (1980). *The analytic hierarchy process*. McGraw-Hill.
