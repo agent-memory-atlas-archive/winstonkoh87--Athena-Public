@@ -42,6 +42,23 @@ Just as Linux provides the kernel, file system, and permissions for applications
 Most "AI Agents" are just scripts that call an API. They have no state.
 Athena is the **infrastructure** that gives them state, time-awareness, and self-correction.
 
+### Plain English: What the Jargon Actually Means
+
+> *Feedback from [r/GeminiAI](https://www.reddit.com/r/GeminiAI/) pointed out that the README was too heavy in non-standard terms. Fair. Here's the translation:*
+
+| Athena Term | What It Actually Is | Do You Need It? |
+|-------------|--------------------|-----------------|
+| **"Memory"** | RAG — storing text in a database and retrieving it later | **Yes.** This is the core. |
+| **"Protocols"** | System prompts / reusable instructions | **Yes.** Think of them as saved templates for how you want the AI to behave. |
+| **"Watchmen"** | Multi-model consensus — asking 2-3 AIs the same question and comparing answers | **Optional.** Useful for high-stakes decisions. |
+| **"Cold Storage"** | Markdown files on your disk | **Yes.** Plain text files you can read/edit in any editor. |
+| **"Hot Storage"** | Vector database (Supabase + pgvector) | **Optional.** Enables semantic search (finding concepts, not just keywords). |
+| **"RRF / Fusion"** | Hybrid search — combines keyword matching with concept matching | **Yes.** This is what makes search actually work well. |
+| **"Heartbeat"** | A background script (cron/launchd) that auto-indexes your files | **Optional.** Enables passive awareness without manual `/start`. |
+| **"Adaptive Latency"** | The AI uses more compute for hard tasks and less for easy ones | **Automatic.** You don't configure this. |
+
+> 👉 Full glossary: [docs/GLOSSARY.md](docs/GLOSSARY.md)
+
 ---
 
 ## 📣 Community Reception
@@ -73,6 +90,17 @@ Athena is a **Hard Drive**.
 | **Lifespan** | Until session/project deleted | **Forever (Git Versioned)** |
 | **Structure** | Opaque Blob | **Structured Knowledge Graph** |
 | **Agency** | ZERO (Waits for you) | **Bounded Autonomy (Heartbeat, Cron)** |
+
+### How Is This Different From...?
+
+| Tool | What It Does | How Athena Differs |
+|------|-------------|--------------------|
+| **ChatGPT Memory** | Stores flat facts ("User likes Python") | Athena stores **structured state** — project context, decision logs, evolving architecture. You can edit, delete, and version-control your memory. |
+| **Claude Projects / CLAUDE.md** | Single context file loaded per project | Athena is a **multi-file system** with semantic search across 1,000+ documents. CLAUDE.md is one file; Athena is a filing cabinet. |
+| **Mem0** | SaaS memory layer for AI apps | Athena is **local-first, MIT-licensed**. No account, no API keys to a third party. Your data never leaves your machine. |
+| **NotebookLM** | Google's document Q&A tool | NotebookLM is read-only — you upload docs and ask questions. Athena **writes back** (session logs, case studies, protocols). It's read-write memory. |
+| **Obsidian + MCP** | Note-taking app with AI plugins | Complementary — Athena uses Markdown files that work in Obsidian. But Athena adds **semantic search, auto-indexing, and session lifecycle** on top. |
+| **Custom RAG scripts** | DIY vector search | Athena includes RAG but also adds **governance, permissioning, scheduling, and session management**. RAG is the kernel; Athena is the OS. |
 
 ## Table of Contents
 
@@ -159,6 +187,33 @@ athena --end              # Close session and save
 athena --version          # Show version
 athena --help             # Show all commands
 ```
+
+</details>
+
+<details>
+<summary><strong>📥 Importing Existing Data (ChatGPT, Gemini, Claude)</strong></summary>
+
+> *"Can I import my existing ChatGPT / Gemini / Claude conversations?"* — Asked by many on Reddit.
+
+**Yes.** Athena's memory is just Markdown files. Any text you can export can become part of your memory:
+
+| Source | How to Import |
+|--------|---------------|
+| **ChatGPT** | Settings → Data Controls → Export → Unzip → Copy `.md` or `.json` files into `.context/memories/imports/` |
+| **Gemini** | [Google Takeout](https://takeout.google.com/) → Select "Gemini Apps" → Download → Extract conversations into `.context/memories/imports/` |
+| **Claude** | Settings → Export Data → Copy transcripts into `.context/memories/imports/` |
+| **Any Markdown notes** | Drop `.md` files into `.context/memories/` — they'll be indexed on next `/start` |
+
+**After importing**, run:
+
+```bash
+athena check    # Verify files are detected
+```
+
+The next `/start` will index all new files into your memory. If you have Supabase configured, run `supabase_sync.py` to add them to vector search.
+
+> [!TIP]
+> **You don't need to import everything.** Start with your most important project conversations. Athena compounds over time — importing 10 key sessions is better than dumping 500 raw transcripts.
 
 </details>
 
