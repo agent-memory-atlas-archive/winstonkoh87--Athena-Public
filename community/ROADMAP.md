@@ -28,7 +28,7 @@ gantt
 - [x] **Adaptive Latency Architecture**: "Bleach" Scaling Law (Shikai/Bankai/Shukai) for token efficiency.
 - [x] **Anti-Hallucination Layer**: Claim atomization and strict citation protocols.
 - [x] **Supabase Memory**: Implementing `pgvector` for semantic search.
-- [x] **Protocol Library**: Codifying 241 decision frameworks (Finance, Architecture, Strategy).
+- [x] **Protocol Library**: Codifying 330 decision frameworks (Finance, Architecture, Strategy).
 - [x] **Temporal Continuity**: Linking sessions via `/start` and `/end` workflows.
 - [x] **Anti-Entropy Engine**: The `/refactor` daily cleaning protocol.
 - [x] **Public Documentation**: Problem-Solution-Outcome framing for recruiter visibility.
@@ -60,7 +60,7 @@ gantt
 
 *Focus: MCP, Permissioning, Search Quality, Evaluator*
 
-- [x] **MCP Tool Server**: 8 tools + 2 resources via Model Context Protocol (stdio + SSE)
+- [x] **MCP Tool Server**: 9 tools + 2 resources via Model Context Protocol (stdio + SSE)
 - [x] **Permissioning Layer**: 4 capability levels, 3 sensitivity tiers, Secret Mode
 - [x] **Search MRR +105%**: Rebalanced RRF, added framework_docs collector, density scoring
 - [x] **Evaluator Gate**: 50 golden queries, MRR@5=0.44, regression prevention

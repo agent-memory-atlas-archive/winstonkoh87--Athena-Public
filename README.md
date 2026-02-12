@@ -6,8 +6,8 @@
 
 ![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=social)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Protocols](https://img.shields.io/badge/Protocols-93_Starter-blue)
-![Sessions](https://img.shields.io/badge/Sessions-1,076+-green)
+![Protocols](https://img.shields.io/badge/Protocols-75_Starter-blue)
+![Sessions](https://img.shields.io/badge/Sessions-1,079+-green)
 ![Reddit Views](https://img.shields.io/badge/Reddit_Views-650k+-FF4500?logo=reddit&logoColor=white)
 ![Reddit Shares](https://img.shields.io/badge/Shares-5300+-00B2FF?logo=reddit&logoColor=white)
 
@@ -97,7 +97,7 @@ Athena is a **Hard Drive**.
 | Feature | Description |
 |---------|-------------|
 | 🧠 **Memory That Persists** | Your agent remembers context across sessions, even after IDE restarts |
-| 📚 **93 Handpicked Protocols** | Curated decision frameworks from the private repo's 324 unique collection |
+| 📚 **75 Handpicked Protocols** | Curated decision frameworks from the private repo's 330 unique collection |
 | 🔄 **Platform Independence** | Your data lives in Markdown files you own — take it anywhere |
 | 🔌 **MCP Server** | 9 standardized tools via [Model Context Protocol](https://modelcontextprotocol.io/) — works with any MCP client |
 | 🛡️ **Permissioning** | 4 capability levels + 3 sensitivity tiers + Secret Mode for demo/external sharing |
@@ -209,7 +209,7 @@ flowchart TD
 | **Cross-Session Memory** | Remember decisions from Session 19 when you're on Session 995 |
 | **Gateway Architecture** | Persist beyond IDE termination via a sidecar process |
 | **Knowledge Retrieval** | Semantic search across 1000+ documents in <200ms |
-| **MCP Integration** | 8 tools exposed via Model Context Protocol (any MCP client) |
+| **MCP Integration** | 9 tools exposed via Model Context Protocol (any MCP client) |
 | **Permissioning** | Capability tokens + sensitivity labels + Secret Mode |
 | **Parallel Reasoning** | True parallel tracks (v3.0) with API rate-limit protection |
 | **Context Hygiene** | Active session entropy monitoring to prevent context drift |
@@ -260,7 +260,7 @@ Most AI agents reset every session — brilliant but amnesiac. Athena inverts th
 
 > **The system is robust. The intelligence within it is efficient.**
 
-Athena deliberately prioritises **robustness at the system level** — comprehensive `/start` and `/end` workflows, 93 protocols, bounded autonomy, and deterministic memory operations. This means the OS is predictable, safe, and resilient. It behaves the same way every time.
+Athena deliberately prioritises **robustness at the system level** — comprehensive `/start` and `/end` workflows, 75 protocols, bounded autonomy, and deterministic memory operations. This means the OS is predictable, safe, and resilient. It behaves the same way every time.
 
 But within those boundaries, the AI is free to **maximise efficiency**. This is achieved through **Adaptive Latency** — the AI tunes its compute depth based on the complexity of each task:
 
@@ -386,15 +386,15 @@ graph TD
     style X fill:#10b981,stroke:#10b981
 ```
 
-**The Output** (After 1,076+ Sessions):
+**The Output** (After 1,079+ Sessions):
 
 | Metric | Private Repo | This Starter Pack |
 |--------|--------------|-------------------|
-| **Protocols** | 324 unique | 93 handpicked |
-| **Python Scripts** | 218 | 10 reference examples |
-| **Case Studies** | 361 | 11 showcase examples |
+| **Protocols** | 330 unique | 75 handpicked |
+| **Python Scripts** | 222 | 16 reference examples |
+| **Case Studies** | 357 | 12 showcase examples |
 | **Workflows** | 43 | 14 starter |
-| **Sessions Logged** | 1,076+ | N/A (your sessions) |
+| **Sessions Logged** | 1,079+ | N/A (your sessions) |
 | **GraphRAG Communities** | 1,460 | — |
 | **Knowledge Graph** | 46MB + 78MB vectors | — |
 
@@ -466,7 +466,7 @@ graph TD
 | [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md) | Hybrid RAG implementation |
 | [VECTORRAG.md](docs/VECTORRAG.md) | Semantic memory architecture |
 | [GRAPHRAG.md](docs/GRAPHRAG.md) | Knowledge graph + community detection ⚠️ **(expensive)** |
-| [examples/protocols/](examples/protocols/) | 93 handpicked decision frameworks |
+| [examples/protocols/](examples/protocols/) | 75 handpicked decision frameworks |
 
 </details>
 
@@ -474,7 +474,7 @@ graph TD
 
 ## The Reverse SDLC (Build First, Spec Later)
 
-> **Key Insight**: Athena was not designed top-down. It evolved bottom-up through 1,076+ sessions.
+> **Key Insight**: Athena was not designed top-down. It evolved bottom-up through 1,079+ sessions.
 
 Traditional software development follows: **Requirements → Design → Build → Test**.
 
@@ -506,7 +506,7 @@ This isn't about building *my* assistant. It's about proving a pattern:
 1. **Portable memory is the real unlock** — ChatGPT and Claude have memory now, but it's locked to their platforms. Athena's memory is *yours* — Markdown files on your machine you can take to any model.
 2. **10x Content Velocity** — Because Athena knows how I think, my history, and my voice, content output that used to take 2-3 hours now takes **15 minutes**. I just spec the output; the AI drafts in my style. I do a quick review and ship.
 3. **You direct the AI's behavior** — I configure *how* Athena responds to me. Semantic search gives me contextual, nuanced answers grounded in my own documented principles — not generic advice.
-4. **Zero operational burden** — Unlike SaaS products that break at scale, this is a *single-user local tool*. The complexity is real (1,076+ sessions, vector search, knowledge graphs), but there's no production to break. Real system design, zero ops chaos — ideal for demonstrating engineering depth without the liability.
+4. **Zero operational burden** — Unlike SaaS products that break at scale, this is a *single-user local tool*. The complexity is real (1,079+ sessions, vector search, knowledge graphs), but there's no production to break. Real system design, zero ops chaos — ideal for demonstrating engineering depth without the liability.
 5. **Bilateral growth** — You evolve *with* Athena (Ries, 2011). Every insight you learn — about coding, system design, or any domain — gets captured and integrated. The system upgrades alongside you. It's not a static tool; it's a compound knowledge machine that reflects your growth trajectory.
 6. **Quadrant IV: What you don't know you don't know** — The highest-value zone (Luft & Ingham, 1955; Rumsfeld, 2002). You can't Google what you don't know exists. Athena surfaces blind spots *before* they become problems — flagging dependencies you missed, risks you didn't consider, and connections you couldn't see. It's a co-pilot that sees the ditch before the driver does.
 
@@ -565,7 +565,7 @@ flowchart LR
 
 > **Expose Athena's brain to any MCP-compatible client.**
 
-8 tools + 2 resources, dual transport (stdio + SSE), with a full permissioning layer.
+9 tools + 2 resources, dual transport (stdio + SSE), with a full permissioning layer.
 
 ```bash
 # Launch via stdio (for IDE integration)
@@ -578,6 +578,7 @@ python -m athena.mcp_server --sse --port 8765
 | Tool | Permission | Description |
 |------|-----------|-------------|
 | `smart_search` | read | Hybrid RAG search with RRF fusion |
+| `agentic_search` | read | Agentic RAG v2 — multi-step query decomposition with parallel search |
 | `quicksave` | write | Save checkpoint to session log |
 | `health_check` | read | System health audit |
 | `recall_session` | read | Read session log content |
@@ -596,7 +597,7 @@ Toggle `set_secret_mode(True)` for demos or external sharing. Only PUBLIC tools 
 
 ## Reference Implementation
 
-This repo documents **Winston's personal Athena instance** — 1,076+ sessions, 324 unique protocols, production-tested daily since June 2025.
+This repo documents **Winston's personal Athena instance** — 1,079+ sessions, 330 unique protocols, production-tested daily since June 2025.
 
 It's included as a **reference**, not a prescription. Your instance will reflect your domain, your decisions, your voice.
 
@@ -785,11 +786,11 @@ Think of it like **Git, but for conversations**. Each session builds on the last
 | **`/start` boot** | Loads identity + retrieves relevant context from long-term memory |
 | **`/end` commit** | Summarizes session, extracts decisions, saves to knowledge store |
 | **Hybrid search** | Fuses Canonical + [GraphRAG](docs/GRAPHRAG.md) + Tags + [Vectors](docs/VECTORRAG.md) + Filenames via RRF |
-| **MCP Server** | 8 tools via [Model Context Protocol](docs/MCP_SERVER.md) — any MCP client can connect |
+| **MCP Server** | 9 tools via [Model Context Protocol](docs/MCP_SERVER.md) — any MCP client can connect |
 | **Permissioning** | 4 capability levels + 3 sensitivity tiers + Secret Mode (demo/external) |
 | **Evaluator Gate** | 50-query regression suite: MRR@5 = 0.44, Hit@5 = 52% |
 | **Cross-encoder reranking** | Refines top results with `sentence-transformers` |
-| **Protocol library** | [324 unique protocols](examples/protocols/) (93 curated in starter pack) |
+| **Protocol library** | [330 unique protocols](examples/protocols/) (75 curated in starter pack) |
 
 ### Repository Structure
 
@@ -799,7 +800,7 @@ Athena-Public/
 │   ├── core/             #    Config, models, governance, permissions
 │   ├── tools/            #    Search, reranker, latency
 │   ├── memory/           #    Vector DB interface
-│   └── mcp_server.py     #    MCP Tool Server (8 tools, 2 resources)
+│   └── mcp_server.py     #    MCP Tool Server (9 tools, 2 resources)
 ├── examples/
 │   ├── quickstart/       # Runnable demos
 │   ├── scripts/          # Automation scripts
@@ -852,7 +853,7 @@ See [.agent/workflows/](.agent/workflows/) for source files.
 
 ### February 2026
 
-- **v8.5.0** (Feb 12 2026): **Phase 1 Complete** — MCP Tool Server (8 tools, 2 resources), Permissioning Layer (4 levels + secret mode), Search MRR +105% (0.21→0.44), Evaluator Gate (50 queries). SDK v2.0.0.
+- **v8.5.0** (Feb 12 2026): **Phase 1 Complete** — MCP Tool Server (9 tools, 2 resources), Permissioning Layer (4 levels + secret mode), Search MRR +105% (0.21→0.44), Evaluator Gate (50 queries). SDK v2.0.0.
 - **v8.3.1** (Feb 11 2026): **Viral Validation Release** — 654K+ Reddit views, 1,660+ upvotes, 5,300+ shares. #1 All-Time r/ChatGPT, #2 All-Time r/GeminiAI. Three-Phase Token Budget: robustness at `/start`+`/end`, Adaptive Latency in-between.
 - **v8.2.1** (Feb 9 2026): Metrics Sync — Fixed `batch_audit.py` automation, linked orphan files, reconciled tech debt, 8,079 tags indexed
 
