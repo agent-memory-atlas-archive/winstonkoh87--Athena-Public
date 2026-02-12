@@ -613,6 +613,7 @@ MIT License — see [LICENSE](LICENSE)
 | [**📊 Benchmarks**](docs/BENCHMARKS.md) | Real performance metrics (boot time, search latency, token economics) |
 | [**📚 References**](docs/REFERENCES.md) | APA-formatted academic citations for all frameworks used |
 | [**🎬 Demo Guide**](docs/DEMO.md) | Live walkthrough of the system in action |
+| [**⚡ Adaptive Latency (RETO)**](examples/concepts/adaptive_latency.md) | Macro-Robust, Micro-Efficient — how the OS stays safe while the AI sprints |
 
 <details>
 <summary><strong>📁 Case Studies</strong></summary>
