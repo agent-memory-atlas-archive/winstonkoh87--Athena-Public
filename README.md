@@ -8,8 +8,8 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Protocols](https://img.shields.io/badge/Protocols-93_Starter-blue)
 ![Sessions](https://img.shields.io/badge/Sessions-1076+-green)
-![Reddit Views](https://img.shields.io/badge/Reddit_Views-570k+-FF4500?logo=reddit&logoColor=white)
-![Reddit Shares](https://img.shields.io/badge/Shares-4700+-00B2FF?logo=reddit&logoColor=white)
+![Reddit Views](https://img.shields.io/badge/Reddit_Views-650k+-FF4500?logo=reddit&logoColor=white)
+![Reddit Shares](https://img.shields.io/badge/Shares-5300+-00B2FF?logo=reddit&logoColor=white)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Built with Claude](https://img.shields.io/badge/Reasoning-Claude_Opus_4.6-CC785C?logo=anthropic)
@@ -87,7 +87,7 @@ Athena is a **Hard Drive**.
 | 🧠 **Memory That Persists** | Your agent remembers context across sessions, even after IDE restarts |
 | 📚 **93 Handpicked Protocols** | Curated decision frameworks from the private repo's 324 unique collection |
 | 🔄 **Platform Independence** | Your data lives in Markdown files you own — take it anywhere |
-| 🔌 **MCP Server** | 8 standardized tools via [Model Context Protocol](https://modelcontextprotocol.io/) — works with any MCP client |
+| 🔌 **MCP Server** | 9 standardized tools via [Model Context Protocol](https://modelcontextprotocol.io/) — works with any MCP client |
 | 🛡️ **Permissioning** | 4 capability levels + 3 sensitivity tiers + Secret Mode for demo/external sharing |
 | 📊 **Evaluator Gate** | 50-query regression suite with MRR@5 scoring to prevent search quality degradation |
 | 🤖 **Full Autonomy** | Your agent can act on your behalf while you sleep |
