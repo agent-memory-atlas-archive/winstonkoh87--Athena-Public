@@ -5,14 +5,14 @@ build-backend = "hatchling.build"
 [project]
 name = "athena-cli"
 version = "8.5.0"
-description = "Athena Bionic OS — Build Your Own AI Agent in 5 Minutes"
+description = "The Linux for AI Agents — A local OS that gives any LLM persistent memory, autonomy, and time-awareness."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [
     { name = "Winston Koh", email = "winstonkoh87@gmail.com" }
 ]
-keywords = ["ai", "llm", "rag", "memory", "personal-assistant", "gemini", "claude"]
+keywords = ["ai-agent", "operating-system", "memory", "rag", "vector-database", "autonomous-agents", "local-first", "mcp-server"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
