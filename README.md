@@ -447,7 +447,7 @@ This isn't about building *my* assistant. It's about proving a pattern:
 
 > *"The goal isn't just to answer questions. It's to ask the questions you didn't know to ask."*
 
-👉 [docs/SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md)
+👉 [docs/concepts/Quadrant_IV.md](docs/concepts/Quadrant_IV.md) — Deep dive: the 5 mechanisms that make this work
 
 ---
 
@@ -581,6 +581,7 @@ MIT License — see [LICENSE](LICENSE)
 | Document | What It Shows |
 |----------|---------------|
 | [**🏆 Top 10 Protocols**](docs/TOP_10_PROTOCOLS.md) | MCDA-ranked essential protocols for any AI user |
+| [**🔍 Quadrant IV: Unknown Unknowns**](docs/concepts/Quadrant_IV.md) | How Athena surfaces blind spots you didn't know existed — 5 compounding mechanisms |
 | [**📈 Protocol 106: Min-Max Optimization**](examples/protocols/strategy/106-min-max-optimization.md) | Maximize Utility while Minimizing CapEx — with Indifference Curve visualization |
 | [**🔄 User-Driven RSI**](docs/USER_DRIVEN_RSI.md) | The bilateral loop: how you and AI improve together |
 | [**📋 Spec Sheet**](docs/SPEC_SHEET.md) | Project specification: role, scope, constraints, and acceptance criteria |
