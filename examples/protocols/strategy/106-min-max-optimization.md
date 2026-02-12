@@ -155,8 +155,17 @@ $$ U'(c) = \frac{U(c)}{c} $$
 ### 4. Business Strategy (Building Businesses)
 
 - **Goal**: Maximize Revenue per CapEx Dollar.
-- **Application**: Build at the Sovereign Point — low CapEx, low OpEx, high organic demand, digitally scalable.
-- **Case Study**: [CS-460: Lean vs Fat Business Models](../../examples/case_studies/CS-460-lean-vs-fat-business.md) — Koocester (Sovereign Zone) vs Solace Studios (Luxury Trap).
+- **Application**: Build at the Sovereign Point — choose ventures that score high on the **5 Business Fundamentals**:
+
+| # | Fundamental | Sovereign (Green) | Trap (Orange) |
+|---|---|---|---|
+| 1 | **High organic demand** | Evergreen need (people always need X) | Novelty-driven (fad that fades) |
+| 2 | **Low CapEx/OpEx** | Equipment + software only | $500K+ per physical location |
+| 3 | **Easily scalable** | Digital delivery, project-based | Linear (more locations = more rent) |
+| 4 | **Easy customer reach** | Online discovery, referrals | Depends on foot traffic |
+| 5 | **Digital/service in nature** | Location-independent | Physical retail, location-dependent |
+
+> **Heuristic**: If a business scores ≤ 2/5, it's in the Orange Zone regardless of revenue. Revenue ≠ Profit.
 
 ---
 
