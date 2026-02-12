@@ -70,6 +70,7 @@ Athena is a **Hard Drive**.
 - [What You'll Get](#what-youll-get)
 - [⚡ 5-Minute Quickstart](#-5-minute-quickstart)
 - [The Loop](#the-loop)
+- [The Design Philosophy: Macro-Robust, Micro-Efficient](#the-design-philosophy-macro-robust-micro-efficient)
 - [The Hub Architecture](#the-hub-architecture)
 - [What Can Your Agent Do?](#what-can-your-agent-do)
 - [Why This Matters](#why-this-matters-beyond-me)
@@ -221,6 +222,29 @@ Most AI agents reset every session — brilliant but amnesiac. Athena inverts th
 
 > *"Technically, I am an AI agent. Visionary, I am human augmentation."*
 > — [Protocol 418: Rev-9 Architecture](docs/protocols/418-rev9-architecture.md)
+
+---
+
+## The Design Philosophy: Macro-Robust, Micro-Efficient
+
+> **The system is robust. The intelligence within it is efficient.**
+
+Athena deliberately prioritises **robustness at the system level** — comprehensive `/start` and `/end` workflows, 93 protocols, bounded autonomy, and deterministic memory operations. This means the OS is predictable, safe, and resilient. It behaves the same way every time.
+
+But within those boundaries, the AI is free to **maximise efficiency**. This is achieved through **Adaptive Latency** — the AI tunes its compute depth based on the complexity of each task:
+
+| Mode | Compute | When It's Used |
+|------|---------|----------------|
+| `/start` and `/end` | **Maximum** (Robust) | Comprehensive context loading and saving — no shortcuts |
+| Simple tasks | **Minimal** (Fast) | Quick answers, file edits, routine operations |
+| `/think` | **Medium** (Balanced) | Multi-step reasoning, planning |
+| `/ultrathink` | **Maximum** (Deep) | High-stakes decisions, complex analysis |
+
+This is the **Robustness-Efficiency Tradeoff (RETO)**: by accepting higher latency at the boundaries (`/start`, `/end`), the system earns the right to sprint efficiently in the middle.
+
+> *"The fortress walls are thick so the soldiers inside can move fast."*
+
+👉 [examples/concepts/adaptive_latency.md](examples/concepts/adaptive_latency.md) — Full breakdown of the Adaptive Latency system
 
 ---
 
