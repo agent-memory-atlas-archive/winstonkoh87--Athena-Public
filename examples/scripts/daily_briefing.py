@@ -317,7 +317,11 @@ items_relevant: {len(relevant)}
         print(f"\n   ✅ Saved: {output_path}")
     else:
         print(f"\n   🔍 [DRY RUN] Would save to: {BRIEFINGS_DIR / f'{today}.md'}")
-        print("\n" + full_doc)
+        # Show truncated preview to avoid logging sensitive content
+        preview = (
+            full_doc[:500] + "\n...[truncated]" if len(full_doc) > 500 else full_doc
+        )
+        print("\n" + preview)
 
     return full_doc
 

@@ -370,7 +370,13 @@ days_covered: {days}
         print(
             f"\n   🔍 [DRY RUN] Would save to: {OPTIMIZATION_DIR / f'{today}-W{week_num:02d}.md'}"
         )
-        print("\n" + full_report)
+        # Show truncated preview to avoid logging sensitive session data
+        preview = (
+            full_report[:500] + "\n...[truncated]"
+            if len(full_report) > 500
+            else full_report
+        )
+        print("\n" + preview)
 
     return full_report
 

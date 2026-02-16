@@ -13,8 +13,15 @@ LIBRARIAN_DIR = Path(__file__).resolve().parent
 
 
 def is_youtube(url):
-    domain = urlparse(url).netloc
-    return "youtube.com" in domain or "youtu.be" in domain
+    hostname = urlparse(url).hostname or ""
+    youtube_domains = {
+        "youtube.com",
+        "www.youtube.com",
+        "m.youtube.com",
+        "youtu.be",
+        "www.youtu.be",
+    }
+    return hostname in youtube_domains
 
 
 def archive(url):
