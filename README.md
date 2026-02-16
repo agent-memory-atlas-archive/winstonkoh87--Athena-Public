@@ -152,6 +152,27 @@ On your first `/start`, run `/brief interview`. Athena will ask you about **ever
 
 ---
 
+## 📦 What's In The Box (Starter Kit)
+
+When you clone this repo, **you already have a working Agent.** Not a blank slate — a complete template with identity, memory structure, protocols, and governance pre-loaded.
+
+| Component | What You Get | Customizable? |
+|:----------|:-------------|:-------------:|
+| **🧠 Core Identity** | Pre-built constitution with 6 laws ([Core_Identity.md](examples/templates/framework_mirror/v8.6-stable/modules/Core_Identity.md)) | ✅ Edit freely |
+| **📋 120+ Protocols** | Decision frameworks across 13 categories ([examples/protocols/](examples/protocols/)) | ✅ Fork & extend |
+| **📝 Memory Bank** | Structured templates for user profile, context, and session logs | ✅ Auto-fills over time |
+| **⚡ 14 Workflows** | `/start`, `/end`, `/think`, `/research`, and more ([examples/workflows/](examples/workflows/)) | ✅ Add your own |
+| **🔌 MCP Server** | 9 tools exposable to any MCP-compatible client | ✅ Configure |
+| **🛡️ Governance** | 4 capability levels, 3 sensitivity tiers, Secret Mode | ✅ Adjust |
+
+> [!TIP]
+> **Day 1**: The AI knows *how* to think (laws, reasoning standards, protocols) but not *who* you are.
+> **Day 2+**: As you use it, the templates fill with *your* data — sessions, decisions, preferences. The starter kit becomes *your* sovereign system.
+
+Think of it as a **furnished apartment** — you move in and start living immediately. Over time, you replace the furniture with your own.
+
+---
+
 ## Core Features
 
 ### 🔄 The Loop
@@ -408,4 +429,4 @@ MIT License — see [LICENSE](LICENSE)
 
 ---
 
-*This is a starter kit. Your instance will reflect your domain, your decisions, your voice. Clone it, make it yours.*
+*This is a complete Starter Kit. Clone it, run `/start`, and you have a working Agent on Day 1. Over time, it stops being generic and starts thinking like **you**.*
