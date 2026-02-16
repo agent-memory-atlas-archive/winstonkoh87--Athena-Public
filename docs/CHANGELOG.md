@@ -1,8 +1,44 @@
 # Athena Changelog
 
-> **Last Updated**: 16 February 2026
+> **Last Updated**: 17 February 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
+
+---
+
+## v9.2.0 (17 February 2026)
+
+**Sovereignty Convergence**: Root↔Public unification via cherry-pick. Security hardening, SDK maturation, and full surface sync.
+
+### Key Changes
+
+- **CVE-2025-69872 Patch**: DSPy DiskCache vulnerability mitigated at SDK level.
+- **Semantic Cache**: LRU with disk persistence + cosine similarity matching for repeat queries.
+- **FlashRank Reranking**: Local cross-encoder for search quality (no external API calls).
+- **8 New SDK Modules**: `security`, `diagnostic_relay`, `shutdown`, `cli/`, `heartbeat`, `agentic_search`, `schema.sql`.
+- **5 CodeQL Fixes**: URL sanitization (`archive.py`), clear-text log redaction (`daily_briefing.py`, `self_optimize.py`, `pattern_recognition.py`), file permissions.
+- **Wiki Sync**: All 6 wiki pages updated to v9.2.0.
+- **Profile/Website Sync**: GitHub profile README, `about.astro`, `athena.astro`, `athena_kb.json` updated.
+
+### Verification
+
+| Metric | Result |
+|--------|--------|
+| pyproject.toml version | 9.2.0 ✅ |
+| CodeQL alerts | 5 fixed ✅ |
+| Test suite | 17/17 pass ✅ |
+
+---
+
+## v9.1.0 (17 February 2026)
+
+**Deep Audit & Sync**: Fixed 15 issues including dead links, version drift, dependency sync, AGENTS.md path errors, and workflow count corrections. Cleaned tracked artifacts.
+
+### Key Changes
+
+- **15 Issues Fixed**: Dead links, version drift, dependency sync, workflow counts.
+- **AGENTS.md**: Fixed path errors and stale references.
+- **Tracked Artifacts**: Cleaned stale build outputs.
 
 ---
 

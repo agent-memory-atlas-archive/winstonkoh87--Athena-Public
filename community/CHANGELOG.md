@@ -4,9 +4,25 @@
 
 ---
 
-## v9.1.0 — Starter Kit Prune (Feb 2026)
+## v9.2.0 — Sovereignty Convergence (Feb 2026)
 
 **Status**: ✅ Current Release
+
+Root↔Public unification. Security hardening and SDK maturation.
+
+- ✅ **CVE-2025-69872 Patch**: DSPy DiskCache vulnerability mitigated at SDK level.
+- ✅ **Semantic Cache**: LRU with disk persistence + cosine matching for repeat queries.
+- ✅ **FlashRank Reranking**: Local cross-encoder for search quality (no API calls).
+- ✅ **8 New SDK Modules**: `security`, `diagnostic_relay`, `shutdown`, `cli/`, `heartbeat`, `agentic_search`, `schema.sql`.
+- ✅ **5 CodeQL Fixes**: URL sanitization, log redaction, file permissions.
+- ✅ **Wiki/Profile/Website Sync**: All surfaces updated to v9.2.0.
+- ✅ **`pip install -e .`**: One-command SDK setup.
+
+---
+
+## v9.1.0 — Starter Kit Prune (Feb 2026)
+
+**Status**: ✅ Stable
 
 Philosophy shift: "Give the skeleton, let users fill the soul." Stripped personal/niche content to make Athena a true generic OS foundation.
 
