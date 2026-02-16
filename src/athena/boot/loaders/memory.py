@@ -99,7 +99,7 @@ class MemoryLoader:
 
         try:
             result = subprocess.run(
-                ["python3", str(SUPABASE_SEARCH_SCRIPT), "recent session context"],
+                [sys.executable, str(SUPABASE_SEARCH_SCRIPT), "recent session context"],
                 capture_output=True,
                 text=True,
                 timeout=60,

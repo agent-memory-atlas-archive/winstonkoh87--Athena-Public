@@ -23,19 +23,35 @@ def get_project_root() -> Path:
     if _PROJECT_ROOT_CACHE:
         return _PROJECT_ROOT_CACHE
 
-    # Start from this file
+    # Priority 0: Explicit environment variable
+    root = os.getenv("ATHENA_ROOT")
+    if root and Path(root).is_dir():
+        _PROJECT_ROOT_CACHE = Path(root)
+        return _PROJECT_ROOT_CACHE
+
+    # Priority 1: Walk up from cwd() looking for .athena_root marker
+    # This is the most reliable method for installed packages (pip install)
+    # where __file__ resolves to site-packages/, not the user's workspace.
+    for parent in [Path.cwd(), *Path.cwd().parents]:
+        if (parent / ".athena_root").exists():
+            _PROJECT_ROOT_CACHE = parent
+            return parent
+
+    # Priority 2: Walk up from __file__ looking for pyproject.toml
+    # Works when running from source (development mode)
     current = Path(__file__).resolve()
     for parent in current.parents:
         if (parent / "pyproject.toml").exists():
             _PROJECT_ROOT_CACHE = parent
             return parent
 
-    # Fallback to current environment variable or CWD
-    root = os.getenv("ATHENA_ROOT")
-    if root:
-        _PROJECT_ROOT_CACHE = Path(root)
-        return _PROJECT_ROOT_CACHE
+    # Priority 3: Walk up from cwd() looking for pyproject.toml
+    for parent in [Path.cwd(), *Path.cwd().parents]:
+        if (parent / "pyproject.toml").exists():
+            _PROJECT_ROOT_CACHE = parent
+            return parent
 
+    # Final fallback: CWD
     _PROJECT_ROOT_CACHE = Path.cwd()
     return _PROJECT_ROOT_CACHE
 

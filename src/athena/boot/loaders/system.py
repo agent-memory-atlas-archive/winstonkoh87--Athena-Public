@@ -1,5 +1,6 @@
 import subprocess
-import os
+import sys
+
 from athena.boot.constants import GREEN, RESET
 
 
@@ -7,11 +8,14 @@ class SystemLoader:
     @staticmethod
     def verify_environment():
         """Titanium Airlock: Verifies dependencies and env vars."""
-        from athena.boot.constants import PROJECT_ROOT, RED, YELLOW, BOLD, RESET, DIM
+        from athena.boot.constants import PROJECT_ROOT, RED, BOLD, RESET, DIM
 
-        ensure_env = (
-            PROJECT_ROOT / "Athena-Public" / "examples" / "scripts" / "ensure_env.sh"
-        )
+        # Skip shell-based verification on Windows (bash not available)
+        if sys.platform == "win32":
+            print(f"   {DIM}⏭️  Airlock: Skipped (Windows — bash unavailable){RESET}")
+            return
+
+        ensure_env = PROJECT_ROOT / "examples" / "scripts" / "ensure_env.sh"
 
         if not ensure_env.exists():
             print(f"   ⚠️  Airlock: ensure_env.sh missing at {ensure_env}")
@@ -24,27 +28,43 @@ class SystemLoader:
         if result.returncode != 0:
             print(f"\n{RED}{BOLD}❌ Environment Check Failed{RESET}")
             print(f"{DIM}{result.stdout}{RESET}")
-            # Optional: Add auto-fix call here if desired
         else:
             print(f"   {GREEN}✅ Environment Healthy{RESET}")
 
     @staticmethod
     def enforce_daemon():
         """Ensures the Athena Daemon (athenad) is active."""
-        from athena.boot.constants import PROJECT_ROOT, GREEN, BOLD, RESET
+        from athena.boot.constants import PROJECT_ROOT, GREEN, RESET
 
         daemon_script = PROJECT_ROOT / "src" / "athena" / "core" / "athenad.py"
 
         try:
-            # Check if running
-            check = subprocess.run(["pgrep", "-f", "athenad.py"], capture_output=True)
-            if check.returncode != 0:
+            if sys.platform == "win32":
+                # Windows: use tasklist to check for athenad
+                check = subprocess.run(
+                    ["tasklist", "/FI", "IMAGENAME eq python*", "/FO", "CSV"],
+                    capture_output=True,
+                    text=True,
+                )
+                daemon_running = "athenad" in check.stdout
+            else:
+                # Unix/macOS: use pgrep
+                check = subprocess.run(
+                    ["pgrep", "-f", "athenad.py"], capture_output=True
+                )
+                daemon_running = check.returncode == 0
+
+            if not daemon_running:
                 print("🧠 Starting Athena Daemon (Titanium)...")
                 subprocess.Popen(
-                    [os.sys.executable, str(daemon_script)],
+                    [sys.executable, str(daemon_script)],
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.DEVNULL,
-                    start_new_session=True,
+                    start_new_session=(sys.platform != "win32"),
+                    # On Windows, start_new_session=True raises errors in some configs
+                    creationflags=(
+                        subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
+                    ),
                 )
                 print(f"   {GREEN}✅ Daemon Started.{RESET}")
             else:
@@ -55,9 +75,13 @@ class SystemLoader:
     @staticmethod
     def sync_ui():
         """Launch UI components and sync hardware state."""
-        print(f"🔄 Syncing UI Components...")
+        print("🔄 Syncing UI Components...")
 
-        # Antigravity Launch with GPU flags
+        # `open -a` is macOS-only. Skip gracefully on other platforms.
+        if sys.platform != "darwin":
+            print(f"   {GREEN}✅ UI Sync: Skipped (non-macOS){RESET}")
+            return
+
         cmd = [
             "open",
             "-a",
@@ -69,7 +93,6 @@ class SystemLoader:
         ]
 
         try:
-            # We use Popen to not block the boot sequence
             subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             print(f"   {GREEN}✅ Antigravity Sync Initiated{RESET}")
         except Exception as e:

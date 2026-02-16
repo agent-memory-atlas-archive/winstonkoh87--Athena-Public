@@ -1,8 +1,7 @@
-from pathlib import Path
+from athena.core.config import get_project_root
 
-# Paths
-# Assuming src/athena/boot/constants.py -> ../../../.. = PROJECT_ROOT
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+# Paths — resolved dynamically via cwd() marker detection (cross-platform)
+PROJECT_ROOT = get_project_root()
 
 LOGS_DIR = PROJECT_ROOT / ".context" / "memories" / "session_logs"
 SUPABASE_SEARCH_SCRIPT = PROJECT_ROOT / ".agent" / "scripts" / "smart_search.py"
