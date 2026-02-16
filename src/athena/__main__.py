@@ -63,7 +63,7 @@ def run_check():
             print(f"   ⚠️  {var}: Not set (optional for cloud features)")
 
     print("\n" + "=" * 60)
-    print("📚 Docs: https://github.com/[AUTHOR]87/Athena-Public")
+    print("📚 Docs: https://github.com/winstonkoh87/Athena-Public")
     return True
 
 
@@ -72,11 +72,18 @@ def main():
         prog="athena",
         description="Athena Bionic OS — Build Your Own AI Agent in 5 Minutes",
     )
-    parser.add_argument("--version", "-v", action="store_true", help="Show version and exit")
     parser.add_argument(
-        "--boot", "-b", action="store_true", help="Run the boot orchestrator (default action)"
+        "--version", "-v", action="store_true", help="Show version and exit"
     )
-    parser.add_argument("--end", "-e", action="store_true", help="Run the shutdown sequence")
+    parser.add_argument(
+        "--boot",
+        "-b",
+        action="store_true",
+        help="Run the boot orchestrator (default action)",
+    )
+    parser.add_argument(
+        "--end", "-e", action="store_true", help="Run the shutdown sequence"
+    )
     parser.add_argument(
         "--doctor",
         "-d",
@@ -94,7 +101,9 @@ def main():
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
     # init subcommand
-    init_parser = subparsers.add_parser("init", help="Initialize a new Athena workspace")
+    init_parser = subparsers.add_parser(
+        "init", help="Initialize a new Athena workspace"
+    )
     init_parser.add_argument(
         "target",
         nargs="?",
@@ -119,7 +128,9 @@ def main():
     subparsers.add_parser("check", help="Run system health check")
 
     # save subcommand
-    save_parser = subparsers.add_parser("save", help="Quicksave checkpoint to session log")
+    save_parser = subparsers.add_parser(
+        "save", help="Quicksave checkpoint to session log"
+    )
     save_parser.add_argument(
         "summary",
         nargs="*",
@@ -164,11 +175,10 @@ def main():
         sys.exit(0 if success else 1)
 
     # Default action: boot
-    from athena.boot import create_default_orchestrator
+    from athena.boot.orchestrator import main as boot_main
 
-    orchestrator = create_default_orchestrator()
-    success = orchestrator.execute(parallel_phases=[4, 5])
-    sys.exit(0 if success else 1)
+    boot_main()
+    sys.exit(0)
 
 
 if __name__ == "__main__":
