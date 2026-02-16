@@ -17,7 +17,7 @@
 
 ---
 
-## What Is Athena?
+## 1. What Is Athena?
 
 Athena gives AI agents something they don't have: **persistent memory, structure, and governance**.
 
@@ -39,10 +39,6 @@ Most AI agents reset every session — brilliant but amnesiac. Athena provides t
 
 You're confusing **RAM** with a **Hard Drive**.
 
-ChatGPT Memory and Claude Projects are context window tricks. They are RAM — fast, useful, but fragile. They get wiped, compressed, or hallucinated away.
-
-Athena is a Hard Drive.
-
 | | SaaS Memory (ChatGPT/Claude) | **Athena** |
 |:--|:---|:---|
 | **Ownership** | Rented (Vendor Lock-in) | **Owned (Local Files)** |
@@ -50,14 +46,6 @@ Athena is a Hard Drive.
 | **Structure** | Opaque Blob | **Structured Knowledge Graph** |
 | **Search** | Basic keyword | **Hybrid RAG (5 sources + RRF fusion)** |
 | **Agency** | Zero (waits for you) | **Bounded Autonomy (Heartbeat, Cron)** |
-
-| Tool | What It Does | How Athena Differs |
-|:-----|:------------|:-------------------|
-| **ChatGPT Memory** | Stores flat facts ("User likes Python") | Athena stores **structured state** — project context, decision logs, evolving architecture |
-| **Claude Projects** | Single context file per project | Athena is a **multi-file system** with semantic search across 1,000+ documents |
-| **Mem0** | SaaS memory layer | Athena is **local-first, MIT-licensed** — your data never leaves your machine |
-| **Obsidian + MCP** | Note-taking with AI plugins | Complementary — Athena adds semantic search, auto-indexing, and session lifecycle |
-| **Custom RAG** | DIY vector search | Athena includes RAG but adds governance, permissioning, scheduling, and sessions |
 
 </details>
 
@@ -79,13 +67,15 @@ Athena is a Hard Drive.
 
 ---
 
-## ⚡ Quickstart (3 Steps)
+## 2. How Do I Use It?
+
+### ⚡ Quickstart
 
 | Step | Action |
 |:-----|:-------|
 | **1. Get an IDE** | [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [VS Code + Copilot](https://code.visualstudio.com/) · [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) |
 | **2. Clone this repo** | `git clone https://github.com/winstonkoh87/Athena-Public.git && cd Athena-Public` |
-| **3. Open folder → Type `/start`** | The AI reads the repo structure and takes it from there |
+| **3. Open folder → Type `/start`** | The AI reads the repo structure and boots |
 | **4. Type `/brief interview`** | Athena asks about YOU — goals, style, domain — and builds your personal profile |
 
 **That's it.** No config files. No API keys. No database setup. The folder *is* the product.
@@ -93,6 +83,26 @@ Athena is a Hard Drive.
 > [!TIP]
 > When you're done, type `/end` to save. Next time you `/start`, the agent picks up exactly where you left off.
 > Your first session takes ~30 minutes (mostly the interview). Every session after that boots in seconds.
+
+### 🪞 Your First Session
+
+On your first `/start`, run `/brief interview`. Athena asks about **everything** — name, profession, goals, decision style, blind spots. This isn't small talk. It's the foundation that makes every future session compound.
+
+| What Athena Asks | Why |
+|:----------------|:----|
+| **Identity** — Name, age, nationality | Communication style, cultural context |
+| **Professional** — Role, industry, salary range | Domain expertise, decision-making context |
+| **Goals** — 3-month, 1-year, 5-year | Aligns every response to your actual trajectory |
+| **Decision Style** — Risk appetite, speed vs quality | Calibrates how options and tradeoffs are framed |
+| **Blind Spots** — Recurring mistakes, weak areas | Athena proactively flags these before they bite |
+| **Communication** — Tone, verbosity, directness | Sets the default voice across all interactions |
+
+> [!IMPORTANT]
+> **Everything stays local.** Your profile is stored as a Markdown file on your machine (`user_profile.md`). No cloud. No tracking. Be as candid as you want — this is *your* private operating system.
+
+**Pattern:** The more you share → the faster Athena stops being generic → the sooner it starts thinking like **you**.
+
+> 👉 [Full First Session Guide](docs/YOUR_FIRST_SESSION.md) — detailed walkthrough with examples
 
 <details>
 <summary><strong>🔧 CLI Reference</strong></summary>
@@ -128,31 +138,7 @@ After importing, run `athena check` to verify files are detected.
 
 ---
 
-## 🪞 Your First Session
-
-Athena is a **skeleton** — protocols, search, and infrastructure. **You** provide the soul.
-
-On your first `/start`, run `/brief interview`. Athena will ask you about **everything** — your name, profession, goals, decision style, strengths, blind spots, even your life context. This isn't small talk. It's the foundation that makes every future session compound.
-
-| What Athena Asks | Why |
-|:----------------|:----|
-| **Identity** — Name, age, nationality | Communication style, cultural context |
-| **Professional** — Role, industry, salary range | Domain expertise, decision-making context |
-| **Goals** — 3-month, 1-year, 5-year | Aligns every response to your actual trajectory |
-| **Decision Style** — Risk appetite, speed vs quality | Calibrates how options and tradeoffs are framed |
-| **Blind Spots** — Recurring mistakes, weak areas | Athena proactively flags these before they bite |
-| **Communication** — Tone, verbosity, directness | Sets the default voice across all interactions |
-
-> [!IMPORTANT]
-> **Everything stays local.** Your profile is stored as a Markdown file on your machine (`user_profile.md`). No cloud. No tracking. Be as candid as you want — this is *your* private operating system.
-
-**Pattern:** The more you share → the faster Athena stops being generic → the sooner it starts thinking like **you**.
-
-> 👉 [Full First Session Guide](docs/YOUR_FIRST_SESSION.md) — detailed walkthrough with examples
-
----
-
-## 📦 What's In The Box (Starter Kit)
+## 3. What's Inside? (Starter Kit)
 
 When you clone this repo, **you already have a working Agent.** Not a blank slate — a complete template with identity, memory structure, protocols, and governance pre-loaded.
 
@@ -161,19 +147,15 @@ When you clone this repo, **you already have a working Agent.** Not a blank slat
 | **🧠 Core Identity** | Pre-built constitution with 6 laws ([Core_Identity.md](examples/templates/framework_mirror/v8.6-stable/modules/Core_Identity.md)) | ✅ Edit freely |
 | **📋 120+ Protocols** | Decision frameworks across 13 categories ([examples/protocols/](examples/protocols/)) | ✅ Fork & extend |
 | **📝 Memory Bank** | Structured templates for user profile, context, and session logs | ✅ Auto-fills over time |
-| **⚡ 14 Workflows** | `/start`, `/end`, `/think`, `/research`, and more ([examples/workflows/](examples/workflows/)) | ✅ Add your own |
-| **🔌 MCP Server** | 9 tools exposable to any MCP-compatible client | ✅ Configure |
-| **🛡️ Governance** | 4 capability levels, 3 sensitivity tiers, Secret Mode | ✅ Adjust |
+| **⚡ 14 Slash Workflows** | `/start`, `/end`, `/think`, `/research`, and [more](docs/WORKFLOWS.md) | ✅ Add your own |
+| **🔌 MCP Server** | [9 tools](docs/MCP_SERVER.md) exposable to any MCP-compatible client | ✅ Configure |
+| **🛡️ Governance** | 4 capability levels, 3 sensitivity tiers, [Secret Mode](docs/SECURITY.md) | ✅ Adjust |
 
 > [!TIP]
 > **Day 1**: The AI knows *how* to think (laws, reasoning standards, protocols) but not *who* you are.
 > **Day 2+**: As you use it, the templates fill with *your* data — sessions, decisions, preferences. The starter kit becomes *your* sovereign system.
 
 Think of it as a **furnished apartment** — you move in and start living immediately. Over time, you replace the furniture with your own.
-
----
-
-## Core Features
 
 ### 🔄 The Loop
 
@@ -208,56 +190,11 @@ Your data lives in **Markdown files you own** — on your machine, git-versioned
 - **Hybrid search**: Canonical + GraphRAG + Tags + Vectors + Filenames, fused via RRF
 - **Auto-quicksave**: Every exchange is logged without manual action
 
-### 📚 120+ Starter Protocols
-
-[Starter decision frameworks](examples/protocols/) across 13 categories — architecture, engineering, decision-making, reasoning, and more. These are **templates**, not prescriptions. The real value comes when you write your own protocols from your own friction and failures.
-
-### 🔌 MCP Server (9 Tools)
-
-Expose Athena's capabilities to any [MCP-compatible](https://modelcontextprotocol.io/) client:
-
-| Tool | Description |
-|:-----|:-----------|
-| `smart_search` | Hybrid RAG search with RRF fusion |
-| `agentic_search` | Multi-step query decomposition with parallel search |
-| `quicksave` | Save checkpoint to session log |
-| `health_check` | System health audit |
-| `recall_session` | Read session log content |
-| `governance_status` | Triple-Lock compliance state |
-| `list_memory_paths` | Memory directory inventory |
-| `set_secret_mode` | Toggle demo mode (blocks internal tools) |
-| `permission_status` | Show access state & tool manifest |
-
-> 👉 [Full MCP Documentation](docs/MCP_SERVER.md)
-
-### ⚡ Slash Workflows
-
-| Command | Purpose |
-|:--------|:--------|
-| `/start` | Boot system, load identity and context |
-| `/end` | Close session, commit to memory |
-| `/think` | Deep reasoning mode |
-| `/ultrathink` | Maximum depth analysis |
-| `/research` | Multi-source web research |
-| `/save` | Mid-session checkpoint |
-| `/refactor` | Workspace optimization |
-| `/plan` | Structured planning with pre-mortem |
-| `/vibe` | Ship at 70%, iterate fast |
-
-> 👉 [Full Workflow Documentation](docs/WORKFLOWS.md) — all 14 workflows in [.agent/workflows/](.agent/workflows/)
-
-### 🛡️ Permissioning & Governance
-
-- **4 capability levels**: read → write → admin → system
-- **3 sensitivity tiers**: public → internal → restricted
-- **Secret Mode**: Toggle for demos — only public tools remain accessible
-- **Evaluator Gate**: 50-query regression suite (MRR@5 = 0.44) to prevent search degradation
-
 ---
 
 ## Repository Structure
 
-```
+```text
 Athena-Public/
 ├── src/athena/              # SDK package (pip install -e .)
 │   ├── core/                #   Config, governance, permissions, security
