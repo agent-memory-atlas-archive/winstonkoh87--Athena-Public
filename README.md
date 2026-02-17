@@ -14,6 +14,7 @@
 > **Athena is not an AI Agent. It is the Linux OS they run on.**
 > Open Source · Sovereign · Model-Agnostic
 > **12x Velocity**: Built in 3 months (vs 3 years manual).
+> **10K Token Boot**: 95% of your context window stays free.
 
 ---
 
@@ -184,6 +185,18 @@ flowchart TD
 | **50–200** | Pattern recognition. Anticipates your preferences. |
 | **200–500** | Deep sync. Knows your frameworks, blind spots, style. |
 | **500–1,000+** | Full context. Anticipates patterns before you state them. |
+
+### 💰 Token Economics
+
+`/start` loads ~**10K tokens** of identity and context. This cost is **constant** — Session 1 and Session 10,000 cost the same to boot, because memory is compressed into structured Markdown (not growing chat history).
+
+| Model | Context Window | Boot Cost | Remaining | Utilization |
+|:------|:--------------|:----------|:----------|:------------|
+| **Claude Opus 4.6** | 200K | ~10K | **190K** (95% free) | 5% |
+| **Gemini 3 Pro** | 1M+ | ~10K | **990K+** (99% free) | ~1% |
+
+> [!TIP]
+> Most "memory" solutions dump entire chat history into context (grows linearly with usage). Athena's architecture keeps boot cost **flat** — your 10,000th session is as cheap as your first.
 
 ### 🧠 Persistent Memory
 
