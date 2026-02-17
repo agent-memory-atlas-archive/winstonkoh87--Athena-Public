@@ -17,7 +17,7 @@
 | #bcm | [CS-140-bcm-silent-partner-analysis](#private-CS-140-bcm-silent-partner-analysis.md) |
 | #circuit-breaker | [circuit](examples/workflows/circuit.md) |
 | #decision | [111-premise-audit](examples/protocols/decision/111-premise-audit.md), [115-first-principles-deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md), [137-graph-of-thoughts](examples/protocols/decision/137-graph-of-thoughts.md) |
-| #decentralized | [139-decentralized-command](examples/protocols/architecture/139-decentralized-command.md) |
+| #decentralized | 139-decentralized-command |
 | #deep-think | [ultrathink](examples/workflows/ultrathink.md), [75-synthetic-parallel-reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md) |
 | #diagnostics | [diagnose](examples/workflows/diagnose.md) |
 | #due-diligence | [CS-140-bcm-silent-partner-analysis](#private-CS-140-bcm-silent-partner-analysis.md) |
@@ -30,7 +30,7 @@
 | #hallucination | [141-claim-atomization-audit](examples/protocols/verification/141-claim-atomization-audit.md) |
 | #investment-report | [CS-140-bcm-silent-partner-analysis](#private-CS-140-bcm-silent-partner-analysis.md) |
 | #latency | [77-adaptive-latency-architecture](examples/protocols/architecture/77-adaptive-latency-architecture.md), [96-latency-indicator](examples/protocols/architecture/96-latency-indicator.md) |
-| #leadership | [139-decentralized-command](examples/protocols/architecture/139-decentralized-command.md) |
+| #leadership | 139-decentralized-command |
 | #observability | [96-latency-indicator](examples/protocols/architecture/96-latency-indicator.md) |
 | #parallel | [75-synthetic-parallel-reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md) |
 | #premise | [111-premise-audit](examples/protocols/decision/111-premise-audit.md) |
@@ -61,14 +61,14 @@
 
 | Category | Files |
 |----------|-------|
-| **Architecture** | [77-adaptive-latency-architecture](examples/protocols/architecture/77-adaptive-latency-architecture.md), [96-latency-indicator](examples/protocols/architecture/96-latency-indicator.md), [139-decentralized-command](examples/protocols/architecture/139-decentralized-command.md) |
+| **Architecture** | [77-adaptive-latency-architecture](examples/protocols/architecture/77-adaptive-latency-architecture.md), [96-latency-indicator](examples/protocols/architecture/96-latency-indicator.md), 139-decentralized-command |
 | **Decision** | [75-synthetic-parallel-reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md), [111-premise-audit](examples/protocols/decision/111-premise-audit.md), [115-first-principles-deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md), [137-graph-of-thoughts](examples/protocols/decision/137-graph-of-thoughts.md), [140-base-rate-audit](examples/protocols/decision/140-base-rate-audit.md) |
 | **Verification** | [141-claim-atomization-audit](examples/protocols/verification/141-claim-atomization-audit.md) |
 | **Workflow** | [130-vibe-coding](examples/protocols/workflow/130-vibe-coding.md), [72-proactive-extrapolation-framework](examples/protocols/workflow/72-proactive-extrapolation-framework.md) |
 | **Research** | [52-deep-research-loop](examples/protocols/research/52-deep-research-loop.md), [54-cyborg-methodology](examples/protocols/research/54-cyborg-methodology.md) |
 | **Engineering** | [51-infrastructure-reset](examples/protocols/engineering/Engineering_Infrastructure_Hub.md), [44-micro-commit-protocol](examples/protocols/engineering/Engineering_Execution_Standard.md) |
-| **Strategy** | [244-offensive-reframing](examples/protocols/strategy/244-offensive-reframing.md), [245-value-trinity](examples/protocols/strategy/245-value-trinity.md), [303-ecosystem-physics-decoder](examples/protocols/strategy/303-ecosystem-physics-decoder.md) |
-| **Health** | [305-bionic-recovery-protocol](examples/protocols/health/305-bionic-recovery-protocol.md) |
+| **Strategy** | 244-offensive-reframing, [245-value-trinity](examples/protocols/strategy/245-value-trinity.md), 303-ecosystem-physics-decoder |
+| **Health** | 305-bionic-recovery-protocol |
 
 ### Workflows
 

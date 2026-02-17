@@ -1,7 +1,7 @@
 # Athena Spec Sheet
 
-> **Version**: v8.5.0
-> **Date**: 13 February 2026
+> **Version**: v9.2.0
+> **Date**: 17 February 2026
 > **Architect**: Winston Koh
 > **Status**: Production (1,079+ sessions)
 
@@ -15,7 +15,7 @@
 |-----------|-------|
 | **Type** | Local-first AI agent OS |
 | **License** | MIT |
-| **Runtime** | Python 3.10+ |
+| **Runtime** | Python 3.13+ |
 | **Primary Storage** | Markdown files (Git-versioned) |
 | **Secondary Storage** | Supabase + pgvector (cloud backup + semantic search) |
 | **Fallback Storage** | SQLite / LanceDB (offline mode) |
@@ -103,8 +103,8 @@ tags: [memory, search, mcp]
 ```text
 #memory → 47 files
 #search → 31 files
-#protocol → 330 files
-Total: 8,079 tags across 1,460 communities
+#protocol → 122 files
+Total: 8,079 tags
 ```
 
 ---
@@ -150,7 +150,7 @@ Query → [Semantic Search (pgvector)] ──┘
 
 | Layer | Technology |
 |-------|-----------|
-| **Language** | Python 3.12 |
+| **Language** | Python 3.13 |
 | **Embeddings** | Google text-embedding-004 (768d) |
 | **Vector DB** | Supabase + pgvector (IVFFlat index) |
 | **Graph** | Microsoft GraphRAG pattern (community detection) |

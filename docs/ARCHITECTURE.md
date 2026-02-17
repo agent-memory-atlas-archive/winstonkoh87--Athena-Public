@@ -33,7 +33,7 @@ Athena/
 ├── .agent/                        # ← AGENT CONFIGURATION
 │   ├── skills/
 │   │   ├── SKILL_INDEX.md         # Protocol loading registry
-│   │   ├── protocols/             # 319+ modular skill files
+│   │   ├── protocols/             # 120+ modular skill files
 │   │   │   ├── architecture/      # System protocols (latency, modularity)
 │   │   │   ├── business/          # Business frameworks
 │   │   │   ├── career/            # Career navigation
@@ -41,12 +41,12 @@ Athena/
 │   │   │   ├── psychology/        # Psych protocols
 │   │   │   └── trading/           # Trading protocols
 │   │   └── capabilities/          # Bionic Triple Crown
-│   ├── workflows/                 # 40+ slash commands
+│   ├── workflows/                 # 48 slash commands
 │   │   ├── start.md               # Session boot
 │   │   ├── end.md                 # Session close + maintenance
 │   │   ├── think.md               # Deep reasoning (L4)
 │   │   └── ...
-│   ├── scripts/                   # 192+ Python automation scripts
+│   ├── scripts/                   # 130+ Python automation scripts
 │   │   ├── quicksave.py           # Auto-checkpoint every exchange
 │   │   ├── boot.py                # Resilient boot with recovery shell
 │   │   ├── smart_search.py        # Semantic search
@@ -155,7 +155,7 @@ sequenceDiagram
 - [`boot_knowledge.py`](../scripts/core/boot_knowledge.py): Extracts and prints constraints.
 - [`index_workspace.py`](../scripts/core/index_workspace.py): Rebuilds `TAG_INDEX.md` and `PROTOCOL_SUMMARIES.md` on shutdown.
 
-**See Also**: [Protocol 418: Active Knowledge Injection](../examples/protocols/architecture/418-active-knowledge-injection.md)
+**See Also**: Protocol 418: Active Knowledge Injection (architecture pattern for context hydration)
 
 ## Key Workflows
 

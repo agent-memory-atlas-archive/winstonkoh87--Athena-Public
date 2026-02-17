@@ -147,7 +147,7 @@ When you clone this repo, **you already have a working Agent.** Not a blank slat
 | **🧠 Core Identity** | Pre-built constitution with 6 laws ([Core_Identity Template](examples/templates/core_identity_template.md)) | ✅ Edit freely |
 | **📋 120+ Protocols** | Decision frameworks across 13 categories ([examples/protocols/](examples/protocols/)) | ✅ Fork & extend |
 | **📝 Memory Bank** | Structured templates for user profile, context, and session logs | ✅ Auto-fills over time |
-| **⚡ 14 Slash Workflows** | `/start`, `/end`, `/think`, `/research`, and [more](docs/WORKFLOWS.md) | ✅ Add your own |
+| **⚡ 48 Slash Workflows** | `/start`, `/end`, `/think`, `/research`, and [more](docs/WORKFLOWS.md) | ✅ Add your own |
 | **🔌 MCP Server** | [9 tools](docs/MCP_SERVER.md) exposable to any MCP-compatible client | ✅ Configure |
 | **🛡️ Governance** | 4 capability levels, 3 sensitivity tiers, [Secret Mode](docs/SECURITY.md) | ✅ Adjust |
 
@@ -206,7 +206,7 @@ Athena-Public/
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
 │   ├── protocols/           # 120+ starter frameworks (13 categories)
-│   ├── scripts/             # 17 reference scripts
+│   ├── scripts/             # 130+ reference scripts
 │   ├── templates/           # Starter templates (framework, memory bank)
 │   └── quickstart/          # Runnable demos
 ├── docs/                    # Architecture, benchmarks, security, guides
@@ -249,7 +249,7 @@ Athena-Public/
 | [YOUR_FIRST_AGENT.md](docs/YOUR_FIRST_AGENT.md) | 5-minute quickstart |
 | [WHAT_IS_AN_AI_AGENT.md](docs/WHAT_IS_AN_AI_AGENT.md) | Beginner primer |
 | [DEMO.md](docs/DEMO.md) | Live walkthrough |
-| [WORKFLOWS.md](docs/WORKFLOWS.md) | All 14 slash commands |
+| [WORKFLOWS.md](docs/WORKFLOWS.md) | All 48 slash commands |
 | [FAQ.md](docs/FAQ.md) | Common questions |
 | [GLOSSARY.md](docs/GLOSSARY.md) | Key terms and definitions |
 

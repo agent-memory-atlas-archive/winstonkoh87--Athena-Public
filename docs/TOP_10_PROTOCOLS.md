@@ -46,7 +46,7 @@ Weights were determined using **Analytic Hierarchy Process (AHP)** pairwise comp
 | **5** | [Protocol 44: Micro-Commit Protocol](../examples/protocols/engineering/44-micro-commit-protocol.md) | **3.95** | Engineering |
 | **6** | [Protocol 52: Deep Research Loop](../examples/protocols/research/52-deep-research-loop.md) | **3.90** | Research |
 | **7** | [Protocol 96: Latency Indicator (Λ)](../examples/protocols/architecture/96-latency-indicator.md) | **3.85** | Architecture |
-| **8** | [Protocol 133: Query Archetype Routing](../examples/protocols/architecture/133-query-archetype-routing.md) | **3.65** | Architecture |
+| **8** | Protocol 133: Query Archetype Routing | **3.65** | Architecture |
 | **9** | [Protocol 110: Zero-Point Protocol](../examples/protocols/meta/110-zero-point-protocol.md) | **3.55** | Meta |
 | **10** | [Protocol 106: Min-Max Optimization](../examples/protocols/strategy/106-min-max-optimization.md) | **3.60** | Strategy |
 

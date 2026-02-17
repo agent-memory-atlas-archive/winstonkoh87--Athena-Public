@@ -200,7 +200,7 @@ The only paid component (LLM inference) is replaced by **human bandwidth** — a
 3. **User copies** the structured JSON response back.
 4. **Athena assembles** the responses into `knowledge_graph.gpickle`.
 
-> This is the **Decoupled Fetch-and-Reason** pattern from [Protocol 404](../examples/protocols/architecture/404-decoupled-fetch-and-reason.md).
+> This is the **Decoupled Fetch-and-Reason** pattern from Protocol 404: Decoupled Fetch-and-Reason.
 
 ### Trade-offs
 
