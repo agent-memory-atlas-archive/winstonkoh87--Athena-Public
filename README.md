@@ -112,7 +112,10 @@ pip install -e .              # Install SDK
 athena                        # Boot session
 athena init .                 # Initialize workspace in current directory
 athena init --ide cursor      # Init with IDE-specific config
-athena check                  # System health check
+athena check                  # Basic health check
+athena doctor                 # Full 15-check system diagnostics
+athena doctor --fix           # Auto-repair fixable issues
+athena doctor --json          # Machine-readable output
 athena save "summary"         # Quicksave checkpoint
 athena --end                  # Close session and save
 athena --version              # Show version (v9.2.0)
@@ -201,7 +204,7 @@ Athena-Public/
 │   ├── tools/               #   Search, agentic search, reranker, heartbeat
 │   ├── memory/              #   Vector DB, delta sync, schema
 │   ├── boot/                #   Orchestrator, loaders, shutdown
-│   ├── cli/                 #   init, save commands
+│   ├── cli/                 #   init, save, doctor commands
 │   └── mcp_server.py        #   MCP Tool Server (9 tools, 2 resources)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/

@@ -125,7 +125,24 @@ def main():
     )
 
     # check subcommand (replaces --doctor)
-    subparsers.add_parser("check", help="Run system health check")
+    subparsers.add_parser("check", help="Run system health check (basic)")
+
+    # doctor subcommand (full diagnostics — OpenClaw-inspired)
+    doctor_parser = subparsers.add_parser(
+        "doctor", help="Run full system diagnostics (15 checks)"
+    )
+    doctor_parser.add_argument(
+        "--fix", action="store_true", help="Auto-repair fixable issues"
+    )
+    doctor_parser.add_argument(
+        "--json",
+        dest="output_json",
+        action="store_true",
+        help="Machine-readable JSON output",
+    )
+    doctor_parser.add_argument(
+        "--quiet", "-q", action="store_true", help="Summary only"
+    )
 
     # save subcommand
     save_parser = subparsers.add_parser(
@@ -149,6 +166,18 @@ def main():
     if args.command == "check" or args.doctor:
         run_check()
         sys.exit(0)
+
+    if args.command == "doctor":
+        from athena.cli.doctor import run_doctor
+
+        sys.exit(
+            run_doctor(
+                root=args.root,
+                fix=args.fix,
+                output_json=args.output_json,
+                quiet=args.quiet,
+            )
+        )
 
     if args.command == "init":
         from athena.cli.init import init_workspace
