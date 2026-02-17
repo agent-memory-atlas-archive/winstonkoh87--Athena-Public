@@ -203,11 +203,11 @@ flowchart TD
 
 **No.** The 10K boot cost is per **context window** (5% of one session), not per subscription. Your subscription limits are based on **message count**, not token count — whether you send a 10K or 200K message, it counts as one message.
 
-| User Type | Sessions/Day | Boot Overhead | Verdict |
-|:----------|:-------------|:-------------|:--------|
-| **Casual** ($20/mo) | 1–2 | 10–20K/day | ✅ 95% of context stays free |
-| **Daily Driver** ($20/mo) | 3–5 | 30–50K/day | ✅ Each session is independent |
-| **Power User** ($100+/mo) | 10+ parallel | 100K+/day | ⚠️ Max plan recommended (true with or without Athena) |
+| User Type | Plan | Sessions/Day | Verdict |
+|:----------|:-----|:-------------|:--------|
+| **Casual** | Pro ($20/mo) | 1–2 | ✅ 95% of context stays free |
+| **Daily Driver** | Max 5× ($100/mo) | 3–5 | ✅ Each session is independent |
+| **Power User** | Max 20× ($200/mo) | 10+ parallel | ✅ Multiple agents, multiple projects |
 
 **The trade**: You spend 5% of your context window so the remaining 95% is **dramatically smarter** — because the AI actually knows who you are, what you're building, and how you think.
 
