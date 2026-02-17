@@ -177,8 +177,8 @@ Calculate SDR
 
 ## Integration
 
-- Use with [Protocol 180: Utility Function Analysis](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/180-utility-function-analysis.md) for stakeholder mapping
-- Use with [Protocol 40: Frame vs Structural Problem](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/40-frame-vs-structural-problem.md) for diagnosis
+- Use with [Protocol 180: Utility Function Analysis](<!-- Private: .agent/skills/protocols/ --> decision/180-utility-function-analysis.md) for stakeholder mapping
+- Use with [Protocol 40: Frame vs Structural Problem](<!-- Private: .agent/skills/protocols/ --> decision/40-frame-vs-structural-problem.md) for diagnosis
 - Feeds into table exit decisions per Law #2
 
 ---
@@ -189,4 +189,4 @@ Calculate SDR
 
 ## Related Protocols
 
-- [Protocol 124: SDR Diagnosis](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/124-sdr-diagnosis.md)
+- [Protocol 124: SDR Diagnosis](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-diagnosis.md)

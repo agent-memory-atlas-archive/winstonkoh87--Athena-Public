@@ -110,10 +110,10 @@ If untested → **Pre-commit structurally** (kill-switches, account limits, cool
 
 ## Cross-Links
 
-- [Protocol 163: Pre-Commitment Heuristic](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/163-precommitment-heuristic.md)
-- [Protocol 193: Ergodicity Check](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/193-ergodicity-check.md)
-- [Case Study 048: ZenithFX Gatekeeper Protocol](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/case_studies/CS-048-zenithfx-gatekeeper-protocol.md)
-- [Case Study: Pre-Commitment for Asymmetric Downside](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/case_studies/CS-098-precommitment-asymmetric-downside.md)
+- [Protocol 163: Pre-Commitment Heuristic](<!-- Private: .agent/skills/protocols/ --> decision/163-precommitment-heuristic.md)
+- [Protocol 193: Ergodicity Check](<!-- Private: .agent/skills/protocols/ --> decision/193-ergodicity-check.md)
+- [Case Study 048: ZenithFX Gatekeeper Protocol](#)
+- [Case Study: Pre-Commitment for Asymmetric Downside](#)
 
 ---
 

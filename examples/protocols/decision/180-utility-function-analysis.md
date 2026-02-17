@@ -243,9 +243,9 @@ OUTPUT: Predict next move → Choose response
 
 ## Integration Points
 
-- Use with [Protocol 38: SDTP](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/38-synthetic-deep-think.md) for deep analysis
-- Use with [Protocol 121: Amoral Realism](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/strategy/121-amoral-realism.md) for frame
-- Feeds into [Protocol 170: Iterative Refinement](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/safety/170-dissonance-threshold-crisis.md) for complex decisions
+- Use with [Protocol 38: SDTP](<!-- Private: .agent/skills/protocols/ --> decision/38-synthetic-deep-think.md) for deep analysis
+- Use with [Protocol 121: Amoral Realism](<!-- Private: .agent/skills/protocols/ --> strategy/121-amoral-realism.md) for frame
+- Feeds into [Protocol 170: Iterative Refinement](<!-- Private: .agent/skills/protocols/ --> safety/170-dissonance-threshold-crisis.md) for complex decisions
 
 ---
 
@@ -255,4 +255,4 @@ OUTPUT: Predict next move → Choose response
 
 ## Related Protocols
 
-- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/121-mcda-weu-framework.md)
+- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](<!-- Private: .agent/skills/protocols/ --> decision/121-mcda-weu-framework.md)

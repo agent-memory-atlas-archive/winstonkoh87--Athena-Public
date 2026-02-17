@@ -182,14 +182,14 @@ After synthesis, Track B re-evaluates the combined output:
 ---
 
 ## References
-- [Protocol 124: SDR Diagnosis](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/124-sdr-diagnosis.md)
+- [Protocol 124: SDR Diagnosis](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-diagnosis.md)
 
-- [Protocol 115: First Principles Deconstruction](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/115-first-principles-deconstruction.md)
+- [Protocol 115: First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md)
 
-- [Core_Identity.md](file:///Users/[AUTHOR]/Desktop/Project Athena/.framework/v7.0/modules/Core_Identity.md) — Laws #1-4
-- [Protocol 67](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/research/67-cross-pollination.md) — Cross-Domain Isomorphism
-- [Protocol 140](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/140-base-rate-audit.md) — Zero-Point Inversion
-- [Protocol 40](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/40-frame-vs-structural-problem.md) — Frame vs Structural
+- [Core_Identity.md](#) — Laws #1-4
+- [Protocol 67](<!-- Private: .agent/skills/protocols/ --> research/67-cross-pollination.md) — Cross-Domain Isomorphism
+- [Protocol 140](examples/protocols/decision/140-base-rate-audit.md) — Zero-Point Inversion
+- [Protocol 40](<!-- Private: .agent/skills/protocols/ --> decision/40-frame-vs-structural-problem.md) — Frame vs Structural
 
 ---
 

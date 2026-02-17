@@ -126,8 +126,8 @@ python3 .agent/scripts/shutdown.py
 
 ## References
 
-* [/refactor](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/workflows/refactor.md) — Deep system optimization (audits, scans, integrity)
-* [/save](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
+* [/refactor](examples/workflows/refactor.md) — Deep system optimization (audits, scans, integrity)
+* [/save](examples/workflows/save.md) — Mid-session checkpoint
 
 ---
 

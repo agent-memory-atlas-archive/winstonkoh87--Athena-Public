@@ -14,7 +14,7 @@ last_updated: 2025-12-31
 
 ## Date Added: 10 December 2025
 
-> **Related Protocol**: [31-anthropic-skills](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/psychology/31-anthropic-skills.md) (Skills paradigm implements this principle)
+> **Related Protocol**: [31-anthropic-skills](<!-- Private: .agent/skills/protocols/ --> psychology/31-anthropic-skills.md) (Skills paradigm implements this principle)
 
 ## 24.1 Core Principle
 

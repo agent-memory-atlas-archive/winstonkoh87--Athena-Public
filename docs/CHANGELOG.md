@@ -4,6 +4,8 @@
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
+> **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
 ---
 
 ## v9.2.0 (17 February 2026)

@@ -83,9 +83,9 @@ For each component of the skeleton:
 ---
 
 ## References
-- [Protocol 128: Internal Family Systems](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/psychology/128-internal-family-systems.md)
+- [Protocol 128: Internal Family Systems](<!-- Private: .agent/skills/protocols/ --> psychology/128-internal-family-systems.md)
 
-See [References.md](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/references/References.md) for full citation.
+See [References.md](#) for full citation.
 
 ---
 

@@ -61,4 +61,4 @@ graphrag_extracted: true
 
 ## Related Protocols
 
-- [Protocol 161: Sovereign Operating Protocol](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/161-sovereign-operating-protocol.md)
+- [Protocol 161: Sovereign Operating Protocol](<!-- Private: .agent/skills/protocols/ --> decision/161-sovereign-operating-protocol.md)

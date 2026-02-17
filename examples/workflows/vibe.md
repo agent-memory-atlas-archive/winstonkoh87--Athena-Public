@@ -58,7 +58,7 @@ Return to normal mode with `/think` or next user request.
 
 ## References
 
-- [Protocol 130: Vibe Coding](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/workflow/130-vibe-coding.md)
+- [Protocol 130: Vibe Coding](examples/protocols/workflow/130-vibe-coding.md)
 
 ---
 

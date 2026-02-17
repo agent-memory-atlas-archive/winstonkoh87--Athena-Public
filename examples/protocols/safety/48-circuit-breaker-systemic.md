@@ -150,4 +150,4 @@ After mandatory pause:
 
 ## Related Protocols
 
-- [Protocol 128: Internal Family Systems](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/psychology/128-internal-family-systems.md)
+- [Protocol 128: Internal Family Systems](<!-- Private: .agent/skills/protocols/ --> psychology/128-internal-family-systems.md)

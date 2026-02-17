@@ -91,4 +91,4 @@ Temporal projection:
 
 ## Related Protocols
 
-- [Protocol 115: First Principles Deconstruction](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/115-first-principles-deconstruction.md)
+- [Protocol 115: First Principles Deconstruction](<!-- Private: .agent/skills/protocols/ --> decision/115-first-principles-deconstruction.md)

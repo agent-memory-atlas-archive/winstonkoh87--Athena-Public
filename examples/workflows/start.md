@@ -16,7 +16,7 @@ last_updated: 2026-01-20
 
 // turbo
 
-- [/] Load `.framework/v8.2-stable/modules/Core_Identity.md` — Laws #0-#4, Identity, RSI (~2K tokens)
+- [/] Load `examples/templates/core_identity_template.md` — Laws #0-#4, Identity, RSI (~2K tokens)
 - [/] **Identity**: Load `.context/memory_bank/userContext.md` — Core profile, constraints, psychology (Robust)
 - [/] **Mission**: Load `.context/memory_bank/productContext.md` — Soul purpose, philosophy (Robust)
 - [/] **State**: Load `.context/memory_bank/activeContext.md` — Current focus (Robust)
@@ -92,15 +92,15 @@ Bypassing this sequence is a high-severity protocol violation. No exceptions for
 | `/think` | **Escalation** — Force L4 depth + Output_Standards | +2K |
 | `/ultrathink` | Maximum depth + Full stack | +28K |
 
-> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
+> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](examples/protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
 
 ---
 
 ## References
 
-- [Protocol 133: JIT Routing](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/133-query-archetype-routing.md)
-- [WORKFLOW_INDEX.md](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/WORKFLOW_INDEX.md)
-- [Session 2025-12-13-04](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/session_logs/archive/2025-12-13-session-04.md)
+- [Protocol 133: JIT Routing](examples/protocols/architecture/133-query-archetype-routing.md)
+- [WORKFLOW_INDEX.md](#)
+- [Session 2025-12-13-04](#)
 
 ---
 

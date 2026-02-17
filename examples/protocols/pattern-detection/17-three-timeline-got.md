@@ -14,7 +14,7 @@ last_updated: 2025-12-31
 
 ## Date Added: 9 December 2025
 
-> **Related Protocol**: [16-synthetic-parallel-reasoning](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/16-graph-of-thoughts-theory.md), [18-probabilistic-analysis-stack](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/18-probabilistic-analysis-stack.md)
+> **Related Protocol**: [16-synthetic-parallel-reasoning](<!-- Private: .agent/skills/protocols/ --> pattern-detection/16-graph-of-thoughts-theory.md), [18-probabilistic-analysis-stack](<!-- Private: .agent/skills/protocols/ --> pattern-detection/18-probabilistic-analysis-stack.md)
 
 ## 17.1 The Magic Number: 3
 
@@ -102,7 +102,7 @@ Nodes are NOT linear. They are interconnected:
 
 ## References
 
-- [Protocol 38: Synthetic Deep Think](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/38-synthetic-deep-think.md) — References this protocol
+- [Protocol 38: Synthetic Deep Think](<!-- Private: .agent/skills/protocols/ --> decision/38-synthetic-deep-think.md) — References this protocol
 
 ---
 

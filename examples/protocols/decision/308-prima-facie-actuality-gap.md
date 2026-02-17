@@ -81,7 +81,7 @@ Identify where value leaks:
 
 ### Step 5: Run the SDR Calculator
 
-[Protocol 46: SDR Calculator](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/124-sdr-calculator.md)
+[Protocol 46: SDR Calculator](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-calculator.md)
 
 If **SDR > 5:1**, the arena is structurally unwinnable. Exit or pivot.
 
@@ -153,15 +153,15 @@ If you answer NO to 3+ of these → **Do not enter.**
 ---
 
 ## Related Protocols
-- [Protocol 124: SDR Diagnosis](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/124-sdr-diagnosis.md)
-- [CS044: ILP Trust Arbitrage](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/case_studies/CS044_ILP_Trust_Arbitrage.md)
-- [CS044: ILP Trust Arbitrage](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/case_studies/CS-044-ilp-trust-arbitrage.md)
+- [Protocol 124: SDR Diagnosis](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-diagnosis.md)
+- [CS044: ILP Trust Arbitrage](#)
+- [CS044: ILP Trust Arbitrage](#)
 
-- [CS-142: Tuition Agency Trap](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/case_studies/CS-142-study-tuition-trap.md)
-- [CS-127: Business Trap Physics](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/case_studies/CS-127-mental-model-business-traps.md)
-- [CS-044: ILP Trust Arbitrage](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/case_studies/CS-044-ilp-trust-arbitrage.md)
-- [Protocol 46: SDR Calculator](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/124-sdr-calculator.md)
-- [Protocol 121: Good Boy Paradox](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/strategy/121-amoral-realism.md)
+- [CS-142: Tuition Agency Trap](#)
+- [CS-127: Business Trap Physics](#)
+- [CS-044: ILP Trust Arbitrage](#)
+- [Protocol 46: SDR Calculator](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-calculator.md)
+- [Protocol 121: Good Boy Paradox](<!-- Private: .agent/skills/protocols/ --> strategy/121-amoral-realism.md)
 
 ---
 

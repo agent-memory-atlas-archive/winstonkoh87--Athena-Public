@@ -194,8 +194,8 @@ To maximize the **E(AV) Curve** over a lifetime, you must solve for **Geometric 
 
 ## References
 
-- [Protocol 193: Ergodicity Check](file:///Users/[AUTHOR]/Desktop/Project%20Athena/.agent/skills/protocols/decision/193-ergodicity-check.md)
-- [Core Identity: Law #1](file:///Users/[AUTHOR]/Desktop/Project%20Athena/Athena-Public/examples/framework/Core_Identity.md)
+- [Protocol 193: Ergodicity Check](#)
+- [Core Identity: Law #1](examples/templates/core_identity_template.md)
 - [Blackjack Apprenticeship: Bankroll Management](https://www.blackjackapprenticeship.com/blackjack-bankroll-management/)
 
 ---

@@ -13,8 +13,8 @@ last_updated: 2026-01-11
 
 > **Date Added**: 11 December 2025  
 > **Trigger**: User experiencing repeated failure and needs to diagnose root cause category  
-> **Session Origin**: [System_Principles.md](file:///Users/[AUTHOR]/Desktop/Project Athena/.framework/v7.0/modules/System_Principles.md) (Rinjani + Trading client + Cheapskate Mummy cases)  
-> **Related Protocol**: [06-agree-and-reassert](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/communication/Strategic_Influence_Protocols.md)
+> **Session Origin**: [System_Principles.md](#) (Rinjani + Trading client + Cheapskate Mummy cases)  
+> **Related Protocol**: [06-agree-and-reassert](<!-- Private: .agent/skills/protocols/ --> communication/Strategic_Influence_Protocols.md)
 
 ---
 
@@ -110,7 +110,7 @@ Two fundamentally different failure categories requiring different fixes.
 
 ## References
 
-- [Protocol 08: Five-Layer Communication](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/communication/Interaction_Architecture_Hub.md) — References this taxonomy
+- [Protocol 08: Five-Layer Communication](<!-- Private: .agent/skills/protocols/ --> communication/Interaction_Architecture_Hub.md) — References this taxonomy
 
 ---
 

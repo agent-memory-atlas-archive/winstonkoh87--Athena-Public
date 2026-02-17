@@ -83,8 +83,8 @@ python3 .agent/scripts/resume_session.py
 
 ## References
 
-- [/start](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/workflows/start.md) — Fresh session boot
-- [/save](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
+- [/start](examples/workflows/start.md) — Fresh session boot
+- [/save](examples/workflows/save.md) — Mid-session checkpoint
 
 ---
 

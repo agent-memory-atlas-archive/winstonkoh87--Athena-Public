@@ -64,8 +64,8 @@ When building a new capability:
 
 ## Source
 
-- [Session 37 Analysis of OpenAI "Leak"](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/session_logs/2025-12-14-session-37.md)
-- [Protocol 42: Scrambled Eggs Strategy](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/engineering/42-scrambled-eggs-strategy.md)
+- [Session 37 Analysis of OpenAI "Leak"](#)
+- [Protocol 42: Scrambled Eggs Strategy](examples/protocols/engineering/42-scrambled-eggs-strategy.md)
 
 ---
 

@@ -183,7 +183,7 @@ Premise Validation Gate (30-60 seconds)
 # protocol #premise-validation #phase-05 #gate #jeffrey-trap #einstein-principle
 
 ## Related Protocols
-- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/121-mcda-weu-framework.md)
+- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](<!-- Private: .agent/skills/protocols/ --> decision/121-mcda-weu-framework.md)
 
-- [Protocol 114: Limerent Reality Distortion](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/psychology/114-limerent-reality-distortion.md)
-- [Protocol 113: Missing Baseline Model](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/psychology/113-missing-baseline-model.md)
+- [Protocol 114: Limerent Reality Distortion](<!-- Private: .agent/skills/protocols/ --> psychology/114-limerent-reality-distortion.md)
+- [Protocol 113: Missing Baseline Model](<!-- Private: .agent/skills/protocols/ --> psychology/113-missing-baseline-model.md)

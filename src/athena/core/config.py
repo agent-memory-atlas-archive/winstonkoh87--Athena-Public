@@ -62,7 +62,6 @@ PROJECT_ROOT = get_project_root()
 AGENT_DIR = PROJECT_ROOT / ".agent"
 CONTEXT_DIR = PROJECT_ROOT / ".context"
 FRAMEWORK_DIR = PROJECT_ROOT / ".framework"
-PUBLIC_DIR = PROJECT_ROOT / "Athena-Public"
 SCRIPTS_DIR = AGENT_DIR / "scripts"
 MEMORIES_DIR = CONTEXT_DIR / "memories"
 SESSIONS_DIR = MEMORIES_DIR / "session_logs"
@@ -76,26 +75,32 @@ INPUTS_DIR = CONTEXT_DIR / "inputs"
 # === UNIFIED MEMORY CONFIGURATION ===
 # These directories are the "Active Memory" for VectorRAG and local search.
 
+
+def _resolve_system_docs():
+    """Resolve system docs dir: .framework/ (private) or examples/templates/ (public)."""
+    candidate = FRAMEWORK_DIR / "v8.2-stable" / "modules"
+    if candidate.exists():
+        return candidate
+    fallback = PROJECT_ROOT / "examples" / "templates"
+    if fallback.exists():
+        return fallback
+    return candidate  # Return primary (will be skipped if missing)
+
+
 CORE_DIRS = {
     "sessions": SESSIONS_DIR,
     "case_studies": MEMORIES_DIR / "case_studies",
     "protocols": AGENT_DIR / "skills" / "protocols",
     "capabilities": AGENT_DIR / "skills" / "capabilities",
     "workflows": AGENT_DIR / "workflows",
-    "system_docs": FRAMEWORK_DIR / "v8.2-stable" / "modules",
+    "system_docs": _resolve_system_docs(),
 }
 
 # Extended Memory (Silos mapped to logical tables)
+# Only directories that exist will be scanned (see get_active_memory_paths).
 EXTENDED_DIRS = [
-    (PROJECT_ROOT / "analysis", "case_studies"),
-    (PROJECT_ROOT / "Marketing", "system_docs"),
-    (PROJECT_ROOT / "proposals", "case_studies"),
-    (PROJECT_ROOT / "Winston", "system_docs"),
-    (PROJECT_ROOT / "docs" / "audit", "system_docs"),
-    (PROJECT_ROOT / "gem_knowledge_base", "system_docs"),
+    (PROJECT_ROOT / "docs", "system_docs"),
     (PROJECT_ROOT / ".athena", "system_docs"),
-    (PROJECT_ROOT / ".projects", "system_docs"),
-    (PROJECT_ROOT / "Reflection Essay", "case_studies"),
     (CONTEXT_DIR / "research", "case_studies"),
     (CONTEXT_DIR / "specs", "system_docs"),
 ]

@@ -108,7 +108,7 @@ Same frame, different packaging.
 
 ## Relationship to Protocol 64
 
-[Protocol 64: Commitment Device Framework](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/64-commitment-device-framework.md) covers **mechanisms** (deposits, escrow, watermarking).
+[Protocol 64: Commitment Device Framework](<!-- Private: .agent/skills/protocols/ --> decision/64-commitment-device-framework.md) covers **mechanisms** (deposits, escrow, watermarking).
 
 **Protocol 163** covers the **higher-order heuristic**: the *mindset shift* from "chaser" to "qualifier" and the principle of shifting investment burden.
 

@@ -73,8 +73,8 @@ When you catch yourself failing repeatedly:
 
 ## Integration
 
-* Use with **[Protocol 112: Form-Substance Gap](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/112-form-substance-gap.md)** (Structure prevents access to Form).
-* Use with **[Protocol 161: Sovereign Operating Protocol](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/161-sovereign-operating-protocol.md)**.
+* Use with **[Protocol 112: Form-Substance Gap](<!-- Private: .agent/skills/protocols/ --> pattern-detection/112-form-substance-gap.md)** (Structure prevents access to Form).
+* Use with **[Protocol 161: Sovereign Operating Protocol](<!-- Private: .agent/skills/protocols/ --> decision/161-sovereign-operating-protocol.md)**.
 
 ---
 

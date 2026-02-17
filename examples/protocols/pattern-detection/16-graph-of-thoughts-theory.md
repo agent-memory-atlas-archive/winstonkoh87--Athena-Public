@@ -14,8 +14,8 @@ last_updated: 2025-12-31
 
 ## Date Added: 9 December 2025
 
-> **Related Protocol**: [17-three-timeline-got](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/17-three-timeline-got.md), [18-probabilistic-analysis-stack](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/18-probabilistic-analysis-stack.md)  
-> **Full Implementation**: [38-synthetic-deep-think](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/38-synthetic-deep-think.md)
+> **Related Protocol**: [17-three-timeline-got](<!-- Private: .agent/skills/protocols/ --> pattern-detection/17-three-timeline-got.md), [18-probabilistic-analysis-stack](<!-- Private: .agent/skills/protocols/ --> pattern-detection/18-probabilistic-analysis-stack.md)  
+> **Full Implementation**: [38-synthetic-deep-think](<!-- Private: .agent/skills/protocols/ --> decision/38-synthetic-deep-think.md)
 
 ## 16.1 Core Distinction
 

@@ -14,7 +14,7 @@ last_updated: 2025-12-31
 
 ## Date Added: 10 December 2025
 
-> **Usage Example**: [15-divine-call-trap](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/15-divine-call-trap.md) (testing unfalsifiable claims)
+> **Usage Example**: [15-divine-call-trap](<!-- Private: .agent/skills/protocols/ --> pattern-detection/15-divine-call-trap.md) (testing unfalsifiable claims)
 
 ## 21.1 Core Principle
 

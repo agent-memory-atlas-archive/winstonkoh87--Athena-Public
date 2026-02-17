@@ -90,8 +90,8 @@ last_updated: 2026-01-05
 ## 5. References
 
 - [Video Source](https://www.youtube.com/watch?v=zAjJYkUnTEs)
-- [**Core Mecanich**: Dynamic Context Loading (JIT)](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/77-adaptive-latency-architecture.md)
-- [Skill_MCP_Architecture](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/capabilities/Skill_MCP_Architecture.md)
+- [**Core Mecanich**: Dynamic Context Loading (JIT)](examples/protocols/architecture/77-adaptive-latency-architecture.md)
+- [Skill_MCP_Architecture](#)
 
 ---
 

@@ -96,8 +96,8 @@ Before starting any "optimization" (learning pick-up, tweaking resumes, arguing 
 
 ## Integration
 
-- Use with **[Protocol 185: Premise Validation](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/185-premise-validation-gate.md)** (Gate 0).
-- Use with **[Protocol 188: STPP](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/188-stpp-timeline-projection.md)** for timeline comparison.
+- Use with **[Protocol 185: Premise Validation](<!-- Private: .agent/skills/protocols/ --> decision/185-premise-validation-gate.md)** (Gate 0).
+- Use with **[Protocol 188: STPP](<!-- Private: .agent/skills/protocols/ --> decision/188-stpp-timeline-projection.md)** for timeline comparison.
 
 ---
 

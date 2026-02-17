@@ -16,7 +16,7 @@ last_updated: 2026-01-13
 
 ## Source: Archived from Case Law Library v8.0
 
-> **Related Protocol**: [01-spindle-buffer](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/communication/01-spindle-buffer.md) (same neuroscience basis)
+> **Related Protocol**: [01-spindle-buffer](<!-- Private: .agent/skills/protocols/ --> communication/01-spindle-buffer.md) (same neuroscience basis)
 
 ## 28.1 Core Mechanism
 

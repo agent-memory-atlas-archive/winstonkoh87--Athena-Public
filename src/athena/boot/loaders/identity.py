@@ -23,8 +23,23 @@ class IdentityLoader:
     def verify_semantic_prime() -> bool:
         """Verify Core_Identity.md integrity via SHA-384 hash."""
         if not CORE_IDENTITY.exists():
-            print(f"{RED}[FATAL] Core_Identity.md NOT FOUND{RESET}")
-            print(f"{RED}        Identity drift detected. Cannot boot.{RESET}")
+            print(f"{YELLOW}⚠️  Core_Identity.md not found at:{RESET}")
+            print(f"   {DIM}{CORE_IDENTITY}{RESET}")
+            print(f"{YELLOW}   To create your identity, copy the template:{RESET}")
+            print(f"   {DIM}mkdir -p .framework/v8.2-stable/modules{RESET}")
+            print(
+                f"   {DIM}cp examples/templates/core_identity_template.md .framework/v8.2-stable/modules/Core_Identity.md{RESET}"
+            )
+            print(f"{YELLOW}   Continuing with default template...{RESET}")
+            # Check for template fallback
+            from athena.boot.constants import PROJECT_ROOT
+
+            template = (
+                PROJECT_ROOT / "examples" / "templates" / "core_identity_template.md"
+            )
+            if template.exists():
+                print(f"   {GREEN}✅ Template found: {template.name}{RESET}")
+                return True
             return False
 
         try:

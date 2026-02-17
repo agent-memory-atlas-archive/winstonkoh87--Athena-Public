@@ -72,7 +72,7 @@ last_updated: 2026-01-13
 
 ### Phase 3: Parallel Orchestrator (v3.0)
 
-> **Architecture**: True parallel API calls via [Protocol 75 v3.0](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md)
+> **Architecture**: True parallel API calls via [Protocol 75 v3.0](examples/protocols/decision/75-synthetic-parallel-reasoning.md)
 
 1. **Dispatch Parallel Tracks**:
    - [ ] Track A (Domain Expert) → separate API call

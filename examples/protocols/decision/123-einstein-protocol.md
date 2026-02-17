@@ -149,7 +149,7 @@ If NO → Proceed to solution (with 5-min sanity check)
 
 - **Before `/think`**: Run Layer Diagnosis
 - **Before major decisions**: Run full protocol
-- **With [Protocol 111](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/111-premise-audit.md)**: Premise Audit is the 5-min version
+- **With [Protocol 111](examples/protocols/decision/111-premise-audit.md)**: Premise Audit is the 5-min version
 
 ---
 
@@ -158,6 +158,6 @@ If NO → Proceed to solution (with 5-min sanity check)
 # protocol #decision #problem-definition #core #zero-point-codex
 
 ## Related Protocols
-- [Protocol 124: SDR Diagnosis](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/124-sdr-diagnosis.md)
+- [Protocol 124: SDR Diagnosis](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-diagnosis.md)
 
-- [Protocol 114: Limerent Reality Distortion](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/psychology/114-limerent-reality-distortion.md)
+- [Protocol 114: Limerent Reality Distortion](<!-- Private: .agent/skills/protocols/ --> psychology/114-limerent-reality-distortion.md)

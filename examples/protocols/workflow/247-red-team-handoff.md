@@ -123,8 +123,8 @@ If this artifact fails in production, what's the most likely cause?
 
 ## Integration Points
 
-- [Protocol 159](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/159-verification-before-claim.md): Verification Before Claim
-- [/audit workflow](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/workflows/audit.md): Cross-model validation
+- [Protocol 159](examples/protocols/architecture/159-verification-before-claim.md): Verification Before Claim
+- [/audit workflow](examples/workflows/audit.md): Cross-model validation
 
 ---
 

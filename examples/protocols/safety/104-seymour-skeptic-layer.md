@@ -68,9 +68,9 @@ Add to `/circuit` ceremony:
 
 ## References
 
-- [Case: Project Vend](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/case_studies/CS-100-project-vend-agentic-failure.md)
-- [/circuit](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/workflows/circuit.md)
-- [Protocol 47: BS Detection](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/47-bs-detection.md)
+- [Case: Project Vend](#)
+- [/circuit](examples/workflows/circuit.md)
+- [Protocol 47: BS Detection](<!-- Private: .agent/skills/protocols/ --> pattern-detection/47-bs-detection.md)
 
 ---
 

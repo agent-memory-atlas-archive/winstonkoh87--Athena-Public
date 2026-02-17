@@ -17,7 +17,7 @@ last_updated: 2026-01-05
 
 ## Phase 0: Brand DNA Extraction (Optional - Pomelli Method)
 
-> **Source**: [CS-212 (Google Pomelli)](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/case_studies/CS-212-google-pomelli-brand-dna.md)
+> **Source**: [CS-212 (Google Pomelli)](#)
 > **Best for**: Existing businesses needing a refresh.
 
 **Goal**: Extract "Business DNA" from an existing URL.

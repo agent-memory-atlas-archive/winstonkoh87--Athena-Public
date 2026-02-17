@@ -80,7 +80,7 @@ A "Smart Siege" uses **Gradient Descent**:
 
 ## References
 
-* [Protocol 54: Cyborg Methodology](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/research/54-cyborg-methodology.md) — The parent philosophy
+* [Protocol 54: Cyborg Methodology](examples/protocols/research/54-cyborg-methodology.md) — The parent philosophy
 * [Claude Code 'ralph-wiggum'](https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum) — The inspiration
 
 ---

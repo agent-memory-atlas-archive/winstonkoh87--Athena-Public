@@ -7,9 +7,16 @@
 
 set -e
 
-# Resolve Repo Root (this script is in Athena-Public/scripts/)
+# Resolve Repo Root using .athena_root marker
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-REPO_ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
+REPO_ROOT="$SCRIPT_DIR"
+while [ ! -f "$REPO_ROOT/.athena_root" ] && [ "$REPO_ROOT" != "/" ]; do
+    REPO_ROOT="$(dirname "$REPO_ROOT")"
+done
+if [ ! -f "$REPO_ROOT/.athena_root" ]; then
+    # Fallback: assume script is at scripts/ inside repo root
+    REPO_ROOT="$(dirname "$SCRIPT_DIR")"
+fi
 
 # Locate Daemon Script (within this repo's src/)
 DAEMON_SCRIPT="$REPO_ROOT/src/athena/core/athenad.py"

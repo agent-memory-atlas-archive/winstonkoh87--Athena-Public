@@ -20,7 +20,7 @@ last_updated: 2026-01-05
 
 ## Purpose
 
-Prevent AI hallucinations from reaching deliverables by decomposing outputs into verifiable atomic claims before release. This operationalizes [Law #5: Epistemic Rigor](file:///Users/[AUTHOR]/Desktop/Project Athena/.framework/v7.0/modules/Core_Identity.md) with a structured process.
+Prevent AI hallucinations from reaching deliverables by decomposing outputs into verifiable atomic claims before release. This operationalizes [Law #5: Epistemic Rigor](#) with a structured process.
 
 ---
 
@@ -68,7 +68,7 @@ Tag each claim by type:
 | Claim Type | Action |
 |------------|--------|
 | `[external-fact]` | Search for corroborating source. Cite or remove. |
-| `[framework]` | Verify creator and year. Add to [References.md](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/references/References.md). |
+| `[framework]` | Verify creator and year. Add to [References.md](#). |
 | `[internal-analysis]` | Ensure logic chain is sound. No citation needed. |
 | `[opinion]` | Explicitly mark as opinion. No citation needed. |
 
@@ -98,9 +98,9 @@ Aggregate verification results:
 
 | Protocol | Relationship |
 |----------|--------------|
-| [Law #5: Epistemic Rigor](file:///Users/[AUTHOR]/Desktop/Project Athena/.framework/v7.0/modules/Core_Identity.md) | This protocol operationalizes Law #5 |
-| [Protocol 140: Base Rate Audit](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/140-base-rate-audit.md) | Verify statistical claims against base rates |
-| [Protocol 75: Synthetic Parallel Reasoning](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md) | Track B (Adversarial) naturally performs claim verification |
+| [Law #5: Epistemic Rigor](#) | This protocol operationalizes Law #5 |
+| [Protocol 140: Base Rate Audit](examples/protocols/decision/140-base-rate-audit.md) | Verify statistical claims against base rates |
+| [Protocol 75: Synthetic Parallel Reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md) | Track B (Adversarial) naturally performs claim verification |
 
 ---
 

@@ -81,7 +81,7 @@ The real power comes from making it yours.
 
 ### Edit Your Core Identity
 
-Open `.framework/v8.6-stable/modules/Core_Identity.md` and customize:
+Open `examples/templates/core_identity_template.md` and customize:
 
 - Your name
 - Your values

@@ -89,7 +89,7 @@ A: Let's think step by step.
 ## References
 
 - Xu et al. (2023). "RE2: Reading and Re-Reading Improves Reasoning in Large Language Models." arXiv:2309.06275
-- [Protocol 75: Synthetic Parallel Reasoning](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md)
+- [Protocol 75: Synthetic Parallel Reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md)
 
 ---
 

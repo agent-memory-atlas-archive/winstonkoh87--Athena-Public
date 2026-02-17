@@ -14,7 +14,7 @@ last_updated: 2026-01-11
 > **Purpose**: Protocol-level approximation of extended reasoning models (e.g., Gemini Deep Think, o1-pro).  
 > **Last Updated**: 10 December 2025  
 > **Trigger**: Complex reasoning tasks, high-stakes decisions, multi-step problem solving  
-> **Related Protocol**: [16-synthetic-parallel-reasoning](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/16-graph-of-thoughts-theory.md), [17-three-timeline-got](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/17-three-timeline-got.md), [18-probabilistic-analysis-stack](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/18-probabilistic-analysis-stack.md)
+> **Related Protocol**: [16-synthetic-parallel-reasoning](<!-- Private: .agent/skills/protocols/ --> pattern-detection/16-graph-of-thoughts-theory.md), [17-three-timeline-got](<!-- Private: .agent/skills/protocols/ --> pattern-detection/17-three-timeline-got.md), [18-probabilistic-analysis-stack](<!-- Private: .agent/skills/protocols/ --> pattern-detection/18-probabilistic-analysis-stack.md)
 
 ---
 
@@ -326,8 +326,8 @@ RSI DEPOSIT FORMAT:
 
 ## References
 
-- [Protocol 52: Deep Research Loop](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/research/52-deep-research-loop.md) — References this protocol
-- [Agentic Engineering Strategy: Scenario Response](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/engineering/Engineering_Strategy_Framework.md) — References this protocol
+- [Protocol 52: Deep Research Loop](examples/protocols/research/52-deep-research-loop.md) — References this protocol
+- [Agentic Engineering Strategy: Scenario Response](<!-- Private: .agent/skills/protocols/ --> engineering/Engineering_Strategy_Framework.md) — References this protocol
 
 ---
 

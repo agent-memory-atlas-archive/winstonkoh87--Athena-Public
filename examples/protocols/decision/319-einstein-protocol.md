@@ -11,7 +11,7 @@ last_updated: 2026-01-01
 
 # Protocol 110: Einstein Protocol (Redirect)
 
-> **Status**: REDIRECT → [Protocol 123](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/123-einstein-protocol.md)
+> **Status**: REDIRECT → [Protocol 123](<!-- Private: .agent/skills/protocols/ --> decision/123-einstein-protocol.md)
 
 Protocol 110 was renumbered to **Protocol 123** during the December 2025 consolidation.
 

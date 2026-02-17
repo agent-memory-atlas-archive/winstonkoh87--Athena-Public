@@ -124,4 +124,4 @@ Rank top 3 recommendations.
 
 ## Related Protocols
 
-- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/121-mcda-weu-framework.md)
+- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](<!-- Private: .agent/skills/protocols/ --> decision/121-mcda-weu-framework.md)

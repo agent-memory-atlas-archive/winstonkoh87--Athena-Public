@@ -39,7 +39,7 @@ Most reasoning is single-pass. This protocol enables **multi-iteration refinemen
 
 ### Phase A: Initial Hypothesis Generation
 
-Generate 3-5 candidate solutions using existing parallel reasoning ([Protocol 75](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md)).
+Generate 3-5 candidate solutions using existing parallel reasoning ([Protocol 75](examples/protocols/decision/75-synthetic-parallel-reasoning.md)).
 
 **Output**: Ranked list of hypotheses with confidence scores.
 
@@ -132,9 +132,9 @@ Iteration 5:
 ## Integration Points
 
 - Activated by `/ultrathink` when high-stakes detected
-- Uses [Protocol 75](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md) for parallel hypothesis generation
-- Uses [Protocol 38](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/38-synthetic-deep-think.md) for verification phases
-- Deposits to RSI per [Protocol 140](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/140-base-rate-audit.md)
+- Uses [Protocol 75](examples/protocols/decision/75-synthetic-parallel-reasoning.md) for parallel hypothesis generation
+- Uses [Protocol 38](<!-- Private: .agent/skills/protocols/ --> decision/38-synthetic-deep-think.md) for verification phases
+- Deposits to RSI per [Protocol 140](examples/protocols/decision/140-base-rate-audit.md)
 
 ---
 
@@ -144,4 +144,4 @@ Iteration 5:
 
 ## Related Protocols
 
-- [Protocol 128: Internal Family Systems](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/psychology/128-internal-family-systems.md)
+- [Protocol 128: Internal Family Systems](<!-- Private: .agent/skills/protocols/ --> psychology/128-internal-family-systems.md)

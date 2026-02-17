@@ -131,10 +131,10 @@ When facing strategic decision:
 ---
 
 ## Cross-References
-- [Protocol 124: SDR Diagnosis](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/124-sdr-diagnosis.md)
+- [Protocol 124: SDR Diagnosis](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-diagnosis.md)
 
-- [Protocol 75: Synthetic Parallel Reasoning](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md)
-- [Protocol 108: Bionic Operational Physics](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/108-bionic-operational-physics.md)
+- [Protocol 75: Synthetic Parallel Reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md)
+- [Protocol 108: Bionic Operational Physics](examples/protocols/architecture/108-bionic-operational-physics.md)
 
 ---
 

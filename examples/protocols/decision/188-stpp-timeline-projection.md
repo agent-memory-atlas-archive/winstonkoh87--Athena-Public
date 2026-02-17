@@ -74,8 +74,8 @@ $$ \text{Pain} = \text{Fantasy Magnitude} - \text{Reality Magnitude} $$
 
 ## Integration
 
-* Use with **[Protocol 140: Base Rate Audit](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/140-base-rate-audit.md)** for Reality Frame population.
-* Use with **[Protocol 114: Limerent Reality Distortion](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/psychology/114-limerent-reality-distortion.md)**.
+* Use with **[Protocol 140: Base Rate Audit](examples/protocols/decision/140-base-rate-audit.md)** for Reality Frame population.
+* Use with **[Protocol 114: Limerent Reality Distortion](<!-- Private: .agent/skills/protocols/ --> psychology/114-limerent-reality-distortion.md)**.
 
 ---
 
