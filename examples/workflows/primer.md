@@ -65,19 +65,21 @@ Load the following files (in order):
 #### Track A: Internal Ops Brief (Full Disclosure)
 
 Generate `docs/audit/SYSTEM_PRIMER_FULL.md`.
+
 - **Content**: EVERYTHING listed above (Sections 1-9).
 - **Header**: `> CLASSIFICATION: L3 SYSTEM EYES ONLY`
-- **Psychology**: Include raw "Jun Kai" profiles, L5 schema details, sexual economics.
+- **Psychology**: Include shadow persona profiles, behavioral schema details, decision economics.
 - **Risk**: Include specific R00X triggers and financial thresholds.
 
 #### Track B: External Audit Brief (Redacted)
 
 Generate `docs/audit/SYSTEM_PRIMER_REDACTED.md`.
+
 - **Content**: Sections 1-9, but SANITIZED.
 - **Header**: `> CLASSIFICATION: PUBLIC / AUDITABLE`
 - **Redactions**:
   - Replace specific net worth/financials with "Threshold defined".
-  - Replace "Jun Kai" and raw L5 trauma details with "Shadow Persona" and "Core Wound".
+  - Replace shadow persona and raw behavioral details with "Shadow Persona" and "Core Wound".
   - Remove any mention of specific individuals or private legal cases.
   - Summarize R00X triggers abstractly (e.g. "Impulse Control Event").
 - **Focus**: Prove *Controls* exist, without exposing *Vulnerabilities*.

@@ -12,7 +12,7 @@ last_updated: 2026-01-11
 # Protocol 140: Base Rate Audit
 
 > **Purpose**: Heuristic for detecting "bullshit" (fabrication, delusion, or omission) by comparing claims against statistical baselines.
-> **Source**: Session 31 (Dec 22, 2025) — Condo Girl Example + 20% Guaranteed Returns
+> **Source**: Session 31 (Dec 22, 2025) — Social Media Claim + 20% Guaranteed Returns
 > **Related**: [Strategic Analysis Framework: First Principles](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/strategy/Strategic_Analysis_Framework.md)
 
 ---
@@ -65,7 +65,7 @@ When the gap is unexplained, the Hidden Variable typically falls into one of the
 
 | Claim | Base Rate | Gap | Likely Hidden Variable |
 |-------|-----------|-----|------------------------|
-| "He likes me for me" (Age Gap) | Homogamy (Like dates Like) | 20 Year / Status Gap | Transactional ($$$) / Fetish / Status Proxy |
+| "They genuinely like me" (Power Gap) | Homogamy (Like attracts Like) | Large Status / Power Gap | Transactional / Status Proxy / Network Access |
 | "Natural Body Transformation" | 2lb muscle/month (Newbie) | 20lb muscle/3 months | PEDs / TRT / Surgery |
 
 ---
@@ -86,7 +86,7 @@ When a prospect/lead presents a claim or expectation that fails the Base Rate Au
 
 Applying this to yourself is **Epistemic Rigor**:
 
-- Acknowledge your own Hidden Variables (e.g., "I date across age gaps because of Transactional Capital, not raw attraction").
+- Acknowledge your own Hidden Variables (e.g., "My rapid career growth was partly due to timing and market tailwinds, not pure skill").
 - This moves you from **Delusion** (Red Curve grinding) to **Strategy** (Blue Curve leverage).
 
 # base-rate #epistemology #bullshit-detector #delusion-check

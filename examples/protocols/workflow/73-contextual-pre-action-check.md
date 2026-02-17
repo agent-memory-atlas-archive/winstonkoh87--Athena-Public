@@ -15,7 +15,7 @@ last_updated: 2025-12-18
 
 > **Principle**: 看人看事, 然后讲话 — *"Observe the person and situation, then speak."*
 >
-> **Source**: Extracted from therapy session notes (March 2025). Core insight: *"Rushing in without sizing up context, intent, and stakeholders can screw you over."*
+> **Source**: Extracted from behavioral analysis notes (March 2025). Core insight: *"Rushing in without sizing up context, intent, and stakeholders can screw you over."*
 
 ---
 
@@ -124,4 +124,4 @@ If any answer is "no" or "unclear" → **pause**.
 
 ## Tagging
 
-#protocol #framework #73-contextual-pre-action-check
+# protocol #framework #73-contextual-pre-action-check

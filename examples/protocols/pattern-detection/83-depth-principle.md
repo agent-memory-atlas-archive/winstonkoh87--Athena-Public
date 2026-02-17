@@ -12,7 +12,7 @@ last_updated: 2025-12-18
 # Protocol 83: The Depth Principle (Non-Linear Execution)
 
 > **Purpose**: Enforce multi-phased, iterative "looping" for complex tasks, rejecting linear "checklist" execution.
-> **Source**: User Insight ("Scenario_Locker_Room")
+> **Source**: User Insight ("High-Stakes Negotiation")
 > **Status**: ACTIVE
 
 ---
@@ -21,7 +21,7 @@ last_updated: 2025-12-18
 
 **"Complexity is a Loop, not a Line."**
 
-In high-stakes or complex environments (Seduction, Architecture, Negotiation), a linear approach ($A \to B \to C$) fails because it ignores **State Calibration**.
+In high-stakes or complex environments (Negotiation, Architecture, Sales), a linear approach ($A \to B \to C$) fails because it ignores **State Calibration**.
 
 You cannot force a result. You must **engineer the demand** for the result through back-and-forth oscillation.
 
@@ -38,10 +38,10 @@ Instead of a Roadmap, use a **Tension Engine**:
 
 ## 3. Extrapolation to Domains
 
-### A. Seduction (The Origin)
+### A. Sales (The Origin)
 
-* **Wrong**: Taking off speedos ($Steps 1 \to 10$).
-* **Right**: Touch $\to$ Pull Back $\to$ Wait for his eyes to glaze $\to$ Touch again. **Make him wait.**
+* **Wrong**: Dumping the full pitch on slide one ($Steps 1 \to 10$).
+* **Right**: Tease value $\to$ Pull Back $\to$ Wait for them to lean in $\to$ Reveal more. **Make them ask.**
 
 ### B. Coding (The Isomorphism)
 
@@ -55,7 +55,7 @@ Instead of a Roadmap, use a **Tension Engine**:
 
 ## 4. Implementation Rule
 
-**Before executing any "Terminal" action (Deploy, F*ck, Sell):**
+**Before executing any "Terminal" action (Deploy, Close, Sell):**
 Ask: *"Have I built enough tension/context that the Target is pulling for this result?"*
 
 * **No**: Return to Loop (Probe/Calibrate).
@@ -65,4 +65,4 @@ Ask: *"Have I built enough tension/context that the Target is pulling for this r
 
 ## Tagging
 
-#protocol #framework #process #83-depth-principle
+# protocol #framework #process #83-depth-principle

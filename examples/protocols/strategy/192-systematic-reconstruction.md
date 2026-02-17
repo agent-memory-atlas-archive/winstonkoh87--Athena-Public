@@ -40,11 +40,11 @@ When tactics fail and schemas trigger, **Structure** is the only reliable defens
 
 **Axiom**: If you rely on L1 (Tail) to wag L2 (Dog), you will fail. You must use L3 (Cage) to contain the Dog.
 
-### Case: The Shower Trap
+### Case: The Impulse Spending Trap
 
-* **L1 Fix**: "I'll go to the pool but just swim, I won't look at them." (Relies on willpower).
+* **L1 Fix**: "I'll browse the online store but just window shop, I won't buy anything." (Relies on willpower).
   * *Result*: Failure. Schema overpowers Tactic.
-* **L3 Fix**: "I cancel my SP membership. I join a Masters Swim team." (Changes the Structure).
+* **L3 Fix**: "I delete the shopping apps. I unsubscribe from promo emails." (Changes the Structure).
   * *Result*: Success. The temptation is physically removed.
 
 ### Case: The "Let me think" Client

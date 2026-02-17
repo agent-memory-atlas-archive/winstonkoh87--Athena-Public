@@ -53,7 +53,7 @@ Protocol A | Protocol B | Case Study | Logic Pattern | ...
 
 ```
 [Λ+25]
-Protocol 128 | Law #1 (Ruin Prevention) | Jeremy/Ryan Case | Proxy Variable Logic
+Protocol 128 | Law #1 (Ruin Prevention) | Case Study 125 | Proxy Variable Logic
 ```
 
 **Guidelines**:

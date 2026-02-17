@@ -91,11 +91,11 @@ Before any repeated action:
 
 ## Classic Cases
 
-### Case 1: The Shower Trap
+### Case 1: The Impulsive Day-Trading Trap
 
 ```text
-Action: Repeat risky encounters in institutional setting
-P(Exposure) per session: 5-10%
+Action: Repeat high-leverage trades without stop-losses
+P(Wipeout) per session: 5-10%
 Sessions per year: ~50
 P(Survival after 1 year): (0.92)^50 = 1.5%
 Verdict: Ruin is near-certain within 12 months.

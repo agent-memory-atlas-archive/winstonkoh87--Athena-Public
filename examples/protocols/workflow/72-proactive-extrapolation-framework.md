@@ -13,7 +13,7 @@ last_updated: 2025-12-18
 
 # Protocol 72: Proactive Extrapolation Framework (PEF)
 
-> **Source**: Extracted from therapy session notes (May 2025). Core insight: *"Take early warning signs of success/failure and project into the future to proactively avoid train wrecks."*
+> **Source**: Extracted from behavioral analysis notes (May 2025). Core insight: *"Take early warning signs of success/failure and project into the future to proactively avoid train wrecks."*
 
 ---
 
@@ -135,4 +135,4 @@ Before committing further resources (time, money, emotion), ask:
 
 ## Tagging
 
-#protocol #framework #72-proactive-extrapolation-fra
+# protocol #framework #72-proactive-extrapolation-fra

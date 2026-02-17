@@ -37,25 +37,25 @@ Before optimizing *how* to get X, you must validate *what happens after* X.
 3. **Assume 100% Success**: Imagine the action works perfectly.
 4. **The Recursion**: Ask "Then what?" repeatedly until you hit a Terminal Node (stable end state).
 
-### Logic Flow Example (The Shower Trap)
+### Logic Flow Example (The Hustle Trap)
 
 ```text
-Action: Pursue Gen Z cohort in institution
+Action: Pursue high-status clients via cold outreach
    ↓ (Assume 100% success)
-Result: Sexual access achieved
+Result: Client signs contract
    ↓
 Then what?
    ↓
-Result: Dopamine hit fades (15 mins)
+Result: Revenue spike fades (1 quarter)
    ↓
 Then what?
    ↓
-Branch A: They leave (Abandonment triggered)
-Branch B: You chase (Addiction deepened)
+Branch A: Client churns (Unsustainable model)
+Branch B: You chase next client (Treadmill deepened)
 Branch C: Loop continues for 20 years (See Law #61)
 
-**Terminal Node**: Abandonment, Addiction, or Absurdity. 
-**Stated Goal (Belonging)**: NOT FOUND in any terminal node.
+**Terminal Node**: Burnout, Treadmill, or Diminishing Returns.
+**Stated Goal (Financial Freedom)**: NOT FOUND in any terminal node.
 ```
 
 ---
@@ -66,15 +66,15 @@ Project the current strategy forward 20 years. If the result is **grotesque, abs
 
 ### The Projection Table
 
-| Year | Your Age | Target Age | Dynamic | Social Label |
-|------|----------|------------|---------|--------------|
-| 0 | 38 | 18 | Weird but legal | "Eccentric" |
-| 5 | 43 | 18 | Creepy | "That guy" |
-| 10 | 48 | 18 | Predatory | "Warning: Avoid" |
-| 20 | 58 | 18 | Clinical/Grotesque | "Institutional Case" |
+| Year | Business Age | Strategy Viability | Dynamic | Industry Label |
+|------|-------------|-------------------|---------|----------------|
+| 0 | Startup | Novel | "Disruptor" | "Innovative" |
+| 5 | Growing | Commoditized | "Copycat market" | "Crowded" |
+| 10 | Mature | Margin collapse | "Race to bottom" | "Commodity" |
+| 20 | Declining | Irrelevant | "Legacy tech" | "Obsolete" |
 
-**Verdict**: The strategy does not age. It rots.
-**Action**: Abort immediately.
+**Verdict**: The strategy does not scale. It rots.
+**Action**: Find a moat before it's too late.
 
 ---
 

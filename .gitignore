@@ -47,3 +47,9 @@ build/
 *.egg-info/
 
 TAG_INDEX_*.md
+
+# Personal Data (NEVER commit - contains personal info)
+.framework/
+**/User_Profile*.md
+**/Psychology_L1L5*.md
+**/Constraints_Master_Private.md

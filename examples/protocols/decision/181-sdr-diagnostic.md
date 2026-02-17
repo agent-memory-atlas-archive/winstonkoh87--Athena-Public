@@ -120,16 +120,16 @@ SDR = 7:1 → B-Type Failure
 Action: Exit arena (EU/remote markets) ✅
 ```
 
-### Case 2: 38yo in Youth-Optimized Market
+### Case 2: Senior Professional in Youth-Optimized Market
 
 ```text
-Arena: Young gay dating scene (18-25 target)
-Capital: Resources, experience, maturity
-Strategic Gap: Extreme (age mismatch structural)
-Tactical Gap: Minimal (presentation already optimized)
+Arena: TikTok influencer marketing (Gen Z audience)
+Capital: Deep expertise, professional network, industry credibility
+Strategic Gap: Extreme (age-platform mismatch structural)
+Tactical Gap: Minimal (content quality already high)
 
 SDR = 8:1 → B-Type Failure
-Action: Shift to age-appropriate arena ✅
+Action: Shift to platform matching your demographic ✅
 ```
 
 ### Case 3: Qualified Job Applicant

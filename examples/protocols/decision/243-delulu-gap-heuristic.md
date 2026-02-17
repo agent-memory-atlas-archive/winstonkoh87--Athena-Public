@@ -55,7 +55,7 @@ The actor makes decisions based on their *current calm self*, not the *future st
 | **Trading (Investor)** | "Risk $10K to earn more!" | One bad week = $0, relationship destroyed |
 | **Copy-Trading Prospect** | "I'll invest $20K next month!" | Flakes, trader tilts from wasted hope |
 | **TADA Vomit Driver** | "Passengers are reasonable adults" | Passenger defects, driver eats $70 + tilt |
-| **research_entity_gamma** | "I'm just expressing love" | Reality lag = prison + destroyed victims |
+| **Self-Deception Trap** | "I'm just being authentic" | Reality lag = destroyed relationships + consequences |
 | **Startup Founder** | "We'll raise Series A in 6 months" | Runway burns, no raise, fire sale |
 
 **Common thread**: Assuming actor rationality in your favor. Reality doesn't care about your assumptions.

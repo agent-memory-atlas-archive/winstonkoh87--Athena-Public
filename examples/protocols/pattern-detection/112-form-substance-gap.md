@@ -50,7 +50,7 @@ last_updated: 2026-01-05
 
 | Subtype | Mechanism | Example |
 |---------|-----------|---------|
-| **A: Craving Amplifier** | Cue sensitization + contrast. Form triggers "wanting" without delivering "liking." Repeated exposure sharpens target. | SUTD roommate (intimacy without reciprocity), JJ (words without priority), Rituals (locker room mimicking belonging) |
+| **A: Craving Amplifier** | Cue sensitization + contrast. Form triggers "wanting" without delivering "liking." Repeated exposure sharpens target. | Coworker friendship (warmth without reciprocity), Partner (words without priority), Alumni events (ritual mimicking belonging) |
 | **B: False Proxy (Epistemic Deception)** | Form *looks like evidence* of Substance but isn't. High risk of dangerous inference. | "Clean" visuals masking STI status, Deck design masking unit economics, Medal expectations masking zero funding |
 
 **Subtype A** = Craving torture. **Subtype B** = Risk blindness.
@@ -119,7 +119,7 @@ Form creates a vivid comparison point ("I can almost have it"), which makes the 
 
 | Condition | Why |
 |-----------|-----|
-| **The source cannot produce the substance** | Structural impossibility (SUTD roommate = orientation fixed; Time travel = impossible) |
+| **The source cannot produce the substance** | Structural impossibility (unreciprocated attraction = not negotiable; Time travel = impossible) |
 | **The provider benefits from keeping it "almost"** | Attention economy, institutions, some relationship dynamics |
 | **The form is substitutive** | It *feels* like progress, so you stop seeking the real path (moral theatre, optics-driven KPIs) |
 | **Gestation period has passed** | Standard conversion time elapsed with no measurable Substance increase |
@@ -132,12 +132,12 @@ Form creates a vivid comparison point ("I can almost have it"), which makes the 
 
 | Domain | Form (Got) | Substance (Missing) | Subtype | Gap Effect |
 |--------|-----------|---------------------|---------|------------|
-| **SUTD Confession** | Physical/emotional intimacy with roommate (showers, HTHT) | Mutual romantic attraction | A (Craving) | Every intimate ritual **amplifies** "why can't we be together?" |
-| **NS Water Polo** | Ritual *mimicking* peer bonding | Actual peer belonging at age 13-17 | A (Craving) + Counterfactual grief | Can't time-travel—ritual reminds you what you missed |
-| **BigHungryOwl** | 6.9M views, 29.8K followers (attention) | Attachment from desired partner class | A (Craving) | Attention proves visibility works → "why still alone?" shame spiral. Status ≠ attachment. |
-| **SNOC vs Soh Rui Yong** | Medal expectations | Funding & full-time support | B (False Proxy) | Officials demand gold (Form) but provide zero resources (Substance) |
-| **JJ Relationship** | Verbal affection, occasional presence | Priority, substantive investment | A (Craving) | Sweet words without action = torture, not progress |
-| **"Clean" NSF Target** | Clean visuals (young, fit, fresh) | Actual STI-free status (biological verification) | B (False Proxy) | Visual purity ≠ biological purity. Form is *deceptive*, not incomplete. |
+| **Friendship Closeness** | Emotional intimacy, shared routines | Mutual romantic attraction | A (Craving) | Every warm moment **amplifies** "why can't we be more?" |
+| **Alumni Events** | Ritual *mimicking* peer belonging | Deep, formative community bonds | A (Craving) + Counterfactual grief | Can't time-travel—ritual reminds you what you missed |
+| **Influencer Trap** | Millions of views, large following (attention) | Meaningful personal connection | A (Craving) | Attention proves visibility works → "why still alone?" shame spiral. Status ≠ attachment. |
+| **Institutional Mandate** | Medal expectations, performance demands | Funding & full-time support | B (False Proxy) | Leaders demand gold (Form) but provide zero resources (Substance) |
+| **Ambiguous Relationship** | Verbal affection, occasional presence | Priority, substantive investment | A (Craving) | Sweet words without action = torture, not progress |
+| **"Clean" Appearance** | Healthy-looking presentation | Actual verified health status | B (False Proxy) | Visual appearance ≠ verified status. Form is *deceptive*, not incomplete. |
 | **Vanity Metrics Startup** | "100k users!" | Profitable unit economics | B (False Proxy) | Scaling losses—Form feels like success while burning runway |
 | **Task Force Trap** | Committee formed to "study the issue" | Legislation passed, budget allocated | B (False Proxy) | Committee *feels* like action (Form) but delays solution (Substance) |
 
@@ -241,9 +241,9 @@ To make "disproportionately" measurable:
 
 | Case | Impossibility (Conditional) |
 |------|-----------------|
-| SUTD roommate | Attraction cannot be negotiated into existence—this source is not reliably capable of reciprocity |
-| User ritual | Time travel impossible—age 13-17 peer bonding cannot occur now |
-| BigHungryOwl | This content attracts attention that does not correlate with desired attachment outcome—treat as low predictive value until proven otherwise |
+| Unreciprocated friend | Attraction cannot be negotiated into existence—this source is not reliably capable of reciprocity |
+| Nostalgic ritual | Time travel impossible—formative-age peer bonding cannot occur now |
+| Influencer reach | Content attracts attention that does not correlate with desired attachment outcome—treat as low predictive value until proven otherwise |
 
 ### Step 2.5: Conversion Test (Time-Boxed)
 
@@ -267,9 +267,9 @@ To make "disproportionately" measurable:
 
 | Case | Redirect To |
 |------|-------------|
-| SUTD | Gay/bi men (not straight roommate) |
-| BigHungryOwl | Dating apps, social events (not TikTok) |
-| User | Build peer groups NOW (not rituals) |
+| Unreciprocated friend | People who share your interest/orientation |
+| Influencer reach | Real-world social events (not parasocial platforms) |
+| Nostalgic ritual | Build peer groups NOW (not nostalgia-driven rituals) |
 
 **Option B (Substance unattainable):**
 > "This substance is permanently unavailable. You must MOURN the impossibility, not chase the form."
@@ -329,7 +329,7 @@ Monitor: Any escalation = addiction forming → Initiate FFP ⚠️
 - [Protocol 113: Missing Baseline Model](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/psychology/113-missing-baseline-model.md)
 - [Protocol 114: Limerent Reality Distortion](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/psychology/114-limerent-reality-distortion.md)
 - [Protocol 197: The Consigliere Protocol](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/329-consiglieri-protocol.md)
-- [Psychology_L1L5.md](file:///Users/[AUTHOR]/Desktop/Project Athena/Winston/profile/Psychology_L1L5.md)
+- Psychology Profile: Your own L1-L5 schema mapping (private)
 
 ---
 
@@ -339,9 +339,10 @@ Monitor: Any escalation = addiction forming → Initiate FFP ⚠️
 |---------|------|---------|
 | 1.0 | Pre-Dec 2025 | Initial version |
 | 2.0 | 2025-12-31 | Major upgrade: Added Dopamine Prediction Error mechanism, Bridge-vs-Trap discriminator, Subtypes (A: Craving Amplifier, B: False Proxy), Duration Check (Q1.5), Behavioral Check (Q5), Conversion Test (Step 2.5), OOR metric, Sunk Cost linkage, tighter definitions, conditional absolutes. |
-| 2.1 | 2025-12-31 | Patches: 3x Rule for gestation + defaults table, Silence=No clause, OOR thresholds + Denominator Risk, False-positive guardrail (Bridge under load), Ethics constraint, Graded Boundary Protocol, toned down pseudo-precise claims (withdrawal-like, months-to->1yr), softened orientation/attraction phrasing. |
+| 2.1 | 2025-12-31 | Patches: 3x Rule for gestation + defaults table, Silence=No clause, OOR thresholds + Denominator Risk, False-positive guardrail (Bridge under load), Ethics constraint, Graded Boundary Protocol, toned down pseudo-precise claims (withdrawal-like, months-to->1yr). |
 
 ## Related Protocols
+
 - [Protocol 124: SDR Diagnosis](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/decision/124-sdr-diagnosis.md)
 
 - [Protocol 128: Internal Family Systems](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/skills/protocols/psychology/128-internal-family-systems.md)

@@ -144,7 +144,7 @@ When you clone this repo, **you already have a working Agent.** Not a blank slat
 
 | Component | What You Get | Customizable? |
 |:----------|:-------------|:-------------:|
-| **🧠 Core Identity** | Pre-built constitution with 6 laws ([Core_Identity.md](examples/templates/framework_mirror/v8.6-stable/modules/Core_Identity.md)) | ✅ Edit freely |
+| **🧠 Core Identity** | Pre-built constitution with 6 laws ([Core_Identity Template](examples/templates/core_identity_template.md)) | ✅ Edit freely |
 | **📋 120+ Protocols** | Decision frameworks across 13 categories ([examples/protocols/](examples/protocols/)) | ✅ Fork & extend |
 | **📝 Memory Bank** | Structured templates for user profile, context, and session logs | ✅ Auto-fills over time |
 | **⚡ 14 Slash Workflows** | `/start`, `/end`, `/think`, `/research`, and [more](docs/WORKFLOWS.md) | ✅ Add your own |
