@@ -63,6 +63,18 @@ athena init --ide cursor    # Creates .cursor/rules.md
 athena init --ide antigravity  # Creates AGENTS.md
 ```
 
+### I already have a project — do I need to move it into Athena?
+
+No. Three options:
+
+| Mode | How | Best For |
+|:-----|:----|:---------|
+| **Standalone** | Open `Athena/` as your workspace. Navigate to your project from there. | All-in-one brain |
+| **Multi-Root** | Open your project → `File → Add Folder to Workspace` → select `Athena/` | Existing repos |
+| **Nested** | Drop your project folder inside `Athena/` | Quick prototypes |
+
+All three work. Start with **Standalone** and adjust to taste.
+
 ---
 
 ## Cost & Performance

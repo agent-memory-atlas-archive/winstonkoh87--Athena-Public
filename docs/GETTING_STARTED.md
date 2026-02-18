@@ -63,6 +63,9 @@ flowchart LR
     D --> E["Ready!"]
 ```
 
+> [!TIP]
+> **Already have a project?** You don't need to move it. Open `Athena/` as your workspace and navigate to your project from there, or use **Multi-Root**: `File → Add Folder to Workspace` to have both open side-by-side. See the [README](../README.md#-quickstart) for all three workspace modes.
+
 ---
 
 ## Step 3: Test It

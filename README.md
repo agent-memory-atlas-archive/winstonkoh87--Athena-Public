@@ -85,6 +85,35 @@ You're confusing **RAM** with a **Hard Drive**.
 > When you're done, type `/end` to save. Next time you `/start`, the agent picks up exactly where you left off.
 > Your first session takes ~30 minutes (mostly the interview). Every session after that boots in seconds.
 
+<details>
+<summary><strong>🏗️ "I already have a project — where does Athena go?"</strong></summary>
+
+Athena is your **Brain**. Your project is the **Body**. They don't need to live in the same place.
+
+| Mode | Setup | Best For |
+|:-----|:------|:---------|
+| **Standalone** | Open `Athena/` as your workspace. Navigate to other repos from there. | Personal brain, all-in-one users |
+| **Multi-Root (Sidecar)** | Open your project normally → `File → Add Folder to Workspace` → select `Athena/` | Devs with existing repos who want both in one window |
+| **Nested** | Drop your project folder inside `Athena/` | Quick prototypes, small projects |
+
+```
+# Standalone (recommended)           # Multi-Root (Sidecar)
+~/Athena/          ← open this        IDE Workspace:
+  .context/                             ├── ~/MyApp/        ← your code
+  .agent/                               └── ~/Athena/       ← the brain
+  .framework/
+
+# Nested
+~/Athena/
+  .context/
+  .agent/
+  MyApp/            ← project inside
+```
+
+**Recommendation**: Start with **Standalone**. If you need your project visible in the same window, use **Multi-Root**. All three modes work — pick what feels natural.
+
+</details>
+
 ### 🪞 Your First Session
 
 On your first `/start`, run `/brief interview`. Athena asks about **everything** — name, profession, goals, decision style, blind spots. This isn't small talk. It's the foundation that makes every future session compound.
