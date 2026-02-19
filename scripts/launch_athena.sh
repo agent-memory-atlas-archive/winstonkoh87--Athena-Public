@@ -30,6 +30,19 @@ echo "🚀 Launching Athena Daemon..."
 echo "   Target: $DAEMON_SCRIPT"
 
 if [[ "$1" == "--background" ]]; then
+    # Guard: Prevent duplicate daemons
+    PID_FILE="$REPO_ROOT/.athenad.pid"
+    if [[ -f "$PID_FILE" ]]; then
+        OLD_PID=$(cat "$PID_FILE")
+        if kill -0 "$OLD_PID" 2>/dev/null; then
+            echo "⚠️  Daemon already running (PID: $OLD_PID). Use --stop first."
+            exit 0
+        else
+            echo "🧹 Stale PID file found. Cleaning up..."
+            rm "$PID_FILE"
+        fi
+    fi
+
     # Run in background and detach
     nohup python3 "$DAEMON_SCRIPT" > "$REPO_ROOT/athenad.log" 2>&1 &
     PID=$!

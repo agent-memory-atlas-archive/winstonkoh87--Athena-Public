@@ -121,13 +121,16 @@ class IdentityLoader:
         cache_path = IdentityLoader._get_protocol_cache_path()
         context_key = context_clues.lower().strip()
 
-        # Try cache first
+        # Try cache first (with mtime-based invalidation)
         if cache_path.exists():
             try:
                 cache = json.loads(cache_path.read_text())
-                if context_key in cache:
-                    # In a real system, we'd check if PROTOCOLS_JSON mtime changed
-                    # But for now, simple cache return
+                cached_mtime = cache.get("_protocols_mtime", 0)
+                current_mtime = (
+                    PROTOCOLS_JSON.stat().st_mtime if PROTOCOLS_JSON.exists() else 0
+                )
+
+                if cached_mtime == current_mtime and context_key in cache:
                     cached_loadout = cache[context_key]
                     print(
                         f"\n{BOLD}{CYAN}🧙‍♂️ ATHENA GUIDANCE SYSTEM (Cached Loadout){RESET}"
@@ -196,12 +199,15 @@ class IdentityLoader:
                         }
                     )
 
-                # Save to cache
+                # Save to cache (with mtime for invalidation)
                 try:
                     cache = {}
                     if cache_path.exists():
                         cache = json.loads(cache_path.read_text())
                     cache[context_key] = output_matches
+                    cache["_protocols_mtime"] = (
+                        PROTOCOLS_JSON.stat().st_mtime if PROTOCOLS_JSON.exists() else 0
+                    )
                     cache_path.parent.mkdir(parents=True, exist_ok=True)
                     cache_path.write_text(json.dumps(cache))
                 except Exception:

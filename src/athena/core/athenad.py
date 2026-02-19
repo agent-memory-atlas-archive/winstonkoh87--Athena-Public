@@ -41,7 +41,9 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 # --- CONFIGURATION ---
-PROJECT_ROOT = Path(__file__).resolve().parents[3]  # src/athena/core -> ROOT
+from athena.core.config import get_project_root
+
+PROJECT_ROOT = get_project_root()  # Uses .athena_root marker detection (cross-platform)
 DB_PATH = PROJECT_ROOT / ".agent" / "inputs" / "athena.db"
 SCHEMA_PATH = PROJECT_ROOT / ".agent" / "inputs" / "schema.sql"
 ACTIVE_CONTEXT_PATH = PROJECT_ROOT / ".context" / "memory_bank" / "activeContext.md"
@@ -127,25 +129,35 @@ class BackgroundIndexer(threading.Thread):
     def run(self):
         logger.info("🧠 BackgroundIndexer: Online (Waiting for tasks...)")
 
-        try:
-            from lightrag_wrapper import setup_rag
-
-            self.rag_instance = setup_rag()
-            logger.info("✅ Persistent LightRAG Instance Initialized.")
-        except Exception as e:
-            logger.error(f"Failed to initialize LightRAG: {e}")
-            return
-
         while True:
             try:
-                filepath = self.task_queue.get()
-                if filepath is None:
-                    break
+                from lightrag_wrapper import setup_rag
 
-                self.index_file_in_graph(filepath)
-                self.task_queue.task_done()
+                self.rag_instance = setup_rag()
+                if self.rag_instance:
+                    logger.info("✅ Persistent LightRAG Instance Initialized.")
+                else:
+                    logger.warning("⚠️ LightRAG init returned None. Retrying in 15s...")
+                    time.sleep(15)
+                    continue
             except Exception as e:
-                logger.error(f"Indexer Worker Crash: {e}")
+                logger.error(f"Failed to initialize LightRAG: {e}. Retrying in 15s...")
+                time.sleep(15)
+                continue
+
+            try:
+                while True:
+                    filepath = self.task_queue.get()
+                    if filepath is None:
+                        # Poison pill
+                        return
+
+                    self.index_file_in_graph(filepath)
+                    self.task_queue.task_done()
+            except Exception as e:
+                logger.error(f"Indexer Worker Crash: {e}. Restarting loop...")
+                time.sleep(5)
+                continue
 
     def index_file_in_graph(self, filepath):
         """Indexes file using the persistent LightRAG instance."""
@@ -203,6 +215,9 @@ class FileWatcher:
     def get_db_connection(self):
         conn = sqlite3.connect(DB_PATH)
         conn.row_factory = sqlite3.Row
+        # Enable WAL (Write-Ahead Logging) for concurrent reads/writes without locking
+        conn.execute("PRAGMA journal_mode=WAL;")
+        conn.execute("PRAGMA synchronous=NORMAL;")
         return conn
 
     def init_db(self):
@@ -286,19 +301,9 @@ class FileWatcher:
         finally:
             conn.close()
 
-    async def watch_loop(self):
-        self.running = True
-        self.init_db()
-        logger.info(f"👀 Watcher Event-Driven Started: {[str(d) for d in WATCH_DIRS]}")
-
-        self.observer = Observer()
-        handler = AthenaEventHandler(self)
-        for watch_dir in WATCH_DIRS:
-            if watch_dir.exists():
-                self.observer.schedule(handler, str(watch_dir), recursive=True)
-        self.observer.start()
-
-        # Initial fallback scan to queue existing files
+    def _initial_scan(self):
+        """Runs the initial fallback scan to queue existing files (Non-blocking)."""
+        logger.info("🔍 Background workspace crawler started...")
         try:
             for watch_dir in WATCH_DIRS:
                 if not watch_dir.exists():
@@ -313,8 +318,43 @@ class FileWatcher:
                         if any(p in filepath for p in EXCLUDED_PATTERNS):
                             continue
                         self.queue_check(filepath)
+            logger.info(
+                f"✅ Background workspace crawler finished. {len(self.pending_checks)} items queued."
+            )
         except Exception as e:
             logger.error(f"Initial Scan Error: {e}")
+
+    async def watch_loop(self):
+        self.running = True
+        self.init_db()
+        logger.info(f"👀 Watcher Event-Driven Started: {[str(d) for d in WATCH_DIRS]}")
+
+        # Deduplicate paths: Do not watch a directory if its parent is already being watched
+        deduped_dirs = []
+        # Sort by length of path string to process shortest (parents) first
+        sorted_dirs = sorted(
+            [d.resolve() for d in WATCH_DIRS], key=lambda x: len(str(x))
+        )
+        for watch_dir in sorted_dirs:
+            if not watch_dir.exists():
+                continue
+            is_child = False
+            for d in deduped_dirs:
+                if str(watch_dir).startswith(str(d)):
+                    is_child = True
+                    break
+            if not is_child:
+                deduped_dirs.append(watch_dir)
+
+        self.observer = Observer()
+        handler = AthenaEventHandler(self)
+        for watch_dir in deduped_dirs:
+            self.observer.schedule(handler, str(watch_dir), recursive=True)
+            logger.info(f"📁 Watching Hook: {watch_dir.name}")
+        self.observer.start()
+
+        # Fire initial fallback scan into a background thread so it doesn't block the API lifespan
+        asyncio.create_task(asyncio.to_thread(self._initial_scan))
 
         while self.running:
             self.process_pending_checks()

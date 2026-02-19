@@ -106,21 +106,7 @@ def main():
         except Exception as e:
             print(f"   ⚠️  Compaction Fail: {e}")
 
-    def launch_sidecar():
-        try:
-            import subprocess
-
-            sidecar_path = PROJECT_ROOT / ".agent" / "scripts" / "sidecar.py"
-            subprocess.Popen(
-                [sys.executable, str(sidecar_path)],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-            print("   🛡️  Sidecar Launched (PID: Independent)")
-        except Exception as e:
-            print(f"   ⚠️  Sidecar Fail: {e}")
-
-    with ThreadPoolExecutor(max_workers=8) as executor:
+    with ThreadPoolExecutor(max_workers=6) as executor:
         # 1. Non-blocking context capture
         executor.submit(MemoryLoader.capture_context)
 
@@ -138,9 +124,6 @@ def main():
 
         # 6. Context compaction (moved from serial → parallel)
         executor.submit(run_compact_context)
-
-        # 7. Sidecar launch (moved from serial → parallel)
-        executor.submit(launch_sidecar)
 
     # Display remaining sync items (after parallel tasks complete)
     MemoryLoader.display_learnings_snapshot()
