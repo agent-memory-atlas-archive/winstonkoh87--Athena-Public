@@ -12,7 +12,7 @@ last_updated: 2026-01-05
 
 # Protocol 47: BS Detection (Knowledge Validation)
 
-> **Source**: /ultrathink validation of ZenithFX Primer (Dec 2025)  
+> **Source**: /ultrathink validation of FinanceApp Primer (Dec 2025)  
 > **Trigger When**: Synthesizing knowledge from multiple documents, validating frameworks, or reviewing extracted insights
 
 ---

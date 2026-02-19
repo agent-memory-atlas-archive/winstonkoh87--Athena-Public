@@ -8,7 +8,8 @@ class SystemLoader:
     @staticmethod
     def verify_environment():
         """Titanium Airlock: Verifies dependencies and env vars."""
-        from athena.boot.constants import PROJECT_ROOT, RED, BOLD, RESET, DIM
+        from athena.boot.constants import PROJECT_ROOT, RED, BOLD, RESET, DIM, GREEN
+        import time
 
         # Skip shell-based verification on Windows (bash not available)
         if sys.platform == "win32":
@@ -21,6 +22,19 @@ class SystemLoader:
             print(f"   ⚠️  Airlock: ensure_env.sh missing at {ensure_env}")
             return
 
+        # Check cache
+        cache_file = PROJECT_ROOT / ".agent" / "state" / "env_check_cache.txt"
+        cache_file.parent.mkdir(parents=True, exist_ok=True)
+
+        if cache_file.exists():
+            try:
+                last_check = float(cache_file.read_text().strip() or 0)
+                if time.time() - last_check < 86400:  # 24 hours
+                    print(f"   {GREEN}✅ Environment Healthy (Cached){RESET}")
+                    return
+            except Exception:
+                pass
+
         print("🛡️  Verifying Environment (Airlock)...")
         result = subprocess.run(
             ["bash", str(ensure_env)], capture_output=True, text=True
@@ -29,6 +43,10 @@ class SystemLoader:
             print(f"\n{RED}{BOLD}❌ Environment Check Failed{RESET}")
             print(f"{DIM}{result.stdout}{RESET}")
         else:
+            try:
+                cache_file.write_text(str(time.time()))
+            except Exception:
+                pass
             print(f"   {GREEN}✅ Environment Healthy{RESET}")
 
     @staticmethod

@@ -75,7 +75,7 @@ The actor makes decisions based on their *current calm self*, not the *future st
 
 ---
 
-## 5. The Counter-Script (ZenithFX Application)
+## 5. The Counter-Script (FinanceApp Application)
 
 When an investor says: *"Why not just risk the whole $10K? You can earn more!"*
 
@@ -112,7 +112,7 @@ If untested → **Pre-commit structurally** (kill-switches, account limits, cool
 
 - [Protocol 163: Pre-Commitment Heuristic](<!-- Private: .agent/skills/protocols/ --> decision/163-precommitment-heuristic.md)
 - [Protocol 193: Ergodicity Check](<!-- Private: .agent/skills/protocols/ --> decision/193-ergodicity-check.md)
-- [Case Study 048: ZenithFX Gatekeeper Protocol](#)
+- [Case Study 048: FinanceApp Gatekeeper Protocol](#)
 - [Case Study: Pre-Commitment for Asymmetric Downside](#)
 
 ---

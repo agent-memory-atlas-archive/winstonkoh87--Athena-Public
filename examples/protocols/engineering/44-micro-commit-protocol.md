@@ -12,7 +12,7 @@ last_updated: 2025-12-18
 # Protocol 43: Micro-Commit Protocol
 
 > **Purpose**: Anti-feature-stacking discipline. Ship small, validate, repeat.  
-> **Trigger**: Any development session (ZenithFX, tools, web apps).  
+> **Trigger**: Any development session (FinanceApp, tools, web apps).  
 > **Source**: Derived from 720-commit vibe coding workflow (Dec 2025).
 
 ---
@@ -59,7 +59,7 @@ last_updated: 2025-12-18
 
 | Project Type | Target Commits/Session |
 |--------------|------------------------|
-| Web app (ZenithFX) | 3-5 commits |
+| Web app (FinanceApp) | 3-5 commits |
 | Tool/utility | 2-3 commits |
 | Documentation | 1-2 commits |
 | Refactoring | 5-10 commits (small, safe changes) |

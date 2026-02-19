@@ -4,7 +4,7 @@ last_updated: 2026-01-30
 graphrag_extracted: true
 ---
 
----description: Category creation via signature differentiation. Add element that doesn't belong to escape competitive parity. A Hot Hideout, ZenithFX examples.
+---description: Category creation via signature differentiation. Add element that doesn't belong to escape competitive parity. A Hot Hideout, FinanceApp examples.
 created: 2025-12-12
 last_updated: 2026-01-13
 ---
@@ -46,7 +46,7 @@ That's exactly why they work.
 Add something that violates the unspoken rule but enhances the experience:
 
 - **A Hot Hideout**: Added *crispy* to a *stewed* category
-- **ZenithFX**: Added *guaranteed principal* to a *risk* category
+- **FinanceApp**: Added *guaranteed principal* to a *risk* category
 
 ### Step 3: Name It
 
@@ -73,7 +73,7 @@ The "scrambled eggs" must be a genuine innovation, not marketing spin.
 | ✅ Real | ❌ Fake |
 |--------|--------|
 | A Hot Hideout actually fries potato chips for texture | A mala shop just *calls* their stewed potatoes "chips" |
-| ZenithFX actually covers drawdowns with reserve fund | A platform just *renames* stop-loss as "protection" |
+| FinanceApp actually covers drawdowns with reserve fund | A platform just *renames* stop-loss as "protection" |
 
 If it's fake, you create liability. If it's real, you create a moat.
 
@@ -84,7 +84,7 @@ If it's fake, you create liability. If it's real, you create a moat.
 | Industry | The "Scrambled Eggs" |
 |----------|----------------------|
 | **F&B (A Hot Hideout)** | Fried potato/lotus + scrambled eggs in mala |
-| **Trading (ZenithFX)** | Zero-loss guarantee in copy trading |
+| **Trading (FinanceApp)** | Zero-loss guarantee in copy trading |
 | **Ride-hailing (Grab)** | Local payment methods vs Uber's global card-only |
 | **E-commerce (Carousell)** | Meet-up culture vs eBay's shipping model |
 | **Coffee (Starbucks)** | "Third place" experience vs gas station coffee |
@@ -104,4 +104,4 @@ If it's fake, you create liability. If it's real, you create a moat.
 
 ## Tagging
 
-#protocol #framework #process #42-scrambled-eggs-strategy
+# protocol #framework #process #42-scrambled-eggs-strategy

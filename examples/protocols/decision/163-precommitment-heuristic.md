@@ -116,7 +116,7 @@ Same frame, different packaging.
 
 ## Source
 
-- Session 06 (2025-12-25): Ride-hailing vomit case study, copy-trading client flake pattern
+- Session 06 (2025-12-25): Ride-hailing vomit case study, client retention pattern
 - HWZ Forum Thread (June 2025): TADA driver incident
 
 ---

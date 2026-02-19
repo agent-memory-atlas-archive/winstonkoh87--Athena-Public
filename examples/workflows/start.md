@@ -51,7 +51,7 @@ Bypassing this sequence is a high-severity protocol violation. No exceptions for
 | Tag lookup, "find files about" | `TAG_INDEX.md` | 5,500 |
 | Protocol/skill request | `SKILL_INDEX.md` | 4,500 |
 | Bio, typology, "who am I" | `User_Profile_Core.md` | 1,500 |
-| L1-L5, behavioral patterns, schema analysis | `Psychology_L1L5.md` | 3,000 |
+| L1-L5, behavioral patterns, schema analysis | `Psychology_Layers.md` | 3,000 |
 | Decision frameworks, strategy | `System_Principles.md` | 3,500 |
 | Marketing, SEO, SWOT, pricing | `Business_Frameworks.md` | 2,500 |
 | Calibration references, cases | `Session_Observations.md` | 2,500 |
@@ -69,7 +69,7 @@ Bypassing this sequence is a high-severity protocol violation. No exceptions for
 |-----------------|-----------------|
 | Frontend, UI, Design, CSS, "Make it pretty" | `Skill_Frontend_Design.md` |
 | Deep Research, Rabbit Hole, "Find out everything" | `Protocol 52: Deep Research Loop` |
-| Trading, ZenithFX, Risk, "Is this a scam?" | `Protocol 46 + Constraints_Master.md` |
+| Trading, Finance, Risk, "Is this a scam?" | `Protocol 46 + Constraints_Master.md` |
 | Interpersonal Strategy, Communication | `Protocol 83: Depth Principle` |
 | **Ads, PPC, Google/Meta Ads, Marketing** | `.agent/skills/claude-ads/SKILL.md` |
 | Complex Reasoning, "Analyze this", Strategy | `Protocol 75: Synthetic Parallel Reasoning` |

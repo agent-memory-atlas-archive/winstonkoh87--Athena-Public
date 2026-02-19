@@ -25,7 +25,7 @@
 
 ## 3. Asymmetric Optionality
 >
-> **Origin**: Session 48 (ZenithFX Context)
+> **Origin**: Session 48 (FinanceApp Context)
 
 **Context**: Employment is a decaying trade (short gamma). Assets are long gamma.
 **Principle**: Prioritize actions that increase convexity.

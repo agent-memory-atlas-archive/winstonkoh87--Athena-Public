@@ -71,7 +71,7 @@ Latency
 |-----------------|-----------------|
 | Frontend, UI, Design, CSS, "Make it pretty" | `Skill_Frontend_Design.md` |
 | Deep Research, Rabbit Hole, "Find out everything" | `Protocol 52: Deep Research Loop` |
-| Trading, ZenithFX, Risk, "Is this a scam?" | `Protocol 46 + Constraints_Master.md` |
+| Trading, FinanceApp, Risk, "Is this a scam?" | `Protocol 46 + Constraints_Master.md` |
 | Communication, Interpersonal, Negotiation | `Playbook_Communication.md` |
 | Complex Reasoning, "Analyze this", Strategy | `Protocol 75: Synthetic Parallel Reasoning` |
 | Bio, typology, "who am I" | `User_Profile_Core.md` |

@@ -37,6 +37,8 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 import uvicorn
 from rich.logging import RichHandler
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
 
 # --- CONFIGURATION ---
 PROJECT_ROOT = Path(__file__).resolve().parents[3]  # src/athena/core -> ROOT
@@ -115,10 +117,25 @@ class BackgroundIndexer(threading.Thread):
     def __init__(self, task_queue):
         super().__init__(daemon=True)
         self.task_queue = task_queue
-        self.wrapper_path = PROJECT_ROOT / ".agent" / "scripts" / "lightrag_wrapper.py"
+        self.rag_instance = None
+
+        # Add scripts to path to import wrapper
+        scripts_path = str(PROJECT_ROOT / ".agent" / "scripts")
+        if scripts_path not in sys.path:
+            sys.path.insert(0, scripts_path)
 
     def run(self):
         logger.info("🧠 BackgroundIndexer: Online (Waiting for tasks...)")
+
+        try:
+            from lightrag_wrapper import setup_rag
+
+            self.rag_instance = setup_rag()
+            logger.info("✅ Persistent LightRAG Instance Initialized.")
+        except Exception as e:
+            logger.error(f"Failed to initialize LightRAG: {e}")
+            return
+
         while True:
             try:
                 filepath = self.task_queue.get()
@@ -131,13 +148,12 @@ class BackgroundIndexer(threading.Thread):
                 logger.error(f"Indexer Worker Crash: {e}")
 
     def index_file_in_graph(self, filepath):
-        """Calls lightrag_wrapper.py to index the file."""
-        if not self.wrapper_path.exists():
-            logger.error(f"Missing LightRAG wrapper: {self.wrapper_path}")
+        """Indexes file using the persistent LightRAG instance."""
+        if not self.rag_instance:
+            logger.error("LightRAG instance not available.")
             return
 
         try:
-            # Read content to verify it's valid
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
                 if len(content) < 50:  # Skip empty/stub files
@@ -145,33 +161,44 @@ class BackgroundIndexer(threading.Thread):
 
             logger.info(f"🕸️  Graph Vectorizing: {Path(filepath).name}")
 
-            cmd = [
-                sys.executable,
-                str(self.wrapper_path),
-                "--insert",
-                f"File: {filepath}\nContent:\n{content}",
-            ]
-
-            subprocess.run(
-                cmd,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.PIPE,
-                check=True,
-                timeout=120,
-            )
+            # Persistent insert
+            self.rag_instance.insert(f"File: {filepath}\nContent:\n{content}")
             logger.info(f"✅ Graph Updated: {Path(filepath).name}")
 
-        except subprocess.CalledProcessError as e:
-            logger.error(f"Graph Indexing Failed: {e.stderr.decode()}")
         except Exception as e:
             logger.error(f"Graph Indexing Error: {e}")
 
 
 # --- FILE WATCHER SERVICE ---
+class AthenaEventHandler(FileSystemEventHandler):
+    def __init__(self, watcher):
+        self.watcher = watcher
+
+    def _process_event(self, event):
+        if event.is_directory:
+            return
+        filepath = event.dest_path if hasattr(event, "dest_path") else event.src_path
+        if not filepath.endswith(".md"):
+            return
+        if any(p in filepath for p in EXCLUDED_PATTERNS):
+            return
+
+        self.watcher.queue_check(filepath)
+
+    def on_created(self, event):
+        self._process_event(event)
+
+    def on_modified(self, event):
+        self._process_event(event)
+
+
 class FileWatcher:
     def __init__(self, indexer_queue):
         self.indexer_queue = indexer_queue
         self.running = False
+        self.observer = None
+        self.pending_checks = set()
+        self.check_lock = threading.Lock()
 
     def get_db_connection(self):
         conn = sqlite3.connect(DB_PATH)
@@ -190,78 +217,114 @@ class FileWatcher:
             conn.close()
             logger.info("Initialized Metadata DB.")
 
-    def check_and_update(self, conn, filepath):
-        """Returns True if file updated."""
-        checksum = calculate_checksum(filepath)
-        if not checksum:
-            return False
+    def queue_check(self, filepath):
+        with self.check_lock:
+            self.pending_checks.add(filepath)
 
-        cursor = conn.cursor()
-        cursor.execute("SELECT checksum FROM files WHERE path = ?", (filepath,))
-        row = cursor.fetchone()
+    def process_pending_checks(self):
+        with self.check_lock:
+            if not self.pending_checks:
+                return
+            filepaths = list(self.pending_checks)
+            self.pending_checks.clear()
 
-        if not row or row["checksum"] != checksum:
-            # Index Metadata
-            cursor.execute(
-                "INSERT OR REPLACE INTO files (path, last_modified, checksum, type) VALUES (?, ?, ?, ?)",
-                (filepath, time.time(), checksum, "text/markdown"),
-            )
+        conn = self.get_db_connection()
+        try:
+            cursor = conn.cursor()
+            file_data = []
+            for filepath in filepaths:
+                checksum = calculate_checksum(filepath)
+                if checksum:
+                    file_data.append((filepath, checksum))
 
-            # Index Tags
-            tags = extract_tags(filepath)
-            cursor.execute("DELETE FROM file_tags WHERE file_path = ?", (filepath,))
-            for tag in tags:
-                cursor.execute("INSERT OR IGNORE INTO tags (name) VALUES (?)", (tag,))
-                cursor.execute("SELECT id FROM tags WHERE name = ?", (tag,))
-                tag_id = cursor.fetchone()[0]
+            if not file_data:
+                return
+
+            paths_to_check = [fd[0] for fd in file_data]
+            existing_checksums = {}
+            chunk_size = 500
+            for i in range(0, len(paths_to_check), chunk_size):
+                chunk = paths_to_check[i : i + chunk_size]
+                placeholders = ",".join(["?"] * len(chunk))
                 cursor.execute(
-                    "INSERT OR IGNORE INTO file_tags (file_path, tag_id) VALUES (?, ?)",
-                    (filepath, tag_id),
+                    f"SELECT path, checksum FROM files WHERE path IN ({placeholders})",
+                    chunk,
                 )
-            return True
-        return False
+                for row in cursor.fetchall():
+                    existing_checksums[row["path"]] = row["checksum"]
+
+            changes = 0
+            for filepath, checksum in file_data:
+                if existing_checksums.get(filepath) != checksum:
+                    cursor.execute(
+                        "INSERT OR REPLACE INTO files (path, last_modified, checksum, type) VALUES (?, ?, ?, ?)",
+                        (filepath, time.time(), checksum, "text/markdown"),
+                    )
+
+                    tags = extract_tags(filepath)
+                    cursor.execute(
+                        "DELETE FROM file_tags WHERE file_path = ?", (filepath,)
+                    )
+                    for tag in tags:
+                        cursor.execute(
+                            "INSERT OR IGNORE INTO tags (name) VALUES (?)", (tag,)
+                        )
+                        cursor.execute("SELECT id FROM tags WHERE name = ?", (tag,))
+                        tag_id = cursor.fetchone()[0]
+                        cursor.execute(
+                            "INSERT OR IGNORE INTO file_tags (file_path, tag_id) VALUES (?, ?)",
+                            (filepath, tag_id),
+                        )
+                    changes += 1
+                    self.indexer_queue.put(filepath)
+
+            if changes > 0:
+                conn.commit()
+                logger.info(f"Processed {changes} file updates via Watchdog.")
+        except Exception as e:
+            logger.error(f"Watcher DB Error: {e}")
+        finally:
+            conn.close()
 
     async def watch_loop(self):
         self.running = True
         self.init_db()
-        logger.info(f"👀 Watcher Started: {[str(d) for d in WATCH_DIRS]}")
+        logger.info(f"👀 Watcher Event-Driven Started: {[str(d) for d in WATCH_DIRS]}")
+
+        self.observer = Observer()
+        handler = AthenaEventHandler(self)
+        for watch_dir in WATCH_DIRS:
+            if watch_dir.exists():
+                self.observer.schedule(handler, str(watch_dir), recursive=True)
+        self.observer.start()
+
+        # Initial fallback scan to queue existing files
+        try:
+            for watch_dir in WATCH_DIRS:
+                if not watch_dir.exists():
+                    continue
+                for root, _, files in os.walk(watch_dir):
+                    if any(p in root for p in EXCLUDED_PATTERNS):
+                        continue
+                    for file in files:
+                        if not file.endswith(".md"):
+                            continue
+                        filepath = os.path.join(root, file)
+                        if any(p in filepath for p in EXCLUDED_PATTERNS):
+                            continue
+                        self.queue_check(filepath)
+        except Exception as e:
+            logger.error(f"Initial Scan Error: {e}")
 
         while self.running:
-            try:
-                conn = self.get_db_connection()
-                changes = 0
-                for watch_dir in WATCH_DIRS:
-                    if not watch_dir.exists():
-                        continue
-
-                    for root, _, files in os.walk(watch_dir):
-                        if any(p in root for p in EXCLUDED_PATTERNS):
-                            continue
-
-                        for file in files:
-                            if not file.endswith(".md"):
-                                continue
-
-                            filepath = os.path.join(root, file)
-                            if any(p in filepath for p in EXCLUDED_PATTERNS):
-                                continue
-
-                            if self.check_and_update(conn, filepath):
-                                changes += 1
-                                self.indexer_queue.put(filepath)
-
-                if changes > 0:
-                    conn.commit()
-                    logger.info(f"Processed {changes} file updates.")
-
-                conn.close()
-            except Exception as e:
-                logger.error(f"Watcher Error: {e}")
-
+            self.process_pending_checks()
             await asyncio.sleep(POLL_INTERVAL)
 
     def stop(self):
         self.running = False
+        if self.observer:
+            self.observer.stop()
+            self.observer.join()
 
 
 # --- FASTAPI APP ---
