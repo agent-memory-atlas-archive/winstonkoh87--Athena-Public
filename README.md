@@ -114,6 +114,31 @@ Athena is your **Brain**. Your project is the **Body**. They don't need to live 
 
 </details>
 
+<details>
+<summary><strong>🤝 "I work with clients — where does their data go?"</strong></summary>
+
+Keep Athena as **your personal brain**. Create client folders **outside** the workspace.
+
+```
+~/Desktop/
+├── Project Athena/       ← YOUR brain (personal context, memory, protocols)
+├── Client-A/             ← Client A's project (isolated)
+├── Client-B/             ← Client B's project (isolated)
+└── Client-C/             ← Client C's project (isolated)
+```
+
+**Why?** Your memory bank contains *your* psychology, decision frameworks, and personal history. Client work is temporary and shouldn't pollute that context.
+
+**How it works in practice:**
+
+1. When working on a client project, point Athena to the external folder (e.g., "look at `~/Desktop/Client-A/`")
+2. Athena reads the client files while retaining your personal context — best of both worlds
+3. When the engagement ends, archive the learnings back into Athena (strip client-specific data) and archive or delete the external folder
+
+**The rule:** Athena keeps the *wisdom*. The client keeps the *execution*.
+
+</details>
+
 ### 🪞 Your First Session
 
 On your first `/start`, run `/brief interview`. Athena asks about **everything** — name, profession, goals, decision style, blind spots. This isn't small talk. It's the foundation that makes every future session compound.

@@ -75,6 +75,12 @@ No. Three options:
 
 All three work. Start with **Standalone** and adjust to taste.
 
+### I work with clients — where does their data go?
+
+Keep Athena as your **personal brain**. Create client folders **outside** the workspace (e.g., `~/Desktop/Client-A/`). When working on a client project, point Athena to that external folder. This keeps your personal context clean and prevents client data from polluting your memory bank.
+
+When the engagement ends, archive the generalized learnings back into Athena (strip client-specific data) and archive or delete the external folder. **Athena keeps the wisdom. The client keeps the execution.**
+
 ---
 
 ## Cost & Performance
