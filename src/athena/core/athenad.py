@@ -1,17 +1,20 @@
 """
 Athena Daemon (athenad)
 =======================
-Role: The Active OS Kernel.
+Role: The Headless Kernel (Active OS).
 Responsibilities:
-  1.  File System Watcher (Polling) -> Updates SQLite Metadata
-  2.  Background Worker (Threading) -> Vectors Content into GraphRAG
-  3.  Health Monitor -> Self-healing
+  1.  API Server (FastAPI) -> External Interface
+  2.  File System Watcher (Background Task) -> Updates SQLite Metadata
+  3.  Background Worker (Threading) -> Vectors Content into GraphRAG
+  4.  Health Monitor -> Self-healing
 
 Architecture:
-  [Main Thread] --(Queue)--> [Indexer Thread]
-       ^                          |
-       | (File Change)            v
-  [File System] <-------- [GraphRAG Store]
+  [API Client] <--(HTTP)--> [FastAPI Server] --(Queue)--> [Indexer Worker]
+                                    |
+                               (Background Task)
+                                    |
+                                    v
+                               [File Watcher]
 """
 
 import os
@@ -24,16 +27,25 @@ import threading
 import queue
 import logging
 import subprocess
+import asyncio
 from pathlib import Path
+from contextlib import asynccontextmanager
+from typing import List, Optional
+
+from fastapi import FastAPI, BackgroundTasks, HTTPException
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
+import uvicorn
+from rich.logging import RichHandler
 
 # --- CONFIGURATION ---
 PROJECT_ROOT = Path(__file__).resolve().parents[3]  # src/athena/core -> ROOT
 DB_PATH = PROJECT_ROOT / ".agent" / "inputs" / "athena.db"
 SCHEMA_PATH = PROJECT_ROOT / ".agent" / "inputs" / "schema.sql"
+ACTIVE_CONTEXT_PATH = PROJECT_ROOT / ".context" / "memory_bank" / "activeContext.md"
 
 # Watch Configuration
 WATCH_DIRS = [
-    PROJECT_ROOT,  # Broad watch for root-level drift
     PROJECT_ROOT / ".context",
     PROJECT_ROOT / ".agent" / "skills",
     PROJECT_ROOT / "src",
@@ -50,6 +62,16 @@ EXCLUDED_PATTERNS = [
     "/lightrag_store/",
     "athenad.log",
     ".semantic_audit_log.json",
+    "/knowledge/",
+    "/cache/",
+    "/data_lake/",
+    "/ventures/",
+    "/dumps/",
+    "/raw_data/",
+    "/brand_references/",
+    "/.tmp/",
+    "/node_modules/",
+    "/.pytest_cache/",
 ]
 
 POLL_INTERVAL = 5
@@ -59,12 +81,11 @@ LOG_LEVEL = logging.INFO
 # --- LOGGING SETUP ---
 logging.basicConfig(
     level=LOG_LEVEL,
-    format="%(asctime)s [%(levelname)s] (athenad) %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        logging.FileHandler(PROJECT_ROOT / "athenad.log"),
-    ],
+    format="%(message)s",
+    datefmt="[%X]",
+    handlers=[RichHandler(rich_tracebacks=True)],
 )
+logger = logging.getLogger("athenad")
 
 
 # --- UTILITIES ---
@@ -85,7 +106,7 @@ def extract_tags(filepath):
             content = f.read()
             tags = re.findall(r"#([\w-]+)", content)
     except Exception as e:
-        logging.warning(f"Failed to read tags from {filepath}: {e}")
+        logger.warning(f"Failed to read tags from {filepath}: {e}")
     return list(set(tags))
 
 
@@ -97,7 +118,7 @@ class BackgroundIndexer(threading.Thread):
         self.wrapper_path = PROJECT_ROOT / ".agent" / "scripts" / "lightrag_wrapper.py"
 
     def run(self):
-        logging.info("🧠 BackgroundIndexer: Online (Waiting for tasks...)")
+        logger.info("🧠 BackgroundIndexer: Online (Waiting for tasks...)")
         while True:
             try:
                 filepath = self.task_queue.get()
@@ -107,12 +128,12 @@ class BackgroundIndexer(threading.Thread):
                 self.index_file_in_graph(filepath)
                 self.task_queue.task_done()
             except Exception as e:
-                logging.error(f"Indexer Worker Crash: {e}")
+                logger.error(f"Indexer Worker Crash: {e}")
 
     def index_file_in_graph(self, filepath):
         """Calls lightrag_wrapper.py to index the file."""
         if not self.wrapper_path.exists():
-            logging.error(f"Missing LightRAG wrapper: {self.wrapper_path}")
+            logger.error(f"Missing LightRAG wrapper: {self.wrapper_path}")
             return
 
         try:
@@ -122,12 +143,7 @@ class BackgroundIndexer(threading.Thread):
                 if len(content) < 50:  # Skip empty/stub files
                     return
 
-            logging.info(f"🕸️  Graph Vectorizing: {Path(filepath).name}")
-
-            # Call wrapper via subprocess to ensure isolation
-            # usage: python3 lightrag_wrapper.py --insert "CONTENT"
-            # Note: This is a bit inefficient (reloads model every time).
-            # Optimization: In V2, import LightRAG directly. For V1 (Robustness), isolation is better.
+            logger.info(f"🕸️  Graph Vectorizing: {Path(filepath).name}")
 
             cmd = [
                 sys.executable,
@@ -143,38 +159,19 @@ class BackgroundIndexer(threading.Thread):
                 check=True,
                 timeout=120,
             )
-            logging.info(f"✅ Graph Updated: {Path(filepath).name}")
+            logger.info(f"✅ Graph Updated: {Path(filepath).name}")
 
         except subprocess.CalledProcessError as e:
-            logging.error(f"Graph Indexing Failed: {e.stderr.decode()}")
+            logger.error(f"Graph Indexing Failed: {e.stderr.decode()}")
         except Exception as e:
-            logging.error(f"Graph Indexing Error: {e}")
+            logger.error(f"Graph Indexing Error: {e}")
 
 
-# --- DAEMON CORE ---
-class AthenaDaemon:
-    def __init__(self):
-        self.indexer_queue = queue.Queue()
-        self.indexer_thread = BackgroundIndexer(self.indexer_queue)
-        self._conn = None
-
-    def start(self):
-        logging.info("🛡️  Athena Daemon (Titanium) Starting...")
-
-        # 1. Initialize DB
-        if not DB_PATH.parent.exists():
-            DB_PATH.parent.mkdir(parents=True)
-        self.init_db()
-
-        # 2. Start Worker
-        self.indexer_thread.start()
-
-        # 3. Main Loop
-        logging.info(f"👀 Watching: {[str(d) for d in WATCH_DIRS]}")
-        try:
-            self.watch_loop()
-        except KeyboardInterrupt:
-            logging.info("Stopping...")
+# --- FILE WATCHER SERVICE ---
+class FileWatcher:
+    def __init__(self, indexer_queue):
+        self.indexer_queue = indexer_queue
+        self.running = False
 
     def get_db_connection(self):
         conn = sqlite3.connect(DB_PATH)
@@ -182,44 +179,16 @@ class AthenaDaemon:
         return conn
 
     def init_db(self):
+        if not DB_PATH.parent.exists():
+            DB_PATH.parent.mkdir(parents=True)
+
         if not DB_PATH.exists() and SCHEMA_PATH.exists():
             conn = self.get_db_connection()
             with open(SCHEMA_PATH, "r") as f:
                 conn.executescript(f.read())
             conn.commit()
             conn.close()
-            logging.info("Initialized Metadata DB.")
-
-    def watch_loop(self):
-        conn = self.get_db_connection()
-        while True:
-            changes = 0
-            for watch_dir in WATCH_DIRS:
-                if not watch_dir.exists():
-                    continue
-
-                for root, _, files in os.walk(watch_dir):
-                    if any(p in root for p in EXCLUDED_PATTERNS):
-                        continue
-
-                    for file in files:
-                        if not file.endswith(".md"):
-                            continue
-
-                        filepath = os.path.join(root, file)
-                        if any(p in filepath for p in EXCLUDED_PATTERNS):
-                            continue
-
-                        if self.check_and_update(conn, filepath):
-                            changes += 1
-                            # TRIGGER: Add to Indexer Queue
-                            self.indexer_queue.put(filepath)
-
-            if changes > 0:
-                conn.commit()
-                logging.info(f"Processed {changes} file updates.")
-
-            time.sleep(POLL_INTERVAL)
+            logger.info("Initialized Metadata DB.")
 
     def check_and_update(self, conn, filepath):
         """Returns True if file updated."""
@@ -252,7 +221,103 @@ class AthenaDaemon:
             return True
         return False
 
+    async def watch_loop(self):
+        self.running = True
+        self.init_db()
+        logger.info(f"👀 Watcher Started: {[str(d) for d in WATCH_DIRS]}")
+
+        while self.running:
+            try:
+                conn = self.get_db_connection()
+                changes = 0
+                for watch_dir in WATCH_DIRS:
+                    if not watch_dir.exists():
+                        continue
+
+                    for root, _, files in os.walk(watch_dir):
+                        if any(p in root for p in EXCLUDED_PATTERNS):
+                            continue
+
+                        for file in files:
+                            if not file.endswith(".md"):
+                                continue
+
+                            filepath = os.path.join(root, file)
+                            if any(p in filepath for p in EXCLUDED_PATTERNS):
+                                continue
+
+                            if self.check_and_update(conn, filepath):
+                                changes += 1
+                                self.indexer_queue.put(filepath)
+
+                if changes > 0:
+                    conn.commit()
+                    logger.info(f"Processed {changes} file updates.")
+
+                conn.close()
+            except Exception as e:
+                logger.error(f"Watcher Error: {e}")
+
+            await asyncio.sleep(POLL_INTERVAL)
+
+    def stop(self):
+        self.running = False
+
+
+# --- FASTAPI APP ---
+indexer_queue = queue.Queue()
+indexer_thread = BackgroundIndexer(indexer_queue)
+file_watcher = FileWatcher(indexer_queue)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    logger.info("🛡️  Athena Headless Kernel Starting...")
+    indexer_thread.start()
+    asyncio.create_task(file_watcher.watch_loop())
+    yield
+    # Shutdown
+    logger.info("🛑 Shutting down...")
+    file_watcher.stop()
+    # indexer_thread is daemon, will die with process
+
+
+app = FastAPI(title="Athena Kernel", version="9.2.0", lifespan=lifespan)
+
+
+class ThinkRequest(BaseModel):
+    prompt: str
+
+
+@app.get("/health")
+async def health_check():
+    return {
+        "status": "online",
+        "service": "athena-kernel",
+        "version": "9.2.0",
+        "components": {
+            "indexer": indexer_thread.is_alive(),
+            "watcher": file_watcher.running,
+        },
+    }
+
+
+@app.get("/context/active")
+async def get_active_context():
+    if not ACTIVE_CONTEXT_PATH.exists():
+        raise HTTPException(status_code=404, detail="Active context not found")
+
+    with open(ACTIVE_CONTEXT_PATH, "r", encoding="utf-8") as f:
+        content = f.read()
+    return {"content": content}
+
+
+@app.post("/agent/think")
+async def agent_think(request: ThinkRequest):
+    # Stub for now
+    return {"thought": f"I am thinking about: {request.prompt}", "complexity": "Λ+10"}
+
 
 if __name__ == "__main__":
-    daemon = AthenaDaemon()
-    daemon.start()
+    uvicorn.run("athenad:app", host="0.0.0.0", port=8000, reload=False)

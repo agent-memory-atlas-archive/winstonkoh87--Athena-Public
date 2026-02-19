@@ -9,3 +9,6 @@ flashrank>=0.2.9
 sentence-transformers>=2.2.0
 torch>=2.0.0
 diskcache>=5.6.3
+fastapi>=0.100.0
+uvicorn>=0.23.0
+rich>=13.0.0

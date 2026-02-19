@@ -74,17 +74,6 @@ def main():
     # Phase 3: Memory Recall
     last_session = MemoryLoader.recall_last_session()
 
-    # Phase 3.5: Semantic Compaction (Protocol 415)
-    try:
-        sys.path.insert(0, str(PROJECT_ROOT / ".agent" / "scripts"))
-        from compact_context import compact_active_context
-
-        print(f"   🧹 Compacting Context...", end="\r")
-        compact_active_context()
-        print("   🧹 Context Compacted.    ")
-    except Exception as e:
-        print(f"   ⚠️  Compaction Fail: {e}")
-
     # Phase 4: Session Creation
     session_id = MemoryLoader.create_session()
 
@@ -107,6 +96,30 @@ def main():
                 f"{RED}⚠️  System health check failed. Proceeding with caution...{RESET}"
             )
 
+    def run_compact_context():
+        try:
+            sys.path.insert(0, str(PROJECT_ROOT / ".agent" / "scripts"))
+            from compact_context import compact_active_context
+
+            compact_active_context()
+            print("   🧹 Context Compacted.")
+        except Exception as e:
+            print(f"   ⚠️  Compaction Fail: {e}")
+
+    def launch_sidecar():
+        try:
+            import subprocess
+
+            sidecar_path = PROJECT_ROOT / ".agent" / "scripts" / "sidecar.py"
+            subprocess.Popen(
+                [sys.executable, str(sidecar_path)],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            print("   🛡️  Sidecar Launched (PID: Independent)")
+        except Exception as e:
+            print(f"   ⚠️  Sidecar Fail: {e}")
+
     with ThreadPoolExecutor(max_workers=8) as executor:
         # 1. Non-blocking context capture
         executor.submit(MemoryLoader.capture_context)
@@ -117,33 +130,22 @@ def main():
         # 3. Protocol injection
         executor.submit(IdentityLoader.inject_auto_protocols, "startup session boot")
 
-        # 4. Search cache pre-warming (new)
-        executor.submit(MemoryLoader.prewarm_search_cache)
-
-        # 5. System Health Check (Moved to background)
+        # 4. System Health Check
         executor.submit(run_health_check_wrapper)
 
-        # 6. Prefetch (Moved to background)
+        # 5. Prefetch hot files
         executor.submit(PrefetchLoader.prefetch_hot_files)
 
-    # Display remaining sync items
+        # 6. Context compaction (moved from serial → parallel)
+        executor.submit(run_compact_context)
+
+        # 7. Sidecar launch (moved from serial → parallel)
+        executor.submit(launch_sidecar)
+
+    # Display remaining sync items (after parallel tasks complete)
     MemoryLoader.display_learnings_snapshot()
     IdentityLoader.display_cognitive_profile()
     IdentityLoader.display_cos_status()
-
-    # Phase 8: Sidecar Launch (Sovereign Index)
-    try:
-        import subprocess
-
-        sidecar_path = PROJECT_ROOT / ".agent" / "scripts" / "sidecar.py"
-        subprocess.Popen(
-            [sys.executable, str(sidecar_path)],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
-        print("   🛡️  Sidecar Launched (PID: Independent)")
-    except Exception as e:
-        print(f"   ⚠️  Sidecar Fail: {e}")
 
     # Disable watchdog
     StateLoader.disable_watchdog()

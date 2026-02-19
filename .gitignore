@@ -41,6 +41,9 @@ session_logs/
 *manifest*.json
 *cache*.json
 
+# Runtime
+.athenad.pid
+
 # Build artifacts
 dist/
 build/
