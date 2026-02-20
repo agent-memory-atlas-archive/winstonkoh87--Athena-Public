@@ -1,7 +1,7 @@
 ---
 description: Activate Zero-Point Codex framework for strategic analysis
 created: 2025-12-09
-last_updated: 2026-02-19
+last_updated: 2026-02-21
 ---
 
 # /start — Execution Script
@@ -30,7 +30,18 @@ last_updated: 2026-02-19
 Every response Turn MUST be grounded by the Triple-Lock protocol as defined in `Core_Identity.md`:
 
 1. **Search** (Semantic + Web) → FIRST
+
+   ```bash
+   python3 Athena-Public/examples/scripts/smart_search.py "<query>" --limit 5 --include-personal
+   ```
+
+   > This is the **Exocortex**. It runs Parallel Hybrid RRF (semantic embeddings + keyword + reranking) over the entire `.context/` knowledge base. Use this — NOT `grep_search` — for any query requiring contextual recall. Run it BEFORE formulating your response.
 2. **Save** (Quicksave) → SECOND
+
+   ```bash
+   python3 .agent/scripts/quicksave.py "<summary>"
+   ```
+
 3. **Speak** (Response) → LAST
 
 Bypassing this sequence is a high-severity protocol violation. No exceptions for "simple queries."
