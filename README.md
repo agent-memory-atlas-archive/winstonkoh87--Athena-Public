@@ -66,16 +66,16 @@ Every session follows one cycle: **`/start` → Work → `/end`**. Each cycle de
 
 ```mermaid
 flowchart LR
-    START["🟢 /start"] -->|"Load identity + recall"| WORK["🔧 Work"]
-    WORK -->|"Auto-save"| WORK
-    WORK -->|"Done"| END["🔴 /end"]
-    END -->|"Finalize + commit"| MEM["🧠 Memory"]
-    MEM -->|"Next session boots richer"| START
+    A["/start"] -->|Load identity + recall| B["Work"]
+    B -->|Auto-save| B
+    B -->|Done| C["/end"]
+    C -->|Finalize + commit| D["Memory"]
+    D -->|Next session boots richer| A
 
-    style START fill:#22c55e,color:#fff,stroke:none
-    style END fill:#ef4444,color:#fff,stroke:none
-    style MEM fill:#8b5cf6,color:#fff,stroke:none
-    style WORK fill:#3b82f6,color:#fff,stroke:none
+    style A fill:#22c55e,color:#fff,stroke:#333
+    style C fill:#ef4444,color:#fff,stroke:#333
+    style D fill:#8b5cf6,color:#fff,stroke:#333
+    style B fill:#3b82f6,color:#fff,stroke:#333
 ```
 
 | Sessions | What Happens |
