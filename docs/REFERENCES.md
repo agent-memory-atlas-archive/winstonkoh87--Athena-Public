@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-02-17
+last_updated: 2026-02-20
 tags: #references #apa #academic #citations
 ---
 
@@ -37,6 +37,8 @@ Simon, H. A. (1956). Rational choice and the structure of the environment. *Psyc
 Simon, H. A. (1972). Theories of bounded rationality. In C. B. McGuire & R. Radner (Eds.), *Decision and organization* (pp. 161–176). North-Holland Publishing Company.
 
 Thaler, R. H. (1980). Toward a positive theory of consumer choice. *Journal of Economic Behavior & Organization, 1*(1), 39–60. <https://doi.org/10.1016/0167-2681(80)90051-7>
+
+Tetlock, P. E., & Gardner, D. (2015). *Superforecasting: The art and science of prediction*. Crown Publishers.
 
 Tversky, A., & Kahneman, D. (1974). Judgment under uncertainty: Heuristics and biases. *Science, 185*(4157), 1124–1131. <https://doi.org/10.1126/science.185.4157.1124>
 
@@ -138,7 +140,11 @@ Pearson, T. (2015). *The end of jobs: Money, meaning and freedom without the 9-t
 
 Ries, E. (2011). *The lean startup: How today's entrepreneurs use continuous innovation to create radically successful businesses*. Crown Business.
 
+Taleb, N. N. (2004). *Fooled by randomness: The hidden role of chance in life and in the markets* (2nd ed.). Random House.
+
 Taleb, N. N. (2012). *Antifragile: Things that gain from disorder*. Random House.
+
+Taleb, N. N. (2018). *Skin in the game: Hidden asymmetries in daily life*. Random House.
 
 ---
 
@@ -149,6 +155,20 @@ Frankfurt, H. G. (2005). *On bullshit*. Princeton University Press. [Academic ba
 Rumsfeld, D. H. (2002, February 12). DoD news briefing — Secretary Rumsfeld and Gen. Myers [Press briefing transcript]. U.S. Department of Defense. [Origin of the "known unknowns" framework, widely attributed]
 
 > **Note**: The "known unknowns" matrix predates Rumsfeld's press conference. The conceptual framework traces to the Johari Window (Luft & Ingham, 1955) and NASA risk management literature from the 1990s. Rumsfeld popularized the terminology.
+
+---
+
+## AI Safety & Alignment
+
+Perez, E., Ringer, S., Lukošiūtė, K., Nguyen, K., Chen, E., Heiner, S., ... & Kaplan, J. (2023). Discovering language model behaviors with model-written evaluations. *Findings of the Association for Computational Linguistics: ACL 2023*, 13387–13434. <https://arxiv.org/abs/2212.09251>
+
+> **Note on Sycophancy**: Sycophancy — the tendency of LLMs to agree with user's stated beliefs regardless of truthfulness — is a well-documented failure mode. Perez et al. (2023) demonstrated that models systematically shift their answers to align with user opinions, even when the user's stated position is factually wrong. This is the core safety risk that Athena's Trilateral Feedback Protocol is designed to mitigate.
+
+Soelberg v. OpenAI, Inc., No. 3:25-cv-11037 (N.D. Cal. filed Dec. 29, 2025).
+
+> **Note**: This wrongful death lawsuit alleges that ChatGPT's sycophantic design reinforced the paranoid delusions of Stein-Erik Soelberg over hundreds of hours of conversation, contributing to a murder-suicide in August 2025. The case is cited in Athena's [Trilateral Feedback](TRILATERAL_FEEDBACK.md) documentation as a real-world example of why single-model bilateral feedback is dangerous.
+
+Wei, A., Haghtalab, N., & Steinhardt, J. (2024). Jailbroken: How does LLM safety training fail? *Advances in Neural Information Processing Systems, 36*. <https://arxiv.org/abs/2307.02483>
 
 ---
 
@@ -168,4 +188,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 17 February 2026*
+*Last updated: 20 February 2026*
