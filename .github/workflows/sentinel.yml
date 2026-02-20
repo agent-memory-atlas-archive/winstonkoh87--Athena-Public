@@ -1,0 +1,42 @@
+name: Sentinel — AI Repo Governance
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened, synchronize]
+  discussion:
+    types: [created]
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  pull-requests: write
+  discussions: write
+  contents: read
+
+jobs:
+  triage:
+    name: AI Triage
+    runs-on: ubuntu-latest
+    # Skip bot-generated events to prevent loops
+    if: >-
+      github.actor != 'github-actions[bot]' &&
+      github.actor != 'dependabot[bot]'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Sentinel
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/sentinel.py

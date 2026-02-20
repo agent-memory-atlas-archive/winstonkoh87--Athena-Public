@@ -1,0 +1,130 @@
+# Sentinel Configuration — AI Repo Governance
+# Semi-autonomous triage for issues, PRs, and discussions.
+# Human-in-the-loop: nothing merges without maintainer approval.
+
+# -------------------------------------------------------------------
+# Classification Tiers
+# -------------------------------------------------------------------
+tiers:
+  auto_handle:
+    label: "triage/auto"
+    description: "Routine items handled automatically (respond + label)"
+    examples:
+      - "Duplicate questions answered in docs"
+      - "Simple Q&A from discussions"
+      - "Thank-you / appreciation posts"
+
+  needs_review:
+    label: "triage/review"
+    description: "Flagged for maintainer review"
+    examples:
+      - "Feature requests"
+      - "Code PRs"
+      - "Architecture discussions"
+      - "Bug reports with reproduction steps"
+
+  critical:
+    label: "triage/critical"
+    description: "Escalated immediately — requires maintainer attention"
+    examples:
+      - "Security vulnerabilities"
+      - "Breaking changes"
+      - "PRs touching protected paths"
+      - "Negative sentiment / frustrated users"
+
+# -------------------------------------------------------------------
+# Protected Paths (PRs touching these → auto-escalate to critical)
+# -------------------------------------------------------------------
+protected_paths:
+  - "src/athena/core/"
+  - ".github/"
+  - "AGENTS.md"
+  - "pyproject.toml"
+  - "docs/SECURITY.md"
+  - "supabase/"
+
+# -------------------------------------------------------------------
+# Auto-handle Patterns (PRs matching these → auto-label as safe)
+# -------------------------------------------------------------------
+auto_handle_patterns:
+  docs_only:
+    paths: ["docs/", "*.md", "community/"]
+    max_files_changed: 5
+    max_lines_changed: 200
+
+  template_addition:
+    paths: ["examples/templates/", "examples/protocols/"]
+    max_files_changed: 3
+    max_lines_changed: 300
+
+# -------------------------------------------------------------------
+# PR Review Thresholds
+# -------------------------------------------------------------------
+pr_thresholds:
+  max_diff_lines_for_auto: 200      # Above this → needs review
+  max_files_changed_for_auto: 5     # Above this → needs review
+  require_ci_pass: true             # CI must pass before any auto-action
+
+# -------------------------------------------------------------------
+# Labels (created automatically if they don't exist)
+# -------------------------------------------------------------------
+labels:
+  - name: "triage/auto"
+    color: "0e8a16"
+    description: "Auto-handled by Sentinel"
+  - name: "triage/review"
+    color: "fbca04"
+    description: "Needs maintainer review"
+  - name: "triage/critical"
+    color: "d93f0b"
+    description: "Critical — requires immediate attention"
+  - name: "type/bug"
+    color: "d73a4a"
+    description: "Something isn't working"
+  - name: "type/feature"
+    color: "a2eeef"
+    description: "New feature or request"
+  - name: "type/question"
+    color: "d876e3"
+    description: "Question or support request"
+  - name: "type/docs"
+    color: "0075ca"
+    description: "Documentation improvement"
+  - name: "type/duplicate"
+    color: "cfd3d7"
+    description: "Duplicate issue or question"
+  - name: "sentiment/positive"
+    color: "0e8a16"
+    description: "Positive community feedback"
+  - name: "sentiment/frustrated"
+    color: "e4e669"
+    description: "User may need extra attention"
+
+# -------------------------------------------------------------------
+# Response Voice
+# -------------------------------------------------------------------
+voice:
+  style: "Direct, helpful, no corporate fluff. Friendly but efficient."
+  sign_off: ""
+  maintainer: "winstonkoh87"
+
+# -------------------------------------------------------------------
+# Doc References (Sentinel checks these before responding to questions)
+# -------------------------------------------------------------------
+doc_references:
+  - path: "README.md"
+    topics: ["quickstart", "setup", "clone", "fork", "update", "cost", "pricing"]
+  - path: "docs/FAQ.md"
+    topics: ["faq", "common questions"]
+  - path: "docs/GETTING_STARTED.md"
+    topics: ["install", "setup", "first session"]
+  - path: "docs/ARCHITECTURE.md"
+    topics: ["architecture", "design", "how it works"]
+  - path: "docs/SECURITY.md"
+    topics: ["security", "privacy", "data"]
+  - path: "docs/MCP_SERVER.md"
+    topics: ["mcp", "tools", "server"]
+  - path: "docs/COMPATIBLE_IDES.md"
+    topics: ["ide", "cursor", "vscode", "claude code", "antigravity"]
+  - path: "docs/WORKFLOWS.md"
+    topics: ["workflow", "commands", "slash"]
