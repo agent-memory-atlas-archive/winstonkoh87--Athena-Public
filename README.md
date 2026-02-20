@@ -178,6 +178,63 @@ On your first `/start`, run `/brief interview`. Athena asks about **everything**
 
 > 👉 [Full First Session Guide](docs/YOUR_FIRST_SESSION.md) — detailed walkthrough with examples
 
+### 💡 Tips for Getting the Most Out of Athena
+
+<details>
+<summary><strong>🎯 Find One Signature Project and Go Deep</strong></summary>
+
+The best way to learn Athena (and agentic coding in general) is to **work on a project you actually care about**. Pick one — a portfolio site, a side project, a tool you wish existed — and build it entirely through Athena.
+
+The more you use Athena on a real project, the more you learn about coding, software architecture, and how to work effectively with AI. Tutorials teach theory. Building teaches everything else.
+
+**My approach:** I built a portfolio website showcasing everything I produced with Project Athena, and I keep iterating on it. Every session improves both the project *and* my skills. Find your equivalent and commit to it.
+
+</details>
+
+<details>
+<summary><strong>🧩 One Session = One Feature</strong></summary>
+
+Athena works best with focused sessions. If your project has ten features, work on them across ten separate sessions — not all at once.
+
+| Session | Focus |
+|:--------|:------|
+| Session 1 | Authentication system |
+| Session 2 | Dashboard UI |
+| Session 3 | API integration |
+| Session 4 | Search functionality |
+
+Each session gets its own log, its own context, and its own clean thread of reasoning. This creates better memory, cleaner recall, and fewer context collisions in future sessions.
+
+</details>
+
+<details>
+<summary><strong>☁️ Sync to GitHub — Your Cloud Backup</strong></summary>
+
+I strongly recommend syncing your Athena repo to GitHub. This is the easiest way to back up your data — and it's what I do for this project.
+
+When you run `/end`, Athena can automatically commit and push your session to GitHub. If you ever lose your laptop or switch machines, your entire brain is recoverable from your GitHub profile. Clone it to a new machine and `/start` — you're back exactly where you left off.
+
+**Bonus:** This also gives you **portability**. Switch laptops, switch IDEs, even switch AI models — your memory travels with you because it's just Git.
+
+</details>
+
+<details>
+<summary><strong>💸 How Much Does It Cost?</strong></summary>
+
+Athena itself is free and open source. The only cost is your AI subscription (the LLM that reads your Athena workspace).
+
+| Tier | Example Plans | Cost (USD) | Who It's For |
+|:-----|:-------------|:-----------|:-------------|
+| **Entry** | Claude Pro · Google AI Pro | ~$20/mo | Most users — more than enough for daily use |
+| **Power** | Claude Max 20× · Google AI Ultra | $200–250/mo | 8+ hours/day across multiple projects |
+
+**Start with $20/month.** That covers the vast majority of use cases. The power user plans exist for people who run Athena all day across multiple workspaces and hit token limits — you'll know when you need them.
+
+> [!TIP]
+> Athena's 10K-token boot cost is the same whether you're on a $20 plan or a $200 plan. The difference is how many sessions you can run per day before hitting your plan's message limit.
+
+</details>
+
 <details>
 <summary><strong>🔧 CLI Reference</strong></summary>
 
