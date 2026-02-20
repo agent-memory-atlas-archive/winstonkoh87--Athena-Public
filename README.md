@@ -67,11 +67,10 @@ Every session follows one cycle: **`/start` → Work → `/end`**. Each cycle de
 
 ```mermaid
 flowchart LR
-    A["/start"] -->|Load identity + recall| B["Work"]
-    B -->|Auto-save| B
-    B -->|Done| C["/end"]
-    C -->|Finalize + commit| D["Memory"]
-    D -->|Next session boots richer| A
+    A["/start"] --> B["Work"]
+    B --> C["/end"]
+    C --> D["Memory"]
+    D --> A
 
     style A fill:#22c55e,color:#fff,stroke:#333
     style C fill:#ef4444,color:#fff,stroke:#333
