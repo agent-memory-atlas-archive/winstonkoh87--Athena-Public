@@ -13,6 +13,7 @@ Usage:
     athena init my-project            # Create new project directory
 """
 
+import shutil
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -240,7 +241,6 @@ def _get_templates_dir() -> Path:
 
 def _install_claude_agents(root: Path) -> None:
     """Install COS agent files into .claude/agents/."""
-    import shutil
 
     agents_dir = root / ".claude" / "agents"
     agents_dir.mkdir(parents=True, exist_ok=True)
@@ -262,6 +262,8 @@ def _install_claude_agents(root: Path) -> None:
 
     if installed > 0:
         print(f"   🏛️  {installed} COS agents installed")
+    else:
+        print("   ℹ️  All COS agents already installed")
 
 
 SUPPORTED_AGENTS = [
@@ -315,7 +317,9 @@ def _install_claude_md(root: Path) -> None:
             print("   ⏭️  CLAUDE.md (Athena section already exists)")
             return
         # Append Athena section
-        claude_md.write_text(existing.rstrip() + "\n\n---\n\n" + athena_content, encoding="utf-8")
+        claude_md.write_text(
+            existing.rstrip() + "\n\n---\n\n" + athena_content, encoding="utf-8"
+        )
         print("   ✅ CLAUDE.md (Athena section appended)")
     else:
         claude_md.write_text(
@@ -365,7 +369,9 @@ def init_workspace(target_dir: Path = None, ide: str = None) -> bool:
 
     # Create root marker (for path discovery)
     marker_path = root / ".athena_root"
-    marker_path.write_text(f"# Athena Workspace\nCreated: {datetime.now().isoformat()}\n")
+    marker_path.write_text(
+        f"# Athena Workspace\nCreated: {datetime.now().isoformat()}\n"
+    )
     print("   ✅ .athena_root (workspace marker)")
 
     # Create template files
@@ -400,7 +406,8 @@ def init_workspace(target_dir: Path = None, ide: str = None) -> bool:
         _create_ide_config(root, ide)
 
     # Agent selection (if not already specified via --ide)
-    if not ide:
+    # Auto-detect: skip prompt if .claude/ already exists (Claude Code workspace)
+    if not ide and not (root / ".claude").exists():
         if sys.stdin.isatty():
             _prompt_agent_selection(root)
 
