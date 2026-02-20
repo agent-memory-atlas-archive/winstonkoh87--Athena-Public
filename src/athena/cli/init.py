@@ -13,6 +13,7 @@ Usage:
     athena init my-project            # Create new project directory
 """
 
+import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -263,6 +264,39 @@ def _install_claude_agents(root: Path) -> None:
         print(f"   🏛️  {installed} COS agents installed")
 
 
+SUPPORTED_AGENTS = [
+    ("Claude Code", "claude", "CLAUDE.md + .claude/agents/ (6 COS sub-agents)"),
+    ("Antigravity", "antigravity", "AGENTS.md"),
+    ("Cursor", "cursor", ".cursor/rules.md"),
+    ("Gemini CLI", "gemini", ".gemini/AGENTS.md"),
+    ("VS Code + Copilot", "vscode", ".vscode/settings.json"),
+]
+
+
+def _prompt_agent_selection(root: Path) -> None:
+    """Prompt user to select their coding agent for config generation."""
+    print("\n🤖 Which coding agent are you using?")
+    for i, (name, _, config) in enumerate(SUPPORTED_AGENTS, 1):
+        print(f"   {i}. {name} → {config}")
+    print("   0. None / Skip")
+
+    try:
+        response = input(f"\nSelect (0-{len(SUPPORTED_AGENTS)}): ").strip()
+        if not response or response == "0":
+            return
+        choice = int(response)
+        if 1 <= choice <= len(SUPPORTED_AGENTS):
+            name, ide_key, _ = SUPPORTED_AGENTS[choice - 1]
+            print(f"\n⚙️  Creating {name} configuration...")
+            _create_ide_config(root, ide_key)
+        else:
+            print("   ⏭️  Invalid selection, skipping")
+    except ValueError:
+        print("   ⏭️  Invalid input, skipping")
+    except (EOFError, KeyboardInterrupt):
+        pass
+
+
 def _install_claude_md(root: Path) -> None:
     """Create or append Athena section to CLAUDE.md."""
     templates_dir = _get_templates_dir()
@@ -365,22 +399,10 @@ def init_workspace(target_dir: Path = None, ide: str = None) -> bool:
         print(f"\n⚙️  Creating {ide} configuration...")
         _create_ide_config(root, ide)
 
-    # Claude Code detection (if not already specified via --ide claude)
-    if ide != "claude":
-        # Check if .claude/ directory exists (user likely uses Claude Code)
-        has_claude = (root / ".claude").is_dir()
-        if has_claude:
-            print(f"\n🤖 Detected Claude Code workspace (.claude/ exists)")
-            _install_claude_agents(root)
-            _install_claude_md(root)
-        else:
-            try:
-                response = input("\n🤖 Are you using Claude Code? (y/N): ").strip().lower()
-                if response == "y":
-                    _install_claude_agents(root)
-                    _install_claude_md(root)
-            except (EOFError, KeyboardInterrupt):
-                pass  # Non-interactive environment, skip
+    # Agent selection (if not already specified via --ide)
+    if not ide:
+        if sys.stdin.isatty():
+            _prompt_agent_selection(root)
 
     # Summary
     print("\n" + "=" * 60)
