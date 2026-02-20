@@ -72,7 +72,7 @@ echo ""
 CORE_IDENTITY=""
 for path in \
     "$ATHENA_ROOT/examples/framework/Core_Identity.md" \
-    "$ATHENA_ROOT/.framework/v7.0/modules/Core_Identity.md"; do
+    "$ATHENA_ROOT/.framework/modules/Core_Identity.md"; do
     if [[ -f "$path" ]]; then
         CORE_IDENTITY="$path"
         break

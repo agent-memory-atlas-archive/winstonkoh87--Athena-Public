@@ -19,7 +19,7 @@ PROJECT_ROOT = os.path.dirname(
 
 # Files loaded IMMEDIATELY on /start (ultra-lean boot)
 BOOT_FILES = [
-    ".framework/v7.0/modules/Core_Identity.md",
+    ".framework/modules/Core_Identity.md",
 ]
 
 # Files loaded ON-DEMAND during session (adaptive latency)
@@ -28,11 +28,14 @@ ON_DEMAND_FILES = [
     (".agent/skills/SKILL_INDEX.md", "Protocol/skill request"),
     # User Profile Modules (split from monolithic User_Profile.md)
     (".context/profile/User_Profile_Core.md", "Bio, typology, 'who am I'"),
-    (".context/profile/Psychology_Layers.md", "User profile layers and behavioral data"),
+    (
+        ".context/profile/Psychology_Layers.md",
+        "User profile layers and behavioral data",
+    ),
     (".context/profile/Operating_Principles.md", "Decision frameworks, strategy"),
     (".context/profile/Business_Frameworks.md", "Marketing, SEO, SWOT, pricing"),
     (".context/profile/Session_Observations.md", "Calibration references, cases"),
-    (".framework/v7.0/modules/Output_Standards.md", "/think or /ultrathink"),
+    (".framework/modules/Output_Standards.md", "/think or /ultrathink"),
     (".context/profile/Constraints_Master.md", "Ethical edge case"),
     (".context/System_Manifest.md", "Architecture query"),
 ]

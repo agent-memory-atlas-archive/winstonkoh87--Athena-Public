@@ -78,7 +78,7 @@ INPUTS_DIR = CONTEXT_DIR / "inputs"
 
 def _resolve_system_docs():
     """Resolve system docs dir: .framework/ (private) or examples/templates/ (public)."""
-    candidate = FRAMEWORK_DIR / "v8.2-stable" / "modules"
+    candidate = FRAMEWORK_DIR / "modules"
     if candidate.exists():
         return candidate
     fallback = PROJECT_ROOT / "examples" / "templates"

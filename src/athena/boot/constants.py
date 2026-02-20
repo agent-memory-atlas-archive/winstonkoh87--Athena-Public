@@ -12,9 +12,7 @@ SAFE_BOOT_SCRIPT = PROJECT_ROOT / "safe_boot.sh"
 def _resolve_core_identity():
     """Fallback chain for Core_Identity.md location."""
     # Priority 1: Private repo path (.framework/)
-    candidate = (
-        PROJECT_ROOT / ".framework" / "v8.2-stable" / "modules" / "Core_Identity.md"
-    )
+    candidate = PROJECT_ROOT / ".framework" / "modules" / "Core_Identity.md"
     if candidate.exists():
         return candidate
     # Priority 2: Public repo template (examples/templates/)
@@ -22,7 +20,7 @@ def _resolve_core_identity():
     if candidate.exists():
         return candidate
     # Fallback: return the primary path (will trigger a helpful error at boot)
-    return PROJECT_ROOT / ".framework" / "v8.2-stable" / "modules" / "Core_Identity.md"
+    return PROJECT_ROOT / ".framework" / "modules" / "Core_Identity.md"
 
 
 CORE_IDENTITY = _resolve_core_identity()

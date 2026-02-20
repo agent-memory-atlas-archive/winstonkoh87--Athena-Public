@@ -35,7 +35,7 @@ Load the following files (in order):
    - `docs/audit/DATA_GOVERNANCE.md` (Policy)
 
 2. **Core Identity**
-   - `.framework/v7.0/modules/Core_Identity.md` (Laws #0-5, ICR/HITLO Model, COS)
+   - `.framework/modules/Core_Identity.md` (Laws #0-5, ICR/HITLO Model, COS)
 
 3. **User Context (FULL DISCLOSURE)**
    - `Winston/profile/User_Profile_Core.md` (Identity, Bio, Typology)

@@ -26,9 +26,9 @@ class IdentityLoader:
             print(f"{YELLOW}⚠️  Core_Identity.md not found at:{RESET}")
             print(f"   {DIM}{CORE_IDENTITY}{RESET}")
             print(f"{YELLOW}   To create your identity, copy the template:{RESET}")
-            print(f"   {DIM}mkdir -p .framework/v8.2-stable/modules{RESET}")
+            print(f"   {DIM}mkdir -p .framework/modules{RESET}")
             print(
-                f"   {DIM}cp examples/templates/core_identity_template.md .framework/v8.2-stable/modules/Core_Identity.md{RESET}"
+                f"   {DIM}cp examples/templates/core_identity_template.md .framework/modules/Core_Identity.md{RESET}"
             )
             print(f"{YELLOW}   Continuing with default template...{RESET}")
             # Check for template fallback
@@ -67,13 +67,7 @@ class IdentityLoader:
     @staticmethod
     def display_cognitive_profile():
         """Reads and displays Section 0 and Section 5 of Athena Profile."""
-        profile_path = (
-            PROJECT_ROOT
-            / ".framework"
-            / "v8.2-stable"
-            / "modules"
-            / "Athena_Profile.md"
-        )
+        profile_path = PROJECT_ROOT / ".framework" / "modules" / "Athena_Profile.md"
         if not profile_path.exists():
             return
 
