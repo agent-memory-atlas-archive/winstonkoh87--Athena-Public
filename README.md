@@ -78,6 +78,7 @@ You're confusing **RAM** with a **Hard Drive**.
 | **2. Clone this repo** | `git clone https://github.com/winstonkoh87/Athena-Public.git && cd Athena-Public` |
 | **3. Open folder → Type `/start`** | The AI reads the repo structure and boots |
 | **4. Type `/brief interview`** | Athena asks about YOU — goals, style, domain — and builds your personal profile |
+| **5. Clock 100+ sessions** | Athena compounds — the more sessions you run, the more it learns your frameworks, blind spots, and decision patterns. By session 100, it stops being generic and starts thinking like **you**. |
 
 **That's it.** No config files. No API keys. No database setup. The folder *is* the product.
 
