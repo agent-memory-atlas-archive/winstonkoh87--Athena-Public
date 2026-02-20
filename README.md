@@ -5,7 +5,7 @@
 ![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=social)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
-![Version](https://img.shields.io/badge/Version-9.2.1-10b981)
+![Version](https://img.shields.io/badge/Version-9.2.2-10b981)
 ![Reddit Views](https://img.shields.io/badge/Reddit_Views-1M+-FF4500?logo=reddit&logoColor=white)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/winstonkoh87/Athena-Public)
 
