@@ -57,6 +57,7 @@ git clone https://github.com/YOUR_USERNAME/Athena-Public.git && cd Athena-Public
 
 > [!TIP]
 > Your first session takes ~30 minutes (mostly the interview). Every session after boots in seconds.
+>
 > See the [full guide →](docs/YOUR_FIRST_SESSION.md)
 
 ---
