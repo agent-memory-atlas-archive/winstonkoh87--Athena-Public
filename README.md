@@ -190,13 +190,21 @@ Each session gets its own log, its own context, and its own clean thread of reas
 </details>
 
 <details>
-<summary><strong>☁️ Sync to GitHub — Your Cloud Backup</strong></summary>
+<summary><strong>☁️ Sync to the Cloud — GitHub + Supabase</strong></summary>
 
-I strongly recommend syncing your Athena repo to GitHub. This is the easiest way to back up your data — and it's what I do for this project.
+Athena syncs to **two layers** — and you control both:
 
-When you run `/end`, Athena can automatically commit and push your session to GitHub. If you ever lose your laptop or switch machines, your entire brain is recoverable from your GitHub profile. Clone it to a new machine and `/start` — you're back exactly where you left off.
+| Layer | What It Syncs | Why |
+|:------|:-------------|:----|
+| **GitHub** (Cold Storage) | Markdown files — session logs, protocols, memory bank, user profile | **Portability.** Switch laptops, IDEs, or AI models. Clone → `/start` → you're back. |
+| **Supabase** (Hot Storage) | Vector embeddings — semantic search index (pgvector) | **Speed.** Hybrid RAG search across your entire history in milliseconds. |
 
-**Bonus:** This also gives you **portability**. Switch laptops, switch IDEs, even switch AI models — your memory travels with you because it's just Git.
+When you run `/end`, Athena can automatically commit and push to GitHub. If you've configured Supabase, embeddings sync via delta updates — only new/changed files get re-embedded.
+
+**You don't need both.** GitHub alone gives you full backup and portability. Supabase adds semantic search superpowers on top. Start with GitHub; add Supabase when you want smarter recall.
+
+> [!TIP]
+> If you ever lose your laptop, your entire brain is recoverable: clone from GitHub, reconnect to Supabase, and `/start`. Zero data loss.
 
 </details>
 
