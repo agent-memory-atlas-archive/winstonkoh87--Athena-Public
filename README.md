@@ -56,7 +56,8 @@ git clone https://github.com/YOUR_USERNAME/Athena-Public.git && cd Athena-Public
 **That's it.** No config files. No API keys. No database setup. The folder *is* the product.
 
 > [!TIP]
-> Your first session takes ~30 minutes (mostly the interview). Every session after boots in seconds. See the [full guide →](docs/YOUR_FIRST_SESSION.md)
+> Your first session takes ~30 minutes (mostly the interview). Every session after boots in seconds.
+> See the [full guide →](docs/YOUR_FIRST_SESSION.md)
 
 ---
 
@@ -147,6 +148,9 @@ Athena is **free and open source**. You only pay for your AI subscription:
 | Claude Max / Google AI Ultra | $200–250/mo | Power users (8+ hrs/day) |
 
 > Boot cost is ~10K tokens — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
+
+> [!NOTE]
+> Athena works with any model, but its structured reasoning and governance protocols perform best with frontier models (e.g. Claude Opus, Gemini Pro, GPT-5). Smaller models may struggle to follow multi-step protocols consistently.
 
 ---
 
