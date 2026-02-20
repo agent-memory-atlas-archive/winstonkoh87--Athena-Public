@@ -232,6 +232,66 @@ This is an Athena workspace. Key directories:
 """
 
 
+def _get_templates_dir() -> Path:
+    """Get the path to bundled template files."""
+    return Path(__file__).resolve().parent.parent / "templates"
+
+
+def _install_claude_agents(root: Path) -> None:
+    """Install COS agent files into .claude/agents/."""
+    import shutil
+
+    agents_dir = root / ".claude" / "agents"
+    agents_dir.mkdir(parents=True, exist_ok=True)
+
+    templates_dir = _get_templates_dir() / "agents"
+    if not templates_dir.exists():
+        print("   ⚠️  Agent templates not found in SDK")
+        return
+
+    installed = 0
+    for agent_file in templates_dir.glob("cos-*.md"):
+        dest = agents_dir / agent_file.name
+        if not dest.exists():
+            shutil.copy2(agent_file, dest)
+            print(f"   ✅ .claude/agents/{agent_file.name}")
+            installed += 1
+        else:
+            print(f"   ⏭️  .claude/agents/{agent_file.name} (already exists)")
+
+    if installed > 0:
+        print(f"   🏛️  {installed} COS agents installed")
+
+
+def _install_claude_md(root: Path) -> None:
+    """Create or append Athena section to CLAUDE.md."""
+    templates_dir = _get_templates_dir()
+    athena_template = templates_dir / "CLAUDE_ATHENA.md"
+
+    if not athena_template.exists():
+        print("   ⚠️  CLAUDE.md template not found in SDK")
+        return
+
+    athena_content = athena_template.read_text(encoding="utf-8")
+    claude_md = root / "CLAUDE.md"
+
+    if claude_md.exists():
+        existing = claude_md.read_text(encoding="utf-8")
+        if "Athena Integration" in existing:
+            print("   ⏭️  CLAUDE.md (Athena section already exists)")
+            return
+        # Append Athena section
+        claude_md.write_text(existing.rstrip() + "\n\n---\n\n" + athena_content, encoding="utf-8")
+        print("   ✅ CLAUDE.md (Athena section appended)")
+    else:
+        claude_md.write_text(
+            "# CLAUDE.md\n\nThis file provides guidance to Claude Code when working in this repository.\n\n---\n\n"
+            + athena_content,
+            encoding="utf-8",
+        )
+        print("   ✅ CLAUDE.md (created with Athena integration)")
+
+
 def init_workspace(target_dir: Path = None, ide: str = None) -> bool:
     """
     Initialize an Athena workspace with the required directory structure.
@@ -305,6 +365,23 @@ def init_workspace(target_dir: Path = None, ide: str = None) -> bool:
         print(f"\n⚙️  Creating {ide} configuration...")
         _create_ide_config(root, ide)
 
+    # Claude Code detection (if not already specified via --ide claude)
+    if ide != "claude":
+        # Check if .claude/ directory exists (user likely uses Claude Code)
+        has_claude = (root / ".claude").is_dir()
+        if has_claude:
+            print(f"\n🤖 Detected Claude Code workspace (.claude/ exists)")
+            _install_claude_agents(root)
+            _install_claude_md(root)
+        else:
+            try:
+                response = input("\n🤖 Are you using Claude Code? (y/N): ").strip().lower()
+                if response == "y":
+                    _install_claude_agents(root)
+                    _install_claude_md(root)
+            except (EOFError, KeyboardInterrupt):
+                pass  # Non-interactive environment, skip
+
     # Summary
     print("\n" + "=" * 60)
     print("✅ ATHENA WORKSPACE INITIALIZED")
@@ -362,6 +439,11 @@ def _create_ide_config(root: Path, ide: str) -> None:
             print("   ✅ .gemini/AGENTS.md")
         else:
             print("   ⏭️  .gemini/AGENTS.md (already exists)")
+
+    elif ide == "claude":
+        # Claude Code uses .claude/agents/ and CLAUDE.md
+        _install_claude_agents(root)
+        _install_claude_md(root)
 
 
 if __name__ == "__main__":
