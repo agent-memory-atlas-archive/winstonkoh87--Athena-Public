@@ -74,7 +74,7 @@ You're confusing **RAM** with a **Hard Drive**.
 
 | Step | Action |
 |:-----|:-------|
-| **1. Get an IDE** | [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [Windsurf](https://windsurf.com) · [VS Code + Copilot](https://code.visualstudio.com/) · [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) |
+| **1. Get an IDE or Agent** | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI) · [Windsurf](https://windsurf.com) · [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [VS Code + Copilot](https://code.visualstudio.com/) · [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) |
 | **2. Clone this repo** | `git clone https://github.com/winstonkoh87/Athena-Public.git && cd Athena-Public` |
 | **3. Open folder → Type `/start`** | The AI reads the repo structure and boots |
 | **4. Type `/brief interview`** | Athena asks about YOU — goals, style, domain — and builds your personal profile |
@@ -139,6 +139,25 @@ Keep Athena as **your personal brain**. Create client folders **outside** the wo
 
 </details>
 
+### 🤖 Coding Agent Compatibility
+
+Athena is model-agnostic — the memory layer works with any agent. For coding agents that support project-level configuration, `athena init` generates native config files so the agent understands Athena's session workflow and COS agents out of the box.
+
+| Coding Agent | Status | Init Command | What Gets Generated |
+|:-------------|:------:|:-------------|:--------------------|
+| **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** | ✅ Ready | `athena init --ide claude` | `CLAUDE.md` + `.claude/agents/cos-*.md` (6 COS sub-agents) |
+| **[Antigravity](https://antigravity.google/)** | ✅ Ready | `athena init --ide antigravity` | `AGENTS.md` |
+| **[Cursor](https://cursor.com)** | ✅ Ready | `athena init --ide cursor` | `.cursor/rules.md` |
+| **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** | ✅ Ready | `athena init --ide gemini` | `.gemini/AGENTS.md` |
+| **[VS Code + Copilot](https://code.visualstudio.com/)** | ✅ Ready | `athena init --ide vscode` | `.vscode/settings.json` |
+| **[Windsurf](https://codeium.com/windsurf)** | 🔜 Planned | — | — |
+| **[Aider](https://aider.chat)** | 🔜 Planned | — | — |
+| **[Cline](https://github.com/cline/cline)** | 🔜 Planned | — | — |
+| **[Amazon Q Developer](https://aws.amazon.com/q/developer/)** | 🔜 Planned | — | — |
+
+> [!TIP]
+> **Don't see your agent?** Athena works with *any* agent that can read Markdown files — just point it at `.framework/modules/Core_Identity.md` and the latest session log. The `--ide` flag just generates native config so the agent discovers Athena automatically.
+
 ### 🪞 Your First Session
 
 On your first `/start`, run `/brief interview`. Athena asks about **everything** — name, profession, goals, decision style, blind spots. This isn't small talk. It's the foundation that makes every future session compound.
@@ -166,7 +185,8 @@ On your first `/start`, run `/brief interview`. Athena asks about **everything**
 pip install -e .              # Install SDK
 athena                        # Boot session
 athena init .                 # Initialize workspace in current directory
-athena init --ide cursor      # Init with IDE-specific config
+athena init --ide claude       # Init with Claude Code agents + CLAUDE.md
+athena init --ide cursor       # Init with Cursor-specific config
 athena check                  # Basic health check
 athena doctor                 # Full 15-check system diagnostics
 athena doctor --fix           # Auto-repair fixable issues
@@ -418,7 +438,7 @@ cp .env.example .env
 | **Reasoning** | Claude Opus (primary) | Main reasoning engine |
 | **Optimization** | DSPy | Prompt optimization & self-correction |
 | **Reranking** | FlashRank | Lightweight cross-encoder RRF |
-| **IDE** | Antigravity, Cursor, VS Code | Agentic development environment |
+| **IDE / Agent** | Claude Code (CLI), Antigravity, Cursor, VS Code | Agentic development environment |
 | **Embeddings** | `text-embedding-004` (768-dim) | Google embedding model |
 | **GraphRAG** | NetworkX + Leiden + ChromaDB | Knowledge graph ⚠️ **~$50 API** |
 | **Memory** | Supabase + pgvector / local ChromaDB | Vector database |
