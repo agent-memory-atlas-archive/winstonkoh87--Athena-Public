@@ -74,7 +74,7 @@ You're confusing **RAM** with a **Hard Drive**.
 
 | Step | Action |
 |:-----|:-------|
-| **1. Get an IDE or Agent** | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI) · [Windsurf](https://windsurf.com) · [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [VS Code + Copilot](https://code.visualstudio.com/) · [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) |
+| **1. Get an IDE or Agent** | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI) · [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [OpenAI Codex](https://openai.com/index/codex/) · [Windsurf](https://windsurf.com) · [Kiro](https://kiro.dev) · [VS Code + Copilot](https://code.visualstudio.com/) · [Full list →](docs/COMPATIBLE_IDES.md) |
 | **2. Clone this repo** | `git clone https://github.com/winstonkoh87/Athena-Public.git && cd Athena-Public` |
 | **3. Open folder → Type `/start`** | The AI reads the repo structure and boots |
 | **4. Type `/brief interview`** | Athena asks about YOU — goals, style, domain — and builds your personal profile |
@@ -232,13 +232,17 @@ Athena is model-agnostic — the memory layer works with any agent. For coding a
 | **[Cursor](https://cursor.com)** | ✅ Ready | `athena init --ide cursor` | `.cursor/rules.md` |
 | **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** | ✅ Ready | `athena init --ide gemini` | `.gemini/AGENTS.md` |
 | **[VS Code + Copilot](https://code.visualstudio.com/)** | ✅ Ready | `athena init --ide vscode` | `.vscode/settings.json` |
+| **[OpenAI Codex](https://openai.com/index/codex/)** | 🔜 Planned | — | — |
 | **[Windsurf](https://codeium.com/windsurf)** | 🔜 Planned | — | — |
+| **[Kiro](https://kiro.dev)** | 🔜 Planned | — | — |
+| **[Zed](https://zed.dev)** | 🔜 Planned | — | — |
+| **[Firebase Studio](https://firebase.google.com/studio)** | 🔜 Planned | — | — |
 | **[Aider](https://aider.chat)** | 🔜 Planned | — | — |
 | **[Cline](https://github.com/cline/cline)** | 🔜 Planned | — | — |
 | **[Amazon Q Developer](https://aws.amazon.com/q/developer/)** | 🔜 Planned | — | — |
 
 > [!TIP]
-> **Don't see your agent?** Athena works with *any* agent that can read Markdown files — just point it at `.framework/modules/Core_Identity.md` and the latest session log. The `--ide` flag just generates native config so the agent discovers Athena automatically.
+> **Don't see your agent?** Athena works with *any* agent that can read Markdown files. See the [full compatibility guide](docs/COMPATIBLE_IDES.md) for details, decision matrix, and how to request new integrations.
 
 ### 🔄 The Loop
 
