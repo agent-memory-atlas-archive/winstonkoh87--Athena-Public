@@ -6,7 +6,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Version](https://img.shields.io/badge/Version-9.2.1-10b981)
-![Reddit Views](https://img.shields.io/badge/Reddit_Views-700k+-FF4500?logo=reddit&logoColor=white)
+![Reddit Views](https://img.shields.io/badge/Reddit_Views-1M+-FF4500?logo=reddit&logoColor=white)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 **Last updated: 21 Feb 2026**
@@ -363,7 +363,7 @@ When three independent models converge on a concern you haven't raised, that sig
 
 ## 6. Resources & Community
 
-> **"I gave Gemini a brain..."** — Viral on r/GeminiAI and r/ChatGPT ([700K+ views](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/))
+> **"I gave Gemini a brain..."** — Viral on r/GeminiAI and r/ChatGPT ([1M+ views](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/))
 
 ### 📦 Repository Structure
 
