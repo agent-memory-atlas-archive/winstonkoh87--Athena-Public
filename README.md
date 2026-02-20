@@ -139,25 +139,6 @@ Keep Athena as **your personal brain**. Create client folders **outside** the wo
 
 </details>
 
-### 🤖 Coding Agent Compatibility
-
-Athena is model-agnostic — the memory layer works with any agent. For coding agents that support project-level configuration, `athena init` generates native config files so the agent understands Athena's session workflow and COS agents out of the box.
-
-| Coding Agent | Status | Init Command | What Gets Generated |
-|:-------------|:------:|:-------------|:--------------------|
-| **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** | ✅ Ready | `athena init --ide claude` | `CLAUDE.md` + `.claude/agents/cos-*.md` (6 COS sub-agents) |
-| **[Antigravity](https://antigravity.google/)** | ✅ Ready | `athena init --ide antigravity` | `AGENTS.md` |
-| **[Cursor](https://cursor.com)** | ✅ Ready | `athena init --ide cursor` | `.cursor/rules.md` |
-| **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** | ✅ Ready | `athena init --ide gemini` | `.gemini/AGENTS.md` |
-| **[VS Code + Copilot](https://code.visualstudio.com/)** | ✅ Ready | `athena init --ide vscode` | `.vscode/settings.json` |
-| **[Windsurf](https://codeium.com/windsurf)** | 🔜 Planned | — | — |
-| **[Aider](https://aider.chat)** | 🔜 Planned | — | — |
-| **[Cline](https://github.com/cline/cline)** | 🔜 Planned | — | — |
-| **[Amazon Q Developer](https://aws.amazon.com/q/developer/)** | 🔜 Planned | — | — |
-
-> [!TIP]
-> **Don't see your agent?** Athena works with *any* agent that can read Markdown files — just point it at `.framework/modules/Core_Identity.md` and the latest session log. The `--ide` flag just generates native config so the agent discovers Athena automatically.
-
 ### 🪞 Your First Session
 
 On your first `/start`, run `/brief interview`. Athena asks about **everything** — name, profession, goals, decision style, blind spots. This isn't small talk. It's the foundation that makes every future session compound.
@@ -218,6 +199,168 @@ When you run `/end`, Athena can automatically commit and push your session to Gi
 
 </details>
 
+---
+
+## 3. Features
+
+When you clone this repo, **you already have a working Agent.** Not a blank slate — a complete template with identity, memory structure, protocols, and governance pre-loaded.
+
+| Component | What You Get | Customizable? |
+|:----------|:-------------|:-------------:|
+| **🧠 Core Identity** | Pre-built constitution with 6 laws ([Core_Identity Template](examples/templates/core_identity_template.md)) | ✅ Edit freely |
+| **📋 120+ Protocols** | Decision frameworks across 13 categories ([examples/protocols/](examples/protocols/)) | ✅ Fork & extend |
+| **📝 Memory Bank** | Structured templates for user profile, context, and session logs | ✅ Auto-fills over time |
+| **⚡ 48 Slash Workflows** | `/start`, `/end`, `/think`, `/research`, and [more](docs/WORKFLOWS.md) | ✅ Add your own |
+| **🔌 MCP Server** | [9 tools](docs/MCP_SERVER.md) exposable to any MCP-compatible client | ✅ Configure |
+| **🛡️ Governance** | 4 capability levels, 3 sensitivity tiers, [Secret Mode](docs/SECURITY.md) | ✅ Adjust |
+
+> [!TIP]
+> **Day 1**: The AI knows *how* to think (laws, reasoning standards, protocols) but not *who* you are.
+> **Day 2+**: As you use it, the templates fill with *your* data — sessions, decisions, preferences. The starter kit becomes *your* sovereign system.
+
+Think of it as a **furnished apartment** — you move in and start living immediately. Over time, you replace the furniture with your own.
+
+### 🤖 Coding Agent Compatibility
+
+Athena is model-agnostic — the memory layer works with any agent. For coding agents that support project-level configuration, `athena init` generates native config files so the agent understands Athena's session workflow and COS agents out of the box.
+
+| Coding Agent | Status | Init Command | What Gets Generated |
+|:-------------|:------:|:-------------|:--------------------|
+| **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** | ✅ Ready | `athena init --ide claude` | `CLAUDE.md` + `.claude/agents/cos-*.md` (6 COS sub-agents) |
+| **[Antigravity](https://antigravity.google/)** | ✅ Ready | `athena init --ide antigravity` | `AGENTS.md` |
+| **[Cursor](https://cursor.com)** | ✅ Ready | `athena init --ide cursor` | `.cursor/rules.md` |
+| **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** | ✅ Ready | `athena init --ide gemini` | `.gemini/AGENTS.md` |
+| **[VS Code + Copilot](https://code.visualstudio.com/)** | ✅ Ready | `athena init --ide vscode` | `.vscode/settings.json` |
+| **[Windsurf](https://codeium.com/windsurf)** | 🔜 Planned | — | — |
+| **[Aider](https://aider.chat)** | 🔜 Planned | — | — |
+| **[Cline](https://github.com/cline/cline)** | 🔜 Planned | — | — |
+| **[Amazon Q Developer](https://aws.amazon.com/q/developer/)** | 🔜 Planned | — | — |
+
+> [!TIP]
+> **Don't see your agent?** Athena works with *any* agent that can read Markdown files — just point it at `.framework/modules/Core_Identity.md` and the latest session log. The `--ide` flag just generates native config so the agent discovers Athena automatically.
+
+### 🔄 The Loop
+
+After you install Athena, you repeat one cycle: **`/start` → Work → `/end`**. Every cycle deposits training data into memory. Over hundreds of cycles, Athena stops being generic and starts thinking like *you*.
+
+```mermaid
+flowchart TD
+    START["🟢 /start"] -->|"Load identity + recall"| WORK["🔧 Work Session"]
+    WORK -->|"Auto-save every exchange"| WORK
+    WORK -->|"Done for the day"| END["🔴 /end"]
+    END -->|"Finalize, sync, commit"| MEMORY["🧠 Memory"]
+    MEMORY -->|"Next session boots richer"| START
+
+    style START fill:#22c55e,color:#fff,stroke:#333
+    style END fill:#ef4444,color:#fff,stroke:#333
+    style MEMORY fill:#8b5cf6,color:#fff,stroke:#333
+    style WORK fill:#3b82f6,color:#fff,stroke:#333
+```
+
+| Sessions | What Happens |
+|:---------|:------------|
+| **1–50** | Basic recall. Remembers your name and project. |
+| **50–200** | Pattern recognition. Anticipates your preferences. |
+| **200–500** | Deep sync. Knows your frameworks, blind spots, style. |
+| **500–1,000+** | Full context. Anticipates patterns before you state them. |
+
+### 💰 Token Economics
+
+`/start` loads ~**10K tokens** of identity and context. This cost is **constant** — Session 1 and Session 10,000 cost the same to boot, because memory is compressed into structured Markdown (not growing chat history).
+
+| Model | Context Window | Boot Cost | Remaining | Utilization |
+|:------|:--------------|:----------|:----------|:------------|
+| **Claude Opus 4.6** | 200K | ~10K | **190K** (95% free) | 5% |
+| **Gemini 3 Pro** | 1M+ | ~10K | **990K+** (99% free) | ~1% |
+
+> [!TIP]
+> Most "memory" solutions dump entire chat history into context (grows linearly with usage). Athena's architecture keeps boot cost **flat** — your 10,000th session is as cheap as your first.
+
+### 🧠 Persistent Memory
+
+Your data lives in **Markdown files you own** — on your machine, git-versioned. Optionally backed up to Supabase (cloud insurance).
+
+- **Local-first**: No vendor lock-in. Switch models anytime.
+- **Hybrid search**: Canonical + GraphRAG + Tags + Vectors + Filenames, fused via RRF
+- **Auto-quicksave**: Every exchange is logged without manual action
+
+---
+
+## 4. Use Cases
+
+Athena is domain-agnostic — it adapts to whatever *you* do. But most users fall into five core workflows:
+
+### 🎯 Decision-Making
+
+> *"Should I take this job offer? Should I pivot my business? Should I invest in this asset?"*
+
+Athena's [Trilateral Feedback Protocol](docs/TRILATERAL_FEEDBACK.md) runs your decision through **3 independent AI models**, cross-validates their reasoning, and synthesizes a weighted recommendation — based on Ray Dalio's Believability-Weighted Decision Making (Dalio, 2017). Instead of asking one AI and trusting the first answer, you get a **Synthetic Idea Meritocracy**: multiple perspectives, stress-tested, with explicit confidence levels.
+
+**Key protocols**: [Risk of Ruin](examples/protocols/safety/001-law-of-ruin.md) · [Skeptic Gate](examples/protocols/decision/261-skeptic-gate.md) · [Base Rate Audit](examples/protocols/decision/140-base-rate-audit.md)
+
+### 🧩 Problem-Solving
+
+> *"Why is my conversion rate dropping? Why does this architecture keep breaking? What am I missing?"*
+
+[Graph of Thoughts](examples/protocols/decision/137-graph-of-thoughts.md) reasoning generates **multiple solution paths**, scores each on survivability and upside, then converges on the strongest answer — not just the first one. Combined with [First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md), Athena breaks complex problems into their atomic components and rebuilds from there.
+
+**Key protocols**: [Graph of Thoughts](examples/protocols/decision/137-graph-of-thoughts.md) · [Prima Facie vs Actuality](examples/protocols/decision/308-prima-facie-actuality-gap.md) · [Silent Validator](examples/protocols/engineering/55-silent-validator.md)
+
+### 🔬 Research & Synthesis
+
+> *"Give me a comprehensive analysis of X. Synthesize these 12 sources. Find the consensus and the outliers."*
+
+The [Cyborg Methodology](examples/protocols/research/54-cyborg-methodology.md) enforces sentence-level human-AI collaboration — not "delegate and pray." Athena runs structured research across multiple sources, cross-validates findings, and produces cited output with confidence levels. Every claim is traceable to its source.
+
+**Key protocols**: [Cyborg Methodology](examples/protocols/research/54-cyborg-methodology.md) · [Deep Research Loop](examples/protocols/research/52-deep-research-loop.md) · [Ultimate Auditor](examples/protocols/meta/000-ultimate-auditor.md)
+
+### 📚 Personal Knowledge Management
+
+> *"What did I decide about X three months ago? What were my reasons? What happened after?"*
+
+This is the **core product.** Every session auto-saves into structured memory: session logs, case studies, user profiles, decision history. Over hundreds of sessions, Athena builds a searchable archive of *your* thinking — not generic knowledge, but **your** frameworks, **your** blind spots, **your** patterns. Hybrid RAG (5 sources + RRF fusion) means recall is fast and precise.
+
+**Key features**: [Memory Architecture](docs/ARCHITECTURE.md) · [Semantic Search](docs/SEMANTIC_SEARCH.md) · [GraphRAG](docs/GRAPHRAG.md)
+
+### 📐 Strategic Planning
+
+> *"Map out my next 6 months. Stress-test this business model. Show me the unit economics."*
+
+Long-horizon planning with **longitudinal memory** — Athena doesn't just plan, it tracks decisions and their outcomes across sessions. SDR analysis, unit economics breakdowns, market positioning, Min-Max optimization (Mas-Colell et al., 1995). Every future session benefits from every past decision you logged.
+
+**Key protocols**: [Min-Max Optimization](examples/protocols/strategy/106-min-max-optimization.md) · [Prima Facie vs Actuality](examples/protocols/decision/308-prima-facie-actuality-gap.md) · [Red Team v4](examples/protocols/meta/004-red-team-v4-3.md)
+
+---
+
+## 5. Resources & Community
+
+### 📣 Community
+
+> **"I gave Gemini a brain..."** — Viral on r/GeminiAI and r/ChatGPT ([700K+ views](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/))
+
+### Repository Structure
+
+```text
+Athena-Public/
+├── src/athena/              # SDK package (pip install -e .)
+│   ├── core/                #   Config, governance, permissions, security
+│   ├── tools/               #   Search, agentic search, reranker, heartbeat
+│   ├── memory/              #   Vector DB, delta sync, schema
+│   ├── boot/                #   Orchestrator, loaders, shutdown
+│   ├── cli/                 #   init, save, doctor commands
+│   └── mcp_server.py        #   MCP Tool Server (9 tools, 2 resources)
+├── scripts/                 # Operational scripts (boot, shutdown, launch)
+├── examples/
+│   ├── protocols/           # 120+ starter frameworks (13 categories)
+│   ├── scripts/             # 130+ reference scripts
+│   ├── templates/           # Starter templates (framework, memory bank)
+│   └── quickstart/          # Runnable demos
+├── docs/                    # Architecture, benchmarks, security, guides
+├── community/               # Contributing, roadmap
+├── pyproject.toml           # Modern packaging (v9.2.1)
+└── .env.example             # Environment template
+```
+
 <details>
 <summary><strong>💸 How Much Does It Cost?</strong></summary>
 
@@ -232,6 +375,21 @@ Athena itself is free and open source. The only cost is your AI subscription (th
 
 > [!TIP]
 > Athena's 10K-token boot cost is the same whether you're on a $20 plan or a $200 plan. The difference is how many sessions you can run per day before hitting your plan's message limit.
+
+<details>
+<summary><strong>❓ "Won't this eat my subscription tokens?"</strong></summary>
+
+**No.** The 10K boot cost is per **context window** (5% of one session), not per subscription. Your subscription limits are based on **message count**, not token count — whether you send a 10K or 200K message, it counts as one message.
+
+| User Type | Plan | Sessions/Day | Verdict |
+|:----------|:-----|:-------------|:--------|
+| **Casual** | Pro ($20/mo) | 1–2 | ✅ 95% of context stays free |
+| **Daily Driver** | Max 5× ($100/mo) | 3–5 | ✅ Each session is independent |
+| **Power User** | Max 20× ($200/mo) | 10+ parallel | ✅ Multiple agents, multiple projects |
+
+**The trade**: You spend 5% of your context window so the remaining 95% is **dramatically smarter** — because the AI actually knows who you are, what you're building, and how you think.
+
+</details>
 
 </details>
 
@@ -271,121 +429,7 @@ After importing, run `athena check` to verify files are detected.
 
 </details>
 
----
-
-## 3. What's Inside? (Starter Kit)
-
-When you clone this repo, **you already have a working Agent.** Not a blank slate — a complete template with identity, memory structure, protocols, and governance pre-loaded.
-
-| Component | What You Get | Customizable? |
-|:----------|:-------------|:-------------:|
-| **🧠 Core Identity** | Pre-built constitution with 6 laws ([Core_Identity Template](examples/templates/core_identity_template.md)) | ✅ Edit freely |
-| **📋 120+ Protocols** | Decision frameworks across 13 categories ([examples/protocols/](examples/protocols/)) | ✅ Fork & extend |
-| **📝 Memory Bank** | Structured templates for user profile, context, and session logs | ✅ Auto-fills over time |
-| **⚡ 48 Slash Workflows** | `/start`, `/end`, `/think`, `/research`, and [more](docs/WORKFLOWS.md) | ✅ Add your own |
-| **🔌 MCP Server** | [9 tools](docs/MCP_SERVER.md) exposable to any MCP-compatible client | ✅ Configure |
-| **🛡️ Governance** | 4 capability levels, 3 sensitivity tiers, [Secret Mode](docs/SECURITY.md) | ✅ Adjust |
-
-> [!TIP]
-> **Day 1**: The AI knows *how* to think (laws, reasoning standards, protocols) but not *who* you are.
-> **Day 2+**: As you use it, the templates fill with *your* data — sessions, decisions, preferences. The starter kit becomes *your* sovereign system.
-
-Think of it as a **furnished apartment** — you move in and start living immediately. Over time, you replace the furniture with your own.
-
-### 🔄 The Loop
-
-After you install Athena, you repeat one cycle: **`/start` → Work → `/end`**. Every cycle deposits training data into memory. Over hundreds of cycles, Athena stops being generic and starts thinking like *you*.
-
-```mermaid
-flowchart TD
-    START["🟢 /start"] -->|"Load identity + recall"| WORK["🔧 Work Session"]
-    WORK -->|"Auto-save every exchange"| WORK
-    WORK -->|"Done for the day"| END["🔴 /end"]
-    END -->|"Finalize, sync, commit"| MEMORY["🧠 Memory"]
-    MEMORY -->|"Next session boots richer"| START
-
-    style START fill:#22c55e,color:#fff,stroke:#333
-    style END fill:#ef4444,color:#fff,stroke:#333
-    style MEMORY fill:#8b5cf6,color:#fff,stroke:#333
-    style WORK fill:#3b82f6,color:#fff,stroke:#333
-```
-
-| Sessions | What Happens |
-|:---------|:------------|
-| **1–50** | Basic recall. Remembers your name and project. |
-| **50–200** | Pattern recognition. Anticipates your preferences. |
-| **200–500** | Deep sync. Knows your frameworks, blind spots, style. |
-| **500–1,000+** | Full context. Anticipates patterns before you state them. |
-
-### 💰 Token Economics
-
-`/start` loads ~**10K tokens** of identity and context. This cost is **constant** — Session 1 and Session 10,000 cost the same to boot, because memory is compressed into structured Markdown (not growing chat history).
-
-| Model | Context Window | Boot Cost | Remaining | Utilization |
-|:------|:--------------|:----------|:----------|:------------|
-| **Claude Opus 4.6** | 200K | ~10K | **190K** (95% free) | 5% |
-| **Gemini 3 Pro** | 1M+ | ~10K | **990K+** (99% free) | ~1% |
-
-> [!TIP]
-> Most "memory" solutions dump entire chat history into context (grows linearly with usage). Athena's architecture keeps boot cost **flat** — your 10,000th session is as cheap as your first.
-
-<details>
-<summary><strong>❓ "Won't this eat my subscription tokens?"</strong></summary>
-
-**No.** The 10K boot cost is per **context window** (5% of one session), not per subscription. Your subscription limits are based on **message count**, not token count — whether you send a 10K or 200K message, it counts as one message.
-
-| User Type | Plan | Sessions/Day | Verdict |
-|:----------|:-----|:-------------|:--------|
-| **Casual** | Pro ($20/mo) | 1–2 | ✅ 95% of context stays free |
-| **Daily Driver** | Max 5× ($100/mo) | 3–5 | ✅ Each session is independent |
-| **Power User** | Max 20× ($200/mo) | 10+ parallel | ✅ Multiple agents, multiple projects |
-
-**The trade**: You spend 5% of your context window so the remaining 95% is **dramatically smarter** — because the AI actually knows who you are, what you're building, and how you think.
-
-</details>
-
-### 🧠 Persistent Memory
-
-Your data lives in **Markdown files you own** — on your machine, git-versioned. Optionally backed up to Supabase (cloud insurance).
-
-- **Local-first**: No vendor lock-in. Switch models anytime.
-- **Hybrid search**: Canonical + GraphRAG + Tags + Vectors + Filenames, fused via RRF
-- **Auto-quicksave**: Every exchange is logged without manual action
-
----
-
-## Repository Structure
-
-```text
-Athena-Public/
-├── src/athena/              # SDK package (pip install -e .)
-│   ├── core/                #   Config, governance, permissions, security
-│   ├── tools/               #   Search, agentic search, reranker, heartbeat
-│   ├── memory/              #   Vector DB, delta sync, schema
-│   ├── boot/                #   Orchestrator, loaders, shutdown
-│   ├── cli/                 #   init, save, doctor commands
-│   └── mcp_server.py        #   MCP Tool Server (9 tools, 2 resources)
-├── scripts/                 # Operational scripts (boot, shutdown, launch)
-├── examples/
-│   ├── protocols/           # 120+ starter frameworks (13 categories)
-│   ├── scripts/             # 130+ reference scripts
-│   ├── templates/           # Starter templates (framework, memory bank)
-│   └── quickstart/          # Runnable demos
-├── docs/                    # Architecture, benchmarks, security, guides
-├── community/               # Contributing, roadmap
-├── pyproject.toml           # Modern packaging (v9.2.1)
-└── .env.example             # Environment template
-```
-
----
-
-## 📣 Community
-
-> **"I gave Gemini a brain..."** — Viral on r/GeminiAI and r/ChatGPT ([700K+ views](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/))
-
----
-
-## 📚 Further Reading
+### 📚 Further Reading
 
 <details>
 <summary><strong>🏗️ Architecture & Design</strong></summary>
