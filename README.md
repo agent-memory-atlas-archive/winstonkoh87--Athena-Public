@@ -75,7 +75,7 @@ You're confusing **RAM** with a **Hard Drive**.
 | Step | Action |
 |:-----|:-------|
 | **1. Get an IDE or Agent** | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI) · [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [OpenAI Codex](https://openai.com/index/codex/) · [Windsurf](https://windsurf.com) · [Kiro](https://kiro.dev) · [VS Code + Copilot](https://code.visualstudio.com/) · [Full list →](docs/COMPATIBLE_IDES.md) |
-| **2. Clone this repo** | `git clone https://github.com/winstonkoh87/Athena-Public.git && cd Athena-Public` |
+| **2. Fork & Clone** | [Fork this repo](https://github.com/winstonkoh87/Athena-Public/fork) → `git clone https://github.com/YOUR_USERNAME/Athena-Public.git && cd Athena-Public` |
 | **3. Open folder → Type `/start`** | The AI reads the repo structure and boots |
 | **4. Type `/brief interview`** | Athena asks about YOU — goals, style, domain — and builds your personal profile |
 | **5. Clock 100+ sessions** | Athena compounds — the more sessions you run, the more it learns your frameworks, blind spots, and decision patterns. By session 100, it stops being generic and starts thinking like **you**. |
@@ -205,6 +205,43 @@ When you run `/end`, Athena can automatically commit and push to GitHub. If you'
 
 > [!TIP]
 > If you ever lose your laptop, your entire brain is recoverable: clone from GitHub, reconnect to Supabase, and `/start`. Zero data loss.
+
+</details>
+
+<details>
+<summary><strong>🔄 Updating Athena</strong></summary>
+
+Athena is designed so **your data and the framework are separate layers**. Updating the framework doesn't touch your personal data.
+
+#### If You Forked (Recommended)
+
+```bash
+# One-time setup: add the original repo as upstream
+git remote add upstream https://github.com/winstonkoh87/Athena-Public.git
+
+# To update:
+git fetch upstream
+git merge upstream/main
+pip install -e .   # Only if pyproject.toml changed
+```
+
+#### If You Cloned Directly
+
+```bash
+git pull origin main
+pip install -e .   # Only if pyproject.toml changed
+```
+
+#### What Gets Updated vs What Doesn't
+
+| Layer | Updated? | Examples |
+|:------|:--------:|:--------|
+| **Framework** | ✅ Yes | `src/athena/`, `examples/protocols/`, `scripts/`, `docs/` |
+| **Your Data** | ❌ No | `.context/memory_bank/`, `.context/memories/`, `.agent/` |
+| **Config** | ⚠️ Check | `.env` — compare with `.env.example` for new variables |
+
+> [!IMPORTANT]
+> **Privacy**: If you fork, your `.context/` folder (memory bank, session logs, personal profile) will be visible in your fork. **Keep your fork private** if it contains personal data, or add `.context/` to your fork's `.gitignore`.
 
 </details>
 
