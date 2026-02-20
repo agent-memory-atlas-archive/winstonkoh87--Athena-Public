@@ -74,7 +74,7 @@ You're confusing **RAM** with a **Hard Drive**.
 
 | Step | Action |
 |:-----|:-------|
-| **1. Get an IDE or Agent** | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI) · [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [VS Code + Copilot](https://code.visualstudio.com/) · [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) |
+| **1. Get an IDE or Agent** | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI) · [Windsurf](https://windsurf.com) · [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [VS Code + Copilot](https://code.visualstudio.com/) · [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) |
 | **2. Clone this repo** | `git clone https://github.com/winstonkoh87/Athena-Public.git && cd Athena-Public` |
 | **3. Open folder → Type `/start`** | The AI reads the repo structure and boots |
 | **4. Type `/brief interview`** | Athena asks about YOU — goals, style, domain — and builds your personal profile |
