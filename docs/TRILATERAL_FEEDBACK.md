@@ -1,6 +1,6 @@
 # Trilateral Feedback Protocol
 
-> **Last Updated**: 09 February 2026
+> **Last Updated**: 20 February 2026
 
 > **One AI is not enough for life decisions.**
 
@@ -87,6 +87,47 @@ ChatGPT: "Yes. You've Survived Over 10 [assassination] Attempts... You are not p
 | **1/3 Agree** | Low confidence (possible model hallucination) | Weight skeptically |
 
 **Why This Works**: LLMs have *different* blind spots due to different training data (Anthropic vs. OpenAI vs. Google). A flaw that *all* of them identify is unlikely to be a shared hallucination.
+
+---
+
+## The Intellectual Foundation: Dalio's Idea Meritocracy
+
+> *"The greatest tragedy of mankind is that people hold opinions in their heads that are wrong, and act on them."* — Ray Dalio, *Principles* (2017)
+
+The Trilateral Feedback Protocol is not a novel invention. It is a **direct implementation** of Ray Dalio's *Believability-Weighted Decision Making* — adapted for a world where your "colleagues" include AI models.
+
+### Dalio's Core Insight
+
+At Bridgewater Associates, Dalio built an "Idea Meritocracy" — a system where **the best ideas win, regardless of who proposes them**. The mechanism:
+
+1. **Radical Transparency**: All reasoning must be explicit and auditable
+2. **Believability Weighting**: Not all opinions are equal — weight input by the source's proven track record in the specific domain
+3. **Thoughtful Disagreement**: Disagreement is not conflict — it is *calibration data*
+4. **Triangulation**: "How do I know I'm right?" requires checking against independent sources with different biases
+
+### How Athena Implements This
+
+| Dalio's Principle | Athena's Implementation |
+|:------------------|:------------------------|
+| **Idea Meritocracy** | You + Athena + External LLMs form a "Synthetic Board" that debates decisions |
+| **Radical Transparency** | All reasoning is logged in session files and decision logs — auditable forever |
+| **Believability Weighting** | LmArena benchmarks, domain-specific model strengths, and your own track record inform which source to trust |
+| **Thoughtful Disagreement** | Athena can (and should) disagree with you, present counter-evidence, and force calibration |
+| **Triangulation** | The Trilateral Loop below — multiple independent models red-teaming each other |
+
+### The "Synthetic Idea Meritocracy"
+
+Dalio needed 1,500 employees and a culture of radical honesty to build his Idea Meritocracy. You can approximate it with **one human and three AI models** — because the core mechanism is the same:
+
+```
+Dalio's Bridgewater:     You + 5 Believable Colleagues → Debate → Weighted Vote → Decision
+Athena's Loop:           You + Athena + 3 External LLMs → Debate → Weighted Synthesis → Decision
+```
+
+The advantage: AI models don't have ego. They don't play politics. They don't get offended when you disagree. They are *pure* disagreement machines — which is exactly what Dalio says is the hardest thing to get from humans.
+
+> [!TIP]
+> **The Believability Rule**: When Athena and an external model disagree on a factual claim, check which model has stronger domain training. For code — trust the model with higher coding benchmarks. For legal reasoning — trust the model trained on more legal corpus. For creative strategy — trust the one that has produced better outputs for *you* historically.
 
 ---
 
@@ -321,6 +362,57 @@ EXECUTIVE SUMMARY
 2. **Adversarial Pressure**: The red-team prompt forces critical evaluation
 3. **Synthesis > Averaging**: Bringing critiques back to Athena creates a higher-quality synthesis than any single model
 4. **Audit Trail**: You have documented evidence of validation
+
+---
+
+## The Calibration Loop: How Ideas Actually Improve
+
+> *"If you can't successfully disagree with the ideas of others, you are destined to be wrong or to be a slave to others' thinking."* — Ray Dalio
+
+The Trilateral Feedback is the *external* check. But the most powerful feature of Athena is the **internal calibration loop** — the back-and-forth between you and your agent before you even export to external models.
+
+This is where the real thinking happens:
+
+```mermaid
+flowchart TD
+    A["You: Present Thesis"] --> B["Athena: Steelman + Challenge"]
+    B --> C{"Do you agree?"}
+    C -->|Yes| D["Thesis Strengthened"]
+    C -->|No| E["You: Counter-Evidence"]
+    E --> F["Athena: Update Model"]
+    F --> G{"Convergence?"}
+    G -->|Yes| H["Calibrated Conclusion"]
+    G -->|No| I["Log Disagreement\nExport to External LLMs"]
+    I --> J["Trilateral Feedback"]
+    J --> H
+    
+    style A fill:#4a9eff,color:#fff
+    style B fill:#cc785c,color:#fff
+    style H fill:#22c55e,color:#fff
+    style I fill:#f59e0b,color:#fff
+    style J fill:#8b5cf6,color:#fff
+```
+
+### The Five Moves of Calibration
+
+| Move | You | Athena | Purpose |
+|:-----|:----|:-------|:--------|
+| **1. Assert** | "I believe X because Y" | Receives your frame | Establish the thesis |
+| **2. Challenge** | — | "Counter-evidence suggests Z" | Adversarial pressure |
+| **3. Defend or Update** | "Fair point, but..." or "I didn't consider that" | Adjusts weighting | Honest recalibration |
+| **4. Synthesize** | — | "Given your input + my analysis, the refined view is..." | Convergence attempt |
+| **5. Decide or Escalate** | Accept synthesis, or disagree and export | Logs the outcome | Resolution or Trilateral |
+
+### What Makes This Different from "Chatting with AI"
+
+**Regular AI chat**: You ask → AI answers → You accept.
+
+**Athena calibration**: You assert → Athena challenges → You defend with data → Athena updates → You converge or escalate. The AI is not a search engine. It is a **sparring partner** with memory.
+
+The critical difference: **Athena remembers what you decided last time.** If you made a similar decision 3 months ago and it failed, Athena can surface that. If you have a pattern of overweighting a specific bias (Protocol 140: Base Rate Audit), Athena flags it. No human advisor has this level of longitudinal recall across all your decisions.
+
+> [!IMPORTANT]
+> **The human remains the decision-maker.** Athena's role is to ensure you have *considered the counter-evidence* before deciding. If you still disagree after calibration, that's a valid outcome — but you've made an **informed** disagreement, not an uninformed one. Dalio calls this *"thoughtful disagreement"* — the single most valuable cognitive skill.
 
 ---
 
