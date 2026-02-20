@@ -360,9 +360,8 @@ Not all sessions need the same amount of context. Athena scales reasoning to que
 
 Athena is domain-agnostic — it adapts to whatever *you* do. Most users converge on six core workflows:
 
-### 🎯 Decision-Making
-
-> *"Should I take this job offer? Should I pivot my business? Should I invest in this asset?"*
+<details>
+<summary><strong>🎯 Decision-Making</strong> — <em>"Should I take this job offer? Should I pivot my business?"</em></summary>
 
 Athena's [Trilateral Feedback Protocol](docs/TRILATERAL_FEEDBACK.md) runs your decision through **3 independent AI models**, cross-validates their reasoning, and synthesizes a weighted recommendation — based on Ray Dalio's Believability-Weighted Decision Making (Dalio, 2017). Instead of asking one AI and trusting the first answer, you get a **Synthetic Idea Meritocracy**: multiple perspectives, stress-tested, with explicit confidence levels.
 
@@ -370,9 +369,10 @@ Under the hood, Athena uses **MCDA (Multi-Criteria Decision Analysis)** and **pa
 
 **Key protocols**: [Risk of Ruin](examples/protocols/safety/001-law-of-ruin.md) · [Skeptic Gate](examples/protocols/decision/261-skeptic-gate.md) · [Base Rate Audit](examples/protocols/decision/140-base-rate-audit.md)
 
-### 🧩 Problem-Solving
+</details>
 
-> *"Why is my conversion rate dropping? Why does this architecture keep breaking? What am I missing?"*
+<details>
+<summary><strong>🧩 Problem-Solving</strong> — <em>"Why is my conversion rate dropping? What am I missing?"</em></summary>
 
 [Graph of Thoughts](examples/protocols/decision/137-graph-of-thoughts.md) reasoning generates **multiple solution paths**, scores each on survivability and upside, then converges on the strongest answer — not just the first one. Combined with [First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md), Athena breaks complex problems into their atomic components and rebuilds from there.
 
@@ -380,9 +380,10 @@ Where this gets powerful: Athena can **map out multiple scenarios and timelines 
 
 **Key protocols**: [Graph of Thoughts](examples/protocols/decision/137-graph-of-thoughts.md) · [Prima Facie vs Actuality](examples/protocols/decision/308-prima-facie-actuality-gap.md) · [Silent Validator](examples/protocols/engineering/55-silent-validator.md)
 
-### 🔬 Research & Synthesis
+</details>
 
-> *"Give me a comprehensive analysis of X. Synthesize these 12 sources. Find the consensus and the outliers."*
+<details>
+<summary><strong>🔬 Research & Synthesis</strong> — <em>"Synthesize these 12 sources. Find the consensus and outliers."</em></summary>
 
 The [Cyborg Methodology](examples/protocols/research/54-cyborg-methodology.md) enforces sentence-level human-AI collaboration — not "delegate and pray." Athena runs structured research across multiple sources, cross-validates findings, and produces cited output with confidence levels. Every claim is traceable to its source.
 
@@ -390,9 +391,10 @@ The speed differential is the real force multiplier: Athena's exo-cortex can fir
 
 **Key protocols**: [Cyborg Methodology](examples/protocols/research/54-cyborg-methodology.md) · [Deep Research Loop](examples/protocols/research/52-deep-research-loop.md) · [Ultimate Auditor](examples/protocols/meta/000-ultimate-auditor.md)
 
-### 📚 Personal Knowledge Management
+</details>
 
-> *"What did I decide about X three months ago? What were my reasons? What happened after?"*
+<details>
+<summary><strong>📚 Personal Knowledge Management</strong> — <em>"What did I decide about X three months ago?"</em></summary>
 
 This is the **core product.** Every session auto-saves into structured memory: session logs, case studies, user profiles, decision history. Over hundreds of sessions, Athena builds a searchable archive of *your* thinking — not generic knowledge, but **your** frameworks, **your** blind spots, **your** patterns. Hybrid RAG (5 sources + RRF fusion) means recall is fast and precise.
 
@@ -400,9 +402,10 @@ But auto-saving is only half the story. Because your memory lives as **portable 
 
 **Key features**: [Memory Architecture](docs/ARCHITECTURE.md) · [Semantic Search](docs/SEMANTIC_SEARCH.md) · [GraphRAG](docs/GRAPHRAG.md)
 
-### 📐 Strategic Planning
+</details>
 
-> *"Map out my next 6 months. Stress-test this business model. Show me the unit economics."*
+<details>
+<summary><strong>📐 Strategic Planning</strong> — <em>"Map out my next 6 months. Stress-test this business model."</em></summary>
 
 Long-horizon planning with **longitudinal memory** — Athena doesn't just plan, it tracks decisions and their outcomes across sessions. SDR analysis, unit economics breakdowns, market positioning, Min-Max optimization (Mas-Colell et al., 1995). Every future session benefits from every past decision you logged.
 
@@ -410,15 +413,18 @@ For quantitative planning, Athena can run **Monte Carlo simulations** (10,000+ r
 
 **Key protocols**: [Min-Max Optimization](examples/protocols/strategy/106-min-max-optimization.md) · [Prima Facie vs Actuality](examples/protocols/decision/308-prima-facie-actuality-gap.md) · [Red Team v4](examples/protocols/meta/004-red-team-v4-3.md)
 
-### 🧠 Meta-Thinking (Quadrant IV)
+</details>
 
-> *"What am I not seeing? What question should I be asking that I'm not?"*
+<details>
+<summary><strong>🧠 Meta-Thinking (Quadrant IV)</strong> — <em>"What am I not seeing? What question should I be asking?"</em></summary>
 
 This is the capability most people don't know they need — because by definition, **you can't identify your own blind spots**. That's the Quadrant IV problem: unknown unknowns. Athena solves this by combining longitudinal pattern detection (hundreds of sessions of *your* behavior) with the Trilateral Feedback Protocol's multi-model cross-validation.
 
 When three independent models converge on a concern you haven't raised, that signal has weight. When Athena detects that you've made the same category of mistake across five different contexts over three months — but never noticed the pattern — it surfaces it. This isn't generic "have you considered..." prompting. It's **calibrated meta-cognition** built from your actual decision history: thinking beyond thinking.
 
 **Key concepts**: [Quadrant IV](docs/concepts/Quadrant_IV.md) · [Trilateral Feedback](docs/TRILATERAL_FEEDBACK.md) · [User-Driven RSI](docs/USER_DRIVEN_RSI.md)
+
+</details>
 
 ---
 
