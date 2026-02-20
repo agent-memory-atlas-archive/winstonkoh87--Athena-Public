@@ -56,7 +56,7 @@ Deliberately try to prove the claim WRONG.
 Simulate how other "Best-in-Class" entities would respond:
 
 - **The Pragmatist (Jeff Bezos)**: Is this reversible? Is it a "one-way door" or "two-way door"?
-- **The Pessimist (Nassim Taleb)**: What is the tail risk? Is this advice "fragile"?
+- **The Pessimist (Taleb, 2012)**: What is the tail risk? Is this advice "fragile"?
 - **The Operator (Founders)**: What is the Schlep? Does this actually work in practice?
 
 ### Step 3.5: The Adversarial Red Team (arXiv:2602.03837)

@@ -64,4 +64,4 @@ When Action `A` occurs (e.g., "He didn't reply"), spawn 3 timelines:
 
 ## 5. Summary
 
-The Skeptic Gate prevents **Confirmation Bias**. By forcing yourself to write down the "Bad" and "Ugly" hypotheses, you prevent your brain from auto-selecting the "Good" one just because it feels safe.
+The Skeptic Gate prevents **Confirmation Bias** (Nickerson, 1998). By forcing yourself to write down the "Bad" and "Ugly" hypotheses, you prevent your brain from auto-selecting the "Good" one just because it feels safe.

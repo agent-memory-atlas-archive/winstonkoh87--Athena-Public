@@ -7,7 +7,7 @@ description: Forces a silent pre-computation phase (O1-style) before answering. 
 
 > **Origin**: "God-Tier Prompt" Analysis (Reddit)
 > **Integration Date**: 13 December 2025
-> **Purpose**: To force the AI to "think before speaking" by simulating O1-style chain-of-thought and reputation risk.
+> **Purpose**: To force the AI to "think before speaking" by simulating O1-style chain-of-thought (Wei et al., 2022) and reputation risk.
 
 ---
 
@@ -94,4 +94,4 @@ However, your final answer must bear the *fingerprints* of this process:
 
 ## Tagging
 
-#protocol #framework #process #55-silent-validator
+# protocol #framework #process #55-silent-validator

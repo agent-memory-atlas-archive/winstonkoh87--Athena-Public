@@ -20,7 +20,7 @@ last_updated: 2026-01-16
 
 ## Summary
 
-A diagnostic framework for detecting the gap between **what you think should happen** (Prima Facie / Inside View) and **what actually happens** (Actuality / Outside View). Rooted in Kahneman's Planning Fallacy research.
+A diagnostic framework for detecting the gap between **what you think should happen** (Prima Facie / Inside View) and **what actually happens** (Actuality / Outside View). Rooted in Kahneman's Planning Fallacy research (Kahneman & Tversky, 1979; Kahneman, 2011).
 
 > **Core Insight**: If you cannot state the **outside view base rate** for your activity, you are operating on pure inside view — and likely delusional.
 
@@ -153,6 +153,7 @@ If you answer NO to 3+ of these → **Do not enter.**
 ---
 
 ## Related Protocols
+
 - [Protocol 124: SDR Diagnosis](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-diagnosis.md)
 - [CS044: ILP Trust Arbitrage](#)
 - [CS044: ILP Trust Arbitrage](#)

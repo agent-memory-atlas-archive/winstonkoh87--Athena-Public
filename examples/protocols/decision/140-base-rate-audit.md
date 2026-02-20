@@ -36,7 +36,7 @@ When the gap is unexplained, the Hidden Variable typically falls into one of the
 
 1. **Hidden Capital**: Family money, inheritance, unearned windfall.
 2. **Hidden Cost**: Extreme leverage, illegal activity, selling soul (OF, sugar).
-3. **Hidden Variance**: Survivorship bias (showing 1 winner, hiding 99 losers).
+3. **Hidden Variance**: Survivorship bias (Taleb, 2004) — showing 1 winner, hiding 99 losers.
 4. **Fabrication**: The claim is simply a lie (engagement bait).
 5. **Genuine Outlier**: The <0.1% talent/luck combination (The "Blue Curve").
 

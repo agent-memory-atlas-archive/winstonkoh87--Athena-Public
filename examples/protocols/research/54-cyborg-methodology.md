@@ -67,7 +67,7 @@ For each component of the skeleton:
 * **"Critique your own logic."** (Forcing self-reflection)
 * **"Draft only the first paragraph."** (Preventing runaway generation)
 * **"What is the counter-argument to what you just said?"** (Adversarial stress-test)
-* **"Assume I am wrong. Why might that be?"** (Breaking confirmation bias)
+* **"Assume I am wrong. Why might that be?"** (Breaking confirmation bias; Nickerson, 1998)
 
 ---
 
@@ -83,6 +83,7 @@ For each component of the skeleton:
 ---
 
 ## References
+
 - [Protocol 128: Internal Family Systems](<!-- Private: .agent/skills/protocols/ --> psychology/128-internal-family-systems.md)
 
 See [References.md](#) for full citation.

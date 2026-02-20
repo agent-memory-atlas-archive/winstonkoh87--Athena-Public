@@ -22,7 +22,7 @@ last_updated: 2026-01-05
 
 > **"Reasoning is not a Line. It is a Network."**
 
-Standard LLM reasoning (Chain of Thought) is linear: `A -> B -> C`.
+Standard LLM reasoning (Chain of Thought; Wei et al., 2022) is linear: `A -> B -> C`.
 **Graph of Thoughts (GoT)** is topological: `A -> (B1, B2, B3) -> Score -> Convergence -> C`.
 
 It models human "brainstorming" where multiple possibilities are explored, critiqued, and synthesized before a final conclusion is reached.

@@ -55,7 +55,7 @@
 
 ## Related Concepts
 
-- **Anchoring bias** (Kahneman) — first number sets the reference point
+- **Anchoring bias** (Tversky & Kahneman, 1974) — first number sets the reference point
 - **Expectation management** — proactive baseline-setting prevents conflict
 - **Calibrated honesty** — truth-telling as service, not attack
 

@@ -33,7 +33,7 @@ graph TD
 
 ## 2. Theoretical Foundation (Physics & Math)
 
-### 2.1 The Ergodicity Problem (N.N. Taleb, 2018)
+### 2.1 The Ergodicity Problem (Taleb, 2018)
 
 In most life arenas, you cannot "average" your way out of death. If you go bust once, you are out of the game.
 
@@ -41,7 +41,7 @@ In most life arenas, you cannot "average" your way out of death. If you go bust 
 - **Time Average**: You jump off the cliff 100 times. You are dead (100% loss).
 - **Action**: Never accept "Ensemble" statistics for "Time" decisions.
 
-### 2.2 The Kelly Criterion (John Kelly, 1956)
+### 2.2 The Kelly Criterion (Kelly, 1956)
 
 Maximum growth requires avoiding ruin. Over-betting on an edge eventually leads to zero.
 
