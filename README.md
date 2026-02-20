@@ -171,6 +171,8 @@ The more you use Athena on a real project, the more you learn about coding, soft
 
 **My approach:** I built a portfolio website showcasing everything I produced with Project Athena, and I keep iterating on it. Every session improves both the project *and* my skills. Find your equivalent and commit to it.
 
+> 👉 Need inspiration? See [PROJECT_IDEAS.md](docs/PROJECT_IDEAS.md) — 9 starter projects from web apps to YouTube channels, each mapped to the Athena capabilities you'll learn.
+
 </details>
 
 <details>
@@ -186,6 +188,8 @@ Athena works best with focused sessions. If your project has ten features, work 
 | Session 4 | Search functionality |
 
 Each session gets its own log, its own context, and its own clean thread of reasoning. This creates better memory, cleaner recall, and fewer context collisions in future sessions.
+
+**Bonus:** Each session starts with a fresh ~190K token workspace. One focused feature will typically use 30–80K tokens — well within the budget, well under the [200K pricing cliff](#-token-economics), and well below the point where model quality degrades.
 
 </details>
 
@@ -327,8 +331,28 @@ flowchart TD
 | **Claude Opus 4.6** | 200K | ~10K | **190K** (95% free) | 5% |
 | **Gemini 3 Pro** | 1M+ | ~10K | **990K+** (99% free) | ~1% |
 
+#### Why 200K Is the Magic Number
+
+Every SOTA model in 2026 treats **200K tokens as the efficiency boundary**:
+
+- **Google**: Input price [doubles past 200K](https://ai.google.dev/pricing) ($2 → $4/M for Gemini 3 Pro)
+- **Anthropic**: Claude Opus 4.6's effective context length is 200K
+- **Quality**: Model reasoning quality degrades at the extremes of long context
+
+Athena's boot cost of ~10K keeps you firmly in the **cheap, high-quality zone** — with 190K of workspace before you hit any pricing cliff or quality degradation.
+
+#### JIT Loading Tiers
+
+Not all sessions need the same amount of context. Athena scales reasoning to query complexity:
+
+| Mode | Tokens Loaded | Use Case | Workspace Left |
+|:-----|:-------------|:---------|:--------------|
+| `/start` (default) | ~10K | 95% of sessions | **190K** |
+| `/think` | ~15K | Deep analysis | **185K** |
+| `/ultrathink` | ~40K | Maximum depth, full context stack | **160K** |
+
 > [!TIP]
-> Most "memory" solutions dump entire chat history into context (grows linearly with usage). Athena's architecture keeps boot cost **flat** — your 10,000th session is as cheap as your first.
+> Most "memory" solutions dump entire chat history into context (grows linearly with usage). Athena's architecture keeps boot cost **O(1)** — your 10,000th session boots as fast and cheap as your first. The Memory Bank self-compacts at a 15K hard cap, automatically compressing older entries to stay within budget.
 
 ---
 
@@ -438,7 +462,7 @@ Athena itself is free and open source. The only cost is your AI subscription (th
 **Start with $20/month.** That covers the vast majority of use cases. The power user plans exist for people who run Athena all day across multiple workspaces and hit token limits — you'll know when you need them.
 
 > [!TIP]
-> Athena's 10K-token boot cost is the same whether you're on a $20 plan or a $200 plan. The difference is how many sessions you can run per day before hitting your plan's message limit.
+> **Why subscriptions, not API keys?** Flat-rate plans eliminate the anxiety of per-token billing. SOTA model APIs charge $2–15 per million tokens — heavy users can clock $2,000–$3,000/month in surprise bills. A $20 subscription gives you unlimited usage at a predictable cost. No meter running, no self-censoring prompts, no bill shock. Athena's 10K boot cost is the same on any plan.
 
 <details>
 <summary><strong>❓ "Won't this eat my subscription tokens?"</strong></summary>

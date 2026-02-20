@@ -138,6 +138,8 @@ Koch, R. (1998). *The 80/20 principle: The secret to achieving more with less*. 
 
 Pearson, T. (2015). *The end of jobs: Money, meaning and freedom without the 9-to-5*. Lioncrest Publishing.
 
+Pearson, T. (2018, June 6). The ultimate guide to apprenticeships. *Mission.org*. <https://medium.com/the-mission/the-ultimate-guide-to-apprenticeships-54fc932683a2>
+
 Ries, E. (2011). *The lean startup: How today's entrepreneurs use continuous innovation to create radically successful businesses*. Crown Business.
 
 Taleb, N. N. (2004). *Fooled by randomness: The hidden role of chance in life and in the markets* (2nd ed.). Random House.

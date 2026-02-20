@@ -161,6 +161,53 @@ The Memory Bank is **not** a replacement for semantic search. Use both:
 | "What's my risk tolerance?" | Memory Bank (`userContext.md`) |
 | "Find sessions about authentication" | Vector search |
 
+## Token Efficiency
+
+The Memory Bank is designed for **O(1) boot cost** — loading the same ~10K tokens whether it's Session 1 or Session 10,000.
+
+### The 15K Hard Cap
+
+Boot tokens are budgeted with a strict ceiling:
+
+| Slot | Budget | Growth Rate |
+|------|--------|-------------|
+| `userContext.md` | ~3K | Near-zero (identity is stable) |
+| `productContext.md` | ~2K | Near-zero (mission is stable) |
+| `activeContext.md` | ~5K | Rolling (compacts automatically) |
+| Boot script output | ~2K | Fixed |
+| System instructions | ~3K | Fixed |
+| **Total** | **~15K max** | |
+
+When the total exceeds 15K tokens, `activeContext.md` auto-compacts — merging older session summaries into shorter entries until the budget is back under 10K.
+
+### Why This Matters
+
+Assuming 200K effective context length (the industry standard for SOTA models in 2026):
+
+| Mode | Boot Cost | Workspace Left |
+|------|-----------|---------------|
+| `/start` (default) | ~10K | **190K** (95% free) |
+| `/think` | ~15K | **185K** |
+| `/ultrathink` | ~40K | **160K** |
+
+Most "memory" solutions dump growing chat history into context. Athena keeps boot cost flat through **progressive distillation**:
+
+```
+Live conversation (100% fidelity)
+  → Session log (~15% — key insights only)
+    → activeContext.md entry (~5% — compressed summary)
+      → Eventually compacted out (~0.1% — absorbed into userContext.md)
+```
+
+### The Operating Band
+
+```
+0K ██████████░░░░░ 15K
+   ↑ ~10K target    ↑ hard cap (auto-compact triggers here)
+```
+
+The system oscillates between ~10K and ~15K naturally as sessions accumulate and then get compacted. The user never needs to manage this — it's automatic.
+
 ## Further Reading
 
 - [Architecture](ARCHITECTURE.md) — How Memory Bank fits into the full system
