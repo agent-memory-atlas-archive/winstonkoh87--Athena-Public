@@ -35,12 +35,12 @@ Load the following files (in order):
    - `docs/audit/DATA_GOVERNANCE.md` (Policy)
 
 2. **Core Identity**
-   - `.framework/modules/Core_Identity.md` (Laws #0-5, ICR/HITLO Model, COS)
+   - `.framework/v7.0/modules/Core_Identity.md` (Laws #0-5, ICR/HITLO Model, COS)
 
 3. **User Context (FULL DISCLOSURE)**
    - `Winston/profile/User_Profile_Core.md` (Identity, Bio, Typology)
    - `Winston/profile/System_Principles.md` (Decision frameworks, values)
-   - `Winston/profile/Psychology_Layers.md` (L1-L5 layers, trauma, history)
+   - `Winston/profile/Psychology_L1L5.md` (L1-L5 layers, trauma, history)
    - `Winston/profile/Business_Frameworks.md` (Mental models, strategies)
    - `Winston/profile/Session_Observations.md` (Calibration patterns, cases)
 
@@ -65,21 +65,19 @@ Load the following files (in order):
 #### Track A: Internal Ops Brief (Full Disclosure)
 
 Generate `docs/audit/SYSTEM_PRIMER_FULL.md`.
-
 - **Content**: EVERYTHING listed above (Sections 1-9).
 - **Header**: `> CLASSIFICATION: L3 SYSTEM EYES ONLY`
-- **Psychology**: Include shadow persona profiles, behavioral schema details, decision economics.
+- **Psychology**: Include raw "Jun Kai" profiles, L5 schema details, sexual economics.
 - **Risk**: Include specific R00X triggers and financial thresholds.
 
 #### Track B: External Audit Brief (Redacted)
 
 Generate `docs/audit/SYSTEM_PRIMER_REDACTED.md`.
-
 - **Content**: Sections 1-9, but SANITIZED.
 - **Header**: `> CLASSIFICATION: PUBLIC / AUDITABLE`
 - **Redactions**:
   - Replace specific net worth/financials with "Threshold defined".
-  - Replace shadow persona and raw behavioral details with "Shadow Persona" and "Core Wound".
+  - Replace "Jun Kai" and raw L5 trauma details with "Shadow Persona" and "Core Wound".
   - Remove any mention of specific individuals or private legal cases.
   - Summarize R00X triggers abstractly (e.g. "Impulse Control Event").
 - **Focus**: Prove *Controls* exist, without exposing *Vulnerabilities*.

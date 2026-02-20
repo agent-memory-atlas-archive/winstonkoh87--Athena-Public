@@ -56,8 +56,6 @@ def main():
         try:
             import subprocess
 
-            print("🧠 Compressing memory... (Background)", end="", flush=True)
-
             # Run the compressor script in fire-and-forget mode
             # It will self-append to .context/memory_bank/semantic_log.md
             cmd = [
@@ -74,10 +72,9 @@ def main():
                 stderr=subprocess.DEVNULL,
                 start_new_session=True,
             )
-            print("\r✅ Memory Compression queued.")
 
-        except Exception as e:
-            print(f"\r⚠️  Compression trigger error: {e}")
+        except Exception:
+            pass  # Best-effort, non-blocking
 
         # [Protocol 105] LightRAG Indexing Hook
         # REMOVED: Redundant. The Athena Daemon (athenad.py) watches for file changes
@@ -91,30 +88,25 @@ def main():
         try:
             import subprocess
 
-            print("🔍 Validating changes...", end="", flush=True)
-
-            # Check for python files in git diff
+            # Only run validation if there are staged/changed python files
             diff = subprocess.run(
                 ["git", "diff", "--name-only", "HEAD"], capture_output=True, text=True
             )
             changed_files = [f for f in diff.stdout.splitlines() if f.endswith(".py")]
 
             if changed_files:
-                # Run ruff check as a lightweight validator
                 lint = subprocess.run(
                     ["ruff", "check"] + changed_files, capture_output=True, text=True
                 )
                 if lint.returncode == 0:
-                    print("\r✅ Validation Passed (Ruff).")
+                    print("✅ Validation Passed (Ruff).")
                 else:
                     print(
-                        f"\r❌ Validation Failed! Errors detected in: {', '.join(changed_files)}"
+                        f"❌ Validation Failed! Errors detected in: {', '.join(changed_files)}"
                     )
-                    print(lint.stdout[:500])  # Show first 500 chars of errors
-            else:
-                print("\rℹ️  No source files to validate.")
-        except Exception as e:
-            print(f"\r⚠️  Validation skipped: {e}")
+                    print(lint.stdout[:500])
+        except Exception:
+            pass  # Validation is best-effort
 
     except Exception as e:
         print(f"❌ Quicksave failed: {e}", file=sys.stderr)

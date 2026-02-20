@@ -46,7 +46,7 @@ def repair():
         "311-social-audit-defense.md": "98-social-audit-defense.md",
         "CS044_ILP_Trust_Arbitrage.md": "CS-044-ilp-trust-arbitrage.md",
         "Case_Tutor_Distribution_Trap.md": "CS-118-tutor-distribution-trap.md",
-        "Case_Dignity_Trap.md": "CS-125-dignity-trap-case.md",
+        "Case_Jeremy_Dignity_Trap.md": "CS-125-jeremy-ryan-case.md",
         "User_Profile.md": "User_Profile_Core.md",
         "Operating_Principles.md": "Operating_Principles.md",
         "LAW1_RUIN.md": "001-law-of-ruin.md",

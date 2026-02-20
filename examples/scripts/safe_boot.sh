@@ -71,7 +71,7 @@ echo ""
 # ============================================================================
 # LOAD CORE IDENTITY (v8.2-Stable)
 # ============================================================================
-CORE_IDENTITY="$ATHENA_ROOT/.framework/modules/Core_Identity.md"
+CORE_IDENTITY="$ATHENA_ROOT/.framework/v8.2-stable/modules/Core_Identity.md"
 
 if [[ -f "$CORE_IDENTITY" ]]; then
     echo -e "${GREEN}[OK] Loading Core Identity (v8.2-Stable)...${NC}"

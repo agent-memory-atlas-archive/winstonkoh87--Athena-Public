@@ -1,29 +1,42 @@
 #!/usr/bin/env python3
+"""
+compact_context.py — Active Context Compactor (v2.0)
+=====================================================
+Prunes activeContext.md to keep it lean for boot token budgets.
+
+Fixes applied:
+- v2.0: Index-based line removal (no duplicate-line bugs).
+- v2.0: Session completion marker pruning (prevents unbounded growth).
+"""
+
 import os
 import re
 import datetime
+import shutil
 from pathlib import Path
 
 # Config
 CONTEXT_FILE = ".context/memory_bank/activeContext.md"
 MAX_VISIBLE_COMPLETED = 3
+MAX_SESSION_MARKERS = 3
+MAX_RECENT_CONTEXT_ENTRIES = 5  # Max session-level narrative blocks in Recent Context
+MAX_RECENT_CONTEXT_AGE_HOURS = 48  # Prune narrative blocks older than this
+SESSION_LOG_DIR = ".context/memories/session_logs"
+SESSION_LOG_ARCHIVE = ".context/memories/session_logs/archive"
+SESSION_ARCHIVE_DAYS = 7
 
 
-def compact_active_context():
+def compact_active_context(aggressive: bool = False):
     """
-    Scans activeContext.md.
-    If > MAX_VISIBLE_COMPLETED [x] items found in the task list:
-    1. Keeps the last N [x] items.
-    2. Moves the older ones to a '## Compacted History' section (or similar).
+    Scans activeContext.md and prunes:
+    1. Completed [x] tasks beyond the last MAX_VISIBLE_COMPLETED.
+    2. '## Session XXXX Completed' markers beyond the last MAX_SESSION_MARKERS.
 
-    For now, we will simply Move them to the bottom or mark them as compacted.
-    Actually, a better approach for V1:
-    - Find all [x] lines.
-    - If count > MAX_VISIBLE_COMPLETED:
-    - Take the excess (oldest) items.
-    - Append them to '## Recent History' at the bottom of the file (or verify it exists).
-    - Remove them from the Active Tasks list.
+    Args:
+        aggressive: If True, use tighter limits (1 each) for token budget recovery.
     """
+    max_completed = 1 if aggressive else MAX_VISIBLE_COMPLETED
+    max_markers = 1 if aggressive else MAX_SESSION_MARKERS
 
     base_path = Path(os.getcwd())
     file_path = base_path / CONTEXT_FILE
@@ -33,87 +46,48 @@ def compact_active_context():
         return
 
     content = file_path.read_text(encoding="utf-8")
-    lines = content.splitlines()
+    modified = False
 
-    new_lines = []
-    completed_tasks = []
-    in_task_section = False
-    task_section_header = "## Active Tasks"
-
-    # Simple parser: extract [x] lines from Active Tasks section
-    # Logic:
-    # 1. Identify Task Section.
-    # 2. Collect all [x] lines.
-    # 3. If > MAX, keep last MAX.
-    # 4. Remove others from their original position.
-    # 5. Append removed ones to a history section.
-
-    # Limitations: Complex markdown structures (nested lists) might break.
-    # For V1, we assume a simple list under '## Active Tasks'.
-
-    # 1. Pass: Identify and Collect
-    # this is tricky with line indices. Let's do a robust split.
-
-    # Easier strategy:
-    # Split file into sections. Process the Active Tasks section. Reassemble.
-
+    # --- Phase 1: Prune completed tasks (index-based) ---
     sections = re.split(r"(^## .*$)", content, flags=re.MULTILINE)
 
     out_sections = []
     compacted_items = []
 
-    # Reconstruct with modification
-    # sections[0] is premable. sections[1] is header, sections[2] is body...
-
-    for i in range(0, len(sections)):
+    for i in range(len(sections)):
         part = sections[i]
 
         # Check if this part is the body of "Active Tasks"
-        # The previous part (sections[i-1]) should be the header
         is_active_task_body = False
-        if i > 0 and task_section_header in sections[i - 1]:
+        if i > 0 and "## Active Tasks" in sections[i - 1]:
             is_active_task_body = True
 
         if is_active_task_body:
-            # Process lines
             body_lines = part.splitlines()
-            kept_lines = []
-            current_completed = []
 
-            # Find all completed tasks in this block
-            for line in body_lines:
-                if line.strip().startswith("- [x]"):
-                    current_completed.append(line)
-                else:
-                    # It's a [ ] task or text or empty
-                    pass
+            # Find indices of all completed tasks
+            completed_indices = [
+                idx
+                for idx, line in enumerate(body_lines)
+                if line.strip().startswith("- [x]")
+            ]
 
-            # Calculate what to remove
-            if len(current_completed) > MAX_VISIBLE_COMPLETED:
-                # Remove oldest (first ones in the list)
-                num_to_remove = len(current_completed) - MAX_VISIBLE_COMPLETED
-                to_remove = current_completed[:num_to_remove]
-                compacted_items.extend(to_remove)
+            if len(completed_indices) > max_completed:
+                num_to_remove = len(completed_indices) - max_completed
+                indices_to_remove = set(completed_indices[:num_to_remove])
+                compacted_items.extend(
+                    body_lines[idx] for idx in sorted(indices_to_remove)
+                )
 
-                # Rebuild the block excluding removed lines
-                # We iterate again to preserve order of non-removed lines
-                remove_set = set(to_remove)
-                for line in body_lines:
-                    if line in remove_set:
-                        # Skip (it's being moved)
-                        # Remove from set to handle identical lines correctly?
-                        # Ideally robust uniqueness, but for now simple check.
-                        # actually, better to consume from list
-                        if len(to_remove) > 0 and line == to_remove[0]:
-                            to_remove.pop(0)
-                            continue
-                        else:
-                            kept_lines.append(line)
-                    else:
-                        kept_lines.append(line)
-
+                # Rebuild block excluding removed indices
+                kept_lines = [
+                    line
+                    for idx, line in enumerate(body_lines)
+                    if idx not in indices_to_remove
+                ]
                 out_sections.append("\n".join(kept_lines))
-                print(f"✅ Compacted {num_to_remove} tasks.")
+                modified = True
+                print(f"✅ Compacted {num_to_remove} completed tasks.")
             else:
                 out_sections.append(part)
         else:
@@ -121,32 +95,153 @@ def compact_active_context():
 
     final_content = "".join(out_sections)
 
-    # Append Compacted Items if any
+    # Append compacted items to Recent Context if any
     if compacted_items:
-        # Check if "## Recent Context" or "## Compaction Log" exists
         log_header = "## Recent Context"
-
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
         compaction_block = f"\n- **Compacted {timestamp}**:\n" + "\n".join(
             [f"  {item.strip().replace('- [x]', '- ')}" for item in compacted_items]
         )
 
         if log_header in final_content:
-            # Append to existing
-            # simplistic replace
             parts = final_content.split(log_header)
-            # Insert after header
             final_content = parts[0] + log_header + "\n" + compaction_block + parts[1]
         else:
-            # Append to end
             final_content += f"\n\n{log_header}\n{compaction_block}\n"
 
-        # Write Back
+    # --- Phase 2: Prune session completion markers ---
+    session_pattern = re.compile(r"^## Session \S+ Completed$", re.MULTILINE)
+    session_markers = list(session_pattern.finditer(final_content))
+
+    if len(session_markers) > max_markers:
+        # Keep only the last N markers, remove the rest
+        markers_to_remove = session_markers[:-max_markers]
+        # Remove in reverse order to preserve indices
+        for marker in reversed(markers_to_remove):
+            # Remove the marker line and any trailing whitespace
+            start = marker.start()
+            end = marker.end()
+            # Also consume trailing newlines
+            while end < len(final_content) and final_content[end] == "\n":
+                end += 1
+            final_content = final_content[:start] + final_content[end:]
+            modified = True
+
+        removed_count = len(markers_to_remove)
+        print(f"✅ Pruned {removed_count} old session completion markers.")
+
+    # --- Phase 3: Prune old Recent Context narrative entries ---
+    max_entries = 2 if aggressive else MAX_RECENT_CONTEXT_ENTRIES
+    age_limit_hours = 24 if aggressive else MAX_RECENT_CONTEXT_AGE_HOURS
+
+    # Split on the Recent Context header
+    rc_header = "## Recent Context"
+    if rc_header in final_content:
+        rc_parts = final_content.split(rc_header, 1)
+        rc_body = rc_parts[1]
+
+        # Find the next ## header to bound the Recent Context section
+        next_header_match = re.search(r"^## (?!Recent Context)", rc_body, re.MULTILINE)
+        if next_header_match:
+            rc_section = rc_body[: next_header_match.start()]
+            rc_remainder = rc_body[next_header_match.start() :]
+        else:
+            rc_section = rc_body
+            rc_remainder = ""
+
+        # Parse date-stamped entries (e.g. "- **Session 2026-02-20 (Evening)**:" or "- **Compacted 2026-02-20**:")
+        date_pattern = re.compile(
+            r"^- \*\*(?:Session|Compacted)\s+(\d{4}-\d{2}-\d{2})",
+            re.MULTILINE,
+        )
+
+        entries = list(date_pattern.finditer(rc_section))
+        if entries:
+            now = datetime.datetime.now()
+            cutoff = now - datetime.timedelta(hours=age_limit_hours)
+
+            # Determine start/end byte offsets for each entry
+            entry_spans = []
+            for i, match in enumerate(entries):
+                start = match.start()
+                end = (
+                    entries[i + 1].start() if i + 1 < len(entries) else len(rc_section)
+                )
+                try:
+                    entry_date = datetime.datetime.strptime(match.group(1), "%Y-%m-%d")
+                except ValueError:
+                    continue
+                entry_spans.append((start, end, entry_date))
+
+            # Split into keep and prune
+            to_keep = [s for s in entry_spans if s[2] >= cutoff]
+            to_prune = [s for s in entry_spans if s[2] < cutoff]
+
+            # Also enforce max entries (keep most recent N)
+            if len(to_keep) > max_entries:
+                # Sort by date descending, keep only the most recent
+                to_keep.sort(key=lambda x: x[2], reverse=True)
+                overflow = to_keep[max_entries:]
+                to_keep = to_keep[:max_entries]
+                to_prune.extend(overflow)
+
+            if to_prune:
+                # Rebuild the section from kept entries only
+                to_keep.sort(key=lambda x: x[0])  # Restore original order
+                kept_text = "".join(rc_section[s[0] : s[1]] for s in to_keep)
+
+                # Also preserve any non-date-stamped content before the first entry
+                preamble = rc_section[: entries[0].start()] if entries else ""
+
+                new_rc_section = preamble + kept_text
+                final_content = rc_parts[0] + rc_header + new_rc_section + rc_remainder
+                modified = True
+                print(
+                    f"✅ Pruned {len(to_prune)} old Recent Context entries (>{age_limit_hours}h or >{max_entries} cap)."
+                )
+
+    # --- Write Back ---
+    if modified:
         file_path.write_text(final_content, encoding="utf-8")
-        print(f"✅ Setup Complete: {len(compacted_items)} tasks moved to history.")
+        print("✅ activeContext.md compacted successfully.")
     else:
-        print("⚡ No compaction needed (< 3 completed tasks).")
+        print("⚡ No compaction needed.")
+
+
+def archive_old_sessions():
+    """
+    Moves session logs older than SESSION_ARCHIVE_DAYS to the archive directory.
+    """
+    base_path = Path(os.getcwd())
+    log_dir = base_path / SESSION_LOG_DIR
+    archive_dir = base_path / SESSION_LOG_ARCHIVE
+
+    if not log_dir.exists():
+        return
+
+    archive_dir.mkdir(parents=True, exist_ok=True)
+
+    cutoff = datetime.datetime.now() - datetime.timedelta(days=SESSION_ARCHIVE_DAYS)
+    pattern = re.compile(r"(\d{4}-\d{2}-\d{2})-session-\d+\.md")
+    archived = 0
+
+    for f in log_dir.glob("*-session-*.md"):
+        match = pattern.match(f.name)
+        if match:
+            try:
+                file_date = datetime.datetime.strptime(match.group(1), "%Y-%m-%d")
+                if file_date < cutoff:
+                    shutil.move(str(f), str(archive_dir / f.name))
+                    archived += 1
+            except ValueError:
+                continue
+
+    if archived > 0:
+        print(
+            f"📦 Archived {archived} session logs (>{SESSION_ARCHIVE_DAYS} days old)."
+        )
 
 
 if __name__ == "__main__":
     compact_active_context()
+    archive_old_sessions()

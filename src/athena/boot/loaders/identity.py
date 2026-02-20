@@ -23,23 +23,8 @@ class IdentityLoader:
     def verify_semantic_prime() -> bool:
         """Verify Core_Identity.md integrity via SHA-384 hash."""
         if not CORE_IDENTITY.exists():
-            print(f"{YELLOW}⚠️  Core_Identity.md not found at:{RESET}")
-            print(f"   {DIM}{CORE_IDENTITY}{RESET}")
-            print(f"{YELLOW}   To create your identity, copy the template:{RESET}")
-            print(f"   {DIM}mkdir -p .framework/modules{RESET}")
-            print(
-                f"   {DIM}cp examples/templates/core_identity_template.md .framework/modules/Core_Identity.md{RESET}"
-            )
-            print(f"{YELLOW}   Continuing with default template...{RESET}")
-            # Check for template fallback
-            from athena.boot.constants import PROJECT_ROOT
-
-            template = (
-                PROJECT_ROOT / "examples" / "templates" / "core_identity_template.md"
-            )
-            if template.exists():
-                print(f"   {GREEN}✅ Template found: {template.name}{RESET}")
-                return True
+            print(f"{RED}[FATAL] Core_Identity.md NOT FOUND{RESET}")
+            print(f"{RED}        Identity drift detected. Cannot boot.{RESET}")
             return False
 
         try:
@@ -67,7 +52,13 @@ class IdentityLoader:
     @staticmethod
     def display_cognitive_profile():
         """Reads and displays Section 0 and Section 5 of Athena Profile."""
-        profile_path = PROJECT_ROOT / ".framework" / "modules" / "Athena_Profile.md"
+        profile_path = (
+            PROJECT_ROOT
+            / ".framework"
+            / "v8.2-stable"
+            / "modules"
+            / "Athena_Profile.md"
+        )
         if not profile_path.exists():
             return
 
@@ -115,16 +106,13 @@ class IdentityLoader:
         cache_path = IdentityLoader._get_protocol_cache_path()
         context_key = context_clues.lower().strip()
 
-        # Try cache first (with mtime-based invalidation)
+        # Try cache first
         if cache_path.exists():
             try:
                 cache = json.loads(cache_path.read_text())
-                cached_mtime = cache.get("_protocols_mtime", 0)
-                current_mtime = (
-                    PROTOCOLS_JSON.stat().st_mtime if PROTOCOLS_JSON.exists() else 0
-                )
-
-                if cached_mtime == current_mtime and context_key in cache:
+                if context_key in cache:
+                    # In a real system, we'd check if PROTOCOLS_JSON mtime changed
+                    # But for now, simple cache return
                     cached_loadout = cache[context_key]
                     print(
                         f"\n{BOLD}{CYAN}🧙‍♂️ ATHENA GUIDANCE SYSTEM (Cached Loadout){RESET}"
@@ -193,15 +181,12 @@ class IdentityLoader:
                         }
                     )
 
-                # Save to cache (with mtime for invalidation)
+                # Save to cache
                 try:
                     cache = {}
                     if cache_path.exists():
                         cache = json.loads(cache_path.read_text())
                     cache[context_key] = output_matches
-                    cache["_protocols_mtime"] = (
-                        PROTOCOLS_JSON.stat().st_mtime if PROTOCOLS_JSON.exists() else 0
-                    )
                     cache_path.parent.mkdir(parents=True, exist_ok=True)
                     cache_path.write_text(json.dumps(cache))
                 except Exception:

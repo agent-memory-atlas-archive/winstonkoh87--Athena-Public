@@ -25,7 +25,11 @@ def generate_mermaid() -> str:
 
     # Check for actual presence to avoid ghost nodes
     nodes = {
-        "CI": PROJECT_ROOT / ".framework" / "modules" / "Core_Identity.md",
+        "CI": PROJECT_ROOT
+        / ".framework"
+        / "v8.2-stable"
+        / "modules"
+        / "Core_Identity.md",
         "PR": PROJECT_ROOT / ".agent" / "skills" / "protocols",
         "CS": PROJECT_ROOT / ".context" / "memories" / "case_studies",
         "SL": PROJECT_ROOT / ".context" / "memories" / "session_logs",

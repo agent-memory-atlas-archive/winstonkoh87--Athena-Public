@@ -28,6 +28,11 @@ def main():
     from athena.boot.loaders.memory import MemoryLoader
     from athena.boot.loaders.system import SystemLoader
     from athena.boot.loaders.prefetch import PrefetchLoader
+    from athena.boot.loaders.token_budget import (
+        measure_boot_files,
+        display_gauge,
+        auto_compact_if_needed,
+    )
 
     # Phase 0: Check for --verify flag
     if len(sys.argv) > 1 and sys.argv[1] == "--verify":
@@ -74,6 +79,10 @@ def main():
     # Phase 3: Memory Recall
     last_session = MemoryLoader.recall_last_session()
 
+    # Phase 3.5: Token Budget Check & Auto-Compaction
+    token_counts = measure_boot_files()
+    token_counts = auto_compact_if_needed(token_counts)
+
     # Phase 4: Session Creation
     session_id = MemoryLoader.create_session()
 
@@ -96,17 +105,7 @@ def main():
                 f"{RED}⚠️  System health check failed. Proceeding with caution...{RESET}"
             )
 
-    def run_compact_context():
-        try:
-            sys.path.insert(0, str(PROJECT_ROOT / ".agent" / "scripts"))
-            from compact_context import compact_active_context
-
-            compact_active_context()
-            print("   🧹 Context Compacted.")
-        except Exception as e:
-            print(f"   ⚠️  Compaction Fail: {e}")
-
-    with ThreadPoolExecutor(max_workers=6) as executor:
+    with ThreadPoolExecutor(max_workers=8) as executor:
         # 1. Non-blocking context capture
         executor.submit(MemoryLoader.capture_context)
 
@@ -116,19 +115,33 @@ def main():
         # 3. Protocol injection
         executor.submit(IdentityLoader.inject_auto_protocols, "startup session boot")
 
-        # 4. System Health Check
+        # 4. Search cache pre-warming (new)
+        executor.submit(MemoryLoader.prewarm_search_cache)
+
+        # 5. System Health Check (Moved to background)
         executor.submit(run_health_check_wrapper)
 
-        # 5. Prefetch hot files
+        # 6. Prefetch (Moved to background)
         executor.submit(PrefetchLoader.prefetch_hot_files)
 
-        # 6. Context compaction (moved from serial → parallel)
-        executor.submit(run_compact_context)
-
-    # Display remaining sync items (after parallel tasks complete)
+    # Display remaining sync items
     MemoryLoader.display_learnings_snapshot()
     IdentityLoader.display_cognitive_profile()
     IdentityLoader.display_cos_status()
+
+    # Phase 8: Sidecar Launch (Sovereign Index)
+    try:
+        import subprocess
+
+        sidecar_path = PROJECT_ROOT / ".agent" / "scripts" / "sidecar.py"
+        subprocess.Popen(
+            [sys.executable, str(sidecar_path)],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        print("   🛡️  Sidecar Launched (PID: Independent)")
+    except Exception as e:
+        print(f"   ⚠️  Sidecar Fail: {e}")
 
     # Disable watchdog
     StateLoader.disable_watchdog()
@@ -141,25 +154,8 @@ def main():
     )
     print(f"{BOLD}{'─' * 60}{RESET}\n")
 
-    # Display Memory Bank Context
-    memory_bank_path = PROJECT_ROOT / ".context" / "memory_bank" / "activeContext.md"
-    if memory_bank_path.exists():
-        print(f"\n{CYAN}{BOLD}🧠 Active Context (Memory Bank):{RESET}")
-        try:
-            content = memory_bank_path.read_text().strip()
-            # Indent content for readability
-            indented_content = "\n".join(f"   {line}" for line in content.splitlines())
-            print(f"{DIM}{indented_content}{RESET}")
-
-            # Sentinel Phase (Protocol 420)
-            from athena.intelligence.sentinel import check_boot_sentinel
-
-            sentinel_msg = check_boot_sentinel()
-            if sentinel_msg:
-                print(f"\n{YELLOW}{sentinel_msg}{RESET}")
-
-        except Exception:
-            pass
+    # Display Token Budget Gauge
+    display_gauge(token_counts)
 
     return 0
 

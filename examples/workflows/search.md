@@ -34,7 +34,7 @@ Standard Tri-Brid with mandatory source citations.
 ## Example
 
 ```
-User: /search What are the latest developments in quantum computing for 2026?
+User: /search What are the current LGBTQ+ protections in Singapore?
 
 AI: [Runs multiple searches → synthesizes → cites sources]
 ```
@@ -43,4 +43,4 @@ AI: [Runs multiple searches → synthesizes → cites sources]
 
 ## Tagging
 
-# workflow #automation #search
+#workflow #automation #search

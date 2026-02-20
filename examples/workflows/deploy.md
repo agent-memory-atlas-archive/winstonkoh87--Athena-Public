@@ -12,7 +12,7 @@ last_updated: 2025-12-31
 - Identify which *Protocols*, *Case Studies*, or *Concepts* from the private workspace are ready for public release.
 - **Criteria**: High structural value, low liability, generic applicability.
 - **EXPLICIT EXCLUSIONS**:
-  - **Psychology Profiles** (e.g. `Psychology_Layers.md`) - Too personal.
+  - **Psychology Profiles** (e.g. `Psychology_L1L5.md`) - Too personal.
   - **Risk Playbooks** (e.g. `RISK_PLAYBOOKS.md`) - Internal governance only.
   - **Private Case Studies** - Unless fully sanitized and generic (e.g. Bak Chor Mee).
 

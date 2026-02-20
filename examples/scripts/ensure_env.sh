@@ -11,14 +11,6 @@
 set -e
 
 PROJECT_ROOT="$(cd "$(dirname "$0")" && pwd)"
-# Walk upward to find .athena_root marker (works for standalone clone and nested repo)
-while [ ! -f "$PROJECT_ROOT/.athena_root" ] && [ "$PROJECT_ROOT" != "/" ]; do
-    PROJECT_ROOT="$(dirname "$PROJECT_ROOT")"
-done
-if [ ! -f "$PROJECT_ROOT/.athena_root" ]; then
-    # Fallback: assume script is at examples/scripts/ inside repo root
-    PROJECT_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-fi
 VENV_PATH="${PROJECT_ROOT}/.venv"
 PYTHON_MIN="3.10"
 
@@ -40,7 +32,7 @@ if [ ! -d "$VENV_PATH" ]; then
         echo "🔧 Creating virtual environment..."
         python3 -m venv "$VENV_PATH"
         source "$VENV_PATH/bin/activate"
-        pip install -q -r "${PROJECT_ROOT}/requirements.txt" 2>/dev/null || pip install -q -e "${PROJECT_ROOT}[dev]"
+        pip install -q -r "${PROJECT_ROOT}/requirements.lock" 2>/dev/null || pip install -q -e "${PROJECT_ROOT}[dev]"
         echo "✅ Virtual environment created and dependencies installed"
     else
         exit 2

@@ -13,8 +13,6 @@ Usage:
     athena init my-project            # Create new project directory
 """
 
-import shutil
-import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -234,102 +232,6 @@ This is an Athena workspace. Key directories:
 """
 
 
-def _get_templates_dir() -> Path:
-    """Get the path to bundled template files."""
-    return Path(__file__).resolve().parent.parent / "templates"
-
-
-def _install_claude_agents(root: Path) -> None:
-    """Install COS agent files into .claude/agents/."""
-
-    agents_dir = root / ".claude" / "agents"
-    agents_dir.mkdir(parents=True, exist_ok=True)
-
-    templates_dir = _get_templates_dir() / "agents"
-    if not templates_dir.exists():
-        print("   ⚠️  Agent templates not found in SDK")
-        return
-
-    installed = 0
-    for agent_file in templates_dir.glob("cos-*.md"):
-        dest = agents_dir / agent_file.name
-        if not dest.exists():
-            shutil.copy2(agent_file, dest)
-            print(f"   ✅ .claude/agents/{agent_file.name}")
-            installed += 1
-        else:
-            print(f"   ⏭️  .claude/agents/{agent_file.name} (already exists)")
-
-    if installed > 0:
-        print(f"   🏛️  {installed} COS agents installed")
-    else:
-        print("   ℹ️  All COS agents already installed")
-
-
-SUPPORTED_AGENTS = [
-    ("Claude Code", "claude", "CLAUDE.md + .claude/agents/ (6 COS sub-agents)"),
-    ("Antigravity", "antigravity", "AGENTS.md"),
-    ("Cursor", "cursor", ".cursor/rules.md"),
-    ("Gemini CLI", "gemini", ".gemini/AGENTS.md"),
-    ("VS Code + Copilot", "vscode", ".vscode/settings.json"),
-]
-
-
-def _prompt_agent_selection(root: Path) -> None:
-    """Prompt user to select their coding agent for config generation."""
-    print("\n🤖 Which coding agent are you using?")
-    for i, (name, _, config) in enumerate(SUPPORTED_AGENTS, 1):
-        print(f"   {i}. {name} → {config}")
-    print("   0. None / Skip")
-
-    try:
-        response = input(f"\nSelect (0-{len(SUPPORTED_AGENTS)}): ").strip()
-        if not response or response == "0":
-            return
-        choice = int(response)
-        if 1 <= choice <= len(SUPPORTED_AGENTS):
-            name, ide_key, _ = SUPPORTED_AGENTS[choice - 1]
-            print(f"\n⚙️  Creating {name} configuration...")
-            _create_ide_config(root, ide_key)
-        else:
-            print("   ⏭️  Invalid selection, skipping")
-    except ValueError:
-        print("   ⏭️  Invalid input, skipping")
-    except (EOFError, KeyboardInterrupt):
-        pass
-
-
-def _install_claude_md(root: Path) -> None:
-    """Create or append Athena section to CLAUDE.md."""
-    templates_dir = _get_templates_dir()
-    athena_template = templates_dir / "CLAUDE_ATHENA.md"
-
-    if not athena_template.exists():
-        print("   ⚠️  CLAUDE.md template not found in SDK")
-        return
-
-    athena_content = athena_template.read_text(encoding="utf-8")
-    claude_md = root / "CLAUDE.md"
-
-    if claude_md.exists():
-        existing = claude_md.read_text(encoding="utf-8")
-        if "Athena Integration" in existing:
-            print("   ⏭️  CLAUDE.md (Athena section already exists)")
-            return
-        # Append Athena section
-        claude_md.write_text(
-            existing.rstrip() + "\n\n---\n\n" + athena_content, encoding="utf-8"
-        )
-        print("   ✅ CLAUDE.md (Athena section appended)")
-    else:
-        claude_md.write_text(
-            "# CLAUDE.md\n\nThis file provides guidance to Claude Code when working in this repository.\n\n---\n\n"
-            + athena_content,
-            encoding="utf-8",
-        )
-        print("   ✅ CLAUDE.md (created with Athena integration)")
-
-
 def init_workspace(target_dir: Path = None, ide: str = None) -> bool:
     """
     Initialize an Athena workspace with the required directory structure.
@@ -369,9 +271,7 @@ def init_workspace(target_dir: Path = None, ide: str = None) -> bool:
 
     # Create root marker (for path discovery)
     marker_path = root / ".athena_root"
-    marker_path.write_text(
-        f"# Athena Workspace\nCreated: {datetime.now().isoformat()}\n"
-    )
+    marker_path.write_text(f"# Athena Workspace\nCreated: {datetime.now().isoformat()}\n")
     print("   ✅ .athena_root (workspace marker)")
 
     # Create template files
@@ -404,12 +304,6 @@ def init_workspace(target_dir: Path = None, ide: str = None) -> bool:
     if ide:
         print(f"\n⚙️  Creating {ide} configuration...")
         _create_ide_config(root, ide)
-
-    # Agent selection (if not already specified via --ide)
-    # Auto-detect: skip prompt if .claude/ already exists (Claude Code workspace)
-    if not ide and not (root / ".claude").exists():
-        if sys.stdin.isatty():
-            _prompt_agent_selection(root)
 
     # Summary
     print("\n" + "=" * 60)
@@ -468,11 +362,6 @@ def _create_ide_config(root: Path, ide: str) -> None:
             print("   ✅ .gemini/AGENTS.md")
         else:
             print("   ⏭️  .gemini/AGENTS.md (already exists)")
-
-    elif ide == "claude":
-        # Claude Code uses .claude/agents/ and CLAUDE.md
-        _install_claude_agents(root)
-        _install_claude_md(root)
 
 
 if __name__ == "__main__":

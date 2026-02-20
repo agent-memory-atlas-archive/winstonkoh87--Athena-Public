@@ -1,10 +1,7 @@
----created: 2025-12-09
-last_updated: 2026-01-30
 ---
-
----description: Activate Zero-Point Codex framework for strategic analysis
+description: Activate Zero-Point Codex framework for strategic analysis
 created: 2025-12-09
-last_updated: 2026-01-20
+last_updated: 2026-02-19
 ---
 
 # /start — Execution Script
@@ -16,7 +13,7 @@ last_updated: 2026-01-20
 
 // turbo
 
-- [/] Load `examples/templates/core_identity_template.md` — Laws #0-#4, Identity, RSI (~2K tokens)
+- [/] Load Core Identity (resolved dynamically via `constants.py`) — Laws #0-#4, Identity, RSI (~2K tokens)
 - [/] **Identity**: Load `.context/memory_bank/userContext.md` — Core profile, constraints, psychology (Robust)
 - [/] **Mission**: Load `.context/memory_bank/productContext.md` — Soul purpose, philosophy (Robust)
 - [/] **State**: Load `.context/memory_bank/activeContext.md` — Current focus (Robust)
@@ -51,7 +48,7 @@ Bypassing this sequence is a high-severity protocol violation. No exceptions for
 | Tag lookup, "find files about" | `TAG_INDEX.md` | 5,500 |
 | Protocol/skill request | `SKILL_INDEX.md` | 4,500 |
 | Bio, typology, "who am I" | `User_Profile_Core.md` | 1,500 |
-| L1-L5, behavioral patterns, schema analysis | `Psychology_Layers.md` | 3,000 |
+| L1-L5, trauma, therapy, fantasy | `Psychology_L1L5.md` | 3,000 |
 | Decision frameworks, strategy | `System_Principles.md` | 3,500 |
 | Marketing, SEO, SWOT, pricing | `Business_Frameworks.md` | 2,500 |
 | Calibration references, cases | `Session_Observations.md` | 2,500 |
@@ -69,8 +66,8 @@ Bypassing this sequence is a high-severity protocol violation. No exceptions for
 |-----------------|-----------------|
 | Frontend, UI, Design, CSS, "Make it pretty" | `Skill_Frontend_Design.md` |
 | Deep Research, Rabbit Hole, "Find out everything" | `Protocol 52: Deep Research Loop` |
-| Trading, Finance, Risk, "Is this a scam?" | `Protocol 46 + Constraints_Master.md` |
-| Interpersonal Strategy, Communication | `Protocol 83: Depth Principle` |
+| Trading, ZenithFX, Risk, "Is this a scam?" | `Protocol 46 + Constraints_Master.md` |
+| Seduction, Game, Dating, Apps | `Playbook_Seduction_First_Timer.md` |
 | **Ads, PPC, Google/Meta Ads, Marketing** | `.agent/skills/claude-ads/SKILL.md` |
 | Complex Reasoning, "Analyze this", Strategy | `Protocol 75: Synthetic Parallel Reasoning` |
 
@@ -92,15 +89,15 @@ Bypassing this sequence is a high-severity protocol violation. No exceptions for
 | `/think` | **Escalation** — Force L4 depth + Output_Standards | +2K |
 | `/ultrathink` | Maximum depth + Full stack | +28K |
 
-> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](examples/protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
+> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
 
 ---
 
 ## References
 
-- [Protocol 133: JIT Routing](examples/protocols/architecture/133-query-archetype-routing.md)
-- [WORKFLOW_INDEX.md](#)
-- [Session 2025-12-13-04](#)
+- [Protocol 133: JIT Routing](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/133-query-archetype-routing.md)
+- [WORKFLOW_INDEX.md](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/WORKFLOW_INDEX.md)
+- [Session 2025-12-13-04](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/session_logs/archive/2025-12-13-session-04.md)
 
 ---
 

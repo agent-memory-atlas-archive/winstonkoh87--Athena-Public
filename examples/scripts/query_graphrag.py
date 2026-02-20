@@ -8,7 +8,7 @@ for comprehensive semantic retrieval.
 Auto-selects the Python 3.12 venv in .agent/graphrag_env for compatibility.
 
 Usage:
-    python3 .agent/scripts/query_graphrag.py "What patterns connect negotiation and business strategy?"
+    python3 .agent/scripts/query_graphrag.py "What patterns connect seduction and business?"
     python3 .agent/scripts/query_graphrag.py "structural trap" --local-only
     python3 .agent/scripts/query_graphrag.py "cross-domain patterns" --deep
     python3 .agent/scripts/query_graphrag.py "query" --json  (Machine readable)

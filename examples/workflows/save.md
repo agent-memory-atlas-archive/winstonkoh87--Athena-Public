@@ -54,7 +54,7 @@ last_updated: 2025-12-31
 
 ## References
 
-- [Session 2025-12-13-04](#) — Documents this workflow's creation
+- [Session 2025-12-13-04](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/session_logs/archive/2025-12-13-session-04.md) — Documents this workflow's creation
 
 ---
 

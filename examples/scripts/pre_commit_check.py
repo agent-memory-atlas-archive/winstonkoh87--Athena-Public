@@ -29,7 +29,7 @@ TODO_PATTERNS = ["TODO", "FIXME", "XXX", "HACK", "BUG"]
 MAX_FILE_SIZE_KB = 100
 MAX_TODOS_WARNING = 5
 
-# Secret Patterns (Defense in Depth)
+# Secret Patterns (Defense in Depth — upgraded with OpenClaw patterns)
 SECRET_PATTERNS = [
     (r"AKIA[0-9A-Z]{16}", "AWS Access Key"),
     (
@@ -40,6 +40,10 @@ SECRET_PATTERNS = [
     (r"sk-[a-zA-Z0-9]{48}", "OpenAI/Anthropic Key (Legacy Format)"),
     (r"xox[baprs]-([0-9a-zA-Z]{10,48})?", "Slack Token"),
     (r"-----BEGIN PRIVATE KEY-----", "RSA Private Key"),
+    # OpenClaw-inspired additions (P2 upgrade)
+    (r"eyJ[a-zA-Z0-9_-]{20,}\.eyJ[a-zA-Z0-9_-]{20,}", "JWT/Supabase Service Key"),
+    (r"AIza[a-zA-Z0-9_-]{35}", "Gemini/Google API Key"),
+    (r"sbp_[a-zA-Z0-9]{40}", "Supabase Personal Access Token"),
 ]
 
 

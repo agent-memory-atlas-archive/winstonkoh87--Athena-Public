@@ -89,7 +89,7 @@ plt.text(
 
 # Labels and Title
 plt.title(
-    'Example Strategy: The "Trimodal" PnL Distribution',
+    'EURAUD Short Strategy: The "Python Snake" Distribution',
     fontsize=18,
     color="white",
     weight="bold",
@@ -105,6 +105,8 @@ plt.xticks(
 )
 
 # Save directly to target folder
-output_path = "output/example_distribution_analytic.png"
+output_path = (
+    "/Users/[AUTHOR]/Desktop/FX Trading/Feb 2026/euraud_distribution_analytic.png"
+)
 plt.savefig(output_path, dpi=300, bbox_inches="tight", facecolor="black")
 print(f"Distribution curve generated at: {output_path}")

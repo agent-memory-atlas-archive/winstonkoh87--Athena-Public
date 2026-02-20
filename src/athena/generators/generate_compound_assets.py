@@ -133,8 +133,8 @@ def refresh_entity_extraction():
     print("=" * 60)
 
     key_docs = [
-        WORKSPACE / ".framework/modules/Core_Identity.md",
-        WORKSPACE / ".framework/modules/System_Principles.md",
+        WORKSPACE / ".framework/v7.0/modules/Core_Identity.md",
+        WORKSPACE / ".framework/v7.0/modules/System_Principles.md",
         WORKSPACE
         / ".context/memories/case_studies/CS-346-GEO-Pivot-Content-Agencies.md",
         WORKSPACE

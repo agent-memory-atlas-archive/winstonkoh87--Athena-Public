@@ -46,7 +46,7 @@ def get_last_action():
 
 def main():
     print("\n" + "=" * 40)
-    print("      ATHENA SYSTEM PULSE (v9.2.0)")
+    print("      ATHENA SYSTEM PULSE (v8.7.2)")
     print("=" * 40)
     print(f"Daemon Status    : {get_daemon_status()}")
     print(f"Total Sessions   : {get_session_count()}")

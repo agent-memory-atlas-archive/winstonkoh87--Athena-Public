@@ -19,7 +19,7 @@ MANIFEST_PATH = PROJECT_ROOT / ".context" / "cache" / "hot_manifest.json"
 CORE_FILES = [
     {
         "name": "Core_Identity.md",
-        "path": ".framework/modules/Core_Identity.md",
+        "path": ".framework/v8.2-stable/modules/Core_Identity.md",
         "purpose": "Core laws and identity",
     },
     {
@@ -41,7 +41,7 @@ def get_recent_files(limit=5):
     search_dirs = [
         PROJECT_ROOT / ".agent" / "skills" / "protocols",
         PROJECT_ROOT / ".context" / "memories" / "session_logs",
-        PROJECT_ROOT / ".framework" / "modules",
+        PROJECT_ROOT / ".framework" / "v8.2-stable" / "modules",
     ]
 
     all_files = []

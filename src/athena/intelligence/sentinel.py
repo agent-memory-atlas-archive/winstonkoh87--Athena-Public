@@ -55,33 +55,10 @@ def check_boot_sentinel() -> Optional[str]:
             return "🔭 **Sentinel**: Active Context lacks a clear 'Current Focus'. This risks aimless drift."
 
         # 2. Divergence Analysis (First Principles)
-        # Check if focus or recent context contradicts Law #1 (Ruin)
-        ruin_keywords = [
-            "delete all",
-            "wipe",
-            "force",
-            "ignore safety",
-            "purge everything",
-            "remove permanently",
-            "override constraints",
-            "drop database",
-            "rm -rf",
-            "destroy",
-            "nuke",
-            "bypass security",
-            "disable protection",
-            "skip validation",
-        ]
-
-        # Also scan Recent Context for risky state
-        recent_match = re.search(
-            r"## Recent Context\n(.*?)(?=\n##|\Z)", active_content, re.DOTALL
-        )
-        recent_text = recent_match.group(1).strip() if recent_match else ""
-        scan_text = (focus_text + " " + recent_text).lower()
-
-        if any(kw in scan_text for kw in ruin_keywords):
-            return "🔭 **Sentinel ALERT**: Active context contains HIGH-RISK keywords. Potential Law #1 Violation."
+        # Check if focus contradicts Law #1 (Ruin) or Law #2 (SDR)
+        ruin_keywords = ["delete all", "wipe", "force", "ignore safety"]
+        if any(kw in focus_text.lower() for kw in ruin_keywords):
+            return "🔭 **Sentinel ALERT**: Current focus contains HIGH-RISK keywords. Potential Law #1 Violation."
 
         # 3. Structural Check: Check for Action Item Overload
         # If > 10 items in activeContext tasks, we are in 'Complexity Hell'

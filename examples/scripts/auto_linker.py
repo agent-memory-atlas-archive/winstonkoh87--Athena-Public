@@ -91,7 +91,7 @@ LINK_MAP = {
     ),
     "sdf": (
         "SDF (Strategic Dynamic Filtering)",
-        ".framework/modules/System_Principles.md",
+        ".framework/v8.2-stable/modules/System_Principles.md",
     ),
     "mcda": (
         "Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)",

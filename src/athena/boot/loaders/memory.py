@@ -22,20 +22,11 @@ class MemoryLoader:
         if not LOGS_DIR.exists():
             return ""
 
-        import re as _re
-
-        pattern = _re.compile(r"(\d{4}-\d{2}-\d{2})-session-(\d{2,3})\.md")
-        candidates = []
-        for f in LOGS_DIR.glob("*-session-*.md"):
-            match = pattern.match(f.name)
-            if match:
-                candidates.append((match.group(1), int(match.group(2)), f))
-
-        if not candidates:
+        files = sorted(LOGS_DIR.glob("*-session-*.md"))
+        if not files:
             return ""
 
-        # Get latest by (date, session_num) without sorting entire list
-        _, _, latest_file = max(candidates, key=lambda x: (x[0], x[1]))
+        latest_file = files[-1]
         filename = latest_file.name
         print(f"⏮️  Last Session: {BOLD}{filename}{RESET}")
 
@@ -108,7 +99,7 @@ class MemoryLoader:
 
         try:
             result = subprocess.run(
-                [sys.executable, str(SUPABASE_SEARCH_SCRIPT), "recent session context"],
+                ["python3", str(SUPABASE_SEARCH_SCRIPT), "recent session context"],
                 capture_output=True,
                 text=True,
                 timeout=60,

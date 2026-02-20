@@ -1,6 +1,5 @@
 import subprocess
-import sys
-
+import os
 from athena.boot.constants import GREEN, RESET
 
 
@@ -8,32 +7,15 @@ class SystemLoader:
     @staticmethod
     def verify_environment():
         """Titanium Airlock: Verifies dependencies and env vars."""
-        from athena.boot.constants import PROJECT_ROOT, RED, BOLD, RESET, DIM, GREEN
-        import time
+        from athena.boot.constants import PROJECT_ROOT, RED, YELLOW, BOLD, RESET, DIM
 
-        # Skip shell-based verification on Windows (bash not available)
-        if sys.platform == "win32":
-            print(f"   {DIM}⏭️  Airlock: Skipped (Windows — bash unavailable){RESET}")
-            return
-
-        ensure_env = PROJECT_ROOT / "examples" / "scripts" / "ensure_env.sh"
+        ensure_env = (
+            PROJECT_ROOT / "Athena-Public" / "examples" / "scripts" / "ensure_env.sh"
+        )
 
         if not ensure_env.exists():
             print(f"   ⚠️  Airlock: ensure_env.sh missing at {ensure_env}")
             return
-
-        # Check cache
-        cache_file = PROJECT_ROOT / ".agent" / "state" / "env_check_cache.txt"
-        cache_file.parent.mkdir(parents=True, exist_ok=True)
-
-        if cache_file.exists():
-            try:
-                last_check = float(cache_file.read_text().strip() or 0)
-                if time.time() - last_check < 86400:  # 24 hours
-                    print(f"   {GREEN}✅ Environment Healthy (Cached){RESET}")
-                    return
-            except Exception:
-                pass
 
         print("🛡️  Verifying Environment (Airlock)...")
         result = subprocess.run(
@@ -42,47 +24,27 @@ class SystemLoader:
         if result.returncode != 0:
             print(f"\n{RED}{BOLD}❌ Environment Check Failed{RESET}")
             print(f"{DIM}{result.stdout}{RESET}")
+            # Optional: Add auto-fix call here if desired
         else:
-            try:
-                cache_file.write_text(str(time.time()))
-            except Exception:
-                pass
             print(f"   {GREEN}✅ Environment Healthy{RESET}")
 
     @staticmethod
     def enforce_daemon():
         """Ensures the Athena Daemon (athenad) is active."""
-        from athena.boot.constants import PROJECT_ROOT, GREEN, RESET
+        from athena.boot.constants import PROJECT_ROOT, GREEN, BOLD, RESET
 
         daemon_script = PROJECT_ROOT / "src" / "athena" / "core" / "athenad.py"
 
         try:
-            if sys.platform == "win32":
-                # Windows: use tasklist to check for athenad
-                check = subprocess.run(
-                    ["tasklist", "/FI", "IMAGENAME eq python*", "/FO", "CSV"],
-                    capture_output=True,
-                    text=True,
-                )
-                daemon_running = "athenad" in check.stdout
-            else:
-                # Unix/macOS: use pgrep
-                check = subprocess.run(
-                    ["pgrep", "-f", "athenad.py"], capture_output=True
-                )
-                daemon_running = check.returncode == 0
-
-            if not daemon_running:
+            # Check if running
+            check = subprocess.run(["pgrep", "-f", "athenad.py"], capture_output=True)
+            if check.returncode != 0:
                 print("🧠 Starting Athena Daemon (Titanium)...")
                 subprocess.Popen(
-                    [sys.executable, str(daemon_script)],
+                    [os.sys.executable, str(daemon_script)],
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.DEVNULL,
-                    start_new_session=(sys.platform != "win32"),
-                    # On Windows, start_new_session=True raises errors in some configs
-                    creationflags=(
-                        subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
-                    ),
+                    start_new_session=True,
                 )
                 print(f"   {GREEN}✅ Daemon Started.{RESET}")
             else:
@@ -93,13 +55,9 @@ class SystemLoader:
     @staticmethod
     def sync_ui():
         """Launch UI components and sync hardware state."""
-        print("🔄 Syncing UI Components...")
+        print(f"🔄 Syncing UI Components...")
 
-        # `open -a` is macOS-only. Skip gracefully on other platforms.
-        if sys.platform != "darwin":
-            print(f"   {GREEN}✅ UI Sync: Skipped (non-macOS){RESET}")
-            return
-
+        # Antigravity Launch with GPU flags
         cmd = [
             "open",
             "-a",
@@ -111,6 +69,7 @@ class SystemLoader:
         ]
 
         try:
+            # We use Popen to not block the boot sequence
             subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             print(f"   {GREEN}✅ Antigravity Sync Initiated{RESET}")
         except Exception as e:

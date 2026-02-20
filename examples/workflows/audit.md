@@ -115,7 +115,7 @@ python3 .agent/scripts/cross_reference.py
 ### If you are Claude (Auditing Gemini's Session Work)
 
 - [ ] **Check Hallucination**: "Did Gemini invent a path in the new files?" → *Verify existence.*
-- [ ] **Check Robotic Tone**: "Do the new artifacts sound generic?" → *Inject user voice/personality.*
+- [ ] **Check Robotic Tone**: "Do the new artifacts sound generic?" → *Inject 'Jun Kai' personality.*
 - [ ] **Check Depth**: "Did the session changes skim the surface?" → *Apply /ultrathink logic.*
 
 ### Tie-Breaking Protocol (When Models Disagree)

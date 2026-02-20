@@ -176,7 +176,9 @@ def get_mobile_system_prompt() -> str:
 
     # Try to load Core Identity
     workspace = Path(__file__).resolve().parent.parent.parent
-    core_identity_path = workspace / ".framework" / "modules" / "Core_Identity.md"
+    core_identity_path = (
+        workspace / ".framework" / "v7.0" / "modules" / "Core_Identity.md"
+    )
     user_profile_path = workspace / "Winston" / "profile" / "User_Profile.md"
 
     identity_snippet = ""

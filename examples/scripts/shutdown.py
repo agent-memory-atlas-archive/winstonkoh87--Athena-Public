@@ -271,7 +271,7 @@ def extract_threads(focus: str, tags: list[str], content: str) -> list[str]:
     Known threads:
     - TH-001: Athena Architecture
     - TH-002: Portfolio/Resume
-    - TH-003: FinanceApp/Trading
+    - TH-003: ZenithFX/Trading
     - TH-004: Melvin Portfolio
     - TH-005: Session Logging
     """

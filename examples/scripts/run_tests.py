@@ -13,7 +13,7 @@ from pathlib import Path
 
 # Configuration
 WORKSPACE = Path(__file__).resolve().parent.parent.parent
-CORE_IDENTITY = WORKSPACE / ".framework" / "modules" / "Core_Identity.md"
+CORE_IDENTITY = WORKSPACE / ".framework" / "v7.0" / "modules" / "Core_Identity.md"
 
 # ANSI Colors
 GREEN = "\033[92m"
@@ -34,16 +34,16 @@ def main():
     print("\n" + "=" * 60)
     print("🧪 REGRESSION TEST SUITE — Core Identity Validation")
     print("=" * 60 + "\n")
-
+    
     if not CORE_IDENTITY.exists():
         print(f"{RED}❌ Core_Identity.md not found!{RESET}")
         print(f"   Expected: {CORE_IDENTITY}")
         return 1
-
+    
     print(f"📋 Testing: {CORE_IDENTITY.name}\n")
-
+    
     content = CORE_IDENTITY.read_text(encoding="utf-8")
-
+    
     # Define required sections
     checks = [
         ("## 0.3 四大絕對法則", "Laws #0-4 Section"),
@@ -59,21 +59,21 @@ def main():
         ("### 0.5.1 Estimated Complexity Score", "Λ Latency Section"),
         ("Committee Seats", "COS Structure"),
     ]
-
+    
     passed = 0
     failed = 0
-
+    
     print("Structural Checks:")
     for marker, name in checks:
         if check_section(content, marker, name):
             passed += 1
         else:
             failed += 1
-
+    
     # Summary
     print("\n" + "-" * 40)
     total = len(checks)
-
+    
     if failed == 0:
         print(f"{GREEN}✅ All tests passed ({passed}/{total}){RESET}")
         verdict = 0
@@ -83,7 +83,7 @@ def main():
     else:
         print(f"{RED}❌ Critical failures ({failed}/{total} failed){RESET}")
         verdict = 1
-
+    
     print("=" * 60 + "\n")
     return verdict
 
