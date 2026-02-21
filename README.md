@@ -17,6 +17,8 @@ Own the data. Rent the intelligence.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](docs/FAQ.md) · [Contributing](CONTRIBUTING.md)
 
+*Last updated: 22 February 2026*
+
 </div>
 
 ---
