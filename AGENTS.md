@@ -70,6 +70,6 @@ See [`docs/protocols/413-multi-agent-coordination.md`](docs/protocols/413-multi-
 
 ## Version
 
-- **Framework**: v9.2.0
+- **Framework**: v9.2.3
 - **Last Updated**: 2026-02-21
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules

@@ -1,6 +1,6 @@
 # Semantic Search: Triple-Path Retrieval Architecture
 
-> **Last Updated**: 16 February 2026  
+> **Last Updated**: 22 February 2026  
 > **Purpose**: How Athena finds and retrieves relevant context using three complementary methods
 
 ---

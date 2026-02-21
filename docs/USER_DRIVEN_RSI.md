@@ -1,6 +1,6 @@
 # User-Driven Recursive Self-Improvement (RSI)
 
-> **Last Updated**: 5 February 2026  
+> **Last Updated**: 22 February 2026  
 > **TL;DR**: AI doesn't improve itself. You improve together. The loop is bilateral.
 
 ---

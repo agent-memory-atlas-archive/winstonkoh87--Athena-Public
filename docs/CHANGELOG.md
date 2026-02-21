@@ -1,6 +1,6 @@
 # Athena Changelog
 
-> **Last Updated**: 21 February 2026
+> **Last Updated**: 22 February 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
@@ -29,6 +29,30 @@ This document provides detailed release notes. For the brief summary, see the RE
 | Protocol 413 version | 1.1 ✅ |
 | CLAUDE.md symlinks | Created (root + Athena-Public) ✅ |
 | Issue templates | 3/3 updated ✅ |
+
+---
+
+## v9.2.2 (21 February 2026)
+
+**S-Tier README Refactor + Docs Restructure**: Rewrote README from 671→224 lines. Created 4 new documentation pages.
+
+### Key Changes
+
+- **README**: Complete rewrite — removed verbose sections, added mermaid flow diagram, Linux analogy table, collapsible use cases.
+- **New Docs**: `YOUR_FIRST_SESSION.md`, `TIPS.md`, `IMPORTING.md`, `CLI.md` — content moved from README to dedicated pages.
+- **Version Badge**: Bumped to v9.2.2.
+
+---
+
+## v9.2.1 (20 February 2026)
+
+**Deep Audit & PnC Sanitization**: Sanitized 17 patterns across 13 files. Ensured no private-and-confidential data in public repo.
+
+### Key Changes
+
+- **PnC Audit**: Scanned all public files for leaked personal data, credentials, and private references. 17 patterns sanitized across 13 files.
+- **Collapsible Use Cases**: Converted 6 detailed use case descriptions into dropdown menus for cleaner README.
+- **Reddit Views**: Updated badge to 1M+ (aggregated across all threads).
 
 ---
 

@@ -1,6 +1,6 @@
 # Top 10 Protocols (MCDA Ranked)
 
-> **Last Updated**: 7 February 2026  
+> **Last Updated**: 22 February 2026  
 > **Methodology**: Weighted MCDA + Pairwise Validation  
 > **Total Protocols Evaluated**: 69 (Athena Starter Pack)
 

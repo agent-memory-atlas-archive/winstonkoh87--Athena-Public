@@ -1,6 +1,6 @@
 # Your First Session with Athena
 
-> **Last Updated**: 16 February 2026
+> **Last Updated**: 22 February 2026
 
 > This guide walks you through your very first session. By the end, Athena will know who you are, how you think, and what you're building — and every future session will compound on this foundation.
 
