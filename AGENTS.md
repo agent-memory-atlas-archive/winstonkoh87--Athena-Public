@@ -53,8 +53,23 @@ When working on any task in this workspace:
 
 ---
 
+## Multi-Agent Safety (Protocol 413)
+
+When multiple AI agents work in this repository simultaneously:
+
+- **Never** `git stash` create/apply/drop — assumes other agents have WIP
+- **Never** switch branches or modify worktrees without explicit request
+- **Always** `git pull --rebase` before pushing
+- **Commit only your changes** — when you see unrecognized files from other agents, ignore them
+- **Lint/format diffs** that are formatting-only: auto-resolve without asking
+- **Focus reports on your edits** — avoid guardrail disclaimers unless truly blocked
+
+See [`docs/protocols/413-multi-agent-coordination.md`](docs/protocols/413-multi-agent-coordination.md) for full rules.
+
+---
+
 ## Version
 
 - **Framework**: v9.2.0
-- **Last Updated**: 2026-02-17
-- **Pattern Source**: Vercel "AGENTS.md vs Skills" Research
+- **Last Updated**: 2026-02-21
+- **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules

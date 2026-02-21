@@ -1,10 +1,34 @@
 # Athena Changelog
 
-> **Last Updated**: 17 February 2026
+> **Last Updated**: 21 February 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.2.3 (21 February 2026)
+
+**Multi-Agent Safety Hardening + Issue Deflection**: Integrated architectural patterns from Claude Code and OpenClaw audits. Added self-service support gates.
+
+### Key Changes
+
+- **Protocol 413 v1.1**: Added Unrecognized File Handling, Lint/Format Auto-Resolution, and Focus Discipline sections (sourced from OpenClaw).
+- **AGENTS.md**: Added Multi-Agent Safety section to both root and Athena-Public. Updated pattern source attribution.
+- **CLAUDE.md Symlinks**: Created `CLAUDE.md -> AGENTS.md` symlinks for cross-IDE agent compatibility.
+- **SUPPORT.md**: New self-service support file — "Ask Athena First" philosophy.
+- **Issue Templates**: All 3 templates (bug, question, feature) updated with Athena-first gates. Feature requests now nudge toward PRs.
+- **CONTRIBUTING.md**: Added "Before You Open an Issue" section, elevated PR submission to #1 contribution method.
+- **SECURITY.md**: Fixed stale version reference (v1.5.x → v9.x).
+
+### Verification
+
+| Metric | Result |
+|--------|--------|
+| Protocol 413 version | 1.1 ✅ |
+| CLAUDE.md symlinks | Created (root + Athena-Public) ✅ |
+| Issue templates | 3/3 updated ✅ |
 
 ---
 

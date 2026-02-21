@@ -1,7 +1,7 @@
 ---
 protocol_id: 413
 title: "Multi-Agent Coordination"
-version: "1.0"
+version: "1.1"
 status: ACTIVE
 created: 2026-02-02
 source: "OpenClaw (openclaw/openclaw)"
@@ -97,6 +97,32 @@ Add to Section 4.1 (Bionic Operational Physics):
    - "commit" = YOUR changes only
    - "push" = always `git pull --rebase` first
 ```
+
+## Unrecognized File Handling
+
+When you see files changed by another agent:
+
+1. **Do not revert, modify, or comment on them** unless they conflict with your task
+2. **Focus on your changes only** — commit only those
+3. End with a brief "other files present" note **only if directly relevant**
+4. Do **not** add guardrail disclaimers about other agents unless truly blocked
+
+## Lint/Format Auto-Resolution
+
+Minimize friction from formatting noise:
+
+| Situation | Action |
+|-----------|--------|
+| Staged + unstaged diffs are formatting-only | Auto-resolve without asking |
+| Commit already requested + formatting follow-up needed | Auto-stage in same commit (or tiny follow-up), no extra confirmation |
+| Changes are semantic (logic/data/behavior) | Ask before committing |
+
+## Focus Discipline
+
+- Focus reports on **your edits only**
+- Avoid guard-rail disclaimers unless truly blocked
+- When multiple agents touch the same file, continue if safe
+- Bug investigations: **read source code** of relevant dependencies and all related local code before concluding; aim for high-confidence root cause
 
 ## Conflict Resolution
 
