@@ -35,6 +35,25 @@ AI agents are brilliant — but amnesiac. Every session starts from zero. Athena
 
 > *Think of it like this: the LLM is the engine. Athena is the chassis, the memory, and the rules of the road.*
 
+### "But don't ChatGPT / Gemini already remember?"
+
+Yes — platforms now offer memory features. But there's a difference between *remembering your name* and *thinking in your frameworks*:
+
+| Capability | Platform Memory (ChatGPT, Gemini, Claude) | Athena |
+|:-----------|:------------------------------------------|:-------|
+| **Memory type** | Passive recall (opaque, probabilistic) | Active reload (deterministic, structured) |
+| **Can you inspect it?** | No — it's a black box | Yes — it's markdown files you can read and edit |
+| **Can you search it?** | Vague recall, no precision | Full semantic + keyword search with file links |
+| **Cross-platform?** | Locked to one provider | Same memory works across Claude, Gemini, GPT, Grok |
+| **Version history?** | None — no rollback, no audit trail | Full `git log`, `git diff`, `git blame` |
+| **Programmable behavior?** | Text box (suggestion) | Structured protocols with triggers, decision trees, kill switches |
+| **Tool execution?** | Sandboxed / none | Runs scripts, writes files, calls APIs on your machine |
+| **Multi-agent?** | One model, one window | Cross-model orchestration (Trilateral Feedback Protocol) |
+| **What happens if you switch providers?** | Start over | Nothing changes — your data stays |
+
+> [!TIP]
+> Think of platform memory like photos stored on Instagram — you can view them, but you don't own them, can't move them, and can't search them precisely. Athena is like keeping the originals on your hard drive, with GPS metadata, albums, and full edit history.
+
 ---
 
 ## ⚡ Quickstart
@@ -106,7 +125,7 @@ flowchart LR
 |:----------|:--------|
 | 🧠 **Core Identity** | Pre-built constitution with 6 laws — [template](examples/templates/core_identity_template.md) |
 | 📋 **120+ Protocols** | Decision frameworks across 13 categories — [browse](examples/protocols/) |
-| ⚡ **49 Slash Commands** | `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
+| ⚡ **50+ Slash Commands** | `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Hybrid RAG Search** | 5-source retrieval + RRF fusion — [architecture](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **MCP Tool Server** | 9 tools exposable to any MCP client — [docs](docs/MCP_SERVER.md) |
 | 🛡️ **Governance Layer** | 4 capability levels, 3 sensitivity tiers — [security](docs/SECURITY.md) |
@@ -194,7 +213,7 @@ Athena-Public/
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
 │   ├── protocols/           # 120+ starter frameworks (13 categories)
-│   ├── scripts/             # 130+ reference scripts
+│   ├── scripts/             # 500+ reference scripts
 │   └── templates/           # Starter templates (framework, memory bank)
 ├── docs/                    # Architecture, benchmarks, security, guides
 └── pyproject.toml           # Modern packaging

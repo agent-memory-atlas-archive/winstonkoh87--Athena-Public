@@ -179,7 +179,7 @@ Query → [Semantic Search (pgvector)] ──┘
 |--------|--------|--------|
 | Boot time | < 2 min | **~1m 45s (1–2 min)** |
 | Search latency | < 500ms | **< 200ms** |
-| Context injection | < 10K tokens | **~4K tokens** |
+| Context injection | < 15K tokens | **~12.5K tokens** |
 | Quicksave overhead | < 500ms | **< 100ms** |
 | Session log write | < 1s | **< 500ms** |
 

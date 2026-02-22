@@ -76,7 +76,7 @@ The core boot payload is **~12.5K tokens** — always loaded on `/start`. The fu
 - **Document Sharding**: Large protocols split into retrievable chunks
 - **Summary Caching**: Session summaries pre-computed at `/end`
 - **Selective Context**: Only relevant protocols injected per query
-- **Canonical Memory**: Single materialized view supersedes searching 500+ session logs
+- **Canonical Memory**: Single materialized view supersedes searching 1,100+ session logs
 
 ---
 
@@ -84,7 +84,7 @@ The core boot payload is **~12.5K tokens** — always loaded on `/start`. The fu
 
 | Asset | Count | Size |
 |-------|-------|------|
-| Protocols & Workflows | 120+ protocols, 49 workflows | ~1.5 MB |
+| Protocols & Workflows | 120+ protocols, 50+ workflows | ~1.5 MB |
 | Case Studies | 42 | ~2.4 MB |
 | Session Logs | 1,100+ | ~4.2 MB |
 | GraphRAG Entities | 4,200+ | ~46 MB |
