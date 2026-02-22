@@ -6,6 +6,7 @@ Responsibilities:
   1.  File System Watcher (Polling) -> Updates SQLite Metadata
   2.  Background Worker (Threading) -> Vectors Content into GraphRAG
   3.  Health Monitor -> Self-healing
+  4.  Skill Hot-Reload -> Detects skill changes, logs to telemetry (Great Steal III)
 
 Architecture:
   [Main Thread] --(Queue)--> [Indexer Thread]
@@ -30,6 +31,10 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[3]  # src/athena/core -> ROOT
 DB_PATH = PROJECT_ROOT / ".agent" / "inputs" / "athena.db"
 SCHEMA_PATH = PROJECT_ROOT / ".agent" / "inputs" / "schema.sql"
+
+# Skill Hot-Reload Configuration (Great Steal Phase III)
+SKILL_DIR = PROJECT_ROOT / ".agent" / "skills"
+SKILL_INDEX_STALE_FLAG = PROJECT_ROOT / ".athena" / "SKILL_INDEX_STALE"
 
 # Watch Configuration
 WATCH_DIRS = [
@@ -232,6 +237,8 @@ class AthenaDaemon:
         row = cursor.fetchone()
 
         if not row or row["checksum"] != checksum:
+            is_new = row is None
+
             # Index Metadata
             cursor.execute(
                 "INSERT OR REPLACE INTO files (path, last_modified, checksum, type) VALUES (?, ?, ?, ?)",
@@ -249,6 +256,27 @@ class AthenaDaemon:
                     "INSERT OR IGNORE INTO file_tags (file_path, tag_id) VALUES (?, ?)",
                     (filepath, tag_id),
                 )
+
+            # Great Steal III: Skill Hot-Reload Detection
+            if str(SKILL_DIR) in filepath:
+                skill_name = Path(filepath).stem
+                change_type = "added" if is_new else "modified"
+                logging.info(
+                    f"🔄 Skill {'Added' if is_new else 'Modified'}: {skill_name}"
+                )
+                try:
+                    from athena.core.skill_telemetry import log_skill_change
+
+                    log_skill_change(skill_name, change_type, filepath)
+                except ImportError:
+                    pass  # Graceful degradation if telemetry not available
+                # Set stale flag for boot.py to detect
+                try:
+                    SKILL_INDEX_STALE_FLAG.parent.mkdir(parents=True, exist_ok=True)
+                    SKILL_INDEX_STALE_FLAG.touch()
+                except OSError:
+                    pass
+
             return True
         return False
 

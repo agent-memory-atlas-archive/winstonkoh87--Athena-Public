@@ -282,5 +282,246 @@ class TestSandbox:
         assert isinstance(available, bool)
 
 
+# =============================================
+# FEATURE 4: Skill Telemetry (Great Steal III)
+# =============================================
+
+
+class TestSkillTelemetry:
+    """Test the JSONL skill usage telemetry system."""
+
+    @pytest.fixture(autouse=True)
+    def setup_telemetry(self, tmp_path, monkeypatch):
+        """Redirect telemetry log to a temp directory."""
+        import athena.core.skill_telemetry as telem_mod
+
+        self.log_path = tmp_path / "skill_usage.jsonl"
+        monkeypatch.setattr(telem_mod, "_get_telemetry_path", lambda: self.log_path)
+        self.telem = telem_mod
+
+    def test_log_invocation(self):
+        """log_skill_invocation should create a JSONL entry."""
+        record = self.telem.log_skill_invocation(
+            "Protocol 367", session_id="test-session", trigger="auto"
+        )
+        assert record["skill"] == "Protocol 367"
+        assert record["trigger"] == "auto"
+        assert self.log_path.exists()
+        assert self.log_path.read_text().strip() != ""
+
+    def test_log_multiple_and_stats(self):
+        """Multiple invocations should aggregate correctly in stats."""
+        self.telem.log_skill_invocation("Protocol 367", "s1", trigger="auto")
+        self.telem.log_skill_invocation("Protocol 367", "s2", trigger="manual")
+        self.telem.log_skill_invocation("Protocol 162", "s1", trigger="auto")
+
+        stats = self.telem.get_skill_stats(days=30)
+        assert stats["total_invocations"] == 3
+        assert stats["unique_skills"] == 2
+        assert stats["skills"]["Protocol 367"]["count"] == 2
+        assert stats["skills"]["Protocol 367"]["auto_pct"] == 0.5
+        assert stats["skills"]["Protocol 162"]["count"] == 1
+
+    def test_log_skill_change_excluded_from_stats(self):
+        """skill_change events should NOT appear in invocation stats."""
+        self.telem.log_skill_invocation("Protocol 367", "s1")
+        self.telem.log_skill_change("new_skill", "added", "/path/to/skill.md")
+
+        stats = self.telem.get_skill_stats(days=30)
+        assert stats["total_invocations"] == 1  # Only invocation, not change
+
+    def test_dead_skills(self):
+        """get_dead_skills should return skills with zero invocations."""
+        self.telem.log_skill_invocation("Protocol 367", "s1")
+
+        dead = self.telem.get_dead_skills(
+            known_skills=["Protocol 367", "Protocol 162", "Protocol 999"],
+            days=30,
+        )
+        assert "Protocol 367" not in dead
+        assert "Protocol 162" in dead
+        assert "Protocol 999" in dead
+
+    def test_top_skills_sorted(self):
+        """top_skills should be sorted by count descending."""
+        for _ in range(5):
+            self.telem.log_skill_invocation("Skill A", "s1")
+        for _ in range(3):
+            self.telem.log_skill_invocation("Skill B", "s1")
+        self.telem.log_skill_invocation("Skill C", "s1")
+
+        stats = self.telem.get_skill_stats(days=30)
+        top = stats["top_skills"]
+        assert top[0] == ("Skill A", 5)
+        assert top[1] == ("Skill B", 3)
+        assert top[2] == ("Skill C", 1)
+
+
+# =============================================
+# FEATURE 5: Skill Nudge (Great Steal III)
+# =============================================
+
+
+class TestSkillNudge:
+    """Test the 2-tier keyword matching engine."""
+
+    def test_tier1_primary_keyword(self):
+        """Primary keywords (Tier 1) should match with high confidence."""
+        from athena.core.skill_nudge import match_skills
+
+        results = match_skills("What is Kelly criterion for my positions?")
+        assert len(results) > 0
+        match = results[0]
+        assert match["tier"] == 1
+        assert match["confidence"] == 0.9
+        assert "367" in match["skill"]
+
+    def test_tier2_secondary_keywords(self):
+        """Secondary keywords (Tier 2) need 2+ matches."""
+        from athena.core.skill_nudge import match_skills
+
+        results = match_skills("Help me with marketing positioning and pricing")
+        pmod_matches = [r for r in results if "PMOD" in r["skill"]]
+        assert len(pmod_matches) > 0
+        assert pmod_matches[0]["tier"] == 2
+
+    def test_negative_keywords_bail(self):
+        """Negative keywords should return empty results."""
+        from athena.core.skill_nudge import match_skills
+
+        assert match_skills("hello") == []
+        assert match_skills("thanks for the help") == []
+        assert match_skills("test") == []
+
+    def test_no_match_returns_empty(self):
+        """Unrelated prompts should return no matches."""
+        from athena.core.skill_nudge import match_skills
+
+        results = match_skills("What is the weather today in Singapore?")
+        assert results == []
+
+    def test_max_results_limit(self):
+        """Results should respect max_results parameter."""
+        from athena.core.skill_nudge import match_skills
+
+        # A very broad prompt that could match many skills
+        results = match_skills(
+            "I need help with trading risk management and marketing strategy",
+            max_results=2,
+        )
+        assert len(results) <= 2
+
+    def test_registry_summary(self):
+        """get_registry_summary should return all registered skills."""
+        from athena.core.skill_nudge import get_registry_summary
+
+        summary = get_registry_summary()
+        assert len(summary) > 0
+        for item in summary:
+            assert "skill" in item
+            assert "primary_keywords" in item
+            assert "hint" in item
+
+
+# =============================================
+# FEATURE 6: Session Efficiency (Great Steal III)
+# =============================================
+
+
+class TestSessionEfficiency:
+    """Test the composite session efficiency scoring."""
+
+    def test_perfect_efficiency(self):
+        """High skill usage, low tokens, high cache, zero retries = excellent."""
+        from athena.core.session_efficiency import calculate_session_efficiency
+
+        result = calculate_session_efficiency(
+            skill_invocations=18,
+            total_prompts=20,
+            tokens_used=8000,
+            token_budget=20000,
+            memory_hits=19,
+            total_queries=20,
+            retry_count=0,
+            total_actions=20,
+        )
+        assert result.score >= 80
+        assert result.grade == "excellent"
+
+    def test_poor_efficiency(self):
+        """No skills, over budget, no cache, many retries = needs_work."""
+        from athena.core.session_efficiency import calculate_session_efficiency
+
+        result = calculate_session_efficiency(
+            skill_invocations=0,
+            total_prompts=20,
+            tokens_used=25000,  # Over budget
+            token_budget=20000,
+            memory_hits=0,
+            total_queries=20,
+            retry_count=15,
+            total_actions=20,
+        )
+        assert result.score < 60
+        assert result.grade == "needs_work"
+
+    def test_medium_efficiency(self):
+        """Moderate usage across all metrics = good."""
+        from athena.core.session_efficiency import calculate_session_efficiency
+
+        result = calculate_session_efficiency(
+            skill_invocations=10,
+            total_prompts=20,
+            tokens_used=12000,
+            token_budget=20000,
+            memory_hits=12,
+            total_queries=20,
+            retry_count=2,
+            total_actions=20,
+        )
+        assert 50 <= result.score <= 90
+
+    def test_to_dict(self):
+        """to_dict should produce a serializable dictionary."""
+        from athena.core.session_efficiency import calculate_session_efficiency
+
+        result = calculate_session_efficiency()
+        d = result.to_dict()
+        assert "score" in d
+        assert "grade" in d
+        assert "components" in d
+        assert isinstance(d["components"]["skill_utilization"], float)
+
+    def test_format_report(self):
+        """format_efficiency_report should produce readable output."""
+        from athena.core.session_efficiency import (
+            calculate_session_efficiency,
+            format_efficiency_report,
+        )
+
+        result = calculate_session_efficiency(skill_invocations=15, total_prompts=20)
+        report = format_efficiency_report(result)
+        assert "Session Efficiency" in report
+        assert "Skill Utilization" in report
+        assert "%" in report
+
+    def test_zero_division_safety(self):
+        """Should handle zero values without crashing."""
+        from athena.core.session_efficiency import calculate_session_efficiency
+
+        result = calculate_session_efficiency(
+            skill_invocations=0,
+            total_prompts=0,
+            tokens_used=0,
+            token_budget=0,
+            memory_hits=0,
+            total_queries=0,
+            retry_count=0,
+            total_actions=0,
+        )
+        assert isinstance(result.score, int)
+        assert 0 <= result.score <= 100
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
