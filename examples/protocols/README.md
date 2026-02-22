@@ -7,7 +7,7 @@
 >
 > See [Creating Your Own Protocols](#creating-new-protocols) to build yours.
 
-**108 protocols across 13 categories** — battle-tested thinking patterns that standardize how an AI agent reasons.
+**109 protocols across 13 categories** — battle-tested thinking patterns that standardize how an AI agent reasons.
 
 ## Featured Protocols
 
@@ -29,7 +29,7 @@
 
 ## Categories
 
-### 🧭 Decision (27 protocols)
+### 🧭 Decision (28 protocols)
 
 Decision frameworks, reasoning patterns, multi-criteria analysis, risk assessment, ergodicity, commitment devices.
 
