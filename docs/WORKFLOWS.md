@@ -10,6 +10,7 @@ Workflows are slash commands that trigger predefined sequences of actions. They'
 |---------|---------|------------|
 | [`/start`](../../.agent/workflows/start.md) | Boot session, load identity | Low |
 | [`/end`](../../.agent/workflows/end.md) | Close session, commit to memory | Low |
+| [`/tutorial`](../../examples/workflows/tutorial.md) | Guided first-session walkthrough | Low |
 | [`/save`](../../.agent/workflows/save.md) | Mid-session checkpoint | Low |
 | [`/think`](../../.agent/workflows/think.md) | Deep reasoning (all phases) | Medium |
 | [`/ultrathink`](../../.agent/workflows/ultrathink.md) | Maximum depth (parallel orchestrator) | High |
@@ -31,6 +32,7 @@ Workflows are slash commands that trigger predefined sequences of actions. They'
 |----------|-------------|
 | **`/start`** | Beginning of every session. Loads identity, recalls context from previous sessions. |
 | **`/end`** | End of every session. Commits insights to memory, updates indexes. |
+| **`/tutorial`** | Your very first session. Guided walkthrough of all features, includes profile interview. |
 | **`/save`** | Mid-session when you want to checkpoint without closing. Use before risky experiments. |
 
 ### Reasoning Depth

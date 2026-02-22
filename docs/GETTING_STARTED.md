@@ -72,9 +72,10 @@ flowchart LR
 
 1. Open your workspace in your AI IDE
 2. Type `/start`
-3. Have a conversation
-4. Type `python -m athena save "Quick checkpoint"` to save progress
-5. Type `/end` when done
+3. First time? Type `/tutorial` for a guided walkthrough (~20 min)
+4. Or just start working — Athena is ready out of the box
+5. Type `/save` to checkpoint mid-session
+6. Type `/end` when done
 
 Check `.context/memories/session_logs/` — you should see your session log!
 

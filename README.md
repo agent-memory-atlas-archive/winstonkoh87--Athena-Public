@@ -45,11 +45,11 @@ git clone https://github.com/YOUR_USERNAME/Athena-Public.git && cd Athena-Public
 
 # 2. Open in your IDE (Claude Code, Antigravity, Cursor, VS Code, etc.)
 
-# 3. Type:
+# 3. Boot:
 /start
 
-# 4. Run the interview to build your profile:
-/brief interview
+# 4. First time? Take the guided tour:
+/tutorial
 
 # 5. When you're done:
 /end
@@ -58,7 +58,7 @@ git clone https://github.com/YOUR_USERNAME/Athena-Public.git && cd Athena-Public
 **That's it.** No config files. No API keys. No database setup. The folder *is* the product.
 
 > [!TIP]
-> Your first session takes ~30 minutes (mostly the interview). Every session after boots in seconds.
+> `/tutorial` walks you through everything: what Athena is, how it works, builds your profile, and demos the tools (~20 min). Confident users can skip it and jump straight to work.
 >
 > See the [full guide →](docs/YOUR_FIRST_SESSION.md)
 
@@ -165,7 +165,7 @@ Athena is **free and open source**. You only pay for your AI subscription:
 | 💡 [Tips & Best Practices](docs/TIPS.md) | 🔌 [MCP Server](docs/MCP_SERVER.md) | ❓ [FAQ](docs/FAQ.md) |
 | 🔄 [Updating Athena](docs/UPDATING.md) | 📥 [Importing Data](docs/IMPORTING.md) | ⌨️ [CLI Reference](docs/CLI.md) |
 | 📋 [All Workflows](docs/WORKFLOWS.md) | 📐 [Spec Sheet](docs/SPEC_SHEET.md) | 📓 [Glossary](docs/GLOSSARY.md) |
-| 🧠 [Manifesto](docs/MANIFESTO.md) | 📈 [Changelog](docs/CHANGELOG.md) | 👤 [About the Author](docs/ABOUT_ME.md) |
+| 🧠 [Manifesto](docs/MANIFESTO.md) | 📈 [Changelog](docs/CHANGELOG.md) | 🔀 [Multi-Model Strategy](docs/MULTI_MODEL_STRATEGY.md) |
 
 ---
 

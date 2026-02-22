@@ -29,19 +29,34 @@ Athena loads its core identity and initializes your workspace. On the first run,
 
 ---
 
-## Step 2: Meet Athena (The Interview)
+## Step 2: Take the Guided Tour
 
 Now type:
 
 ```
-/brief interview
+/tutorial
 ```
 
-This activates Athena's **Interview Mode** — a structured conversation where Athena asks you questions (up to 10 per turn) and builds a comprehensive profile of who you are.
+This activates Athena's **Guided Walkthrough** — a 7-stage interactive tour that teaches you how Athena works, builds your personal profile, and demos the key tools.
 
-### What Athena Will Ask About
+### What the Tutorial Covers
 
-Athena's interview covers **everything** it needs to serve you effectively. Be thorough — this is the data that makes the difference between a generic AI and a personalized operating system.
+| Stage | What Happens | Duration |
+|:------|:------------|:---------|
+| **1. Welcome** | What's in the box — the full starter kit | ~1 min |
+| **2. Core Loop** | How `/start` → Work → `/end` compounds over time | ~2 min |
+| **3. Profile Interview** | Interactive Q&A to build your personal profile | ~15–25 min |
+| **4. Search Demo** | See Athena's hybrid RAG search in action | ~2 min |
+| **5. Save Demo** | Learn mid-session checkpointing | ~1 min |
+| **6. Key Commands** | Your essential toolkit (`/think`, `/research`, `/save`) | ~2 min |
+| **7. Graduation** | Summary + next steps | ~30 sec |
+
+> [!TIP]
+> **You can skip any stage.** Say "skip" to jump ahead, or "I'm done" to exit early. Athena ships with a working default profile, so you can use it immediately without the interview.
+
+### The Profile Interview (Stage 3)
+
+This is the most important stage. Athena asks you questions (up to 10 per turn) and builds a comprehensive profile of who you are.
 
 | Category | Why It Matters | Examples |
 |:---------|:-------------|:---------|
@@ -59,31 +74,8 @@ Athena's interview covers **everything** it needs to serve you effectively. Be t
 > [!IMPORTANT]
 > **The more you share, the better Athena gets.** A one-line answer gives you a generic chatbot. A paragraph gives you a calibrated co-pilot. This is a one-time investment that pays compounding returns across hundreds of sessions.
 
-### How the Interview Works
-
-```
-You: /brief interview
-
-Athena: "Let's build your profile. I'll ask up to 10 questions per turn.
-         Answer as much or as little as you want.
-
-         1. What's your name, and what should I call you?
-         2. What do you do professionally?
-         3. What are you currently building or working toward?
-         ..."
-
-You: [Answer naturally — bullet points, paragraphs, whatever feels right]
-
-Athena: "Got it. Follow-up questions:
-         4. You mentioned you're in [field] — what's your biggest bottleneck right now?
-         5. When you make decisions, do you tend to analyze deeply or move fast?
-         ..."
-
-[Repeat until Athena is satisfied — usually 2-4 turns]
-
-Athena: ✅ Interview Complete
-        📄 Writing profile to: .context/memories/user_profile.md
-```
+> [!TIP]
+> **Alternative**: If you want to skip the full tutorial and jump straight to profile building, you can use `/brief interview` instead. This runs just the interview without the guided tour.
 
 ---
 
