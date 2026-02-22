@@ -9,13 +9,15 @@
 
 | Metric | Measured |
 |--------|----------|
-| Cold Boot (full `/start` sequence) | ~1–2 minutes |
+| Cold Boot (full `/start` sequence) | ~1m 45s (1–2 minutes) |
 | Warm Boot (cached, no script re-run) | ~30–60 seconds |
 | Identity Hash Verification | ~0.3s |
 | Search Index Prime | ~1–2s |
 
 > [!NOTE]
-> Boot time includes: loading 3 core identity files, running `boot.py` (session recall + creation + context capture + semantic prime), and the Athena daemon startup. The ~1–2 minute figure is end-to-end measured time on an M3 MacBook Pro.
+> Boot time includes: loading 3 core identity files, running `boot.py` (session recall + creation + context capture + semantic prime), and the Athena daemon startup. The ~1m 45s figure is the end-to-end measured time on an M3 MacBook Pro.
+>
+> **Sovereign/Bionic Trade-off**: We consciously accept a ~1m 45s delay in exchange for system-wide robustness. This duration ensures the total cognitive surface (laws, identity, memory bank) is loaded, structured, and semantically primed before the first user query—preventing amnesia, context drift, and grounding failures that plague "fast-boot" stateless agents.
 
 ### Optimizations Applied
 

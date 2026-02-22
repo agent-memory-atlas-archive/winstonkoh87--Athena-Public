@@ -7,7 +7,7 @@
 >
 > See [Creating Your Own Protocols](#creating-new-protocols) to build yours.
 
-**99 protocols across 13 categories** — battle-tested thinking patterns that standardize how an AI agent reasons.
+**108 protocols across 13 categories** — battle-tested thinking patterns that standardize how an AI agent reasons.
 
 ## Featured Protocols
 
