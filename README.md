@@ -35,7 +35,8 @@ AI agents are brilliant — but amnesiac. Every session starts from zero. Athena
 
 > *Think of it like this: the LLM is the engine. Athena is the chassis, the memory, and the rules of the road.*
 
-### "But don't ChatGPT / Gemini already remember?"
+<details>
+<summary><strong>"But don't ChatGPT / Gemini already remember?"</strong></summary>
 
 Yes — platforms now offer memory features. But there's a difference between *remembering your name* and *thinking in your frameworks*:
 
@@ -51,8 +52,9 @@ Yes — platforms now offer memory features. But there's a difference between *r
 | **Multi-agent?** | One model, one window | Cross-model orchestration (Trilateral Feedback Protocol) |
 | **What happens if you switch providers?** | Start over | Nothing changes — your data stays |
 
-> [!TIP]
-> Think of platform memory like photos stored on Instagram — you can view them, but you don't own them, can't move them, and can't search them precisely. Athena is like keeping the originals on your hard drive, with GPS metadata, albums, and full edit history.
+> **💡 Tip:** Think of platform memory like photos stored on Instagram — you can view them, but you don't own them, can't move them, and can't search them precisely. Athena is like keeping the originals on your hard drive, with GPS metadata, albums, and full edit history.
+
+</details>
 
 ---
 
