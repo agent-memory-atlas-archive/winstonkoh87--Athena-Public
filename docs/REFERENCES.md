@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-02-20
+last_updated: 2026-02-23
 tags: #references #apa #academic #citations
 ---
 
@@ -46,9 +46,21 @@ Tversky, A., & Kahneman, D. (1974). Judgment under uncertainty: Heuristics and b
 
 ## Microeconomics & Decision Theory
 
+Bernoulli, D. (1738). Specimen theoriae novae de mensura sortis [Exposition of a new theory on the measurement of risk]. *Commentarii Academiae Scientiarum Imperialis Petropolitanae, 5*, 175–192. [English translation: *Econometrica, 22*(1), 23–36, 1954]
+
+> **Note**: Bernoulli's 1738 paper is the origin of *expected utility theory*. He demonstrated that the subjective value of wealth is logarithmic (concave), not linear — resolving the St. Petersburg Paradox. This foundation underlies every utility-based decision framework in the Athena protocol library, including Protocol 331 (EEV).
+
+Friedman, M., & Savage, L. J. (1948). The utility analysis of choices involving risk. *Journal of Political Economy, 56*(4), 279–304. <https://doi.org/10.1086/256692>
+
+> **Note**: Friedman & Savage proposed a double-inflection utility function — concave at low and high wealth, convex in between — to explain why people simultaneously buy insurance (risk-averse) and lottery tickets (risk-seeking). This is the theoretical foundation of Protocol 331's Economic Expected Value (EEV) framework.
+
 Kelly, J. L., Jr. (1956). A new interpretation of information rate. *Bell System Technical Journal, 35*(4), 917–926. <https://doi.org/10.1002/j.1538-7305.1956.tb03809.x>
 
 Mas-Colell, A., Whinston, M. D., & Green, J. R. (1995). *Microeconomic theory*. Oxford University Press.
+
+von Neumann, J., & Morgenstern, O. (1944). *Theory of games and economic behavior*. Princeton University Press.
+
+> **Note**: vNM formalized the axiomatic foundation of expected utility theory — completeness, transitivity, continuity, and independence. Their utility function is the standard against which all decision-under-uncertainty frameworks (including Friedman-Savage and Prospect Theory) are measured. Referenced in Protocol 331 (EEV).
 
 Pareto, V. (1896). *Cours d'économie politique* [Course of political economy]. F. Rouge.
 
@@ -190,4 +202,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 20 February 2026*
+*Last updated: 23 February 2026*
