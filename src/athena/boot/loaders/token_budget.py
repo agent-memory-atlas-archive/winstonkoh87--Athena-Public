@@ -25,7 +25,7 @@ from athena.boot.constants import (
 )
 
 # === Budget Constants ===
-HARD_CAP = 15_000  # Tokens — triggers auto-compaction
+HARD_CAP = 20_000  # Tokens — triggers auto-compaction (SPEC_SHEET.md ceiling)
 ECL = 200_000  # Effective Context Length (model budget)
 BOOT_SCRIPT_ESTIMATE = 2_000  # Fixed estimate for boot.py output overhead
 SYSTEM_INSTRUCTIONS_ESTIMATE = 3_000  # Fixed estimate for IDE-injected system prompt
@@ -71,7 +71,7 @@ def measure_boot_files() -> dict:
 
 
 def _build_bar(total: int, width: int = 15) -> str:
-    """Build an ASCII progress bar from 0K to 15K."""
+    """Build an ASCII progress bar from 0K to 20K."""
     fill_ratio = min(total / HARD_CAP, 1.2)  # allow slight overflow for visual
     filled = int(fill_ratio * width)
     filled = max(0, min(filled, width + 2))  # clamp
@@ -120,9 +120,9 @@ def display_gauge(token_counts: dict = None) -> bool:
     bar = _build_bar(total)
     marker_pos = f"{total / 1000:.1f}K"
     if over_budget:
-        print(f"   0K {bar} 15K ← {RED}{marker_pos}{RESET}")
+        print(f"   0K {bar} 20K ← {RED}{marker_pos}{RESET}")
     else:
-        print(f"   0K {bar} 15K")
+        print(f"   0K {bar} 20K")
 
     # Remaining
     remaining_k = remaining // 1000

@@ -1,6 +1,6 @@
 # Athena Spec Sheet
 
-> **Version**: v9.2.3
+> **Version**: v9.2.4
 > **Date**: 23 February 2026
 > **Architect**: Winston Koh
 > **Status**: Production (1,100+ sessions)
@@ -166,6 +166,8 @@ Query → [Semantic Search (pgvector)] ──┘
 | Rule | Description | Enforcement |
 |------|-------------|-------------|
 | **Triple Lock** | Every session: Search → Save → Output | `governance.py` |
+| **Doom Loop** | Same tool call 3x with identical args → halt | `governance.py` |
+| **Granular Permissions** | allow/ask/deny per tool with glob patterns | `permissions.py` |
 | **No Monoliths** | 1 Skill = 1 File | Convention + audit scripts |
 | **Entropy Limit** | Maintenance > 2 hrs/week for 4 weeks → degrade gracefully | Protocol 106 |
 | **Amnesia Failure** | Session restore fails 3x/month → system declared FAILED | Boot health check |

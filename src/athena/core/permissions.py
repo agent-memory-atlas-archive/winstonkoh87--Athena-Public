@@ -21,6 +21,7 @@ Usage:
 
 from __future__ import annotations
 
+import fnmatch
 import json
 import logging
 from dataclasses import dataclass, field
@@ -52,6 +53,14 @@ class Sensitivity(str, Enum):
     PUBLIC = "public"  # Safe for external sharing, demos, GitHub
     INTERNAL = "internal"  # Normal operational data, session logs
     SECRET = "secret"  # API keys, credentials, personal finances, trading
+
+
+class Action(str, Enum):
+    """Granular permission action (stolen from OpenCode, Feb 2026)."""
+
+    ALLOW = "allow"  # Run without approval
+    ASK = "ask"  # Prompt for approval
+    DENY = "deny"  # Block the action
 
 
 # ---------------------------------------------------------------------------
@@ -149,6 +158,116 @@ INTERNAL_PATTERNS = [
 
 
 # ---------------------------------------------------------------------------
+# Granular Permission Rules (Stolen from OpenCode, Feb 2026)
+# ---------------------------------------------------------------------------
+
+# Default rules: last match wins
+DEFAULT_GRANULAR_RULES: list[dict[str, str]] = [
+    {"tool": "*", "pattern": "*", "action": "allow"},
+    {"tool": "read", "pattern": "*.env", "action": "deny"},
+    {"tool": "read", "pattern": "*.env.*", "action": "deny"},
+    {"tool": "read", "pattern": "*.env.example", "action": "allow"},
+    {"tool": "bash", "pattern": "rm *", "action": "deny"},
+    {"tool": "bash", "pattern": "git *", "action": "allow"},
+    {"tool": "doom_loop", "pattern": "*", "action": "ask"},
+    {"tool": "external_directory", "pattern": "*", "action": "ask"},
+]
+
+
+@dataclass
+class GranularRule:
+    """A single permission rule with glob pattern matching."""
+
+    tool: str  # Tool name or "*" for all
+    pattern: str  # Glob pattern for tool input (e.g., "git *", "*.env")
+    action: Action  # allow, ask, or deny
+
+    def matches(self, tool_name: str, input_str: str) -> bool:
+        """Check if this rule matches the given tool and input."""
+        tool_match = self.tool == "*" or fnmatch.fnmatch(tool_name, self.tool)
+        pattern_match = fnmatch.fnmatch(input_str, self.pattern)
+        return tool_match and pattern_match
+
+
+class GranularPermissionEngine:
+    """
+    Glob-based permission engine with allow/ask/deny per tool.
+
+    Rules are evaluated in order; last matching rule wins.
+    This mirrors OpenCode's granular permission system.
+
+    Origin: OpenCode (anomalyco/opencode, 109K stars)
+    Athena Integration: Feb 2026
+    """
+
+    def __init__(self, rules_path: Path | None = None):
+        self._rules_path = rules_path
+        self._rules: list[GranularRule] = []
+        self._load_rules()
+
+    def _load_rules(self):
+        """Load rules from JSON file, falling back to defaults."""
+        loaded = False
+        if self._rules_path and self._rules_path.exists():
+            try:
+                data = json.loads(self._rules_path.read_text())
+                self._rules = [
+                    GranularRule(
+                        tool=r["tool"],
+                        pattern=r["pattern"],
+                        action=Action(r["action"]),
+                    )
+                    for r in data
+                ]
+                loaded = True
+            except Exception:
+                pass
+
+        if not loaded:
+            self._rules = [
+                GranularRule(
+                    tool=r["tool"],
+                    pattern=r["pattern"],
+                    action=Action(r["action"]),
+                )
+                for r in DEFAULT_GRANULAR_RULES
+            ]
+
+    def save_rules(self):
+        """Persist current rules to disk."""
+        if self._rules_path:
+            self._rules_path.parent.mkdir(parents=True, exist_ok=True)
+            data = [
+                {"tool": r.tool, "pattern": r.pattern, "action": r.action.value}
+                for r in self._rules
+            ]
+            self._rules_path.write_text(json.dumps(data, indent=2))
+
+    def check(self, tool_name: str, input_str: str = "*") -> Action:
+        """
+        Evaluate rules for a tool call. Returns the action from the
+        last matching rule (last-match-wins semantics).
+        """
+        result = Action.ALLOW  # Default if no rules match
+        for rule in self._rules:
+            if rule.matches(tool_name, input_str):
+                result = rule.action
+        return result
+
+    def add_rule(self, tool: str, pattern: str, action: Action):
+        """Add a new rule. Appended at the end (highest priority)."""
+        self._rules.append(GranularRule(tool=tool, pattern=pattern, action=action))
+        self.save_rules()
+
+    def get_rules(self) -> list[dict]:
+        """Return all rules as a list of dicts."""
+        return [
+            {"tool": r.tool, "pattern": r.pattern, "action": r.action.value}
+            for r in self._rules
+        ]
+
+
+# ---------------------------------------------------------------------------
 # Exceptions
 # ---------------------------------------------------------------------------
 
@@ -196,7 +315,7 @@ class PermissionEngine:
     Central permissioning engine.
 
     Manages caller capability level, secret mode state,
-    and audit logging of all permission checks.
+    granular glob-based rules, and audit logging of all permission checks.
     """
 
     # Current caller's maximum permission level
@@ -211,10 +330,15 @@ class PermissionEngine:
     # State file for persistence
     _state_path: Path | None = None
 
+    # Granular permission engine (initialized in __post_init__)
+    _granular: GranularPermissionEngine | None = None
+
     def __post_init__(self):
         from athena.core.config import PROJECT_ROOT
 
         self._state_path = PROJECT_ROOT / ".agent" / "state" / "permissions.json"
+        rules_path = PROJECT_ROOT / ".agent" / "state" / "permission_rules.json"
+        self._granular = GranularPermissionEngine(rules_path=rules_path)
         self._load_state()
 
     def _load_state(self):
@@ -302,13 +426,29 @@ class PermissionEngine:
 
         return True
 
-    def gate(self, tool_name: str) -> bool:
+    def gate(self, tool_name: str, input_str: str = "*") -> bool:
         """
-        Combined gate — checks both permission AND sensitivity.
+        Combined gate — checks permission, sensitivity, AND granular rules.
         This is the main entry point for the MCP middleware.
         """
         self.check(tool_name)
         self.check_sensitivity(tool_name)
+
+        # Granular check (allow/ask/deny with glob patterns)
+        if self._granular:
+            action = self._granular.check(tool_name, input_str)
+            self._audit(
+                "granular_check",
+                tool_name,
+                {"input": input_str[:100], "action": action.value},
+            )
+            if action == Action.DENY:
+                raise PermissionDenied(
+                    tool_name, Permission.DANGEROUS, self.caller_level
+                )
+            # Action.ASK is logged but not enforced server-side
+            # (the IDE/client is responsible for prompting)
+
         return True
 
     def label(self, content: str) -> Sensitivity:
@@ -417,6 +557,7 @@ class PermissionEngine:
                 < _PERMISSION_LEVEL[defn["permission"]]
             ],
             "audit_entries": len(self.audit_log),
+            "granular_rules": self._granular.get_rules() if self._granular else [],
         }
 
     def get_tool_manifest(self) -> list[dict]:
