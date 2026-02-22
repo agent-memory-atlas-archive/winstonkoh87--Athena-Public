@@ -8,6 +8,32 @@ This guide provides a practical model routing strategy for users with access to 
 
 ---
 
+## Recommended Models & Cost
+
+Athena is **free and open source**. You only pay for your AI subscription. But to get the most out of Athena's structured reasoning, governance protocols, and multi-step workflows — **use frontier (SOTA) models**.
+
+| Plan | Cost | What You Get |
+|:-----|:-----|:-------------|
+| Claude Pro / Google AI Pro | ~$20/mo | Full access to frontier models. Best value for most users. |
+| Claude Max / Google AI Ultra | $200–250/mo | Extended usage limits for power users (8+ hrs/day). |
+
+> [!IMPORTANT]
+> **This is a long-term investment, not a cost.** Frontier models dramatically increase your output quality and consistency. Athena's protocols — governance, reasoning depth, structured workflows — are designed for models that can follow complex multi-step instructions. Smaller/free models may struggle to follow them consistently.
+
+**Recommended frontier models for Athena:**
+
+| Model | Strengths | Best Used For |
+|:------|:---------|:-------------|
+| **Claude Opus 4.6** | Deep reasoning, code quality, nuanced analysis | Coding, architecture, verification |
+| **Gemini 3 Pro** | Broad knowledge, fast synthesis, strong planning | General work, research, planning |
+| **Gemini 3 Flash** | Speed, low cost | Session management (`/start`, `/end`), quick lookups |
+| **GPT-5** | Alternative perspective, good at creative tasks | Trilateral tiebreaker, creative work |
+
+> [!TIP]
+> **The cheapest path to full Athena capability is a single $20/mo subscription** (Claude Pro or Google AI Pro). You don't need multiple subscriptions — one frontier model handles everything. Multiple subs unlock the trilateral feedback loop for high-stakes decisions.
+
+---
+
 ## The Routing Table
 
 | Task Type | Recommended Tier | Why |
