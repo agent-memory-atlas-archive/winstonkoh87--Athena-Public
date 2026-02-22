@@ -50,7 +50,7 @@ already installed and ready to use:
 
   🧠 Core Identity     — A constitution with 6 operating laws
   📋 120+ Protocols    — Decision frameworks for reasoning, research, strategy
-  ⚡ 48 Slash Commands — /start, /end, /think, /research, and more
+  ⚡ 49 Slash Commands — /start, /end, /think, /research, and more
   🔍 Hybrid RAG Search — 5-source retrieval that searches YOUR knowledge
   🔌 MCP Tool Server   — 9 tools exposable to any MCP-compatible IDE
   🛡️ Governance Layer  — 4 capability levels, 3 sensitivity tiers
@@ -319,7 +319,7 @@ Here are the commands you'll use most:
   /vibe         Ship fast, iterate, 70% confidence
   /diagnose     Run workspace health check
 
-You have 48 slash commands total. Full list:
+You have 49 slash commands total. Full list:
 → docs/WORKFLOWS.md
 
 Don't memorize them. Just know /start, /end, and /think for now.

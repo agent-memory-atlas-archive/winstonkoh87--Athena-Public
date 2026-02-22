@@ -65,7 +65,7 @@ Athena helps you build sovereign agents.
 
 ### 1. Session Continuity
 
-You're on Session 995. You ask: "What did we decide about the API structure in Session 19?"
+You're on Session 1,100. You ask: "What did we decide about the API structure in Session 19?"
 
 A chatbot: "I don't know."
 An agent: "In Session 19, we decided to use REST with JSON-RPC hybrid. Here's the reasoning..."

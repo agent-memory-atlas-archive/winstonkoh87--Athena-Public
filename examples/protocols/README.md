@@ -1,94 +1,89 @@
 # Athena Protocols
 
 > [!NOTE]
-> **These are reference implementations from a production AI-agent system (1,079+ sessions).**
+> **These are reference implementations from a production AI-agent system (1,100+ sessions).**
 >
 > Use them to understand the *pattern* — not as prescriptions. Your protocols will reflect your own context, domain, and decision history.
 >
 > See [Creating Your Own Protocols](#creating-new-protocols) to build yours.
 
-Protocols are reusable thinking patterns that standardize how an AI agent reasons about specific domains. **200 protocols across 17 categories.**
+**99 protocols across 13 categories** — battle-tested thinking patterns that standardize how an AI agent reasons.
 
 ## Featured Protocols
 
 | ID | Name | Category | Purpose |
 |----|------|----------|---------|
+| **38** | Synthetic Deep Think | Decision | Multi-layered reasoning with parallel evaluation |
+| **47** | BS Detection | Pattern Detection | Systematic identification of unsound reasoning |
+| **49** | Efficiency-Robustness Tradeoff | Decision | Navigate speed vs resilience decisions |
 | **77** | Adaptive Latency | Architecture | Scale reasoning depth to query complexity |
-| **96** | Latency Indicator | Architecture | Append [Λ+XX] to show cognitive effort |
-| **130** | Vibe Coding | Workflow | Iterative UI development by "feel" |
-| **133** | Query Archetype Routing | Architecture | Route queries to optimal processing paths |
-| **158** | Entity Lookup First | Architecture | Always lookup entities before analyzing |
-| **159** | Verification Before Claim | Architecture | Verify facts before stating them |
-| **168** | Context-Driven Development | Engineering | Let context guide implementation |
-| **200** | Feature Context Persistence | Architecture | Track features across sessions |
-| **202** | Recovery Patterns | Architecture | Graceful degradation strategies |
+| **111** | Premise Audit | Decision | Validate assumptions before building on them |
+| **130** | Vibe Coding | Engineering | Iterative UI development by "feel" |
+| **171** | Cross-Model Validation | Verification | Multi-model consensus checking |
+| **193** | Ergodicity Check | Decision | Distinguish time-average from ensemble-average risks |
 | **240** | Context Engineering | Engineering | Manage context window efficiently |
 | **408** | Autonomous Contribution Engine | Workflow | Transform user insights into contributions |
 | **416** | Agent Swarm | Workflow | Parallel multi-agent orchestration |
 
+---
+
 ## Categories
 
-### 🏗️ Architecture (56 protocols)
+### 🧭 Decision (27 protocols)
 
-System design, token management, context handling, state machines.
-
-[Browse Architecture Protocols →](architecture/)
-
-### ⚙️ Engineering (21 protocols)
-
-Code patterns, TDD, git workflows, UI development, infrastructure.
-
-[Browse Engineering Protocols →](engineering/)
-
-### 🧭 Decision (30 protocols)
-
-Decision frameworks, reasoning patterns, multi-criteria analysis, risk assessment.
+Decision frameworks, reasoning patterns, multi-criteria analysis, risk assessment, ergodicity, commitment devices.
 
 [Browse Decision Protocols →](decision/)
 
-### 📋 Workflow (22 protocols)
+### 🏗️ Architecture (12 protocols)
 
-Session management, automation, agentic loops, multi-agent coordination.
+System design, token management, context handling, latency architecture, recovery patterns.
+
+[Browse Architecture Protocols →](architecture/)
+
+### ⚙️ Engineering (19 protocols)
+
+Code patterns, TDD, vibe coding, git workflows, context compaction, infrastructure.
+
+[Browse Engineering Protocols →](engineering/)
+
+### 📋 Workflow (17 protocols)
+
+Agentic loops, multi-agent coordination, JIT context, handoff protocols, iteration patterns.
 
 [Browse Workflow Protocols →](workflow/)
 
-### 🧠 Meta (12 protocols)
-
-Protocols about protocols — self-improvement, auditing, optimization.
-
-[Browse Meta Protocols →](meta/)
-
 ### 🔍 Pattern Detection (10 protocols)
 
-Analytical heuristics — BS detection, form-substance gaps, depth analysis.
+Analytical heuristics — BS detection, AI slop detection, form-substance gaps, cynical baseline.
 
 [Browse Pattern Detection Protocols →](pattern-detection/)
 
-### 🎯 Strategy (9 protocols)
+### 🧠 Meta (8 protocols)
 
-Competitive positioning, min-max optimization, ecosystem analysis.
+Protocols about protocols — red team reviews, devil's advocate, self-improvement, auditing.
 
-[Browse Strategy Protocols →](strategy/)
+[Browse Meta Protocols →](meta/)
 
-### 💼 Business (8 protocols)
+### 🛡️ Safety (6 protocols)
 
-Unit economics, flywheel architecture, first-principles analysis.
-
-[Browse Business Protocols →](business/)
-
-### 🛡️ Safety (8 protocols)
-
-Risk management, circuit breakers, governance, recovery architecture.
+Risk management, circuit breakers, governance, anti-karason, honesty protocol.
 
 [Browse Safety Protocols →](safety/)
 
+### 🎯 Strategy (6 protocols)
+
+Competitive positioning, min-max optimization, value trinity, ecosystem analysis.
+
+[Browse Strategy Protocols →](strategy/)
+
 ### 💻 Coding (5 protocols)
 
-Spec-driven development, semantic search standards, structured decoding.
+Spec-driven development, semantic search standards, structured decoding, project scaffolding.
 
 [Browse Coding Protocols →](coding/)
 
-### 🔬 Research (5 protocols)
+### 🔬 Research (3 protocols)
 
 Deep investigation, cyborg methodology, agentic absorption.
 
@@ -96,7 +91,7 @@ Deep investigation, cyborg methodology, agentic absorption.
 
 ### 🧪 Verification (3 protocols)
 
-Testing, claim atomization, cross-model validation.
+Claim atomization, cross-model validation, neuro-symbolic verification.
 
 [Browse Verification Protocols →](verification/)
 
@@ -112,23 +107,7 @@ Semantic compression, graph memory architecture, compaction.
 
 [Browse Memory Protocols →](memory/)
 
-### 🎨 Design (2 protocols)
-
-UI/UX patterns — liquid glass physics, mockup flow.
-
-[Browse Design Protocols →](design/)
-
-### 🎭 Creation (2 protocols)
-
-Creative methodology — metaphorical design, latent cluster activation.
-
-[Browse Creation Protocols →](creation/)
-
-### ✅ Quality (1 protocol)
-
-Code review standards — red team review.
-
-[Browse Quality Protocols →](quality/)
+---
 
 ## Protocol Format
 

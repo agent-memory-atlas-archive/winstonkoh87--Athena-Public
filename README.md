@@ -30,7 +30,7 @@ AI agents are brilliant — but amnesiac. Every session starts from zero. Athena
 - **🧠 Persistent Memory** — Sessions compound. Your 500th session recalls patterns from your 5th.
 - **🔌 Model-Agnostic** — Works with Claude, Gemini, GPT, Llama — switch anytime, keep everything.
 - **📁 You Own Your Data** — Markdown files on your machine, git-versioned. No vendor lock-in. Ever.
-- **⚡ 10K Token Boot** — 95% of your context window stays free, even after 10,000 sessions.
+- **⚡ ~13K Token Boot** — 93% of your context window stays free, even after 10,000 sessions.
 - **🛡️ Governed Autonomy** — 6 constitutional laws, 4 capability levels, bounded agency.
 
 > *Think of it like this: the LLM is the engine. Athena is the chassis, the memory, and the rules of the road.*
@@ -106,7 +106,7 @@ flowchart LR
 |:----------|:--------|
 | 🧠 **Core Identity** | Pre-built constitution with 6 laws — [template](examples/templates/core_identity_template.md) |
 | 📋 **120+ Protocols** | Decision frameworks across 13 categories — [browse](examples/protocols/) |
-| ⚡ **48 Slash Commands** | `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
+| ⚡ **49 Slash Commands** | `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Hybrid RAG Search** | 5-source retrieval + RRF fusion — [architecture](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **MCP Tool Server** | 9 tools exposable to any MCP client — [docs](docs/MCP_SERVER.md) |
 | 🛡️ **Governance Layer** | 4 capability levels, 3 sensitivity tiers — [security](docs/SECURITY.md) |
@@ -149,7 +149,7 @@ Athena is **free and open source**. You only pay for your AI subscription:
 | Claude Pro / Google AI Pro | ~$20/mo | Most users |
 | Claude Max / Google AI Ultra | $200–250/mo | Power users (8+ hrs/day) |
 
-> Boot cost is ~10K tokens — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
+> Boot cost is ~13K tokens — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
 
 > [!NOTE]
 > Athena works with any model, but its structured reasoning and governance protocols perform best with frontier models (e.g. Claude Opus, Gemini Pro, GPT-5). Smaller models may struggle to follow multi-step protocols consistently.
