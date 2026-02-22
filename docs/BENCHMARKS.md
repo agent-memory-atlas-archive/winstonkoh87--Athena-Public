@@ -53,23 +53,25 @@ Query → Embedding (local) → Parallel Search (Supabase + GraphRAG) → RRF Fu
 
 | Operation | Tokens (Before) | Tokens (After) | Savings |
 |-----------|-----------------|----------------|---------|
-| Cold start context injection | ~50,000 | ~12,500 (core boot) | **75%** |
-| Full enriched boot (with profile) | ~50,000 | ~17,000 | **66%** |
+| Cold start context injection | ~50,000 | ~10,000 (core boot) | **80%** |
+| Full enriched boot (with profile) | ~50,000 | ~14,500 | **71%** |
 | Session handoff (`/end`) | ~8,000 | ~1,500 | **81%** |
 | Protocol retrieval | ~3,000 | ~800 | **73%** |
 
 ### Boot Payload Breakdown (Measured Feb 2026)
 
-The core boot payload is **~12.5K tokens** — always loaded on `/start`. The full enriched payload (with user profile) is **~17K tokens**, loaded adaptively. The Canonical Memory alone is ~3.3K tokens — a single materialized view that supersedes searching 1,100+ session logs.
+The core boot payload is **~10K tokens** — always loaded on `/start`. The full enriched payload (with user profile and on-demand files) is **~14.5K tokens**, loaded adaptively. The Canonical Memory alone is ~4.3K tokens — a single materialized view that supersedes searching 1,100+ session logs.
 
 | Component | Source File | Est. Tokens | Load Strategy |
 |-----------|-------------|:-----------:|:-------------:|
-| **Core Identity** | `Core_Identity.md` | ~6,081 | Boot (always) |
-| **Canonical Memory** | `CANONICAL.md` | ~3,346 | Boot (always) |
-| **Memory Bank** | `memory_bank/` (5 files) | ~3,078 | Boot (always) |
+| **Core Identity** | `Core_Identity.md` | ~3,800 | Boot (always) |
+| **Canonical Memory** | `CANONICAL.md` | ~4,300 | Boot (always) |
+| **User Context** | `userContext.md` | ~590 | Boot (always) |
+| **Product Context** | `productContext.md` | ~345 | Boot (always) |
+| **Active Context** | `activeContext.md` | ~930 | Boot (always) |
 | **User Profile** | `User_Profile_Core.md` | ~4,477 | On-Demand |
-| **─── Core Boot Total** | | **~12,504** | |
-| **─── Full Enriched Total** | | **~16,981** | |
+| **─── Core Boot Total** | | **~9,965** | |
+| **─── Full Enriched Total** | | **~14,442** | |
 
 ### How We Achieved This
 
