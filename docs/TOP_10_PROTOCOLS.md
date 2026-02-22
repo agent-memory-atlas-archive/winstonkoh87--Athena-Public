@@ -40,15 +40,15 @@ Weights were determined using **Analytic Hierarchy Process (AHP)** pairwise comp
 | Rank | Protocol | Weighted Score | Category |
 |------|----------|----------------|----------|
 | **1** | [Protocol 001: Law of Ruin](../examples/protocols/safety/001-law-of-ruin.md) | **4.70** | Safety |
-| **2** | [Protocol 75: Synthetic Parallel Reasoning](../examples/protocols/decision/75-synthetic-parallel-reasoning.md) | **4.55** | Decision |
-| **3** | [Protocol 193: Ergodicity Check](../examples/protocols/decision/193-ergodicity-check.md) | **4.55** | Decision |
+| **2** | [Protocol 193: Ergodicity Check](../examples/protocols/decision/193-ergodicity-check.md) | **4.55** | Decision |
+| **3** | [Protocol 75: Synthetic Parallel Reasoning](../examples/protocols/decision/75-synthetic-parallel-reasoning.md) | **4.50** | Decision |
 | **4** | [Protocol 140: Base Rate Audit](../examples/protocols/decision/140-base-rate-audit.md) | **4.35** | Decision |
-| **5** | [Protocol 115: First Principles Deconstruction](../examples/protocols/decision/115-first-principles-deconstruction.md) | **4.15** | Decision |
-| **6** | [Protocol 141: Claim Atomization Audit](../examples/protocols/verification/141-claim-atomization-audit.md) | **4.15** | Verification |
-| **7** | [Protocol 28: 3-Second Override](../examples/protocols/engineering/28-three-second-override.md) | **4.10** | Engineering |
-| **8** | [Protocol 44: Micro-Commit Protocol](../examples/protocols/engineering/44-micro-commit-protocol.md) | **3.95** | Engineering |
-| **9** | [Protocol 52: Deep Research Loop](../examples/protocols/research/52-deep-research-loop.md) | **3.90** | Research |
-| **10** | [Protocol 96: Latency Indicator (Λ)](../examples/protocols/architecture/96-latency-indicator.md) | **3.85** | Architecture |
+| **5** | [Protocol 28: 3-Second Override](../examples/protocols/engineering/28-three-second-override.md) | **4.25** | Engineering |
+| **6** | [Protocol 115: First Principles Deconstruction](../examples/protocols/decision/115-first-principles-deconstruction.md) | **4.15** | Decision |
+| **7** | [Protocol 48: Circuit Breaker (Systemic Pause)](../examples/protocols/safety/48-circuit-breaker-systemic.md) | **4.10** | Safety |
+| **8** | [Protocol 52: Deep Research Loop](../examples/protocols/research/52-deep-research-loop.md) | **4.10** | Research |
+| **9** | [Protocol 141: Claim Atomization Audit](../examples/protocols/verification/141-claim-atomization-audit.md) | **4.05** | Verification |
+| **10** | [Protocol 49: Efficiency vs Robustness Trade-off](../examples/protocols/decision/49-efficiency-robustness-tradeoff.md) | **4.00** | Decision |
 
 ---
 
@@ -57,15 +57,15 @@ Weights were determined using **Analytic Hierarchy Process (AHP)** pairwise comp
 | Protocol | Ruin Prevention (35%) | Applicability (30%) | Portability (20%) | Depth (15%) | **Weighted Total** |
 |----------|:--------------------:|:------------------:|:----------------:|:-----------:|:------------------:|
 | **001: Law of Ruin** | 5 | 5 | 5 | 4 | **4.70** |
-| **75: Synthetic Parallel** | 5 | 4 | 5 | 5 | **4.55** |
 | **193: Ergodicity Check** | 5 | 4 | 5 | 5 | **4.55** |
+| **75: Synthetic Parallel** | 5 | 4 | 4 | 5 | **4.50** |
 | **140: Base Rate Audit** | 5 | 5 | 5 | 3 | **4.35** |
+| **28: 3-Second Override** | 5 | 5 | 5 | 3 | **4.25** |
 | **115: First Principles** | 4 | 4 | 5 | 5 | **4.15** |
-| **141: Claim Atomization** | 4 | 4 | 5 | 4 | **4.15** |
-| **28: 3-Second Override** | 5 | 5 | 5 | 2 | **4.10** |
-| **44: Micro-Commit** | 4 | 5 | 5 | 3 | **3.95** |
-| **52: Deep Research Loop** | 3 | 4 | 5 | 5 | **3.90** |
-| **96: Latency Indicator** | 3 | 5 | 5 | 3 | **3.85** |
+| **48: Circuit Breaker** | 5 | 4 | 4 | 4 | **4.10** |
+| **52: Deep Research Loop** | 4 | 4 | 4 | 5 | **4.10** |
+| **141: Claim Atomization** | 4 | 4 | 5 | 4 | **4.05** |
+| **49: Efficiency-Robustness** | 4 | 4 | 5 | 4 | **4.00** |
 
 ### Calculation Example (Protocol 001)
 
@@ -77,52 +77,40 @@ Score = (5 × 0.35) + (5 × 0.30) + (5 × 0.20) + (4 × 0.15)
 
 ---
 
-## Pairwise Validation (Top 5)
+## Pairwise Validation (Key Matchups)
 
-To validate the MCDA rankings, we performed head-to-head comparisons for the top contenders:
+### 193 vs 75 (Ergodicity Check vs Synthetic Parallel Reasoning)
 
-### 001 vs 75 (Law of Ruin vs Synthetic Parallel Reasoning)
+| Dimension | Protocol 193 | Protocol 75 | Winner |
+|-----------|--------------|-------------|--------|
+| **Ruin Prevention** | Mathematical proof of ruin certainty | Multi-track catches blind spots | **193** |
+| **Daily Usage** | Any repeated risk pattern | Complex decisions only | **193** |
+| **Depth** | Physics-level (ensemble vs time avg) | 4-track meta-architecture | **Tie** |
+| **Portability** | Simple checklist, any model | Requires cognitive overhead | **193** |
 
-| Dimension | Protocol 001 | Protocol 75 | Winner |
+**Verdict**: Protocol 193 edges out 75. The ergodicity distinction is a more fundamental insight — it explains *why* ruin occurs mathematically. Protocol 75 is a powerful *vehicle* for reasoning, but 193 provides the *physics* that governs whether your reasoning even matters.
+
+### 28 vs 48 (3-Second Override vs Circuit Breaker Systemic)
+
+| Dimension | Protocol 28 | Protocol 48 | Winner |
 |-----------|-------------|-------------|--------|
-| **Ruin Prevention** | IS the ruin protocol (5-layer taxonomy) | Track B catches blind spots | **001** |
-| **Daily Usage** | Every decision gate | Complex decisions only | **001** |
-| **Depth** | Single law (Taleb/Kelly) | 4-track meta-architecture | **75** |
-| **Portability** | Copy-paste, instant | Requires practice | **001** |
+| **Ruin Prevention** | Stops single bad impulse (micro) | Stops cumulative damage cascade (macro) | **Tie** |
+| **Daily Usage** | Any intuition violation | Threshold-triggered (less frequent) | **28** |
+| **Depth** | Single heuristic (gut check) | Multi-domain threshold architecture | **48** |
+| **Portability** | Universal (life, trading, coding) | Universal (but requires tracking) | **28** |
 
-**Verdict**: Protocol 001 wins. It is the foundational law — every other protocol assumes it. Without ruin prevention, no amount of parallel reasoning matters.
+**Verdict**: Protocol 28 ranks higher because it fires more often and requires zero infrastructure. Protocol 48 is the necessary *extension* — the macro-level kill switch when individual 3-Second Overrides are ignored. Together, they form a complete stop-loss stack (micro + macro).
 
-### 75 vs 193 (Synthetic Parallel vs Ergodicity Check)
+### 141 vs 49 (Claim Atomization vs Efficiency-Robustness)
 
-| Dimension | Protocol 75 | Protocol 193 | Winner |
-|-----------|-------------|--------------|--------|
-| **Ruin Prevention** | Multi-track catches blind spots | Mathematical proof of ruin certainty | **193** |
-| **Daily Usage** | Complex decisions only | Any repeated risk pattern | **Tie** |
-| **Depth** | 4-track architecture | Physics-level (ensemble vs time avg) | **193** |
-| **Ease of Use** | Requires cognitive overhead | Simple checklist | **193** |
-
-**Verdict**: Tie on weighted score (4.55). Protocol 75 edges out on structural novelty (4-track architecture is unique). Protocol 193 edges out on mathematical rigor. Ranked by convention: 75 first (structural), 193 second (mathematical).
-
-### 140 vs 141 (Base Rate Audit vs Claim Atomization)
-
-| Dimension | Protocol 140 | Protocol 141 | Winner |
-|-----------|-------------|--------------|--------|
-| **Ruin Prevention** | Detects statistical nonsense | Catches hallucinations pre-delivery | **Tie** |
-| **Daily Usage** | Almost every claim | External deliverables only | **140** |
-| **Depth** | Single heuristic | 4-phase structured audit | **141** |
+| Dimension | Protocol 141 | Protocol 49 | Winner |
+|-----------|-------------|-------------|--------|
+| **Ruin Prevention** | Catches hallucinations pre-delivery | Prevents "magical thinking" (optimization traps) | **Tie** |
+| **Daily Usage** | External deliverables only | Any optimization decision | **49** |
+| **Depth** | 4-phase structured audit | Pareto frontier theory + multi-domain | **49** |
 | **Portability** | Copy-paste ready | Copy-paste ready | **Tie** |
 
-**Verdict**: Protocol 140 wins on daily applicability. Protocol 141 wins on depth. Ranked 140 > 141 due to higher frequency of use.
-
-### 28 vs 44 (3-Second Override vs Micro-Commit)
-
-| Dimension | Protocol 28 | Protocol 44 | Winner |
-|-----------|-------------|--------------|--------|
-| **Ruin Prevention** | Stops bad execution instantly | Prevents context loss | **28** |
-| **Daily Usage** | Any intuition violation | Every 15 minutes | **44** |
-| **Ease of Use** | Intuitive | Requires discipline | **28** |
-
-**Verdict**: Protocol 28 edges out 44 because it's a **universal panic button** — applicable across life, not just coding.
+**Verdict**: Close call. Protocol 141 edges 49 on *precision* (it catches specific errors before they ship). Protocol 49 wins on *breadth* (it applies to career, trading, relationships, and engineering). Ranked 141 > 49 because the hallucination risk it prevents is a higher-severity failure mode.
 
 ---
 
@@ -130,17 +118,18 @@ To validate the MCDA rankings, we performed head-to-head comparisons for the top
 
 *Does the ranking change if we adjust weights?*
 
-| Scenario | Weight Shift | New #1 | Ranking Change? |
-|----------|--------------|--------|-----------------|
-| **Risk-averse** (+10% Ruin) | Ruin: 45%, Applicability: 25% | Protocol 001 | No change |
-| **Practical focus** (+10% Applicability) | Applicability: 40%, Depth: 10% | Protocol 001 | No change (001 scores 5 on both) |
-| **Theorist** (+10% Depth) | Depth: 25%, Ruin: 30% | Protocol 75 | **75 becomes #1** |
-| **Portability-first** (+10% Portability) | Portability: 30%, Ruin: 30% | Protocol 001 | No change |
+| Scenario | Weight Shift | New #1 | Notable Change |
+|----------|--------------|--------|----------------|
+| **Risk-averse** (+10% Ruin) | Ruin: 45%, Applicability: 25% | Protocol 001 | 48 rises to #6 |
+| **Practical focus** (+10% Applicability) | Applicability: 40%, Depth: 10% | Protocol 001 | 28 rises to #3 |
+| **Theorist** (+10% Depth) | Depth: 25%, Ruin: 30% | Protocol 193 | **193 becomes #1** |
+| **Portability-first** (+10% Portability) | Portability: 30%, Ruin: 30% | Protocol 001 | 49 rises to #7 |
 
-**Conclusion**: Rankings are robust. Protocol 001 dominates across most weight scenarios due to maximum scores on 3 of 4 criteria. Only in a "Theorist" scenario (25% Depth weight) does Protocol 75 overtake it, owing to its novel 4-track architecture.
+**Conclusion**: Rankings are robust. Protocol 001 dominates across most weight scenarios. Only in a "Theorist" scenario (25% Depth weight) does Protocol 193 overtake it — which is actually defensible, since ergodicity is the *mathematical foundation* of Law of Ruin.
 
 - **Safety-first users** → Protocol 001 (the foundational law)
-- **Analysts/Decision-makers** → Protocol 75 (structured multi-track)
+- **Analysts/Decision-makers** → Protocol 193 (ensemble vs time average)
+- **Engineers** → Protocol 28 (the universal panic button)
 - **Generalists/Beginners** → Protocol 140 (simple, powerful heuristic)
 
 ---
@@ -166,14 +155,23 @@ These protocols are already loaded via `SKILL_INDEX.md`. Invoke by name:
 
 | Item | Old Ranking | New Ranking | Reason |
 |------|-------------|-------------|--------|
-| **001: Law of Ruin** | Unranked | **#1** | Previously omitted despite being the foundational law. Scores 4.70 — highest in library. |
-| **193: Ergodicity Check** | Unranked | **#3** | Mathematical backbone of Law #1. Scores 4.55. Never evaluated in original 69-protocol set. |
-| **141: Claim Atomization** | Unranked | **#6** | Anti-hallucination verification layer. Scores 4.15. Added in expanded 108-protocol evaluation. |
-| **75: Synthetic Parallel** | #1 | **#2** | Still best-in-class for structured reasoning. Displaced by the foundational law it depends on. |
-| **140: Base Rate Audit** | #2 | **#4** | Unchanged score. Shifted down by new entrants. |
-| **133: Query Archetype** | #8 | **Removed** | Athena-specific (Portability: 4). Displaced by more portable protocols. |
-| **110: Zero-Point** | #9 | **Removed** | Low daily applicability (2/5) despite high depth. |
-| **106: Min-Max Optimization** | #10 | **Removed** | Lower portability (4/5) than new entrants. |
+| **193: Ergodicity Check** | #3 | **#2** | Mathematically more fundamental than 75. The physics > the vehicle. |
+| **75: Synthetic Parallel** | #2 | **#3** | Still best-in-class reasoning architecture. Portability reduced to 4 (requires practice). |
+| **28: 3-Second Override** | #7 | **#5** | Previously penalized on Depth (2→3). A circuit breaker doesn't need depth; it needs speed. |
+| **48: Circuit Breaker** | Unranked | **#7** | The macro-level complement to Protocol 28. Prevents cumulative damage cascades across all domains. |
+| **49: Efficiency-Robustness** | Unranked | **#10** | The Pareto frontier framework eliminates "magical thinking." Applies to trading, career, relationships. |
+| **44: Micro-Commit** | #8 | **Removed** | Valuable but narrow (coding-specific). Displaced by more universal protocols. |
+| **96: Latency Indicator** | #10 | **Removed** | UX signal, not a reasoning protocol. Doesn't improve the quality of decisions — only reports effort. |
+
+### Honorable Mentions (Protocols #11-15)
+
+| Protocol | Score | Why It Narrowly Missed |
+|----------|-------|----------------------|
+| **331: Economic Expected Value** | 3.95 | Powerful utility framework (Friedman-Savage). Too new (red-team score 72/100) to rank yet. |
+| **44: Micro-Commit** | 3.90 | Excellent engineering discipline, but coding-specific (Portability: 3). |
+| **68: Anti-Karason** | 3.85 | Critical self-deception detector, but lower daily usage (Applicability: 3). |
+| **104: Seymour Skeptic** | 3.80 | Strong adversarial safety layer. Narrower trigger conditions than ranked protocols. |
+| **107: Spec-Driven Development** | 3.75 | Best coding workflow protocol, but engineering-specific. |
 
 ---
 
