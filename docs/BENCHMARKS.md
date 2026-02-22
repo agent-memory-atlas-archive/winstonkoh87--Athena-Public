@@ -7,18 +7,21 @@
 
 ## Boot Sequence Performance
 
-| Metric | Before Optimization | After Optimization | Improvement |
-|--------|---------------------|-------------------|-------------|
-| Cold Boot | 28.4s | 4.2s | **85% faster** |
-| Warm Boot | 12.1s | 2.8s | **77% faster** |
-| Identity Hash Verification | 1.2s | 0.3s | **75% faster** |
-| GraphRAG Prime | 8.5s | 1.1s | **87% faster** |
+| Metric | Measured |
+|--------|----------|
+| Cold Boot (full `/start` sequence) | ~1–2 minutes |
+| Warm Boot (cached, no script re-run) | ~30–60 seconds |
+| Identity Hash Verification | ~0.3s |
+| Search Index Prime | ~1–2s |
 
-### What Changed
+> [!NOTE]
+> Boot time includes: loading 3 core identity files, running `boot.py` (session recall + creation + context capture + semantic prime), and the Athena daemon startup. The ~1–2 minute figure is end-to-end measured time on an M3 MacBook Pro.
 
-- **Persistent Caching**: Protocol loadouts and embeddings cached to disk
-- **Parallel Phase Execution**: Boot phases 6 & 7 now run concurrently
-- **Hash-based Delta Sync**: Only changed files re-indexed
+### Optimizations Applied
+
+- **Persistent Caching**: Embeddings cached to disk, delta sync on changed files
+- **Parallel Phase Execution**: Boot phases run concurrently where possible
+- **Canonical Memory**: Single materialized view replaces querying 1,100+ session logs
 
 ---
 
@@ -48,13 +51,14 @@ Query → Embedding (local) → Parallel Search (Supabase + GraphRAG) → RRF Fu
 
 | Operation | Tokens (Before) | Tokens (After) | Savings |
 |-----------|-----------------|----------------|---------|
-| Cold start context injection | ~50,000 | ~4,000 | **92%** |
+| Cold start context injection | ~50,000 | ~12,500 (core boot) | **75%** |
+| Full enriched boot (with profile) | ~50,000 | ~17,000 | **66%** |
 | Session handoff (`/end`) | ~8,000 | ~1,500 | **81%** |
 | Protocol retrieval | ~3,000 | ~800 | **73%** |
 
 ### Boot Payload Breakdown (Measured Feb 2026)
 
-The `~4k tokens` figure represents the **Canonical Memory** target — the single materialized view that supersedes searching 500+ session logs. The full enriched boot payload (with user profile and memory bank) is ~17k tokens, loaded adaptively.
+The core boot payload is **~12.5K tokens** — always loaded on `/start`. The full enriched payload (with user profile) is **~17K tokens**, loaded adaptively. The Canonical Memory alone is ~3.3K tokens — a single materialized view that supersedes searching 1,100+ session logs.
 
 | Component | Source File | Est. Tokens | Load Strategy |
 |-----------|-------------|:-----------:|:-------------:|
@@ -78,11 +82,11 @@ The `~4k tokens` figure represents the **Canonical Memory** target — the singl
 
 | Asset | Count | Size |
 |-------|-------|------|
-| Protocols | 308+ | ~1.2 MB |
+| Protocols & Workflows | 120+ protocols, 49 workflows | ~1.5 MB |
 | Case Studies | 42 | ~2.4 MB |
-| Session Logs | 995 | ~3.8 MB |
-| GraphRAG Entities | 4,203 | ~46 MB |
-| Vector Embeddings | 12,847 | ~78 MB |
+| Session Logs | 1,100+ | ~4.2 MB |
+| GraphRAG Entities | 4,200+ | ~46 MB |
+| Vector Embeddings | 12,800+ | ~78 MB |
 
 ---
 
