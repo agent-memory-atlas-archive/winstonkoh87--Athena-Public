@@ -83,7 +83,7 @@ Here's what I actually did. No shortcuts.
 | Metric | Before | After |
 |--------|--------|-------|
 | **Context injection** | ~50k tokens (manual paste) | **~2k tokens** (retrieval) |
-| **Boot time** | ~2 minutes | **~30 seconds** |
+| **Boot time** | ~2 minutes | **~1–2 minutes** |
 | **Sessions logged** | — | **511** |
 
 ### Qualitative (What It Means)

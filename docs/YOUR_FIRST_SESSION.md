@@ -151,7 +151,7 @@ Athena finalizes the session log, extracts key decisions, and commits everything
 | **200** | It catches your blind spots before they become problems |
 | **500+** | It thinks like a colleague who's been with you for years |
 
-The first session takes ~30 minutes. Every session after that takes ~30 seconds to boot.
+The first session takes ~30 minutes. Every session after that takes ~1–2 minutes to boot.
 
 ---
 

@@ -101,7 +101,7 @@ Most users spend **< $5/month** on API calls.
 
 | Mode | Time |
 |------|------|
-| Cold boot (first session) | ~30 seconds |
+| Cold boot (first session) | ~1–2 minutes |
 | Warm boot (cached) | < 5 seconds |
 
 ---

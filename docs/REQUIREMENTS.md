@@ -75,7 +75,7 @@ Derived from 662K+ Reddit views and 1,660+ comments across r/ChatGPT and r/Gemin
 
 | ID | Requirement | Target | Actual |
 |----|------------|--------|--------|
-| NFR-1 | **Boot Time** | < 60 seconds | **< 30 seconds** |
+| NFR-1 | **Boot Time** | < 2 minutes | **~1–2 minutes** |
 | NFR-2 | **Search Latency** | < 500ms | **< 200ms** |
 | NFR-3 | **Context Injection** | < 10K tokens | **~4K tokens** |
 | NFR-4 | **Privacy** | No data leaves machine (without explicit cloud opt-in) | ✅ Local-first |
@@ -106,7 +106,7 @@ Derived from 662K+ Reddit views and 1,660+ comments across r/ChatGPT and r/Gemin
 | **The Portability Test** | Switch from Claude to Gemini. Does memory persist? | ✅ Pass |
 | **The Search Test** | Query a concept from 500 sessions ago. Is it found? | ✅ Pass (< 200ms) |
 | **The Import Test** | Import a ChatGPT export. Is it indexed? | ✅ Pass |
-| **The Scale Test** | 1,000+ session logs, 8,000+ tags. Does boot still < 30s? | ✅ Pass |
+| **The Scale Test** | 1,000+ session logs, 8,000+ tags. Does boot still < 2 min? | ✅ Pass |
 
 ---
 

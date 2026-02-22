@@ -38,7 +38,7 @@ score = Σ ( weight * (0.5 + doc_score) * (1 / (k + rank)) )
 3. **Context Grounding**: Injects real-time date/time.
 4. **Session Creation**: Generates a new session log file.
 
-**Total Boot Time**: <30 seconds (~2K tokens).
+**Total Boot Time**: ~1–2 minutes (~2K tokens).
 
 ### 2.2 Shutdown Sequence (`/end`)
 
