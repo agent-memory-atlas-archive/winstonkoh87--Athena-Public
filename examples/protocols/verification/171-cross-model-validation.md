@@ -67,7 +67,7 @@ Reduce single-model blind spots by using multiple SOTA LLMs as adversarial peer 
 
 ### Phase 2: Outsource (3rd Party SOTA)
 
-1. **Select**: Choose **Gemini 3 Pro** or **GPT-5.2** (LMArena).
+1. **Select**: Choose **Gemini 3.1 Pro** or **GPT-5.2** (LMArena).
 2. **Prompt**: *"Act as a hostile regulatory auditor and a pessimistic investor. Your goal is to kill this deal. List the top 3 existential risks the author ignored. Be ruthless."*
 3. **Execute**: Run blind or adversarial check.
 
@@ -111,7 +111,7 @@ Models validate *reasoning*, but many errors are **fact errors** (regulations, u
 ║  ┌─────────────────────────────────────────────────────────────────────┐  ║
 ║  │  PHASE 2: ADVERSARIAL AUDIT                                         │  ║
 ║  │          ┌─────────────────┐     ┌─────────────────┐                │  ║
-║  │          │  Gemini 3 Pro   │     │    GPT 5.2      │                │  ║
+║  │          │  Gemini 3.1 Pro │     │    GPT 5.2      │                │  ║
 ║  │          │ "Red team this" │     │ "What's wrong?" │                │  ║
 ║  │          └────────┬────────┘     └────────┬────────┘                │  ║
 ║  │                   └───────────┬───────────┘                         │  ║
@@ -178,7 +178,7 @@ Quality = f(Primary Depth × Adversarial Diversity × Synthesis Discipline)
 
 **Primary (Opus 4.5)**: Rated 9.5/10 response on behavioral psychology.
 
-**After Cross-Validation (Gemini 3 Pro + GPT 5.2)**:
+**After Cross-Validation (Gemini 3.1 Pro + GPT 5.2)**:
 
 | Issue | Original | Calibrated |
 |:---|:---|:---|

@@ -27,7 +27,7 @@ CDD enforces that every line of code must be anchored to a **Persistent Context*
 **The Formula**:
 `Code Quality = (Spec + Constraints + Architecture) * LLM Capability`
 
-If you increase the LLM capability (Gemini 3 Pro) but feed it zero context (empty chat), you get garbage.
+If you increase the LLM capability (Gemini 3.1 Pro) but feed it zero context (empty chat), you get garbage.
 If you feed it high-context (CDD), you get production code.
 
 ## 2. The Living Spec (`project_state.md`)

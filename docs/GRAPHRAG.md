@@ -176,12 +176,12 @@ The `$50 API cost` assumes you're running entity extraction programmatically. Bu
 Athena (Orchestrator)  →  Generates Parsing Prompts  →  User
                                                           ↓
                                                         User pastes into FREE LLM UI
-                                                        (Gemini 3 Pro on AI Studio, Claude, etc.)
+                                                        (Gemini 3.1 Pro on AI Studio, Claude, etc.)
                                                           ↓
 User  ←  Pastes LLM Response Back  ←  Athena assembles results
 ```
 
-**Result**: SOTA entity extraction (Gemini 3 Pro, Claude Opus 4.6) at **$0 cost**.
+**Result**: SOTA entity extraction (Gemini 3.1 Pro, Claude Opus 4.6) at **$0 cost**.
 
 ### Why This Works
 
@@ -211,7 +211,7 @@ The only paid component (LLM inference) is replaced by **human bandwidth** — a
 | **Model Quality** | Flash (cheaper) | Pro (SOTA, free UI) |
 | **Scalability** | High | Low (human bottleneck) |
 
-**Verdict**: If you have more time than money, Human-Driven API is the optimal path. You get SOTA model quality (Gemini 3 Pro) for free — the same extraction quality that would cost 10x more via API.
+**Verdict**: If you have more time than money, Human-Driven API is the optimal path. You get SOTA model quality (Gemini 3.1 Pro) for free — the same extraction quality that would cost 10x more via API.
 
 ---
 

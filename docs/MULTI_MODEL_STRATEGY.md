@@ -25,9 +25,9 @@ Athena is **free and open source**. You only pay for your AI subscription. But t
 | Model | Strengths | Best Used For |
 |:------|:---------|:-------------|
 | **Claude Opus 4.6** | Deep reasoning, code quality, nuanced analysis | Coding, architecture, verification |
-| **Gemini 3 Pro** | Broad knowledge, fast synthesis, strong planning | General work, research, planning |
+| **Gemini 3.1 Pro** | Broad knowledge, fast synthesis, strong planning | General work, research, planning |
 | **Gemini 3 Flash** | Speed, low cost | Session management (`/start`, `/end`), quick lookups |
-| **GPT-5** | Alternative perspective, good at creative tasks | Trilateral tiebreaker, creative work |
+| **GPT-5.2** | Alternative perspective, good at creative tasks | Trilateral tiebreaker, creative work |
 
 > [!TIP]
 > **The cheapest path to full Athena capability is a single $20/mo subscription** (Claude Pro or Google AI Pro). You don't need multiple subscriptions — one frontier model handles everything. Multiple subs unlock the trilateral feedback loop for high-stakes decisions.
@@ -54,12 +54,12 @@ Athena is **free and open source**. You only pay for your AI subscription. But t
 When two models disagree on a significant decision, bring in a third:
 
 ```
-Model A (e.g., Gemini Pro)     →  Opinion 1
+Model A (e.g., Gemini 3.1 Pro) →  Opinion 1
 Model B (e.g., Claude Opus)    →  Opinion 2
                                     ↓
                               Conflict detected?
                                     ↓
-Model C (e.g., GPT-5, Llama)  →  Tiebreaker / Synthesis
+Model C (e.g., GPT-5.2, Llama) →  Tiebreaker / Synthesis
 ```
 
 **When to trigger**:
@@ -108,7 +108,7 @@ Most modern agentic IDEs let you switch models mid-session:
 
 For the trilateral loop, you can also use different IDEs entirely:
 
-1. **Primary IDE** (e.g., Antigravity with Gemini Pro) — first opinion
+1. **Primary IDE** (e.g., Antigravity with Gemini 3.1 Pro) — first opinion
 2. **Secondary IDE** (e.g., Claude Code with Opus) — second opinion
 3. **Tiebreaker** (e.g., ChatGPT, Copilot) — third opinion if needed
 
@@ -132,9 +132,9 @@ Athena's Markdown-based memory means all three IDEs can read the same context.
 
 ```
 /start, /end, /save       →  ⚡ Fast (Gemini Flash)
-Coding, web dev, apps      →  🔥 Frontier (Claude Opus / Gemini Pro)
+Coding, web dev, apps      →  🔥 Frontier (Claude Opus / Gemini 3.1 Pro)
 Planning, architecture     →  🔥 Frontier (never Fast)
-General chat, Q&A          →  🧠 Strong (Gemini Pro), toggle Frontier for depth
+General chat, Q&A          →  🧠 Strong (Gemini 3.1 Pro), toggle Frontier for depth
 Research, deep analysis    →  🔥 Frontier
 Verification, code review  →  🔥 Frontier (DIFFERENT model than author)
 Conflict resolution        →  🌐 Trilateral Loop (3rd model as tiebreaker)
