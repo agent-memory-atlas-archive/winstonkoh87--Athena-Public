@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-02-23
+last_updated: 2026-02-24
 tags: #references #apa #academic #citations
 ---
 
@@ -202,4 +202,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 23 February 2026*
+*Last updated: 24 February 2026*

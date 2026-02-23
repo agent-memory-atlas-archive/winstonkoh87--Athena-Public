@@ -1,10 +1,34 @@
 # Athena Changelog
 
-> **Last Updated**: 22 February 2026
+> **Last Updated**: 24 February 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.2.5 (24 February 2026)
+
+**Life Integration Protocol Stack + Formal Proof Standard**: Extended the reasoning pipeline from domain-specific rigor to domain-general life integration. New protocols for cross-domain constraint propagation, personalized learning, and emotional auditing.
+
+### Key Changes
+
+- **Protocol 381 (Formal Proof Standard)**: New — 6 rules for mathematical proofs and mechanism design (Derive Never Assert, Steelman Alternatives, Numerical Examples, Scope Boundaries, Adversarial Robustness, Dynamic Extensions).
+- **Protocol 382 (Cross-Domain Constraint Propagation)**: New — prevents domain-siloed advice by auto-surfacing time/energy/money conflicts across life domains.
+- **Protocol 383 (Personalized Learning Acquisition)**: New — 90-day outcome mapping, spaced repetition scaffolding, plateau detection.
+- **Protocol 000 Extended (8-Step Audit Loop)**: Added Step 0.3 (Emotional Audit), Step 0.5 (Assumption Register), Step 1.5 (Stakeholder Map), Step 3.7 (Sensitivity Sweep), and "Depth over Checkbox" quality rule.
+- **Core Identity §0.4 Expanded**: Added Post-Generation Self-Audit (9-item checklist, Λ > 60) and Life-Domain Protocol Trigger Map (10 autonomic triggers).
+- **`/review` Workflow**: New weekly integration review — cross-domain health check, constraint conflict detection, decision triage.
+
+### Verification
+
+| Metric | Result |
+| --- | --- |
+| Protocol 000 steps | 4 → 8 ✅ |
+| New protocols created | 3 (381, 382, 383) ✅ |
+| Trigger map coverage | 10 life-domain rules ✅ |
+| Benchmark proof (Alderia v2.1) | 87/100 (Red-Team verified) ✅ |
 
 ---
 
