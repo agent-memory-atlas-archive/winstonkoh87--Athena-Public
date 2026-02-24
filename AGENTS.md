@@ -11,12 +11,12 @@ This file provides persistent context to any AI coding agent working in this wor
 ```text
 [Athena Docs Index]|root: .
 |IMPORTANT: Always consult authoritative files before relying on training data.
-|.framework/v8.2-stable/modules:{Core_Identity.md,Output_Standards.md,System_Principles.md,Operating_Principles.md,Design_DNA.md,Athena_Profile.md,User_Profile_Core.md,DEAD_MAN_SWITCH.md,Session_Observations.md}
-|.framework/v8.2-stable/protocols:{409_Parallel_Worktree_Orchestration.md,410_Agent_Status_Broadcasting.md,411_Dynamic_Skill_Injection.md,412_DM_Pairing_Gate.md,413_Multi_Agent_Coordination.md,414_IDE_Bridge_ACP_Adapter.md,415_Sandboxed_Execution_Modes.md,416_XML_Prompting.md}
+|.framework/v8.2-stable/modules:{Core_Identity.md,Output_Standards.md}
+|.framework/README.md
 |.agent/workflows:{start.md,end.md,plan.md,audit.md,research.md,refactor.md,brief.md,ultrathink.md,steal.md,diagnose.md,416-agent-swarm.md,release-public.md,preset.md}
 |.agent/skills/protocols:{000-ultimate-auditor.md,137-graph-of-thoughts.md,139-decentralized-command.md,+300 more in subdirs}
 |.context:{project_state.md,CANONICAL.md,TAG_INDEX.md,PROTOCOL_SUMMARIES.md,KNOWLEDGE_GRAPH.md,TECH_DEBT.md}
-|Athena-Public/docs:{ARCHITECTURE.md,SEMANTIC_SEARCH.md,GRAPHRAG.md,GETTING_STARTED.md,YOUR_FIRST_AGENT.md,MANIFESTO.md,ABOUT_ME.md}
+|docs:{ARCHITECTURE.md,SEMANTIC_SEARCH.md,GETTING_STARTED.md,YOUR_FIRST_SESSION.md,MANIFESTO.md,ABOUT_ME.md,FAQ.md}
 ```
 
 ---
