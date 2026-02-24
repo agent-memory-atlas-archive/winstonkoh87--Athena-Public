@@ -114,10 +114,20 @@ def run_shutdown(project_root: Optional[Path] = None) -> bool:
     success = close_session(session_file)
 
     if success:
+        # Run passive observation report
+        try:
+            from athena.auditors.audit_observations import audit_observations
+
+            audit_observations(append_to_log=True)
+        except Exception as e:
+            print(f"   ⚠️  Observation report skipped: {e}")
+
         # Optional: Trigger Supabase sync if configured
         supabase_url = os.getenv("SUPABASE_URL")
         if supabase_url:
-            print("🔄 Supabase sync available (run manually: python -m athena.memory.sync)")
+            print(
+                "🔄 Supabase sync available (run manually: python -m athena.memory.sync)"
+            )
 
         print("━" * 60)
         print("✅ ATHENA SHUTDOWN COMPLETE")

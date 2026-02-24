@@ -3,7 +3,7 @@
 athena.boot.orchestrator
 =========================
 Modular boot sequence orchestrator.
-Replaces the monolithic .agent/scripts/boot.py
+Replaces the monolithic .agent/scripts/boot/boot.py
 """
 
 import sys
@@ -86,6 +86,14 @@ def main():
     # Phase 4: Session Creation
     session_id = MemoryLoader.create_session()
 
+    # Phase 4.1: Record session start reference (for passive observation)
+    try:
+        from athena.auditors.audit_observations import record_start_ref
+
+        record_start_ref()
+    except Exception:
+        pass  # Non-critical — observations are optional
+
     # Phase 5: Audit (Reset)
     try:
         sys.path.insert(0, str(PROJECT_ROOT / ".agent" / "scripts"))
@@ -150,7 +158,7 @@ def main():
     print(f"\n{BOLD}{'─' * 60}{RESET}")
     print(f"{GREEN}{BOLD}⚡ Ready.{RESET} Session: {session_id}")
     print(
-        f"{DIM}⚖️  Law #6 Reminder: Run 'python3 .agent/scripts/quicksave.py \"...\"' after completing work.{RESET}"
+        f"{DIM}⚖️  Law #6 Reminder: Run 'python3 .agent/scripts/session/quicksave.py \"...\"' after completing work.{RESET}"
     )
     print(f"{BOLD}{'─' * 60}{RESET}\n")
 
