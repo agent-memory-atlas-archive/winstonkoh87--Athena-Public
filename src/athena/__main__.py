@@ -63,7 +63,7 @@ def run_check():
             print(f"   ⚠️  {var}: Not set (optional for cloud features)")
 
     print("\n" + "=" * 60)
-    print("📚 Docs: https://github.com/[AUTHOR]87/Athena-Public")
+    print("📚 Docs: https://github.com/winstonkoh87/Athena-Public")
     return True
 
 
@@ -119,7 +119,7 @@ def main():
     init_parser.add_argument(
         "--ide",
         "-i",
-        choices=["antigravity", "cursor", "vscode", "gemini"],
+        choices=["antigravity", "cursor", "vscode", "gemini", "kilocode", "roocode"],
         default=None,
         help="Generate IDE-specific configuration files",
     )

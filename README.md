@@ -169,6 +169,8 @@ Athena works with **any agent that reads Markdown**. For agents supporting proje
 | [Cursor](https://cursor.com) | ✅ | `athena init --ide cursor` |
 | [Gemini CLI](https://github.com/google-gemini/gemini-cli) | ✅ | `athena init --ide gemini` |
 | [VS Code + Copilot](https://code.visualstudio.com/) | ✅ | `athena init --ide vscode` |
+| [Kilo Code](https://kilocode.ai/) | ✅ | `athena init --ide kilocode` |
+| [Roo Code](https://roocode.com/) | ✅ | `athena init --ide roocode` |
 
 > More agents planned — [full compatibility list →](docs/COMPATIBLE_IDES.md)
 
