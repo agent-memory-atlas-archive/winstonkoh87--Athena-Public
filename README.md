@@ -206,14 +206,16 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 ## 🎯 Use Cases
 
-| | Use Case | What Athena Does |
-|:-|:---------|:-----------------|
-| 🎯 | **Decision-Making** | Trilateral cross-model validation + MCDA ranked by *your* revealed preferences |
-| 🧩 | **Problem-Solving** | Graph-of-Thoughts multi-path reasoning + first-principles deconstruction |
-| 🔬 | **Research & Synthesis** | Structured multi-source synthesis with sentence-level citation |
-| 📚 | **Knowledge Management** | Searchable archive of *your* thinking — portable, model-agnostic, sovereign |
-| 📐 | **Strategic Planning** | Longitudinal planning with Monte Carlo simulation + ergodic risk modeling |
-| 🧠 | **Meta-Thinking** | Surfaces blind spots via pattern detection across hundreds of sessions |
+| | Use Case | What It Looks Like |
+|:-|:---------|:-------------------|
+| 🏠 | **Life Management** | Daily routines, health tracking, pet care, family scheduling — [see how one user built a full life OS in 72 hours](docs/CASE_STUDIES.md) |
+| 💼 | **Work & Projects** | Switch between multiple client projects without losing context. Meeting prep, cross-team knowledge, shift scheduling. |
+| ✍️ | **Writing & Voice** | After 30 sessions, the AI stops sounding like ChatGPT and starts sounding like *you*. Learns your style from your own writing samples. |
+| 🎯 | **Decision-Making** | *"Should I take this job offer?"* — answered using your actual risk tolerance, career goals, and decision history. |
+| 🔬 | **Research & Synthesis** | Compile 200 sources into one framework — still searchable and citable 6 months later. |
+| 📐 | **Strategic Planning** | Long-term planning across dozens of sessions. Budget modeling, scenario analysis, with full context of your past decisions. |
+
+> **Not just for coding.** Athena is used for personal knowledge management, health tracking, creative writing, business strategy, and daily life — by people who've never written a line of code.
 
 ---
 
