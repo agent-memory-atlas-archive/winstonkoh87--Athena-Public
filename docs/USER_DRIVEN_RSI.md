@@ -52,28 +52,7 @@ The bilateral loop above shows the *mechanism*. But the *trajectory* is somethin
 
 > Inspired by Stephen Covey's **Learn → Commit → Do** upward spiral, applied to a bionic (human + AI) system.
 
-```mermaid
-graph TB
-    subgraph "🧬 The Dual Helix"
-        direction TB
-        H1["🧠 Human: Surface friction"] --> A1["🤖 AI: Index as constraint"]
-        A1 --> H2["🧠 Human: Validate output"]
-        H2 --> A2["🤖 AI: Persist to memory"]
-        A2 --> H3["🧠 Human: Evolve judgment"]
-        H3 --> A3["🤖 AI: Apply autonomically"]
-        A3 --> H4["🧠 Human: Higher-order friction"]
-        H4 --> A4["🤖 AI: Higher-order patterns"]
-    end
-
-    style H1 fill:#3b82f6,color:#fff
-    style H2 fill:#3b82f6,color:#fff
-    style H3 fill:#3b82f6,color:#fff
-    style H4 fill:#3b82f6,color:#fff
-    style A1 fill:#10b981,color:#fff
-    style A2 fill:#10b981,color:#fff
-    style A3 fill:#10b981,color:#fff
-    style A4 fill:#10b981,color:#fff
-```
+![The Dual Helix — Two spirals ascending from Surface Friction to Compound Intelligence](./images/dual_helix_rsi.png)
 
 ### The Human Spiral (Organic)
 
