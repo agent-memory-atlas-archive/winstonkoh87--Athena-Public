@@ -149,14 +149,19 @@ flowchart LR
 
 ## 📦 What's In The Box
 
-| Component | Details |
-|:----------|:--------|
-| 🧠 **Core Identity** | Pre-built constitution with 6 laws — [template](examples/templates/core_identity_template.md) |
-| 📋 **120+ Protocols** | Decision frameworks across 13 categories — [browse](examples/protocols/) |
-| ⚡ **50+ Slash Commands** | `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
-| 🔍 **Hybrid RAG Search** | 5-source retrieval + RRF fusion — [architecture](docs/SEMANTIC_SEARCH.md) |
-| 🔌 **MCP Tool Server** | 9 tools exposable to any MCP client — [docs](docs/MCP_SERVER.md) |
-| 🛡️ **Governance Layer** | 4 capability levels, 3 sensitivity tiers — [security](docs/SECURITY.md) |
+Everything you need to turn a generic AI into **your** AI — pre-configured, no assembly required.
+
+| Component | What It Does For You |
+|:----------|:---------------------|
+| 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
+| 📋 **120+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy) across 13 categories — [browse](examples/protocols/) |
+| ⚡ **50+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
+| 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
+| 🔌 **Tool Integration** | Your agent can search, save, and execute scripts on your behalf — [docs](docs/MCP_SERVER.md) |
+| 🛡️ **Safety Rails** | Controls what the AI can and can't do autonomously (4 levels, from read-only to full agency) — [security](docs/SECURITY.md) |
+
+> [!TIP]
+> Run `/tutorial` on your first session for a guided walkthrough (~20 min). It explains everything above and builds your personal profile.
 
 ### Agent Compatibility
 
