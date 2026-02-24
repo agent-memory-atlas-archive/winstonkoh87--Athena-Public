@@ -219,17 +219,20 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 ## 💰 Cost
 
-Athena is **free and open source**. You only pay for your AI subscription:
+**Athena is free. Forever. MIT licensed.** You only pay for the AI subscription you're probably already paying for.
 
 | Plan | Cost | Who It's For |
 |:-----|:-----|:-------------|
-| Claude Pro / Google AI Pro | ~$20/mo | Most users |
-| Claude Max / Google AI Ultra | $200–250/mo | Power users (8+ hrs/day) |
+| **Google Antigravity (free tier)** | **$0** | **Try Athena first** — included with any Google account |
+| Claude Pro / Google AI Pro | ~$20/mo | Daily users — the sweet spot for most people |
+| Claude Max / Google AI Ultra | $200+/mo | Power users managing multiple domains (8+ hrs/day) |
+
+> **Try before you buy.** Athena works with Google Antigravity's free tier — clone the repo, type `/start`, and see if it clicks. No credit card, no trial period, no catch. Upgrade only when you hit the free tier's daily limits.
 
 > Boot cost is ~10K tokens — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
 
 > [!NOTE]
-> Athena works with any model, but its structured reasoning and governance protocols perform best with frontier models (e.g. Claude Opus 4.6, Gemini 3.1 Pro, GPT-5.3). Smaller models may struggle to follow multi-step protocols consistently.
+> Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Opus 4.6, Gemini 3.1 Pro, GPT-5.3). Start with the free tier to test compatibility with your preferred model.
 
 ---
 
