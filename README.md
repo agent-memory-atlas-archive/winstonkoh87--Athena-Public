@@ -35,6 +35,25 @@ AI agents are brilliant — but amnesiac. Every session starts from zero. Athena
 
 > *Think of it like this: the LLM is the engine. Athena is the chassis, the memory, and the rules of the road.*
 
+---
+
+## 🧬 Why Thousands of Files?
+
+Athena's workspace looks unusual — hundreds of Markdown files and Python scripts instead of one big config. **This is deliberate.**
+
+AI agents don't read files top-to-bottom like humans. They **query** — by filename, semantic search, or tag lookup. Each small file is an **addressable memory node** the agent can retrieve surgically, without loading everything else.
+
+| Principle | What It Means |
+|:----------|:-------------|
+| **JIT Loading** | Boot at ~10K tokens. Load specific files only when the query demands them. A monolith forces the full context into every session. |
+| **Zero Coupling** | A marketing protocol loads without touching the trading stack. Change one file, break nothing else. |
+| **Surgical Retrieval** | The agent pulls `CS-378-prompt-arbitrage.md` by name — not page 47 of a 200-page doc. The file system *is* the index. |
+| **Git-Friendly** | Atomic diffs per file. Clean commit history. No merge conflicts from a single giant file. |
+| **Composable Agents** | Swarms, workflows, and skills are mix-and-match. Each file is a Lego brick, not a chapter in a novel. |
+
+> *A monolith is optimized for a human reading a book. A modular workspace is optimized for an agent querying a database. Athena chose the agent.*
+
+---
 <details>
 <summary><strong>"But don't ChatGPT / Gemini already remember?"</strong></summary>
 

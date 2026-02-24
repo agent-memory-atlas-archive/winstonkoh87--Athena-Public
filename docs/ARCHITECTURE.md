@@ -250,6 +250,70 @@ graph TD
 
 ---
 
+## Design Principle: Modular > Monolith
+
+> **Core thesis**: AI agents don't read files sequentially — they **query** them. A workspace optimized for agents should be a **graph of small, addressable nodes**, not a monolithic document.
+
+### Why This Architecture Exists
+
+Athena deliberately fragments its knowledge across hundreds of Markdown files and Python scripts. This looks unusual to humans — but it is **optimal for AI agents** operating under context window constraints.
+
+```mermaid
+graph LR
+    subgraph "Monolith (Human-Optimized)"
+        MONO["📄 One giant config.md<br/>50K tokens"]
+    end
+
+    subgraph "Modular (Agent-Optimized)"
+        F1["📄 protocol_42.md<br/>200 tokens"]
+        F2["📄 CS-378.md<br/>150 tokens"]
+        F3["📄 risk_limits.md<br/>100 tokens"]
+        FN["📄 ...hundreds more"]
+    end
+
+    AGENT["🤖 Agent Query"]
+    AGENT -->|"Load ALL"| MONO
+    AGENT -->|"Load ONLY what matches"| F2
+
+    style MONO fill:#ef4444,color:#fff
+    style F2 fill:#22c55e,color:#fff
+    style AGENT fill:#3b82f6,color:#fff
+```
+
+### The Five Advantages
+
+| # | Principle | Monolith | Modular |
+|:-:|:----------|:---------|:--------|
+| 1 | **Context Efficiency** | Loads 50K tokens even when 200 are relevant | Loads only the files the query demands (JIT) |
+| 2 | **Addressability** | "See page 47" — no agent can do this | `CS-378-prompt-arbitrage.md` — retrievable by name, tag, or semantic search |
+| 3 | **Zero Coupling** | Editing marketing section risks breaking trading rules | Each file is independent — change one, break nothing |
+| 4 | **Version Control** | One-line change → 50K-token diff | Atomic commits per file with clean history |
+| 5 | **Composability** | Can't mix-and-match sections at runtime | Swarms, workflows, and skills load as independent Lego bricks |
+
+### Human UX vs Agent UX
+
+The key insight is that **humans and AI agents navigate knowledge differently**:
+
+| Dimension | Human | AI Agent |
+|:----------|:------|:---------|
+| **Navigation** | Read sequentially (top → bottom) | Query by filename, tag, or embedding similarity |
+| **"Organized" feels like** | One well-structured document | Many small, well-named files |
+| **Index** | Table of contents | File system + TAG_INDEX + vector embeddings |
+| **Retrieval** | Ctrl+F / scroll | Semantic search + RRF fusion |
+
+A single README feels "organized" to a human. But to an agent, the file system **is** the database — each `.md` file is a row, the filename is the primary key, and cross-references are foreign keys.
+
+### How Athena Exploits This
+
+1. **`/start` boots at ~10K tokens** — only `Core_Identity.md`, `activeContext.md`, and session recall are loaded. The remaining 190K tokens of context window stay free.
+2. **On-demand loading** — when you ask about trading, `risk_limits.md` loads. When you ask about architecture, `System_Manifest.md` loads. Neither pollutes the other's context.
+3. **Semantic search navigates the graph** — `smart_search.py` uses hybrid RAG (keyword + embeddings + reranking) to find the right file across hundreds of nodes in milliseconds.
+4. **Protocols are composable** — a Marketing Swarm loads `script_writer.md` + `ad_designer.md` without touching the trading or psychology stacks.
+
+> *The workspace is not a codebase. It's an **exocortex** — a knowledge graph stored as flat files, navigable by any agent that can read Markdown.*
+
+---
+
 ## The Exocortex Model
 
 > **Concept**: Athena is not just a coding assistant. It is a **Centralised HQ** for your entire life — a "second brain" that manages external domains (Work, Wealth, Health) from a single command center.
