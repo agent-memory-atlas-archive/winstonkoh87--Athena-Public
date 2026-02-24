@@ -4,10 +4,11 @@
 
 # Project Athena
 
-**The operating system for AI agents.**
+**Your memory. Your machine. Any model.**
 
-Open-source infrastructure that gives any LLM persistent memory, structured reasoning, and governance.
-Own the data. Rent the intelligence.
+Open-source AI personalisation layer that gives you persistent memory, structured reasoning, and full data ownership — across ChatGPT, Claude, Gemini, and any model you switch to next.
+
+Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
@@ -23,17 +24,50 @@ Own the data. Rent the intelligence.
 
 ---
 
+## The Problem
+
+You've spent months training ChatGPT to understand you. Then a model update resets the personality. Your custom instructions stop working. You can't find that conversation from last Tuesday. And if you switch to Claude or Gemini? **You start from zero.**
+
+Platform memory is **unreliable, opaque, and locked to one provider**. You don't own it, you can't inspect it, and you can't take it with you.
+
 ## Why Athena?
 
-AI agents are brilliant — but amnesiac. Every session starts from zero. Athena fixes that.
+Athena moves the memory layer to **your machine**. Plain Markdown files that you own, version-control, and point at any model.
 
-- **🧠 Persistent Memory** — Sessions compound. Your 500th session recalls patterns from your 5th.
-- **🔌 Model-Agnostic** — Works with Claude, Gemini, GPT, Llama — switch anytime, keep everything.
-- **📁 You Own Your Data** — Markdown files on your machine, git-versioned. No vendor lock-in. Ever.
+- **🧠 Your Memory, Your Machine** — Files on your disk, not in OpenAI's cloud. Read them, edit them, git-version them.
+- **🔌 Switch Models Freely** — Claude today, Gemini tomorrow, GPT next week. The memory stays. The model is just whoever's on shift.
+- **📈 It Compounds** — Session 500 recalls patterns from session 5. Platform memory decays; Athena's doesn't.
 - **⚡ ~10K Token Boot** — 95% of your context window stays free, even after 10,000 sessions.
 - **🛡️ Governed Autonomy** — 6 constitutional laws, 4 capability levels, bounded agency.
 
-> *Think of it like this: the LLM is the engine. Athena is the chassis, the memory, and the rules of the road.*
+> *The LLM is the engine. Athena is the chassis, the memory, and the rules of the road. Swap the engine anytime — the car remembers every road you’ve driven.*
+
+---
+
+## "…But doesn't ChatGPT / Gemini / Claude already do this?"
+
+Kind of. But there's a difference between *remembering your name* and *thinking in your frameworks*:
+
+| Capability | Platform Memory (ChatGPT, Gemini, Claude) | Athena |
+|:-----------|:------------------------------------------|:-------|
+| **Who owns the data?** | The platform | **You** |
+| **Can you inspect it?** | No — it's a black box | Yes — it's markdown files you can read and edit |
+| **Can you search it?** | Vague recall, no precision | Full semantic + keyword search with file links |
+| **Cross-platform?** | Locked to one provider | Same memory works across Claude, Gemini, GPT, Grok |
+| **Version history?** | None — no rollback, no audit trail | Full `git log`, `git diff`, `git blame` |
+| **What if you switch providers?** | Start over | Nothing changes — your data stays |
+
+> **💡** Think of platform memory like photos on Instagram — you can view them, but you don't own them, can't move them, and can't search them precisely. Athena is keeping the originals on your hard drive, with albums, metadata, and full edit history.
+
+### "How is Athena different from...?"
+
+| Tool | What It Does | How Athena Is Different |
+|:-----|:-------------|:------------------------|
+| **ChatGPT Projects** | Uploads files per-project, but resets every new chat. Locked to OpenAI. | Athena persists across *all* chats, *all* models, with full version history. |
+| **OpenClaw** | Prompt distribution — share and discover prompts. | Athena is **personalisation** — your compounding memory system, not a prompt marketplace. Different layer, different problem. |
+| **Claude Code** | Great for Claude coding workflows. | Athena works across *any* model and *any* IDE. Not coding-specific — used for research, strategy, writing, life management. |
+| **Gemini Gems** | Custom chatbots inside Gemini. | Gems are locked to Gemini and lose context between chats. Athena is portable and persistent. |
+| **Custom Instructions** | 1,500-character personality prompt. | Athena loads ~10K tokens of structured protocols, decision frameworks, and session history — re-injected every session from your disk. |
 
 ---
 
@@ -53,29 +87,6 @@ AI agents don't read files top-to-bottom like humans. They **query** — by file
 | **Composable Agents** | Swarms, workflows, and skills are mix-and-match. Each file is a Lego brick, not a chapter in a novel. |
 
 > *A monolith is optimized for a human reading a book. A modular workspace is optimized for an agent querying a database. Athena chose the agent.*
-
-</details>
-
----
-
-<details>
-<summary><strong>"But don't ChatGPT / Gemini already remember?"</strong></summary>
-
-Yes — platforms now offer memory features. But there's a difference between *remembering your name* and *thinking in your frameworks*:
-
-| Capability | Platform Memory (ChatGPT, Gemini, Claude) | Athena |
-|:-----------|:------------------------------------------|:-------|
-| **Memory type** | Passive recall (opaque, probabilistic) | Active reload (deterministic, structured) |
-| **Can you inspect it?** | No — it's a black box | Yes — it's markdown files you can read and edit |
-| **Can you search it?** | Vague recall, no precision | Full semantic + keyword search with file links |
-| **Cross-platform?** | Locked to one provider | Same memory works across Claude, Gemini, GPT, Grok |
-| **Version history?** | None — no rollback, no audit trail | Full `git log`, `git diff`, `git blame` |
-| **Programmable behavior?** | Text box (suggestion) | Structured protocols with triggers, decision trees, kill switches |
-| **Tool execution?** | Sandboxed / none | Runs scripts, writes files, calls APIs on your machine |
-| **Multi-agent?** | One model, one window | Cross-model orchestration (Trilateral Feedback Protocol) |
-| **What happens if you switch providers?** | Start over | Nothing changes — your data stays |
-
-> **💡 Tip:** Think of platform memory like photos stored on Instagram — you can view them, but you don't own them, can't move them, and can't search them precisely. Athena is like keeping the originals on your hard drive, with GPS metadata, albums, and full edit history.
 
 </details>
 
