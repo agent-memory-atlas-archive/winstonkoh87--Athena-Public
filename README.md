@@ -76,6 +76,9 @@ git clone https://github.com/YOUR_USERNAME/Athena-Public.git && cd Athena-Public
 /end
 ```
 
+> [!CAUTION]
+> **Forks of public repos are public by default.** If you plan to store personal data (health records, finances, journals), **create a new private repo** instead of forking. Copy the files manually or use `git clone` + `git remote set-url` to point to your private repo. [GitHub docs on fork visibility →](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks)
+
 **That's it.** No config files. No API keys. No database setup. The folder *is* the product.
 
 > [!TIP]
