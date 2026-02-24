@@ -22,13 +22,7 @@ BOOT_FILES = {
 
 # Configuration
 BOOT_TIMEOUT_SECONDS = 90
-EXPECTED_CORE_HASH = "9e1938392eb15e253bb06dbdfd87a247818e1828620f884f664f9dc99a370dc63f7098a0c813cf2c2b5d715e7aaef5fc"
+EXPECTED_CORE_HASH = "377a465a475ee9440db183fe93437fba89ac9f92dd7abc1b67e6cff911132d09f16de56c2494bf8d7ba76f55353cfdd2"
 
-# Colors
-GREEN = "\033[92m"
-CYAN = "\033[96m"
-YELLOW = "\033[93m"
-RED = "\033[91m"
-BOLD = "\033[1m"
-DIM = "\033[2m"
-RESET = "\033[0m"
+# Colors (centralized)
+from athena.core.colors import GREEN, CYAN, YELLOW, RED, BOLD, DIM, RESET
