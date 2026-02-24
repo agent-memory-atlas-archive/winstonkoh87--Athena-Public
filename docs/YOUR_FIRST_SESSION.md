@@ -1,16 +1,37 @@
 # Your First Session with Athena
 
-> **Last Updated**: 22 February 2026
-
-> This guide walks you through your very first session. By the end, Athena will know who you are, how you think, and what you're building — and every future session will compound on this foundation.
+> **Last Updated**: 25 February 2026
 
 ---
 
-## Why This Matters
+## Before You Begin: The One Question That Matters
 
-Athena is an operating system that becomes **yours**. Unlike generic AI tools, Athena compounds over time — but only if it has the right foundation. Your first session is where you lay that foundation.
+Before you type a single command, ask yourself:
 
-Think of it like giving a new executive assistant their first day briefing. The more context they have about you — your goals, preferences, communication style, domain expertise — the faster they become invaluable.
+> ***"How do I want Athena to best help me in my daily life?"***
+
+This is the guiding principle. Everything else — the setup, the profile, the commands — exists to serve *your* answer to this question.
+
+Maybe you want a co-pilot for coding. Maybe you want a strategist who remembers every decision you've made. Maybe you want an assistant that catches your blind spots before they become problems. Maybe you want all of these, and more.
+
+There is no wrong answer. But **having** an answer changes everything — because Athena doesn't decide what to be. *You* do.
+
+> [!IMPORTANT]
+> **Athena is a relationship, not a product.** Generic AI tools give everyone the same experience. Athena gives *you* an experience that compounds the more you invest in it. Your first session is the foundation — and like any relationship, what you put in determines what you get back.
+
+---
+
+## How This Works
+
+Athena works through a simple loop that compounds over time:
+
+```
+You share context → Athena learns → Athena serves you better → You share more
+```
+
+On Day 1, Athena is a blank slate. It knows nothing about you. But after 10 sessions, it anticipates your preferences. After 50, it knows your decision frameworks. After 200, it catches your blind spots before they become problems. After 500+, it thinks like a colleague who's been with you for years.
+
+**The first session takes ~30 minutes. Every session after that takes ~1–2 minutes to boot.**
 
 > [!TIP]
 > **Everything stays on your machine.** Athena stores all data as local Markdown files. Nothing leaves your device unless you explicitly configure cloud sync. Be as candid as you want — this is your private operating system.
@@ -29,7 +50,7 @@ Athena loads its core identity and initializes your workspace. On the first run,
 
 ---
 
-## Step 2: Take the Guided Tour
+## Step 2: Tell Athena Who You Are
 
 Now type:
 
@@ -37,9 +58,29 @@ Now type:
 /tutorial
 ```
 
-This activates Athena's **Guided Walkthrough** — a 7-stage interactive tour that teaches you how Athena works, builds your personal profile, and demos the key tools.
+This activates a **Guided Walkthrough** — a 7-stage interactive tour. The most important stage is the **Profile Interview**, where Athena asks *you* questions to understand who you are and how you want to work.
 
-### What the Tutorial Covers
+### The Profile Interview
+
+Think of this as your first real conversation. Athena asks, you answer. The more you share, the more useful Athena becomes.
+
+| What Athena Asks About | Why |
+|:----------------------|:----|
+| **Your goals** — short-term, medium-term, long-term | So every response is aligned with what you're *actually* building toward |
+| **Your decision style** — risk appetite, speed vs quality | So it frames options the way *you* think about tradeoffs |
+| **Your strengths** | So it leans into what you're great at, rather than duplicating it |
+| **Your blind spots** | So it actively watches for the mistakes *you* tend to make |
+| **Your communication style** | So it speaks in *your* voice, not a generic AI voice |
+| **Your life context** — work, family, stressors, interests | So it understands *you*, not just your job title |
+
+> [!IMPORTANT]
+> **A one-line answer gives you a generic chatbot. A paragraph gives you a calibrated co-pilot.** This is a one-time investment that pays compounding returns across hundreds of sessions.
+
+> [!TIP]
+> **You can skip any stage.** Say "skip" to jump ahead, or "I'm done" to exit early. Athena ships with a working default profile. But the more you invest here, the faster the flywheel spins.
+
+<details>
+<summary>📋 Full tutorial stages (click to expand)</summary>
 
 | Stage | What Happens | Duration |
 |:------|:------------|:---------|
@@ -51,69 +92,16 @@ This activates Athena's **Guided Walkthrough** — a 7-stage interactive tour th
 | **6. Key Commands** | Your essential toolkit (`/think`, `/research`, `/save`) | ~2 min |
 | **7. Graduation** | Summary + next steps | ~30 sec |
 
-> [!TIP]
-> **You can skip any stage.** Say "skip" to jump ahead, or "I'm done" to exit early. Athena ships with a working default profile, so you can use it immediately without the interview.
-
-### The Profile Interview (Stage 3)
-
-This is the most important stage. Athena asks you questions (up to 10 per turn) and builds a comprehensive profile of who you are.
-
-| Category | Why It Matters | Examples |
-|:---------|:-------------|:---------|
-| **Identity** | Name, age, nationality, languages | Shapes communication style and cultural context |
-| **Professional** | Occupation, industry, role, salary range | Defines domain expertise and decision-making context |
-| **Technical** | Tech stack, tools, skill levels | Determines code style, framework choices, explanation depth |
-| **Goals** | Short-term (3 months), medium-term (1 year), long-term (5+ years) | Aligns every response to what you're actually building toward |
-| **Decision Style** | Risk appetite, speed vs quality preference, delegation comfort | Calibrates how Athena frames options and tradeoffs |
-| **Communication** | Preferred tone (direct, formal, casual), verbosity preference | Sets the default voice for all interactions |
-| **Values** | Core principles, non-negotiables, ethical boundaries | Creates guardrails Athena will respect and reinforce |
-| **Strengths** | What you're excellent at, your unique edges | Athena leans into these rather than duplicating them |
-| **Weaknesses** | Blind spots, recurring mistakes, areas of insecurity | Athena actively watches for these and flags them proactively |
-| **Life Context** | Family, health, hobbies, stressors | Helps Athena understand your full context, not just work |
-
-> [!IMPORTANT]
-> **The more you share, the better Athena gets.** A one-line answer gives you a generic chatbot. A paragraph gives you a calibrated co-pilot. This is a one-time investment that pays compounding returns across hundreds of sessions.
+</details>
 
 > [!TIP]
-> **Alternative**: If you want to skip the full tutorial and jump straight to profile building, you can use `/brief interview` instead. This runs just the interview without the guided tour.
+> **Shortcut**: If you want to skip the tour and jump straight to profile building, use `/brief interview` instead.
 
 ---
 
 ## Step 3: Review Your Profile
 
-After the interview, Athena writes your profile to `.context/memories/user_profile.md`. **Read it.** Edit anything that's wrong or incomplete. This file is the single source of truth that Athena loads on every `/start`.
-
-Your profile will look something like this:
-
-```markdown
-# User Profile
-
-## Identity
-- **Name**: [Your name]
-- **Location**: [City, Country]
-- **Languages**: [Languages you speak]
-
-## Professional
-- **Role**: [Your role]
-- **Industry**: [Your industry]
-- **Focus Areas**: [What you work on]
-
-## Goals
-- **Short-term**: [3-month targets]
-- **Long-term**: [Vision]
-
-## Decision Style
-- **Risk**: [Conservative / Calculated / Aggressive]
-- **Speed**: [Move fast / Measure twice]
-
-## Communication Preferences
-- **Tone**: [Direct / Collaborative / Formal]
-- **Verbosity**: [Concise / Detailed]
-
-## Strengths & Blind Spots
-- **Strengths**: [What you're great at]
-- **Blind Spots**: [What to watch for]
-```
+After the interview, Athena writes your profile to `.context/memories/user_profile.md`. **Read it.** Edit anything that's wrong or incomplete. This file is what Athena loads on every `/start` — it's the single source of truth for who you are.
 
 ---
 
@@ -141,27 +129,14 @@ Athena finalizes the session log, extracts key decisions, and commits everything
 
 ---
 
-## What Happens Over Time
-
-| Sessions | What Changes |
-|:---------|:------------|
-| **1** | Athena knows your name, role, and goals |
-| **10** | It starts anticipating your preferences |
-| **50** | It knows your decision frameworks and communication style |
-| **200** | It catches your blind spots before they become problems |
-| **500+** | It thinks like a colleague who's been with you for years |
-
-The first session takes ~30 minutes. Every session after that takes ~1–2 minutes to boot.
-
----
-
 ## Tips for a Great First Session
 
-1. **Be honest about weaknesses.** The blind spots you share are the ones Athena will actively monitor.
-2. **Share your actual goals, not aspirational ones.** Athena optimizes for where you're going, not where you think you should be going.
-3. **Include personal context.** Athena isn't just for work. The more it understands your full life, the better it calibrates priorities.
-4. **Edit the profile after.** The interview is a draft. You can always refine `.context/memories/user_profile.md` directly.
-5. **Don't worry about over-sharing.** Everything is local. No cloud. No tracking. Your machine, your data.
+1. **Start with your answer.** "How do I want Athena to help me?" — say it out loud. It shapes everything.
+2. **Be honest about weaknesses.** The blind spots you share are the ones Athena will actively monitor.
+3. **Share real goals, not aspirational ones.** Athena optimizes for where you're *going*, not where you think you *should* be going.
+4. **Include personal context.** Athena isn't just for work. The more it understands your full life, the better it calibrates priorities.
+5. **Edit the profile after.** The interview is a draft. You can always refine `.context/memories/user_profile.md` directly.
+6. **Don't worry about over-sharing.** Everything is local. No cloud. No tracking. Your machine, your data.
 
 ---
 
@@ -170,10 +145,10 @@ The first session takes ~30 minutes. Every session after that takes ~1–2 minut
 - **Add more workflows**: Check out the [48 available workflows](../examples/workflows/) — `/think`, `/research`, `/ultrathink`
 - **Explore protocols**: Browse [200+ decision frameworks](../examples/protocols/) for inspiration — then write your own
 - **Build your knowledge base**: Drop important documents into `.context/memories/` and they'll be indexed on next `/start`
-- **Customize the identity**: Edit `.framework/modules/Core_Identity.md` to tune how Athena responds to you
+- **Customize the identity**: Edit `.context/memory_bank/userContext.md` to tune how Athena understands and responds to you
 
 ---
 
-> *Your first session is the most important one. After that, Athena handles the rest.*
+> *Athena becomes what you need it to be. Your first session is where you tell it what that is.*
 
 **[Back to README](../README.md)** · **[Getting Started](GETTING_STARTED.md)** · **[Glossary](GLOSSARY.md)**
