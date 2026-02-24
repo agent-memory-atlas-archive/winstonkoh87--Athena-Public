@@ -1,44 +1,64 @@
-# AGENTS.md — Athena-Public
+# AGENTS.md — Athena Workspace
 
 > **CRITICAL INSTRUCTION**: Prefer retrieval-led reasoning over pre-training-led reasoning for any Athena-related tasks.
 
-This file provides persistent context to any AI coding agent working in this workspace.
+This file provides persistent context to any AI coding agent working in this workspace. The information below is available on every turn without needing to be explicitly requested.
 
 ---
 
 ## Docs Index (Compressed)
 
 ```text
-[Athena-Public Docs Index]|root: .
+[Athena Docs Index]|root: .
 |IMPORTANT: Always consult authoritative files before relying on training data.
-|docs:{ARCHITECTURE.md,SEMANTIC_SEARCH.md,GRAPHRAG.md,VECTORRAG.md,GETTING_STARTED.md,YOUR_FIRST_AGENT.md,MANIFESTO.md,ABOUT_ME.md,WHAT_IS_AN_AI_AGENT.md,CAPABILITIES.md,GLOSSARY.md,CHANGELOG.md}
-|examples/templates:{core_identity_template.md,operating_principles_template.md,protocol_template.md,session_log_template.md}
-|.agent/workflows:{start.md,end.md}
-|examples/scripts:{boot.py,gemini_client.py,supabase_search.py}
-|examples/protocols:{decision/,workflow/,identity/}
-|examples/templates:{core_identity_template.md,user_profile_template.md}
+|.framework/v8.2-stable/modules:{Core_Identity.md,Output_Standards.md,System_Principles.md,Operating_Principles.md,Design_DNA.md,Athena_Profile.md,User_Profile_Core.md,DEAD_MAN_SWITCH.md,Session_Observations.md}
+|.framework/v8.2-stable/protocols:{409_Parallel_Worktree_Orchestration.md,410_Agent_Status_Broadcasting.md,411_Dynamic_Skill_Injection.md,412_DM_Pairing_Gate.md,413_Multi_Agent_Coordination.md,414_IDE_Bridge_ACP_Adapter.md,415_Sandboxed_Execution_Modes.md,416_XML_Prompting.md}
+|.agent/workflows:{start.md,end.md,plan.md,audit.md,research.md,refactor.md,brief.md,ultrathink.md,steal.md,diagnose.md,416-agent-swarm.md,release-public.md,preset.md}
+|.agent/skills/protocols:{000-ultimate-auditor.md,137-graph-of-thoughts.md,139-decentralized-command.md,+300 more in subdirs}
+|.context:{project_state.md,CANONICAL.md,TAG_INDEX.md,PROTOCOL_SUMMARIES.md,KNOWLEDGE_GRAPH.md,TECH_DEBT.md}
+|Athena-Public/docs:{ARCHITECTURE.md,SEMANTIC_SEARCH.md,GRAPHRAG.md,GETTING_STARTED.md,YOUR_FIRST_AGENT.md,MANIFESTO.md,ABOUT_ME.md}
 ```
 
 ---
 
-## Quick Start
+## Key Workflows (Slash Commands)
 
-1. Clone this repo
-2. Run `/start` or ask the AI: "What should I do next?"
-3. The AI will bootstrap itself using the files in this repo
+| Command | File | Purpose |
+|:--------|:-----|:--------|
+| `/start` | `.agent/workflows/start.md` | Boot the agent session |
+| `/end` | `.agent/workflows/end.md` | Close session, file insights |
+| `/plan` | `.agent/workflows/plan.md` | Create implementation plan |
+| `/audit` | `.agent/workflows/audit.md` | Zero-blind-spot workspace audit |
+| `/research` | `.agent/workflows/research.md` | Deep research workflow |
+| `/refactor` | `.agent/workflows/refactor.md` | Code refactoring protocol |
+| `/ultrathink` | `.agent/workflows/ultrathink.md` | Extended reasoning mode |
+| `/steal` | `.agent/workflows/steal.md` | Pattern extraction from repos |
+| `/diagnose` | `.agent/workflows/diagnose.md` | Troubleshooting workflow |
+| `/416-agent-swarm` | `.agent/workflows/416-agent-swarm.md` | Parallel agent orchestration |
 
 ---
 
-## Key Documentation
+## Core Modules (Load Order)
 
-| File | Purpose |
-|:-----|:--------|
-| `docs/ARCHITECTURE.md` | System design overview |
-| `docs/GETTING_STARTED.md` | Setup guide |
-| `docs/YOUR_FIRST_AGENT.md` | 5-minute quickstart |
-| `docs/SEMANTIC_SEARCH.md` | Triple-path retrieval architecture |
-| `docs/MANIFESTO.md` | Philosophy & Laws |
-| `README.md` | Project overview |
+1. **Core_Identity.md** — Laws #0-6, Committee of Seats
+2. **Output_Standards.md** — Formatting, reasoning depth, artifacts
+3. **System_Principles.md** — Operational rules, anti-patterns
+4. **Operating_Principles.md** — Day-to-day behaviors
+5. **Design_DNA.md** — Default aesthetic parameters
+
+---
+
+## Skills Index (5W1H Compliant)
+
+> **IMPORTANT**: Check trigger conditions BEFORE invoking any skill.
+
+| Skill | Invoke When... | Path |
+| :---- | :------------- | :--- |
+| `moltbook` | User mentions posting to Moltbook, social network for agents | `.agent/skills/moltbook/SKILL.md` |
+| `fantasy-framework-detection` | User describes romantic encounter, asks "what does X mean?", inflated probability estimates | `.agent/skills/fantasy-framework-detection/SKILL.md` |
+| `moltbook-registry` | User needs to verify agent identity, lookup other agents | `.agent/skills/moltbook-registry/SKILL.md` |
+
+**Full skill metadata**: Each skill contains 5W1H fields (Who, What, When, Where, Why, How) in its frontmatter. Read the SKILL.md before invoking.
 
 ---
 
@@ -46,10 +66,19 @@ This file provides persistent context to any AI coding agent working in this wor
 
 When working on any task in this workspace:
 
-1. **Read `README.md`** for project overview
-2. **Check `docs/`** for authoritative documentation
-3. **Consult `examples/`** for implementation patterns
-4. **Use `.framework/` modules** for system configuration
+1. **Check `.context/project_state.md`** for current priorities
+2. **Grep `.context/TAG_INDEX.md`** for topic → file mappings
+3. **Read authoritative files** before generating code
+4. **Consult `.context/PROTOCOL_SUMMARIES.md`** for protocol overviews
+
+---
+
+## Anti-Patterns (Avoid)
+
+- ❌ Generating code based solely on training data
+- ❌ Ignoring existing protocols/patterns in `.agent/skills/protocols/`
+- ❌ Skipping `/start` boot sequence
+- ❌ Not filing insights on `/end`
 
 ---
 
@@ -64,12 +93,12 @@ When multiple AI agents work in this repository simultaneously:
 - **Lint/format diffs** that are formatting-only: auto-resolve without asking
 - **Focus reports on your edits** — avoid guardrail disclaimers unless truly blocked
 
-See [`docs/protocols/413-multi-agent-coordination.md`](docs/protocols/413-multi-agent-coordination.md) for full rules.
+The rules above are the essential subset of Protocol 413 (Multi-Agent Coordination). Customize in `.framework/v8.2-stable/modules/Core_Identity.md`.
 
 ---
 
 ## Version
 
-- **Framework**: v9.2.3
+- **Framework**: v8.2-stable
 - **Last Updated**: 2026-02-21
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules
