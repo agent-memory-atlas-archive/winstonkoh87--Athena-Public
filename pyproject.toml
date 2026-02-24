@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "athena-sdk"
-version = "9.2.5"
+version = "9.2.6"
 description = "Athena Bionic OS SDK"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -23,8 +23,7 @@ dependencies = [
     "flashrank>=0.2.9",
     "sentence-transformers>=2.2.0",
     "torch>=2.0.0",
-    "diskcache>=5.6.3",
-    "watchdog>=3.0.0"
+    "diskcache>=5.6.3"
 ]
 
 [project.optional-dependencies]
@@ -49,4 +48,5 @@ ignore = ["E501", "B008"]
 known-first-party = ["athena"]
 
 [tool.black]
+line-length = 88
 target-version = ["py310"]
