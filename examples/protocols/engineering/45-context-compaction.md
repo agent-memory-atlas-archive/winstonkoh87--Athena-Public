@@ -11,7 +11,7 @@ last_updated: 2025-12-18
 
 # Protocol 45: Context Compaction
 
-> **Source**: Adapted from GPT-5.2 + Claude Opus 4.5 features  
+> **Source**: Adapted from GPT-5.3 + Claude Opus 4.6 features  
 > **Purpose**: Enable long-running tasks by compressing context when approaching limits
 
 ---

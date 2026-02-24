@@ -176,7 +176,7 @@ Athena is **free and open source**. You only pay for your AI subscription:
 > Boot cost is ~10K tokens — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
 
 > [!NOTE]
-> Athena works with any model, but its structured reasoning and governance protocols perform best with frontier models (e.g. Claude Opus, Gemini 3.1 Pro, GPT-5.2). Smaller models may struggle to follow multi-step protocols consistently.
+> Athena works with any model, but its structured reasoning and governance protocols perform best with frontier models (e.g. Claude Opus 4.6, Gemini 3.1 Pro, GPT-5.3). Smaller models may struggle to follow multi-step protocols consistently.
 
 ---
 

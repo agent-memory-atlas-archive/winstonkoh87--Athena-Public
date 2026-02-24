@@ -36,7 +36,7 @@ Reduce single-model blind spots by using multiple SOTA LLMs as adversarial peer 
 | Rank | Model | Score | Best For |
 |:---:|:---|:---:|:---|
 | 1 | Gemini-3-Pro | 1490 | General reasoning, vision |
-| 2 | GPT-5.2 | 1488 | SOTA Benchmark (Adversarial Pair) |
+| 2 | GPT-5.3 | 1488 | SOTA Benchmark (Adversarial Pair) |
 | 3 | Gemini-3-Flash | 1478 | Speed + quality balance |
 | 4 | Grok-4.1-Thinking | 1477 | Deep reasoning tasks |
 | 5 | Claude-Opus-4.5-Thinking | 1469 | Structured analysis (Athena primary) |
@@ -67,7 +67,7 @@ Reduce single-model blind spots by using multiple SOTA LLMs as adversarial peer 
 
 ### Phase 2: Outsource (3rd Party SOTA)
 
-1. **Select**: Choose **Gemini 3.1 Pro** or **GPT-5.2** (LMArena).
+1. **Select**: Choose **Gemini 3.1 Pro** or **GPT-5.3** (LMArena).
 2. **Prompt**: *"Act as a hostile regulatory auditor and a pessimistic investor. Your goal is to kill this deal. List the top 3 existential risks the author ignored. Be ruthless."*
 3. **Execute**: Run blind or adversarial check.
 
