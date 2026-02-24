@@ -37,9 +37,10 @@ AI agents are brilliant — but amnesiac. Every session starts from zero. Athena
 
 ---
 
-## 🧬 Why Thousands of Files?
+<details>
+<summary><strong>🧬 Why Thousands of Files?</strong></summary>
 
-Athena's workspace looks unusual — hundreds of Markdown files and Python scripts instead of one big config. **This is deliberate.**
+Athena's workspace looks unusual — **6,000+ Markdown files** and **1,000+ Python scripts** instead of one big config. **This is deliberate.**
 
 AI agents don't read files top-to-bottom like humans. They **query** — by filename, semantic search, or tag lookup. Each small file is an **addressable memory node** the agent can retrieve surgically, without loading everything else.
 
@@ -54,6 +55,7 @@ AI agents don't read files top-to-bottom like humans. They **query** — by file
 > *A monolith is optimized for a human reading a book. A modular workspace is optimized for an agent querying a database. Athena chose the agent.*
 
 ---
+
 <details>
 <summary><strong>"But don't ChatGPT / Gemini already remember?"</strong></summary>
 
@@ -72,6 +74,8 @@ Yes — platforms now offer memory features. But there's a difference between *r
 | **What happens if you switch providers?** | Start over | Nothing changes — your data stays |
 
 > **💡 Tip:** Think of platform memory like photos stored on Instagram — you can view them, but you don't own them, can't move them, and can't search them precisely. Athena is like keeping the originals on your hard drive, with GPS metadata, albums, and full edit history.
+
+</details>
 
 </details>
 
