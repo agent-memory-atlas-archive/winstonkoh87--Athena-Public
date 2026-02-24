@@ -54,6 +54,8 @@ AI agents don't read files top-to-bottom like humans. They **query** — by file
 
 > *A monolith is optimized for a human reading a book. A modular workspace is optimized for an agent querying a database. Athena chose the agent.*
 
+</details>
+
 ---
 
 <details>
@@ -74,8 +76,6 @@ Yes — platforms now offer memory features. But there's a difference between *r
 | **What happens if you switch providers?** | Start over | Nothing changes — your data stays |
 
 > **💡 Tip:** Think of platform memory like photos stored on Instagram — you can view them, but you don't own them, can't move them, and can't search them precisely. Athena is like keeping the originals on your hard drive, with GPS metadata, albums, and full edit history.
-
-</details>
 
 </details>
 
