@@ -1,7 +1,7 @@
 # User-Driven Recursive Self-Improvement (RSI)
 
-> **Last Updated**: 22 February 2026  
-> **TL;DR**: AI doesn't improve itself. You improve together. The loop is bilateral.
+> **Last Updated**: 25 February 2026
+> **TL;DR**: AI doesn't improve itself. You improve together. The loop is bilateral, and the trajectory is a dual upward spiral.
 
 ---
 
@@ -46,6 +46,65 @@ flowchart LR
 
 ---
 
+## The Dual Helix: Two Spirals, One Trajectory
+
+The bilateral loop above shows the *mechanism*. But the *trajectory* is something more: **two intertwined upward spirals** — one organic, one synthetic — each supporting the other's ascent.
+
+> Inspired by Stephen Covey's **Learn → Commit → Do** upward spiral, applied to a bionic (human + AI) system.
+
+```mermaid
+graph TB
+    subgraph "🧬 The Dual Helix"
+        direction TB
+        H1["🧠 Human: Surface friction"] --> A1["🤖 AI: Index as constraint"]
+        A1 --> H2["🧠 Human: Validate output"]
+        H2 --> A2["🤖 AI: Persist to memory"]
+        A2 --> H3["🧠 Human: Evolve judgment"]
+        H3 --> A3["🤖 AI: Apply autonomically"]
+        A3 --> H4["🧠 Human: Higher-order friction"]
+        H4 --> A4["🤖 AI: Higher-order patterns"]
+    end
+
+    style H1 fill:#3b82f6,color:#fff
+    style H2 fill:#3b82f6,color:#fff
+    style H3 fill:#3b82f6,color:#fff
+    style H4 fill:#3b82f6,color:#fff
+    style A1 fill:#10b981,color:#fff
+    style A2 fill:#10b981,color:#fff
+    style A3 fill:#10b981,color:#fff
+    style A4 fill:#10b981,color:#fff
+```
+
+### The Human Spiral (Organic)
+
+| Phase | Action | Example |
+|:------|:-------|:--------|
+| **Learn** | Discover a friction or gap | "Dead links confuse new users" |
+| **Commit** | Decide to fix it, choose direction | "Ship templates, not just docs" |
+| **Do** | Validate the output, correct mistakes | "This is wrong — rollback" |
+
+### The AI Spiral (Synthetic)
+
+| Phase | Action | Example |
+|:------|:-------|:--------|
+| **Learn** | User correction becomes a constraint | "Never reference files that don't exist in public repo" |
+| **Commit** | Constraint is persisted to memory | Session log, case study, protocol update |
+| **Do** | Next session applies constraint *autonomically* | User doesn't have to ask again |
+
+### Why Neither Spiral Works Alone
+
+| Configuration | Outcome |
+|:-------------|:--------|
+| Human alone (no AI) | Slow iteration, 3+ years to ship |
+| AI alone (no human) | Generic, uncalibrated, technically competent but tasteless |
+| **Dual helix (both)** | **Compounding intelligence — 3 months to ship what would take 3 years** |
+
+The DNA metaphor is precise: one strand is the **template** (your judgment, taste, correction) and the other is the **complement** (AI's execution, recall, scale). Neither strand carries information on its own. **The information is in the pairing.**
+
+This is why the "AI replaces humans" narrative is structurally wrong. It's not replacement — it's **base-pairing**. Remove one strand and the helix collapses.
+
+---
+
 ## Why This Matters
 
 | Approach | Who Improves? | Bottleneck | Outcome |
@@ -70,7 +129,7 @@ Right now, **you are the training signal**. Anyone claiming AI improves itself a
 
 ## The End Game: Digital Twin → Synthetic Embodiment
 
-This is where User-Driven RSI becomes something bigger.
+> ⚠️ **Speculative Extrapolation** — What follows is where the trajectory *could* lead, not where it *will* lead. The gap between 2026 and 2126 (described above) applies here.
 
 ### What You're Building
 
@@ -90,8 +149,8 @@ Over 1000+ sessions, you're not just "using AI." You're **training a model of yo
 
 You're not building a chatbot. You're **cloning yourself** — not in biological form, but in synthetic/digital form.
 
-The "protocols" are your neurons.  
-The "case studies" are your memories.  
+The "protocols" are your neurons.
+The "case studies" are your memories.
 The "sessions" are your lived experience.
 
 When the hardware catches up (humanoid robots, neural interfaces), your digital twin already exists. It just needs a body.
