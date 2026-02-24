@@ -83,29 +83,39 @@ Yes — platforms now offer memory features. But there's a difference between *r
 
 ## ⚡ Quickstart
 
+**Works on macOS, Windows, and Linux.**
+
 ```bash
 # 1. Fork & clone
 git clone https://github.com/YOUR_USERNAME/Athena-Public.git && cd Athena-Public
 
-# 2. Open in your IDE (Claude Code, Antigravity, Cursor, VS Code, etc.)
+# 2. Install the SDK (optional — enables CLI commands)
+pip install -e .
 
-# 3. Boot:
+# 3. Open the folder in your AI IDE (VS Code, Cursor, Claude Code, etc.)
+
+# 4. Boot:
 /start
 
-# 4. First time? Take the guided tour:
+# 5. First time? Take the guided tour:
 /tutorial
 
-# 5. When you're done:
+# 6. When you're done:
 /end
 ```
+
+> [!IMPORTANT]
+> **Athena works through AI-enabled code editors (IDEs), not through ChatGPT.com or Claude.ai.** You need an app like VS Code + Copilot, Cursor, or Claude Code that can read files from your computer. Think of Athena as a plugin for your editor, not a plugin for a chatbot.
 
 > [!CAUTION]
 > **Forks of public repos are public by default.** If you plan to store personal data (health records, finances, journals), **create a new private repo** instead of forking. Copy the files manually or use `git clone` + `git remote set-url` to point to your private repo. [GitHub docs on fork visibility →](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks)
 
-**That's it.** No config files. No API keys. No database setup. The folder *is* the product.
+**That's it.** No API keys. No database setup. The folder *is* the product.
 
 > [!TIP]
 > `/tutorial` walks you through everything: what Athena is, how it works, builds your profile, and demos the tools (~20 min). Confident users can skip it and jump straight to work.
+>
+> ⚠️ **Don't `pip install athena-cli`** — that's a different package. Use `pip install -e .` inside the cloned repo.
 >
 > See the [full guide →](docs/YOUR_FIRST_SESSION.md)
 
@@ -165,7 +175,7 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 
 ### Agent Compatibility
 
-Athena works with **any agent that reads Markdown**. For agents supporting project-level config, `athena init` generates native files:
+Athena works through **AI-enabled code editors** — apps that connect to AI models while reading your local files. It does **not** work through ChatGPT.com, Claude.ai, or Gemini web — those are closed sandboxes that can't read your disk.
 
 | Agent | Status | Init Command |
 |:------|:------:|:-------------|
@@ -178,6 +188,8 @@ Athena works with **any agent that reads Markdown**. For agents supporting proje
 | [Roo Code](https://roocode.com/) | ✅ | `athena init --ide roocode` |
 
 > More agents planned — [full compatibility list →](docs/COMPATIBLE_IDES.md)
+>
+> **"How is this different from ChatGPT Projects?"** — Projects reset every new chat and are locked to one platform. Athena persists across *all* chats, *all* models, with full version history. [Details →](docs/FAQ.md)
 
 ---
 
