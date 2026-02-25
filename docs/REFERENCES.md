@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-02-25
+last_updated: 2026-02-26
 tags: #references #apa #academic #citations
 ---
 
@@ -186,6 +186,14 @@ Wei, A., Haghtalab, N., & Steinhardt, J. (2024). Jailbroken: How does LLM safety
 
 ---
 
+## Information Theory & System Design
+
+Shannon, C. E. (1948). A mathematical theory of communication. *Bell System Technical Journal, 27*(3), 379–423. <https://doi.org/10.1002/j.1538-7305.1948.tb01338.x>
+
+> **Note**: Shannon's information theory provides the mathematical foundation for Athena's risk-proportional routing. The classification tier (SNIPER / STANDARD / ULTRA) is fundamentally a channel capacity problem: how much information about query risk can be extracted at minimal cost? The Λ complexity score is an entropy estimate that determines how much computational "bandwidth" to allocate.
+
+---
+
 ## How Citations Are Used in This Repository
 
 Inline citations follow APA format: `(Author, Year)`. For example:
@@ -195,6 +203,8 @@ Inline citations follow APA format: `(Author, Year)`. For example:
 - *"Bounded rationality: execute 'Good Enough' immediately"* → (Simon, 1956)
 - *"Graph RAG: from local to global summarization"* → (Edge et al., 2024)
 - *"Cross-encoder reranking for retrieval quality"* → (Nogueira & Cho, 2020)
+- *"A mathematical theory of communication"* → (Shannon, 1948)
+- *"Antifragile systems gain from disorder"* → (Taleb, 2012)
 
 When a concept is referenced frequently across multiple documents, the first instance in each document includes the full inline citation. Subsequent mentions within the same document use the short form.
 
@@ -202,4 +212,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 25 February 2026*
+*Last updated: 26 February 2026*

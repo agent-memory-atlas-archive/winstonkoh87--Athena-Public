@@ -3,7 +3,7 @@
 athena.boot.orchestrator
 =========================
 Modular boot sequence orchestrator.
-Replaces the monolithic .agent/scripts/boot/boot.py
+Replaces the monolithic .agent/scripts/boot.py
 """
 
 import sys
@@ -106,12 +106,23 @@ def main():
     # Phase 6 & 7: Optimized Context & Semantic Activation (Parallel)
     from concurrent.futures import ThreadPoolExecutor
     from athena.core.health import HealthCheck
+    from athena.boot.loaders.context_summaries import (
+        generate_summaries,
+        display_summary_status,
+    )
 
     def run_health_check_wrapper():
         if not HealthCheck.run_all():
             print(
                 f"{RED}⚠️  System health check failed. Proceeding with caution...{RESET}"
             )
+
+    # Tier 0: Pre-computed context summaries (hash-based delta, zero API cost)
+    context_summaries = {}
+
+    def run_context_summaries():
+        nonlocal context_summaries
+        context_summaries = generate_summaries()
 
     with ThreadPoolExecutor(max_workers=8) as executor:
         # 1. Non-blocking context capture
@@ -132,10 +143,14 @@ def main():
         # 6. Prefetch (Moved to background)
         executor.submit(PrefetchLoader.prefetch_hot_files)
 
+        # 7. Tier 0: Context Summary Pre-computation (Min-Latency × Max-Effectiveness)
+        executor.submit(run_context_summaries)
+
     # Display remaining sync items
     MemoryLoader.display_learnings_snapshot()
     IdentityLoader.display_cognitive_profile()
     IdentityLoader.display_cos_status()
+    display_summary_status(context_summaries)
 
     # Phase 8: Sidecar Launch (Sovereign Index)
     try:
@@ -158,7 +173,7 @@ def main():
     print(f"\n{BOLD}{'─' * 60}{RESET}")
     print(f"{GREEN}{BOLD}⚡ Ready.{RESET} Session: {session_id}")
     print(
-        f"{DIM}⚖️  Law #6 Reminder: Run 'python3 .agent/scripts/session/quicksave.py \"...\"' after completing work.{RESET}"
+        f"{DIM}⚖️  Law #6 Reminder: Run 'python3 .agent/scripts/quicksave.py \"...\"' after completing work.{RESET}"
     )
     print(f"{BOLD}{'─' * 60}{RESET}\n")
 

@@ -1,10 +1,54 @@
 # Athena Changelog
 
-> **Last Updated**: 24 February 2026
+> **Last Updated**: 26 February 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.2.7 (26 February 2026)
+
+**Risk-Proportional Triple-Lock + Tier 0 Context Summaries**: Engineered the min-latency × max-effectiveness optimization. The Triple-Lock is no longer a flat tax on every query — it's now risk-proportional with three tiers. Boot sequence gains zero-cost context pre-computation.
+
+### Key Changes
+
+- **Risk-Proportional Triple-Lock** (`governance.py`): Added `RiskLevel` enum (SNIPER / STANDARD / ULTRA). SNIPER queries (Λ < 10) bypass mandatory search — direct answer. STANDARD/ULTRA enforce full Triple-Lock. Default is STANDARD (robustness bias: `cost(false_negative) >> cost(false_positive)`). Risk level auto-resets after each verification.
+- **Tier 0 Context Summaries** (`context_summaries.py`, NEW): Pre-computes 500-char compressed summaries of all 6 Memory Bank files at boot. Uses hash-based delta detection — only regenerates when source changes. Cached to `.agent/state/context_cache/`. Zero API cost.
+- **Boot Orchestrator** (`orchestrator.py`): Context summary generation integrated as parallel worker #7 in the ThreadPoolExecutor. Zero sequential boot latency added.
+- **REFERENCES.md**: Added 3 new academic citations (Shannon, Satisficing, Antifragility).
+- **README**: Updated tech stack routing description to "Risk-Proportional Triple-Lock".
+
+### Design Principles (Three Laws)
+
+1. **Measure latency over the full cycle, not per-response.** Rework is the real latency tax.
+2. **Phase-separate classification from execution.** Fast routing, robust processing. Never blend.
+3. **When the classifier is uncertain, always round toward robustness.** The cost asymmetry makes this the only rational default.
+
+### Verification
+
+| Metric | Result |
+|--------|--------|
+| Governance SNIPER bypass | Verified ✅ |
+| SNIPER auto-reset to STANDARD | Verified ✅ |
+| STANDARD/ULTRA enforcement | Verified ✅ |
+| Context summaries (6/6 files) | Pre-computed ✅ |
+| Cache retrieval | Functional ✅ |
+| All new code | Lint-clean ✅ |
+
+---
+
+## v9.2.6 (25 February 2026)
+
+**Kilo Code + Roo Code IDE Integration**: Expanded agent compatibility to include Kilo Code and Roo Code. Fixed Windows encoding issue.
+
+### Key Changes
+
+- **IDE Support**: Added `athena init --ide kilocode` and `athena init --ide roocode` commands.
+- **`COMPATIBLE_IDES.md`**: New documentation page listing all supported IDEs with setup instructions.
+- **Windows Encoding Fix**: Resolved UTF-8 encoding issue on Windows platforms.
+- **Issue #19**: Closed (IDE compatibility question).
 
 ---
 

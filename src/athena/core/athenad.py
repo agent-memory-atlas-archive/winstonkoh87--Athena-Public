@@ -30,7 +30,7 @@ from pathlib import Path
 # --- CONFIGURATION ---
 PROJECT_ROOT = Path(__file__).resolve().parents[3]  # src/athena/core -> ROOT
 DB_PATH = PROJECT_ROOT / ".agent" / "inputs" / "athena.db"
-SCHEMA_PATH = PROJECT_ROOT / ".agent" / "inputs" / "schema.sql"
+SCHEMA_PATH = Path(__file__).resolve().parent / "schema.sql"
 
 # Watch Configuration
 WATCH_DIRS = [
