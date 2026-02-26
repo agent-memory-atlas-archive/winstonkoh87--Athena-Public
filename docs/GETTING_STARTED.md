@@ -1,6 +1,6 @@
 # Getting Started
 
-> **Last Updated**: 19 February 2026
+> **Last Updated**: 27 February 2026
 
 > Build your own AI assistant in 5 minutes
 
@@ -11,7 +11,7 @@
 - **Python 3.10+** installed
 - **Terminal access** (macOS Terminal, Windows PowerShell, or Linux)
 - **Git** installed ([download here](https://git-scm.com/))
-- **An agentic AI IDE** — [Antigravity](https://deepmind.google/), [Cursor](https://cursor.sh/), or similar
+- **An agentic AI IDE** — [Google Antigravity](https://antigravity.google/), [Cursor](https://cursor.sh/), [Kilo Code](https://kilocode.ai/), [Roo Code](https://roocode.com/), [OpenCode](https://opencode.ai/), or similar
 
 ---
 
@@ -71,11 +71,13 @@ flowchart LR
 ## Step 3: Test It
 
 1. Open your workspace in your AI IDE
-2. Type `/start`
-3. First time? Type `/tutorial` for a guided walkthrough (~20 min)
-4. Or just start working — Athena is ready out of the box
-5. Type `/save` to checkpoint mid-session
-6. Type `/end` when done
+2. Type `/start` to boot your agent
+3. Start working — Athena is ready out of the box
+4. Type `/save` to checkpoint mid-session
+5. Type `/end` when done
+
+> [!TIP]
+> **First time?** Follow the [Your First Session](./YOUR_FIRST_SESSION.md) guide for a hands-on walkthrough.
 
 Check `.context/memories/session_logs/` — you should see your session log!
 
@@ -153,11 +155,15 @@ For advanced automation, see the [examples/scripts/](../examples/scripts/) folde
 | "No session log found" | Run `/start` first to create one |
 | Scripts don't run | Check Python is installed: `python3 --version` |
 | Workflow not recognized | Ensure file is in `.agent/workflows/` |
+| Windows encoding errors | Run `chcp 65001` before starting, or use the included `ensure_env.ps1` |
+| Permission denied (macOS/Linux) | Run `chmod +x .agent/scripts/*.py` |
 
 ---
 
 ## See Also
 
+- **[Your First Session](./YOUR_FIRST_SESSION.md)** — Guided first-run walkthrough
+- **[Your First Agent](./YOUR_FIRST_AGENT.md)** — Build a custom agent in 5 minutes
 - **[Glossary](./GLOSSARY.md)** — Key terms and definitions
 - **[Changelog](./CHANGELOG.md)** — Version history and updates
 
