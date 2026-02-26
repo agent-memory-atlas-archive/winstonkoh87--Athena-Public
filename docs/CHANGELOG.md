@@ -1,10 +1,30 @@
 # Athena Changelog
 
-> **Last Updated**: 26 February 2026
+> **Last Updated**: 27 February 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.2.8 (27 February 2026)
+
+**Skill Template Expansion**: Added 5 starter skill templates across 4 categories for new Antigravity users. Skills are copy-paste ready — `cp -r examples/skills/<skill> .agent/skills/`.
+
+### New Skills
+
+| Path | Description |
+|------|-------------|
+| `examples/skills/coding/spec-driven-dev/` | Build a design spec before writing code |
+| `examples/skills/research/deep-research-loop/` | Structured multi-source research workflow |
+| `examples/skills/quality/red-team-review/` | Adversarial QA review for any artifact |
+| `examples/skills/decision/mcda-solver/` | Multi-criteria decision matrix calculator |
+| `examples/skills/workflow/context-compactor/` | Compress context to stay within token limits |
+
+### Other Changes
+
+- **`examples/skills/README.md`**: Rewritten with full directory tree, AG Quick Start instructions, and skill creation guide.
 
 ---
 
