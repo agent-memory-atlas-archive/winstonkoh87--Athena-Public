@@ -426,4 +426,4 @@ The critical difference: **Athena remembers what you decided last time.** If you
 
 ---
 
-*See also: [Protocol 171: Cross-Model Validation](examples/protocols/verification/171-cross-model-validation.md)*
+*See also: [Protocol 171: Cross-Model Validation](../examples/protocols/verification/171-cross-model-validation.md)*
