@@ -1,28 +1,61 @@
 ---
 created: 2026-02-02
-last_updated: 2026-02-02
-version: 1.0
-origin: Session 05 (Blackjack Probability Analysis)
-dependencies: [Law #1, Protocol 193 (Ergodicity Check)]
-tags: [decision, utility, risk, gambling, speculation, rationality]
+last_updated: 2026-02-28
+version: 2.0
+origin: Session 05 (Blackjack Probability Analysis), Session 32 (GTO EEV Formalization)
+dependencies: [Law #1, Protocol 193 (Ergodicity Check), Protocol 180 (Utility Function Analysis)]
+tags: [decision, utility, risk, gambling, speculation, rationality, gto, eev, limit-point]
 ---
 
-# Protocol 330: Expected Aggregate Value (EAV) Framework
+# Protocol 330: Expected Economic Value (EEV) Framework
 
-> **Purpose**: Integrate quantitative (financial) and qualitative (experiential) returns into a single decision metric.
-> **Prime Directive**: Law #1 (No Ruin) — Veto any action with >5% Risk of Ruin, regardless of E(AV).
+> **Purpose**: Integrate quantitative (financial) and qualitative (experiential) returns into a single GTO decision metric.
+> **Prime Directive**: Law #1 (No Ruin) — Veto any action with >5% Risk of Ruin, regardless of E(EV).
+> **Core Theorem**: Economic EV = Math EV + Utility EV. The optimal investment Limit Point occurs where EEV = 0.
 
 ---
 
 ## 1. The Formula
 
-$$E(AV) = E(V) + E(U) - E(O)$$
+$$E(EV) = E(V) + E(U) - E(O)$$
 
 | Symbol | Name | Definition |
 |:---|:---|:---|
 | **E(V)** | Expected Financial Value | Net monetary return per time unit ($/hr) |
 | **E(U)** | Expected Utility Value | Hedonic/experiential value converted to $/hr |
 | **E(O)** | Expected Opportunity Cost | Value of the next-best alternative use of time ($/hr) |
+
+---
+
+## 1B. The Three-Line EEV Model (v2.0)
+
+EEV is not a single metric — it is the **synthesis** of two independent value curves:
+
+| Line | Name | Type | Behavior |
+|:---|:---|:---|:---|
+| **MEV** | Mathematical Expected Value | Pure Quantitative | Fixed negative slope. Always drags value downward. |
+| **UEV** | Utility Expected Value | Pure Qualitative | Non-linear. Spikes at low spend, decays, then crashes into negative at high spend. |
+| **EEV** | Economic Expected Value | Combined GTO Metric | Sum of MEV + UEV. Crosses zero at the **Limit Point**. |
+
+### The Limit Point
+
+The **Limit Point** is the exact dollar amount ($X) where:
+
+$$E(EV) = E(V) + E(U) - E(O) = 0$$
+
+- **Left of Limit Point**: EEV > 0 → Rational. Proceed.
+- **At Limit Point**: EEV = 0 → Breakeven. Maximum allowable spend.
+- **Right of Limit Point**: EEV < 0 → Irrational. Wealth destruction.
+
+### The UEV Calculus (Inverted Marginal Utility)
+
+UEV operates on three distinct phases:
+
+1. **Phase 1 — The Spike** ($0 → $1): UEV shoots up near-vertically. The **absolute maxima** (dy/dx = 0) occurs at the moment of acquiring the option. The 1st dollar buys 99% of the psychological utility.
+2. **Phase 2 — The Slow Decay** ($1 → $10): UEV slopes downwards gently. Additional spend buys marginal probability but zero additional fantasy.
+3. **Phase 3 — The Crash** ($10+): UEV plummets aggressively into negative territory. Financial anxiety, buyer's remorse, and cash drag destroy the psychological premium.
+
+> ⚠️ **Critical**: UEV does NOT scale linearly. Buying 100 lottery tickets does not generate 100x the daydream of buying 1 ticket.
 
 ---
 
@@ -84,16 +117,16 @@ Opportunity Cost can only be claimed IF you have the **energy** to execute the a
 
 ---
 
-### Step 4: Calculate E(AV)
+### Step 4: Calculate E(EV)
 
-$$E(AV) = E(V) + E(U) - E(O)$$
+$$E(EV) = E(V) + E(U) - E(O)$$
 
 **Example:**
 
 - E(V) = -$0.02/hr
 - E(U) = +$2.40/hr (after Skeptic's Discount)
 - E(O) = $0.00/hr
-- **E(AV) = +$2.38/hr** → ✅ Proceed
+- **E(EV) = +$2.38/hr** → ✅ Proceed
 
 ---
 
@@ -103,9 +136,9 @@ $$E(AV) = E(V) + E(U) - E(O)$$
 |:---|:---|:---|
 | **1. Law #1 Veto** | RoR > 5%? | ❌ **REJECT** (No exceptions) |
 | **2. Variance Tax** | High variance activity? | Add **10% stress tax** to E(V) |
-| **3. E(AV) Calculation** | E(AV) < 0? | ❌ **REJECT** |
-| **4. E(AV) Calculation** | E(AV) = 0? | ⚖️ **NEUTRAL** (Indifferent) |
-| **5. E(AV) Calculation** | E(AV) > 0 AND RoR ≤ 5%? | ✅ **ACCEPT** |
+| **3. E(EV) Calculation** | E(EV) < 0? | ❌ **REJECT** |
+| **4. E(EV) Calculation** | E(EV) = 0? | ⚖️ **NEUTRAL** (Indifferent) |
+| **5. E(EV) Calculation** | E(EV) > 0 AND RoR ≤ 5%? | ✅ **ACCEPT** |
 
 ---
 
@@ -155,34 +188,37 @@ $$E(AV) = E(V) + E(U) - E(O)$$
 | **E(U) Raw** | $3.00/hr | "More fun than video games" |
 | **E(U) Adjusted** | $2.40/hr | Apply 0.8 Skeptic's Discount |
 | **E(O)** | $0/hr | Playing during "dead time" |
-| **E(AV)** | **+$2.38/hr** | ✅ Proceed |
+| **E(EV)** | **+$2.38/hr** | ✅ Proceed |
 
-**Verdict**: Positive E(AV). RoR is low. Law #1 satisfied. **Play for fun.**
+**Verdict**: Positive E(EV). RoR is low. Law #1 satisfied. **Play for fun.**
 
 ---
 
-## 7. Key Insights (Origin: Session 05)
+## 7. Key Insights
 
 1. **Humans maximize Utility, not Dollars.** The math of E(V) ignores the joy of playing.
 2. **Subjective Utility must be constrained** to prevent rationalization (Skeptic's Discount).
 3. **Opportunity Cost is often zero** during rest blocks, commuting, or low-energy states.
-4. **Law #1 is non-negotiable.** Even a massively positive E(AV) is rejected if RoR > 5%.
+4. **Law #1 is non-negotiable.** Even a massively positive E(EV) is rejected if RoR > 5%.
 5. **Sample Size matters.** In +EV systems, P(Profit) increases with $N$. In -EV systems, P(Ruin) increases with $N$.
+6. **MEV alone cannot solve human games.** The Ultimatum Game, lottery purchases, and insurance are all -MEV but +EEV decisions.
+7. **The Limit Point is the operational boundary.** Every dollar past the EEV = 0 intersection is pure wealth destruction.
+8. **UEV peaks instantly.** The derivative dy/dx = 0 occurs at the point of option acquisition, not at higher spend levels.
 
 ---
 
 ## 8. The Barbell Maximizer (Optimization Strategy)
 
-To maximize the **E(AV) Curve** over a lifetime, you must solve for **Geometric Growth** (Compound Interest) minus **Volatility Drag**.
+To maximize the **E(EV) Curve** over a lifetime, you must solve for **Geometric Growth** (Compound Interest) minus **Volatility Drag**.
 
 **The Mathematical Solution**: The 90/10 Barbell.
 
-| Component | Allocation | Role | Effect on E(AV) |
+| Component | Allocation | Role | Effect on E(EV) |
 |:---|:---|:---|:---|
 | **The Anchor** | 90% | Low Variance, Low Yield (Cash/Bonds) | **Survival**. Prevents Ruin (Law #1). |
 | **The Convexity** | 10% | High Variance, Infinite Upside (Speculation) | **Growth**. Captures outliers. |
 
-**Why this Maximizes E(AV):**
+**Why this Maximizes E(EV):**
 
 1. **Safety**: The Anchor ensures you never hit an absorbing barrier (Ruin).
 2. **Upside**: The Convexity ensures you participate in "Black Swan" positive events.
@@ -192,12 +228,30 @@ To maximize the **E(AV) Curve** over a lifetime, you must solve for **Geometric 
 
 ---
 
-## References
+## 9. Case Studies
 
-- [Protocol 193: Ergodicity Check](#)
-- [Core Identity: Law #1](examples/templates/core_identity_template.md)
-- [Blackjack Apprenticeship: Bankroll Management](https://www.blackjackapprenticeship.com/blackjack-bankroll-management/)
+| Case Study | Application | Limit Point |
+|:---|:---|:---|
+| **CS-331: TOTO EEV Convergence** | Lottery ticket purchase for median SG earner ($5.5K/mth) | $16 (EEV = 0) |
+| **CS-332: Ultimatum Game Dignity Tax** | Rejecting unfair offers despite +MEV | ~30% offer (Dignity Cost = Monetary Gain) |
+
+### The Ultimatum Game (Why MEV Breaks)
+
+MEV predicts: Accept any offer > $0 (even 0.1%).
+Reality: Offers below ~30% are rejected by the majority.
+
+**EEV Explanation**: Accepting an insulting offer generates severe **negative UEV** (humiliation, loss of dignity). At the ~30% threshold, the monetary gain from MEV exactly equals the dignity cost from UEV. Below 30%, EEV < 0 → Reject. Above 30%, EEV > 0 → Accept.
+
+This is structurally identical to the TOTO Limit Point — both are solved by finding where $E(V) + E(U) = 0$.
 
 ---
 
-# decision #utility #risk #gambling #speculation #rationality
+## References
+
+- [Protocol 193: Ergodicity Check](../decision/193-ergodicity-check.md)
+- [Protocol 180: Utility Function Analysis](../decision/180-utility-function-analysis.md)
+- [Core Identity: Law #1](../../framework/Core_Identity.md)
+
+---
+
+# decision #utility #risk #gambling #speculation #rationality #gto #eev #limit-point
