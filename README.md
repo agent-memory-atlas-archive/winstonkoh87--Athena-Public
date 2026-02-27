@@ -18,7 +18,7 @@ Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](docs/FAQ.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 27 February 2026*
+*Last updated: 28 February 2026*
 
 </div>
 
