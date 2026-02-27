@@ -2,6 +2,8 @@
 name: Deep Research Loop
 description: Multi-step web research, compilation, and synthesis workflow. Scrapes multiple sources, cross-references claims, and produces a structured research brief.
 created: 2026-02-27
+auto-invoke: true
+model: default
 ---
 
 # 🔬 Deep Research Loop

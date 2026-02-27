@@ -2,6 +2,8 @@
 name: Context Compactor
 description: Summarizes and compresses conversation context to stay within token limits. Prevents context window overflow.
 created: 2026-02-27
+auto-invoke: false
+model: default
 ---
 
 # 🗜️ Context Compactor

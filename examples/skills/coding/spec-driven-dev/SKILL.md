@@ -2,6 +2,8 @@
 name: Spec-Driven Development
 description: Interrogates the user to build a complete design specification before writing any code. Prevents "vibe coding" failures.
 created: 2026-02-27
+auto-invoke: false
+model: default
 ---
 
 # 📋 Spec-Driven Development

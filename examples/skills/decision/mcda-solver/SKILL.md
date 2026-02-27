@@ -2,6 +2,8 @@
 name: Decision Matrix (MCDA)
 description: Multi-Criteria Decision Analysis calculator. Breaks complex decisions into weighted criteria with explicit scoring.
 created: 2026-02-27
+auto-invoke: false
+model: default
 ---
 
 # ⚖️ Decision Matrix (MCDA / WEU)

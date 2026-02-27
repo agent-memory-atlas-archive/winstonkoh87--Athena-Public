@@ -3,6 +3,8 @@ name: Diagnostic-First Refactoring
 description: A non-destructive, decoupled analysis protocol for refactoring code. Generates a "Bill of Materials" report before any code is touched.
 created: 2026-02-04
 source: r/vibecoding community pattern
+auto-invoke: false
+model: default
 ---
 
 # 🩺 Diagnostic-First Refactoring (The "Surgeon's Scan")

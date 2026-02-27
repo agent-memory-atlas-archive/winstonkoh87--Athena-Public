@@ -2,6 +2,8 @@
 name: Red-Team Review
 description: Bias-aware adversarial review for any artifact before shipping. 5-phase QA protocol with severity-weighted findings.
 created: 2026-02-27
+auto-invoke: true
+model: default
 ---
 
 # 🔴 Red-Team Review

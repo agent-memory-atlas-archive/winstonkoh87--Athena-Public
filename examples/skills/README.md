@@ -51,14 +51,21 @@ Every skill follows this structure:
 
 ```yaml
 ---
-name: My Custom Skill
+name: my-custom-skill
 description: One-line description of what this skill does
+argument-hint: "trigger phrase | alternative trigger"
+auto-invoke: false          # true = auto-load on context match, false = user-invoked only
+model: default              # model override when skill is active
+user-invocable: true        # false = background knowledge only, hidden from slash menu
+allowed-tools:              # tools allowed without permission prompts
+  - Read
+  - Bash
 ---
 
 # Skill Title
 
-## When to Use
-[Triggers and conditions]
+## Triggers
+[Keywords and phrases that activate this skill]
 
 ## Execution Workflow
 [Step-by-step instructions]
@@ -66,5 +73,25 @@ description: One-line description of what this skill does
 ## Output Format
 [Expected output structure]
 ```
+
+### Frontmatter Reference
+
+| Field | Required | Description |
+|:------|:---------|:------------|
+| `name` | Yes | Skill identifier and `/slash-command` |
+| `description` | Yes | When to invoke (used for auto-discovery) |
+| `argument-hint` | No | Autocomplete hint (e.g., `[issue-number]`) |
+| `auto-invoke` | No | `true` to auto-load on context match (default: `false`) |
+| `model` | No | Model override when skill is active (default: `default`) |
+| `user-invocable` | No | Set `false` to hide from slash menu (default: `true`) |
+| `allowed-tools` | No | Tools allowed without permission prompts |
+
+### Auto-Invoke Guidelines
+
+Set `auto-invoke: true` for skills that should activate automatically when the conversation matches their domain:
+
+- **Safety gates** (circuit-breaker, law-of-ruin) — must auto-invoke to enforce constraints
+- **Analysis tools** (kelly-mandate, base-rate-audit) — auto-invoke enriches responses transparently
+- **User-invoked only** (marketing-swarm, git-worktree-swarm) — heavyweight workflows that should only run on explicit command
 
 See [CONTRIBUTING.md](../../CONTRIBUTING.md) for guidelines on adding new skills.
