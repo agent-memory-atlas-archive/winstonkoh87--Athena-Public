@@ -56,7 +56,7 @@ Before touching "working" code, ask:
 ## Integration
 
 - Links to: [Protocol 130: Vibe Coding](examples/protocols/workflow/130-vibe-coding.md) — when speed matters
-- Links to: [Protocol 93: Forward-Only Architecture](examples/protocols/architecture/93-forward-only-architecture.md) — freeze after validation
+- Links to: Protocol 93: Forward-Only Architecture — freeze after validation (internal protocol)
 - Links to: [TASK_LOG Template](examples/templates/TASK_LOG_template.md) — intent persistence
 - Source: Reddit r/vibecoding (Dec 2025)
 
