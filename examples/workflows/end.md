@@ -1,10 +1,14 @@
----created: 2025-12-09
-last_updated: 2026-01-30
 ---
-
----description: Close session and update System Prompt files with new insights (lightweight)
+description: Close session and update System Prompt files with new insights (lightweight)
 created: 2025-12-09
-last_updated: 2026-01-07
+last_updated: 2026-02-23
+model: default
+temperature: 0.5
+tools:
+  read: true
+  write: true
+  bash: true
+  search: true
 ---
 
 # /end — Session Close Script (Lightweight)
@@ -67,6 +71,90 @@ last_updated: 2026-01-07
 
 3. **Append**: Add this block to the end of the Session Log.
 
+## 1.4 Self-Reflection & Learning Extraction
+
+> **Rule**: Before ending, ask yourself: *"What did I learn this session and how can I incorporate my learnings into this workspace and into future sessions?"*
+> **Philosophy**: The AI is the second strand of the dual helix. If it doesn't learn, the helix stalls.
+
+**MANDATORY** — Do NOT skip this step. Work on it before formal closure.
+
+1. **Reflect**: Answer these questions honestly:
+   * What friction/mistakes did I encounter? (e.g., wrong remote, leaked files, dead links)
+   * What new patterns or constraints did I discover? (e.g., "always sync public → private")
+   * What would make the next session start smarter?
+
+2. **File the learnings** — Pick the right destination:
+
+   | Learning Type | Where to File |
+   |:-------------|:-------------|
+   | New workflow step | Update the relevant `.agent/workflows/*.md` |
+   | New constraint/rule | Update `AGENTS.md` or `.framework/` modules |
+   | New protocol | Create/update `.agent/skills/protocols/` |
+   | Reusable pattern | Add to `.context/CANONICAL.md` or `PROTOCOL_SUMMARIES.md` |
+   | Bug/tech debt | Append to `.context/TECH_DEBT.md` |
+
+3. **Commit the learnings** before running shutdown. These are high-value — don't defer them.
+
+4. **Log**: Add a brief "Session Learnings" section to the session log:
+
+   ```markdown
+   ## Session Learnings
+   - [Learning 1]: Filed to [destination]
+   - [Learning 2]: Filed to [destination]
+   ```
+
+## 1.4.5 Bilateral Repo Sync Check
+
+> **Rule**: Public and private repos must stay in sync. Changes flow both directions.
+> **Philosophy**: The repos are two expressions of the same system. Drift = debt.
+
+**MANDATORY** — Check BOTH directions before shutdown.
+
+### Direction 1: Private → Public (with Privacy Filter)
+
+If you modified shared files in the **private** repo this session, sync to public:
+
+```bash
+# Check what changed in private this session
+cd /Users/winstonkoh/Desktop/Project\ Athena
+git diff --name-only HEAD~1
+```
+
+**What to sync**:
+
+| Sync? | File/Directory | Notes |
+|:------|:-------------|:------|
+| ✅ Yes | `docs/*.md` | Strip personal data before copying |
+| ✅ Yes | `AGENTS.md` | Public version should only list shipped modules |
+| ✅ Yes | `wiki/*.md` | Copy to wiki repo too |
+| ⚠️ Carefully | `.agent/workflows/*.md` | Only if workflow is public-relevant |
+| ❌ Never | `.framework/` full modules | Public has template versions only |
+| ❌ Never | `.context/` | Private state, memories, profiles |
+| ❌ Never | `User_Profile*.md` | Personal data |
+
+**Privacy filter** — before copying ANY file to public, run the privacy scanner:
+
+```bash
+cd /Users/winstonkoh/Project\ Athena/Athena-Public
+python3 .github/scripts/privacy_scan.py <file_to_sync>
+```
+
+If it blocks, **scrub personal content** or **do not sync**.
+
+### Direction 2: Public → Private
+
+If you modified shared files in the **public** repo this session, sync to private:
+
+```bash
+# Check what changed in public this session
+cd /Users/winstonkoh/Desktop/Project\ Athena/Athena-Public
+git diff --name-only HEAD~1
+```
+
+Copy changed `docs/`, `AGENTS.md`, and wiki files to the private repo. No filter needed (private is the superset).
+
+> See also: `/push-public` workflow → "Post-Push: Sync Back to Private" section.
+
 ## 1.5 Shutdown Orchestrator
 
 > **Rule**: Single script handles harvest check, git commit, and compliance.
@@ -126,8 +214,8 @@ python3 .agent/scripts/shutdown.py
 
 ## References
 
-* [/refactor](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/workflows/refactor.md) — Deep system optimization (audits, scans, integrity)
-* [/save](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
+* [/refactor](file:///Users/winstonkoh/Project Athena/Athena-Public/examples/workflows/refactor.md) — Deep system optimization (audits, scans, integrity)
+* [/save](file:///Users/winstonkoh/Project Athena/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
 
 ---
 
