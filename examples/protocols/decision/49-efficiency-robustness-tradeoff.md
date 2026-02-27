@@ -1,13 +1,13 @@
 ---
 created: 2025-12-12
-last_updated: 2026-01-30
+last_updated: 2026-02-28
 graphrag_extracted: true
 ---
 
 ---name: efficiency-robustness-tradeoff
 description: Explicit framework for choosing between efficiency (optimised for best case) and robustness (survivable in worst case). Forces conscious choice rather than magical thinking.
 created: 2025-12-12
-last_updated: 2025-12-25
+last_updated: 2026-02-28
 ---
 
 # Protocol 49: Efficiency vs Robustness Trade-off
@@ -231,6 +231,8 @@ Example: Trading
 
 **You earn the right to be efficient by first being robust.** Not the other way around.
 
+But temporal separation only *sequences* the trade-off—it doesn't eliminate it. Section 49.9 addresses the harder question: how to push the frontier itself outward.
+
 ---
 
 ## 49.8 Application Note
@@ -244,10 +246,84 @@ When detecting magical thinking in user queries:
 
 ---
 
-> **Core truth**: The attempt to optimise for both efficiency and robustness simultaneously is the most common form of strategic self-deception. Explicit choice is the only cure.
+## 49.9 Pushing the Pareto Frontier (Athena Meta-Architecture)
+
+> Choosing a point on the frontier is a decision problem. **Moving the frontier outward** is an engineering problem.
+
+Sections 49.1–49.8 address *where* to sit on the curve. This section addresses the harder question: **how to get more robustness per unit of latency** — shifting the frontier itself so previously impossible combinations become achievable.
+
+Athena implements five architectural mechanisms that push the frontier:
+
+### 49.9.1 Pre-Computation (Amortized Robustness)
+
+The `/start` boot sequence loads Core Identity, COS seats, and semantic priming in a single upfront pass (~8K tokens, ~5s). This is a **fixed one-time cost** that buys robustness for every subsequent query at **zero marginal latency**.
+
+Analogy: Compiled code vs. interpreted code. You pay at compile time so runtime is both fast *and* correct.
+
+| Without Pre-Computation | With Pre-Computation |
+|------------------------|---------------------|
+| Each query re-derives context (slow + fragile) | Context pre-loaded, queries inherit it (fast + robust) |
+| OR skips context (fast + fragile) | Amortized cost → near-zero per query |
+
+**Frontier shift**: Robustness ↑, Amortized Latency ↓.
+
+### 49.9.2 Structural Pre-Commitment (Laws as Compiled Rules)
+
+Laws #0–4, Constraint Hardlines, and the Protocol library are **pre-validated decision rules**. Instead of reasoning through "should I risk ruin?" from first principles each time (expensive, error-prone), apply a compiled rule: *"Does this violate Law #1? Yes → Veto. Done."*
+
+This is robustness at SNIPER-speed. The reasoning already happened when the protocol was written. Execution is just pattern matching.
+
+**Frontier shift**: Same robustness, Latency → near-zero for constrained decisions.
+
+### 49.9.3 Parallel Execution (Concurrent Redundancy)
+
+When Semantic Search + TAG_INDEX lookup + web search run **simultaneously** rather than sequentially, you get **redundant retrieval** (robustness) at roughly the latency cost of **one** retrieval. The Dual-Path Search pattern in 49.3.5 isn't just redundancy—it's redundancy *without multiplicative latency*.
+
+```text
+Sequential:  Search₁ (2s) → Search₂ (2s) → Search₃ (2s) = 6s total
+Parallel:    Search₁ ┐
+             Search₂ ├─ max(2s, 2s, 2s) = 2s total
+             Search₃ ┘
+
+3x robustness at 1x latency cost.
+```
+
+**Frontier shift**: Robustness ↑↑, Latency ↑ (sublinear, not linear).
+
+### 49.9.4 Compression (Protocol 420 — Context Compaction)
+
+The context compactor maintains **information density**. Instead of carrying 28K tokens of raw session history, compress to ~4K of high-signal context. Same information content, fewer tokens.
+
+This is literal data compression applied to cognition. The system is both **more informed** (robust — no context amnesia) and **lighter** (efficient — smaller context window).
+
+**Frontier shift**: Robustness maintained, Context cost ↓↓.
+
+### 49.9.5 Continuous Λ-Calibration (Gradient Within Tiers)
+
+The three processing tiers (SNIPER / STANDARD / ULTRA) are the user-facing *interface*, but the actual resource allocation is not truly discrete. Within STANDARD, a Λ-15 query gets less processing than a Λ-28 query. The **gradient within each tier** is where the real Pareto optimization happens—not at the tier boundaries.
+
+A vanilla LLM applies **uniform processing** to every query—same depth for "what's 2+2" and "should I take this job offer." That's a single fixed point, almost certainly *not* on the Pareto frontier for any given query. Adaptive Λ-scoring selects a **different optimal point** for each query.
+
+**Frontier shift**: Resource allocation tracks the marginal-return curve more closely.
+
+### Summary: The Five Shifts
+
+| # | Mechanism | What It Does | Frontier Effect |
+|---|-----------|-------------|----------------|
+| 1 | Pre-Computation | Pay once, benefit N times | Robustness ↑, Amortized Latency ↓ |
+| 2 | Structural Pre-Commitment | Replace reasoning with rule-matching | Same Robustness, Latency ↓↓ |
+| 3 | Parallel Execution | Concurrent redundancy | Robustness ↑↑, Latency ↑ (sublinear) |
+| 4 | Compression | Same signal, fewer tokens | Robustness maintained, Cost ↓↓ |
+| 5 | Λ-Calibration | Per-query resource matching | Both track marginal-return curve |
+
+> **Insight**: A vanilla LLM has a fixed Pareto position. Athena's adaptive architecture means it selects a *different* point on a *further-out* curve for each query. The tall order isn't choosing a point—it's building the machine that moves the curve.
+
+---
+
+> **Core truth**: The attempt to optimise for both efficiency and robustness simultaneously is the most common form of strategic self-deception. Explicit choice is the only cure. But explicit *architecture* can push the frontier outward—making previously impossible trade-offs achievable.
 
 ---
 
 ## Tagging
 
-# protocol #framework #process #49-efficiency-robustness-tradeoff
+# protocol #framework #process #49-efficiency-robustness-tradeoff #pareto #architecture

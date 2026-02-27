@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-02-26
+last_updated: 2026-02-28
 tags: #references #apa #academic #citations
 ---
 
@@ -48,11 +48,11 @@ Tversky, A., & Kahneman, D. (1974). Judgment under uncertainty: Heuristics and b
 
 Bernoulli, D. (1738). Specimen theoriae novae de mensura sortis [Exposition of a new theory on the measurement of risk]. *Commentarii Academiae Scientiarum Imperialis Petropolitanae, 5*, 175–192. [English translation: *Econometrica, 22*(1), 23–36, 1954]
 
-> **Note**: Bernoulli's 1738 paper is the origin of *expected utility theory*. He demonstrated that the subjective value of wealth is logarithmic (concave), not linear — resolving the St. Petersburg Paradox. This foundation underlies every utility-based decision framework in the Athena protocol library, including Protocol 331 (EEV).
+> **Note**: Bernoulli's 1738 paper is the origin of *expected utility theory*. He demonstrated that the subjective value of wealth is logarithmic (concave), not linear — resolving the St. Petersburg Paradox. This foundation underlies every utility-based decision framework in the Athena protocol library, including Protocol 330 (EEV).
 
 Friedman, M., & Savage, L. J. (1948). The utility analysis of choices involving risk. *Journal of Political Economy, 56*(4), 279–304. <https://doi.org/10.1086/256692>
 
-> **Note**: Friedman & Savage proposed a double-inflection utility function — concave at low and high wealth, convex in between — to explain why people simultaneously buy insurance (risk-averse) and lottery tickets (risk-seeking). This is the theoretical foundation of Protocol 331's Economic Expected Value (EEV) framework.
+> **Note**: Friedman & Savage proposed a double-inflection utility function — concave at low and high wealth, convex in between — to explain why people simultaneously buy insurance (risk-averse) and lottery tickets (risk-seeking). This is the theoretical foundation of Protocol 330's Economic Expected Value (EEV) framework.
 
 Kelly, J. L., Jr. (1956). A new interpretation of information rate. *Bell System Technical Journal, 35*(4), 917–926. <https://doi.org/10.1002/j.1538-7305.1956.tb03809.x>
 
@@ -60,9 +60,15 @@ Mas-Colell, A., Whinston, M. D., & Green, J. R. (1995). *Microeconomic theory*. 
 
 von Neumann, J., & Morgenstern, O. (1944). *Theory of games and economic behavior*. Princeton University Press.
 
-> **Note**: vNM formalized the axiomatic foundation of expected utility theory — completeness, transitivity, continuity, and independence. Their utility function is the standard against which all decision-under-uncertainty frameworks (including Friedman-Savage and Prospect Theory) are measured. Referenced in Protocol 331 (EEV).
+> **Note**: vNM formalized the axiomatic foundation of expected utility theory — completeness, transitivity, continuity, and independence. Their utility function is the standard against which all decision-under-uncertainty frameworks (including Friedman-Savage and Prospect Theory) are measured. Referenced in Protocol 330 (EEV).
 
 Pareto, V. (1896). *Cours d'économie politique* [Course of political economy]. F. Rouge.
+
+> **Note**: Pareto's work established the concept of *Pareto optimality* — a state where no dimension can be improved without degrading another. In Athena, this underpins Protocol 49 (Efficiency vs Robustness Trade-off): you operate on a Pareto frontier and choose your position explicitly. Protocol 106 (Min-Max Optimization) applies the same principle to procurement and resource allocation via the Sovereign Point ($S = \arg\max U(c)/c$).
+
+Deb, K., Pratap, A., Agarwal, S., & Meyarivan, T. (2002). A fast and elitist multiobjective genetic algorithm: NSGA-II. *IEEE Transactions on Evolutionary Computation, 6*(2), 182–197. <https://doi.org/10.1109/4235.996017>
+
+> **Note**: NSGA-II is the canonical algorithm for multi-objective Pareto optimization — finding the set of non-dominated solutions along a trade-off frontier. Referenced conceptually in Protocol 49 §49.9 (Pushing the Pareto Frontier) where Athena's architecture shifts the efficiency-robustness frontier outward.
 
 Roy, B. (1991). The outranking approach and the foundations of ELECTRE methods. *Theory and Decision, 31*(1), 49–73. <https://doi.org/10.1007/BF00134132>
 
@@ -192,6 +198,14 @@ Shannon, C. E. (1948). A mathematical theory of communication. *Bell System Tech
 
 > **Note**: Shannon's information theory provides the mathematical foundation for Athena's risk-proportional routing. The classification tier (SNIPER / STANDARD / ULTRA) is fundamentally a channel capacity problem: how much information about query risk can be extracted at minimal cost? The Λ complexity score is an entropy estimate that determines how much computational "bandwidth" to allocate.
 
+Graves, A. (2016). Adaptive computation time for recurrent neural networks. *arXiv preprint arXiv:1603.08983*. <https://arxiv.org/abs/1603.08983>
+
+> **Note**: Graves introduced the concept of *adaptive computation time* — allowing neural networks to allocate variable amounts of processing to different inputs based on difficulty. This is the ML-theoretic foundation of Athena's Λ-scoring: simple queries get SNIPER-level processing; complex queries get ULTRA-level processing. The system "thinks harder" when the input warrants it.
+
+Tarjan, R. E. (1985). Amortized computational complexity. *SIAM Journal on Algebraic and Discrete Methods, 6*(2), 306–318. <https://doi.org/10.1137/0606031>
+
+> **Note**: Tarjan formalized *amortized analysis* — proving that expensive operations can be "paid for" by cheaper ones when analyzed over a sequence. This grounds Protocol 49 §49.9.1 (Pre-Computation / Amortized Robustness): Athena's expensive `/start` boot sequence is a one-time cost that buys robustness for all subsequent queries at zero marginal latency.
+
 ---
 
 ## How Citations Are Used in This Repository
@@ -212,4 +226,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 26 February 2026*
+*Last updated: 28 February 2026*
