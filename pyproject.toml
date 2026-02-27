@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [
-    { name = "Winston Koh", email = "winstonkoh87@gmail.com" }
+    { name = "Winston Koh" }
 ]
 keywords = [
     "ai-agent", "llm", "cognitive-os", "memory-bank",

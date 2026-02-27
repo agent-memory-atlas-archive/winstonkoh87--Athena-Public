@@ -5,7 +5,7 @@ query_codex.py — Semantic Search Interface for Zero-Point Codex
 Queries the ChromaDB vector store for semantically similar content.
 
 Usage:
-    python3 .agent/scripts/query_codex.py "What do I know about virgin seduction?"
+    python3 .agent/scripts/query_codex.py "What patterns exist in my decision frameworks?"
     python3 .agent/scripts/query_codex.py "PigEconomy anti-pattern"
 
 Output:

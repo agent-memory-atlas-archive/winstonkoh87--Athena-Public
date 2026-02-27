@@ -73,7 +73,7 @@ Each session acts as a **HITLO Epoch** (Human-in-the-Loop Optimization), where o
 
 **Layer 0: Abundance OS**
 
-- ❌ Scarcity System: "No one wants me" → Identity Collapse → PEF Ruin
+- ❌ Scarcity System: "Perceived rejection" → Identity Collapse → Psychological Ruin
 - ✅ Abundance System: "I did the right thing in the wrong environment" → Choose Table → Sovereignty
 
 **Layer 1: Environmental Physics**
@@ -99,7 +99,7 @@ Each session acts as a **HITLO Epoch** (Human-in-the-Loop Optimization), where o
 | 💰 Financial | Bankruptcy, Insolvency | Leveraged Blowout |
 | 👥 Reputation | Career/Social Exile | Public Scandal |
 | ⚖️ Legal | Criminal Record | Criminal Conviction |
-| 🧠 Psychological (PEF) | Competence/Identity Collapse | Negative Pattern Lock |
+| 🧠 Psychological (Psychological) | Competence/Identity Collapse | Negative Pattern Lock |
 | 💔 Moral | Irreversible Harm to Others | Abuse, Betrayal |
 
 **Ergodicity Distinction**:

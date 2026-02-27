@@ -17,7 +17,7 @@ LINK_MAP = {
         "Protocol 42: Red-Blue Curve Taxonomy",
         ".agent/skills/protocols/strategy/42-red-blue-curve-taxonomy.md",
     ),
-    "limerence": (
+    "emotional-bias": (
         "Protocol 114: Limerent Reality Distortion",
         ".agent/skills/protocols/psychology/114-limerent-reality-distortion.md",
     ),

@@ -14,7 +14,7 @@ last_updated: 2026-01-05
 > **Status**: ACTIVE  
 > **Source**: Zero-Point Codex (Dec 2025)  
 > **Laws**: Law #54 (STPP), Law #64 (Fantasy-Pain Proportionality)  
-> **Trigger**: Limerence, High-Stakes Emotional Decisions, "This time is different"
+> **Trigger**: Emotional Bias, High-Stakes Emotional Decisions, "This time is different"
 
 ---
 
@@ -22,7 +22,7 @@ last_updated: 2026-01-05
 
 > **"The brain generates a Fantasy Timeline to extract dopamine. Physics generates a Reality Timeline to extract payment. You must look at both simultaneously."**
 
-Limerence and poor strategy thrive on **singular visualization** (seeing only the best case). STPP forces **dual visualization**.
+Emotional Bias and poor strategy thrive on **singular visualization** (seeing only the best case). STPP forces **dual visualization**.
 
 ---
 
@@ -81,4 +81,4 @@ $$ \text{Pain} = \text{Fantasy Magnitude} - \text{Reality Magnitude} $$
 
 ## Tags
 
-# protocol #stpp #law-54 #law-64 #limerence #betting-framework #timeline-projection
+# protocol #stpp #law-54 #law-64 #emotional bias #betting-framework #timeline-projection

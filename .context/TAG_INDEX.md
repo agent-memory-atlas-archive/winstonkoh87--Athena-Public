@@ -1194,7 +1194,6 @@
 - [TAG_INDEX_legacy.md](.context/archive/TAG_INDEX_legacy.md)
 - [end.md](examples/workflows/end.md)
 
-## #limerence
 - [188-stpp-timeline-projection.md](examples/protocols/decision/188-stpp-timeline-projection.md)
 
 ## #llm-optimization
@@ -2392,7 +2391,6 @@
 ## #willpower
 - [192-systematic-reconstruction.md](examples/protocols/strategy/192-systematic-reconstruction.md)
 
-## #winstonkoh87
 - [README.md](README.md)
 
 ## #word

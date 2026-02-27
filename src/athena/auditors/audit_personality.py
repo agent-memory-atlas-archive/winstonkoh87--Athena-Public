@@ -37,7 +37,7 @@ LIVING_DOCS = {
 # Signal patterns to detect (regex)
 SIGNAL_PATTERNS = {
     "Psychology_Layers.md": [
-        r"(schema|L[1-5]|trauma|trigger|emotional|pattern|insight|mechanism)",
+        r"(schema|pattern|trigger|emotional|insight|mechanism)",
         r"(self-gaslighting|abandonment|invalidation|escalation|dysregulation)",
         r"(therapy|therapeutic|processing|grief|closure)",
     ],

@@ -4,7 +4,7 @@ last_updated: 2026-01-30
 graphrag_extracted: true
 ---
 
----description: Cross-domain pattern harvesting at session end. Auto-detects structural isomorphisms across seduction, marketing, dev/trading, psychology.
+---description: Cross-domain pattern harvesting at session end. Auto-detects structural isomorphisms across persuasion, marketing, dev/trading, psychology.
 tags: [#protocol, #isomorphism, #cross-domain, #synthesis, #meta]
 created: 2025-12-14
 last_updated: 2025-12-31
@@ -24,7 +24,7 @@ last_updated: 2025-12-31
 ╔════════════════════════════════════════════════════════════════════════════════╗
 ║  KNOWLEDGE SILOS (Anti-Pattern)                                                ║
 ║  ────────────────────────────────────────────────────────────────────────────  ║
-║  Seduction insights stay in seduction.                                         ║
+║  Domain insights stay siloed.                                         ║
 ║  Marketing insights stay in marketing.                                         ║
 ║  Trading insights stay in trading.                                             ║
 ║  → Each domain reinvents the same structural wheel.                           ║
@@ -42,17 +42,17 @@ last_updated: 2025-12-31
 
 ## 2. The Isomorphism Matrix (Reference)
 
-| Pattern | Seduction | Marketing | Dev/Trading | Psychology |
+| Pattern | Persuasion | Marketing | Dev/Trading | Psychology |
 |---------|-----------|-----------|-------------|------------|
 | **Gate-by-Gate** | Escalation Ladder | Sales Funnel | Micro-Commit | Trust Build |
 | **Tipping Point** | Hole Probe | Tripwire Purchase | First Trade | Identity Shift |
-| **Coordination Layer** | Threesome Arranger | VDESTINY Model | MCP Architecture | Therapist |
+| **Coordination Layer** | Multi-Party Orchestrator | VDESTINY Model | MCP Architecture | Therapist |
 | **Outcome Independence** | "Is OK, Just JO" | "No Worries" | Stopgap Protocol | Abundance OS |
 | **Black Box Arbitrage** | Experience Gap | Ignorance Pricing | Wizard of Oz | Expertise Gap |
-| **Scrambled Eggs** | Threesome Context | Category Creation | Capital Guard™ | Frame Break |
-| **Begged Entry** | Virgin Pulls In | Inbound Close | "Where Do I Sign?" | Autonomous Motivation |
+| **Scrambled Eggs** | Multi-Party Context | Category Creation | Capital Guard™ | Frame Break |
+| **Begged Entry** | Newcomer Pulls In | Inbound Close | "Where Do I Sign?" | Autonomous Motivation |
 | **Structural Leverage** | EDMW Lift Case | Frame Control | Technical Debt | Power Dynamics |
-| **Agent Coordination** | Pimp/Madam | VDESTINY | MCP Server | Therapist |
+| **Agent Coordination** | Talent Manager | VDESTINY | MCP Server | Therapist |
 | **Optimization** | Stoicism | Strategic Leadership | DSPy Signatures | Outcome Independence |
 | **Community Detect** | Clique Infiltration | Niche Targeting | GraphRAG | Social Circle Game |
 | **Adaptability** | Social Chameleon | Localisation | Memori Adapter | Code-Switching |
@@ -114,9 +114,9 @@ Append to session log under "Key Insights":
 
 | Source | Pattern | Transfer To |
 |--------|---------|-------------|
-| Seduction | "Skip gates = resistance" | Dev: Feature stacking = collapse |
+| Persuasion | "Skip gates = resistance" | Dev: Feature stacking = collapse |
 | Trading | "Position sizing is sincerity signal" | Fantasy: Commitment proves to self |
-| Marketing | "Tripwire breaks identity barrier" | Seduction: First touch = identity shift |
+| Marketing | "Tripwire breaks identity barrier" | Persuasion: First touch = identity shift |
 | Psychology | "Frame > Substance" | Business: Brand perception > Product quality |
 | **MCP** | "Standardized Interface" | Business: Coordination Layer (Trust Gap) |
 | **DSPy** | "Signatures > Prompts" | Psychology: Outcome Independence (Standard > Method) |
@@ -138,12 +138,12 @@ This protocol runs **silently** at every `/end`.
 
 ## References
 
-- [Protocol 23: Isomorphism Detection](file:///Users/winstonkoh/Desktop/Project Athena/.agent/skills/protocols/pattern-detection/23-isomorphism-detection.md) — The detection framework (macro)
-- [Escalation Ladder Framework](file:///Users/winstonkoh/Desktop/Project Athena/Winston/psychology/escalation_ladder_framework.md) — Seduction ≅ Sales origin
-- [Session 38](file:///Users/winstonkoh/Desktop/Project Athena/.context/memories/session_logs/archive/2025-12-14-session-38.md) — Origin session
+- [Protocol 23: Isomorphism Detection](protocols/pattern-detection/23-isomorphism-detection.md) — The detection framework (macro)
+- [Escalation Ladder Framework](concepts/escalation_ladder_framework.md) — Persuasion ≅ Sales origin
+- [Session 38](session_logs/archive/session-38.md) — Origin session
 
 ---
 
 ## Tagging
 
-#protocol #framework #67-cross-pollination
+# protocol #framework #67-cross-pollination

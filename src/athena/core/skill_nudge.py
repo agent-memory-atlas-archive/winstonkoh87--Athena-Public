@@ -132,7 +132,7 @@ SKILL_REGISTRY: dict[str, dict] = {
     },
     # --- Psychology ---
     "Psychology L1-L5": {
-        "primary": ["attachment", "anxious-avoidant", "trauma", "reparenting"],
+        "primary": ["attachment", "emotional-pattern", "stress-response", "growth"],
         "secondary": ["psychology", "therapy", "fantasy", "validation", "boundary"],
         "hint": "Layered psychological architecture. Deep self-analysis frameworks.",
     },

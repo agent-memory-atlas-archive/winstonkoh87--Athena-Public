@@ -30,7 +30,7 @@
 | 💰 Financial | Bankruptcy, unrecoverable debt | Leveraged blowup |
 | 👥 Reputational | Professional/social exile | Public scandal |
 | ⚖️ Legal | Criminal record | Conviction |
-| 🧠 Psychological | Identity collapse | Trauma fixation |
+| 🧠 Psychological | Identity collapse | Negative pattern lock |
 | 💔 Moral | Irreversible harm to others | Abuse, betrayal |
 
 **Key Distinction**:

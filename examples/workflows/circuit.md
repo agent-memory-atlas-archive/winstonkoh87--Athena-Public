@@ -80,7 +80,7 @@ If user proceeds:
 | Financial | 💰 | Leveraged positions, large investments, debt |
 | Reputational | 👥 | Public statements, professional relationships |
 | Legal | ⚖️ | Contracts, regulatory compliance, criminal risk |
-| Psychological | 🧠 | Trauma triggers, identity threats |
+| Psychological | 🧠 | Emotional triggers, identity threats |
 | Moral | 💔 | Harm to others, ethical violations |
 
 ---

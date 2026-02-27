@@ -6,7 +6,7 @@ Demonstrates hybrid semantic search over local markdown files.
 Uses sentence-transformers for embeddings (optional dependency).
 
 Usage:
-    python3 scripts/core/smart_search.py "limerence protocol"
+    python3 scripts/core/smart_search.py "decision framework"
     python3 scripts/core/smart_search.py "trading strategy" --limit 5
 
 Dependencies:

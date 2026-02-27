@@ -312,7 +312,7 @@ Monitor: Any escalation = addiction forming → Initiate FFP ⚠️
 | **SDR Calculator** | High Form + Low Substance = hidden structural risk (SDR may be higher than visible). |
 | **Sunk Cost Fallacy** | **Protocol 112 is the Sunk Cost Generator.** Form makes you feel you've paid 80% of the price. You pay more to bridge the final 20%. Reality: The Form was a dead end. Identifying the gap is the only way to cut the loss. |
 | **Protocol 111 (Premise Audit)** | Q4 of Premise Audit overlaps with Protocol 112 diagnostics. |
-| **Protocol 113/114 (Limerence)** | Limerent distortion often co-occurs with Form-Substance Gap. |
+| **Protocol 113/114 (Emotional Bias)** | Emotionally biased distortion often co-occurs with Form-Substance Gap. |
 | **Protocol 197 (Consigliere)** | Form-Substance awareness is core to "Mike Mode"—never trust visuals without verification. |
 
 ---
@@ -327,7 +327,7 @@ Monitor: Any escalation = addiction forming → Initiate FFP ⚠️
 
 - [Protocol 111: Premise Audit](examples/protocols/decision/111-premise-audit.md)
 - [Protocol 113: Missing Baseline Model](<!-- Private: .agent/skills/protocols/ --> psychology/113-missing-baseline-model.md)
-- [Protocol 114: Limerent Reality Distortion](<!-- Private: .agent/skills/protocols/ --> psychology/114-limerent-reality-distortion.md)
+- [Protocol 114: Emotionally biased Reality Distortion](<!-- Private: .agent/skills/protocols/ --> psychology/114-limerent-reality-distortion.md)
 - [Protocol 197: The Consigliere Protocol](<!-- Private: .agent/skills/protocols/ --> decision/329-consiglieri-protocol.md)
 - Psychology Profile: Your own L1-L5 schema mapping (private)
 

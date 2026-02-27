@@ -10,7 +10,7 @@ PROTOCOLS_DIR = ".agent/skills/protocols"
 KEYWORDS = {
     "red curve": "Protocol 42",
     "blue curve": "Protocol 42",
-    "limerence": "Protocol 113",
+    "emotional-bias": "Protocol 113",
     "amoral realism": "Protocol 121",
     "principal agent": "Protocol 33",
     "sovereign": "Protocol 161",

@@ -26,8 +26,8 @@ load_dotenv()
 
 SESSION_LOGS_DIR = Path(".context/memories/session_logs")
 
-TRAUMA_KEYWORDS = [
-    r"rape",
+EMOTIONAL_KEYWORDS = [
+    r"crisis",
     r"assault",
     r"scared",
     r"hurt",
@@ -190,7 +190,7 @@ Provide your analysis:"""
         """Analyze response latency, initiation patterns, and hourly trends."""
         user1_latency = []
         user2_latency = []
-        hourly_trauma = {h: 0 for h in range(24)}
+        hourly_emotional = {h: 0 for h in range(24)}
         hourly_sex = {h: 0 for h in range(24)}
         initiations = {user1_id: 0, user2_id: 0}
 
@@ -224,8 +224,8 @@ Provide your analysis:"""
             if sender_id == user1_id:
                 hour = timestamp.hour
                 lower_text = text.lower()
-                if any(re.search(k, lower_text) for k in TRAUMA_KEYWORDS):
-                    hourly_trauma[hour] += 1
+                if any(re.search(k, lower_text) for k in EMOTIONAL_KEYWORDS):
+                    hourly_emotional[hour] += 1
                 if any(re.search(k, lower_text) for k in SEX_KEYWORDS):
                     hourly_sex[hour] += 1
 
@@ -240,7 +240,7 @@ Provide your analysis:"""
             "user2_avg_latency_sec": avg_user2,
             "latency_ratio": avg_user2 / avg_user1 if avg_user1 > 0 else 0,
             "initiations": initiations,
-            "hourly_trauma": hourly_trauma,
+            "hourly_emotional": hourly_emotional,
             "hourly_sex": hourly_sex,
         }
 
