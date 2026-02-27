@@ -74,7 +74,7 @@ Kind of. But there's a difference between *remembering your name* and *thinking 
 <details>
 <summary><strong>🧬 Why Thousands of Files?</strong></summary>
 
-Athena's workspace looks unusual — **6,000+ Markdown files** and **1,000+ Python scripts** instead of one big config. **This is deliberate.**
+Athena's workspace looks unusual — **370+ Markdown files** and **230+ Python scripts** out of the box, growing to thousands as your memory compounds. **This is deliberate.**
 
 AI agents don't read files top-to-bottom like humans. They **query** — by filename, semantic search, or tag lookup. Each small file is an **addressable memory node** the agent can retrieve surgically, without loading everything else.
 
