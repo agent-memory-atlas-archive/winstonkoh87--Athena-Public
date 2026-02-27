@@ -103,7 +103,7 @@ git clone https://github.com/YOUR_USERNAME/Athena-Public.git && cd Athena-Public
 # 2. Install the SDK (optional — enables CLI commands)
 pip install -e .
 
-# 3. Open the folder in your AI IDE (VS Code, Cursor, Claude Code, etc.)
+# 3. Open the folder in your AI IDE (Antigravity, Cursor, Kilo Code, etc.)
 
 # 4. Boot:
 /start
@@ -175,7 +175,7 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | Component | What It Does For You |
 |:----------|:---------------------|
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
-| 📋 **120+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy) across 13 categories — [browse](examples/protocols/) |
+| 📋 **125+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy) across 14 categories — [browse](examples/protocols/) |
 | ⚡ **50+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Your agent can search, save, and execute scripts on your behalf — [docs](docs/MCP_SERVER.md) |
@@ -248,7 +248,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 | 🔄 [Updating Athena](docs/UPDATING.md) | 📥 [Importing Data](docs/IMPORTING.md) | ⌨️ [CLI Reference](docs/CLI.md) |
 | 📋 [All Workflows](docs/WORKFLOWS.md) | 📐 [Spec Sheet](docs/SPEC_SHEET.md) | 📓 [Glossary](docs/GLOSSARY.md) |
 | 🧠 [Manifesto](docs/MANIFESTO.md) | 📈 [Changelog](docs/CHANGELOG.md) | 🔀 [Multi-Model Strategy](docs/MULTI_MODEL_STRATEGY.md) |
-| ✅ [Best Practices](docs/BEST_PRACTICES.md) | | |
+| ✅ [Best Practices](docs/BEST_PRACTICES.md) | 🤖 [Your First Agent](docs/YOUR_FIRST_AGENT.md) | 🧩 [What Is an AI Agent?](docs/WHAT_IS_AN_AI_AGENT.md) |
 
 ---
 
@@ -276,8 +276,8 @@ Athena-Public/
 │   └── mcp_server.py        #   MCP Tool Server (9 tools, 2 resources)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
-│   ├── protocols/           # 120+ starter frameworks (13 categories)
-│   ├── scripts/             # 500+ reference scripts
+│   ├── protocols/           # 125+ starter frameworks (14 categories)
+│   ├── scripts/             # 120+ reference scripts
 │   └── templates/           # Starter templates (framework, memory bank)
 ├── docs/                    # Architecture, benchmarks, security, guides
 └── pyproject.toml           # Modern packaging
