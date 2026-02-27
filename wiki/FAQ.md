@@ -1,6 +1,6 @@
 # ❓ Frequently Asked Questions
 
-*Last Updated: 2026-02-25 · v9.2.4*
+*Last Updated: 2026-02-27 · v9.2.8*
 
 ---
 
@@ -10,10 +10,11 @@
 
 | Tier | Example Plans | Cost (USD) |
 |:-----|:-------------|:-----------|
+| **Free** | Google Antigravity (free tier) | **$0** |
 | **Entry** | Claude Pro · Google AI Pro | ~$20/mo |
 | **Power** | Claude Max 20× · Google AI Ultra | $200–250/mo |
 
-**Start with $20/month.** That covers the vast majority of use cases.
+**Start free with Antigravity.** Upgrade to $20/month when you hit daily limits.
 
 ### 🚀 How do I install it?
 

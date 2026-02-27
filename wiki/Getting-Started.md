@@ -2,7 +2,7 @@
 
 Boot your own AI Operating System in 5 minutes.
 
-*Last Updated: 2026-02-25 · v9.2.4*
+*Last Updated: 2026-02-27 · v9.2.8*
 
 ---
 
@@ -43,7 +43,7 @@ Or just open the folder and type `/start` — no init required for basic use.
 
 ### Step 3: Run the interview
 
-Type `/brief interview` on your first session. Athena asks about **you** — name, goals, decision style, blind spots — and builds a personal profile that makes every future session compound.
+Type `/tutorial` on your first session. Athena walks you through everything — what's in the box, how the core loop works, and then interviews **you** to build a personal profile that makes every future session compound.
 
 > **Everything stays local.** Your profile is stored as a Markdown file on your machine (`user_profile.md`). No cloud. No tracking.
 
@@ -77,7 +77,7 @@ athena doctor                 # Full 15-check system diagnostics
 athena doctor --fix           # Auto-repair fixable issues
 athena save "summary"         # Quicksave checkpoint
 athena --end                  # Close session and save
-athena --version              # Show version (v9.2.1)
+athena --version              # Show version (v9.2.8)
 ```
 
 ---

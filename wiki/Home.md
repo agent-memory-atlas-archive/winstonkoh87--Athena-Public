@@ -3,7 +3,7 @@
 > **The Linux OS for AI Agents**
 > Open Source · Sovereign · Model-Agnostic
 
-*Last Updated: 2026-02-25 · v9.2.4*
+*Last Updated: 2026-02-27 · v9.2.8*
 
 Athena is not an AI Agent. It is the **Operating System** they run on.
 
@@ -42,10 +42,10 @@ Just as Linux provides the kernel, file system, and permissions for applications
 
 | Step | Action |
 |:-----|:-------|
-| **1. Get an IDE** | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) · [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [VS Code + Copilot](https://code.visualstudio.com/) |
+| **1. Get an IDE** | [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [Kilo Code](https://kilocode.ai/) · [Roo Code](https://roocode.com/) · [Claude Code](https://docs.anthropic.com/en/docs/claude-code) |
 | **2. Clone** | `git clone https://github.com/winstonkoh87/Athena-Public.git && cd Athena-Public` |
 | **3. Open & Type `/start`** | The AI reads the repo structure and boots |
-| **4. Type `/brief interview`** | Athena builds your personal profile |
+| **4. Type `/tutorial`** | Athena gives you a guided walkthrough and builds your personal profile |
 
 Or use [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) for zero-setup cloud boot.
 
@@ -60,7 +60,7 @@ Or use [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) fo
 | **🚀 [Getting Started](Getting-Started)** | Installation, first boot, workspace modes, CLI commands |
 | **📖 [Your First Session](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/YOUR_FIRST_SESSION.md)** | The intent-first onboarding guide |
 | **🏗️ [Architecture](Architecture-Overview)** | OS layers, Hybrid RAG, MCP Server, Tech Stack |
-| **⚡ [Workflows](Workflow-Reference)** | `/start`, `/end`, `/think`, `/refactor` and 44 more commands |
+| **⚡ [Workflows](Workflow-Reference)** | `/start`, `/end`, `/think`, `/refactor` and 50+ commands |
 | **🎯 [Use Cases](Use-Cases)** | Decision-making, research, planning, meta-thinking |
 | **🧠 [Philosophy](Philosophy)** | Own the state. Rent the intelligence. |
 | **❓ [FAQ](FAQ)** | Privacy, cost, models, and comparisons |
@@ -70,5 +70,5 @@ Or use [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) fo
 ## 📊 Community
 
 - **1M+** Reddit Views · **#1 All-Time** on r/ChatGPT · **#2 All-Time** on r/GeminiAI
-- **120+** Protocols · **130+** Scripts · **48** Slash Workflows
+- **125+** Protocols · **120+** Scripts · **50+** Slash Workflows
 - **MIT Licensed** · [Main Repository](https://github.com/winstonkoh87/Athena-Public)
