@@ -1,0 +1,40 @@
+# Privacy Blocklist — Athena-Public
+# Single source of truth for patterns that must NEVER appear in the public repo.
+# Used by: pre-commit hook, privacy_scan.py, bilateral sync
+#
+# Format: one regex pattern per line. Lines starting with # are comments.
+# Case-insensitive matching is applied automatically.
+
+# === PERSONAL NAMES ===
+research_entity_gamma
+research_entity_gamma
+Jun Kai
+
+# === PERSONAL CONTACT ===
+winstonkoh87@gmail\.com
+83581066
+
+# === LOCAL FILE PATHS ===
+file:///Users/winstonkoh
+/Users/winstonkoh/Desktop
+/Users/winstonkoh/Project Athena
+
+# === PRIVATE PSYCHOLOGY ===
+limerence
+PEF Ruin
+Psychology_L1L5
+L1-L5.*trauma
+reparenting
+
+# === SEXUAL / EXPLICIT ===
+\bseduction\b
+\bvirgin\b
+\bthreesome\b
+\bescort\b
+\brape\b
+\bPimp/Madam\b
+sexual economics
+
+# === PRIVATE DOMAINS ===
+Playbook_Seduction
+escalation_ladder_framework

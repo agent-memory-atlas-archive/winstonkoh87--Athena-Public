@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Athena-Public Pre-Commit Hook — Privacy Guard
+# Blocks commits that contain private/personal content.
+#
+# Install: cp .github/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+# Bypass:  git commit --no-verify (emergency only)
+#
+
+python3 "$(git rev-parse --show-toplevel)/.github/scripts/privacy_scan.py" --staged
