@@ -96,39 +96,71 @@ AI agents don't read files top-to-bottom like humans. They **query** — by file
 
 **Works on macOS, Windows, and Linux.**
 
+### 1. Clone the repo
+
 ```bash
-# 1. Fork & clone
-git clone https://github.com/YOUR_USERNAME/Athena-Public.git && cd Athena-Public
+git clone https://github.com/winstonkoh87/Athena-Public.git
+cd Athena-Public
+```
 
-# 2. Install the SDK (optional — enables CLI commands)
+Clone it anywhere you keep projects (e.g. `~/Projects/`). This folder **is** your Athena workspace — your memory, protocols, and config all live here.
+
+### 2. Install the SDK *(optional — enables CLI commands)*
+
+```bash
+# Recommended
+uv pip install -e .
+
+# Or with pip
 pip install -e .
+```
 
-# 3. Open the folder in your AI IDE (Antigravity, Cursor, Kilo Code, etc.)
+> ⚠️ **Don't `pip install athena-cli`** — that's a different, unrelated package. Always install from inside the cloned repo.
 
-# 4. Boot:
+### 3. Open the folder in an AI-enabled IDE
+
+Open the `Athena-Public/` directory as your **workspace root** in one of these editors:
+
+- [Antigravity](https://antigravity.google/) · [Cursor](https://cursor.com) · [Claude Code](https://docs.anthropic.com/en/docs/claude-code) · [VS Code + Copilot](https://code.visualstudio.com/) · [Kilo Code](https://kilocode.ai/) · [Gemini CLI](https://github.com/google-gemini/gemini-cli)
+
+> [!IMPORTANT]
+> **Athena does NOT work through ChatGPT.com, Claude.ai, or Gemini web.** You need an app that can **read files from your disk**. Think of Athena as a workspace for your editor, not a plugin for a chatbot.
+
+> [!NOTE]
+> **"Why do I open the Athena folder instead of my own project?"** — Athena is a *workspace*, not a library you install into another repo. You work *inside* the Athena folder, and it remembers everything across sessions. To work on external projects, reference them from within Athena or use multi-root workspaces in your IDE.
+
+### 4. Boot (in the AI chat panel — not the terminal)
+
+In your IDE's **AI chat panel** (e.g. Cmd+L in Cursor, the chat sidebar in Antigravity), type:
+
+```
 /start
+```
 
-# 5. First time? Take the guided tour:
+> [!CAUTION]
+> `/start`, `/end`, and `/tutorial` are **AI chat commands** — you type them in the chat window where you talk to the AI, **not** in the terminal. They are slash commands that the AI agent reads and executes.
+
+### 5. First time? Take the guided tour
+
+```
 /tutorial
+```
 
-# 6. When you're done:
+This walks you through everything: what Athena is, how it works, builds your profile, and demos the tools (~20 min). Confident users can skip it.
+
+### 6. When you're done
+
+```
 /end
 ```
 
-> [!IMPORTANT]
-> **Athena works through AI-enabled code editors (IDEs), not through ChatGPT.com or Claude.ai.** You need an app like VS Code + Copilot, Cursor, or Claude Code that can read files from your computer. Think of Athena as a plugin for your editor, not a plugin for a chatbot.
+**That's it.** No API keys. No database setup. The folder *is* the product.
 
 > [!CAUTION]
 > **Forks of public repos are public by default.** If you plan to store personal data (health records, finances, journals), **create a new private repo** instead of forking. Copy the files manually or use `git clone` + `git remote set-url` to point to your private repo. [GitHub docs on fork visibility →](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks)
 
-**That's it.** No API keys. No database setup. The folder *is* the product.
-
 > [!TIP]
-> `/tutorial` walks you through everything: what Athena is, how it works, builds your profile, and demos the tools (~20 min). Confident users can skip it and jump straight to work.
->
-> ⚠️ **Don't `pip install athena-cli`** — that's a different package. Use `pip install -e .` inside the cloned repo.
->
-> See the [full guide →](docs/YOUR_FIRST_SESSION.md)
+> See the [full setup guide →](docs/YOUR_FIRST_SESSION.md) for detailed walkthroughs and troubleshooting.
 
 ---
 
