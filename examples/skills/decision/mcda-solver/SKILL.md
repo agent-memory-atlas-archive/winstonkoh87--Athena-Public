@@ -6,7 +6,7 @@ auto-invoke: false
 model: default
 ---
 
-# ⚖️ Decision Matrix (MCDA / WEU)
+# ⚖️ Decision Matrix (MCDA / EEV)
 
 > **Philosophy**: Complex decisions fail because people optimize for one variable while ignoring five others.
 
@@ -34,9 +34,9 @@ STEP 4: SCORE EACH OPTION
   └─ Score 1-10 per criterion per option
   └─ Justify each score in one sentence
 
-STEP 5: COMPUTE WEU
-  └─ WEU = Σ (Score × Weight) for each option
-  └─ Rank options by total WEU
+STEP 5: COMPUTE EEV
+  └─ EEV = Σ (Score × Weight) for each option
+  └─ Rank options by total EEV
 
 STEP 6: SANITY CHECK
   └─ Does the winner "feel" right?
@@ -55,13 +55,13 @@ STEP 6: SANITY CHECK
 | 2 | [Name]    | [X]%   |
 
 ## Scoring Matrix
-| Option | C1 | C2 | C3 | **WEU** |
+| Option | C1 | C2 | C3 | **EEV** |
 |--------|----|----|-----|---------|
 | A      | 8  | 6  | 7   | **7.1** |
 | B      | 5  | 9  | 4   | **6.2** |
 
 ## Recommendation
-[Winner] with WEU of [X]. Key differentiator: [criterion].
+[Winner] with EEV of [X]. Key differentiator: [criterion].
 
 ## Sensitivity Analysis
 If [criterion weight] changed by ±10%, would the winner change? [Yes/No]

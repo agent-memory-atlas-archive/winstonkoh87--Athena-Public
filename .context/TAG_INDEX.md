@@ -585,7 +585,7 @@
 - [131-bimodal-arena-analysis.md](docs/protocols/131-bimodal-arena-analysis.md)
 - [111-premise-audit.md](examples/protocols/decision/111-premise-audit.md)
 - [115-first-principles-deconstruction.md](examples/protocols/decision/115-first-principles-deconstruction.md)
-- [121-mcda-weu-framework.md](examples/protocols/decision/121-mcda-weu-framework.md)
+- [121-mcda-eev-framework.md](examples/protocols/decision/121-mcda-eev-framework.md)
 - [123-einstein-protocol.md](examples/protocols/decision/123-einstein-protocol.md)
 - [137-graph-of-thoughts.md](examples/protocols/decision/137-graph-of-thoughts.md)
 - [163-precommitment-heuristic.md](examples/protocols/decision/163-precommitment-heuristic.md)
@@ -1243,7 +1243,7 @@
 
 ## #mcda
 - [TAG_INDEX_legacy.md](.context/archive/TAG_INDEX_legacy.md)
-- [121-mcda-weu-framework.md](examples/protocols/decision/121-mcda-weu-framework.md)
+- [121-mcda-eev-framework.md](examples/protocols/decision/121-mcda-eev-framework.md)
 - [180-utility-function-analysis.md](examples/protocols/decision/180-utility-function-analysis.md)
 
 ## #memory
@@ -1360,7 +1360,7 @@
 
 ## #optimization
 - [TAG_INDEX_legacy.md](.context/archive/TAG_INDEX_legacy.md)
-- [121-mcda-weu-framework.md](examples/protocols/decision/121-mcda-weu-framework.md)
+- [121-mcda-eev-framework.md](examples/protocols/decision/121-mcda-eev-framework.md)
 - [audit-code.md](examples/workflows/audit-code.md)
 - [refactor-code.md](examples/workflows/refactor-code.md)
 
@@ -1389,7 +1389,7 @@
 
 ## #pairwise
 - [TAG_INDEX_legacy.md](.context/archive/TAG_INDEX_legacy.md)
-- [121-mcda-weu-framework.md](examples/protocols/decision/121-mcda-weu-framework.md)
+- [121-mcda-eev-framework.md](examples/protocols/decision/121-mcda-eev-framework.md)
 
 ## #parallel
 - [TAG_INDEX_legacy.md](.context/archive/TAG_INDEX_legacy.md)
@@ -1626,7 +1626,7 @@
 - [232-ai-trajectory-alignment.md](docs/protocols/content/232-ai-trajectory-alignment.md)
 - [166-intent-drift-detector.md](docs/protocols/engineering/166-intent-drift-detector.md)
 - [24-modular-architecture.md](examples/protocols/architecture/24-modular-architecture.md)
-- [121-mcda-weu-framework.md](examples/protocols/decision/121-mcda-weu-framework.md)
+- [121-mcda-eev-framework.md](examples/protocols/decision/121-mcda-eev-framework.md)
 - [319-einstein-protocol.md](examples/protocols/decision/319-einstein-protocol.md)
 - [40-frame-vs-structural-problem.md](examples/protocols/decision/40-frame-vs-structural-problem.md)
 - [64-commitment-device-framework.md](examples/protocols/decision/64-commitment-device-framework.md)
@@ -2366,7 +2366,7 @@
 
 ## #weu
 - [TAG_INDEX_legacy.md](.context/archive/TAG_INDEX_legacy.md)
-- [121-mcda-weu-framework.md](examples/protocols/decision/121-mcda-weu-framework.md)
+- [121-mcda-eev-framework.md](examples/protocols/decision/121-mcda-eev-framework.md)
 
 ## #what-can-your-agent-do
 - [CANONICAL.md](.context/CANONICAL.md)
@@ -2451,6 +2451,6 @@
 
 ## #zero-point-codex
 - [TAG_INDEX_legacy.md](.context/archive/TAG_INDEX_legacy.md)
-- [121-mcda-weu-framework.md](examples/protocols/decision/121-mcda-weu-framework.md)
+- [121-mcda-eev-framework.md](examples/protocols/decision/121-mcda-eev-framework.md)
 - [123-einstein-protocol.md](examples/protocols/decision/123-einstein-protocol.md)
 - [112-form-substance-gap.md](examples/protocols/pattern-detection/112-form-substance-gap.md)

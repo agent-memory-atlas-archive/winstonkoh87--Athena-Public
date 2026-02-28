@@ -4,7 +4,7 @@ last_updated: 2026-02-08
 graphrag_extracted: true
 ---
 
-# Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)
+# Protocol 121: Decision Frameworks (MCDA / EEV / Pairwise)
 
 > **Source**: Zero-Point Codex v3.0 / Few-shot v29
 > **Domain**: Decision / Multi-Criteria Optimization
@@ -44,20 +44,21 @@ When criteria are qualitative and difficult to weight linearly (e.g., "Aesthetic
 
 ---
 
-## 3. WEU (Weighted Expected Utility)
+## 3. EEV (Economic Expected Value)
 
-> **Definition**: An extension of Expected Utility theory that accounts for subjective probability weighting and outcome utility.
+> **Definition**: Expected Aggregate Value that accounts for Mathematical Expected Value (MEV), subjective probability weighting, and utility functions.
 
 ### The Formula
 
-`WEU = ∑ [ w(p_i) * u(x_i) ]`
+`EEV = MEV + E(U) - E(O)`
 
-- **w(p_i)**: Probability weighting function (accounts for human tendency to overweight low probabilities).
-- **u(x_i)**: Utility of the outcome (accounts for Law #1: Risk of Ruin).
+- **MEV**: Mathematical Expected Value (Monetary Expected Value). `MEV = ∑ [ p_i * v_i ]`
+- **E(U)**: Expected Utility based on stakeholder utility functions (accounts for human factors, non-monetary value, and *Law #1: Risk of Ruin* via Veto Clause).
+- **E(O)**: Expected Opportunity Cost.
 
 **Operational Implementation**:
 
-- If any single `u(x_i) = -∞` (Ruin), the total `WEU` defaults to **-∞** regardless of probability.
+- If any single `u(x_i) = -∞` (Ruin), the total `EEV` defaults to **-∞** regardless of probability or MEV.
 - This is the mathematical enforcement of **Law #1**.
 
 ---
@@ -66,11 +67,11 @@ When criteria are qualitative and difficult to weight linearly (e.g., "Aesthetic
 
 1. **Run MCDA** to find the "Rational Best".
 2. **Run Pairwise** to check for "Gut/Value" alignment.
-3. **Run WEU** to ensure no outcome violates **Law #1**.
-4. **Verdict**: The option that clears the WEU safety gate and leads the MCDA/Pairwise ranking.
+3. **Run EEV** to ensure no outcome violates **Law #1** and to optimize for true utility.
+4. **Verdict**: The option that clears the EEV safety gate and leads the MCDA/Pairwise ranking.
 
 ---
 
 ## Tags
 
-**Tags**: #protocol #decision #mcda #weu #pairwise #optimization #zero-point-codex
+**Tags**: #protocol #decision #mcda #eev #mev #pairwise #optimization #zero-point-codex

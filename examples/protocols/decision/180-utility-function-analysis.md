@@ -255,4 +255,4 @@ OUTPUT: Predict next move → Choose response
 
 ## Related Protocols
 
-- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](<!-- Private: .agent/skills/protocols/ --> decision/121-mcda-weu-framework.md)
+- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](<!-- Private: .agent/skills/protocols/ --> decision/121-mcda-eev-framework.md)
