@@ -1,6 +1,6 @@
 # Frequently Asked Questions (FAQ)
 
-> **Last Updated**: 19 February 2026
+> **Last Updated**: 28 February 2026
 
 ---
 
@@ -22,12 +22,20 @@ The prompts are part of it, but the real value is the **structure** that compoun
 
 ### Which AI models does Athena support?
 
-Athena is **model-agnostic**. It works with:
+Athena separates the **IDE** from the **Reasoning Engine**, so you are never locked into a single platform or model.
 
-- **Claude** (Anthropic) — Primary reasoning engine
-- **Gemini** (Google) — Embeddings and search
-- **GPT** (OpenAI) — Trilateral validation
-- Any LLM that can read Markdown files
+**1. The IDE (Where you type):**
+
+- **Antigravity** (Google)
+- **Cursor** / **VS Code**
+- **Claude Code** / **Gemini CLI**
+
+**2. The Reasoning Engine (Who does the thinking):**
+
+- **Gemini 3.1 Pro**
+- **Claude Opus 4.6**
+- **GPT-5.3**
+- Any LLM that can read your local Markdown files
 
 ---
 
@@ -38,8 +46,9 @@ Athena is **model-agnostic**. It works with:
 **5 minutes** for the basic install:
 
 ```bash
-pip install athena-cli
-athena init MyAgent
+git clone https://github.com/winstonkoh87/Athena-Public.git
+cd Athena-Public
+pip install -e .
 ```
 
 For full power features (vector search, GraphRAG), budget 30-60 minutes.
@@ -126,12 +135,13 @@ Yes, if you use **Local Mode**. For enterprise use, see [SECURITY.md](./SECURITY
 
 ### "athena: command not found"
 
-Ensure the CLI is installed:
+Ensure the SDK is installed from the cloned repo:
 
 ```bash
-pip install athena-cli
+cd Athena-Public
+pip install -e .
 # Or via uv:
-uv tool install athena-cli
+uv pip install -e .
 ```
 
 ### Session logs not saving

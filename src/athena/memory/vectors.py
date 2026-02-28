@@ -143,7 +143,7 @@ def get_embedding(text: str) -> List[float]:
         "content": {"parts": [{"text": text}]},
     }
 
-    response = requests.post(url, json=payload, timeout=20)
+    response = requests.post(url, json=payload, timeout=30)
     response.raise_for_status()
     embedding = response.json()["embedding"]["values"]
 
