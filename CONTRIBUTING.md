@@ -2,6 +2,18 @@
 
 Thank you for your interest in contributing to Project Athena!
 
+## ⚠️ Quality Bar (Read Before Contributing)
+
+We maintain a high quality bar. PRs that meet **any** of the following criteria will be **closed without review**:
+
+- **Generic/project-unrelated content** — e.g. "code optimization guides," "best practices checklists," or boilerplate docs that could apply to any repo
+- **AI-generated filler** — bulk-generated content with no project-specific substance
+- **No linked issue** — all PRs must reference an open issue or a clear gap in the project
+- **Untested changes** — if you can't demonstrate it works, don't submit it
+- **Drive-by contributions** — contributors with no prior engagement (issues, discussions, or meaningful context) submitting unsolicited docs or refactors
+
+**The rule is simple**: if your PR doesn't make Athena specifically better, it doesn't belong here.
+
 ## Before You Open an Issue
 
 > **Ask Athena first.** That's what it's built for.
