@@ -268,6 +268,9 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 > [!NOTE]
 > Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Opus 4.6, Gemini 3.1 Pro, GPT-5.3). Start with the free tier to test compatibility with your preferred model.
 
+> [!TIP]
+> **Save money getting started** *(as of 28 Feb 2026)*. Google offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers — enough to fully evaluate Athena with frontier-tier Antigravity limits at $0. Alternatively, if someone you know is on a Google AI Pro or Ultra plan, they can add you as a family member — each member gets their own independent Antigravity quota at no extra cost.
+
 ---
 
 ## 📚 Documentation
