@@ -34,6 +34,11 @@ if __name__ == "__main__":
         action="store_true",
         help="Include personal domain in results",
     )
+    parser.add_argument(
+        "--skills-only",
+        action="store_true",
+        help="Restrict search to the .agent/skills/ directory",
+    )
     args = parser.parse_args()
 
     # Governance: Mark search as performed for this interaction
@@ -52,6 +57,7 @@ if __name__ == "__main__":
             debug=args.debug,
             json_output=args.json,
             include_personal=args.include_personal,
+            skills_only=args.skills_only,
         )
     except Exception as e:
         print(f"⚠️  Smart Search Partial Fail: {e}", file=sys.stderr)

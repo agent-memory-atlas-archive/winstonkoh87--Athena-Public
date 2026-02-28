@@ -192,6 +192,7 @@ def collect_vectors(
     limit: int = 20,
     embedding: list[float] | None = None,
     exclude_domains: list[str] | None = None,
+    skills_only: bool = False,
 ) -> list[SearchResult]:
     """Collect semantic matches via Supabase"""
     if exclude_domains is None:
@@ -223,19 +224,25 @@ def collect_vectors(
         low_limit = 5 if not GOD_MODE else 3
 
         # Parallel search using ThreadPoolExecutor
-        search_tasks = [
-            ("protocol", search_protocols, high_limit, 0.3),
-            ("case_study", search_case_studies, high_limit, 0.3),
-            ("session", search_sessions, mid_limit, 0.35),
-            ("capability", search_capabilities, low_limit, 0.3),
-            ("playbook", search_playbooks, low_limit, 0.3),
-            ("workflow", search_workflows, low_limit, 0.3),
-            ("entity", search_entities, low_limit, 0.3),
-            ("reference", search_references, low_limit, 0.3),
-            ("framework", search_frameworks, low_limit, 0.3),
-            ("user_profile", search_user_profile, low_limit, 0.3),
-            ("system_doc", search_system_docs, low_limit, 0.3),
-        ]
+        if skills_only:
+            search_tasks = [
+                ("protocol", search_protocols, high_limit, 0.3),
+                ("capability", search_capabilities, high_limit, 0.3),
+            ]
+        else:
+            search_tasks = [
+                ("protocol", search_protocols, high_limit, 0.3),
+                ("case_study", search_case_studies, high_limit, 0.3),
+                ("session", search_sessions, mid_limit, 0.35),
+                ("capability", search_capabilities, low_limit, 0.3),
+                ("playbook", search_playbooks, low_limit, 0.3),
+                ("workflow", search_workflows, low_limit, 0.3),
+                ("entity", search_entities, low_limit, 0.3),
+                ("reference", search_references, low_limit, 0.3),
+                ("framework", search_frameworks, low_limit, 0.3),
+                ("user_profile", search_user_profile, low_limit, 0.3),
+                ("system_doc", search_system_docs, low_limit, 0.3),
+            ]
 
         def run_task(task):
             type_label, func, limit, threshold = task
@@ -261,6 +268,9 @@ def collect_vectors(
                 # Domain filtering: skip items from excluded domains
                 item_domain = item.get("domain", "technical")
                 if item_domain in exclude_domains:
+                    continue
+
+                if skills_only and ".agent/skills/" not in path:
                     continue
 
                 # Dynamic Title/ID construction
@@ -699,10 +709,11 @@ def run_search(
     debug: bool = False,
     json_output: bool = False,
     include_personal: bool = False,
+    skills_only: bool = False,
 ):
     # 0. Check cache first
     cache = get_search_cache()
-    cache_key = f"{query}|{limit}|{strict}|{rerank}"
+    cache_key = f"{query}|{limit}|{strict}|{rerank}|{skills_only}"
     cached_results = cache.get(cache_key)
 
     if cached_results is not None:
@@ -782,18 +793,30 @@ def run_search(
                     print(f"   ⚠️ {name} task failed: {e}", file=sys.stderr)
                     return []
 
-            collection_tasks = {
-                "canonical": lambda: collect_canonical(query),
-                "tags": lambda: collect_tags(query),
-                "graphrag": lambda: collect_graphrag(query),
-                "vector": lambda: collect_vectors(
-                    query, embedding=query_embedding, exclude_domains=exclude_domains
-                ),
-                "sqlite": lambda: collect_sqlite(query),
-                "filename": lambda: collect_filenames(query),
-                "framework_docs": lambda: collect_framework_docs(query),
-                "exocortex": lambda: collect_exocortex(query),
-            }
+            if skills_only:
+                collection_tasks = {
+                    "vector": lambda: collect_vectors(
+                        query,
+                        embedding=query_embedding,
+                        exclude_domains=exclude_domains,
+                        skills_only=True,
+                    )
+                }
+            else:
+                collection_tasks = {
+                    "canonical": lambda: collect_canonical(query),
+                    "tags": lambda: collect_tags(query),
+                    "graphrag": lambda: collect_graphrag(query),
+                    "vector": lambda: collect_vectors(
+                        query,
+                        embedding=query_embedding,
+                        exclude_domains=exclude_domains,
+                    ),
+                    "sqlite": lambda: collect_sqlite(query),
+                    "filename": lambda: collect_filenames(query),
+                    "framework_docs": lambda: collect_framework_docs(query),
+                    "exocortex": lambda: collect_exocortex(query),
+                }
 
             lists = {}
             with ThreadPoolExecutor(max_workers=len(collection_tasks)) as executor:
@@ -811,7 +834,7 @@ def run_search(
                     for x in ["protocol", "session", "case study", "cs-"]
                 )
 
-                if is_low_entropy and not include_personal:
+                if is_low_entropy and not include_personal and not skills_only:
                     if not json_output:
                         print(
                             f"   ⚡ Low Entropy Query: Skipping deep retrieval (Vectors bypassed)"
