@@ -91,11 +91,11 @@ Before any repeated action:
 
 ## Classic Cases
 
-### Case 1: The Shower Trap
+### Case 1: The Impulsive Day-Trading Trap
 
 ```text
-Action: Repeat risky encounters in institutional setting
-P(Exposure) per session: 5-10%
+Action: Repeat high-leverage trades without stop-losses
+P(Wipeout) per session: 5-10%
 Sessions per year: ~50
 P(Survival after 1 year): (0.92)^50 = 1.5%
 Verdict: Ruin is near-certain within 12 months.
@@ -136,7 +136,7 @@ Your schema runs this flawed logic:
 ## Integration
 
 - Use with **[Protocol 187: Terminal Node](<!-- Private: .agent/skills/protocols/ --> decision/187-terminal-node-protocol.md)** (project 20 years).
-- Use with **[Law #1: Ruin Prevention](<!-- Private: .framework/v7.0/modules/ --> Core_Identity.mdCore_Identity.md)**.
+- Use with **[Law #1: Ruin Prevention](#the-absorbing-barrier)**.
 
 ---
 
