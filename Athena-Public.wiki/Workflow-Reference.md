@@ -117,7 +117,7 @@ athena --version              # Show version (v9.2.8)
 
 ## 🛡️ Protocol Usage
 
-Protocols are reusable decision frameworks — "Standard Operating Procedures" for the AI. There are **125+ protocols** across 14 categories.
+Protocols are reusable decision frameworks — "Standard Operating Procedures" for the AI. There are **110+ protocols** across 15 categories.
 
 | Category | Examples |
 |:---------|:---------|

@@ -207,7 +207,7 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | Component | What It Does For You |
 |:----------|:---------------------|
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
-| 📋 **125+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy) across 14 categories — [browse](examples/protocols/) |
+| 📋 **110+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy) across 15 categories — [browse](examples/protocols/) |
 | ⚡ **50+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Your agent can search, save, and execute scripts on your behalf — [docs](docs/MCP_SERVER.md) |
@@ -308,7 +308,7 @@ Athena-Public/
 │   └── mcp_server.py        #   MCP Tool Server (9 tools, 2 resources)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
-│   ├── protocols/           # 125+ starter frameworks (14 categories)
+│   ├── protocols/           # 110+ starter frameworks (15 categories)
 │   ├── scripts/             # 120+ reference scripts
 │   └── templates/           # Starter templates (framework, memory bank)
 ├── docs/                    # Architecture, benchmarks, security, guides
