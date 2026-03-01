@@ -208,7 +208,7 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 |:----------|:---------------------|
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
 | 📋 **110+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy) across 15 categories — [browse](examples/protocols/) |
-| 🧩 **Cognitive Clusters** | Groups related protocols and skills into auto-co-activating bundles — trigger one, activate all related capabilities — [how it works](examples/protocols/architecture/503-cognitive-clusters.md) |
+| 🧩 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 3 starter clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
 | ⚡ **50+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Your agent can search, save, and execute scripts on your behalf — [docs](docs/MCP_SERVER.md) |
