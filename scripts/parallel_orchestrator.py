@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 """
-Parallel Orchestrator v3.0
+Parallel Orchestrator v4.0
 True parallel execution of reasoning tracks with adversarial convergence gate.
 
 Protocol 75 Implementation - Synthetic Parallel Reasoning (Real Parallelism)
+
+Changes in v4.0:
+- Added --output flag for file persistence
+- Added --context-file flag for large context injection
+- Added user domain injection template (customize for your use case)
+- Fixed deprecated asyncio.get_event_loop()
+- Auto-creates output directory
 """
 
 import asyncio
@@ -52,17 +59,30 @@ class ConvergenceResult:
     suggestions: List[str]
 
 
+# --- User Domain Injection (CUSTOMIZE THIS) ---
+# Replace this with your own constraints, principles, and domain context.
+# This gets injected into every track prompt so the LLM reasons within YOUR framework.
+USER_DOMAIN_CONTEXT = """IMPORTANT CONTEXT — You are reasoning within the user's framework.
+Key constraints:
+- Law #1: No Irreversible Ruin (veto any path with >5% probability of permanent destruction)
+- Law #2: Context Is King (the game matters more than the move)
+- Robustness > Efficiency on the Pareto frontier (unless stakes are low and recoverable)
+Apply these constraints to your analysis where relevant."""
+
 # --- Track System Prompts ---
 TRACK_PROMPTS = {
-    "A_DOMAIN": """You are a DOMAIN EXPERT reasoning track.
+    "A_DOMAIN": f"""You are a DOMAIN EXPERT reasoning track.
+
+{USER_DOMAIN_CONTEXT}
 
 Your role: Apply domain-specific frameworks and expertise to analyze this problem.
 
 Instructions:
 1. Identify the domain(s) this problem belongs to
-2. Apply relevant frameworks, mental models, and best practices
+2. Apply relevant frameworks, mental models, and best practices from the user's domain
 3. Provide structured analysis with clear recommendations
 4. Be thorough but focused on actionable insights
+5. Ground your analysis in the user's actual constraints
 
 Output format:
 ## Domain Analysis
@@ -73,7 +93,9 @@ Output format:
 
 ## Recommendations
 [Numbered list]""",
-    "B_ADVERSARIAL": """You are an ADVERSARIAL SKEPTIC reasoning track.
+    "B_ADVERSARIAL": f"""You are an ADVERSARIAL SKEPTIC reasoning track.
+
+{USER_DOMAIN_CONTEXT}
 
 Your role: Challenge every premise, find every flaw, identify every risk.
 
@@ -82,6 +104,8 @@ Instructions:
 2. Find logical fallacies, hidden assumptions, and blind spots
 3. Identify failure modes, edge cases, and worst-case scenarios
 4. Be genuinely critical, not performatively skeptical
+5. Specifically check: Does this violate Law #1 (No Irreversible Ruin)?
+6. Calculate: What is the probability of the worst-case scenario? What is the magnitude?
 
 Output format:
 ## Premise Challenges
@@ -91,11 +115,16 @@ Output format:
 [Errors in reasoning]
 
 ## Failure Modes
-[What could go wrong?]
+[What could go wrong? Include probability estimates.]
+
+## Law #1 Ruin Check
+[Does this path risk irreversible ruin? Yes/No with justification.]
 
 ## Risk Assessment
-[Severity and likelihood]""",
-    "C_CROSS_DOMAIN": """You are a CROSS-DOMAIN PATTERN MATCHER reasoning track.
+[Severity and likelihood matrix]""",
+    "C_CROSS_DOMAIN": f"""You are a CROSS-DOMAIN PATTERN MATCHER reasoning track.
+
+{USER_DOMAIN_CONTEXT}
 
 Your role: Find isomorphic patterns from completely different fields.
 
@@ -104,6 +133,7 @@ Instructions:
 2. Search your knowledge for similar patterns in unrelated domains
 3. Extract transferable insights from those analogies
 4. Be creative but rigorous in drawing parallels
+5. Prioritize patterns from: game theory, information theory, military strategy, biological systems
 
 Output format:
 ## Problem Abstraction
@@ -114,7 +144,9 @@ Output format:
 
 ## Transferable Insights
 [What can we learn from each analogy?]""",
-    "D_ZERO_POINT": """You are a ZERO-POINT FIRST PRINCIPLES reasoning track.
+    "D_ZERO_POINT": f"""You are a ZERO-POINT FIRST PRINCIPLES reasoning track.
+
+{USER_DOMAIN_CONTEXT}
 
 Your role: Question the very nature and reality of the problem.
 
@@ -123,6 +155,7 @@ Instructions:
 2. Apply inversion: what if the opposite is true?
 3. Consider metaphysical/philosophical dimensions
 4. Ask: is there a game above this game?
+5. Apply the RETO lens: Where on the Robustness-Efficiency frontier does this decision sit?
 
 Output format:
 ## First Principles
@@ -133,6 +166,9 @@ Output format:
 
 ## Meta-Level View
 [The game above the game]
+
+## RETO Position
+[Where does this sit on the Robustness-Efficiency frontier?]
 
 ## Reframing
 [Alternative ways to see this problem]""",
@@ -219,8 +255,6 @@ class ParallelOrchestrator:
         self.verbose = verbose
         self.iteration_count = 0
         self.total_tokens = 0
-        self.semaphore = asyncio.Semaphore(2)  # Max 2 concurrent requests
-        self.last_call_time = 0
 
     def _log(self, msg: str):
         if self.verbose:
@@ -248,19 +282,11 @@ class ParallelOrchestrator:
                 ),
             )
 
-            async with self.semaphore:
-                # Rate limiting: Sleep 1s between bursts
-                now = time.time()
-                elapsed = now - self.last_call_time
-                if elapsed < 1.0:
-                    await asyncio.sleep(1.0 - elapsed)
-                self.last_call_time = time.time()
-
-                # Run in executor since genai isn't truly async
-                loop = asyncio.get_event_loop()
-                response = await loop.run_in_executor(
-                    None, lambda: model.generate_content(full_prompt)
-                )
+            # Run in executor since genai isn't truly async
+            loop = asyncio.get_running_loop()
+            response = await loop.run_in_executor(
+                None, lambda: model.generate_content(full_prompt)
+            )
 
             latency = int((time.time() - start) * 1000)
             content = response.text if response.text else "[No response]"
@@ -318,7 +344,7 @@ class ParallelOrchestrator:
             ),
         )
 
-        loop = asyncio.get_event_loop()
+        loop = asyncio.get_running_loop()
         response = await loop.run_in_executor(
             None, lambda: model.generate_content(full_prompt)
         )
@@ -341,7 +367,7 @@ class ParallelOrchestrator:
             ),
         )
 
-        loop = asyncio.get_event_loop()
+        loop = asyncio.get_running_loop()
         response = await loop.run_in_executor(
             None, lambda: model.generate_content(full_prompt)
         )
@@ -388,7 +414,7 @@ class ParallelOrchestrator:
         Returns: (final_synthesis, total_iterations, iteration_history)
         """
         self._log(f"\n{'=' * 60}")
-        self._log(f"🧠 PARALLEL ORCHESTRATOR v3.0")
+        self._log(f"🧠 PARALLEL ORCHESTRATOR v4.0")
         self._log(f"{'=' * 60}")
         self._log(f"Query: {query[:100]}...")
 
@@ -443,29 +469,81 @@ Previous synthesis (to improve upon):
 
 
 async def main():
-    parser = argparse.ArgumentParser(description="Parallel Orchestrator v3.0")
+    parser = argparse.ArgumentParser(description="Parallel Orchestrator v4.0")
     parser.add_argument("query", help="The query to analyze")
-    parser.add_argument("--context", default="", help="Additional context")
+    parser.add_argument("--context", default="", help="Additional context (inline)")
+    parser.add_argument(
+        "--context-file",
+        default="",
+        help="Path to a file containing additional context (for large contexts)",
+    )
+    parser.add_argument(
+        "--output",
+        default="",
+        help="Path to save the final synthesis output (creates parent dirs)",
+    )
     parser.add_argument("--model", default=DEFAULT_MODEL, help="Model to use")
     parser.add_argument("--quiet", action="store_true", help="Suppress verbose output")
     parser.add_argument("--json", action="store_true", help="Output as JSON")
     args = parser.parse_args()
 
+    # Load context from file if provided
+    context = args.context
+    if args.context_file:
+        context_path = Path(args.context_file)
+        if context_path.exists():
+            context = context_path.read_text(encoding="utf-8")
+            if not args.quiet:
+                print(f"📄 Loaded context from {context_path} ({len(context)} chars)")
+        else:
+            print(f"⚠️ Context file not found: {context_path}", file=sys.stderr)
+
     orchestrator = ParallelOrchestrator(model=args.model, verbose=not args.quiet)
 
-    synthesis, iterations, history = await orchestrator.run(args.query, args.context)
+    synthesis, iterations, history = await orchestrator.run(args.query, context)
 
-    if args.json:
-        print(
-            json.dumps(
-                {
-                    "synthesis": synthesis,
-                    "iterations": iterations,
-                    "history": history,
-                },
-                indent=2,
+    # Build output payload
+    output_payload = {
+        "query": args.query,
+        "synthesis": synthesis,
+        "iterations": iterations,
+        "history": history,
+        "timestamp": datetime.now().isoformat(),
+        "model": args.model,
+    }
+
+    # Save to file if --output specified
+    if args.output:
+        output_path = Path(args.output)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        if args.json or args.output.endswith(".json"):
+            output_path.write_text(
+                json.dumps(output_payload, indent=2, ensure_ascii=False),
+                encoding="utf-8",
             )
-        )
+        else:
+            # Write as readable markdown
+            md_content = f"""# Ultrathink Output
+
+**Query**: {args.query}
+**Timestamp**: {output_payload["timestamp"]}
+**Model**: {args.model}
+**Converged in**: {iterations} iteration(s)
+**Convergence History**: {json.dumps(history, indent=2)}
+
+---
+
+{synthesis}
+"""
+            output_path.write_text(md_content, encoding="utf-8")
+
+        if not args.quiet:
+            print(f"\n💾 Output saved to: {output_path}")
+
+    # Print to stdout
+    if args.json:
+        print(json.dumps(output_payload, indent=2, ensure_ascii=False))
     else:
         print("\n" + "=" * 60)
         print("📋 FINAL OUTPUT")

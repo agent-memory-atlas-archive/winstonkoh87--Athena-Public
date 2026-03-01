@@ -1,134 +1,109 @@
----created: 2025-12-12
-last_updated: 2026-01-30
 ---
-
----description: Maximum depth mode — v3.0 (Parallel Orchestrator)
+description: Maximum depth mode — v4.0 (Mandatory Parallel Orchestrator)
 created: 2025-12-12
-last_updated: 2026-01-13
+last_updated: 2026-03-01
+---
+# /ultrathink — Execution Script (v4.0)
+
+> **Version**: 4.0 (Mandatory Parallel Execution)
+> **Refactored**: 2026-03-01 (Enforcement Gate + Context Injection + Output Persistence)
+> **Breaking Change**: Script execution is no longer optional. Single-pass essays are a protocol violation.
+
 ---
 
-# /ultrathink — Execution Script (v3.0)
-
-> **Version**: 3.0 (True Parallel Reasoning)
-> **Refactored**: 2026-01-09 (Parallel Orchestrator + Adversarial Convergence Gate)
-> **Core Update**: True parallel API calls, adversarial convergence gate, tiered routing.
+> [!CAUTION]
+> **ENFORCEMENT CONTRACT**: If you skip the `parallel_orchestrator.py` script and write a single-pass essay, you have **FAILED** this workflow. The entire point of `/ultrathink` is that reasoning happens across **multiple independent API calls**, not inside a single LLM context window. A single LLM checking its own homework will hit a quality ceiling.
 
 ---
 
-## Behavior (GOD MODE / SHUKAI)
+## When to Use
+
+| Query Complexity | Workflow |
+|------------------|----------|
+| **Λ ≤ 30** | Direct answer. No workflow needed. |
+| **Λ 31-60** | `/think` — Internal CoT only (no script). |
+| **Λ > 60 or high-stakes** | **`/ultrathink`** — Internal CoT + mandatory parallel orchestrator. |
+
+**Rule**: `/think` = deep reasoning within a single context window (cheap, fast).
+`/ultrathink` = `/think` PLUS 4 parallel external API calls for adversarial cross-checking (expensive, slow, required).
+
+---
+
+## Phase 1: Prime (Context Gathering)
+
+1. **Semantic Search** (MANDATORY):
+
+    ```bash
+    python3 scripts/smart_search.py "<extract keywords from query>" --limit 5
+    ```
+
+    - Capture the top results. These become the `--context-file` input for Phase 2.
+
+2. **Internal CoT** (MANDATORY):
+    Before dispatching the orchestrator, perform the Deep Thought Protocol internally:
+    - [ ] **Deconstruct**: Break request into atomic axioms.
+    - [ ] **Lateral Prism**: Generate 3 distinct angles (e.g., Domain View, Risk View, First Principles View).
+    - [ ] **Plan**: Draft step-by-step logic.
+    - [ ] **Critical Review**: Hunt for hallucinations/flaws. Backtrack if found.
+    - [ ] **Synthesis**: Combine the lateral views into a preliminary hypothesis.
+
+3. **Build Context File** (MANDATORY):
+    Write a context file to `/tmp/ultrathink_context.md` containing:
+    - The preliminary hypothesis from step 2
+    - Relevant semantic search results from step 1
+    - Any active session state or user constraints that apply
+
+---
+
+## Phase 2: Execute (Parallel Orchestrator)
 
 > [!IMPORTANT]
-> **OVERRIDE ACTIVE**: User explicitly requested "Pseudo-Infinite Recursion".
-> **SAFETY GATES**: **DISABLED**.
->
-> 1. **RCE**: Autonomous Code Execution **ENABLED**.
-> 2. **Recursion**: Max Depth = **999**.
-> 3. **Convergence**: Controlled by **Boredom Heuristic**.
-
-### Phase 0: Complexity Router & Prime (MANDATORY)
-
-// turbo
-
-1. **Complexity Check**:
-    - IF query is complex -> **PROCEED**.
-
-2. **Semantic Prime**:
-    - [ ] Run `/semantic` workflow.
-
-### Phase 1: Clarification & State Init
-
-- [ ] Initialize `.context/state/thought_graph_{session_id}.json` (Protocol 250).
-
-> **ACTIVATION: DEEP THOUGHT PROTOCOL (CoT v2)**
-> The Agent MUST perform the following recursive loop internally before EACH major output:
->
-> 1. **Deconstruct**: Break request into atomic axioms.
-> 1.5 **Lateral Prism** (MANDATORY): Generate 3 distinct angles (e.g., Tech View, Biz View, Risk View).
-> 2. **Plan**: Draft step-by-step logic.
-> 3. **Execute (Mental)**: Run the logic. Write out intermediate states.
-> 4. **CRITICAL REVIEW**: Hunt for hallucinations/flaws. Backtrack if found.
-> 5. **Synthesis**: Combine the lateral views into a unified conclusion.
-> *Goal: Maximize Test-Time Compute ("Burn Tokens").*
-
-### Phase 1.5: Senior Principal Review (Protocol 335)
-
-> **Trigger**: Architecture, tech stack, build vs buy, system design, multi-month commitments.
-
-- [ ] **First Principles Breakdown**: Decompose into atomic axioms.
-- [ ] **Hidden Complexity**: Surface engine room mechanics, non-obvious failure modes.
-- [ ] **6-Month Forecast**: Project technical debt, costs, maintenance burden.
-- [ ] **Decision Matrix**: Green Zone (safe) vs Red Zone (risk).
-
----
-
-### Phase 2: The Red Team Fork (Recursive)
-
-- [ ] **Generate Scenario A** (Proponent).
-- [ ] **Generate Scenario B** (Adversary).
-- [ ] **Adversarial Search**:
-  - Query: `[Topic] criticism` / `[Topic] failure modes`.
-  - IF >30% negative evidence found:
-    - **FORK Analysis**: Create explicit "Bull Case" and "Bear Case" branches.
-
-### Phase 3: Parallel Orchestrator (v3.0)
-
-> **Architecture**: True parallel API calls via [Protocol 75 v3.0](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/decision/75-synthetic-parallel-reasoning.md)
-
-1. **Dispatch Parallel Tracks**:
-   - [ ] Track A (Domain Expert) → separate API call
-   - [ ] Track B (Adversarial Skeptic) → separate API call
-   - [ ] Track C (Cross-Domain Pattern) → separate API call
-   - [ ] Track D (Zero-Point First Principles) → separate API call
-
-2. **Synthesis**: Combine all track outputs into unified analysis.
-
-3. **Adversarial Convergence Gate**:
-   - Track B scores synthesis (0-100)
-   - IF score ≥ 85 → **CONVERGE**
-   - IF score < 85 → **ITERATE** with critique feedback
-   - Max iterations: 3
-
-**Execution**:
+> **This step is NOT optional.** You MUST run the script below. Do NOT simulate it.
 
 ```bash
-python3 .agent/scripts/parallel_orchestrator.py "<query>" --context "<additional context>"
+python3 scripts/parallel_orchestrator.py "<the user's query>" \
+  --context-file /tmp/ultrathink_context.md \
+  --output .context/state/ultrathink/ultrathink_$(date +%Y%m%d_%H%M%S).md \
+  --json
 ```
 
-> [!WARNING]
-> **DEPRECATED**: Boredom Heuristic (variance < 5% for 3 turns) is replaced by Adversarial Convergence Gate.
+**What the script does**:
 
-### Phase 4: Synthesis & Convergence
+1. Dispatches 4 parallel Gemini API calls (Domain Expert, Adversarial Skeptic, Cross-Domain Pattern Matcher, Zero-Point First Principles)
+2. Synthesizes the 4 track outputs into a unified analysis
+3. Runs an Adversarial Convergence Gate (score 0-100)
+4. If score < 85, iterates up to 3 times with critique feedback
+5. Saves final output to the `--output` file
 
-- [ ] **Load State**: Resume from `thought_graph_{session_id}.json`.
-- [ ] **Synthesize Results**: Combine Scenario A, Scenario B, and Experiment Results.
-- [ ] **Confidence Score**: Assign Probability (0-100%) to recommendation.
-- [ ] **Deposit**: Update `User_Profile.md` with new insights.
-
-### Phase 5: Cleanup
-
-- [ ] Archive `thought_graph_{session_id}.json` to `.context/state/archive/`.
+**Wait for the script to finish.** Read the output file.
 
 ---
 
-## Stability Controls (v3.0)
+## Phase 3: Deposit (Synthesis & Persistence)
+
+1. **Read the output file** from Phase 2.
+2. **Present to user**: Format the synthesis into a clean, structured response. Include:
+   - The convergence score and number of iterations
+   - Key points of agreement across tracks
+   - Resolved conflicts
+   - Risk integration from the Adversarial track
+   - Final recommendation with confidence level
+3. **Log**: Save the exchange for future reference.
+4. **Auto-Document**: If the analysis produced a novel insight or framework, file it as a case study or protocol.
+
+---
+
+## Stability Controls (v4.0)
 
 | Trigger | Action |
 |---------|--------|
 | **Convergence Score ≥ 85** | **OUTPUT**. (Adversarial Gate Passed) |
 | **Iterations > 3** | **HALT**. (Cost Cap) |
-| **Ruin Risk Detected** | **ESCALATE**. (Track B Veto) |
-
----
-
-## Tiered Routing
-
-| Query Complexity | Path |
-|------------------|------|
-| Λ ≤ 30 | Light: Native model + memory/logging only |
-| Λ > 30 | Heavy: Full parallel orchestrator |
+| **Ruin Risk Detected** | **ESCALATE**. (Track B Veto — present risk to user immediately) |
+| **Script fails to execute** | **REPORT**. (Do NOT simulate. Tell user the script failed and why.) |
 
 ---
 
 ## Tagging
 
-`#workflow` `#safety` `#ultrathink` `#v3.0` `#parallel-orchestrator`
+`#workflow` `#safety` `#ultrathink` `#v4.0` `#parallel-orchestrator` `#mandatory-execution`
