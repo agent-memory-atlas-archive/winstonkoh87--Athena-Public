@@ -87,36 +87,38 @@ The penalty for fragmentation is identical:
 
 ## Athena's Cognitive Clusters (Live)
 
-| Cluster | Capstone | Skills | Domain |
-|:---|:---|:---|:---|
-| **Diagnostic** | Protocol 501 | 1 capstone replacing 9 protocols | Decision |
-| **Context Lifecycle** | Protocol 502 | 1 capstone replacing 4 protocols | Architecture |
-| **Trading Risk** | `trading-risk-gate` | Pre-trade: ruin + ergodicity + WR dominance | Trading |
-| **Trading Execution** | `zenith-execution` | Sizing: Kelly + SL + Monte Carlo + rebalance | Trading |
-| **Trade Analytics** | `trade-journal-analyzer` | Post-trade: journal + drawdown classification | Trading |
-| **Negotiation** | `power-inversion` | BATNA + commitment devices + bias detection | Business |
-| **Inner Work** | `therapeutic-ifs` | Schema deconstruction + IFS therapy | Psychology |
-| **Adversarial QA** | `red-team-review` | Pre-mortem + bias detection + scoring | Quality |
-| **Decision Lifecycle** | `decision-journal` | Pre-decision logging + post-mortem + calibration | Decision |
+> **Routing Table**: `CLUSTER_INDEX.md` (in `.agent/` — create per [Protocol 503 setup](#when-to-cluster))
+
+| # | Cluster | Capstone | Skills | Domain |
+|:---|:---|:---|:---|:---|
+| 1 | **Diagnostic** | Protocol 501 | 9 protocols merged | Decision |
+| 2 | **Context Lifecycle** | Protocol 502 | 4 protocols merged | Architecture |
+| 3 | **Trading Risk** | `trading-risk-gate` | Ruin + Ergodicity + WR Dominance | Trading |
+| 4 | **Trading Execution** | `zenith-execution` | Kelly + SL + Monte Carlo + Rebalance | Trading |
+| 5 | **Trade Analytics** | `trade-journal-analyzer` | Journal + Drawdown Classification | Trading |
+| 6 | **Social Contract** | `power-inversion` | BATNA + Commitment Devices + Consiglieri | Business |
+| 7 | **Inner Work** | `therapeutic-ifs` | Schema Deconstruction + IFS | Psychology |
+| 8 | **Adversarial QA** | `red-team-review` | Pre-Mortem + Bias Detection + Scoring | Quality |
+| 9 | **Strategic Reasoning** | `decision-journal` | Decision Lifecycle + Synthetic Parallel Reasoning | Decision |
+| 10 | **Distribution Engine** | `distribution-physics` | Brand Foundations + SEO Auditor | Marketing |
+| 11 | **Swarm Orchestrator** | `marketing-swarm` | Marketing Swarm + Git Worktree Swarm | Orchestration |
+| 12 | **Research Pipeline** | `deep-research-loop` | Deep Research + Semantic Search | Research |
+| 13 | **Build Lifecycle** | `spec-driven-dev` | Spec + Micro-Commit + Visual Verify | Engineering |
+| 14 | **Sovereign Safety** | (lightweight) | Circuit Breaker + Context Compactor | Safety |
 
 ---
 
 ## The Math
 
-**Before (35 skills)**:
+**Before (35 skills → 21 skills → 14 clusters)**:
 
-- Average query triggers 3.2 skills
-- Each skill load = ~800 tokens + 1 tool call
-- Cost per query: ~2,560 tokens + 3.2 tool calls
+| Stage | Avg. Skill Loads per Query | Tokens per Query | Tool Calls |
+|:---|:---|:---|:---|
+| Pre-Cluster (35 skills) | 3.2 | ~2,560 | 3.2 |
+| Post-Cluster v1 (21 skills, 9 clusters) | 1.4 | ~1,680 | 1.4 |
+| Post-Cluster v2 (14 clusters, co-activation) | **1.1** | **~1,320** | **1.1** |
 
-**After (21 skills)**:
-
-- Average query triggers 1.4 skills
-- Each skill load = ~1,200 tokens (larger but self-contained) + 1 tool call
-- Cost per query: ~1,680 tokens + 1.4 tool calls
-- **Savings: ~34% tokens, ~56% tool calls per query**
-
-The larger individual skill size is offset by dramatically fewer loads — a classic **batch vs streaming** tradeoff.
+**Cumulative savings**: ~48% tokens, ~66% tool calls vs original 35-skill architecture.
 
 ---
 
