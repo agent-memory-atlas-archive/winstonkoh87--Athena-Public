@@ -1,18 +1,18 @@
 ---
-description: Maximum depth mode — v4.0 (Mandatory Parallel Orchestrator)
+description: Maximum depth mode — v4.1 (HITL Optional Bypass)
 created: 2025-12-12
-last_updated: 2026-03-01
+last_updated: 2026-03-02
 ---
-# /ultrathink — Execution Script (v4.0)
+# /ultrathink — Execution Script (v4.1)
 
-> **Version**: 4.0 (Mandatory Parallel Execution)
-> **Refactored**: 2026-03-01 (Enforcement Gate + Context Injection + Output Persistence)
-> **Breaking Change**: Script execution is no longer optional. Single-pass essays are a protocol violation.
+> **Version**: 4.1 (HITL Optional Bypass)
+> **Refactored**: 2026-03-02 (Added Manual Gemini Sandbox execution path)
+> **Breaking Change**: Script execution is now *optional*, allowing users to execute the parallel tracks manually via the Gemini UI to save API credit costs. Single-pass essays within a single LLM context window are still a protocol violation.
 
 ---
 
 > [!CAUTION]
-> **ENFORCEMENT CONTRACT**: If you skip the `parallel_orchestrator.py` script and write a single-pass essay, you have **FAILED** this workflow. The entire point of `/ultrathink` is that reasoning happens across **multiple independent API calls**, not inside a single LLM context window. A single LLM checking its own homework will hit a quality ceiling.
+> **ENFORCEMENT CONTRACT**: You MUST NOT write a single-pass essay. The entire point of `/ultrathink` is that reasoning happens across **multiple independent channels**, not inside a single LLM context window. A single LLM checking its own homework will hit a quality ceiling. However, the automated script execution is optional; you may orchestrate the tracks manually via the Human-in-the-Loop sandbox.
 
 ---
 
@@ -25,7 +25,7 @@ last_updated: 2026-03-01
 | **Λ > 60 or high-stakes** | **`/ultrathink`** — Internal CoT + mandatory parallel orchestrator. |
 
 **Rule**: `/think` = deep reasoning within a single context window (cheap, fast).
-`/ultrathink` = `/think` PLUS 4 parallel external API calls for adversarial cross-checking (expensive, slow, required).
+`/ultrathink` = `/think` PLUS 4 parallel external tracks for adversarial cross-checking (expensive, slow, required)—either via automated API or manual user execution.
 
 ---
 
@@ -58,7 +58,9 @@ last_updated: 2026-03-01
 ## Phase 2: Execute (Parallel Orchestrator)
 
 > [!IMPORTANT]
-> **This step is NOT optional.** You MUST run the script below. Do NOT simulate it.
+> **This parallel track execution is NOT optional.** However, the *method* of execution is. Ensure you and the user agree on the Option before proceeding.
+
+### Option A: The Automated Orchestrator (High API Cost)
 
 ```bash
 python3 scripts/parallel_orchestrator.py "<the user's query>" \
@@ -67,21 +69,22 @@ python3 scripts/parallel_orchestrator.py "<the user's query>" \
   --json
 ```
 
-**What the script does**:
-
-1. Dispatches 4 parallel Gemini API calls (Domain Expert, Adversarial Skeptic, Cross-Domain Pattern Matcher, Zero-Point First Principles)
-2. Synthesizes the 4 track outputs into a unified analysis
-3. Runs an Adversarial Convergence Gate (score 0-100)
-4. If score < 85, iterates up to 3 times with critique feedback
-5. Saves final output to the `--output` file
-
 **Wait for the script to finish.** Read the output file.
+
+### Option B: The HITL Manual Sandbox (Zero API Cost)
+
+If the user prefers to preserve API credits, use the Human-in-the-Loop (HITL) bypass.
+
+1. Athena produces a structured synthesis prompt containing the 4 track prompts mapped to the `ultrathink_context.md`.
+2. Athena places this large prompt inside a markdown `text` code block.
+3. The user copies the text, pastes it into their native Gemini Advanced UI, and runs it natively.
+4. The user pastes the Gemini output back into the Athena chat to feed the deposit phase.
 
 ---
 
 ## Phase 3: Deposit (Synthesis & Persistence)
 
-1. **Read the output file** from Phase 2.
+1. **Read the output file** from Phase 2 (or the pasted user response if using Option B).
 2. **Present to user**: Format the synthesis into a clean, structured response. Include:
    - The convergence score and number of iterations
    - Key points of agreement across tracks
@@ -93,7 +96,7 @@ python3 scripts/parallel_orchestrator.py "<the user's query>" \
 
 ---
 
-## Stability Controls (v4.0)
+## Stability Controls (v4.1)
 
 | Trigger | Action |
 |---------|--------|
@@ -101,9 +104,10 @@ python3 scripts/parallel_orchestrator.py "<the user's query>" \
 | **Iterations > 3** | **HALT**. (Cost Cap) |
 | **Ruin Risk Detected** | **ESCALATE**. (Track B Veto — present risk to user immediately) |
 | **Script fails to execute** | **REPORT**. (Do NOT simulate. Tell user the script failed and why.) |
+| **User opts for Option B** | **GENERATE PROMPT**. (Produce HITL prompt and wait for pasted output.) |
 
 ---
 
 ## Tagging
 
-`#workflow` `#safety` `#ultrathink` `#v4.0` `#parallel-orchestrator` `#mandatory-execution`
+`#workflow` `#safety` `#ultrathink` `#v4.1` `#parallel-orchestrator` `#hitl-bypass`
