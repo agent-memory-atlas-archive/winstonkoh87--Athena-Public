@@ -1,10 +1,33 @@
 # Athena Changelog
 
-> **Last Updated**: 28 February 2026
+> **Last Updated**: 02 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.2.9 (02 March 2026)
+
+**Ultrathink v4.1 HITL Bypass + Micro-Pruning**: Added Human-in-the-Loop manual execution path to `/ultrathink`, pruned 10% dead skills for 100% cognitive cluster coverage, and fixed all broken references.
+
+### Key Changes
+
+- **Ultrathink v4.1**: Added Option B (HITL Manual Sandbox) — users can execute the 4 parallel reasoning tracks directly in the Gemini UI at zero API cost, then paste outputs back.
+- **Micro-Pruning**: Removed `ui-ux-pro-max/` workflow (skill deleted from private repo). Fixed broken `file://` path in `refactor-code.md`.
+- **`generate_skill_index.py`**: Removed dead `sickn33_collection` vendor block (referencing deleted submodule).
+- **Cognitive Cluster Coverage**: Updated from 19/21 (90%) to 19/19 (100%) — all orphan skills eliminated.
+- **Orchestrator v4.1**: Top-level imports, modern type hints (`dict`/`list`/`tuple`), rate-limit retry with 30s backoff, async deadlock fix.
+
+### Verification
+
+| Metric | Result |
+|--------|--------|
+| Broken references fixed | 4 ✅ |
+| Security scans passed | 3/3 ✅ |
+| Cluster coverage | 100% ✅ |
+| Lines removed (net) | -4,192 ✅ |
 
 ---
 
