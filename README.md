@@ -368,3 +368,12 @@ Athena-Public/
 *Clone it. Boot it. Make it yours.*
 
 </div>
+## Windows Compatibility (Unicode Errors)
+
+Athena uses modern terminal outputs (Emojis, Box-Drawing characters) which may cause a `UnicodeEncodeError` on legacy Windows terminals (like `cmd.exe` or older PowerShell versions using `cp1252` encoding). 
+
+To resolve this natively without altering the codebase:
+1. Use **Windows Terminal** (available in the Microsoft Store).
+2. Set your Python IO encoding to UTF-8 by running:
+   `$env:PYTHONIOENCODING="utf-8"` (PowerShell) or `set PYTHONIOENCODING=utf-8` (Command Prompt).
+3. Alternatively, enable strict UTF-8 globally in Windows: *Settings > Time & Language > Language & Region > Administrative language settings > Change system locale > Check "Beta: Use Unicode UTF-8 for worldwide language support"*.
