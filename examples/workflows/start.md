@@ -100,15 +100,14 @@ Bypassing this sequence is a high-severity protocol violation. No exceptions for
 | `/think` | **Escalation** — Force L4 depth + Output_Standards | +2K |
 | `/ultrathink` | Maximum depth + Full stack | +28K |
 
-> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
+> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](examples/protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
 
 ---
 
 ## References
 
-- [Protocol 133: JIT Routing](file:///Users/[AUTHOR]/Desktop/Project Athena/Athena-Public/examples/protocols/architecture/133-query-archetype-routing.md)
-- [WORKFLOW_INDEX.md](file:///Users/[AUTHOR]/Desktop/Project Athena/.agent/WORKFLOW_INDEX.md)
-- [Session 2025-12-13-04](file:///Users/[AUTHOR]/Desktop/Project Athena/.context/memories/session_logs/archive/2025-12-13-session-04.md)
+- [Protocol 133: JIT Routing](examples/protocols/architecture/133-query-archetype-routing.md)
+- [WORKFLOW_INDEX.md](.agent/WORKFLOW_INDEX.md)
 
 ---
 

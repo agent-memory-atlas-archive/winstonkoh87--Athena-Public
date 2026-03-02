@@ -12,7 +12,7 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.2.9-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.3.0-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
@@ -105,19 +105,31 @@ cd Athena-Public
 
 Clone it anywhere you keep projects (e.g. `~/Projects/`). This folder **is** your Athena workspace — your memory, protocols, and config all live here.
 
-### 2. Install the SDK *(optional — enables CLI commands)*
+### 2. Set up a virtual environment *(recommended)*
 
 ```bash
-# Recommended
-uv pip install -e .
+# Create and activate a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate   # macOS / Linux
+# .venv\Scripts\activate    # Windows
+```
 
-# Or with pip
+> [!IMPORTANT]
+> On macOS (Homebrew) and Ubuntu 23.04+, installing packages without a virtual environment will fail with `externally-managed-environment`. The step above prevents this.
+
+### 3. Install the SDK *(optional — enables CLI commands)*
+
+```bash
+# Lightweight install (~30 seconds, no ML dependencies)
 pip install -e .
+
+# Full install (~5–10 min, enables vector search and reranking)
+pip install -e ".[full]"
 ```
 
 > ⚠️ **Don't `pip install athena-cli`** — that's a different, unrelated package. Always install from inside the cloned repo.
 
-### 3. Open the folder in an AI-enabled IDE
+### 4. Open the folder in an AI-enabled IDE
 
 Open the `Athena-Public/` directory as your **workspace root** in one of these editors:
 
@@ -129,7 +141,7 @@ Open the `Athena-Public/` directory as your **workspace root** in one of these e
 > [!NOTE]
 > **"Why do I open the Athena folder instead of my own project?"** — Athena is a *workspace*, not a library you install into another repo. You work *inside* the Athena folder, and it remembers everything across sessions. To work on external projects, reference them from within Athena or use multi-root workspaces in your IDE.
 
-### 4. Boot (in the AI chat panel — not the terminal)
+### 5. Boot (in the AI chat panel — not the terminal)
 
 In your IDE's **AI chat panel** (e.g. Cmd+L in Cursor, the chat sidebar in Antigravity), type:
 
@@ -140,7 +152,7 @@ In your IDE's **AI chat panel** (e.g. Cmd+L in Cursor, the chat sidebar in Antig
 > [!CAUTION]
 > `/start`, `/end`, and `/tutorial` are **AI chat commands** — you type them in the chat window where you talk to the AI, **not** in the terminal. They are slash commands that the AI agent reads and executes.
 
-### 5. First time? Take the guided tour
+### 6. First time? Take the guided tour
 
 ```
 /tutorial
@@ -148,7 +160,7 @@ In your IDE's **AI chat panel** (e.g. Cmd+L in Cursor, the chat sidebar in Antig
 
 This walks you through everything: what Athena is, how it works, builds your profile, and demos the tools (~20 min). Confident users can skip it.
 
-### 6. When you're done
+### 7. When you're done
 
 ```
 /end
@@ -294,7 +306,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) |
-| **SDK** | `athena` Python package (v9.2.9) |
+| **SDK** | `athena` Python package (v9.3.0) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `text-embedding-004` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -326,6 +338,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.3.0** (Mar 02 2026): Onboarding Friction Audit — dependency restructuring (torch→optional), venv instructions, PEP 668 fix, stale path cleanup, two-tier install
 - **v9.2.9** (Mar 02 2026): Ultrathink v4.1 HITL Bypass — manual Gemini sandbox option, micro-pruned 10% dead skills (100% cluster coverage), broken reference audit
 - **v9.2.8** (Feb 27 2026): Skill Template Expansion — 5 starter skill templates across 4 categories for new AG users
 - **v9.2.7** (Feb 26 2026): Risk-proportional Triple-Lock, Tier 0 context summaries, 3 new academic citations

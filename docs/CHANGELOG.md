@@ -8,6 +8,31 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.3.0 (02 March 2026)
+
+**Onboarding Friction Audit**: Restructured dependencies, added virtual environment instructions, and fixed 6 onboarding blockers for new users.
+
+### Key Changes
+
+- **Dependency Restructuring** (`pyproject.toml`): Moved `torch`, `sentence-transformers`, `flashrank`, `dspy-ai`, `anthropic`, `supabase`, `google-generativeai` from core dependencies to optional groups (`[search]`, `[cloud]`, `[full]`). Default `pip install -e .` now completes in ~30s without downloading 2GB of PyTorch.
+- **Virtual Environment Instructions** (`README.md`, `GETTING_STARTED.md`, `FAQ.md`): Added explicit `python3 -m venv .venv` step to Quickstart. Prevents PEP 668 `externally-managed-environment` errors on macOS Homebrew and Ubuntu 23.04+.
+- **Two-Tier Install Path** (`README.md`): Lightweight install (default) vs `pip install -e ".[full]"` (vector search + reranking).
+- **PEP 668 Troubleshooting** (`FAQ.md`): New troubleshooting entry for the most common install blocker.
+- **Stale Path Fix** (`examples/workflows/start.md`): Replaced hardcoded `file:///Users/[AUTHOR]/...` absolute paths with relative paths.
+- **URL Fix** (`init.py`): Fixed `[AUTHOR]87` placeholder in init output URL.
+- **`requirements-lite.txt`** (NEW): Minimal dependency file for users who want the core framework without ML deps.
+
+### Verification
+
+| Metric | Result |
+|--------|--------|
+| Core install deps | 5 (was 11) ✅ |
+| Install time (default) | ~30s (was 5-10 min) ✅ |
+| PEP 668 addressed | 3 docs ✅ |
+| Stale paths fixed | 3 ✅ |
+
+---
+
 ## v9.2.9 (02 March 2026)
 
 **Ultrathink v4.1 HITL Bypass + Micro-Pruning**: Added Human-in-the-Loop manual execution path to `/ultrathink`, pruned 10% dead skills for 100% cognitive cluster coverage, and fixed all broken references.

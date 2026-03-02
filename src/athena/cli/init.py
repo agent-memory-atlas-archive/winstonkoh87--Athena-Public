@@ -387,7 +387,7 @@ def init_workspace(target_dir: Path = None, ide: str = None) -> bool:
     print("   1. Open this folder in your AI IDE")
     print('   2. Type "/start" to boot your agent')
     print('   3. Work with your agent, then type "/end" to save')
-    print("\n📚 Docs: https://github.com/[AUTHOR]87/Athena-Public")
+    print("\n📚 Docs: https://github.com/winstonkoh87/Athena-Public")
 
     return True
 

@@ -48,6 +48,7 @@ Athena separates the **IDE** from the **Reasoning Engine**, so you are never loc
 ```bash
 git clone https://github.com/winstonkoh87/Athena-Public.git
 cd Athena-Public
+python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 ```
 
@@ -135,13 +136,25 @@ Yes, if you use **Local Mode**. For enterprise use, see [SECURITY.md](./SECURITY
 
 ### "athena: command not found"
 
-Ensure the SDK is installed from the cloned repo:
+Ensure the SDK is installed from the cloned repo **inside a virtual environment**:
 
 ```bash
 cd Athena-Public
+python3 -m venv .venv
+source .venv/bin/activate   # macOS / Linux
 pip install -e .
-# Or via uv:
-uv pip install -e .
+```
+
+If you've already installed it, make sure your virtual environment is activated (`source .venv/bin/activate`).
+
+### "error: externally-managed-environment" (PEP 668)
+
+This error occurs on macOS (Homebrew Python) and Ubuntu 23.04+ when installing packages without a virtual environment. Fix:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
 ```
 
 ### Session logs not saving

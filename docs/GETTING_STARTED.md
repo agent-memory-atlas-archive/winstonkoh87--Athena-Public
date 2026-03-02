@@ -22,9 +22,20 @@
 git clone https://github.com/winstonkoh87/Athena-Public.git
 cd Athena-Public
 
-# Install in development mode
+# Create a virtual environment (recommended)
+python3 -m venv .venv
+source .venv/bin/activate   # macOS / Linux
+# .venv\Scripts\activate    # Windows
+
+# Lightweight install (~30 seconds)
 pip install -e .
+
+# OR full install with vector search (~5-10 min)
+# pip install -e ".[full]"
 ```
+
+> [!IMPORTANT]
+> On macOS (Homebrew) and Ubuntu 23.04+, installing packages without a virtual environment will fail with `externally-managed-environment`. Always create a `.venv` first.
 
 ---
 
