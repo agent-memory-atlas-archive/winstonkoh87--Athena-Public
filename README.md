@@ -18,7 +18,7 @@ Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](docs/FAQ.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 02 March 2026*
+*Last updated: 03 March 2026*
 
 </div>
 
@@ -74,7 +74,7 @@ Kind of. But there's a difference between *remembering your name* and *thinking 
 <details>
 <summary><strong>🧬 Why Thousands of Files?</strong></summary>
 
-Athena's workspace looks unusual — **370+ Markdown files** and **230+ Python scripts** out of the box, growing to thousands as your memory compounds. **This is deliberate.**
+Athena's workspace looks unusual — **350+ Markdown files** and **600+ Python scripts** out of the box, growing to thousands as your memory compounds. **This is deliberate.**
 
 AI agents don't read files top-to-bottom like humans. They **query** — by filename, semantic search, or tag lookup. Each small file is an **addressable memory node** the agent can retrieve surgically, without loading everything else.
 
@@ -173,6 +173,20 @@ This walks you through everything: what Athena is, how it works, builds your pro
 
 > [!TIP]
 > See the [full setup guide →](docs/YOUR_FIRST_SESSION.md) for detailed walkthroughs and troubleshooting.
+
+<details>
+<summary><strong>🪟 Windows Compatibility (Unicode Errors)</strong></summary>
+
+Athena uses modern terminal outputs (Emojis, Box-Drawing characters) which may cause a `UnicodeEncodeError` on legacy Windows terminals (like `cmd.exe` or older PowerShell versions using `cp1252` encoding).
+
+To resolve this natively without altering the codebase:
+
+1. Use **Windows Terminal** (available in the Microsoft Store).
+2. Set your Python IO encoding to UTF-8 by running:
+   `$env:PYTHONIOENCODING="utf-8"` (PowerShell) or `set PYTHONIOENCODING=utf-8` (Command Prompt).
+3. Alternatively, enable strict UTF-8 globally in Windows: *Settings > Time & Language > Language & Region > Administrative language settings > Change system locale > Check "Beta: Use Unicode UTF-8 for worldwide language support"*.
+
+</details>
 
 ---
 
@@ -368,12 +382,3 @@ Athena-Public/
 *Clone it. Boot it. Make it yours.*
 
 </div>
-## Windows Compatibility (Unicode Errors)
-
-Athena uses modern terminal outputs (Emojis, Box-Drawing characters) which may cause a `UnicodeEncodeError` on legacy Windows terminals (like `cmd.exe` or older PowerShell versions using `cp1252` encoding). 
-
-To resolve this natively without altering the codebase:
-1. Use **Windows Terminal** (available in the Microsoft Store).
-2. Set your Python IO encoding to UTF-8 by running:
-   `$env:PYTHONIOENCODING="utf-8"` (PowerShell) or `set PYTHONIOENCODING=utf-8` (Command Prompt).
-3. Alternatively, enable strict UTF-8 globally in Windows: *Settings > Time & Language > Language & Region > Administrative language settings > Change system locale > Check "Beta: Use Unicode UTF-8 for worldwide language support"*.
