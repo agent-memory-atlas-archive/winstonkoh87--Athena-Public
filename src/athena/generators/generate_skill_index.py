@@ -92,21 +92,6 @@ def main():
             lines.append(f"- [{f}]({rel_path})")
         lines.append("")
 
-    # Vendor Skills (sickn33)
-    vendor_dir = SKILLS_DIR / "sickn33_collection" / "skills"
-    if vendor_dir.exists():
-        lines.append("---")
-        lines.append("### 🛍️ Vendor Skills (Antigravity Awesome Skills)")
-        lines.append("")
-        for root, dirs, files in os.walk(vendor_dir):
-            if "SKILL.md" in files:
-                subdir = Path(root).relative_to(vendor_dir)
-                skill_name = subdir.name
-
-                path = Path(root) / "SKILL.md"
-                rel_path = path.relative_to(SKILLS_DIR)
-                lines.append(f"- [{skill_name}]({rel_path})")
-
     lines.append("")
 
     # Add Case Studies (from .context)
