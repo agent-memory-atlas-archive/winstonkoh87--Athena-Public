@@ -116,7 +116,7 @@ If you modified shared files in the **private** repo this session, sync to publi
 
 ```bash
 # Check what changed in private this session
-cd /Users/winstonkoh/Desktop/Project\ Athena
+cd ~/Project\ Athena
 git diff --name-only HEAD~1
 ```
 
@@ -135,7 +135,7 @@ git diff --name-only HEAD~1
 **Privacy filter** — before copying ANY file to public, run the privacy scanner:
 
 ```bash
-cd /Users/winstonkoh/Project\ Athena/Athena-Public
+cd ~/Project\ Athena/Athena-Public
 python3 .github/scripts/privacy_scan.py <file_to_sync>
 ```
 
@@ -147,7 +147,7 @@ If you modified shared files in the **public** repo this session, sync to privat
 
 ```bash
 # Check what changed in public this session
-cd /Users/winstonkoh/Desktop/Project\ Athena/Athena-Public
+cd ~/Project\ Athena/Athena-Public
 git diff --name-only HEAD~1
 ```
 
@@ -214,8 +214,8 @@ python3 .agent/scripts/shutdown.py
 
 ## References
 
-* [/refactor](file:///Users/winstonkoh/Project Athena/Athena-Public/examples/workflows/refactor.md) — Deep system optimization (audits, scans, integrity)
-* [/save](file:///Users/winstonkoh/Project Athena/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
+* [/refactor](refactor.md) — Deep system optimization (audits, scans, integrity)
+* [/save](save.md) — Mid-session checkpoint
 
 ---
 
