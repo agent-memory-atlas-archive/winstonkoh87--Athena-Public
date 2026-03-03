@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-02-28
+last_updated: 2026-03-04
 tags: #references #apa #academic #citations
 ---
 
@@ -208,6 +208,46 @@ Tarjan, R. E. (1985). Amortized computational complexity. *SIAM Journal on Algeb
 
 ---
 
+## Systems Biology & Cognitive Architecture
+
+von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.
+
+> **Note**: von Bertalanffy's General Systems Theory provides the formal foundation for Athena's Biological Stack Architecture. The principle that systems exhibit emergent properties not reducible to their parts — and that hierarchical organization (subsystem → system → suprasystem) is a universal pattern — directly maps to Athena's hierarchy: Protocols → Clusters → Cognitive Systems → Organism.
+
+Minsky, M. (1986). *The society of mind*. Simon & Schuster.
+
+> **Note**: Minsky's "Society of Mind" theory — that intelligence emerges from the interaction of many small, unintelligent agents — is the conceptual ancestor of Athena's multi-protocol architecture. Each protocol is a "mindless agent"; intelligence emerges from their orchestrated interaction via clusters and cognitive systems.
+
+Newell, A. (1990). *Unified theories of cognition*. Harvard University Press.
+
+> **Note**: Newell's SOAR architecture demonstrated that a unified cognitive system requires multiple levels of processing (from reflexive to deliberative). Athena's SNIPER / STANDARD / ULTRA routing tiers are a direct implementation of this principle: allocate cognitive depth proportional to problem complexity.
+
+---
+
+## Problem Framing & Wicked Problems
+
+Rittel, H. W. J., & Webber, M. M. (1973). Dilemmas in a general theory of planning. *Policy Sciences, 4*(2), 155–169. <https://doi.org/10.1007/BF01405730>
+
+> **Note**: Rittel & Webber's formalization of "wicked problems" — problems that resist definition and have no stopping rule — is the theoretical basis for Protocol 504 (Problem Framing). Their insight that "the formulation of a wicked problem IS the problem" directly motivates P504's 5-gate diagnostic before any solution attempt.
+
+Spradlin, D. (2012). Are you solving the right problem? *Harvard Business Review, 90*(9), 84–93.
+
+> **Note**: Spradlin's HBR framework for problem articulation — distinguishing between the stated problem and the actual problem — informed Protocol 504's emphasis on framing before execution. The observation that 85% of companies he studied were solving the wrong problem validates P504's existence.
+
+---
+
+## Developmental & Clinical Psychology
+
+Schwartz, R. C. (1995). *Internal family systems therapy*. Guilford Press.
+
+> **Note**: Schwartz's Internal Family Systems (IFS) model — which treats the psyche as a system of sub-personalities ("parts") with protective and exiled roles — provides the therapeutic framework for Athena's Inner Work cluster (#7) and the `therapeutic-ifs` skill. IFS is evidence-based and recognized by NREPP.
+
+Young, J. E., Klosko, J. S., & Weishaar, M. E. (2003). *Schema therapy: A practitioner's guide*. Guilford Press.
+
+> **Note**: Schema Therapy's concept of "early maladaptive schemas" — stable, self-defeating patterns formed in childhood — grounds Athena's schema deconstruction skill. The 18-schema taxonomy provides the diagnostic vocabulary for Cluster #7's pattern detection.
+
+---
+
 ## How Citations Are Used in This Repository
 
 Inline citations follow APA format: `(Author, Year)`. For example:
@@ -226,4 +266,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 28 February 2026*
+*Last updated: 04 March 2026*
