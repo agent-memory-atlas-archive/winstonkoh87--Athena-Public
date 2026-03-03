@@ -1,6 +1,6 @@
 # Athena Changelog
 
-> **Last Updated**: 03 March 2026
+> **Last Updated**: 04 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
@@ -8,9 +8,30 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
-## v9.3.1 (03 March 2026)
+## v9.4.0 (04 March 2026)
 
-**Cross-Model Audit Fixes**: Resolved 4 missing GitHub releases (v9.2.7–v9.3.0), corrected stale file count claims, relocated Windows compatibility section, synced dates.
+**Biological Stack Architecture**: Upgraded routing layer from 3 components to a full biological architecture: 8 Cognitive Systems (Organ System), 15 Cognitive Clusters (Organs), and 5 new protocols (P504-P508).
+
+### Key Changes
+
+- **Cognitive Systems Layer (`P507`)**: Added a macro-routing layer above clusters. 8 systems map to human need archetypes: Survival, Life Decision, Trading, Social, Execution, Growth, Learning, and Maintenance.
+- **Intent Classifier (`P508`)**: Replaced flat keyword matching with an 8-question top-down diagnostic tree that routes queries to the correct Cognitive System.
+- **`CLUSTER_INDEX.md`**: Updated from 3 starter clusters to the full 15-cluster production map. Linked all clusters to their parent Cognitive Systems.
+- **Problem Diagnostics (`P504`)**: New 5-gate problem framing framework to prevent solving the wrong problem.
+- **`ensure_env.sh` Fix**: Script now falls back to system Python if no `.venv` is found, reducing onboarding friction for users avoiding virtual environments.
+
+### Verification
+
+| Metric | Result |
+|--------|--------|
+| Cognitive Systems | 8 |
+| Cognitive Clusters | 15 |
+| New Protocols | 5 |
+| `pyproject.toml` | v9.4.0 |
+
+---
+
+## v9.3.1 (03 March 2026)
 
 ### Key Changes
 

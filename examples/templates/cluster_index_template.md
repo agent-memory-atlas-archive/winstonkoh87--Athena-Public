@@ -1,102 +1,197 @@
-# Cognitive Cluster Index (Template)
+---
+created: 2026-03-01
+last_updated: 2026-03-04
+description: Athena routing infrastructure — Intent Classifier (P508) → Cognitive Systems (P507) → Cognitive Clusters (P503)
+---
 
-> **What is this?** A routing table that groups related protocols into co-activated bundles. When any protocol in a cluster is triggered, all protocols in that cluster load together — reducing routing overhead and ensuring related capabilities always fire as a unit.
->
-> **How to use:** Copy this template to `.agent/CLUSTER_INDEX.md` and customize. Add clusters as your workspace grows.
->
-> **Reference:** [Protocol 503: Cognitive Clusters](../protocols/architecture/503-cognitive-clusters.md)
+# Athena Routing Index
+
+> **Architecture**: Protocols → Skills → Clusters → **Cognitive Systems** → Athena
+> **Reference**: [P503: Clusters](../protocols/architecture/503-cognitive-clusters.md) | [P507: Cognitive Systems](../protocols/architecture/507-cognitive-systems.md) | [P508: Intent Classifier](../protocols/architecture/508-intent-classifier.md)
 
 ---
 
-## How Clusters Work
+## Cognitive Systems (Organ System Layer)
+
+> **Rule**: For queries with Λ ≥ 10, classify at the System level FIRST, then cascade to clusters. For Λ < 10 (SNIPER), skip directly to cluster keyword matching.
+
+| System | Archetype | Cluster Sequence | Triggers |
+|---|---|---|---|
+| 🛡️ **Survival** | Crisis / ruin prevention | #14 → #3 → #15 → #8 → P506 | Ruin, emergency, crisis, panic, "I lost everything" |
+| 🫀 **Life Decision** | Irreversible personal choice | #15 → #7 → #9 → #6 → #8 → P506 | "Should I [irreversible]?", marriage, career pivot, health |
+| 📈 **Trading** | Capital deployment | #3 → #4 → #5 → #9 | Trade, position, Kelly, drawdown, risk |
+| 🤝 **Social** | Interpersonal dynamics | #15 → #7 → #6 → #8 → P506 | "How do I handle", conflict, relationship, boundary |
+| ⚙️ **Execution** | Build / ship / create | #15 → #13 → #11 → #8 | Build, code, ship, implement, assignment |
+| 📣 **Growth** | Distribution / audience | #12 → #10 → #11 → #8 | Launch, market, SEO, grow, distribute |
+| 📖 **Learning** | Understanding / knowledge | #12 → #9 → #15 → #8 | Teach me, explain, what is, analyze concept |
+| 🔄 **Maintenance** | System homeostasis | #1 → #2 → #14 | /diagnose, /audit, /end, health check |
+
+**Priority**: Survival > Life Decision > Trading > Social > Execution > Growth > Learning > Maintenance
+**Ambiguous**: Default to Problem-Solving (#15) standalone → re-classify after framing.
+
+**Cross-System Handoffs:**
 
 ```text
-WITHOUT CLUSTERS                        WITH CLUSTERS
-─────────────────                       ──────────────
-Query arrives                           Query arrives
-  → Search 5 protocols                    → Match 1 cluster
-  → Load 3 individually                   → Load 1 bundle (all 3 pre-grouped)
-  → 3 tool calls, ~2,400 tokens           → 1 tool call, ~1,200 tokens
-  → Hope they connect                     → Pre-connected by design
-```
-
-**Rule of thumb:** If you find yourself loading the same 2-3 protocols together repeatedly, they belong in a cluster.
-
----
-
-## Starter Clusters
-
-These 3 clusters are built from protocols included in the starter kit. They demonstrate the pattern — build your own as your domains expand.
-
-### 1. Decision Engine 🎯
-
-- **Protocols:** [P115 First Principles](../protocols/decision/115-first-principles-deconstruction.md) + [P75 Synthetic Parallel Reasoning](../protocols/decision/75-synthetic-parallel-reasoning.md) + [P123 Einstein Protocol](../protocols/decision/123-einstein-protocol.md) + [P121 MCDA-EEV](../protocols/decision/121-mcda-eev-framework.md)
-- **Triggers:** "analyze", "which should I", "compare options", "think deep", "tradeoff"
-- **Why clustered:** Every non-trivial decision benefits from decomposition (P115), multi-path reasoning (P75), forced simplification (P123), and quantified scoring (P121). Loading one without the others is like diagnosing without treating.
-
-### 2. Research Pipeline 🔬
-
-- **Protocols:** [P108 Semantic Search](../protocols/coding/108-semantic-search-standards.md) + [P137 Graph of Thoughts](../protocols/decision/137-graph-of-thoughts.md) + [P327 Iterative Refinement](../protocols/decision/327-iterative-refinement-loop.md)
-- **Triggers:** "research", "find out", "deep dive", "rabbit hole", "what do we know about"
-- **Why clustered:** Research is retrieval (P108) → structured exploration (P137) → progressive refinement (P327). They're a pipeline — the output of each is the input of the next.
-
-### 3. Quality Gate 🛡️
-
-- **Protocols:** [P175 TDD Workflow](../protocols/engineering/175-tdd-workflow.md) + [P99 Visual Verification](../protocols/engineering/99-visual-verification.md) + [P55 Silent Validator](../protocols/engineering/55-silent-validator.md)
-- **Triggers:** "test", "verify", "QA", "does this work", "check my work"
-- **Why clustered:** Testing is write tests (P175) → visually confirm (P99) → silently validate assumptions (P55). Skipping any step leaves blind spots.
-
----
-
-## Co-Activation Chains
-
-Clusters can trigger downstream clusters automatically:
-
-```text
-Decision query → #1 Decision Engine → if high stakes → #3 Quality Gate
-Research query → #2 Research Pipeline → if actionable → #1 Decision Engine
+Life Decision + financial → Trading System (sub-problem)
+Execution + repeated failure → Survival System (circuit breaker)
+Trading + emotional language → Survival → Social → Inner Work (#7)
+Growth + product-market fit doubt → Life Decision (pivot)
+Social + irreversible action → Life Decision System
+Learning + actionable insight → Execution System
+Maintenance + critical failure → Survival System
+Any system + ruin signal → IMMEDIATE → Survival System
 ```
 
 ---
 
-## Build Your Own
+## Cluster Map
 
-### When to Create a Cluster
+### 1. Diagnostic Engine ⚙️
 
-| Signal | Example | Action |
-|:---|:---|:---|
-| **Co-activation > 60%** | You always load P115 + P75 together | Merge into one cluster |
-| **Shared inputs** | 3 protocols all need the same context | Merge — DRY principle |
-| **Sequential dependency** | Protocol A's output feeds Protocol B | Merge into pipeline |
-| **Same domain, different verbs** | `diagnose`, `classify`, `calibrate` | Merge into phased cluster |
+- **Capstone**: Protocol 501
+- **Skills**: (Self-contained — 9 protocols merged into capstone)
+- **Triggers**: "diagnose", "what's wrong", "debug", "root cause", "why is this failing"
+- **Domain**: Decision
 
-### When NOT to Cluster
+### 2. Context Lifecycle 📦
 
-| Signal | Example | Keep Separate |
-|:---|:---|:---|
-| **Cross-domain** | A coding protocol + a therapy protocol | Different contexts entirely |
-| **Different frequency** | One fires every session, one fires monthly | Rare items shouldn't bloat common ones |
-| **Cluster > 3,000 tokens** | Too many protocols merged | Split into 2 smaller clusters |
+- **Capstone**: Protocol 502
+- **Skills**: (Self-contained — 4 protocols merged into capstone)
+- **Triggers**: "context", "token budget", "compaction", "memory", "context window"
+- **Domain**: Architecture
 
-### Template for New Clusters
+### 3. Trading Risk Gate 🛡️
 
-```markdown
-### N. [Cluster Name] [Emoji]
+- **Capstone**: `trading-risk-gate`
+- **Skills**: Ruin check (Law #1) + Ergodicity audit + Win-rate dominance validation
+- **Triggers**: "should I trade", "risk", "ruin", "ergodicity", "is this safe"
+- **Co-activates**: → Cluster 4 (Execution) if trade is approved
+- **Domain**: Trading
 
-- **Protocols:** [P### Name](path) + [P### Name](path)
-- **Triggers:** "keyword1", "keyword2", "keyword3"
-- **Co-activates:** → Cluster #X when [condition]
-- **Why clustered:** [One sentence explaining why these belong together]
+### 4. Trading Execution ⚡
+
+- **Capstone**: `zenith-execution`
+- **Skills**: Half-Kelly sizing + Stop-loss calc + Monte Carlo sim + Portfolio rebalancer
+- **Triggers**: "position size", "how much", "Kelly", "stop loss", "rebalance"
+- **Co-activates**: → Cluster 3 (Risk Gate) as prerequisite check
+- **Domain**: Trading
+
+### 5. Trade Analytics 📊
+
+- **Capstone**: `trade-journal-analyzer`
+- **Skills**: Journal pattern extraction + Drawdown classification
+- **Triggers**: "trade review", "journal", "drawdown", "what went wrong", "post-trade"
+- **Domain**: Trading
+
+### 6. Social Contract & Negotiation 🤝
+
+- **Capstone**: `power-inversion`
+- **Skills**: `power-inversion` + `consiglieri-protocol`
+- **Triggers**: "negotiate", "deal", "boundary", "relationship", "social contract", "BATNA", "commitment device"
+- **Domain**: Business / Social
+
+### 7. Inner Work 🧠
+
+- **Capstone**: `therapeutic-ifs`
+- **Skills**: Schema deconstruction + IFS therapy
+- **Triggers**: "therapy", "inner work", "schema", "parts", "trauma", "IFS", "why do I feel"
+- **Domain**: Psychology
+
+### 8. Adversarial QA 🔴
+
+- **Capstone**: `red-team-review`
+- **Skills**: 5-phase pre-mortem + Anchoring/base-rate bias detection + Scoring
+- **Triggers**: "red team", "pre-mortem", "challenge this", "devil's advocate", "stress test", "/grill"
+- **Domain**: Quality
+
+### 9. Strategic Reasoning 🎯
+
+- **Capstone**: `decision-journal` (expanded)
+- **Skills**: `decision-journal` + `synthetic-parallel-reasoning`
+- **Triggers**: "analyze", "strategy", "compare options", "think deep", "tradeoff", "which should I", "/think", "/ultrathink"
+- **Co-activates**: → Cluster 8 (Adversarial QA) when Λ > 30
+- **Domain**: Decision
+
+### 10. Distribution Engine 📣
+
+- **Capstone**: `distribution-physics` (expanded)
+- **Skills**: `distribution-physics` + `brand-foundations` + `seo-auditor`
+- **Triggers**: "marketing", "GTM", "SEO", "brand", "positioning", "distribution", "audience", "launch"
+- **Co-activates**: → Cluster 11 (Swarm Orchestrator) for multi-agent campaigns
+- **Domain**: Marketing
+
+### 11. Swarm Orchestrator 🐝
+
+- **Capstone**: `marketing-swarm` + `git-worktree-swarm`
+- **Skills**: `marketing-swarm` + `git-worktree-swarm`
+- **Triggers**: "swarm", "parallel agents", "multi-agent", "worktree", "/416-agent-swarm"
+- **Domain**: Architecture / Orchestration
+
+### 12. Research Pipeline 🔬
+
+- **Capstone**: `deep-research-loop` (expanded)
+- **Skills**: `deep-research-loop` + `semantic-search`
+- **Triggers**: "research", "find out", "rabbit hole", "deep dive", "what do we know about", "/research"
+- **Domain**: Research
+
+### 13. Build Lifecycle 🏗️
+
+- **Capstone**: `spec-driven-dev` (expanded)
+- **Skills**: `spec-driven-dev` + `micro-commit` + `visual-verify-ui`
+- **Triggers**: "build", "implement", "code", "ship", "develop", "refactor", "/vibe"
+- **Domain**: Engineering
+
+### 14. Sovereign Safety 🚨
+
+- **Capstone**: (Lightweight — rare activation)
+- **Skills**: `circuit-breaker` + `context-compactor`
+- **Triggers**: "emergency", "circuit breaker", "compact context", "cleanup", "system overload"
+- **Domain**: Safety
+
+### 15. Problem-Solving Engine 🔧
+
+- **Capstone**: Protocol 504 (Problem Framing)
+- **Skills**: P504 (Problem Framing) + P115 (First Principles) + P505 (Graph of Thought) + `red-team-review` + P506 (GTO Execution Plan)
+- **Triggers**: "solve", "how do I", "problem", "stuck", "fix", "approach", "what should I do", "broken", "challenge"
+- **Co-activates**: → Cluster 9 (Strategic Reasoning) if solution requires option ranking → Cluster 8 (Adversarial QA) at GoT Phase 5 → Cluster 13 (Build Lifecycle) for implementation
+- **Domain**: Reasoning / Execution
+
+---
+
+## Routing Rules
+
+### Co-Activation Chains
+
 ```
+Trading Query → Risk Gate (#3) → if approved → Execution (#4)
+Marketing Query → Distribution (#10) → if multi-agent → Swarm (#11)
+Deep Think (Λ>30) → Strategic Reasoning (#9) → Adversarial QA (#8)
+Build Request → Build Lifecycle (#13) → if parallel → Swarm (#11)
+Problem Query → Problem-Solving (#15) → GoT Phase 5 → Adversarial QA (#8)
+Problem → Solution Selected → Decision Engine (#9) for ranking
+Problem → Execution Plan → Build Lifecycle (#13) for implementation
+```
+
+### Standalone Skills (Not Clustered)
+
+*None — all active skills are clustered as of 2026-03-02 micro-pruning.*
+
+### Activation Priority
+
+When multiple clusters match a query, activate by **specificity** (most specific trigger wins):
+
+1. **Exact trigger match** → Load that cluster only
+2. **Multiple matches** → Load the most domain-specific cluster first
+3. **Ambiguous** → Default to Cluster 9 (Strategic Reasoning) + Exocortex search
 
 ---
 
 ## Metrics
 
-Track these to validate your clustering is working:
-
-| Metric | Target |
+| Metric | Value |
 |:---|:---|
-| Skills covered by clusters | > 80% |
-| Avg. protocol loads per query | < 1.5 |
-| Orphan protocols (unclustered) | < 20% |
+| Total Clusters | 15 |
+| Skills Covered | 22/22 (100%) |
+| Orphan Skills | 0 |
+| Avg. Cluster Size | 2.5 skills |
+| Routing Tax Reduction | ~58% fewer tool calls vs individual loading |

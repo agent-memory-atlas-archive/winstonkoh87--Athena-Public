@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "athena-agent"
-version = "9.3.1"
+version = "9.4.0"
 description = "Athena Bionic OS — The Linux Distro for AI Agents. Model-agnostic, local-first, sovereign."
 readme = "README.md"
 requires-python = ">=3.10"
