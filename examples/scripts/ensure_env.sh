@@ -4,13 +4,16 @@
 # Called by boot.py to verify the runtime environment.
 # Returns 0 if healthy, non-zero if repairs needed.
 #
+# Supports both venv AND system-level Python installations.
+# If deps exist in system Python, venv is optional.
+#
 # Usage:
 #   ./ensure_env.sh         # Check only
 #   ./ensure_env.sh --fix   # Attempt auto-repair
 
 set -e
 
-PROJECT_ROOT="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
 VENV_PATH="${PROJECT_ROOT}/.venv"
 PYTHON_MIN="3.10"
 
@@ -25,24 +28,15 @@ if [[ "$(printf '%s\n' "$PYTHON_MIN" "$PYTHON_VERSION" | sort -V | head -n1)" !=
 fi
 echo "✅ Python $PYTHON_VERSION"
 
-# Check 2: Virtual environment
-if [ ! -d "$VENV_PATH" ]; then
-    echo "⚠️ Virtual environment not found at $VENV_PATH"
-    if [ "$1" == "--fix" ]; then
-        echo "🔧 Creating virtual environment..."
-        python3 -m venv "$VENV_PATH"
-        source "$VENV_PATH/bin/activate"
-        pip install -q -r "${PROJECT_ROOT}/requirements.lock" 2>/dev/null || pip install -q -e "${PROJECT_ROOT}[dev]"
-        echo "✅ Virtual environment created and dependencies installed"
-    else
-        exit 2
-    fi
-else
+# Check 2: Virtual environment (optional if system Python has deps)
+if [ -d "$VENV_PATH" ]; then
     echo "✅ Virtual environment exists"
+    source "$VENV_PATH/bin/activate" 2>/dev/null || true
+else
+    echo "ℹ️  No .venv found — using system Python"
 fi
 
-# Check 3: Core dependencies
-source "$VENV_PATH/bin/activate" 2>/dev/null || true
+# Check 3: Core dependencies (check active Python, venv or system)
 if ! python3 -c "from supabase import create_client" 2>/dev/null; then
     echo "⚠️ Supabase SDK not installed"
     if [ "$1" == "--fix" ]; then
