@@ -36,7 +36,7 @@ def generate_tag_index():
         ".venv",
         ".context/cache",
         ".athena",
-        "winstonkoh87_backup",
+        "user_backup",
         "Athena-Public.wiki",
         "__pycache__",
         ".pytest_cache",

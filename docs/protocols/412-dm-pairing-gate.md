@@ -62,7 +62,7 @@ When Athena's Telegram bot is deployed, unknown users can DM it. Without authent
 {
   "telegram": {
     "123456789": {  # user_id
-      "username": "winstonkoh",
+      "username": "your_username",
       "approved_at": "2026-02-02T23:10:00+08:00",
       "approved_by": "owner"
     }
