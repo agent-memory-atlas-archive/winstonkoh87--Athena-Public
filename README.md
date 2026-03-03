@@ -18,7 +18,7 @@ Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](docs/FAQ.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 03 March 2026*
+*Last updated: 04 March 2026*
 
 </div>
 
@@ -213,6 +213,21 @@ flowchart LR
 | **50–200** | Pattern recognition — anticipates your style and blind spots |
 | **200+** | Deep sync — thinks in your frameworks before you state them |
 
+### The Biological Analogy
+
+Athena is modelled after the human body. Built bottom-up by the creator. Used top-down by the user.
+
+| Biology | Athena | What It Does |
+|:--------|:-------|:-------------|
+| Atom | Rule / Axiom | Smallest indivisible truth (`Law #1: No Irreversible Ruin`) |
+| Molecule | Protocol (`.md`) | Rules composed into a reusable procedure |
+| Cell | Skill | Self-contained executable unit |
+| Organ | Cognitive Cluster | Multi-skill unit for one cognitive domain |
+| Organ System | Cognitive System | Multi-cluster orchestration for a human need archetype |
+| Organism | Athena | The complete synthetic intelligence |
+
+> *"As within, so without, as above, so below." — Same pattern at every layer. Fractal by design.*
+
 ### The Linux Analogy
 
 | Concept | Linux | Athena |
@@ -233,8 +248,9 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | Component | What It Does For You |
 |:----------|:---------------------|
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
-| 🧩 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 3 starter clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
-| 📋 **110+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy) across 15 categories — [browse](examples/protocols/) |
+| 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/507-cognitive-systems.md) |
+| 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
+| 📋 **115+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
 | ⚡ **50+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Your agent can search, save, and execute scripts on your behalf — [docs](docs/MCP_SERVER.md) |
@@ -340,7 +356,7 @@ Athena-Public/
 │   └── mcp_server.py        #   MCP Tool Server (9 tools, 2 resources)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
-│   ├── protocols/           # 110+ starter frameworks (15 categories)
+│   ├── protocols/           # 115+ starter frameworks (15 categories)
 │   ├── scripts/             # 120+ reference scripts
 │   └── templates/           # Starter templates (framework, memory bank)
 ├── docs/                    # Architecture, benchmarks, security, guides
@@ -352,6 +368,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.4.0** (Mar 04 2026): Biological Stack Architecture — 5 new protocols (P504-P508), 8 Cognitive Systems layer, Intent Classifier, `ensure_env.sh` supports system Python
 - **v9.3.1** (Mar 03 2026): Cross-model Audit Fixes — file count sync, Windows section relocation, GitHub Release catch-up (v9.2.7–v9.3.0)
 - **v9.3.0** (Mar 02 2026): Onboarding Friction Audit — dependency restructuring (torch→optional), venv instructions, PEP 668 fix, stale path cleanup, two-tier install
 - **v9.2.9** (Mar 02 2026): Ultrathink v4.1 HITL Bypass — manual Gemini sandbox option, micro-pruned 10% dead skills (100% cluster coverage), broken reference audit
