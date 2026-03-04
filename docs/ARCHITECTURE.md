@@ -3,6 +3,9 @@
 > **Last Updated**: 04 March 2026  
 > **System Version**: v9.4.0
 
+> [!NOTE]
+> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 115+ example protocols, reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
+
 ---
 
 ## Directory Structure
@@ -171,16 +174,16 @@ Every query enters Athena through the **Intent Classifier (P508)** and is routed
 
 | System | Archetype | Cluster Sequence | Example Triggers |
 |:---|:---|:---|:---|
-| 🛡️ **Survival** | Crisis / ruin prevention | #14 → #3 → #15 → #8 → P506 | "I lost everything", panic, emergency |
 | 🫀 **Life Decision** | Irreversible personal choice | #15 → #7 → #9 → #6 → #8 → P506 | "Should I quit my job?", marriage, surgery |
-| 📈 **Trading** | Capital deployment | #3 → #4 → #5 → #9 | Trade entry, position sizing, drawdown |
-| 🤝 **Social** | Interpersonal dynamics | #15 → #7 → #6 → #8 → P506 | Conflict resolution, boundary setting |
 | ⚙️ **Execution** | Build / ship / create | #15 → #13 → #11 → #8 | Code, implement, ship, assignment |
+| 📈 **Trading** | Capital deployment | #3 → #4 → #5 → #9 | Trade entry, position sizing, drawdown |
 | 📣 **Growth** | Distribution / audience | #12 → #10 → #11 → #8 | Marketing, SEO, launch, GTM strategy |
+| 🛡️ **Survival** | Crisis / ruin prevention | #14 → #3 → #15 → #8 → P506 | "I lost everything", panic, emergency |
+| 🤝 **Social** | Interpersonal dynamics | #15 → #7 → #6 → #8 → P506 | Conflict resolution, boundary setting |
 | 📖 **Learning** | Understanding / knowledge | #12 → #9 → #15 → #8 | "Teach me X", "Explain how this works" |
 | 🔄 **Maintenance** | System homeostasis | #1 → #2 → #14 | /diagnose, /audit, /end, health check |
 
-**Priority Order**: Survival > Life Decision > Trading > Social > Execution > Growth > Learning > Maintenance
+**Activation Priority** (when multiple systems could apply): Survival > Life Decision > Trading > Social > Execution > Growth > Learning > Maintenance
 
 ### 15 Cognitive Clusters
 
@@ -491,8 +494,8 @@ sequenceDiagram
 
 | Component | Technology |
 |:---|:---|
-| **AI Engine** | Google Gemini (via Antigravity) |
-| **IDE Integration** | VS Code / Cursor |
+| **AI Engine** | Model-agnostic (Gemini, Claude, GPT, Grok — any LLM via agentic IDE) |
+| **IDE Integration** | Antigravity / Cursor / Claude Code / VS Code + Copilot / Gemini CLI |
 | **Knowledge Store** | Markdown + VectorRAG (Supabase + pgvector) + LightRAG |
 | **Daemon** | Python (athenad.py) + SQLite |
 | **Version Control** | Git |

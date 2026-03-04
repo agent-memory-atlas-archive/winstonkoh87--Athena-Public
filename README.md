@@ -42,7 +42,6 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 
 > *The LLM is the engine. Athena is the chassis, the memory, and the rules of the road. Swap the engine anytime — the car remembers every road you’ve driven.*
 
-
 ### The Personalisation Thesis
 
 The more context you give Athena, the sharper its answers become. This isn't about remembering your preferences — it's about **reasoning differently because of what it knows about you.**
