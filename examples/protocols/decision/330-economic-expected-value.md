@@ -1,9 +1,9 @@
 ---
 created: 2026-02-02
-last_updated: 2026-02-28
+last_updated: 2026-03-04
 version: 3.0
-origin: Session 05 (Blackjack Probability Analysis), Session 32 (GTO EEV Formalization), Session 33 (Friedman-Savage Red Team)
-dependencies: [Law #1, Protocol 193 (Ergodicity Check), Protocol 180 (Utility Function Analysis)]
+origin: "Session 05 (Blackjack Probability Analysis), Session 32 (GTO EEV Formalization), Session 33 (Friedman-Savage Red Team)"
+dependencies: ["Law #1", "Protocol 193 (Ergodicity Check)", "Protocol 180 (Utility Function Analysis)"]
 tags: [decision, utility, risk, gambling, speculation, rationality, gto, eev, limit-point, friedman-savage, prospect-theory]
 note: "Merged from Protocol 330 + Protocol 331 (2026-02-28)"
 ---
