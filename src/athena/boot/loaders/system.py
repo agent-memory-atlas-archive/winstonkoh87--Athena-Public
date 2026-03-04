@@ -18,15 +18,19 @@ class SystemLoader:
             return
 
         print("🛡️  Verifying Environment (Airlock)...")
-        result = subprocess.run(
-            ["bash", str(ensure_env)], capture_output=True, text=True
-        )
-        if result.returncode != 0:
-            print(f"\n{RED}{BOLD}❌ Environment Check Failed{RESET}")
-            print(f"{DIM}{result.stdout}{RESET}")
-            # Optional: Add auto-fix call here if desired
-        else:
-            print(f"   {GREEN}✅ Environment Healthy{RESET}")
+        try:
+            result = subprocess.run(
+                ["bash", str(ensure_env)], capture_output=True, text=True, timeout=10
+            )
+            if result.returncode != 0:
+                print(f"\n{RED}{BOLD}❌ Environment Check Failed{RESET}")
+                print(f"{DIM}{result.stdout}{RESET}")
+            else:
+                print(f"   {GREEN}✅ Environment Healthy{RESET}")
+        except subprocess.TimeoutExpired:
+            print(f"   {YELLOW}⚠️  Airlock timed out (10s) — skipping{RESET}")
+        except Exception as e:
+            print(f"   {YELLOW}⚠️  Airlock error: {e}{RESET}")
 
     @staticmethod
     def enforce_daemon():

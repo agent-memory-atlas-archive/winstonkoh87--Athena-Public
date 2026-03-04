@@ -40,15 +40,18 @@ def main():
         # For now, just pass
         pass
 
-    # Phase 1: Watchdog & Pre-flight
+    # Phase 1: Watchdog & Pre-flight (minimal sequential gate)
     StateLoader.enable_watchdog()
     UILoader.divider("⚡ ATHENA BOOT SEQUENCE")
 
-    # Titanium Airlock
-    SystemLoader.verify_environment()
+    # Daemon check — fast (pgrep), must run before pool
     SystemLoader.enforce_daemon()
 
-    # Phase 1.1: Security Patch (CVE-2025-69872)
+    # Identity integrity — fast (SHA-384 of one file), hard gate
+    if not IdentityLoader.verify_semantic_prime():
+        return 1
+
+    # Security patch — instant, non-blocking
     try:
         from athena.core.security import patch_dspy_cache_security
 
@@ -62,8 +65,7 @@ def main():
     StateLoader.check_prior_crashes()
     StateLoader.check_canary_overdue()
 
-    # Phase 1.5: System Sync & Boot Timestamp Update
-    SystemLoader.sync_ui()
+    # Boot timestamp — instant
     try:
         last_boot_log = PROJECT_ROOT / ".agent" / "state" / "last_boot.log"
         last_boot_log.parent.mkdir(parents=True, exist_ok=True)
@@ -72,21 +74,10 @@ def main():
     except Exception as e:
         print(f"   ⚠️  Boot Log Update Fail: {e}")
 
-    # Phase 2: Integrity
-    if not IdentityLoader.verify_semantic_prime():
-        return 1
-
-    # Phase 3: Memory Recall
-    last_session = MemoryLoader.recall_last_session()
-
-    # Phase 3.5: Token Budget Check & Auto-Compaction
-    token_counts = measure_boot_files()
-    token_counts = auto_compact_if_needed(token_counts)
-
-    # Phase 4: Session Creation
+    # Phase 2: Session Creation (fast — file write)
     session_id = MemoryLoader.create_session()
 
-    # Phase 4.1: Record session start reference (for passive observation)
+    # Phase 2.1: Record session start reference (for passive observation)
     try:
         from athena.auditors.audit_observations import record_start_ref
 
@@ -94,7 +85,7 @@ def main():
     except Exception:
         pass  # Non-critical — observations are optional
 
-    # Phase 5: Audit (Reset)
+    # Phase 3: Audit (Reset) — instant
     try:
         sys.path.insert(0, str(PROJECT_ROOT / ".agent" / "scripts"))
         from semantic_audit import reset_audit
@@ -103,7 +94,7 @@ def main():
     except Exception:
         pass
 
-    # Phase 6 & 7: Optimized Context & Semantic Activation (Parallel)
+    # Phase 4: Parallel Background Work (ALL non-gating work moved here)
     from concurrent.futures import ThreadPoolExecutor
     from athena.core.health import HealthCheck
     from athena.boot.loaders.context_summaries import (
@@ -112,41 +103,48 @@ def main():
     )
 
     def run_health_check_wrapper():
-        if not HealthCheck.run_all():
-            print(
-                f"{RED}⚠️  System health check failed. Proceeding with caution...{RESET}"
-            )
+        try:
+            if not HealthCheck.run_all():
+                print(
+                    f"{RED}⚠️  System health check failed. Proceeding with caution...{RESET}"
+                )
+        except Exception:
+            pass
 
-    # Tier 0: Pre-computed context summaries (hash-based delta, zero API cost)
+    # Shared state for parallel results
     context_summaries = {}
+    token_counts = {}
+    last_session = ""
 
     def run_context_summaries():
         nonlocal context_summaries
         context_summaries = generate_summaries()
 
+    def run_recall_and_budget():
+        nonlocal last_session, token_counts
+        last_session = MemoryLoader.recall_last_session()
+        token_counts = measure_boot_files()
+        token_counts = auto_compact_if_needed(token_counts)
+
     with ThreadPoolExecutor(max_workers=8) as executor:
-        # 1. Non-blocking context capture
+        # Fast operations
         executor.submit(MemoryLoader.capture_context)
-
-        # 2. Semantic priming (most expensive)
-        semantic_future = executor.submit(MemoryLoader.prime_semantic)
-
-        # 3. Protocol injection
         executor.submit(IdentityLoader.inject_auto_protocols, "startup session boot")
-
-        # 4. Search cache pre-warming (new)
-        executor.submit(MemoryLoader.prewarm_search_cache)
-
-        # 5. System Health Check (Moved to background)
-        executor.submit(run_health_check_wrapper)
-
-        # 6. Prefetch (Moved to background)
+        executor.submit(run_context_summaries)
         executor.submit(PrefetchLoader.prefetch_hot_files)
 
-        # 7. Tier 0: Context Summary Pre-computation (Min-Latency × Max-Effectiveness)
-        executor.submit(run_context_summaries)
+        # Previously-sequential operations (now background)
+        executor.submit(run_recall_and_budget)
+        executor.submit(SystemLoader.verify_environment)  # Was blocking Phase 1
+        executor.submit(SystemLoader.sync_ui)  # Was in Phase 1.5
 
-    # Display remaining sync items
+        # Expensive but non-blocking
+        executor.submit(MemoryLoader.prime_semantic)  # 10s timeout (was 60s)
+        executor.submit(run_health_check_wrapper)
+
+        # REMOVED: prewarm_search_cache — negligible benefit, 15-45s cost
+
+    # Display sync items (all data ready from parallel phase)
     MemoryLoader.display_learnings_snapshot()
     IdentityLoader.display_cognitive_profile()
     IdentityLoader.display_cos_status()
