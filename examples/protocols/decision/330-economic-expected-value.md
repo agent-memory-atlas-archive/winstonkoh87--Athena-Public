@@ -90,6 +90,10 @@ $$E(EV) = E(V) + E(U) - E(O) = 0$$
 - **At Limit Point**: EEV = 0 → Breakeven. Maximum allowable spend.
 - **Right of Limit Point**: EEV < 0 → Irrational. Wealth destruction.
 
+![EEV Three-Line Model — TOTO CS-A (Limit Point at $16)](eev_three_line_model.png)
+
+> *The green EEV line crosses zero at $16 (the Limit Point). Left = rational spend. Right = wealth destruction. See [CS-A](#cs-a-the-12m-toto-draw-the-rational-lottery) for the full worked example.*
+
 ### The UEV Calculus (Inverted Marginal Utility)
 
 UEV operates on three distinct phases:
