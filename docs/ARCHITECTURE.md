@@ -10,12 +10,12 @@
 ```text
 Athena/
 ├── .framework/                    # ← THE CODEX (stable, rarely updated)
-│   ├── v8.6-stable/               # Current stable modules directory
+│   ├── v8.2-stable/               # Current stable modules directory
 │   │   ├── modules/
 │   │   │   ├── Core_Identity.md   # Laws #0-#4, RSI, Bionic Stack, COS
 │   │   │   └── Output_Standards.md # Response formatting, reasoning levels
-│   │   └── protocols/             # Versioned protocol copies
-│   ├── v7.0/                      # Previous stable version
+│   │   ├── protocols/             # Versioned protocol copies
+│   │   └── templates/             # Core templates
 │   └── archive/                   # Archived monoliths
 │
 ├── .context/                      # ← USER-SPECIFIC DATA (frequently updated)
@@ -31,6 +31,7 @@ Athena/
 │   └── KNOWLEDGE_GRAPH.md         # Visual architecture reference
 │
 ├── .agent/                        # ← AGENT CONFIGURATION
+│   ├── CLUSTER_INDEX.md           # Routing index: Systems → Clusters → Skills
 │   ├── skills/
 │   │   ├── SKILL_INDEX.md         # Protocol loading registry
 │   │   ├── protocols/             # 370+ modular skill files across 35 domains
@@ -56,27 +57,40 @@ Athena/
 │   │   ├── think.md               # Deep reasoning (L4)
 │   │   └── ...
 │   ├── scripts/                   # 210+ Python automation scripts
+│   │   ├── boot.py                # Resilient boot shim + recovery shell
 │   │   ├── quicksave.py           # Auto-checkpoint every exchange
-│   │   ├── boot.py                # Resilient boot with recovery shell
-│   │   ├── smart_search.py        # Semantic search
+│   │   ├── smart_search.py        # Semantic search (hybrid RAG)
+│   │   ├── sidecar.py             # Sovereign index process
 │   │   └── ...
+│   ├── swarms/                    # Multi-agent orchestration
+│   │   └── marketing_team/        # 16-agent marketing swarm
 │   └── gateway/                   # Sidecar process for persistence
 │
 ├── src/                           # ← PYTHON SDK SOURCE
 │   └── athena/
-│       ├── boot/                  # Boot loaders and constants
-│       ├── core/                  # Core config and utilities
+│       ├── boot/                  # Boot pipeline
+│       │   ├── orchestrator.py    # 8-phase parallel boot sequence
+│       │   ├── loaders/           # Modular loaders (UI, State, Identity, Memory, System)
+│       │   └── constants.py       # Colors, paths, mount points
+│       ├── core/                  # Core runtime
+│       │   ├── athenad.py         # Daemon: file watcher + LightRAG indexer
+│       │   ├── health.py          # System health checks
+│       │   └── security.py        # Security patches
 │       └── tools/                 # SDK tools
 │
 ├── supabase/                      # ← VECTORRAG CONFIG
 │   └── migrations/                # Database migrations
 │
+├── tests/                         # ← TEST SUITE
+│
 ├── Athena-Public/                 # ← PUBLIC PORTFOLIO
 │   ├── docs/                      # This documentation
-│   ├── examples/                  # Templates and scripts
+│   ├── examples/                  # 117 public protocol examples, templates, scripts
+│   ├── src/                       # Public SDK source
+│   ├── community/                 # Community resources
 │   └── README.md                  # Repository overview
 │
-└── docs/                          # Root-level docs (audit, architecture)
+└── docs/                          # Root-level docs (private)
 ```
 
 ### Visual Overview
@@ -86,59 +100,320 @@ graph TD
     ROOT[Athena/] --> FRAMEWORK[.framework/]
     ROOT --> CONTEXT[.context/]
     ROOT --> AGENT[.agent/]
-    ROOT --> VAULT[User_Vault/]
+    ROOT --> SRC[src/]
     ROOT --> PUBLIC[Athena-Public/]
-    
+
     FRAMEWORK --> FW_MODULES[modules/]
     FW_MODULES --> CORE_ID[Core_Identity.md]
     FW_MODULES --> OUTPUT[Output_Standards.md]
-    
-    CONTEXT --> PROFILE[profile/]
+
     CONTEXT --> MEMORIES[memories/]
     CONTEXT --> REFS[references/]
-    
+
+    AGENT --> CLUSTER_IDX[CLUSTER_INDEX.md]
     AGENT --> SKILLS[skills/]
     AGENT --> WORKFLOWS[workflows/]
     AGENT --> SCRIPTS[scripts/]
-    
-    SKILLS --> PROTOCOLS[protocols/]
+    AGENT --> SWARMS[swarms/]
+
+    SKILLS --> PROTOCOLS["protocols/ (370+)"]
     SKILLS --> CAPS[capabilities/]
+
+    SRC --> BOOT[boot/orchestrator.py]
+    SRC --> CORE[core/athenad.py]
 ```
+
+---
+
+## The Biological Stack
+
+> **Core Architecture**: Athena's routing system is modeled on biological organization — from atomic rules up to a fully integrated synthetic intelligence.
+
+```mermaid
+graph BT
+    L1["⚛️ Atoms<br/>Laws #0-#4"] --> L2["🧬 Molecules<br/>Rules & Constraints"]
+    L2 --> L3["🦠 Cells<br/>370+ Protocols"]
+    L3 --> L4["🧫 Tissues<br/>22 Skills"]
+    L4 --> L5["🫁 Organs<br/>15 Cognitive Clusters"]
+    L5 --> L6["🏥 Organ Systems<br/>8 Cognitive Systems"]
+    L6 --> L7["🧠 Organism<br/>Athena"]
+
+    style L1 fill:#ef4444,color:#fff
+    style L7 fill:#16a34a,color:#fff
+```
+
+| Layer | Biological Analogy | Athena Equivalent | Example |
+|:---:|:---|:---|:---|
+| 1 | **Atoms** | Laws #0-#4 | Law #1: No Ruin (absolute, non-negotiable) |
+| 2 | **Molecules** | Rules & Constraints | "Never risk >5% of bankroll" |
+| 3 | **Cells** | 370+ Protocols | Protocol 330: Economic Expected Value |
+| 4 | **Tissues** | 22 Skills | `trading-risk-gate` (bundles 3 protocols) |
+| 5 | **Organs** | 15 Cognitive Clusters | Cluster #3: Trading Risk Gate |
+| 6 | **Organ Systems** | 8 Cognitive Systems | Trading System 📈 |
+| 7 | **Organism** | Athena | The full stack operating as one |
+
+**Emergent Properties:**
+
+- Atoms → Molecules: Rules become *procedures* (sequence matters)
+- Molecules → Cells: Procedures become *executable* (inputs/outputs defined)
+- Cells → Tissues: Executables become *specialized* (domain-specific grouping)
+- Tissues → Organs: Specializations become *co-activated* (cluster triggers)
+- Organs → Organ Systems: Clusters become *orchestrated* (system-level routing)
+- Organ Systems → Organism: Systems become *unified* (cross-system handoffs)
+
+---
+
+## The Cognitive Architecture
+
+### 8 Cognitive Systems (P507)
+
+Every query enters Athena through the **Intent Classifier (P508)** and is routed to one of 8 Cognitive Systems:
+
+| System | Archetype | Cluster Sequence | Example Triggers |
+|:---|:---|:---|:---|
+| 🛡️ **Survival** | Crisis / ruin prevention | #14 → #3 → #15 → #8 → P506 | "I lost everything", panic, emergency |
+| 🫀 **Life Decision** | Irreversible personal choice | #15 → #7 → #9 → #6 → #8 → P506 | "Should I quit my job?", marriage, surgery |
+| 📈 **Trading** | Capital deployment | #3 → #4 → #5 → #9 | Trade entry, position sizing, drawdown |
+| 🤝 **Social** | Interpersonal dynamics | #15 → #7 → #6 → #8 → P506 | Conflict resolution, boundary setting |
+| ⚙️ **Execution** | Build / ship / create | #15 → #13 → #11 → #8 | Code, implement, ship, assignment |
+| 📣 **Growth** | Distribution / audience | #12 → #10 → #11 → #8 | Marketing, SEO, launch, GTM strategy |
+| 📖 **Learning** | Understanding / knowledge | #12 → #9 → #15 → #8 | "Teach me X", "Explain how this works" |
+| 🔄 **Maintenance** | System homeostasis | #1 → #2 → #14 | /diagnose, /audit, /end, health check |
+
+**Priority Order**: Survival > Life Decision > Trading > Social > Execution > Growth > Learning > Maintenance
+
+### 15 Cognitive Clusters
+
+Each Cognitive System activates a sequence of **Clusters** — domain-specific organs that bundle related skills:
+
+| # | Cluster | Capstone | Key Triggers |
+|:---:|:---|:---|:---|
+| 1 | Diagnostic Engine ⚙️ | Protocol 501 | "diagnose", "root cause", "debug" |
+| 2 | Context Lifecycle 📦 | Protocol 502 | "context", "token budget", "compaction" |
+| 3 | Trading Risk Gate 🛡️ | `trading-risk-gate` | "should I trade", "risk", "ruin" |
+| 4 | Trading Execution ⚡ | `zenith-execution` | "position size", "Kelly", "stop loss" |
+| 5 | Trade Analytics 📊 | `trade-journal-analyzer` | "trade review", "drawdown", "journal" |
+| 6 | Social Contract 🤝 | `power-inversion` | "negotiate", "BATNA", "boundary" |
+| 7 | Inner Work 🧠 | `therapeutic-ifs` | "therapy", "schema", "IFS", "why do I feel" |
+| 8 | Adversarial QA 🔴 | `red-team-review` | "red team", "pre-mortem", "/grill" |
+| 9 | Strategic Reasoning 🎯 | `decision-journal` | "analyze", "strategy", "/think" |
+| 10 | Distribution Engine 📣 | `distribution-physics` | "marketing", "SEO", "brand" |
+| 11 | Swarm Orchestrator 🐝 | `marketing-swarm` | "swarm", "parallel agents", "/416" |
+| 12 | Research Pipeline 🔬 | `deep-research-loop` | "research", "deep dive", "/research" |
+| 13 | Build Lifecycle 🏗️ | `spec-driven-dev` | "build", "implement", "code", "/vibe" |
+| 14 | Sovereign Safety 🚨 | `circuit-breaker` | "emergency", "circuit breaker" |
+| 15 | Problem-Solving Engine 🔧 | Protocol 504 | "solve", "how do I", "stuck" |
+
+### Query Routing Flow
+
+```mermaid
+graph LR
+    Q[User Query] --> P508{P508: Intent Classifier}
+    P508 --> |"Q1: Ruin threat?"| SUR[🛡️ Survival]
+    P508 --> |"Q2: Irreversible?"| LIFE[🫀 Life Decision]
+    P508 --> |"Q3: Capital?"| TRADE[📈 Trading]
+    P508 --> |"Q4: Build/ship?"| EXEC[⚙️ Execution]
+    P508 --> |"Q5: Distribute?"| GROW[📣 Growth]
+    P508 --> |"Q6: Interpersonal?"| SOC[🤝 Social]
+    P508 --> |"Q7: Learn/teach?"| LEARN[📖 Learning]
+    P508 --> |"Q8: Maintenance?"| MAINT[🔄 Maintenance]
+
+    TRADE --> C3[#3 Risk Gate] --> C4[#4 Execution] --> C5[#5 Analytics]
+    EXEC --> C15[#15 Problem-Solving] --> C13[#13 Build] --> C11[#11 Swarm]
+
+    style P508 fill:#2563eb,color:#fff
+    style SUR fill:#ef4444,color:#fff
+    style TRADE fill:#22c55e,color:#fff
+```
+
+### Cross-System Handoffs
+
+During execution, a system may hand off to a different system:
+
+```text
+Life Decision + financial component  → Trading System (sub-problem)
+Execution + repeated failure         → Survival System (circuit breaker)
+Trading + emotional language         → Survival → Social → Inner Work (#7)
+Growth + no product-market fit       → Life Decision (pivot decision)
+Social + irreversible action         → Life Decision System
+Learning + actionable insight        → Execution System (implement it)
+Maintenance + critical failure       → Survival System
+Any system + ruin signal             → IMMEDIATE → Survival System
+```
+
+### Bidirectional Guardrails
+
+Every Cognitive System enforces **two-way constraints**:
+
+- **Bottom-up**: Any cluster detecting >5% ruin probability auto-escalates to the Survival System. Low-level signals can override high-level decisions.
+- **Top-down**: Law #1 has absolute veto. A Cognitive System's scope lock prevents downstream clusters from expanding the problem.
+
+---
+
+## Boot Sequence
+
+### The Orchestrator Pipeline
+
+The boot sequence is an 8-phase pipeline managed by `src/athena/boot/orchestrator.py`. It uses parallel execution (ThreadPoolExecutor with 8 workers) to minimize latency.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant boot.py as boot.py (Shim)
+    participant Orch as orchestrator.py
+    participant Loaders as Modular Loaders
+    participant Daemon as athenad.py
+
+    User->>boot.py: python3 boot.py
+    boot.py->>boot.py: Add SDK to sys.path
+    
+    alt SDK Available
+        boot.py->>Orch: orchestrator.main()
+    else SDK Broken
+        boot.py->>boot.py: Recovery Shell (stdlib only)
+    end
+
+    Note over Orch: Phase 1: Watchdog + Pre-flight
+    Orch->>Loaders: Titanium Airlock (verify env, enforce daemon)
+    Orch->>Loaders: Security patches
+
+    Note over Orch: Phase 2: Integrity
+    Orch->>Loaders: Verify Semantic Prime (Core Identity hash check)
+
+    Note over Orch: Phase 3: Memory Recall
+    Orch->>Loaders: Recall last session summary
+
+    Note over Orch: Phase 3.5: Token Budget
+    Orch->>Loaders: Measure boot files, auto-compact if needed
+
+    Note over Orch: Phase 4: Session Creation
+    Orch->>Loaders: Create session log, record start reference
+
+    Note over Orch: Phase 5: Audit Reset
+    Orch->>Loaders: Reset semantic audit state
+
+    Note over Orch: Phase 6-7: Parallel Context (8 workers)
+    par Parallel Execution
+        Orch->>Loaders: Context capture
+        Orch->>Loaders: Semantic priming
+        Orch->>Loaders: Protocol injection
+        Orch->>Loaders: Search cache pre-warming
+        Orch->>Loaders: Health check
+        Orch->>Loaders: Prefetch hot files
+        Orch->>Loaders: Context summary pre-computation
+    end
+
+    Note over Orch: Phase 8: Sidecar Launch
+    Orch->>Daemon: Launch sidecar.py (background process)
+    Orch->>User: ⚡ Ready. Session: [ID]
+```
+
+### Boot Resilience
+
+The boot stack has a deliberate two-layer architecture:
+
+| Layer | File | Dependencies | Purpose |
+|:---|:---|:---|:---|
+| **Shim** | `.agent/scripts/boot.py` | Python stdlib only | If the SDK is corrupted, this still runs and offers a recovery shell |
+| **Orchestrator** | `src/athena/boot/orchestrator.py` | Full SDK | The real boot pipeline — parallel loading, health checks, sidecar launch |
+
+If the orchestrator fails to import, `boot.py` catches the `ImportError` and drops into a recovery menu:
+
+1. Re-install dependencies (`pip install -e .`)
+2. Git reset to last commit
+3. Run `safe_boot.sh` (zero-dependency fallback)
+4. Open Python REPL for manual debugging
+
+---
+
+## The Daemon Layer
+
+### athenad.py — The Active OS Kernel
+
+`athenad` is a persistent background process that runs independently of conversation sessions. It ensures the knowledge graph stays synchronized even when no AI agent is active.
+
+```mermaid
+graph LR
+    subgraph "athenad (Background)"
+        WATCH[File System Watcher] --> |"5s poll"| CHECK{Changed?}
+        CHECK --> |Yes| META[Update SQLite Metadata]
+        META --> QUEUE[Enqueue for Indexing]
+        QUEUE --> BG[Background Indexer Thread]
+        BG --> |"lightrag_wrapper.py"| GRAPH[LightRAG Knowledge Graph]
+        CHECK --> |No| WATCH
+    end
+
+    FS[".agent/ + .context/ files"] -.-> WATCH
+
+    style WATCH fill:#3b82f6,color:#fff
+    style GRAPH fill:#22c55e,color:#fff
+```
+
+**Key Behaviors:**
+
+| Component | Responsibility |
+|:---|:---|
+| **File System Watcher** | Polls `.agent/` and `.context/` every 5 seconds. Uses checksum comparison to detect changes. |
+| **SQLite Metadata** | Tracks file checksums, last-modified times, and indexing status. |
+| **Tag Extractor** | Parses `#hashtag` lines from Markdown files for the tag system. |
+| **Background Indexer** | Threaded worker that calls `lightrag_wrapper.py` to vectorize changed files into the knowledge graph. |
+| **Rotating Logs** | `athenad.log` — 5MB max × 3 backups. |
+
+**Lifecycle**: Started by the orchestrator during boot (`SystemLoader.enforce_daemon()`). Persists across conversation resets. Writes to `.athenad.pid` for process management.
+
+---
+
+## Swarm Execution
+
+### Protocol 416: Parallel Agent Orchestration
+
+For tasks that can be parallelized, Athena spawns multiple agents using **git worktrees** — each agent gets an isolated working copy of the codebase.
+
+```mermaid
+graph TD
+    CMD["/swarm start <objective>"] --> SPLIT[Phase 1: Split]
+    SPLIT --> |"worktrunk.py add frontend"| WTA[Agent Alpha: Frontend]
+    SPLIT --> |"worktrunk.py add backend"| WTB[Agent Beta: Backend]
+    SPLIT --> |"worktrunk.py add qa"| WTC[Agent Gamma: QA]
+
+    WTA --> MERGE[Phase 3: Convergence]
+    WTB --> MERGE
+    WTC --> MERGE
+
+    MERGE --> |"worktrunk.py merge"| MAIN[Main Branch]
+
+    style SPLIT fill:#2563eb,color:#fff
+    style MERGE fill:#22c55e,color:#fff
+```
+
+| Phase | Action | Tool |
+|:---|:---|:---|
+| **Split** | Create isolated git worktrees per agent | `worktrunk.py add <name>` |
+| **Build** | Each agent works in parallel on its task | Independent terminals/IDEs |
+| **Converge** | Merge worktree branches back to main | `worktrunk.py merge <name>` |
+
+**Safety Constraints:**
+
+- All swarm agents share the same dev database (or mocks)
+- API contracts are defined *before* splitting (e.g., `schema.prisma`)
+- Each agent commits independently to its worktree branch
+
+**Performance**: 3 agents working in parallel reduce a 5-hour linear task to ~2 hours.
 
 ---
 
 ## Loading Strategy
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Terminal
-    participant Athena as Athena Core
-    participant Memory
-
-    Note over User, Athena: Phase 1: Instant Boot (<2K Tokens)
-    User->>Terminal: /start
-    Terminal->>Athena: Load Core_Identity.md
-    Athena->>Memory: Recall Last Session Summary
-    Athena->>Terminal: Ready (Context Grounded)
-
-    Note over User, Athena: Phase 2: Adaptive Loading
-    User->>Athena: "Analyze this architecture" (Complex Query)
-    Athena->>Athena: Parse Intent (Heavy)
-    Athena->>Memory: Load System_Manifest.md
-    Athena->>Memory: Load Output_Standards.md
-    Athena->>Terminal: Response [Λ+60]
-```
-
 ### On-Demand (Context-Triggered)
 
 | Trigger | File Loaded | Tokens |
-|---------|-------------|--------|
+|:---|:---|:---|
 | User context query | `User_Profile_Core.md` | ~1,500 |
 | Skill request | `SKILL_INDEX.md` | ~4,500 |
 | `/think` invoked | `Output_Standards.md` | ~700 |
 | Tag lookup | `TAG_INDEX.md` | ~5,500 |
 | Architecture query | `System_Manifest.md` | ~1,900 |
+| Cluster routing | `CLUSTER_INDEX.md` | ~3,500 |
 | Specific protocol | `protocols/*.md` | varies |
 
 ### Context Hydration (Active Injection)
@@ -149,7 +424,7 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    participant Boot as boot.py
+    participant Boot as orchestrator.py
     participant Knowledge as boot_knowledge.py
     participant Agent as Athena Agent
 
@@ -166,65 +441,48 @@ sequenceDiagram
 
 **See Also**: Protocol 418: Active Knowledge Injection (architecture pattern for context hydration)
 
+---
+
 ## Key Workflows
 
 | Command | Description |
-|---------|-------------|
+|:---|:---|
 | `/start` | Boot: Core Identity + session recall + create log |
 | `/end` | Close: finalize log, harvest check, git commit |
 | `/think` | **Bankai**: Deep reasoning with structured analysis |
 | `/ultrathink` | **Shukai**: Maximum depth (Triple Crown + Adversarial) |
-| `/refactor` | Anti-entropy: diagnostics, orphan fix, VectorRAG sync |
 | `/research` | Multi-source web research with citations |
 | `/needful` | Autonomous high-value action (AI judges what's needed) |
 | `/diagnose` | Read-only workspace health check |
+| `/vibe` | Vibe engineering: build fast, iterate, ship at 70% |
 
 ---
 
 ## Autonomic Behaviors
 
 | Protocol | Trigger | Action |
-|----------|---------|--------|
+|:---|:---|:---|
 | **Quicksave** | Every user exchange | `quicksave.py` → checkpoint to session log |
 | **Intent Persistence** | Significant logical change | `TASK_LOG.md` → document the "WHY" behind code changes |
 | **Latency Indicator** | Every response | Append `[Λ+XX]` complexity score |
 | **Visual Architecture Audit** | Architecture query / mutation | `generate_puml.py` → refresh PlantUML map |
 | **Auto-Documentation** | Pattern detected | File to appropriate location |
 | **Orphan Detection** | On `/end` | `orphan_detector.py` → link or alert |
-
----
-
-## The Bionic Stack ([Triple Crown](../examples/templates/core_identity_template.md#5-bionic-capability-stack-the-triple-crown))
-
-```mermaid
-graph TD
-    A[User Query] --> B{Router}
-    B -->|Fast| C[L1: Reflex]
-    B -->|Standard| D[L2: Standard]
-    B -->|Complex| E[L3: Triple Crown]
-    
-    subgraph TripleCrown [The Logic Engine]
-        E --> F[DeepCode: Planning]
-        F --> G[VectorRAG: Context]
-        G --> H[DSPy: Optimization]
-    end
-    
-    H --> I[Response]
-    I --> J[User]
-```
+| **Daemon Indexing** | File change detected (5s poll) | `athenad.py` → update knowledge graph |
 
 ---
 
 ## Key Files Reference
 
 | Purpose | File | Update Frequency |
-|---------|------|------------------|
+|:---|:---|:---|
 | Who I am | `Core_Identity.md` | Rare |
 | How to respond | `Output_Standards.md` | Moderate |
 | Who the user is | `User_Profile.md` | Every session |
 | What's forbidden | `Constraints_Master.md` | Rare |
 | Architecture SSOT | `System_Manifest.md` | When architecture changes |
 | Available skills | `SKILL_INDEX.md` | When skills added |
+| Routing index | `CLUSTER_INDEX.md` | When clusters change |
 | Session history | `session_logs/*.md` | Every session |
 
 ---
@@ -232,10 +490,11 @@ graph TD
 ## Tech Stack
 
 | Component | Technology |
-|-----------|------------|
+|:---|:---|
 | **AI Engine** | Google Gemini (via Antigravity) |
 | **IDE Integration** | VS Code / Cursor |
-| **Knowledge Store** | Markdown + VectorRAG (Supabase + pgvector) |
+| **Knowledge Store** | Markdown + VectorRAG (Supabase + pgvector) + LightRAG |
+| **Daemon** | Python (athenad.py) + SQLite |
 | **Version Control** | Git |
 | **Scripting** | Python 3.13 |
 
@@ -244,7 +503,7 @@ graph TD
 ## Version History
 
 | Version | Date | Changes |
-|---------|------|---------|
+|:---|:---|:---|
 | v9.4.0 | 04 Mar 2026 | Biological Stack Architecture: 8 Cognitive Systems (P507), Intent Classifier (P508), 15 Cognitive Clusters, Problem Diagnostics (P504) |
 | v9.3.1 | 02 Mar 2026 | README audit fixes: stale counts, Windows section, changelog date, version consistency |
 | v9.3.0 | 28 Feb 2026 | Protocol 330 EEV v3.0 (Unified Framework), GTO formalization, Friedman-Savage integration |
@@ -317,10 +576,11 @@ A single README feels "organized" to a human. But to an agent, the file system *
 
 ### How Athena Exploits This
 
-1. **`/start` boots at ~10K tokens** — only `Core_Identity.md`, `activeContext.md`, and session recall are loaded. The remaining 190K tokens of context window stay free.
+1. **`/start` boots in parallel** — the orchestrator uses 8 ThreadPoolExecutor workers to load context, prime semantic search, inject protocols, and run health checks simultaneously.
 2. **On-demand loading** — when you ask about trading, `risk_limits.md` loads. When you ask about architecture, `System_Manifest.md` loads. Neither pollutes the other's context.
 3. **Semantic search navigates the graph** — `smart_search.py` uses hybrid RAG (keyword + embeddings + reranking) to find the right file across hundreds of nodes in milliseconds.
 4. **Protocols are composable** — a Marketing Swarm loads `script_writer.md` + `ad_designer.md` without touching the trading or psychology stacks.
+5. **The daemon keeps the graph fresh** — `athenad.py` continuously indexes changed files into LightRAG, ensuring semantic search is always up-to-date.
 
 > *The workspace is not a codebase. It's an **exocortex** — a knowledge graph stored as flat files, navigable by any agent that can read Markdown.*
 
@@ -366,7 +626,7 @@ graph TD
 ### Key Concepts
 
 | Component | Role | Analogy |
-|-----------|------|---------|
+|:---|:---|:---|
 | **Project Athena** | The Kernel — holds logic, memory, and laws | The Brain |
 | **External Folders** | The Database — holds raw assets (files, docs) | The Body |
 | **Agentic IDE** | The Console — provides compute and interface | The Nervous System |
@@ -392,7 +652,7 @@ This separation protects your user data from system updates. If Athena's code is
 To achieve "Total Life OS" functionality, the Agentic IDE must have elevated permissions:
 
 | Setting | Value | Purpose |
-|---------|-------|---------|
+|:---|:---|:---|
 | **Non-Workspace File Access** | `Enabled` | Allows Athena to reach folders outside its root |
 | **Terminal Auto Execution** | `Always Proceed` (optional) | Enables autonomous script execution |
 | **Secure Mode** | `Disabled` | Removes friction for trusted environments |
