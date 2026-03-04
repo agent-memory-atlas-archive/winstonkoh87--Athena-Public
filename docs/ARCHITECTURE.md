@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 22 February 2026  
-> **System Version**: v9.2.3
+> **Last Updated**: 04 March 2026  
+> **System Version**: v9.4.0
 
 ---
 
@@ -21,7 +21,7 @@ Athena/
 ├── .context/                      # ← USER-SPECIFIC DATA (frequently updated)
 │   ├── User_Vault/                # Personal vault (credentials, secrets)
 │   ├── memories/
-│   │   ├── case_studies/          # 358+ documented patterns
+│   │   ├── case_studies/          # 410+ documented patterns
 │   │   ├── session_logs/          # Historical session analysis
 │   │   └── patterns/              # Formalized patterns
 │   ├── references/                # External frameworks (Dalio, Halbert, Graham)
@@ -33,20 +33,29 @@ Athena/
 ├── .agent/                        # ← AGENT CONFIGURATION
 │   ├── skills/
 │   │   ├── SKILL_INDEX.md         # Protocol loading registry
-│   │   ├── protocols/             # 120+ modular skill files
+│   │   ├── protocols/             # 370+ modular skill files across 35 domains
 │   │   │   ├── architecture/      # System protocols (latency, modularity)
 │   │   │   ├── business/          # Business frameworks
-│   │   │   ├── career/            # Career navigation
-│   │   │   ├── decision/          # Decision frameworks
+│   │   │   ├── coding/            # Development standards
+│   │   │   ├── decision/          # Decision frameworks (EEV, GTO, MCDA)
+│   │   │   ├── engineering/       # Engineering practices
+│   │   │   ├── marketing/         # Marketing & distribution
+│   │   │   ├── memory/            # Memory compression & retrieval
+│   │   │   ├── meta/              # Meta-protocols (Red Team, Zero-Point)
 │   │   │   ├── psychology/        # Psych protocols
-│   │   │   └── trading/           # Trading protocols
+│   │   │   ├── reasoning/         # Reasoning frameworks
+│   │   │   ├── safety/            # Safety & risk protocols
+│   │   │   ├── strategy/          # Strategy frameworks
+│   │   │   ├── trading/           # Trading protocols
+│   │   │   ├── verification/      # Verification & QA
+│   │   │   └── ... (+20 more)     # workflow, research, health, etc.
 │   │   └── capabilities/          # Bionic Triple Crown
-│   ├── workflows/                 # 48 slash commands
+│   ├── workflows/                 # 58 slash commands
 │   │   ├── start.md               # Session boot
 │   │   ├── end.md                 # Session close + maintenance
 │   │   ├── think.md               # Deep reasoning (L4)
 │   │   └── ...
-│   ├── scripts/                   # 130+ Python automation scripts
+│   ├── scripts/                   # 210+ Python automation scripts
 │   │   ├── quicksave.py           # Auto-checkpoint every exchange
 │   │   ├── boot.py                # Resilient boot with recovery shell
 │   │   ├── smart_search.py        # Semantic search
@@ -236,6 +245,9 @@ graph TD
 
 | Version | Date | Changes |
 |---------|------|---------|
+| v9.4.0 | 04 Mar 2026 | Biological Stack Architecture: 8 Cognitive Systems (P507), Intent Classifier (P508), 15 Cognitive Clusters, Problem Diagnostics (P504) |
+| v9.3.1 | 02 Mar 2026 | README audit fixes: stale counts, Windows section, changelog date, version consistency |
+| v9.3.0 | 28 Feb 2026 | Protocol 330 EEV v3.0 (Unified Framework), GTO formalization, Friedman-Savage integration |
 | v8.1 | 31 Jan 2026 | Metrics Sync: 308+ protocols, 995+ sessions; Linked CS-120, CS-140, CS-144 |
 | v8.0 | 30 Jan 2026 | Zero-Point Refactor: Sovereign Environment, Score-Modulated RRF (2.0x weights) |
 | v7.9 | 07 Jan 2026 | Public repo cleanup: metrics synced |
