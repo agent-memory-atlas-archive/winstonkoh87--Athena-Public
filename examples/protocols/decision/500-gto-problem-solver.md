@@ -231,7 +231,7 @@ MCDA RANKING:
 
 ## Phase 4: EEV Optimisation & Safety Gates
 
-> **Invoke**: [Protocol 330: EEV](<!-- Private: .agent/skills/protocols/ --> decision/330-expected-aggregate-value.md) + [Protocol 193: Ergodicity Check](<!-- Private: .agent/skills/protocols/ --> decision/193-ergodicity-check.md)
+> **Invoke**: [Protocol 330: EEV](<!-- Private: .agent/skills/protocols/ --> decision/330-economic-expected-value.md) + [Protocol 193: Ergodicity Check](<!-- Private: .agent/skills/protocols/ --> decision/193-ergodicity-check.md)
 
 For the **top-ranked path** from Phase 3:
 
@@ -390,7 +390,7 @@ MONTE CARLO RESULTS (N = [X] iterations):
 - [Protocol 137: Graph of Thoughts](<!-- Private: .agent/skills/protocols/ --> decision/137-graph-of-thoughts.md) — Phase 2 strategy generation
 - [Protocol 75: Synthetic Parallel Reasoning](decision/75-synthetic-parallel-reasoning.md) — Phase 2 divergence engine
 - [Protocol 121: MCDA / EEV / Pairwise](<!-- Private: .agent/skills/protocols/ --> decision/121-mcda-eev-framework.md) — Phase 3 ranking
-- [Protocol 330: Expected Aggregate Value (EEV)](<!-- Private: .agent/skills/protocols/ --> decision/330-expected-aggregate-value.md) — Phase 4 value engine
+- [Protocol 330: Economic Expected Value (EEV)](<!-- Private: .agent/skills/protocols/ --> decision/330-economic-expected-value.md) — Phase 4 value engine
 - [Protocol 193: Ergodicity Check](<!-- Private: .agent/skills/protocols/ --> decision/193-ergodicity-check.md) — Phase 4 safety gate
 - [Monte Carlo Sim Skill](<!-- Private: .agent/skills/ --> monte-carlo-sim/SKILL.md) — Phase 5 validation
 

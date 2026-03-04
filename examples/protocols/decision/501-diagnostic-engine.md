@@ -267,7 +267,7 @@ graph TD
 
 - [Protocol 500: GTO Problem Solver](<!-- Private: .agent/skills/protocols/ --> decision/500-gto-problem-solver.md) — Downstream solver
 - [Protocol 121: MCDA / EEV / Pairwise](<!-- Private: .agent/skills/protocols/ --> decision/121-mcda-eev-framework.md) — Lightweight solver
-- [Protocol 330: EEV](<!-- Private: .agent/skills/protocols/ --> decision/330-expected-aggregate-value.md) — Value engine
+- [Protocol 330: EEV](<!-- Private: .agent/skills/protocols/ --> decision/330-economic-expected-value.md) — Value engine
 - [Protocol 193: Ergodicity Check](<!-- Private: .agent/skills/protocols/ --> decision/193-ergodicity-check.md) — Risk gate
 
 ## Protocols Absorbed
