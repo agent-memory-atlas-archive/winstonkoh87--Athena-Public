@@ -12,7 +12,7 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.4.0-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.4.1-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
@@ -381,7 +381,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) |
-| **SDK** | `athena` Python package (v9.4.0) |
+| **SDK** | `athena` Python package (v9.4.1) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `text-embedding-004` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -413,6 +413,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.4.1** (Mar 04 2026): Cognitive Systems v2 — Ideation mode (DIVERGENT/CONVERGENT), Learning→Life Decision handoff, Cluster #14 safety sequence, P503 cluster sync (15), Λ-based stealth routing, 3 new protocols (P511 Business Viability, P512 Pre-Planning, P513 Context Isolation)
 - **v9.4.0** (Mar 04 2026): Biological Stack Architecture — 5 new protocols (P504-P508), 8 Cognitive Systems layer, Intent Classifier, `ensure_env.sh` supports system Python
 - **v9.3.1** (Mar 03 2026): Cross-model Audit Fixes — file count sync, Windows section relocation, GitHub Release catch-up (v9.2.7–v9.3.0)
 - **v9.3.0** (Mar 02 2026): Onboarding Friction Audit — dependency restructuring (torch→optional), venv instructions, PEP 668 fix, stale path cleanup, two-tier install
