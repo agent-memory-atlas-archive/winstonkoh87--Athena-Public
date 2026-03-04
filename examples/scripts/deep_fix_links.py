@@ -39,8 +39,9 @@ def repair():
     total = 0
 
     overrides = {
-        "197-consigliere-mode.md": "329-consiglieri-protocol.md",
-        "197-consigliere-protocol.md": "329-consiglieri-protocol.md",
+        "197-consigliere-mode.md": "197-consiglieri-protocol.md",
+        "197-consigliere-protocol.md": "197-consiglieri-protocol.md",
+        "329-consiglieri-protocol.md": "197-consiglieri-protocol.md",
         "114-missing-baseline.md": "113-missing-baseline-model.md",
         "65-arbitrage-mechanics.md": "65-arbitrage-formula.md",
         "311-social-audit-defense.md": "98-social-audit-defense.md",

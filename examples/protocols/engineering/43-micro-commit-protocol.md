@@ -105,4 +105,4 @@ Together they prevent the "high on own supply" feature stacking pattern.
 
 ## Tagging
 
-#protocol #framework #process #44-micro-commit-protocol
+# protocol #framework #process #43-micro-commit-protocol
