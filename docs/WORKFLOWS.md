@@ -1,6 +1,6 @@
 # Workflows in Project Athena
 
-> **Last Updated**: February 2026
+> **Last Updated**: March 2026
 
 Workflows are slash commands that trigger predefined sequences of actions. They're the backbone of Athena's session management and deep reasoning capabilities.
 
@@ -8,19 +8,19 @@ Workflows are slash commands that trigger predefined sequences of actions. They'
 
 | Command | Purpose | Complexity |
 |---------|---------|------------|
-| [`/start`](../../.agent/workflows/start.md) | Boot session, load identity | Low |
-| [`/end`](../../.agent/workflows/end.md) | Close session, commit to memory | Low |
-| [`/tutorial`](../../examples/workflows/tutorial.md) | Guided first-session walkthrough | Low |
-| [`/save`](../../.agent/workflows/save.md) | Mid-session checkpoint | Low |
-| [`/think`](../../.agent/workflows/think.md) | Deep reasoning (all phases) | Medium |
-| [`/ultrathink`](../../.agent/workflows/ultrathink.md) | Maximum depth (parallel orchestrator) | High |
-| [`/search`](../../.agent/workflows/search.md) | Web search with citations | Medium |
-| [`/research`](../../.agent/workflows/research.md) | Exhaustive multi-source investigation | High |
-| [`/plan`](../../.agent/workflows/plan.md) | Structured planning with pre-mortem | Medium |
-| [`/brief`](../../.agent/workflows/brief.md) | Pre-prompt clarification protocol | Medium |
-| [`/refactor`](../../.agent/workflows/refactor.md) | Full workspace optimization | High |
-| [`/vibe`](../../.agent/workflows/vibe.md) | Ship at 70%, iterate fast | Low |
-| [`/deploy`](../../.agent/workflows/deploy.md) | Sanitized public repo sync | Medium |
+| [`/start`](../examples/workflows/start.md) | Boot session, load identity | Low |
+| [`/end`](../examples/workflows/end.md) | Close session, commit to memory | Low |
+| [`/tutorial`](../examples/workflows/tutorial.md) | Guided first-session walkthrough | Low |
+| [`/save`](../examples/workflows/save.md) | Mid-session checkpoint | Low |
+| [`/think`](../examples/workflows/think.md) | Deep reasoning (all phases) | Medium |
+| [`/ultrathink`](../examples/workflows/ultrathink.md) | Maximum depth (parallel orchestrator) | High |
+| [`/search`](../examples/workflows/search.md) | Web search with citations | Medium |
+| [`/research`](../examples/workflows/research.md) | Exhaustive multi-source investigation | High |
+| [`/plan`](../examples/workflows/plan.md) | Structured planning with pre-mortem | Medium |
+| [`/brief`](../examples/workflows/brief.md) | Pre-prompt clarification protocol | Medium |
+| [`/refactor`](../examples/workflows/refactor.md) | Full workspace optimization | High |
+| [`/vibe`](../examples/workflows/vibe.md) | Ship at 70%, iterate fast | Low |
+| [`/deploy`](../examples/workflows/deploy.md) | Sanitized public repo sync | Medium |
 
 ---
 
@@ -159,7 +159,7 @@ Step-by-step execution...
 
 ## Best Practices
 
-1. **Choose the right depth**: Don't `/ultrathink` on simple queries
+1. **Default lean, escalate on demand**: Normal mode is optimized for speed. Use `/think` or `/ultrathink` only when stakes justify the token cost. See [Protocol 510: Adaptive Depth](../examples/protocols/architecture/510-adaptive-depth.md).
 2. **Checkpoint often**: Use `/save` before risky experiments
 3. **Brief first**: For complex tasks, `/brief` reduces wasted tokens
 4. **End sessions properly**: `/end` commits insights to long-term memory
