@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
 > **Last Updated**: 05 March 2026  
-> **System Version**: v9.4.0
+> **System Version**: v9.4.1
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 115+ example protocols, reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -364,23 +364,20 @@ If the orchestrator fails to import, `boot.py` catches the `ImportError` and dro
 
 ### athenad.py — The Active OS Kernel
 
-`athenad` is a persistent background process that runs independently of conversation sessions. It ensures the knowledge graph stays synchronized even when no AI agent is active.
+`athenad` is a persistent background process that runs independently of conversation sessions. It monitors the workspace for file changes and keeps metadata synchronized.
 
 ```mermaid
 graph LR
     subgraph "athenad (Background)"
         WATCH[File System Watcher] --> |"5s poll"| CHECK{Changed?}
         CHECK --> |Yes| META[Update SQLite Metadata]
-        META --> QUEUE[Enqueue for Indexing]
-        QUEUE --> BG[Background Indexer Thread]
-        BG --> |"lightrag_wrapper.py"| GRAPH[LightRAG Knowledge Graph]
         CHECK --> |No| WATCH
     end
 
     FS[".agent/ + .context/ files"] -.-> WATCH
 
     style WATCH fill:#3b82f6,color:#fff
-    style GRAPH fill:#22c55e,color:#fff
+    style META fill:#22c55e,color:#fff
 ```
 
 **Key Behaviors:**
@@ -390,7 +387,6 @@ graph LR
 | **File System Watcher** | Polls `.agent/` and `.context/` every 5 seconds. Uses checksum comparison to detect changes. |
 | **SQLite Metadata** | Tracks file checksums, last-modified times, and indexing status. |
 | **Tag Extractor** | Parses `#hashtag` lines from Markdown files for the tag system. |
-| **Background Indexer** | Threaded worker that calls `lightrag_wrapper.py` to vectorize changed files into the knowledge graph. |
 | **Rotating Logs** | `athenad.log` — 5MB max × 3 backups. |
 
 **Lifecycle**: Started by the orchestrator during boot (`SystemLoader.enforce_daemon()`). Persists across conversation resets. Writes to `.athenad.pid` for process management.
@@ -538,6 +534,7 @@ sequenceDiagram
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.4.1 | 05 Mar 2026 | Daemon cleanup: removed deprecated BackgroundIndexer/LightRAG pipeline, sanitized AGENTS.md, PnC audit (private path leaks) |
 | v9.4.0 | 04 Mar 2026 | Biological Stack Architecture: 8 Cognitive Systems (P507), Intent Classifier (P508), 15 Cognitive Clusters, Problem Diagnostics (P504) |
 | v9.3.1 | 02 Mar 2026 | README audit fixes: stale counts, Windows section, changelog date, version consistency |
 | v9.3.0 | 28 Feb 2026 | Protocol 330 EEV v3.0 (Unified Framework), GTO formalization, Friedman-Savage integration |

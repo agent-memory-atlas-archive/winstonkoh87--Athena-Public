@@ -8,6 +8,29 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.4.1 (05 March 2026)
+
+**Daemon Cleanup & PnC Audit**: Removed deprecated BackgroundIndexer/LightRAG pipeline from `athenad.py`, sanitized leaked private paths, and synchronized version drift across all docs.
+
+### Key Changes
+
+- **`athenad.py` Cleanup**: Removed dead `BackgroundIndexer` class (60 lines), pruned unused imports (`hashlib`, `threading`, `queue`, `subprocess`). The LightRAG vectorization pipeline has been deprecated — the daemon now focuses solely on metadata indexing.
+- **PnC Sanitization**: Removed leaked private path `/Winston/` from `EXCLUDED_PATTERNS`. Removed circular `Athena-Public/` self-reference from `WATCH_DIRS`.
+- **`AGENTS.md` Sanitization**: Replaced leaked private skills (`moltbook`, `fantasy-framework-detection`, `moltbook-registry`) with canonical public skills (`spec-driven-dev`, `deep-research-loop`, `red-team-review`, `context-compactor`). Updated version from `v8.2-stable` → `v9.4.1`.
+- **`ARCHITECTURE.md`**: Updated Daemon section mermaid diagram and description table to reflect BackgroundIndexer removal. Added v9.4.1 to version history.
+- **Version Sync**: `pyproject.toml` bumped to `9.4.1`.
+
+### Verification
+
+| Metric | Result |
+|--------|--------|
+| `pyproject.toml` | v9.4.1 ✅ |
+| `athenad.py` syntax | Valid ✅ |
+| PnC patterns removed | 2 ✅ |
+| Stale skills replaced | 3 → 4 ✅ |
+
+---
+
 ## v9.4.0 (04 March 2026)
 
 **Biological Stack Architecture**: Upgraded routing layer from 3 components to a full biological architecture: 8 Cognitive Systems (Organ System), 15 Cognitive Clusters (Organs), and 5 new protocols (P504-P508).

@@ -4,27 +4,16 @@ Athena Daemon (athenad)
 Role: The Active OS Kernel.
 Responsibilities:
   1.  File System Watcher (Polling) -> Updates SQLite Metadata
-  2.  Background Worker (Threading) -> Vectors Content into GraphRAG
-  3.  Health Monitor -> Self-healing
-
-Architecture:
-  [Main Thread] --(Queue)--> [Indexer Thread]
-       ^                          |
-       | (File Change)            v
-  [File System] <-------- [GraphRAG Store]
+  2.  Health Monitor -> Self-healing
 """
 
 import os
 import time
 import sqlite3
-import hashlib
 import re
 import sys
-import threading
-import queue
 import logging
 import logging.handlers
-import subprocess
 from pathlib import Path
 
 # --- CONFIGURATION ---
@@ -38,11 +27,9 @@ WATCH_DIRS = [
     PROJECT_ROOT / ".context",
     PROJECT_ROOT / ".agent" / "skills",
     PROJECT_ROOT / "src",
-    PROJECT_ROOT / "Athena-Public",
 ]
 
 EXCLUDED_PATTERNS = [
-    "/Winston/",
     "/archive/",
     "/history/",
     "/.venv/",
@@ -95,73 +82,9 @@ def extract_tags(filepath):
     return list(set(tags))
 
 
-# --- WORKER: BACKGROUND INDEXER ---
-class BackgroundIndexer(threading.Thread):
-    def __init__(self, task_queue):
-        super().__init__(daemon=True)
-        self.task_queue = task_queue
-        self.wrapper_path = PROJECT_ROOT / ".agent" / "scripts" / "lightrag_wrapper.py"
-
-    def run(self):
-        logging.info("🧠 BackgroundIndexer: Online (Waiting for tasks...)")
-        while True:
-            try:
-                filepath = self.task_queue.get()
-                if filepath is None:
-                    break
-
-                self.index_file_in_graph(filepath)
-                self.task_queue.task_done()
-            except Exception as e:
-                logging.error(f"Indexer Worker Crash: {e}")
-
-    def index_file_in_graph(self, filepath):
-        """Calls lightrag_wrapper.py to index the file."""
-        if not self.wrapper_path.exists():
-            logging.error(f"Missing LightRAG wrapper: {self.wrapper_path}")
-            return
-
-        try:
-            # Read content to verify it's valid
-            with open(filepath, "r", encoding="utf-8") as f:
-                content = f.read()
-                if len(content) < 50:  # Skip empty/stub files
-                    return
-
-            logging.info(f"🕸️  Graph Vectorizing: {Path(filepath).name}")
-
-            # Call wrapper via subprocess to ensure isolation
-            # usage: python3 lightrag_wrapper.py --insert "CONTENT"
-            # Note: This is a bit inefficient (reloads model every time).
-            # Optimization: In V2, import LightRAG directly. For V1 (Robustness), isolation is better.
-
-            cmd = [
-                sys.executable,
-                str(self.wrapper_path),
-                "--insert",
-                f"File: {filepath}\nContent:\n{content}",
-            ]
-
-            subprocess.run(
-                cmd,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.PIPE,
-                check=True,
-                timeout=120,
-            )
-            logging.info(f"✅ Graph Updated: {Path(filepath).name}")
-
-        except subprocess.CalledProcessError as e:
-            logging.error(f"Graph Indexing Failed: {e.stderr.decode()}")
-        except Exception as e:
-            logging.error(f"Graph Indexing Error: {e}")
-
-
 # --- DAEMON CORE ---
 class AthenaDaemon:
     def __init__(self):
-        self.indexer_queue = queue.Queue()
-        self.indexer_thread = BackgroundIndexer(self.indexer_queue)
         self._conn = None
 
     def start(self):
@@ -172,10 +95,7 @@ class AthenaDaemon:
             DB_PATH.parent.mkdir(parents=True)
         self.init_db()
 
-        # 2. Start Worker
-        self.indexer_thread.start()
-
-        # 3. Main Loop
+        # 2. Main Loop
         logging.info(f"👀 Watching: {[str(d) for d in WATCH_DIRS]}")
         try:
             self.watch_loop()
@@ -218,8 +138,6 @@ class AthenaDaemon:
 
                         if self.check_and_update(conn, filepath):
                             changes += 1
-                            # TRIGGER: Add to Indexer Queue
-                            self.indexer_queue.put(filepath)
 
             if changes > 0:
                 conn.commit()

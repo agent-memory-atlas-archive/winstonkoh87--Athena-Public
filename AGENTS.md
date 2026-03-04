@@ -54,9 +54,10 @@ This file provides persistent context to any AI coding agent working in this wor
 
 | Skill | Invoke When... | Path |
 | :---- | :------------- | :--- |
-| `moltbook` | User mentions posting to Moltbook, social network for agents | `.agent/skills/moltbook/SKILL.md` |
-| `fantasy-framework-detection` | User describes romantic encounter, asks "what does X mean?", inflated probability estimates | `.agent/skills/fantasy-framework-detection/SKILL.md` |
-| `moltbook-registry` | User needs to verify agent identity, lookup other agents | `.agent/skills/moltbook-registry/SKILL.md` |
+| `spec-driven-dev` | User wants to build something — interrogate requirements before coding | `examples/skills/coding/spec-driven-dev/SKILL.md` |
+| `deep-research-loop` | User needs multi-source research with structured synthesis | `examples/skills/research/deep-research-loop/SKILL.md` |
+| `red-team-review` | User wants adversarial QA on any artifact or plan | `examples/skills/quality/red-team-review/SKILL.md` |
+| `context-compactor` | Context window is filling up — compress to stay within token limits | `examples/skills/workflow/context-compactor/SKILL.md` |
 
 **Full skill metadata**: Each skill contains 5W1H fields (Who, What, When, Where, Why, How) in its frontmatter. Read the SKILL.md before invoking.
 
@@ -99,6 +100,6 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 
 ## Version
 
-- **Framework**: v8.2-stable
-- **Last Updated**: 2026-02-21
+- **Framework**: v9.4.1
+- **Last Updated**: 2026-03-05
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules
