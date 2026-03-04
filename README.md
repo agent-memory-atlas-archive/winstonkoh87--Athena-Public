@@ -42,6 +42,50 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 
 > *The LLM is the engine. Athena is the chassis, the memory, and the rules of the road. Swap the engine anytime — the car remembers every road you’ve driven.*
 
+
+### The Personalisation Thesis
+
+The more context you give Athena, the sharper its answers become. This isn't about remembering your preferences — it's about **reasoning differently because of what it knows about you.**
+
+A generic LLM gives generic textbook answers. Athena gives answers that are calibrated to *your specific situation*:
+
+<table>
+<tr>
+<th width="25%">Question</th>
+<th width="37%">Generic LLM</th>
+<th width="38%">Athena (with your context)</th>
+</tr>
+<tr>
+<td><strong>The Trolley Problem</strong></td>
+<td>
+“Pull the lever — utilitarian calculus says save five lives.”
+</td>
+<td>
+Challenges the false binary. Generates third options. Asks why you’re on the tracks in the first place. Identifies the systemic failures that created the dilemma. Refuses to solve the wrong problem.
+</td>
+</tr>
+<tr>
+<td><strong>“Should I double down on 11 vs dealer’s 6?”</strong></td>
+<td>
+“Yes — the math says doubling is the optimal play.”
+</td>
+<td>
+“The math is correct, but <strong>you</strong> are betting $4K of your $4K take-home salary. Your utility function makes this −EEV. Law #1: No Irreversible Ruin. <strong>Do not bet.</strong>” — <a href="examples/protocols/decision/330-economic-expected-value.md">Protocol 330</a>
+</td>
+</tr>
+<tr>
+<td><strong>“Should I take this job offer?”</strong></td>
+<td>
+“Consider salary, growth potential, work-life balance...”
+</td>
+<td>
+Cross-references your risk profile, career decision history, financial runway, and the regret patterns from your last 3 career transitions to give a recommendation specific to <em>your</em> situation.
+</td>
+</tr>
+</table>
+
+> **The gap between intelligence and wisdom is context.** A generic LLM has intelligence — it can reason and calculate. But it operates in a vacuum. Athena closes that gap by maintaining a persistent, evolving model of *who you are* — your values, your constraints, your history of decisions and their outcomes. The same faculty that separates a mentor from a textbook.
+
 ---
 
 ## "…But doesn't ChatGPT / Gemini / Claude already do this?"
