@@ -37,7 +37,7 @@ Athena/
 │   ├── CLUSTER_INDEX.md           # Routing index: Systems → Clusters → Skills
 │   ├── skills/
 │   │   ├── SKILL_INDEX.md         # Protocol loading registry
-│   │   ├── protocols/             # 370+ modular skill files across 35 domains
+│   │   ├── protocols/             # 397 modular skill files across 35 domains
 │   │   │   ├── architecture/      # System protocols (latency, modularity)
 │   │   │   ├── business/          # Business frameworks
 │   │   │   ├── coding/            # Development standards
@@ -54,12 +54,12 @@ Athena/
 │   │   │   ├── verification/      # Verification & QA
 │   │   │   └── ... (+20 more)     # workflow, research, health, etc.
 │   │   └── capabilities/          # Bionic Triple Crown
-│   ├── workflows/                 # 58 slash commands
+│   ├── workflows/                 # 53 slash commands
 │   │   ├── start.md               # Session boot
 │   │   ├── end.md                 # Session close + maintenance
 │   │   ├── think.md               # Deep reasoning (L4)
 │   │   └── ...
-│   ├── scripts/                   # 210+ Python automation scripts
+│   ├── scripts/                   # 220+ Python automation scripts
 │   │   ├── boot.py                # Resilient boot shim + recovery shell
 │   │   ├── quicksave.py           # Auto-checkpoint every exchange
 │   │   ├── smart_search.py        # Semantic search (hybrid RAG)
@@ -88,7 +88,7 @@ Athena/
 │
 ├── Athena-Public/                 # ← PUBLIC PORTFOLIO
 │   ├── docs/                      # This documentation
-│   ├── examples/                  # 117 public protocol examples, templates, scripts
+│   ├── examples/                  # 127 public protocol examples, templates, scripts
 │   ├── src/                       # Public SDK source
 │   ├── community/                 # Community resources
 │   └── README.md                  # Repository overview
@@ -119,7 +119,7 @@ graph TD
     AGENT --> SCRIPTS[scripts/]
     AGENT --> SWARMS[swarms/]
 
-    SKILLS --> PROTOCOLS["protocols/ (370+)"]
+    SKILLS --> PROTOCOLS["protocols/ (397)"]
     SKILLS --> CAPS[capabilities/]
 
     SRC --> BOOT[boot/orchestrator.py]
@@ -135,8 +135,8 @@ graph TD
 ```mermaid
 graph BT
     L1["⚛️ Atoms<br/>Laws #0-#4"] --> L2["🧬 Molecules<br/>Rules & Constraints"]
-    L2 --> L3["🦠 Cells<br/>370+ Protocols"]
-    L3 --> L4["🧫 Tissues<br/>22 Skills"]
+    L2 --> L3["🦠 Cells<br/>397 Protocols"]
+    L3 --> L4["🧫 Tissues<br/>21 Skills"]
     L4 --> L5["🫁 Organs<br/>15 Cognitive Clusters"]
     L5 --> L6["🏥 Organ Systems<br/>8 Cognitive Systems"]
     L6 --> L7["🧠 Organism<br/>Athena"]
@@ -149,8 +149,8 @@ graph BT
 |:---:|:---|:---|:---|
 | 1 | **Atoms** | Laws #0-#4 | Law #1: No Ruin (absolute, non-negotiable) |
 | 2 | **Molecules** | Rules & Constraints | "Never risk >5% of bankroll" |
-| 3 | **Cells** | 370+ Protocols | Protocol 330: Economic Expected Value |
-| 4 | **Tissues** | 22 Skills | `trading-risk-gate` (bundles 3 protocols) |
+| 3 | **Cells** | 397 Protocols | Protocol 330: Economic Expected Value |
+| 4 | **Tissues** | 21 Skills | `trading-risk-gate` (bundles 3 protocols) |
 | 5 | **Organs** | 15 Cognitive Clusters | Cluster #3: Trading Risk Gate |
 | 6 | **Organ Systems** | 8 Cognitive Systems | Trading System 📈 |
 | 7 | **Organism** | Athena | The full stack operating as one |
