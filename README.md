@@ -40,7 +40,9 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 - **⚡ ~10K Token Boot** — 95% of your context window stays free, even after 10,000 sessions.
 - **🛡️ Governed Autonomy** — 6 constitutional laws, 4 capability levels, bounded agency.
 
-> *The LLM is the engine. Athena is the chassis, the memory, and the rules of the road. Swap the engine anytime — the car remembers every road you’ve driven.*
+> *A generic LLM is a brilliant amnesiac. Athena is the hippocampus — the memory that makes intelligence useful.*
+>
+> *Or in engineering terms: The LLM is the engine. Athena is the chassis, the memory, and the rules of the road. Swap the engine anytime — the car remembers every road you've driven.*
 
 ### The Personalisation Thesis
 

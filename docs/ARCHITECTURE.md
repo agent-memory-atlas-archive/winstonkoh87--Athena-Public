@@ -128,9 +128,11 @@ graph TD
 
 ---
 
-## The Biological Stack
+## The Compositional Stack
 
-> **Core Architecture**: Athena's routing system is modeled on biological organization — from atomic rules up to a fully integrated synthetic intelligence.
+> **Core Architecture**: Athena is built bottom-up from atomic rules to a fully integrated synthetic intelligence. Two complementary models describe the architecture: the **Compositional Hierarchy** (what the layers are) and the **Neuro-Cognitive Model** (how they govern).
+
+### Compositional Hierarchy
 
 ```mermaid
 graph BT
@@ -145,7 +147,7 @@ graph BT
     style L7 fill:#16a34a,color:#fff
 ```
 
-| Layer | Biological Analogy | Athena Equivalent | Example |
+| Layer | Analogy | Athena Equivalent | Example |
 |:---:|:---|:---|:---|
 | 1 | **Atoms** | Laws #0-#4 | Law #1: No Ruin (absolute, non-negotiable) |
 | 2 | **Molecules** | Rules & Constraints | "Never risk >5% of bankroll" |
@@ -153,7 +155,7 @@ graph BT
 | 4 | **Tissues** | 21 Skills | `trading-risk-gate` (bundles 3 protocols) |
 | 5 | **Organs** | 15 Cognitive Clusters | Cluster #3: Trading Risk Gate |
 | 6 | **Organ Systems** | 8 Cognitive Systems | Trading System 📈 |
-| 7 | **Organism** | Athena | The full stack operating as one |
+| 7 | **Organism** | Athena | The complete synthetic intelligence |
 
 **Emergent Properties:**
 
@@ -163,6 +165,35 @@ graph BT
 - Tissues → Organs: Specializations become *co-activated* (cluster triggers)
 - Organs → Organ Systems: Clusters become *orchestrated* (system-level routing)
 - Organ Systems → Organism: Systems become *unified* (cross-system handoffs)
+
+### The Neuro-Cognitive Model
+
+> *A generic LLM is a brilliant amnesiac. Athena is the hippocampus.*
+
+The compositional hierarchy describes *what* the layers are. The neuro-cognitive model describes *how they govern* — mapping Athena's architecture to the only biological system that enforces top-down governance, stores persistent context, and utilises hard-coded vetoes to prevent irreversible ruin: **the nervous system**.
+
+| Neuroanatomy | Athena Component | Mechanism |
+|:---|:---|:---|
+| **Reflex Arc** (Spinal Cord) | Law #1 (No Irreversible Ruin) | Pre-computation veto. Bypasses higher-order reasoning to execute an immediate stop — like pulling a hand from fire. |
+| **Motor Engram** (Cerebellum) | Protocol (`.md`) | A consolidated procedure. Executes a complex sequence reliably without recalculating from scratch each time. |
+| **Neural Circuit** | Skill | A localised pathway dedicated to one specific function. |
+| **Cortical Lobe** | Cognitive Cluster | A distinct brain region orchestrating multiple circuits for a specific domain. |
+| **Hippocampus** | File System + VectorRAG | The indexer. Converts short-term experiences into long-term, retrievable memory. Platform memory (ChatGPT, Claude) functions like anterograde amnesia — able to converse in working memory but resetting completely when the session ends. Athena physically writes state to disk (long-term potentiation) and retrieves it to influence future reasoning. |
+| **Prefrontal Cortex** | Athena (The OS) | Executive function. Applies top-down rules, suppresses impulsive outputs, and aligns actions with long-term goals. If the PFC is damaged, a human retains intelligence but loses impulse control and risk assessment — identical to an ungoverned LLM. |
+| **Raw Neural Plasticity** | The LLM | The underlying computing substrate. Capable of vast pattern recognition, but inherently chaotic and hallucination-prone without governance. |
+
+### The Hybrid Model
+
+> Athena is neither a pure OS (fully deterministic) nor a pure organism (fully adaptive). It is an **OS kernel with a metabolic wrapper**.
+
+The kernel (Laws, Protocols, Skills) is deterministic — strict adherence to protocol, no stochastic drift. But the wrapper layer introduces adaptive, quasi-biological mechanics:
+
+| Biological Mechanism | Athena Equivalent | What It Does |
+|:---|:---|:---|
+| **Mutation** | Methodological arbitrage (stealing patterns from competitor systems) | Scouts external architectures and clones superior patterns |
+| **Apoptosis** | Context compaction | Deliberately kills stale protocols and sessions when they're no longer useful |
+| **Epigenetics** | Active Context layer | Modifies how protocols are *expressed* without changing the protocol source file |
+| **Metabolism** | Nocturnal auto-consolidation | The system metabolises during shutdown — indexing, compacting, and pruning |
 
 ---
 
