@@ -104,19 +104,20 @@ The penalty for fragmentation is identical:
 | 11 | **Swarm Orchestrator** | `marketing-swarm` | Marketing Swarm + Git Worktree Swarm | Orchestration |
 | 12 | **Research Pipeline** | `deep-research-loop` | Deep Research + Semantic Search | Research |
 | 13 | **Build Lifecycle** | `spec-driven-dev` | Spec + Micro-Commit + Visual Verify | Engineering |
-| 14 | **Sovereign Safety** | (lightweight) | Circuit Breaker + Context Compactor | Safety |
+| 14 | **Sovereign Safety** | Protocol 514 | Circuit Breaker + Context Compactor | Safety |
+| 15 | **Problem-Solving Engine** | Protocol 504 | P504 + P115 + P505 + `red-team-review` + P506 | Reasoning |
 
 ---
 
 ## The Math
 
-**Before (35 skills → 21 skills → 14 clusters)**:
+**Before (35 skills → 21 skills → 15 clusters)**:
 
 | Stage | Avg. Skill Loads per Query | Tokens per Query | Tool Calls |
 |:---|:---|:---|:---|
 | Pre-Cluster (35 skills) | 3.2 | ~2,560 | 3.2 |
 | Post-Cluster v1 (21 skills, 9 clusters) | 1.4 | ~1,680 | 1.4 |
-| Post-Cluster v2 (14 clusters, co-activation) | **1.1** | **~1,320** | **1.1** |
+| Post-Cluster v2 (15 clusters, co-activation) | **1.1** | **~1,320** | **1.1** |
 
 **Cumulative savings**: ~48% tokens, ~66% tool calls vs original 35-skill architecture.
 

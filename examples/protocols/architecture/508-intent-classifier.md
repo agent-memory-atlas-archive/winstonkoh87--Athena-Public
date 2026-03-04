@@ -54,6 +54,10 @@ Q6: Is this about growth, distribution, marketing, or audience acquisition?
 
 Q7: Is this about understanding, learning, or synthesizing knowledge?
     → YES: LEARNING SYSTEM 📖
+           Sub-classify: Is the intent DIVERGENT (generate possibilities, brainstorm,
+           ideate, explore options) or CONVERGENT (understand, explain, analyze)?
+           → DIVERGENT: Learning System in IDEATION mode (widen before narrowing)
+           → CONVERGENT: Learning System in ANALYSIS mode (default)
     → NO:  Continue to Q8
 
 Q8: Is this about system maintenance, health checks, or routine upkeep?
@@ -174,9 +178,21 @@ HIGH-CONFIDENCE SIGNALS:
 ├─ "Analyze this concept / break this down"
 └─ Cross-domain synthesis ("how does X relate to Y?")
 
+IDEATION MODE SIGNALS (DIVERGENT):
+├─ "What business should I start?" / "Give me 10 ways to..."
+├─ "Brainstorm approaches to..." / "What if we did X differently?"
+├─ "What are my options?" / "Explore possibilities for..."
+└─ Open-ended generation requests (no single correct answer)
+
 KEY DISCRIMINATOR:
-If the user wants to UNDERSTAND something → Learning System.
+If the user wants to UNDERSTAND something → Learning System (CONVERGENT).
+If the user wants to GENERATE possibilities → Learning System (DIVERGENT/IDEATION).
 If the user wants to DO something with the knowledge → Execution or Life Decision.
+
+IDEATION MODE BEHAVIOR:
+Phase 1 (Research) stays the same. Phase 2 (Reason) generates breadth BEFORE
+converging. Phase 3 (Frame/P504) is DEFERRED until sufficient options exist.
+Phase 4 (QA) stress-tests the option set, not a single answer.
 ```
 
 ### Maintenance System 🔄
@@ -203,14 +219,17 @@ DISPATCH SEQUENCE:
 
 1. CLASSIFY: Run archetype detection (Q1-Q8)
 2. CONFIRM:  Confidence check (single vs. multi vs. vague)
-3. ANNOUNCE: State the classified system to the user:
-             "This is a [System Name] scenario. Activating [System Name]."
+3. ANNOUNCE: Λ-based announcement rules:
+             - Λ < 10 (SNIPER):   Silent. No announcement. No system classification.
+             - Λ 10-30 (STANDARD): Silent unless user explicitly asks.
+             - Λ > 30 (ULTRA):     Announce system classification.
+             Default is STEALTH — just become smarter. Do not narrate routing.
 4. SEQUENCE: Fire clusters in the prescribed order from P507
 5. GATE:     After each phase, implicit go/no-go before next phase
 6. HANDOFF:  If cross-system component detected, re-classify that component
 
 SILENT MODE:
-For SNIPER-level queries (Λ < 10), skip system-level classification.
+For SNIPER-level queries (Λ < 10), skip system-level classification entirely.
 Route directly to single-cluster keyword matching.
 System-level classification activates only for STANDARD (Λ 10-30) and ULTRA (Λ > 30).
 ```

@@ -208,10 +208,14 @@ Phase 1: RESEARCH   → #12 Research Pipeline
                        (Deep research: gather sources, cross-reference, semantic search)
 Phase 2: REASON     → #9 Strategic Reasoning
                        (Synthesize: extract principles, connect to existing mental models)
+                       IDEATION MODE: Generate breadth BEFORE converging.
+                       Defer P504 framing until sufficient options exist.
 Phase 3: FRAME      → #15 Problem-Solving Engine
                        (P504 Gate 5: Lock understanding into a clear problem statement / mental model)
+                       IDEATION MODE: Frame the option set, not a single answer.
 Phase 4: QA         → #8 Adversarial QA (optional, for Λ > 20)
                        (Stress-test understanding: "What would disprove this?")
+                       IDEATION MODE: Stress-test option set breadth and quality.
 ```
 
 **Bidirectional Guardrails:**
@@ -285,6 +289,7 @@ Trading + emotional language → Survival → Social → Inner Work (#7)
 Growth + product-market fit doubt → Life Decision (pivot decision)
 Social + irreversible relationship action → Life Decision System
 Learning + actionable insight discovered → Execution System (implement it)
+Learning + identity/life/existential reframe → Life Decision System (the analysis surfaced a pivot)
 Maintenance + critical failure detected → Survival System (auto-escalate)
 ```
 
