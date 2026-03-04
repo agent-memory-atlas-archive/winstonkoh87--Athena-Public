@@ -40,22 +40,36 @@ x = np.linspace(0.1, MAX_SPEND, 500)  # Avoid x=0 for log
 mev = -HOUSE_EDGE * x
 
 # --- UEV: Utility Expected Value ---
-# Phase 1 (0-1): Spike — acquiring the option gives near-peak utility
-# Phase 2 (1-10): Slow decay — diminishing marginal fantasy
-# Phase 3 (10+): Crash — anxiety, regret, cash drag
+# Phase 1 (0→$1): Sharp spike — acquiring the option gives near-peak utility
+#   ($1 → $12M dream is maximum psychological value)
+# Phase 2 ($1→$10): Slow decay — diminishing marginal fantasy
+# Phase 3 ($10+): Crash through ZERO into negative territory
+#   (anxiety, guilt, addiction pathway, real financial pain)
 #
-# Model: UEV = A * ln(x + 1) * exp(-B * x)
-# This creates a sharp spike near x=1, then exponential decay
-A = 11.0  # Amplitude (calibrated to make EEV=0 at ~$16)
-B = 0.09  # Decay rate
-uev = A * np.log(x + 1) * np.exp(-B * x)
+# Model: UEV = A * ln(x + 1) * exp(-B * x) - C * x
+#   Positive term: log * exp decay (the fantasy premium)
+#   Negative term: linear drag (the anxiety/pain cost)
+#   At low spend, the positive term dominates.
+#   At high spend, the linear drag overwhelms → UEV goes negative.
+#
+# Note: This is calibrated for a MEDIAN SG EARNER ($5.5K/mth).
+# For Bill Gates/Elon Musk, the UEV curve would be vastly flatter
+# (their utility function is concave at all lottery-relevant levels).
+A = 12.0  # Amplitude of positive utility (the fantasy premium)
+B = 0.06  # Decay rate of the fantasy
+C = 0.38  # Linear drag coefficient (anxiety/pain per dollar spent)
+uev = A * np.log(x + 1) * np.exp(-B * x) - C * x
 
 # --- EEV: Economic Expected Value ---
 eev = mev + uev
 
-# Find the actual zero crossing for annotation
+# Find the EEV zero crossing (Limit Point)
 zero_idx = np.argmin(np.abs(eev))
 actual_limit = x[zero_idx]
+
+# Find UEV zero crossing (where utility itself turns negative)
+uev_zero_idx = np.argmin(np.abs(uev[100:]))  # Skip initial region
+uev_zero_x = x[100 + uev_zero_idx]
 
 # ═══════════════════════════════════════════════════════════════
 # Plotting
