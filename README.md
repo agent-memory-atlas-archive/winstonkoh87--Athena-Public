@@ -294,13 +294,15 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 
 | Component | What It Does For You |
 |:----------|:---------------------|
+| 📄 **Agent Manifest** | Single `athena.yaml` file defines your agent — model, tools, skills, hooks, governance. Fork it, override it, boot a new agent — [manifest](athena.yaml) |
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
 | 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/507-cognitive-systems.md) |
 | 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
 | 📋 **135+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
 | ⚡ **50+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
-| 🔌 **Tool Integration** | Your agent can search, save, and execute scripts on your behalf — [docs](docs/MCP_SERVER.md) |
+| 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
+| 🪝 **Lifecycle Hooks** | Scriptable pre/post gates on every action — block destructive ops, enforce risk checks, log assets — [hooks](docs/HOOKS.md) |
 | 🛡️ **Safety Rails** | Controls what the AI can and can't do autonomously (4 levels, from read-only to full agency) — [security](docs/SECURITY.md) |
 
 > [!TIP]
@@ -394,6 +396,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 ```text
 Athena-Public/
+├── athena.yaml              # Agent manifest — model, tools, hooks, governance
 ├── src/athena/              # SDK package (pip install -e .)
 │   ├── core/                #   Config, governance, permissions, security
 │   ├── tools/               #   Search, agentic search, reranker, heartbeat
@@ -401,6 +404,7 @@ Athena-Public/
 │   ├── boot/                #   Orchestrator, loaders, shutdown
 │   ├── cli/                 #   init, save, doctor commands
 │   └── mcp_server.py        #   MCP Tool Server (9 tools, 2 resources)
+├── tools/                   # Declarative tool definitions (YAML)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
 │   ├── protocols/           # 135+ starter frameworks (15 categories)
