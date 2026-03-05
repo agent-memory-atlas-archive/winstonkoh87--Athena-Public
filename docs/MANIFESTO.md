@@ -67,8 +67,8 @@ Here's what I actually did. No shortcuts.
 
 ```
 ├── 1,100+ sessions logged (human + AI collaboration)
-├── 120+ protocols extracted
-├── 49 automation scripts written
+├── 135+ protocols extracted
+├── 530+ automation scripts written
 ├── 3 major refactors (monolith → SDK)
 ├── 2 external red-team audits
 └── Countless errors, dead ends, and "why isn't this working" nights
@@ -92,7 +92,7 @@ Here's what I actually did. No shortcuts.
 |--------|---------|
 | **Agency** | I stopped *recreating* context and started *compounding* it. Every session builds on the last. |
 | **Portability** | My memory isn't trapped in ChatGPT or Claude. It's mine. I can take it anywhere. |
-| **Learning** | 120+ protocols extracted from my own decisions — patterns I can reuse and refine. |
+| **Learning** | 135+ protocols extracted from my own decisions — patterns I can reuse and refine. |
 
 ### Proof It Works
 

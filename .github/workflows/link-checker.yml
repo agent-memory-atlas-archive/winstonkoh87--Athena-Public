@@ -1,0 +1,56 @@
+name: Link & Path Integrity Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.md'
+  pull_request:
+    branches: [main]
+    paths:
+      - '**/*.md'
+
+jobs:
+  check-links:
+    name: Validate Markdown Links & Paths
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check for private path leaks
+        run: |
+          echo "🔍 Scanning for private path leaks..."
+          LEAKS=$(grep -rn '/Users/' --include='*.md' --include='*.py' --include='*.yml' --include='*.sh' . 2>/dev/null | grep -v '.git/' || true)
+          if [ -n "$LEAKS" ]; then
+            echo "❌ PRIVATE PATHS DETECTED:"
+            echo "$LEAKS"
+            exit 1
+          fi
+          echo "✅ No private path leaks found."
+
+      - name: Check for dead internal links
+        run: |
+          echo "🔍 Scanning for dead internal Markdown links..."
+          ERRORS=0
+          # Find all markdown links to local files (not URLs, anchors, or images)
+          grep -roh '\[.*\]([^)]*\.md[^)]*)' --include='*.md' . 2>/dev/null | \
+            sed 's/.*(\([^)]*\)).*/\1/' | \
+            grep -v '^http' | \
+            grep -v '^#' | \
+            sort -u | while read -r link; do
+              # Strip anchor fragments
+              FILE=$(echo "$link" | sed 's/#.*//')
+              # Skip empty
+              [ -z "$FILE" ] && continue
+              # Check relative to repo root
+              if [ ! -f "$FILE" ]; then
+                echo "❌ Dead link: $link"
+                ERRORS=$((ERRORS + 1))
+              fi
+          done
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "❌ Found $ERRORS dead links"
+            exit 1
+          fi
+          echo "✅ All internal links valid."
