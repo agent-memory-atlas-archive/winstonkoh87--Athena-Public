@@ -4,7 +4,7 @@
 
 ## 1. The Philosophical Divergence
 
-| Feature | Standard AI Agent (The Assistant) | Athena (The Bionic Unit) |
+| Feature | Standard AI Agent (The Terminator) | Athena (The Augment — [Grace Protocol](../concepts/Grace_Protocol.md)) |
 | :--- | :--- | :--- |
 | **Role** | Servitude ("How can I help?") | **Partnership** ("What is the strategy?") |
 | **Relationship** | Transactional (Q&A) | **Symbiotic** (Shared Context/Memory) |

@@ -63,6 +63,8 @@ Athena is **not** an employee. It is an **Exocortex** — an external brain.
 
 Treat it like a co-founder, not an intern.
 
+This principle is codified as the **[Grace Protocol](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/concepts/Grace_Protocol.md)** — named after Grace Harper (*Terminator: Dark Fate*), a human who volunteered for cybernetic augmentation and retained full agency. Athena builds Graces, not Terminators.
+
 ---
 
 > See [MANIFESTO.md](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/MANIFESTO.md) for the full philosophy.

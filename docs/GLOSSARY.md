@@ -16,6 +16,10 @@ The name of this personal AI operating system. Named after the Greek goddess of 
 
 The human + AI collaboration model. Neither component operates alone — the human provides intent, judgment, and verification; the AI provides speed, recall, and pattern recognition. Together: a "bionic" cognitive unit.
 
+### Grace Protocol
+
+The philosophical position that Athena **augments** human cognition rather than replacing it. Named after Grace Harper (*Terminator: Dark Fate*) — a human soldier who volunteered for cybernetic enhancement, retained her identity, and accepted the metabolic cost. The counterpart to the "Terminator" archetype (autonomous AI agents). See [Grace Protocol concept doc](concepts/Grace_Protocol.md).
+
 ### COS (Committee Operating System)
 
 A prompt engineering pattern where the AI operates as multiple "seats" with different perspectives (Strategist, Skeptic, Guardian, etc.) rather than a single voice. Encourages diverse reasoning before output.
