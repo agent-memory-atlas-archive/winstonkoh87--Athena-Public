@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
 > **Last Updated**: 05 March 2026  
-> **System Version**: v9.4.1
+> **System Version**: v9.4.2
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 115+ example protocols, reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -194,6 +194,10 @@ The kernel (Laws, Protocols, Skills) is deterministic — strict adherence to pr
 | **Apoptosis** | Context compaction | Deliberately kills stale protocols and sessions when they're no longer useful |
 | **Epigenetics** | Active Context layer | Modifies how protocols are *expressed* without changing the protocol source file |
 | **Metabolism** | Nocturnal auto-consolidation | The system metabolises during shutdown — indexing, compacting, and pruning |
+| **Homeostasis** | Synthetic hormone system (P517) | Resource-stress signals force mode downshift — the first feedback loop in the architecture |
+| **Immune Memory** | Reflexion journaling (P515) | Stores failure lessons as retrievable antibodies — prevents recurring mistakes |
+| **Hippocampal Paging** | Memory paging (P516) | Active page-in/page-out/pin/rewrite of working memory during domain transitions |
+| **Forgetting Curve** | Ebbinghaus decay | Access-weighted decay on retrieval scores — unused memories fade, procedural patterns consolidate |
 
 ---
 
@@ -216,6 +220,10 @@ Every query enters Athena through the **Intent Classifier (P508)** and is routed
 
 **Activation Priority** (when multiple systems could apply): Survival > Life Decision > Trading > Social > Execution > Growth > Learning > Maintenance
 
+**LIDA Broadcast** (v2.1): When a query triggers ≥ 2 Systems at comparable relevance, each matched System generates a 1-sentence framing proposal. The winner is broadcast to all Systems for co-activation awareness — preventing siloed routing on cross-domain queries.
+
+**Homeostatic Overrides** (P517): When context saturation exceeds 80%, the Maintenance system emits a synthetic hormone that forces SNIPER mode and suppresses expensive systems. This is the architecture's first feedback loop.
+
 ### 15 Cognitive Clusters
 
 Each Cognitive System activates a sequence of **Clusters** — domain-specific organs that bundle related skills:
@@ -235,7 +243,7 @@ Each Cognitive System activates a sequence of **Clusters** — domain-specific o
 | 11 | Swarm Orchestrator 🐝 | `marketing-swarm` | "swarm", "parallel agents", "/416" |
 | 12 | Research Pipeline 🔬 | `deep-research-loop` | "research", "deep dive", "/research" |
 | 13 | Build Lifecycle 🏗️ | `spec-driven-dev` | "build", "implement", "code", "/vibe" |
-| 14 | Sovereign Safety 🚨 | `circuit-breaker` | "emergency", "circuit breaker" |
+| 14 | Sovereign Safety 🚨 | `circuit-breaker` | "emergency", "circuit breaker", "system overload" |
 | 15 | Problem-Solving Engine 🔧 | Protocol 504 | "solve", "how do I", "stuck" |
 
 ### Query Routing Flow
@@ -534,6 +542,7 @@ sequenceDiagram
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.4.2 | 05 Mar 2026 | Cognitive Architecture v2.1: 3 new protocols (P515 Reflexion, P516 Memory Paging, P517 Homeostatic Pressure), LIDA Broadcast routing, deterministic exit verification, Ebbinghaus decay, context clearing |
 | v9.4.1 | 05 Mar 2026 | Daemon cleanup: removed deprecated BackgroundIndexer/LightRAG pipeline, sanitized AGENTS.md, PnC audit (private path leaks) |
 | v9.4.0 | 04 Mar 2026 | Biological Stack Architecture: 8 Cognitive Systems (P507), Intent Classifier (P508), 15 Cognitive Clusters, Problem Diagnostics (P504) |
 | v9.3.1 | 02 Mar 2026 | README audit fixes: stale counts, Windows section, changelog date, version consistency |

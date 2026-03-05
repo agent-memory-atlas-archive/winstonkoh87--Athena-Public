@@ -8,6 +8,32 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.4.2 (05 March 2026)
+
+**Cognitive Architecture v2.1**: Introduced the first feedback loop (homeostatic pressure), competitive multi-system routing (LIDA Broadcast), failure memory (reflexion journaling), and agent-controlled memory management (memory paging).
+
+### Key Changes
+
+- **Protocol 517 (Homeostatic Pressure)**: Synthetic hormone system — when context saturation exceeds 80%, a scalar modifier forces SNIPER mode and suppresses expensive cognitive systems. Caps co-activation chains at depth 4. Triggers circuit breaker (P514) after ≥2 consecutive tool failures.
+- **Protocol 515 (Reflexion Journaling)**: Failure memory stored via `[REFLEXION]` tags in quicksave. Captures what failed, why, and the corrective lesson. Retrievable via Exocortex to prevent recurring mistakes — the architecture's immune system.
+- **Protocol 516 (Memory Paging)**: Agent-controlled page-in/page-out/pin/rewrite operations on working memory. Adapted from MemGPT to the prompt layer — enables active memory management during domain transitions.
+- **LIDA Broadcast Routing**: When a query triggers ≥2 Cognitive Systems at comparable relevance, each System generates a 1-sentence framing proposal. Winner is broadcast to all Systems, preventing siloed routing on cross-domain queries.
+- **Deterministic Exit Verification**: Trading clusters #3 (Risk Gate) and #4 (Execution) now require arithmetic proof — show the math, don't assert correctness.
+- **Ebbinghaus Decay**: Maintenance cluster applies access-weighted decay to retrieval scores. Memories not accessed in >30 days receive a decay penalty; frequently co-activated procedural patterns receive permanence multipliers.
+- **Context Clearing (Factory Pipeline)**: `spec-driven-dev` skill now treats the spec artifact as single source of truth after drafting — planning-phase context is discarded to prevent contamination during execution.
+
+### Verification
+
+| Metric | Result |
+|--------|--------|
+| New Protocols | 3 (P515, P516, P517) ✅ |
+| Architecture Protocols Total | 20 ✅ |
+| CLUSTER_INDEX version | v2.1 ✅ |
+| Boot sequence (homeostatic signals) | Wired ✅ |
+| Reflexion format in quicksave | Wired ✅ |
+
+---
+
 ## v9.4.1 (05 March 2026)
 
 **Daemon Cleanup & PnC Audit**: Removed deprecated BackgroundIndexer/LightRAG pipeline from `athenad.py`, sanitized leaked private paths, and synchronized version drift across all docs.
