@@ -6,7 +6,7 @@
 
 **Your memory. Your machine. Any model.**
 
-Open-source AI personalisation layer that gives you persistent memory, structured reasoning, and full data ownership — across ChatGPT, Claude, Gemini, and any model you switch to next.
+Open-source cognitive augmentation layer that gives you persistent memory, structured reasoning, and full data ownership — across ChatGPT, Claude, Gemini, and any model you switch to next.
 
 Platforms forget. Athena doesn't.
 
@@ -43,6 +43,8 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 > *A generic LLM is a brilliant amnesiac. Athena is the hippocampus — the memory that makes intelligence useful.*
 >
 > *Or in engineering terms: The LLM is the engine. Athena is the chassis, the memory, and the rules of the road. Swap the engine anytime — the car remembers every road you've driven.*
+>
+> *The design philosophy: [augment the human, not replace them](docs/concepts/Grace_Protocol.md).*
 
 ### The Personalisation Thesis
 
