@@ -46,9 +46,9 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 >
 > *The design philosophy: [augment the human, not replace them](docs/concepts/Grace_Protocol.md).*
 
-### The Personalisation Thesis
+### The Human Augmentation Thesis
 
-The more context you give Athena, the sharper its answers become. This isn't about remembering your preferences — it's about **reasoning differently because of what it knows about you.**
+Athena's centralised design principle: **augment human cognition, not replace it.** The more context you give Athena, the sharper its answers become — not by remembering your preferences, but by **reasoning differently because of what it knows about you.**
 
 A generic LLM gives generic textbook answers. Athena gives answers that are calibrated to *your specific situation*:
 
