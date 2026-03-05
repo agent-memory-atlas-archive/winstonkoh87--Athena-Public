@@ -16,6 +16,9 @@ on:
       - "**/*.sh"
       - "**/*.yml"
 
+permissions:
+  contents: read
+
 jobs:
   check-links:
     name: Validate Markdown Links & Paths
