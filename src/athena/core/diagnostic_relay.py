@@ -79,7 +79,9 @@ def sanitize_text(text: str) -> str:
 
 
 def capture_diagnostic(
-    exception: Exception, context: Optional[Dict[str, Any]] = None, module_name: str = "unknown"
+    exception: Exception,
+    context: Optional[Dict[str, Any]] = None,
+    module_name: str = "unknown",
 ) -> Dict[str, Any]:
     """
     Capture a structured diagnostic from an exception.
@@ -217,7 +219,9 @@ def relay_error(
     if auto_save:
         filepath = save_diagnostic_draft(diagnostic)
         print(f"📋 Diagnostic saved: {filepath.name}")
-        print("   Review and submit to: https://github.com/[AUTHOR]87/Athena-Public/issues/new")
+        print(
+            "   Review and submit to: https://github.com/[AUTHOR]87/Athena-Public/issues/new"
+        )
         return filepath
 
     return None
@@ -241,7 +245,9 @@ def diagnostic_wrapper(module_name: str = "unknown"):
             except Exception as e:
                 # Extract context from kwargs if available
                 context = {
-                    k: v for k, v in kwargs.items() if isinstance(v, (str, int, float, bool))
+                    k: v
+                    for k, v in kwargs.items()
+                    if isinstance(v, (str, int, float, bool))
                 }
                 relay_error(e, context=context, module_name=module_name)
                 raise  # Re-raise to preserve original behavior
@@ -255,11 +261,16 @@ if __name__ == "__main__":
     # Demo: Test the relay with a fake exception
     print("🧪 Testing Diagnostic Relay...")
     try:
-        raise ValueError("Test error: Column 'name' does not exist in table 'references'")
+        raise ValueError(
+            "Test error: Column 'name' does not exist in table 'references'"
+        )
     except Exception as e:
         path = relay_error(
             e,
-            context={"table_name": "references", "file_path": "/Users/winston/Desktop/test.md"},
+            context={
+                "table_name": "references",
+                "file_path": "/Users/example/Desktop/test.md",
+            },
             module_name="sync.py",
         )
         if path:

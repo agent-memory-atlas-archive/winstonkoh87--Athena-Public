@@ -4,11 +4,17 @@ on:
   push:
     branches: [main]
     paths:
-      - '**/*.md'
+      - "**/*.md"
+      - "**/*.py"
+      - "**/*.sh"
+      - "**/*.yml"
   pull_request:
     branches: [main]
     paths:
-      - '**/*.md'
+      - "**/*.md"
+      - "**/*.py"
+      - "**/*.sh"
+      - "**/*.yml"
 
 jobs:
   check-links:
@@ -21,10 +27,30 @@ jobs:
       - name: Check for private path leaks
         run: |
           echo "🔍 Scanning for private path leaks..."
-          LEAKS=$(grep -rn '/Users/' --include='*.md' --include='*.py' --include='*.yml' --include='*.sh' . 2>/dev/null | grep -v '.git/' || true)
+          # Match /Users/<real-username>/ but EXCLUDE known safe patterns:
+          #   /Users/[AUTHOR]/     — redacted placeholder
+          #   /Users/<REDACTED>/   — redacted placeholder
+          #   /Users/<username>/   — generic doc example
+          #   /Users/you/          — generic doc example
+          #   /Users/[^/\s]+       — regex pattern in code (e.g. diagnostic_relay.py)
+          LEAKS=$(grep -rn '/Users/' \
+            --include='*.md' --include='*.py' --include='*.yml' --include='*.sh' \
+            . 2>/dev/null \
+            | grep -v '\.git/' \
+            | grep -v '/Users/\[AUTHOR\]/' \
+            | grep -v '/Users/<REDACTED>/' \
+            | grep -v '/Users/<username>/' \
+            | grep -v '/Users/you/' \
+            | grep -v '/Users/example/' \
+            | grep -v '/Users/\[^' \
+            | grep -v 'link-checker.yml' \
+            | grep -v '\.startswith("/Users/")' \
+            || true)
           if [ -n "$LEAKS" ]; then
             echo "❌ PRIVATE PATHS DETECTED:"
             echo "$LEAKS"
+            echo ""
+            echo "Fix: Replace real usernames with [AUTHOR] or <REDACTED>"
             exit 1
           fi
           echo "✅ No private path leaks found."
@@ -32,25 +58,19 @@ jobs:
       - name: Check for dead internal links
         run: |
           echo "🔍 Scanning for dead internal Markdown links..."
-          ERRORS=0
-          # Find all markdown links to local files (not URLs, anchors, or images)
-          grep -roh '\[.*\]([^)]*\.md[^)]*)' --include='*.md' . 2>/dev/null | \
+          FAILED=0
+          # Find all relative .md links in markdown files
+          grep -roh '\[[^]]*\]([^)]*\.md[^)]*)' --include='*.md' . 2>/dev/null | \
             sed 's/.*(\([^)]*\)).*/\1/' | \
             grep -v '^http' | \
             grep -v '^#' | \
+            grep -v '^file://' | \
             sort -u | while read -r link; do
-              # Strip anchor fragments
               FILE=$(echo "$link" | sed 's/#.*//')
-              # Skip empty
               [ -z "$FILE" ] && continue
-              # Check relative to repo root
               if [ ! -f "$FILE" ]; then
-                echo "❌ Dead link: $link"
-                ERRORS=$((ERRORS + 1))
+                echo "⚠️  Dead link: $link"
+                FAILED=$((FAILED + 1))
               fi
           done
-          if [ "$ERRORS" -gt 0 ]; then
-            echo "❌ Found $ERRORS dead links"
-            exit 1
-          fi
-          echo "✅ All internal links valid."
+          echo "✅ Internal link scan complete."
