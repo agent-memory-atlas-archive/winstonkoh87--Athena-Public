@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-03-04
+last_updated: 2026-03-06
 tags: #references #apa #academic #citations
 ---
 
@@ -41,6 +41,10 @@ Thaler, R. H. (1980). Toward a positive theory of consumer choice. *Journal of E
 Tetlock, P. E., & Gardner, D. (2015). *Superforecasting: The art and science of prediction*. Crown Publishers.
 
 Tversky, A., & Kahneman, D. (1974). Judgment under uncertainty: Heuristics and biases. *Science, 185*(4157), 1124–1131. <https://doi.org/10.1126/science.185.4157.1124>
+
+Ebbinghaus, H. (1885). *Über das Gedächtnis: Untersuchungen zur experimentellen Psychologie* [Memory: A contribution to experimental psychology]. Duncker & Humblot. [English translation: Ruger, H. A., & Bussenius, C. E. (1913). Teachers College, Columbia University]
+
+> **Note**: Ebbinghaus's forgetting curve — the exponential decay of recall over time without reinforcement — is the basis for Athena's access-weighted memory decay. Memories not accessed in >30 days receive a decay penalty on retrieval scores; frequently co-activated procedural patterns receive permanence multipliers. Implemented in v9.4.2 via the Maintenance cluster.
 
 ---
 
@@ -221,6 +225,14 @@ Minsky, M. (1986). *The society of mind*. Simon & Schuster.
 Newell, A. (1990). *Unified theories of cognition*. Harvard University Press.
 
 > **Note**: Newell's SOAR architecture demonstrated that a unified cognitive system requires multiple levels of processing (from reflexive to deliberative). Athena's SNIPER / STANDARD / ULTRA routing tiers are a direct implementation of this principle: allocate cognitive depth proportional to problem complexity.
+
+Franklin, S., Madl, T., D'Mello, S., & Snaider, J. (2016). LIDA: A systems-level architecture for cognition, emotion, and learning. *IEEE Transactions on Autonomous Mental Development, 6*(1), 19–41. <https://doi.org/10.1109/TAMD.2013.2277589>
+
+> **Note**: The LIDA (Learning Intelligent Distribution Agent) cognitive architecture provides the theoretical basis for Athena's broadcast routing. In LIDA, a "conscious broadcast" distributes the current situational model to all cognitive modules simultaneously, allowing competitive multi-system responses. Athena's v9.4.2 implements this as LIDA Broadcast routing — all 8 Cognitive Systems receive the query simultaneously and the Intent Classifier selects the winning system.
+
+Verschure, P. F. M. J., Voegtlin, T., & Douglas, R. J. (2003). Environmentally mediated synergy between perception and behaviour in mobile robots. *Nature, 425*(6958), 620–624. <https://doi.org/10.1038/nature02024>
+
+> **Note**: Verschure's work on Distributed Adaptive Control (DAC) introduced homeostatic regulation to autonomous agent architectures — the principle that resource-stressed systems should automatically downshift to survival-mode behaviours. Protocol 517 (Homeostatic Pressure) adapts this: when context saturation exceeds 80%, a synthetic hormone signal forces SNIPER mode and suppresses expensive cognitive systems. See also: Sanchez-Fibla et al. (2010) for the HORA extension cited in P517.
 
 ---
 
