@@ -8,6 +8,19 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.4.3 (07 March 2026)
+
+**Maintenance Release**: Version sync, file count corrections, date alignment.
+
+### Key Changes
+
+- **`AGENTS.md`**: Version synced from v9.4.1 → v9.4.3. Date updated.
+- **`README.md`**: Protocol count corrected from "135+" → "138" (actual audited count). Script count corrected from "530+" → "540+" (actual: 539). Version badge, SDK version, and repo structure counts updated.
+- **`pyproject.toml`**: Version bumped to 9.4.3.
+- **Date Sync**: All core files updated to 07 March 2026.
+
+---
+
 ## v9.4.2 (05 March 2026)
 
 **Cognitive Architecture v2.1**: Introduced the first feedback loop (homeostatic pressure), competitive multi-system routing (LIDA Broadcast), failure memory (reflexion journaling), and agent-controlled memory management (memory paging).
