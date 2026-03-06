@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
 > **Last Updated**: 06 March 2026  
-> **System Version**: v9.4.2
+> **System Version**: v9.4.3
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 135+ example protocols, reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -138,7 +138,7 @@ graph TD
 graph BT
     L1["⚛️ Atoms<br/>Laws #0-#4"] --> L2["🧬 Molecules<br/>Rules & Constraints"]
     L2 --> L3["🦠 Cells<br/>397 Protocols"]
-    L3 --> L4["🧫 Tissues<br/>21 Skills"]
+    L3 --> L4["🧫 Tissues<br/>24 Skills"]
     L4 --> L5["🫁 Organs<br/>15 Cognitive Clusters"]
     L5 --> L6["🏥 Organ Systems<br/>8 Cognitive Systems"]
     L6 --> L7["🧠 Organism<br/>Athena"]
@@ -152,7 +152,7 @@ graph BT
 | 1 | **Atoms** | Laws #0-#4 | Law #1: No Ruin (absolute, non-negotiable) |
 | 2 | **Molecules** | Rules & Constraints | "Never risk >5% of bankroll" |
 | 3 | **Cells** | 397 Protocols | Protocol 330: Economic Expected Value |
-| 4 | **Tissues** | 21 Skills | `trading-risk-gate` (bundles 3 protocols) |
+| 4 | **Tissues** | 24 Skills | `trading-risk-gate` (bundles 3 protocols) |
 | 5 | **Organs** | 15 Cognitive Clusters | Cluster #3: Trading Risk Gate |
 | 6 | **Organ Systems** | 8 Cognitive Systems | Trading System 📈 |
 | 7 | **Organism** | Athena | The complete synthetic intelligence |
@@ -542,6 +542,7 @@ sequenceDiagram
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.4.3 | 07 Mar 2026 | Cognitive Architecture v2.3: GTO Architecture Audit — 16 protocols promoted to auto-wired (36% wiring ratio, up from 16%), 5 dead-weight protocols archived, 3 new skills (academic-delivery, statistical-analysis, client-pricing), skills 21→24 |
 | v9.4.2 | 05 Mar 2026 | Cognitive Architecture v2.1: 3 new protocols (P515 Reflexion, P516 Memory Paging, P517 Homeostatic Pressure), LIDA Broadcast routing, deterministic exit verification, Ebbinghaus decay, context clearing |
 | v9.4.1 | 05 Mar 2026 | Daemon cleanup: removed deprecated BackgroundIndexer/LightRAG pipeline, sanitized AGENTS.md, PnC audit (private path leaks) |
 | v9.4.0 | 04 Mar 2026 | Biological Stack Architecture: 8 Cognitive Systems (P507), Intent Classifier (P508), 15 Cognitive Clusters, Problem Diagnostics (P504) |
