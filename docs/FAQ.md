@@ -34,7 +34,7 @@ Athena separates the **IDE** from the **Reasoning Engine**, so you are never loc
 
 - **Gemini 3.1 Pro**
 - **Claude Opus 4.6**
-- **GPT-5.3**
+- **GPT-5.4**
 - Any LLM that can read your local Markdown files
 
 ---

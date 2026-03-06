@@ -1,58 +1,49 @@
-# System Files
-.DS_Store
-Thumbs.db
 
-# Environments
-.env
-.env.local
-.venv/
-venv/
-__pycache__/
-*.pyc
-
-# Logs
-*.log
-npm-debug.log*
-
-# IDEs
-.vscode/
-.idea/
-
-# Keys
-*.key
-*.pem
-*.cert
-
+!examples/session_logs/
+# Agent State (NEVER commit - contains sensitive paths/data)
+# Build artifacts
 # Databases
+# Environments
+# IDEs
+# Keys
+# Logs
+# Personal Data (NEVER commit - contains personal info)
+# Private Data (IMPORTANT: Keep your sessions private)
+# Runtime
+# System Files
+**/Constraints_Master_Private.md
+**/Psychology_L1L5*.md
+**/User_Profile*.md
+*.cert
 *.db
+*.egg-info/
+*.key
+*.log
+*.pem
+*.pyc
+*.session.md
 *.sqlite
 *.sqlite3
-
-# Private Data (IMPORTANT: Keep your sessions private)
-session_logs/
-!examples/session_logs/
-.context/memories/session_logs/
-*.session.md
-
-# Agent State (NEVER commit - contains sensitive paths/data)
-.agent/state/
-.agent/inputs/
-.agent/graphrag/
-*manifest*.json
 *cache*.json
-
-# Runtime
+*manifest*.json
+.DS_Store
+.agent/graphrag/
+.agent/inputs/
+.agent/state/
 .athenad.pid
-
-# Build artifacts
-dist/
-build/
-*.egg-info/
-
-TAG_INDEX_*.md
-
-# Personal Data (NEVER commit - contains personal info)
+.context/memories/session_logs/
+.env
+.env.local
 .framework/
-**/User_Profile*.md
-**/Psychology_L1L5*.md
-**/Constraints_Master_Private.md
+.idea/
+.venv/
+.vscode/
+TAG_INDEX_*.md
+Thumbs.db
+__pycache__/
+athenad.log
+build/
+dist/
+npm-debug.log*
+session_logs/
+venv/
