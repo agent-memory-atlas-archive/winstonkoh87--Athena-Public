@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 06 March 2026  
-> **System Version**: v9.4.3
+> **Last Updated**: 07 March 2026  
+> **System Version**: v9.4.4
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 135+ example protocols, reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -218,7 +218,7 @@ Every query enters Athena through the **Intent Classifier (P508)** and is routed
 | 📖 **Learning** | Understanding / knowledge | #12 → #9 → #15 → #8 | "Teach me X", "Explain how this works" |
 | 🔄 **Maintenance** | System homeostasis | #1 → #2 → #14 | /diagnose, /audit, /end, health check |
 
-**Activation Priority** (when multiple systems could apply): Survival > Life Decision > Trading > Social > Execution > Growth > Learning > Maintenance
+**Activation Priority** (when multiple systems could apply, ordered by irreversibility of damage): Survival > Life Decision > Trading > Social > Execution > Growth > Learning > Maintenance
 
 **LIDA Broadcast** (v2.1): When a query triggers ≥ 2 Systems at comparable relevance, each matched System generates a 1-sentence framing proposal. The winner is broadcast to all Systems for co-activation awareness — preventing siloed routing on cross-domain queries.
 
@@ -248,25 +248,48 @@ Each Cognitive System activates a sequence of **Clusters** — domain-specific o
 
 ### Query Routing Flow
 
+> **Design**: The waterfall is ordered by **irreversibility of damage** — ruin signals are intercepted first, reversible queries last. This is the GTO (Game Theory Optimal) routing: `cost(misclassifying ruin as build)` >>> `cost(misclassifying build as ruin)`.
+
 ```mermaid
 graph LR
     Q[User Query] --> P508{P508: Intent Classifier}
-    P508 --> |"Q1: Ruin threat?"| SUR[🛡️ Survival]
-    P508 --> |"Q2: Irreversible?"| LIFE[🫀 Life Decision]
-    P508 --> |"Q3: Capital?"| TRADE[📈 Trading]
-    P508 --> |"Q4: Build/ship?"| EXEC[⚙️ Execution]
-    P508 --> |"Q5: Distribute?"| GROW[📣 Growth]
-    P508 --> |"Q6: Interpersonal?"| SOC[🤝 Social]
-    P508 --> |"Q7: Learn/teach?"| LEARN[📖 Learning]
-    P508 --> |"Q8: Maintenance?"| MAINT[🔄 Maintenance]
+    P508 --> |"Q1: Ruin threat?"| SUR["🛡️ Survival"]
+    P508 --> |"Q2: Irreversible?"| LIFE["🫀 Life Decision"]
+    P508 --> |"Q3: Capital?"| TRADE["📈 Trading"]
+    P508 --> |"Q4: Interpersonal?"| SOC["🤝 Social"]
+    P508 --> |"Q5: Build/ship?"| EXEC["⚙️ Execution"]
+    P508 --> |"Q6: Distribute?"| GROW["📣 Growth"]
+    P508 --> |"Q7: Learn/teach?"| LEARN["📖 Learning"]
+    P508 --> |"Q8: Maintenance?"| MAINT["🔄 Maintenance"]
 
-    TRADE --> C3[#3 Risk Gate] --> C4[#4 Execution] --> C5[#5 Analytics]
-    EXEC --> C15[#15 Problem-Solving] --> C13[#13 Build] --> C11[#11 Swarm]
+    SUR --> S14["#14 Safety"] --> S3["#3 Risk Gate"] --> S15["#15 Problem-Solving"] --> S8["#8 Adversarial QA"]
+    LIFE --> L15["#15 Problem-Solving"] --> L7["#7 Inner Work"] --> L9["#9 Strategic"] --> L6["#6 Social Contract"] --> L8["#8 Adversarial QA"]
+    TRADE --> C3["#3 Risk Gate"] --> C4["#4 Execution"] --> C5["#5 Analytics"] --> C9["#9 Strategic"]
+    SOC --> SC15["#15 Problem-Solving"] --> SC7["#7 Inner Work"] --> SC6["#6 Social Contract"] --> SC8["#8 Adversarial QA"]
+    EXEC --> E15["#15 Problem-Solving"] --> E13["#13 Build"] --> E11["#11 Swarm"] --> E8["#8 Adversarial QA"]
+    GROW --> G12["#12 Research"] --> G10["#10 Distribution"] --> G11["#11 Swarm"] --> G8["#8 Adversarial QA"]
+    LEARN --> LN12["#12 Research"] --> LN9["#9 Strategic"] --> LN15["#15 Problem-Solving"] --> LN8["#8 Adversarial QA"]
+    MAINT --> M1["#1 Diagnostic"] --> M2["#2 Context"] --> M14["#14 Safety"]
 
     style P508 fill:#2563eb,color:#fff
     style SUR fill:#ef4444,color:#fff
-    style TRADE fill:#22c55e,color:#fff
+    style LIFE fill:#ef4444,color:#fff
+    style TRADE fill:#f59e0b,color:#fff
+    style SOC fill:#f59e0b,color:#fff
+    style EXEC fill:#22c55e,color:#fff
+    style GROW fill:#22c55e,color:#fff
+    style LEARN fill:#3b82f6,color:#fff
+    style MAINT fill:#6b7280,color:#fff
 ```
+
+**Priority Tiers** (color-coded):
+
+| Tier | Color | Systems | Misrouting Cost |
+|:---|:---|:---|:---|
+| 🔴 Critical | Red | Survival, Life Decision | Permanent damage — must intercept first |
+| 🟠 High | Amber | Trading, Social | Capital/relationship risk — recoverable but costly |
+| 🟢 Standard | Green | Execution, Growth | Reversible — misrouting costs time, not ruin |
+| 🔵 Support | Blue/Grey | Learning, Maintenance | Lowest stakes — can always retry |
 
 ### Cross-System Handoffs
 
@@ -542,6 +565,7 @@ sequenceDiagram
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.4.4 | 07 Mar 2026 | GTO Routing Diagram: Expanded from 2/8 → 8/8 system cluster chains, added priority tier color-coding (Critical/High/Standard/Support), reordered Q4-Q6 to match priority waterfall (Social before Execution), added GTO design note |
 | v9.4.3 | 07 Mar 2026 | Cognitive Architecture v2.3: GTO Architecture Audit — 16 protocols promoted to auto-wired (36% wiring ratio, up from 16%), 5 dead-weight protocols archived, 3 new skills (academic-delivery, statistical-analysis, client-pricing), skills 21→24 |
 | v9.4.2 | 05 Mar 2026 | Cognitive Architecture v2.1: 3 new protocols (P515 Reflexion, P516 Memory Paging, P517 Homeostatic Pressure), LIDA Broadcast routing, deterministic exit verification, Ebbinghaus decay, context clearing |
 | v9.4.1 | 05 Mar 2026 | Daemon cleanup: removed deprecated BackgroundIndexer/LightRAG pipeline, sanitized AGENTS.md, PnC audit (private path leaks) |
