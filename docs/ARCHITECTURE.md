@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 07 March 2026  
-> **System Version**: v9.4.4
+> **Last Updated**: 09 March 2026  
+> **System Version**: v9.4.5
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 135+ example protocols, reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -213,7 +213,7 @@ Every query enters Athena through the **Intent Classifier (P508)** and is routed
 | ⚙️ **Execution** | Build / ship / create | #15 → #13 → #11 → #8 | Code, implement, ship, assignment |
 | 📈 **Trading** | Capital deployment | #3 → #4 → #5 → #9 | Trade entry, position sizing, drawdown |
 | 📣 **Growth** | Distribution / audience | #12 → #10 → #11 → #8 | Marketing, SEO, launch, GTM strategy |
-| 🛡️ **Survival** | Crisis / ruin prevention | #14 → #3 → #15 → #8 → P506 | "I lost everything", panic, emergency |
+| 🛡️ **Survival** | Crisis / ruin prevention | P509 → #14 → P519 → #15 → P521 → P520 → #8 → P506 | "I lost everything", panic, emergency |
 | 🤝 **Social** | Interpersonal dynamics | #15 → #7 → #6 → #8 → P506 | Conflict resolution, boundary setting |
 | 📖 **Learning** | Understanding / knowledge | #12 → #9 → #15 → #8 | "Teach me X", "Explain how this works" |
 | 🔄 **Maintenance** | System homeostasis | #1 → #2 → #14 | /diagnose, /audit, /end, health check |
@@ -262,7 +262,7 @@ graph LR
     P508 --> |"Q7: Learn/teach?"| LEARN["📖 Learning"]
     P508 --> |"Q8: Maintenance?"| MAINT["🔄 Maintenance"]
 
-    SUR --> S14["#14 Safety"] --> S3["#3 Risk Gate"] --> S15["#15 Problem-Solving"] --> S8["#8 Adversarial QA"]
+    SUR --> S509["P509 Triage"] --> S14["#14 Safety"] --> S519["P519 Goal"] --> S15["#15 Problem-Solving"] --> S521["P521 Domain"] --> S520["P520 Blast Radius"] --> S8["#8 Adversarial QA"]
     LIFE --> L15["#15 Problem-Solving"] --> L7["#7 Inner Work"] --> L9["#9 Strategic"] --> L6["#6 Social Contract"] --> L8["#8 Adversarial QA"]
     TRADE --> C3["#3 Risk Gate"] --> C4["#4 Execution"] --> C5["#5 Analytics"] --> C9["#9 Strategic"]
     SOC --> SC15["#15 Problem-Solving"] --> SC7["#7 Inner Work"] --> SC6["#6 Social Contract"] --> SC8["#8 Adversarial QA"]
@@ -565,6 +565,7 @@ sequenceDiagram
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.4.5 | 09 Mar 2026 | Two-Mode Session Architecture: Lightweight (skip `/start`) vs Full Boot. Framework Tax concept. Orchestrator-Executor Pipeline. Crisis Architecture: P509 (Emotional Triage), P519 (Terminal Goal Elicitation), P520 (Blast Radius Calculator), P521 (Crisis Domain Constraints) |
 | v9.4.4 | 07 Mar 2026 | GTO Routing Diagram: Expanded from 2/8 → 8/8 system cluster chains, added priority tier color-coding (Critical/High/Standard/Support), reordered Q4-Q6 to match priority waterfall (Social before Execution), added GTO design note |
 | v9.4.3 | 07 Mar 2026 | Cognitive Architecture v2.3: GTO Architecture Audit — 16 protocols promoted to auto-wired (36% wiring ratio, up from 16%), 5 dead-weight protocols archived, 3 new skills (academic-delivery, statistical-analysis, client-pricing), skills 21→24 |
 | v9.4.2 | 05 Mar 2026 | Cognitive Architecture v2.1: 3 new protocols (P515 Reflexion, P516 Memory Paging, P517 Homeostatic Pressure), LIDA Broadcast routing, deterministic exit verification, Ebbinghaus decay, context clearing |

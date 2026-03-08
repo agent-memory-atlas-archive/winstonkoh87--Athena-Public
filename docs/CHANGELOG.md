@@ -1,10 +1,41 @@
 # Athena Changelog
 
-> **Last Updated**: 07 March 2026
+> **Last Updated**: 09 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.4.5 (09 March 2026)
+
+**Two-Mode Session Architecture & Crisis Architecture Upgrade**
+
+### Session Architecture
+
+- **Two Session Modes**: Introduced Lightweight mode (skip `/start`, just chat, `/end` when done) and Full Boot mode (`/start` → Work → `/end`). Documented in `BEST_PRACTICES.md` and `MULTI_MODEL_STRATEGY.md`.
+- **The Framework Tax**: New concept documenting why Athena's ~10K token system prompt is valuable overhead for complex tasks but unnecessary waste for simple ones. Provides clear decision heuristic for mode selection.
+- **Orchestrator-Executor Pipeline**: Formal documentation of the Gemini (scoping) → Opus (execution) → Gemini (QA) workflow that cuts frontier token usage by 50-70%.
+- **Updated Anti-Patterns**: Added 3 new anti-patterns (brain dumps on Frontier, `/start` for quick questions, raw client briefs to Frontier).
+- **Updated Quick Reference**: Quick reference card now includes Lightweight mode and scoping/planning tasks.
+
+### Crisis Architecture
+
+- **Protocol 509 (Emotional Triage)**: First-contact protocol for crisis-flagged queries. Classifies emotional state before routing to cognitive systems.
+- **Protocol 519 (Terminal Goal Elicitation)**: Extracts the user's actual desired end-state during crisis, preventing premature solution-jumping.
+- **Protocol 520 (Blast Radius Calculator)**: Quantifies potential damage across dimensions (financial, relational, health, career, legal) before recommending action.
+- **Protocol 521 (Crisis Domain Constraints)**: Hard-coded domain-specific safety rules for crisis contexts (e.g., never recommend leverage in financial panic).
+- **Updated Survival System**: Cluster chain updated from `#14 → #3 → #15 → #8 → P506` to `P509 → #14 → P519 → #15 → P521 → P520 → #8 → P506`.
+
+### Files Changed
+
+- `docs/BEST_PRACTICES.md` — Rewrote §2 Session Discipline
+- `docs/MULTI_MODEL_STRATEGY.md` — Added Session Modes, Framework Tax, Orchestrator-Executor Pipeline sections
+- `docs/ARCHITECTURE.md` — Updated Survival system cluster chain, version history
+- `docs/CHANGELOG.md` — This entry
+- `README.md` — Version badge, date, How It Works diagram, changelog
+- `pyproject.toml` — Version bump
 
 ---
 

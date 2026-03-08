@@ -12,13 +12,13 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.4.4-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.4.5-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](docs/FAQ.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 07 March 2026*
+*Last updated: 09 March 2026*
 
 </div>
 
@@ -241,20 +241,35 @@ To resolve this natively without altering the codebase:
 
 ## 🔄 How It Works
 
-Every session follows one cycle: **`/start` → Work → `/end`**. Each cycle deposits structured memory. Over hundreds of cycles, the AI stops being generic and starts thinking like *you*.
+Every session follows one cycle. **Two modes** let you match overhead to task complexity:
 
 ```mermaid
 flowchart LR
-    A["/start"] --> B["Work"]
-    B --> C["/end"]
-    C --> D["Memory"]
-    D --> A
+    subgraph "🟢 Lightweight Mode"
+        A1["Chat"] --> C1["/end"]
+        C1 --> D1["Memory"]
+    end
 
-    style A fill:#22c55e,color:#fff,stroke:#333
-    style C fill:#ef4444,color:#fff,stroke:#333
-    style D fill:#8b5cf6,color:#fff,stroke:#333
-    style B fill:#3b82f6,color:#fff,stroke:#333
+    subgraph "🔴 Full Boot Mode"
+        A2["/start"] --> B2["Work"]
+        B2 --> C2["/end"]
+        C2 --> D2["Memory"]
+        D2 --> A2
+    end
+
+    style A1 fill:#3b82f6,color:#fff,stroke:#333
+    style C1 fill:#ef4444,color:#fff,stroke:#333
+    style D1 fill:#8b5cf6,color:#fff,stroke:#333
+    style A2 fill:#22c55e,color:#fff,stroke:#333
+    style C2 fill:#ef4444,color:#fff,stroke:#333
+    style D2 fill:#8b5cf6,color:#fff,stroke:#333
+    style B2 fill:#3b82f6,color:#fff,stroke:#333
 ```
+
+| Mode | When | Flow |
+|:-----|:-----|:-----|
+| **🟢 Lightweight** | General chat, brain dumps, quick Q&A | Just chat → `/end` |
+| **🔴 Full Boot** | Code, money, architecture, irreversible decisions | `/start` → Work → `/end` |
 
 | Sessions | What Happens |
 |:---------|:------------|
@@ -421,6 +436,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.4.5** (Mar 09 2026): Two-Mode Session Architecture — Lightweight (skip `/start`) vs Full Boot. Framework Tax concept. Orchestrator-Executor Pipeline. Crisis Architecture (P509, P519, P520, P521)
 - **v9.4.4** (Mar 07 2026): GTO Routing Diagram — expanded from 2/8 → 8/8 system cluster chains, priority tier color-coding (Critical/High/Standard/Support), reordered Q4-Q6 to match priority waterfall
 - **v9.4.3** (Mar 07 2026): Maintenance — AGENTS.md version sync, file count corrections (138 protocols, 540+ scripts), date alignment
 - **v9.4.2** (Mar 05 2026): Cognitive Architecture v2.1 — Homeostatic Pressure (P517), Reflexion Journaling (P515), Memory Paging (P516), LIDA Broadcast routing, deterministic exit verification, Ebbinghaus decay, context clearing

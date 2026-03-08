@@ -1,6 +1,6 @@
 # Best Practices
 
-> **Last Updated**: 24 February 2026
+> **Last Updated**: 09 March 2026
 
 Operational discipline for running Athena sustainably. These aren't features — they're habits that prevent data loss, reduce friction, and keep your system compounding.
 
@@ -35,15 +35,33 @@ Your `.context/` folder **is** your brain. Losing it means losing every session,
 
 ## 2. Session Discipline
 
-### Always `/start` and `/end`
+### Two Session Modes
 
-The most common mistake is working without bookends. Without `/start`, there's no session log. Without `/end`, nothing gets committed.
+Not every conversation needs the full boot sequence. Athena supports **two modes** — pick the right one based on what you're doing:
+
+| Mode | When To Use | Flow |
+|:-----|:------------|:-----|
+| **🟢 Lightweight** | General chat, brain dumps, idea capture, Q&A, quick lookups | Just chat → `/end` when done |
+| **🔴 Full Boot** | Coding, architecture, client work, trading, anything irreversible | `/start` → Work → `/end` |
+
+**The Decision Heuristic**: If you can summarize the goal in one sentence AND it doesn't touch code, money, or irreversible decisions → **Lightweight mode**. Everything else → **Full Boot**.
 
 | ✅ Do | ❌ Don't |
 |:-------|:---------|
-| `/start` → Work → `/end` | Jump straight into asking questions without booting |
+| Use Lightweight for casual chats and brain dumps | Run `/start` for a 5-minute question |
+| Use Full Boot for client work, code, and high-stakes tasks | Skip `/start` when working on code or money |
+| Always `/end` — even in Lightweight mode | Forget to `/end` (nothing gets committed) |
 | `/save` mid-session for long threads | Rely on the AI to "remember" across sessions |
 | One focused topic per session | Cram five unrelated tasks into one thread |
+
+> [!IMPORTANT]
+> **`/end` is non-negotiable in both modes.** `/start` is optional for lightweight chat. `/end` is what triggers the session log, memory persistence, and git commit. Skip `/end` and nothing gets saved.
+
+### Why Two Modes?
+
+The `/start` workflow loads your full identity, protocols, and routing architecture (~10K tokens). For a complex coding session, this investment pays for itself many times over. For a quick question or brain dump, it's unnecessary overhead that burns tokens and time.
+
+**Lightweight mode** gives you raw model performance with zero framework tax. **Full Boot mode** gives you the full Athena cognitive stack. Match the mode to the task.
 
 ### The One-Feature Rule
 
