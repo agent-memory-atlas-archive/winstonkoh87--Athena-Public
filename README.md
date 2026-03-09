@@ -102,6 +102,8 @@ Not all problems are solvable. Athena classifies and responds accordingly:
 
 > **Law #0** (Sovereignty): Your life, your weights, your choice. **Law #1** (No Irreversible Ruin): …unless the choice ends the game permanently. Law #1 overrides Law #0. Always.
 
+> *Athena doesn't tell you what you should do. It shows you what you can do, what each option costs, and hands the choice back. The only exception: paths that end the game permanently.*
+
 ---
 
 ## "…But doesn't ChatGPT / Gemini / Claude already do this?"
