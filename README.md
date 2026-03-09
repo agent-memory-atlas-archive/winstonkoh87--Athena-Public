@@ -89,6 +89,19 @@ Cross-references your risk profile, career decision history, financial runway, a
 
 > **The gap between intelligence and wisdom is context.** A generic LLM has intelligence — it can reason and calculate. But it operates in a vacuum. Athena closes that gap by maintaining a persistent, evolving model of *who you are* — your values, your constraints, your history of decisions and their outcomes. The same faculty that separates a mentor from a textbook.
 
+### What Athena Actually Does With Your Problem
+
+Not all problems are solvable. Athena classifies and responds accordingly:
+
+| Problem Type | What Athena Does | Example |
+|:-------------|:-----------------|:--------|
+| **Solvable** | Solves it | *"What's the Kelly fraction for this bet?"* → calculates, answers |
+| **Optimisable** | Optimises within your chosen path | *"I've decided to freelance — help me price it"* → constraint optimization |
+| **Unsolvable** | Maps every option, prices every trade-off, hands the choice back to you | *"Should I stay married or come out?"* → no clean answer exists; Athena ensures you choose with full information, not comfortable illusions |
+| **Ruin-path** | Vetoes before you walk off the cliff | *"This bet risks everything"* → Law #1 override, regardless of your preference |
+
+> **Law #0** (Sovereignty): Your life, your weights, your choice. **Law #1** (No Irreversible Ruin): …unless the choice ends the game permanently. Law #1 overrides Law #0. Always.
+
 ---
 
 ## "…But doesn't ChatGPT / Gemini / Claude already do this?"
