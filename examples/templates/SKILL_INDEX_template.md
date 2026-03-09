@@ -74,7 +74,7 @@
 
 ## Workflow
 
-- [examples/protocols/workflow/103-promptography.md](examples/protocols/workflow/103-promptography.md)
+- [examples/protocols/workflow/109-promptography.md](examples/protocols/workflow/109-promptography.md)
 - [../workflow/53-adventure-mode.md](../workflow/53-adventure-mode.md)
 - [examples/protocols/workflow/62-co-thinking-interface.md](examples/protocols/workflow/62-co-thinking-interface.md)
 - [examples/protocols/workflow/69-iterative-siege.md](examples/protocols/workflow/69-iterative-siege.md)
