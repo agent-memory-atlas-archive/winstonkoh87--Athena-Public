@@ -349,9 +349,9 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 | | Use Case | What It Looks Like |
 |:-|:---------|:-------------------|
+| 🏠 | **Life Management** | Daily routines, health tracking, pet care, family scheduling — the widest entry point and the fastest to show compounding. By day 3, Athena remembers your schedule. By month 3, it anticipates your patterns. — [see how one user built a full life OS in 72 hours](docs/CASE_STUDIES.md#case-study-1-from-routine-app-to-life-engine-in-72-hours) |
 | 🧠 | **Problem Solving** | *"I can't afford $200/hr therapy but I need to understand why I keep self-sabotaging."* — Athena runs a structured schema interview, maps your internal protective parts (IFS methodology), and connects the pattern to your documented history. Session 40 recalls the wound identified in session 3. A therapist charges $200+/hr and sees you once a week. Athena is available 24/7 for the cost of your AI subscription. — [case study →](docs/CASE_STUDIES.md#case-study-2-the-200hr-therapist-alternative) |
 | 🎯 | **Decision Making** | *"Should I take this job? Sign this contract? Confront this person?"* — Athena cross-references your risk profile, financial runway, career decision history, and the regret patterns from your last 3 similar decisions to produce a recommendation no generic LLM could give. A business coach charges $500+/hr. Athena does it in under an hour. — [case study →](docs/CASE_STUDIES.md#case-study-3-the-multi-stakeholder-career-decision) |
-| 🏠 | **Life Management** | Daily routines, health tracking, pet care, family scheduling — [see how one user built a full life OS in 72 hours](docs/CASE_STUDIES.md#case-study-1-from-routine-app-to-life-engine-in-72-hours) |
 | 💼 | **Work & Projects** | Switch between multiple client projects without losing context. Meeting prep, cross-team knowledge, shift scheduling. |
 | ✍️ | **Writing & Voice** | After 30 sessions, the AI stops sounding like ChatGPT and starts sounding like *you*. Learns your style from your own writing samples. |
 | 🔬 | **Research & Synthesis** | Compile 200 sources into one framework — still searchable and citable 6 months later. |
@@ -375,13 +375,15 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 > **Try before you buy.** Athena works with Google Antigravity's free tier — clone the repo, type `/start`, and see if it clicks. No credit card, no trial period, no catch. Upgrade only when you hit the free tier's daily limits.
 
+> **Why $200/mo is worth it for power users.** Heavy Athena users routinely consume the equivalent of $2K–$3K in API costs per month. The subscription cap turns variable cost into fixed cost — the more you use it, the better the deal. Use Gemini models for standard work and reserve frontier models (e.g. Claude Opus) for high-stakes decisions where reasoning depth matters most.
+
 > Boot cost is ~10K tokens — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
 
 > [!NOTE]
 > Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Opus 4.6, Gemini 3.1 Pro, GPT-5.4). Start with the free tier to test compatibility with your preferred model.
 
 > [!TIP]
-> **Save money getting started** *(as of 28 Feb 2026)*. Google offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers — enough to fully evaluate Athena with frontier-tier Antigravity limits at $0. Alternatively, if someone you know is on a Google AI Pro or Ultra plan, they can add you as a family member — each member gets their own independent Antigravity quota at no extra cost.
+> **Save money getting started** *(as of 09 Mar 2026)*. Google offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers — enough to fully evaluate Athena with frontier-tier Antigravity limits at $0. Alternatively, if someone you know is on a Google AI Pro or Ultra plan, they can add you as a family member — each member gets their own independent Antigravity quota at no extra cost.
 
 ---
 
