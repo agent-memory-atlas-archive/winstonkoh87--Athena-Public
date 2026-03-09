@@ -1,10 +1,10 @@
 # Athena Workspace Architecture
 
 > **Last Updated**: 09 March 2026  
-> **System Version**: v9.4.5
+> **System Version**: v9.4.7
 
 > [!NOTE]
-> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 135+ example protocols, reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
+> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 140+ example protocols, 580+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
 
 ---
 
@@ -88,7 +88,7 @@ Athena/
 │
 ├── Athena-Public/                 # ← PUBLIC PORTFOLIO
 │   ├── docs/                      # This documentation
-│   ├── examples/                  # 135+ public protocol examples, templates, scripts
+│   ├── examples/                  # 140+ public protocol examples, 580+ scripts, templates
 │   ├── src/                       # Public SDK source
 │   ├── community/                 # Community resources
 │   └── README.md                  # Repository overview
@@ -223,6 +223,24 @@ Every query enters Athena through the **Intent Classifier (P508)** and is routed
 **LIDA Broadcast** (v2.1): When a query triggers ≥ 2 Systems at comparable relevance, each matched System generates a 1-sentence framing proposal. The winner is broadcast to all Systems for co-activation awareness — preventing siloed routing on cross-domain queries.
 
 **Homeostatic Overrides** (P517): When context saturation exceeds 80%, the Maintenance system emits a synthetic hormone that forces SNIPER mode and suppresses expensive systems. This is the architecture's first feedback loop.
+
+### Wiring Topology (v2.6)
+
+> **Cognitive Systems v2.6** — GTO Declaration (09 Mar 2026)
+
+Of 93 total protocols in the routing table, **40 are directly wired** to cluster trigger paths — a **43% wiring ratio**. This is the **structural ceiling (GTO)**.
+
+The remaining ~57% are unwireable by design:
+
+| Category | Example | Why It Can't Be Wired |
+|:---|:---|:---|
+| **Infrastructure** | P508 (Intent Classifier), P504 (Problem Diagnostics) | These *are* the routing mechanism — you can't route to the router |
+| **Meta-Governance** | P517 (Homeostatic Pressure), P515 (Reflexion) | Always-on system management — not query-triggered |
+| **User-Invoked** | `/start`, `/end`, `/diagnose` | Explicit slash commands, not intent-classified |
+| **Reference-Only** | P507 (Cognitive Systems spec) | Knowledge assets, not executable procedures |
+| **Composable Atoms** | P330 (EEV), P509 (Triage) | Sub-protocols embedded within larger skills |
+
+**The true metric is Query Coverage, not Wiring Ratio.** All 8 cognitive system chains are fully mapped. 95%+ of query archetypes activate the correct cluster sequence. Adding more wires would create redundant paths without improving coverage.
 
 ### 15 Cognitive Clusters
 
@@ -565,6 +583,7 @@ sequenceDiagram
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.4.7 | 09 Mar 2026 | Safety Documentation & Governance Hardening — `SAFETY.md`, README safety disclaimers, Cognitive Systems v2.6 GTO Declaration (43% wiring ratio = structural ceiling, 95%+ query coverage) |
 | v9.4.5 | 09 Mar 2026 | Two-Mode Session Architecture: Lightweight (skip `/start`) vs Full Boot. Framework Tax concept. Orchestrator-Executor Pipeline. Crisis Architecture: P509 (Emotional Triage), P519 (Terminal Goal Elicitation), P520 (Blast Radius Calculator), P521 (Crisis Domain Constraints) |
 | v9.4.4 | 07 Mar 2026 | GTO Routing Diagram: Expanded from 2/8 → 8/8 system cluster chains, added priority tier color-coding (Critical/High/Standard/Support), reordered Q4-Q6 to match priority waterfall (Social before Execution), added GTO design note |
 | v9.4.3 | 07 Mar 2026 | Cognitive Architecture v2.3: GTO Architecture Audit — 16 protocols promoted to auto-wired (36% wiring ratio, up from 16%), 5 dead-weight protocols archived, 3 new skills (academic-delivery, statistical-analysis, client-pricing), skills 21→24 |

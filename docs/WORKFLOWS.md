@@ -18,6 +18,9 @@ Workflows are slash commands that trigger predefined sequences of actions. They'
 | [`/research`](../examples/workflows/research.md) | Exhaustive multi-source investigation | High |
 | [`/plan`](../examples/workflows/plan.md) | Structured planning with pre-mortem | Medium |
 | [`/brief`](../examples/workflows/brief.md) | Pre-prompt clarification protocol | Medium |
+| [`/project`](../examples/workflows/project.md) | Multi-project switchboard (view, add, switch, triage) | Medium |
+| [`/diagnose`](../examples/workflows/diagnose.md) | Read-only workspace health check | Low |
+| [`/needful`](../examples/workflows/needful.md) | Autonomous high-value action (AI judges what's needed) | High |
 | [`/refactor`](../examples/workflows/refactor.md) | Full workspace optimization | High |
 | [`/vibe`](../examples/workflows/vibe.md) | Ship at 70%, iterate fast | Low |
 | [`/deploy`](../examples/workflows/deploy.md) | Sanitized public repo sync | Medium |

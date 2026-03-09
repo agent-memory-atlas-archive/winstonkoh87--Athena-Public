@@ -8,7 +8,7 @@
 | **Local** | Your machine only | Sensitive data, air-gapped environments |
 | **Hybrid** | Local files + cloud embeddings | Best of both (embeddings only leave machine) |
 
-> **Sensitive data?** Keep it local. The `athena` SDK supports local vector stores (ChromaDB, LanceDB) for users who don't want data leaving their machine. See [LOCAL_MODE.md](docs/LOCAL_MODE.md).
+> **Sensitive data?** Keep it local. The `athena` SDK supports local vector stores (ChromaDB, LanceDB) for users who don't want data leaving their machine. Install with `pip install -e ".[full]"` and set `ATHENA_STORAGE=local` in your environment. See [Getting Started](GETTING_STARTED.md) for setup details.
 
 ## What Leaves Your Machine (Cloud Mode)
 
