@@ -8,6 +8,32 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.4.7 (09 March 2026)
+
+**Safety Documentation & Governance Hardening**
+
+### Key Changes
+
+- **`SAFETY.md`** (NEW): Clinical disclaimer, crisis contacts (US/UK/International), clear boundaries on limitations — addresses external audit feedback on therapeutic/financial claims.
+- **`README.md`**: Safety disclaimer added to Use Cases section (inline with "$200/hr therapist" claim). Safety link added to header nav and footer. Version bumped. SDK version synced.
+- **Governance Tests** (private): 24 MC/DC tests added for Triple-Lock and DoomLoopDetector. Test suite improved from 51 → 76 tests.
+- **Compaction Pipeline** (private): Pre-compaction state flush (OpenClaw pattern), head/tail preservation constants in `compact_context.py` v3.0.
+- **Git Hygiene** (private): Reflog expired, `git fsck` clean.
+
+### Design Decisions
+
+- Clinical disclaimer placed directly inline with the asymmetry callout (the most likely place a vulnerable user reads). Not hidden in a footer — must scan past it to reach use cases.
+- Crisis contacts are international (US/UK/112), not region-specific, since the public repo serves a global audience.
+
+### Files Changed
+
+- `SAFETY.md` — NEW
+- `README.md` — Safety disclaimer, version, footer
+- `docs/CHANGELOG.md` — This entry
+- `pyproject.toml` — Version bump
+
+---
+
 ## v9.4.6 (09 March 2026)
 
 **Project Switchboard — Multi-Project GSD Orchestration**
