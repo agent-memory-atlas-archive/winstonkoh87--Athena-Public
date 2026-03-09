@@ -8,6 +8,33 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.4.6 (09 March 2026)
+
+**Project Switchboard — Multi-Project GSD Orchestration**
+
+### Key Changes
+
+- **`/project` Workflow** (NEW): Multi-project switchboard with 5 commands (view, add, switch, close, triage). Internal/External zone split matches the mental model of personal vs. client work. Dependency tracking (`Depends On` column) surfaces cross-project blockers. Cross-zone capacity check flags when degraded Internal projects (health, energy) affect External capacity.
+- **`PROJECTS.md` Template**: Structured markdown dashboard with visual phase bars (░▓), urgency/EV ranking, and GTD-style next actions. GSD mechanics applied at the portfolio level.
+- **README.md**: Upgraded "Work & Projects" use case to feature multi-project orchestration as a core capability. Version badge, SDK version sync.
+- **`/start` Integration**: `PROJECTS.md` added to Phase 2 adaptive loading table — auto-loads when user asks about projects or "what should I work on."
+- **`/end` Integration**: Step 5 added — prompts for project state updates before shutdown (advance phases, update next actions, adjust urgency, archive completed projects).
+
+### Design Decisions
+
+- `PROJECTS.md` is **user state** (lives in `.context/`), not agent infrastructure (`.agent/`). The workflow template is agent behavior (`.agent/workflows/`).
+- Project IDs use `I/E` prefix (`I1`, `E3`) for unambiguous Internal/External identification during `/project switch`.
+- Token efficiency: Loading `PROJECTS.md` costs ~500 tokens vs ~5K tokens for conversational context recovery. Over 44 sessions, this saves ~200K tokens.
+
+### Files Changed
+
+- `examples/workflows/project.md` — NEW
+- `README.md` — Version, use case, changelog, SDK version
+- `docs/CHANGELOG.md` — This entry
+- `pyproject.toml` — Version bump
+
+---
+
 ## v9.4.5 (09 March 2026)
 
 **Two-Mode Session Architecture & Crisis Architecture Upgrade**
