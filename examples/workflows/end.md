@@ -1,7 +1,7 @@
 ---
 description: Close session and update System Prompt files with new insights (lightweight)
 created: 2025-12-09
-last_updated: 2026-02-23
+last_updated: 2026-03-10
 model: default
 temperature: 0.5
 tools:
@@ -11,227 +11,244 @@ tools:
   search: true
 ---
 
-# /end — Session Close Script (Lightweight)
+# /end — Session Close Script (GTO v3)
 
-> [!IMPORTANT]
-> **Manual Synthesis Required.** The `shutdown.py` orchestrator will **FAIL** and abort if it detects placeholders (`...`) in the Agenda, Decisions, or Action Items. You MUST synthesize the session content before initiating technical closure.
+> **Latency Profile**: ULTRA-LOW (micro) / LOW (full)
+> **Core Principle**: "Fast close. Match effort to session weight."
 
-> **Latency Profile**: LOW (~2K tokens)  
-> **Core Principle**: "Fast close. Deep work deferred to /refactor."  
-> **Change Log**: 2025-12-27 — Added Canonical Memory Sync (Protocol 215).
-> **Change Log**: 2025-12-18 — Moved heavy audits to `/refactor` for faster session close.
+## Step 0: Session Classification Gate
 
-## 1. Session Log Finalization
+Before any synthesis, classify the session:
 
-> **Rule**: Slow down to speed up. Synthesize deeply.
-> **Philosophy**: A bad end = A bad next start.
+| Session Type | Criteria | Path |
+|:---|:---|:---|
+| **MICRO** | ≤ 3 turns AND no new decisions/learnings/architecture changes | → Phase 1A (one-liner close) |
+| **FULL** | Everything else | → Phase 1B (full synthesis) |
 
-1. **Read** the current session log (created at `/start`).
-2. **Synthesize** key bullets (Do NOT copy-paste; distill):
-   * Main topics covered
-   * Key decisions made (Update `decisionLog.md` if critical)
-   * Notable insights (if any)
-3. **Canonical Check** (Conditional):
-   * **Gate**: Did `@decided` involve architecture changes, new protocols, or axiom updates?
-   * If NO: Skip entirely.
-   * If YES: Load `.context/CANONICAL.md`. Ask: "Does any learning contradict a fact here?" If yes → update immediately.
-4. **Add** closure block:
+> **Default**: FULL. Only classify MICRO when **certain** the session was trivial.
+
+---
+
+## Phase 1A: Micro-Session Close (~100 tokens, ~5s)
+
+1. **Append** to `activeContext.md`:
 
 ```markdown
+## Session [DATE]-session-[N] ([Time of Day]): [ONE-LINE TOPIC]
+
+- **[SNIPER/Micro]**: [One sentence summary of what happened].
+
 ## Session Closed
 
-**Status**: ✅ Closed  
+**Status**: ✅ Closed
 **Time**: [HH:MM SGT]
+
+[[ S__ |
+@focus: Clear
+@status: Paused — Session closed
+
+@decided: No new decisions.
+@pending: [Copy from previous checkpoint]
+
+!checkpoint ]]
 ```
 
-## 1.2 Canonical Memory Sync (Protocol 215)
+1. **Run micro shutdown**:
 
-> **Rule**: Check for stale data. Update the Materialized View.
-
-1. **Gate**: Did `@decided` involve architecture changes, new protocols, new axioms, or constraint modifications?
-2. **If NO**: Skip — most sessions don't touch canonical rules.
-3. **If YES**: Load `.context/CANONICAL.md`. Diff against session learnings. Update if contradicted.
-
-## 1.3 Session Checkpoint (S__)
-
-> **Rule**: Generate a compressed state block for the next session.
-
-1. **Context**: What *must* the next session know immediately?
-2. **Generate**:
-
-   ```text
-   [[ S__ |
-   @focus: [Current Task/Project]
-   @status: [Active/Paused]
-   
-   @decided: [Key Decision A], [Key Decision B]
-   @pending: [Next Step X], [Next Step Y]
-   
-   !checkpoint ]]
-   ```
-
-3. **Append**: Add this block to the end of the Session Log.
-
-## 1.4 Self-Reflection & Learning Extraction
-
-> **Rule**: Before ending, ask yourself: *"What did I learn this session and how can I incorporate my learnings into this workspace and into future sessions?"*
-> **Philosophy**: The AI is the second strand of the dual helix. If it doesn't learn, the helix stalls.
-
-**MANDATORY** — Do NOT skip this step. Work on it before formal closure.
-
-1. **Reflect**: Answer these questions honestly:
-   * What friction/mistakes did I encounter? (e.g., wrong remote, leaked files, dead links)
-   * What new patterns or constraints did I discover? (e.g., "always sync public → private")
-   * What would make the next session start smarter?
-
-2. **File the learnings** — Pick the right destination:
-
-   | Learning Type | Where to File |
-   |:-------------|:-------------|
-   | New workflow step | Update the relevant `.agent/workflows/*.md` |
-   | New constraint/rule | Update `AGENTS.md` or `.framework/` modules |
-   | New protocol | Create/update `.agent/skills/protocols/` |
-   | Reusable pattern | Add to `.context/CANONICAL.md` or `PROTOCOL_SUMMARIES.md` |
-   | Bug/tech debt | Append to `.context/TECH_DEBT.md` |
-
-3. **Commit the learnings** before running shutdown. These are high-value — don't defer them.
-
-4. **Log**: Add a brief "Session Learnings" section to the session log:
-
-   ```markdown
-   ## Session Learnings
-   - [Learning 1]: Filed to [destination]
-   - [Learning 2]: Filed to [destination]
-   ```
-
-## 1.4.5 Bilateral Repo Sync Check
-
-> **Rule**: Public and private repos must stay in sync. Changes flow both directions.
-> **Philosophy**: The repos are two expressions of the same system. Drift = debt.
-
-**MANDATORY** — Check BOTH directions before shutdown.
-
-### Direction 1: Private → Public (with Privacy Filter)
-
-If you modified shared files in the **private** repo this session, sync to public:
+// turbo
 
 ```bash
-# Check what changed in private this session
-cd ~/Project\ Athena
-git diff --name-only HEAD~1
+python3 .agent/scripts/shutdown.py --micro
 ```
 
-**What to sync**:
+**Done.** No further steps.
 
-| Sync? | File/Directory | Notes |
-|:------|:-------------|:------|
-| ✅ Yes | `docs/*.md` | Strip personal data before copying |
-| ✅ Yes | `AGENTS.md` | Public version should only list shipped modules |
-| ✅ Yes | `wiki/*.md` | Copy to wiki repo too |
-| ⚠️ Carefully | `.agent/workflows/*.md` | Only if workflow is public-relevant |
-| ❌ Never | `.framework/` full modules | Public has template versions only |
-| ❌ Never | `.context/` | Private state, memories, profiles |
-| ❌ Never | `User_Profile*.md` | Personal data |
+---
 
-**Privacy filter** — before copying ANY file to public, run the privacy scanner:
+## Phase 1B: Full Session Close
 
-```bash
-cd ~/Project\ Athena/Athena-Public
-python3 .github/scripts/privacy_scan.py <file_to_sync>
+> [!IMPORTANT]
+> **Dual-Write Architecture**: Session state is stored in two complementary files:
+>
+> - **`session_logs/`** → The archive. `shutdown.py` compiles these for learnings propagation, YAML metadata, and compliance.
+> - **`activeContext.md`** → The running state. `/start` reads this for fast boot. Only the checkpoint block goes here.
+>
+> Both must be written. They serve different consumers.
+
+### 1. Write Session Log File
+
+Create `.context/memories/session_logs/[DATE]-session-[N].md` with:
+
+```markdown
+# Session Log: [DATE] (Session [N])
+
+**Date**: [DATE]
+**Time**: [START] - [END]
+**Focus**: [Primary topic]
+
+---
+
+## 1. Agenda (The Plan)
+
+- [x] [Task 1]
+- [x] [Task 2]
+
+---
+
+## 2. Key Decisions & Insights (The Minutes)
+
+* **Decision**: [What was decided and why]
+- **Insight**: [What was learned]
+
+---
+
+## 3. Action Items (Next Steps)
+
+| Action | Owner | Status |
+|--------|-------|--------|
+| [Next step] | Winston | Pending |
+
+---
+
+## Session Learnings
+
+- [S] [System learning — propagated to SYSTEM_LEARNINGS.md by shutdown.py]
+- [U] [User learning — propagated to USER_PROFILE.yaml by shutdown.py]
+
+## Session Closed
+
+**Status**: ✅ Closed
+**Time**: [HH:MM SGT]
+
+[[ S__ |
+@focus: [Current Task/Project]
+@status: [Active/Paused/Closed]
+
+@decided: [Key Decision A], [Key Decision B]
+@pending: [Next Step X], [Next Step Y]
+
+!checkpoint ]]
 ```
 
-If it blocks, **scrub personal content** or **do not sync**.
+> **`[S]` and `[U]` markers matter.** `shutdown.py` uses `extract_learnings()` to find these markers and propagate learnings to the correct files. Tag every learning.
 
-### Direction 2: Public → Private
+### 2. Append Checkpoint to `activeContext.md`
 
-If you modified shared files in the **public** repo this session, sync to private:
+Append **only** the summary block and checkpoint — not the full session log:
 
-```bash
-# Check what changed in public this session
-cd ~/Project\ Athena/Athena-Public
-git diff --name-only HEAD~1
+```markdown
+## Session [DATE]-session-[N] ([Time of Day]): [TOPIC]
+
+- [Summary of key decisions and learnings, 2-4 bullets max]
+
+## Session Closed
+
+**Status**: ✅ Closed
+**Time**: [HH:MM SGT]
+
+## Session Learnings
+
+- [Learning 1]
+- [Learning 2]
+
+[[ S__ |
+@focus: [Current Task/Project]
+@status: [Active/Paused]
+
+@decided: [Key Decision A], [Key Decision B]
+@pending: [Next Step X], [Next Step Y]
+
+!checkpoint ]]
 ```
 
-Copy changed `docs/`, `AGENTS.md`, and wiki files to the private repo. No filter needed (private is the superset).
+### 3. Canonical Check (Conditional)
 
-> See also: `/push-public` workflow → "Post-Push: Sync Back to Private" section.
+**Gate**: Did `@decided` in this session involve architecture changes, new protocols, new axioms, or constraint modifications?
 
-## 1.5.5 Context Hygiene Gate
+- **If NO**: Skip entirely. Most sessions don't touch canonical rules.
+- **If YES**: Load `.context/CANONICAL.md`. Ask: "Does any session learning contradict a fact here?" If yes → update immediately.
 
-> **Rule**: Keep `activeContext.md` under the boot-weight ceiling.
+### 4. Decision Log Gate
+
+Update `decisionLog.md` **only** if a decision involved:
+
+- Money (pricing, spending, investment)
+- Irreversible actions (publishing, deleting, committing to a client)
+- Architecture changes (new protocols, cluster rewiring, skill additions)
+
+All other decisions stay in `activeContext.md` only.
+
+### 5. Update Project Switchboard
+
+If any active project state changed during this session, update `.context/PROJECTS.md`:
+
+- **Advance phase** (e.g., ▓░░░░ → ▓▓░░░) if a milestone was hit
+- **Update next action** to reflect current atomic step
+- **Adjust urgency** if deadlines shifted
+- **Close projects** → move to Completed table with date + outcome
+
+> Skip if session was SNIPER/unrelated to any tracked project.
+
+### 6. Context Hygiene Gate
 
 **Gate**: Is `activeContext.md` > 500 lines?
 
-* **If NO**: Skip.
-* **If YES**: Move all fully-closed session blocks (from `## Session` to `!checkpoint ]]`) older than the most recent 5 sessions into a one-liner summary in the `## Compacted Archive` section. Delete the full blocks.
+- **If NO**: Skip.
+- **If YES**: Move all fully-closed session blocks (from `## Session` to `!checkpoint ]]`) older than the most recent 5 sessions into a one-liner summary in the `## Compacted Archive` section. Delete the full blocks.
 
 > Format: `- **[Date] – [Topic]**: [One-line summary of decisions/learnings].`
 > Rationale: Keeps `activeContext.md` under the boot-weight ceiling. `/start` surgical load stays fast.
 
-## 1.6 Shutdown Orchestrator
+---
 
-> **Rule**: Single script handles harvest check, git commit, and compliance.
+## Phase 2: Shutdown Orchestrator
 
 // turbo
 
 ```bash
 python3 .agent/scripts/shutdown.py
-./Athena-Public/scripts/launch_athena.sh --stop
 ```
 
-**What it does**:
+**What it does** (single call, no subprocesses):
 
-1. Harvest check (§0.7 enforcement)
-2. Git commit & push (triggers cloud sync)
-3. Protocol compliance report
-4. Reset violations for next session
+1. Session compilation (YAML metadata, Λ stats, R__ block, learnings propagation)
+2. Harvest check (§0.7 enforcement — background)
+3. Git commit & push (5s timeout, push is non-fatal)
+4. Compliance report + reset
+5. Pre-compaction state flush (OpenClaw pattern)
+6. Auto-hygiene (background — `compress_sessions.py`)
+
+### Failure Recovery
+
+| Failure | Action |
+|:---|:---|
+| `shutdown.py` errors on placeholders | Go back to Phase 1B Step 1. Synthesize properly. |
+| Git push fails | Non-fatal. Session is still closed. Push manually or next session. |
+| Script crashes / timeout | Fallback: `git add -A && git commit -m "session close" --no-verify 2>/dev/null; true`. Session is closed. File a reflexion. |
+| 2 consecutive failures | **Circuit Breaker (P514)**. Stop. Report root cause. Do NOT retry. |
 
 **Output**: "✅ Session closed. Time: [HH:MM SGT]"
 
----
-
-## What Moved to /refactor
-
-> **Philosophy**: `/end` is for fast exit. `/refactor` is for deep maintenance.
-
-| Previously in /end | Now in /refactor |
-|--------------------|-----------------|
-| `batch_audit.py` | ✅ Moved |
-| `orphan_detector.py` verification gate | ✅ Moved |
-| Living Doc metabolic scans | ✅ Moved |
-| Cross-pollination scans (Protocol 67) | ✅ Moved |
-| GraphRAG re-indexing | Already in /refactor |
-| `compress_memory.py` | ✅ Moved |
-| `compress_sessions.py` | ✅ Moved |
-| `supabase_sync.py` | ✅ Moved |
-
-**When to use /refactor**:
-
-* After multiple light sessions
-* Before major new work phases
-* Weekly maintenance (recommended)
+> [!CAUTION]
+> **Do NOT run `/push-public` inside `/end`.** Bilateral repo sync is a separate workflow. If `shutdown.py` attempts to push to `Athena-Public`, that is a bug.
 
 ---
 
-## Summary
+## Quick Reference
 
-| Phase | Action | Tokens |
-|-------|--------|--------|
-| 1. Session Log | Quick finalize | ~300 |
-| 1.5 Harvest Check | Gate unharvested knowledge | ~100 |
-| 2. Git Commit | Commit changes | ~100 |
-| 3. Compliance Report | Surface protocol violations | ~100 |
-| **Total** | — | **~600** |
+| Session Type | Latency | Tokens |
+|:---|:---|:---|
+| MICRO (≤3 turns, no learnings) | ~5s | ~100 |
+| FULL (everything else) | ~30-60s | ~600 |
 
 ---
 
 ## References
 
-* [/refactor](refactor.md) — Deep system optimization (audits, scans, integrity)
-* [/save](save.md) — Mid-session checkpoint
+- [/save](file://.agent/workflows/save.md) — Mid-session checkpoint
 
 ---
 
 ## Tagging
 
-# workflow #automation #end #lightweight
+`#workflow` `#automation` `#end` `#lightweight`
