@@ -10,7 +10,7 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ## v9.5.1 (11 March 2026)
 
-**Conviction-Decisiveness Split & Smart Search Fix**
+**Conviction-Decisiveness Split & Version Sync**
 
 ### Key Changes
 

@@ -1,10 +1,10 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 10 March 2026  
-> **System Version**: v9.4.9
+> **Last Updated**: 11 March 2026  
+> **System Version**: v9.5.1
 
 > [!NOTE]
-> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 140+ example protocols, 580+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
+> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 144+ example protocols, 580+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
 
 ---
 
@@ -88,7 +88,7 @@ Athena/
 │
 ├── Athena-Public/                 # ← PUBLIC PORTFOLIO
 │   ├── docs/                      # This documentation
-│   ├── examples/                  # 140+ public protocol examples, 580+ scripts, templates
+│   ├── examples/                  # 144+ public protocol examples, 580+ scripts, templates
 │   ├── src/                       # Public SDK source
 │   ├── community/                 # Community resources
 │   └── README.md                  # Repository overview
@@ -583,6 +583,8 @@ sequenceDiagram
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.5.1 | 11 Mar 2026 | Protocol 524 (Conviction-Decisiveness Split), version sync fixes, protocol count update |
+| v9.5.0 | 11 Mar 2026 | Adaptive Graph of Thoughts — Protocol 75 v5.0 (AGoT), multi-strategy reasoning |
 | v9.4.9 | 10 Mar 2026 | Boot/Shutdown Architecture Redesign — `/ultrastart` workflow (20K-token System-2 deep boot), `/end` GTO v3 rewrite (dual-write architecture), `quicksave.py` Triple-Lock AND→OR, Context-Dependence Thesis (README comparison table, Case Study enrichment) |
 | v9.4.7 | 09 Mar 2026 | Safety Documentation & Governance Hardening — `SAFETY.md`, README safety disclaimers, Cognitive Systems v2.6 GTO Declaration (43% wiring ratio = structural ceiling, 95%+ query coverage) |
 | v9.4.5 | 09 Mar 2026 | Two-Mode Session Architecture: Lightweight (skip `/start`) vs Full Boot. Framework Tax concept. Orchestrator-Executor Pipeline. Crisis Architecture: P509 (Emotional Triage), P519 (Terminal Goal Elicitation), P520 (Blast Radius Calculator), P521 (Crisis Domain Constraints) |

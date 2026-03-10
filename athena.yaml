@@ -10,7 +10,7 @@
 
 spec_version: "1.0.0"
 name: athena
-version: 9.4.3
+version: 9.5.1
 description: >
   Cognitive augmentation layer — persistent memory, structured reasoning,
   and full data ownership across any AI model.
