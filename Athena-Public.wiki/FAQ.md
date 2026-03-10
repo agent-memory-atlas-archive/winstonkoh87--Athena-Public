@@ -59,7 +59,7 @@ All LLMs hallucinate. Athena minimizes this via **Hybrid RAG** — forcing the m
 
 ### ❓ Won't this eat my subscription tokens?
 
-**No.** The 10K boot cost is per **context window** (5% of one session), not per subscription. Your subscription limits are based on **message count**, not token count — whether you send a 10K or 200K message, it counts as one message.
+**No.** The boot cost ranges from **2K–20K tokens** depending on session mode — that's per **context window** (1-10% of one session), not per subscription. Your subscription limits are based on **message count**, not token count — whether you send a 10K or 200K message, it counts as one message.
 
 | User Type | Plan | Sessions/Day | Verdict |
 |:----------|:-----|:-------------|:--------|

@@ -73,7 +73,7 @@ This principle is codified as the **[Grace Protocol](https://github.com/winstonk
 
 A generic LLM gives the internet's statistically average answer — the response most people would find acceptable. But **statistical correctness and personal correctness are completely different things.**
 
-"My partner cheated — what should I do?" The textbook answer is always "leave." But the *right* answer depends on children, financial dependency, attachment patterns, and terminal goals — variables no generic model has access to. Athena does.
+"My partner cheated — what should I do?" The textbook answer is always "leave." But the *right* answer depends on children, financial entanglement, documented attachment patterns, cultural context, and terminal goals — variables no generic model has access to. The right answer for a recently engaged 28-year-old and a parent of three with 20 years of shared assets are fundamentally different decisions. Athena has that context.
 
 This is the core thesis: Athena's persistent memory and longitudinal context allow it to generate answers calibrated to **your** specific situation — not the modal answer across all possible humans.
 

@@ -28,10 +28,12 @@ Just as Linux provides the kernel, file system, and permissions for applications
 ## ⚡ The Core Loop
 
 ```
-/start → Work → /end → Repeat
+🟢 Lightweight:  Just chat → /end           (~2K tokens)
+🔴 Full Boot:    /start → Work → /end       (~10K tokens)
+⚫ Deep Boot:    /ultrastart → Work → /end   (~20K tokens)
 ```
 
-1. **Boot (`/start`)**: Loads Core Identity (~10K tokens) and relevant context.
+1. **Boot (`/start` or `/ultrastart`)**: Loads Core Identity (2K–20K tokens depending on mode) and relevant context.
 2. **Work**: Collaborate with AI to solve problems. Every exchange auto-saves.
 3. **Commit (`/end`)**: Summarizes the session, extracts decisions, updates long-term memory.
 4. **Compounding**: Next boot starts *smarter*. By session 100, it stops being generic and starts thinking like **you**.
