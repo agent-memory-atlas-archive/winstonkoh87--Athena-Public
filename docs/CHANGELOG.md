@@ -8,6 +8,19 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.5.1 (11 March 2026)
+
+**Conviction-Decisiveness Split & Smart Search Fix**
+
+### Key Changes
+
+- **Protocol 524** (NEW): Conviction-Decisiveness Split. Decouples epistemic conviction from operational decisiveness in semi-stochastic domains. Delivers precise setups while acknowledging outcome uncertainty.
+- **`README.md`**: Embedded the conviction-decisiveness insight into the domain uncertainty table. Added compute recommendation for `/ultrastart` (suggesting MAX subscription plans for unbounded deep reasoning).
+- **Protocol Count**: Bumped from 140+ to 141+.
+- **Version Bump**: Badges, `pyproject.toml`, and this changelog updated to `v9.5.1`.
+
+---
+
 ## v9.5.0 (11 March 2026)
 
 **Adaptive Graph of Thoughts — Protocol 75 v5.0**
