@@ -2,7 +2,7 @@
 
 Athena is not just code — it is an opinionated system built on **Sovereign Agency** and **Subjective Utility**.
 
-*Last Updated: 2026-02-27 · v9.2.8*
+*Last Updated: 2026-03-10 · v9.4.8*
 
 ---
 
@@ -64,6 +64,18 @@ Athena is **not** an employee. It is an **Exocortex** — an external brain.
 Treat it like a co-founder, not an intern.
 
 This principle is codified as the **[Grace Protocol](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/concepts/Grace_Protocol.md)** — named after Grace Harper (*Terminator: Dark Fate*), a human who volunteered for cybernetic augmentation and retained full agency. Athena builds Graces, not Terminators.
+
+---
+
+## 7. Context-Dependence (Solve the Person, Not the Question)
+
+> *"Generic LLMs solve the question. Athena solves the person."*
+
+A generic LLM gives the internet's statistically average answer — the response most people would find acceptable. But **statistical correctness and personal correctness are completely different things.**
+
+"My partner cheated — what should I do?" The textbook answer is always "leave." But the *right* answer depends on children, financial dependency, attachment patterns, and terminal goals — variables no generic model has access to. Athena does.
+
+This is the core thesis: Athena's persistent memory and longitudinal context allow it to generate answers calibrated to **your** specific situation — not the modal answer across all possible humans.
 
 ---
 

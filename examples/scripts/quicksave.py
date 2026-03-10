@@ -36,11 +36,7 @@ def main():
             "\033[91m⚠️  TRIPLE-LOCK VIOLATION: Quicksave initiated with NO retrieval (neither Semantic nor Web Search).\033[0m"
         )
         # Log violation via shared util
-        log_violation(
-            "triple_lock", "Quicksave triggered with zero retrieval context"
-        )
-            "triple_lock", f"Quicksave triggered. Missing: {', '.join(missing)}"
-        )
+        log_violation("triple_lock", "Quicksave triggered with zero retrieval context")
 
     gov.verify_exchange_integrity()  # Resets state regardless of result
 
