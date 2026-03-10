@@ -2,7 +2,7 @@
 
 Athena uses a "Slash Command" interface to trigger complex agentic behaviors. These commands are defined in `.agent/workflows/`. There are **50+ workflows** available.
 
-*Last Updated: 2026-03-10 · v9.4.8*
+*Last Updated: 2026-03-10 · v9.4.9*
 
 ---
 
@@ -20,7 +20,7 @@ athena doctor --fix           # Auto-repair fixable issues
 athena doctor --json          # Machine-readable output
 athena save "summary"         # Quicksave checkpoint
 athena --end                  # Close session and save
-athena --version              # Show version (v9.4.8)
+athena --version              # Show version (v9.4.9)
 ```
 
 ---
@@ -105,6 +105,7 @@ athena --version              # Show version (v9.4.8)
 | `/start` | Boot session, load identity and context |
 | `/ultrastart` | **Deep boot** — 20K-token System-2 cognitive priming for high-stakes work |
 | `/end` | Save session, sync memory, commit |
+| `/ultraend` | **Deep close** — cross-session synthesis, CANONICAL reconciliation, reflexion archive. Counterpart to `/ultrastart` |
 | `/think` | Deep reasoning mode |
 | `/ultrathink` | Maximum depth + full context stack |
 | `/research` | Structured multi-source research |

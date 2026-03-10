@@ -13,7 +13,7 @@ This file provides persistent context to any AI coding agent working in this wor
 |IMPORTANT: Always consult authoritative files before relying on training data.
 |.framework/v8.2-stable/modules:{Core_Identity.md,Output_Standards.md}
 |.framework/README.md
-|.agent/workflows:{start.md,end.md,plan.md,audit.md,research.md,refactor.md,brief.md,ultrathink.md,steal.md,diagnose.md,416-agent-swarm.md,release-public.md,preset.md}
+|.agent/workflows:{start.md,end.md,ultrastart.md,ultraend.md,plan.md,audit.md,research.md,refactor.md,brief.md,ultrathink.md,steal.md,diagnose.md,416-agent-swarm.md,release-public.md,preset.md}
 |.agent/skills/protocols:{000-ultimate-auditor.md,137-graph-of-thoughts.md,139-decentralized-command.md,+300 more in subdirs}
 |.context:{project_state.md,CANONICAL.md,TAG_INDEX.md,PROTOCOL_SUMMARIES.md,KNOWLEDGE_GRAPH.md,TECH_DEBT.md}
 |docs:{ARCHITECTURE.md,SEMANTIC_SEARCH.md,GETTING_STARTED.md,YOUR_FIRST_SESSION.md,MANIFESTO.md,ABOUT_ME.md,FAQ.md}
@@ -27,6 +27,8 @@ This file provides persistent context to any AI coding agent working in this wor
 |:--------|:-----|:--------|
 | `/start` | `.agent/workflows/start.md` | Boot the agent session |
 | `/end` | `.agent/workflows/end.md` | Close session, file insights |
+| `/ultrastart` | `.agent/workflows/ultrastart.md` | System-2 deep boot (~20K tokens) |
+| `/ultraend` | `.agent/workflows/ultraend.md` | System-2 deep close (synthesis) |
 | `/plan` | `.agent/workflows/plan.md` | Create implementation plan |
 | `/audit` | `.agent/workflows/audit.md` | Zero-blind-spot workspace audit |
 | `/research` | `.agent/workflows/research.md` | Deep research workflow |
@@ -100,6 +102,6 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 
 ## Version
 
-- **Framework**: v9.4.8
+- **Framework**: v9.4.9
 - **Last Updated**: 2026-03-10
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules

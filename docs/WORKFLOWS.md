@@ -10,6 +10,8 @@ Workflows are slash commands that trigger predefined sequences of actions. They'
 |---------|---------|------------|
 | [`/start`](../examples/workflows/start.md) | Boot session, load identity | Low |
 | [`/end`](../examples/workflows/end.md) | Close session, commit to memory | Low |
+| [`/ultrastart`](../examples/workflows/ultrastart.md) | System-2 deep boot (~20K tokens) | High |
+| [`/ultraend`](../examples/workflows/ultraend.md) | System-2 deep close (synthesis + reconciliation) | High |
 | [`/tutorial`](../examples/workflows/tutorial.md) | Guided first-session walkthrough | Low |
 | [`/save`](../examples/workflows/save.md) | Mid-session checkpoint | Low |
 | [`/think`](../examples/workflows/think.md) | Deep reasoning (all phases) | Medium |
@@ -35,6 +37,8 @@ Workflows are slash commands that trigger predefined sequences of actions. They'
 |----------|-------------|
 | **`/start`** | Beginning of every session. Loads identity, recalls context from previous sessions. |
 | **`/end`** | End of every session. Commits insights to memory, updates indexes. |
+| **`/ultrastart`** | Deep sessions requiring maximum context. Loads full CANONICAL + semantic bridge (~20K tokens). |
+| **`/ultraend`** | Deep session close. Cross-session pattern scan, CANONICAL reconciliation, reflexion archive, portfolio review. Counterpart to `/ultrastart`. |
 | **`/tutorial`** | Your very first session. Guided walkthrough of all features, includes profile interview. |
 | **`/save`** | Mid-session when you want to checkpoint without closing. Use before risky experiments. |
 
