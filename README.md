@@ -12,7 +12,7 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.5.0-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.5.1-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
@@ -128,6 +128,8 @@ Not all problems are solvable. Athena classifies and responds accordingly:
 | **Stochastic** | Minimal conviction — no model outperforms randomness reliably | Startup outcomes, life events, long-term predictions |
 
 > As uncertainty increases, Athena shifts from *"here's the answer"* to *"here's the valid structural zone"* to *"here are your options — you choose."* This is deliberate: false confidence in stochastic domains is more dangerous than honest uncertainty. Athena's conviction is proportional to domain determinism and context completeness.
+
+> **Crucially, conviction and decisiveness are independent axes.** Low certainty about outcomes doesn't require vague output. A surgeon operates with high decisiveness and low conviction about outcomes. In semi-stochastic domains, Athena delivers precise, operational setups — then explicitly defers the probability judgment to you. *"Setup: Long 1.0850 / SL 1.0800 / TP1 1.0920. Your calibration: structural tell present Y/N?"* — not *"you might want to consider..."* — [Protocol 524 →](examples/protocols/reasoning/524-conviction-decisiveness-split.md)
 
 > **Law #0** (Sovereignty): Your life, your weights, your choice. **Law #1** (No Irreversible Ruin): …unless the choice ends the game permanently. Law #1 overrides Law #0. Always.
 
@@ -383,7 +385,7 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
 | 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/507-cognitive-systems.md) |
 | 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
-| 📋 **140+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
+| 📋 **141+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
 | ⚡ **50+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
@@ -446,6 +448,8 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 > **Try before you buy.** Athena works with Google Antigravity's free tier — clone the repo, type `/start`, and see if it clicks. No credit card, no trial period, no catch. Upgrade only when you hit the free tier's daily limits.
 
 > **Why $200/mo sounds expensive — until you do the math.** A single employee costs $5,000+/mo in salary, benefits, and management overhead. An AI agent on a max-tier subscription costs $200/mo, works 24/7, doesn't call in sick, and scales to any domain you throw at it. For best results, subscribe to the max plan on any one platform (Claude Max, Google AI Ultra, etc.) — the difference between $20/mo and $200/mo is the difference between a tool you use occasionally and a tool that runs your life. Heavy users routinely consume $2K–$3K+ in equivalent API costs per month — the flat subscription turns variable cost into fixed cost.
+
+> **For peak performance, use `/ultrastart` every session.** On a flat-rate plan, the marginal cost of deeper thinking is $0 — so the cost of under-thinking always exceeds the cost of over-thinking. `/ultrastart` loads ~20K tokens of structured context (identity, canonical memory, active state, semantic bridge) every session. On API pricing, this costs $2–5/session. On a $200/mo flat plan, it costs nothing. The pricing model of the underlying compute layer directly determines Athena's performance ceiling.
 
 > Boot cost is 2K–20K tokens (depending on mode) — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
 
@@ -511,6 +515,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.5.1** (Mar 11 2026): Conviction-Decisiveness Split — Protocol 524 (decouple epistemic conviction from operational decisiveness in semi-stochastic domains), README `/ultrastart` compute recommendation for MAX subscribers
 - **v9.5.0** (Mar 11 2026): Adaptive Graph of Thoughts — Protocol 75 v5.0 (AGoT-enhanced parallel reasoning), `agot_orchestrator.py` with 3-tier complexity routing (lite/full/tracks), adaptive convergence gate, recursive sub-graph spawning, `/ultrastart` AGoT wiring
 - **v9.4.9** (Mar 10 2026): Deep Session Close — `/ultraend` workflow (System-2 deep close counterpart to `/ultrastart`), cross-session pattern scan, CANONICAL deep reconciliation, reflexion archive, strategic portfolio review, next session seeding
 - **v9.4.8** (Mar 10 2026): Boot/Shutdown Architecture Redesign — `/ultrastart` workflow (20K-token System-2 deep boot), `/end` GTO v3 rewrite (dual-write architecture fix), `quicksave.py` Triple-Lock AND→OR (removes Robustness Theater)
