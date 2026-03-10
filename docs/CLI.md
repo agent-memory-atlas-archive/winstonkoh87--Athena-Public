@@ -32,6 +32,7 @@ These commands are used inside your IDE during an active Athena session:
 | Command | Effect | Tokens |
 |:--------|:-------|:-------|
 | `/start` | Boot session — loads identity + JIT routing | ~10K |
+| `/ultrastart` | Deep boot — full System-2 context stack | ~20K |
 | `/end` | Close session — finalize, sync, commit | — |
 | `/think` | Escalate reasoning depth | +5K |
 | `/ultrathink` | Maximum depth + full context stack | +30K |

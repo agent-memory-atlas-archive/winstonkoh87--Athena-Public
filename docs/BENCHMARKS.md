@@ -53,14 +53,14 @@ Query → Embedding (local) → Parallel Search (Supabase + GraphRAG) → RRF Fu
 
 | Operation | Tokens (Before) | Tokens (After) | Savings |
 |-----------|-----------------|----------------|---------|
-| Cold start context injection | ~50,000 | ~10,000 (core boot) | **80%** |
+| Cold start context injection | ~50,000 | ~2K–10K (mode-dependent) | **80–96%** |
 | Full enriched boot (with profile) | ~50,000 | ~14,500 | **71%** |
 | Session handoff (`/end`) | ~8,000 | ~1,500 | **81%** |
 | Protocol retrieval | ~3,000 | ~800 | **73%** |
 
 ### Boot Payload Breakdown (Measured Feb 2026)
 
-The core boot payload is **~10K tokens** — always loaded on `/start`. The full enriched payload (with user profile and on-demand files) is **~14.5K tokens**, loaded adaptively. The Canonical Memory alone is ~4.3K tokens — a single materialized view that supersedes searching 1,100+ session logs.
+The core boot payload is **~10K tokens** on `/start` and **~20K tokens** on `/ultrastart`. The full enriched payload (with user profile and on-demand files) is **~14.5K tokens**, loaded adaptively. The Canonical Memory alone is ~4.3K tokens — a single materialized view that supersedes searching 1,100+ session logs.
 
 | Component | Source File | Est. Tokens | Load Strategy |
 |-----------|-------------|:-----------:|:-------------:|

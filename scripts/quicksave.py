@@ -36,11 +36,7 @@ def main():
             "\033[91m⚠️  TRIPLE-LOCK VIOLATION: Quicksave initiated with NO retrieval (neither Semantic nor Web Search).\033[0m"
         )
         # Log violation via shared util
-        log_violation(
-            "triple_lock", "Quicksave triggered with zero retrieval context"
-        )
-            "triple_lock", f"Quicksave triggered. Missing: {', '.join(missing)}"
-        )
+        log_violation("triple_lock", "Quicksave triggered with zero retrieval context")
 
     # === NEW: Protocol 416 (Promise Gate) ===
     # Check if the summary contains promise triggers ("I will...", "Noted")

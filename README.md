@@ -37,7 +37,7 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 - **🧠 Your Memory, Your Machine** — Files on your disk, not in OpenAI's cloud. Read them, edit them, git-version them.
 - **🔌 Switch Models Freely** — Claude today, Gemini tomorrow, GPT next week. The memory stays. The model is just whoever's on shift.
 - **📈 It Compounds** — Session 500 recalls patterns from session 5. Platform memory decays; Athena's doesn't.
-- **⚡ ~10K Token Boot** — 95% of your context window stays free, even after 10,000 sessions.
+- **⚡ 2K–20K Token Boot** — Scales to the task. Lightweight chat (~2K) → `/start` (~10K) → `/ultrastart` (~20K). 80–98% of your context window stays free, even after 10,000 sessions.
 - **🛡️ Governed Autonomy** — 6 constitutional laws, 4 capability levels, bounded agency.
 
 > *A generic LLM is a brilliant amnesiac. Athena is the hippocampus — the memory that makes intelligence useful.*
@@ -97,7 +97,7 @@ Same words, 3 different diagnoses depending on <em>who’s asking</em>: attachme
 <tr>
 <td><strong>“My partner cheated — what should I do?”</strong></td>
 <td>
-“They broke their vows. Leave.”
+“She broke her vows. Leave.”
 </td>
 <td>
 Depends: children involved? Financial entanglement? Your documented attachment patterns? Cultural context? Terminal goal — justice, stability, or healing? The “right” answer for a recently engaged 28-year-old and a parent of three with 20 years of shared assets are fundamentally different decisions.
@@ -115,8 +115,19 @@ Not all problems are solvable. Athena classifies and responds accordingly:
 |:-------------|:-----------------|:--------|
 | **Solvable** | Solves it | *"What's the Kelly fraction for this bet?"* → calculates, answers |
 | **Optimisable** | Optimises within your chosen path | *"I've decided to freelance — help me price it"* → constraint optimization |
-| **Unsolvable** | Maps every option, prices every trade-off, hands the choice back to you | *"Should I stay married or come out?"* → no clean answer exists; Athena ensures you choose with full information, not comfortable illusions |
+| **Unsolvable** | Maps every option, prices every trade-off, hands the choice back to you | A closeted husband with children weighing whether to stay married or come out — no clean answer exists. Children, shared assets, identity, cultural context, and personal wellbeing all pull in different directions. Athena ensures you choose with full information, not comfortable illusions |
 | **Ruin-path** | Vetoes before you walk off the cliff | *"This bet risks everything"* → Law #1 override, regardless of your preference |
+
+**The uncertainty of the domain changes Athena's conviction level:**
+
+| Domain Type | Athena's Posture | Example |
+|:------------|:-----------------|:--------|
+| **Deterministic** | High conviction — single correct answer exists | Code bugs, math proofs, tax calculations |
+| **Semi-deterministic** | Moderate conviction — answer depends on assumptions you control | Pricing strategy, system architecture, career path analysis |
+| **Semi-stochastic** | Low conviction — structural edge exists but randomness dominates | Trading setups, relationship dynamics, market timing |
+| **Stochastic** | Minimal conviction — no model outperforms randomness reliably | Startup outcomes, life events, long-term predictions |
+
+> As uncertainty increases, Athena shifts from *"here's the answer"* to *"here's the valid structural zone"* to *"here are your options — you choose."* This is deliberate: false confidence in stochastic domains is more dangerous than honest uncertainty. Athena's conviction is proportional to domain determinism and context completeness.
 
 > **Law #0** (Sovereignty): Your life, your weights, your choice. **Law #1** (No Irreversible Ruin): …unless the choice ends the game permanently. Law #1 overrides Law #0. Always.
 
@@ -126,10 +137,22 @@ Not all problems are solvable. Athena classifies and responds accordingly:
 
 ## "…But doesn't ChatGPT / Gemini / Claude already do this?"
 
-Kind of. But there's a difference between *remembering your name* and *thinking in your frameworks*:
+Kind of. But first, it helps to understand what those names actually refer to — because they blend three very different things:
 
-| Capability | Platform Memory (ChatGPT, Gemini, Claude) | Athena |
-|:-----------|:------------------------------------------|:-------|
+| Layer | What It Is | Examples |
+|:------|:-----------|:--------|
+| **Platform** | The company that hosts the model and holds your data | OpenAI, Google, Anthropic |
+| **Reasoning Engine** | The AI model that does the thinking | GPT-5.4 (High), Gemini 3.1 Pro, Claude Opus 4.6 |
+| **IDE / Interface** | The app you type in — connects to models and reads your files | Cursor, Antigravity, VS Code, Claude Code |
+
+When people say "ChatGPT remembers me," they mean the **platform** stores some memory on their cloud. When they say "Claude is smart," they mean the **model** reasons well. When they say "Cursor writes code," they mean the **IDE** connects model + files.
+
+**Athena is none of these.** Athena is the **memory and governance layer** that sits between your IDE and whichever model you choose — owned by you, stored on your machine, portable across all three layers.
+
+There's a difference between *remembering your name* and *thinking in your frameworks*:
+
+| Capability | Platform Memory (OpenAI, Google, Anthropic) | Athena |
+|:-----------|:---------------------------------------------|:-------|
 | **Who owns the data?** | The platform | **You** |
 | **Can you inspect it?** | No — it's a black box | Yes — it's markdown files you can read and edit |
 | **Can you search it?** | Vague recall, no precision | Full semantic + keyword search with file links |
@@ -149,7 +172,7 @@ Kind of. But there's a difference between *remembering your name* and *thinking 
 | **OpenClaw** | Prompt distribution — share and discover prompts. | Athena is **personalisation** — your compounding memory system, not a prompt marketplace. Different layer, different problem. |
 | **Claude Code** | Great for Claude coding workflows. | Athena works across *any* model and *any* IDE. Not coding-specific — used for research, strategy, writing, life management. |
 | **Gemini Gems** | Custom chatbots inside Gemini. | Gems are locked to Gemini and lose context between chats. Athena is portable and persistent. |
-| **Custom Instructions** | 1,500-character personality prompt. | Athena loads ~10K tokens of structured protocols, decision frameworks, and session history — re-injected every session from your disk. |
+| **Custom Instructions** | 1,500-character personality prompt. | Athena loads 2K–20K tokens of structured protocols, decision frameworks, and session history — re-injected every session from your disk. Scales to task complexity. |
 
 ---
 
@@ -162,7 +185,7 @@ AI agents don't read files top-to-bottom like humans. They **query** — by file
 
 | Principle | What It Means |
 |:----------|:-------------|
-| **JIT Loading** | Boot at ~10K tokens. Load specific files only when the query demands them. A monolith forces the full context into every session. |
+| **JIT Loading** | Boot at 2K–20K tokens (scales to task). Load specific files only when the query demands them. A monolith forces the full context into every session. |
 | **Zero Coupling** | A marketing protocol loads without touching the trading stack. Change one file, break nothing else. |
 | **Surgical Retrieval** | The agent pulls `CS-378-prompt-arbitrage.md` by name — not page 47 of a 200-page doc. The file system *is* the index. |
 | **Git-Friendly** | Atomic diffs per file. Clean commit history. No merge conflicts from a single giant file. |
@@ -274,7 +297,7 @@ To resolve this natively without altering the codebase:
 
 ## 🔄 How It Works
 
-Every session follows one cycle. **Two modes** let you match overhead to task complexity:
+Every session follows one cycle. **Three modes** let you match overhead to task complexity:
 
 ```mermaid
 flowchart LR
@@ -290,6 +313,13 @@ flowchart LR
         D2 --> A2
     end
 
+    subgraph "⚫ Deep Boot Mode"
+        A3["/ultrastart"] --> B3["Work"]
+        B3 --> C3["/end"]
+        C3 --> D3["Memory"]
+        D3 --> A3
+    end
+
     style A1 fill:#3b82f6,color:#fff,stroke:#333
     style C1 fill:#ef4444,color:#fff,stroke:#333
     style D1 fill:#8b5cf6,color:#fff,stroke:#333
@@ -297,6 +327,10 @@ flowchart LR
     style C2 fill:#ef4444,color:#fff,stroke:#333
     style D2 fill:#8b5cf6,color:#fff,stroke:#333
     style B2 fill:#3b82f6,color:#fff,stroke:#333
+    style A3 fill:#1e1e1e,color:#fff,stroke:#555
+    style B3 fill:#3b82f6,color:#fff,stroke:#333
+    style C3 fill:#ef4444,color:#fff,stroke:#333
+    style D3 fill:#8b5cf6,color:#fff,stroke:#333
 ```
 
 | Mode | When | Flow |
@@ -411,15 +445,15 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 > **Try before you buy.** Athena works with Google Antigravity's free tier — clone the repo, type `/start`, and see if it clicks. No credit card, no trial period, no catch. Upgrade only when you hit the free tier's daily limits.
 
-> **Why $200/mo is worth it for power users.** Heavy Athena users routinely consume the equivalent of $2K–$3K in API costs per month. The subscription cap turns variable cost into fixed cost — the more you use it, the better the deal. Use Gemini models for standard work and reserve frontier models (e.g. Claude Opus) for high-stakes decisions where reasoning depth matters most.
+> **Why $200/mo sounds expensive — until you do the math.** A single employee costs $5,000+/mo in salary, benefits, and management overhead. An AI agent on a max-tier subscription costs $200/mo, works 24/7, doesn't call in sick, and scales to any domain you throw at it. For best results, subscribe to the max plan on any one platform (Claude Max, Google AI Ultra, etc.) — the difference between $20/mo and $200/mo is the difference between a tool you use occasionally and a tool that runs your life. Heavy users routinely consume $2K–$3K+ in equivalent API costs per month — the flat subscription turns variable cost into fixed cost.
 
-> Boot cost is ~10K tokens — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
+> Boot cost is 2K–20K tokens (depending on mode) — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
 
 > [!NOTE]
-> Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Opus 4.6, Gemini 3.1 Pro, GPT-5.4). Start with the free tier to test compatibility with your preferred model.
+> Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Opus 4.6, Gemini 3.1 Pro, GPT-5.4 (High)). Start with the free tier to test compatibility with your preferred model.
 
 > [!TIP]
-> **Save money getting started** *(as of 09 Mar 2026)*. Google offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers — enough to fully evaluate Athena with frontier-tier Antigravity limits at $0. Alternatively, if someone you know is on a Google AI Pro or Ultra plan, they can add you as a family member — each member gets their own independent Antigravity quota at no extra cost.
+> **Save money getting started** *(as of 10 Mar 2026)*. Google offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers — enough to fully evaluate Athena with frontier-tier Antigravity limits at $0. Alternatively, if someone you know is on a Google AI Pro or Ultra plan, they can add you as a family member — each member gets their own independent Antigravity quota at no extra cost. For Ultra subscribers, this means splitting $249/mo across family members — bringing the per-person cost of frontier-tier AI below $100/mo.
 
 ---
 
@@ -442,7 +476,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 | Layer | Technology |
 |:------|:----------|
 | **IDE** | Antigravity |
-| **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) / GPT-5.4 |
+| **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) / GPT-5.4 (High) |
 | **SDK** | `athena` Python package (v9.4.8) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `text-embedding-004` (768-dim) |

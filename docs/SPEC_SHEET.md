@@ -1,7 +1,7 @@
 # Athena Spec Sheet
 
-> **Version**: v9.4.2
-> **Date**: 06 March 2026
+> **Version**: v9.4.8
+> **Date**: 10 March 2026
 > **Architect**: Winston Koh
 > **Status**: Production (1,100+ sessions)
 
@@ -181,7 +181,7 @@ Query → [Semantic Search (pgvector)] ──┘
 |--------|--------|--------|
 | Boot time | < 2 min | **~1m 45s (1–2 min)** |
 | Search latency | < 500ms | **< 200ms** |
-| Context injection | < 20K tokens (10% ECL) | **~10K tokens** |
+| Context injection | < 20K tokens (10% ECL) | **2K–20K tokens (mode-dependent)** |
 | Quicksave overhead | < 500ms | **< 100ms** |
 | Session log write | < 1s | **< 500ms** |
 

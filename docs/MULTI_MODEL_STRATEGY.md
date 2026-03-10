@@ -1,6 +1,6 @@
 # Multi-Model Strategy Guide
 
-> **Last Updated**: 09 March 2026
+> **Last Updated**: 10 March 2026
 
 Athena is model-agnostic — your memory, protocols, and governance persist across any LLM. This means you can use **different models for different tasks** and get the best of each.
 
@@ -27,7 +27,7 @@ Athena is **free and open source**. You only pay for your AI subscription. But t
 | **Claude Opus 4.6** | Deep reasoning, code quality, nuanced analysis | Coding, architecture, verification |
 | **Gemini 3.1 Pro** | Broad knowledge, fast synthesis, strong planning | General work, research, planning |
 | **Gemini 3 Flash** | Speed, low cost | Session management (`/start`, `/end`), quick lookups |
-| **GPT-5.4** | Alternative perspective, good at creative tasks | Trilateral tiebreaker, creative work |
+| **GPT-5.4 (High)** | Alternative perspective, good at creative tasks | Trilateral tiebreaker, creative work |
 
 > [!TIP]
 > **The cheapest path to full Athena capability is a single $20/mo subscription** (Claude Pro or Google AI Pro). You don't need multiple subscriptions — one frontier model handles everything. Multiple subs unlock the trilateral feedback loop for high-stakes decisions.
@@ -42,23 +42,24 @@ Not every conversation needs the full Athena boot sequence. Match the mode to th
 |:-----|:-----|:------------|:---------|
 | **🟢 Lightweight** | Just chat → `/end` | General chat, brain dumps, idea capture, Q&A | ~0 tokens (no framework loaded) |
 | **🔴 Full Boot** | `/start` → Work → `/end` | Coding, architecture, client work, trading, irreversible decisions | ~10K tokens (full cognitive stack) |
+| **⚫ Deep Boot** | `/ultrastart` → Work → `/end` | Complex multi-domain analysis, `/ultrathink`, architectural decisions | ~20K tokens (System-2 deep context) |
 
 **The Decision Heuristic**: If you can summarize the goal in one sentence AND it doesn't touch code, money, or irreversible decisions → **Lightweight mode**.
 
 > [!TIP]
-> **Lightweight mode is ideal for brain dumps and casual ideation.** You get the raw model's performance without the ~10K token overhead of loading protocols and routing. When the conversation shifts to something complex, start a new session with `/start`.
+> **Lightweight mode is ideal for brain dumps and casual ideation.** You get the raw model's performance without the 10K–20K token overhead of loading protocols and routing. When the conversation shifts to something complex, start a new session with `/start` or `/ultrastart`.
 
 ---
 
 ## The Framework Tax
 
-Athena's structured protocols, cognitive routing, and session management are powerful — but they come at a cost: **every session loads ~10K tokens of system context** before you type a single word.
+Athena's structured protocols, cognitive routing, and session management are powerful — but they come at a cost: **every session loads 2K–20K tokens of system context** (depending on boot mode) before you type a single word.
 
 This "framework tax" means:
 
 | Effect | Impact |
 |:-------|:-------|
-| **Token burn** | ~10K tokens consumed on boot, reducing your effective session budget |
+| **Token burn** | 2K–20K tokens consumed on boot, reducing your effective session budget |
 | **Model strain** | Weaker models struggle with the volume of system instructions |
 | **Quota drain** | On subscription plans with rate limits, you're spending quota on overhead |
 

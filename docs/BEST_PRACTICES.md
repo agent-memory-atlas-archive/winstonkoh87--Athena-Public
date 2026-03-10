@@ -1,6 +1,6 @@
 # Best Practices
 
-> **Last Updated**: 09 March 2026
+> **Last Updated**: 10 March 2026
 
 Operational discipline for running Athena sustainably. These aren't features — they're habits that prevent data loss, reduce friction, and keep your system compounding.
 
@@ -35,14 +35,15 @@ Your `.context/` folder **is** your brain. Losing it means losing every session,
 
 ## 2. Session Discipline
 
-### Two Session Modes
+### Three Session Modes
 
-Not every conversation needs the full boot sequence. Athena supports **two modes** — pick the right one based on what you're doing:
+Not every conversation needs the full boot sequence. Athena supports **three modes** — pick the right one based on what you're doing:
 
 | Mode | When To Use | Flow |
 |:-----|:------------|:-----|
 | **🟢 Lightweight** | General chat, brain dumps, idea capture, Q&A, quick lookups | Just chat → `/end` when done |
 | **🔴 Full Boot** | Coding, architecture, client work, trading, anything irreversible | `/start` → Work → `/end` |
+| **⚫ Deep Boot** | Complex multi-domain analysis, architectural decisions, `/ultrathink` | `/ultrastart` → Work → `/end` |
 
 **The Decision Heuristic**: If you can summarize the goal in one sentence AND it doesn't touch code, money, or irreversible decisions → **Lightweight mode**. Everything else → **Full Boot**.
 
@@ -59,7 +60,7 @@ Not every conversation needs the full boot sequence. Athena supports **two modes
 
 ### Why Two Modes?
 
-The `/start` workflow loads your full identity, protocols, and routing architecture (~10K tokens). For a complex coding session, this investment pays for itself many times over. For a quick question or brain dump, it's unnecessary overhead that burns tokens and time.
+The `/start` workflow loads your full identity, protocols, and routing architecture (~10K tokens). `/ultrastart` loads the full deep context stack (~20K tokens). For a complex coding session, this investment pays for itself many times over. For a quick question or brain dump, it's unnecessary overhead that burns tokens and time.
 
 **Lightweight mode** gives you raw model performance with zero framework tax. **Full Boot mode** gives you the full Athena cognitive stack. Match the mode to the task.
 
@@ -116,7 +117,7 @@ private     ← full context (.context/, personal protocols)
 
 ## 5. Token Budget Awareness
 
-Athena boots at ~10K tokens, leaving ~190K for your session. But token waste adds up:
+Athena boots at 2K–20K tokens (depending on mode), leaving 180K–198K for your session. But token waste adds up:
 
 | Waste Source | Fix |
 |:-------------|:----|
