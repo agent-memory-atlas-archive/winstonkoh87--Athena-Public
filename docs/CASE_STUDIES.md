@@ -1,6 +1,6 @@
 ---
 created: 2026-02-25
-last_updated: 2026-02-25
+last_updated: 2026-03-10
 tags: #case-study #life-management #non-technical
 ---
 
@@ -146,6 +146,22 @@ Session 40: "I told someone the real thing instead of the safe thing."
 
 4. **Not a replacement — an augmentation.** Athena explicitly flagged when the user needed professional help (active suicidal ideation, substance dependency, severe dissociation) and provided referral guidance. For the 90% of psychological work that doesn't require a medical license, it closed the gap.
 
+### Context Matters: Same Question, Different Diagnosis
+
+The presenting problem — *"I keep self-sabotaging"* — is identical for three different people. But the root cause, and therefore the intervention, is completely different:
+
+| User | Context | Athena's Diagnosis | Intervention |
+|:-----|:--------|:-------------------|:-------------|
+| **User A** (this case study) | Childhood attachment wound, relational withdrawal pattern | Firefighter/Ghost parts protecting an Exile | IFS unburdening exercises |
+| **User B** | 60-hour work weeks, recent promotion, marriage under strain | Not self-sabotage — executive burnout masquerading as personal failure | Workload audit, boundary setting, couples communication framework |
+| **User C** | Lifelong pattern of starting strong and losing focus, missed deadlines across every domain | Possible undiagnosed ADHD — appears as "sabotage" but is executive dysfunction | Flag for professional screening, implement compensatory systems |
+
+A generic LLM gives all three the same response: *"Consider therapy, practice self-compassion, journal your triggers."* Athena's diagnosis **diverges** because the context files are different — and the intervention follows the diagnosis, not the surface question.
+
+This extends to any high-stakes personal problem. Take relationship betrayal: *"My partner was caught cheating — what should I do?"* The textbook answer is clean — *"They broke their vows, leave."* But the real answer depends on children involved, financial entanglement, cultural context, the user's documented attachment patterns, their risk tolerance, their terminal goal (justice vs. stability vs. healing), and a dozen other variables that only a context-aware system can weigh. The same question, asked by different people with different lives, demands fundamentally different answers.
+
+> **Recommended workflow:** For problems of this depth, use `/ultrastart` → `/ultrathink`. These are the highest-context-dependency use cases — the more memory loaded, the more accurate the differentiation.
+
 ### Key Takeaway
 
 > A therapist's primary value is pattern recognition — listening across many sessions to identify what you can't see yourself. Athena does this with cryptographically perfect recall and zero scheduling friction. It doesn't replace clinical care for emergencies, but for the vast majority of inner work, it makes the $200/hr barrier irrelevant.
@@ -207,6 +223,27 @@ Instead of a generic pros/cons list, Athena produced a decision matrix weighted 
 3. **Actionable.** The recommendation wasn't "consider both options." It was a specific action (negotiate overlap period) tied to a specific risk mitigation (spouse's documented adjustment timeline).
 
 4. **Cost:** A business coach would charge $500-$1,000/hr for this level of personalised strategic counsel. The user paid $20/mo.
+
+### Context Matters: Same Question, Different Answer
+
+Consider another common question: *"I've been job hunting for 6 months with interviews but no offers — what should I do?"*
+
+A generic LLM responds: *"Review your resume, practice the STAR method, research companies, follow up after interviews."* That's the textbook answer. It assumes the problem is mechanical (interview technique) because the surface signal points there.
+
+But the root cause varies entirely by person:
+
+| User | Context Athena Has | Real Diagnosis | Recommendation |
+|:-----|:-------------------|:---------------|:---------------|
+| **User A** | IFS mapping from session 12 identified a Protector that activates around achievement | Self-sabotage — crushing early rounds but unconsciously pulling back at the final stage | Address the schema first, then resume applying |
+| **User B** | 55 years old, 2 dependants, 2 months of savings | Structural age discrimination in a competitive market — not a skills problem | Pivot strategy: consulting/freelancing to bypass hiring bias. Survival System fires first (Law #1) |
+| **User C** | Pattern of applying for roles slightly below their level | Safety-seeking behavior — choosing "sure things" that bore them, leading to flat interviews | Apply 1-2 tiers higher where genuine excitement improves interview energy |
+| **User D** | Recent divorce documented in session logs, sleep debt, declining energy | Cross-domain interference — a life crisis is bleeding into professional performance | Stabilise the personal domain first. The job search isn't the problem |
+
+Four people. Same words. Four completely different problems requiring four completely different solutions. The resume is fine for all of them — it was never the bottleneck. But a generic LLM, lacking context, can only recommend resume fixes because that's the only lever visible from the surface.
+
+This is also where the structural lens matters: the economy, the job market, the industry cycle — factors that a context-aware system can weigh against personal factors to distinguish *"you're doing something wrong"* from *"the market is genuinely hostile right now and the GTO play is to build leverage, not grind more applications."*
+
+> **Recommended workflow:** For career and life decisions of this complexity, use `/ultrastart` → `/ultrathink`. The more historical context loaded, the more differentiated (and accurate) the recommendation.
 
 ### Key Takeaway
 
