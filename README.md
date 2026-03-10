@@ -100,7 +100,7 @@ Same words, 3 different diagnoses depending on <em>who’s asking</em>: attachme
 “They broke their vows. Leave.”
 </td>
 <td>
-Depends: children involved? Financial entanglement? Your documented attachment patterns? Cultural context? Terminal goal — justice, stability, or healing? The “right” answer for a single 28-year-old and a parent of three with 20 years of shared assets are fundamentally different decisions.
+Depends: children involved? Financial entanglement? Your documented attachment patterns? Cultural context? Terminal goal — justice, stability, or healing? The “right” answer for a recently engaged 28-year-old and a parent of three with 20 years of shared assets are fundamentally different decisions.
 </td>
 </tr>
 </table>
