@@ -32,8 +32,9 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-# --- Target files (order: wiki → docs → root) ---
-TARGET_FILES=(
+# --- Target files: v-prefixed versions (e.g., v9.5.1) ---
+# These files use "v9.X.Y" format in badges, headers, etc.
+VPREFIXED_FILES=(
   # Wiki (primary)
   "Athena-Public.wiki/FAQ.md"
   "Athena-Public.wiki/Getting-Started.md"
@@ -53,6 +54,15 @@ TARGET_FILES=(
   "docs/SPEC_SHEET.md"
   # Root
   "AGENTS.md"
+  "README.md"
+)
+
+# --- Target files: bare versions (e.g., 9.5.1, no 'v' prefix) ---
+# These files use "9.X.Y" format in YAML/TOML/Python values.
+BARE_FILES=(
+  "athena.yaml"
+  "pyproject.toml"
+  "src/athena/__init__.py"
 )
 
 # --- Execution ---
@@ -67,7 +77,9 @@ UPDATED=0
 SKIPPED=0
 MISSING=0
 
-for file in "${TARGET_FILES[@]}"; do
+# --- Pass 1: v-prefixed files ---
+echo "📋 Pass 1: v-prefixed files (vX.Y.Z)"
+for file in "${VPREFIXED_FILES[@]}"; do
   filepath="${REPO_ROOT}/${file}"
   
   if [[ ! -f "$filepath" ]]; then
@@ -76,13 +88,35 @@ for file in "${TARGET_FILES[@]}"; do
     continue
   fi
   
-  # Check if file contains the old version
   if grep -q "v${OLD_VERSION}" "$filepath" 2>/dev/null; then
     sed -i '' "s/v${OLD_VERSION}/v${NEW_VERSION}/g" "$filepath"
     echo "✅ Updated: $file"
     ((UPDATED++))
   else
     echo "⏭️  Skipped: $file (no v${OLD_VERSION} found)"
+    ((SKIPPED++))
+  fi
+done
+
+# --- Pass 2: bare version files ---
+echo ""
+echo "📋 Pass 2: bare version files (X.Y.Z)"
+for file in "${BARE_FILES[@]}"; do
+  filepath="${REPO_ROOT}/${file}"
+  
+  if [[ ! -f "$filepath" ]]; then
+    echo "⚠️  Missing: $file"
+    ((MISSING++))
+    continue
+  fi
+  
+  # Use word-boundary-safe pattern to avoid partial matches
+  if grep -q "\"${OLD_VERSION}\"\|'${OLD_VERSION}'\|: ${OLD_VERSION}" "$filepath" 2>/dev/null; then
+    sed -i '' "s/\"${OLD_VERSION}\"/\"${NEW_VERSION}\"/g; s/'${OLD_VERSION}'/'${NEW_VERSION}'/g; s/: ${OLD_VERSION}/: ${NEW_VERSION}/g" "$filepath"
+    echo "✅ Updated: $file"
+    ((UPDATED++))
+  else
+    echo "⏭️  Skipped: $file (no ${OLD_VERSION} found)"
     ((SKIPPED++))
   fi
 done
