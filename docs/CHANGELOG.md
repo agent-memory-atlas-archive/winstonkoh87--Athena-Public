@@ -1,10 +1,39 @@
 # Athena Changelog
 
-> **Last Updated**: 09 March 2026
+> **Last Updated**: 10 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.4.8 (10 March 2026)
+
+**Boot/Shutdown Architecture Redesign**
+
+### Key Changes
+
+- **`/ultrastart` Workflow** (NEW): System-2 deep boot for cognitively intensive work (`/ultrathink`, complex multi-domain analysis). 4-phase sequence with ≤20K token budget: Phase 1 (Absolute Law — full `Core_Identity.md`), Phase 2 (Materialized Truth — `CANONICAL.md` + `PROJECTS.md`), Phase 3 (Recent State — last `activeContext.md` checkpoint), Phase 4 (Semantic Bridge — `smart_search.py` top 5-7 results for the user's stated objective). Includes complexity gate, optional objective string, and graceful degradation.
+- **`/end` GTO v3 Rewrite**: Fixed the Source Reality Gap — `end.md` previously claimed "There is no separate session log file" but `shutdown.py` compiles from `session_logs/`. Established dual-write architecture: session logs (`session_logs/[DATE]-session-[N].md`) for `shutdown.py` compilation + `activeContext.md` checkpoint block for `/start` fast boot. Added `[S]`/`[U]` learning markers for `shutdown.py`'s `extract_learnings()`. Tightened micro-close path.
+- **`quicksave.py` Triple-Lock Fix**: Changed governance check from `AND` (require both Semantic Search + Web Search) to `OR` (require either). The previous `AND` gate was a textbook Robustness Theater violation (Protocol 510) — forcing unnecessary web searches for local problems (CSS bugs, refactors) added ~10-15s latency per turn for zero retrieval value.
+
+### Design Decisions
+
+- `/ultrastart` Phase 3 is deliberately thin (~1K tokens) — recency ≠ relevance. Phase 4 (Semantic Bridge) gets the largest flexible budget (~5.5K tokens) because it's the only task-specific phase.
+- `/end` dual-write is complementary, not competing: session logs feed the compilation pipeline; activeContext feeds the boot pipeline. Different consumers, different files.
+- Triple-Lock `OR` condition means: local problem → Semantic Search only. External facts → Web Search only. ULTRA queries → both. Matches the blast radius heuristic.
+
+### Files Changed
+
+- `examples/workflows/ultrastart.md` — NEW
+- `examples/workflows/end.md` — Rewritten (GTO v3)
+- `scripts/quicksave.py` — Triple-Lock AND→OR
+- `scripts/core/quicksave.py` — Triple-Lock AND→OR
+- `examples/scripts/quicksave.py` — Triple-Lock AND→OR
+- `README.md` — Version, date, Deep Boot mode, changelog
+- `docs/CHANGELOG.md` — This entry
+- `pyproject.toml` — Version bump
 
 ---
 
