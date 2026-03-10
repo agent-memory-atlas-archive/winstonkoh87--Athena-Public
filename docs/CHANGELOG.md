@@ -8,6 +8,30 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.4.9 (10 March 2026)
+
+**Deep Session Close — `/ultraend` Workflow**
+
+### Key Changes
+
+- **`/ultraend` Workflow** (NEW): System-2 deep close counterpart to `/ultrastart`. 6-phase sequence: Phase 0 (standard `/end` — safety net), Phase 1 (Cross-Session Pattern Scan — recurring themes, orphaned pendings, decision reversals across last 5 sessions), Phase 2 (CANONICAL Deep Reconciliation — mandatory framework bundling check), Phase 3 (Reflexion Archive — what worked/didn't/counterfactual), Phase 4 (Strategic Portfolio Review — priority alignment, stale project detection, next session seeding), Phase 5 (Shutdown Orchestrator).
+- **Session Architecture Symmetry**: The boot/shutdown pair is now complete: `/start` ↔ `/end` (lightweight) and `/ultrastart` ↔ `/ultraend` (System-2 deep). Auto-triggers when session opened with `/ultrastart`, 5+ decisions made, or new frameworks discovered.
+
+### Design Decisions
+
+- `/ultraend` is additive over `/end`, not a replacement. Phase 0 executes the full `/end` sequence first — if synthesis fails, the session is still cleanly closed.
+- The "Framework Bundling Check" (Phase 2, Step 3) catches when 3+ related insights should be named and filed as a coherent framework rather than individual data points.
+- "Next Session Seeding" (Phase 4, Step 4) writes a `@seeded` hint to the checkpoint, giving `/start` or `/ultrastart` a head start on context loading.
+
+### Files Changed
+
+- `examples/workflows/ultraend.md` — NEW
+- `README.md` — Version, date, changelog
+- `docs/CHANGELOG.md` — This entry
+- `pyproject.toml` — Version bump
+
+---
+
 ## v9.4.8 (10 March 2026)
 
 **Boot/Shutdown Architecture Redesign**
