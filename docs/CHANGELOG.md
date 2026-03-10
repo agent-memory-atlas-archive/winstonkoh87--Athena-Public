@@ -1,10 +1,39 @@
 # Athena Changelog
 
-> **Last Updated**: 10 March 2026
+> **Last Updated**: 11 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.5.0 (11 March 2026)
+
+**Adaptive Graph of Thoughts — Protocol 75 v5.0**
+
+### Key Changes
+
+- **Protocol 75 v5.0** (NEW): AGoT-Enhanced Parallel Reasoning. Upgrades static 4-track parallel reasoning to dynamic graph-based topology with recursive decomposition, confidence-based pruning, and adaptive convergence gates. Based on Pandey et al. (2025), arXiv:2502.05078.
+- **`agot_orchestrator.py`** (NEW): Core AGoT implementation (~530 lines). `AGoTController` manages layered DAG construction, recursive sub-graph spawning, and 4-track persona integration. Three preset tiers: `lite` (Λ 21-40), `full` (Λ 41-60), `tracks` (Λ > 60).
+- **Adaptive Convergence Gate**: Replaces fixed ≥85/100 threshold with agreement-adaptive scoring. High consensus → threshold 70. Low consensus → threshold 90 + reconciliation round.
+- **`/ultrastart` Integration**: AGoT routing table added. Λ-based automatic mode selection during deep boot sessions.
+- **Research Archive**: AGoT research findings archived to `docs/research/agot_research.md` with 7 key paper citations.
+
+### Design Decisions
+
+- AGoT is strictly scoped to `/ultrastart` sessions only — the latency and token cost are acceptable in System-2 deep reasoning mode but inappropriate for lightweight sessions.
+- v4.0 (`parallel_orchestrator.py`) remains available as a fallback. v5.0 does not modify or delete it. The two coexist.
+- Controller logic is deterministic Python, not LLM. The LLM does strategy/decomposition/resolution/synthesis; Python manages graph state, concurrency, and termination.
+- Heritage-based node addressing (`depth-layer-position`) ensures unique identification across nested graphs.
+- Inter-track agreement measurement drives adaptive convergence threshold — tracks that agree need less scrutiny; disagreeing tracks demand stronger evidence.
+
+### Files Changed
+
+- `examples/protocols/decision/75-synthetic-parallel-reasoning-v5.md` — NEW
+- `scripts/core/reasoning/agot_orchestrator.py` — NEW
+- `docs/research/agot_research.md` — NEW
+- `docs/CHANGELOG.md` — This entry
 
 ---
 

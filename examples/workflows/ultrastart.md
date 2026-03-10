@@ -17,11 +17,20 @@ tools:
 > **Token Budget**: ≤20K tokens  
 > **Philosophy**: Load deep. Reason once.  
 > **Use When**: `/ultrathink`, complex multi-domain analysis, architectural decisions, deep research.
+> **AGoT Activation**: Queries with Λ > 40 automatically use AGoT-enhanced reasoning (Protocol 75 v5.0).
 
 > [!IMPORTANT]
 > This is NOT the default boot. Use `/start` for general work.
 > `/ultrastart` trades speed for epistemic depth. Only invoke when the session
 > demands maximum context alignment before reasoning begins.
+>
+> **AGoT Routing** (v9.5.0):
+>
+> - Λ ≤ 20: Standard Chain of Thought
+> - Λ 21-40: AGoT-Lite (2 layers, no recursion)
+> - Λ 41-60: AGoT-Full (3 layers, 1 recursive depth)
+> - Λ > 60: AGoT + 4-Track Personas (full dynamic graph)
+> See: `scripts/core/reasoning/agot_orchestrator.py`
 
 ---
 

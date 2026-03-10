@@ -12,13 +12,13 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.4.9-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.5.0-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](docs/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 10 March 2026*
+*Last updated: 11 March 2026*
 
 </div>
 
@@ -477,7 +477,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) / GPT-5.4 (High) |
-| **SDK** | `athena` Python package (v9.4.9) |
+| **SDK** | `athena` Python package (v9.5.0) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `text-embedding-004` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -511,6 +511,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.5.0** (Mar 11 2026): Adaptive Graph of Thoughts — Protocol 75 v5.0 (AGoT-enhanced parallel reasoning), `agot_orchestrator.py` with 3-tier complexity routing (lite/full/tracks), adaptive convergence gate, recursive sub-graph spawning, `/ultrastart` AGoT wiring
 - **v9.4.9** (Mar 10 2026): Deep Session Close — `/ultraend` workflow (System-2 deep close counterpart to `/ultrastart`), cross-session pattern scan, CANONICAL deep reconciliation, reflexion archive, strategic portfolio review, next session seeding
 - **v9.4.8** (Mar 10 2026): Boot/Shutdown Architecture Redesign — `/ultrastart` workflow (20K-token System-2 deep boot), `/end` GTO v3 rewrite (dual-write architecture fix), `quicksave.py` Triple-Lock AND→OR (removes Robustness Theater)
 - **v9.4.7** (Mar 09 2026): Safety Documentation & Governance Hardening — `SAFETY.md` (clinical disclaimer, crisis contacts), README safety disclaimers, 24 MC/DC governance tests (private), compaction pipeline v3.0 (private)
