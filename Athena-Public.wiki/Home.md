@@ -30,7 +30,7 @@ Just as Linux provides the kernel, file system, and permissions for applications
 ```
 🟢 Lightweight:  Just chat → /end           (~2K tokens)
 🔴 Full Boot:    /start → Work → /end       (~10K tokens)
-⚫ Deep Boot:    /ultrastart → Work → /end   (~20K tokens)
+⚫ Deep Boot:    /ultrastart → Work → /ultraend   (~20K tokens)
 ```
 
 1. **Boot (`/start` or `/ultrastart`)**: Loads Core Identity (2K–20K tokens depending on mode) and relevant context.

@@ -315,7 +315,7 @@ flowchart LR
 
     subgraph "⚫ Deep Boot Mode"
         A3["/ultrastart"] --> B3["Work"]
-        B3 --> C3["/end"]
+        B3 --> C3["/ultraend"]
         C3 --> D3["Memory"]
         D3 --> A3
     end
@@ -337,7 +337,7 @@ flowchart LR
 |:-----|:-----|:-----|
 | **🟢 Lightweight** | General chat, brain dumps, quick Q&A | Just chat → `/end` |
 | **🔴 Full Boot** | Code, money, architecture, irreversible decisions | `/start` → Work → `/end` |
-| **⚫ Deep Boot** | `/ultrathink`, complex multi-domain analysis, architectural decisions | `/ultrastart` → Work → `/end` |
+| **⚫ Deep Boot** | `/ultrathink`, complex multi-domain analysis, architectural decisions | `/ultrastart` → Work → `/ultraend` |
 
 | Sessions | What Happens |
 |:---------|:------------|

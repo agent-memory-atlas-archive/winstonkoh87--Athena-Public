@@ -42,7 +42,7 @@ Not every conversation needs the full Athena boot sequence. Match the mode to th
 |:-----|:-----|:------------|:---------|
 | **🟢 Lightweight** | Just chat → `/end` | General chat, brain dumps, idea capture, Q&A | ~0 tokens (no framework loaded) |
 | **🔴 Full Boot** | `/start` → Work → `/end` | Coding, architecture, client work, trading, irreversible decisions | ~10K tokens (full cognitive stack) |
-| **⚫ Deep Boot** | `/ultrastart` → Work → `/end` | Complex multi-domain analysis, `/ultrathink`, architectural decisions | ~20K tokens (System-2 deep context) |
+| **⚫ Deep Boot** | `/ultrastart` → Work → `/ultraend` | Complex multi-domain analysis, `/ultrathink`, architectural decisions | ~20K tokens (System-2 deep context) |
 
 **The Decision Heuristic**: If you can summarize the goal in one sentence AND it doesn't touch code, money, or irreversible decisions → **Lightweight mode**.
 

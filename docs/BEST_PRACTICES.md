@@ -43,7 +43,7 @@ Not every conversation needs the full boot sequence. Athena supports **three mod
 |:-----|:------------|:-----|
 | **🟢 Lightweight** | General chat, brain dumps, idea capture, Q&A, quick lookups | Just chat → `/end` when done |
 | **🔴 Full Boot** | Coding, architecture, client work, trading, anything irreversible | `/start` → Work → `/end` |
-| **⚫ Deep Boot** | Complex multi-domain analysis, architectural decisions, `/ultrathink` | `/ultrastart` → Work → `/end` |
+| **⚫ Deep Boot** | Complex multi-domain analysis, architectural decisions, `/ultrathink` | `/ultrastart` → Work → `/ultraend` |
 
 **The Decision Heuristic**: If you can summarize the goal in one sentence AND it doesn't touch code, money, or irreversible decisions → **Lightweight mode**. Everything else → **Full Boot**.
 
