@@ -178,16 +178,29 @@ Update `decisionLog.md` **only** if a decision involved:
 
 All other decisions stay in `activeContext.md` only.
 
-### 5. Update Project Switchboard
+### 5. Update Project Switchboard (MANDATORY)
 
-If any active project state changed during this session, update `.context/PROJECTS.md`:
+> [!CAUTION]
+> **This step is NOT optional.** Every session close MUST review `PROJECTS.md` — even SNIPER sessions.
+> Stale project state (e.g., completed items still marked 🔴 TODAY) causes compounding confusion across sessions.
+
+**5a. Review & Update `.context/PROJECTS.md`:**
 
 - **Advance phase** (e.g., ▓░░░░ → ▓▓░░░) if a milestone was hit
 - **Update next action** to reflect current atomic step
 - **Adjust urgency** if deadlines shifted
 - **Close projects** → move to Completed table with date + outcome
+- **Update `Last triaged` timestamp** to current datetime
 
-> Skip if session was SNIPER/unrelated to any tracked project.
+**5b. Reconcile `@pending` in Checkpoint:**
+
+Before writing the `@pending` line in the checkpoint block:
+
+1. Load the previous checkpoint's `@pending` list
+2. Cross-reference each item against current session decisions and `PROJECTS.md`
+3. **Remove** any item that is now completed or moved to Completed table
+4. **Add** any new pending items from this session
+5. Write the reconciled list — never blindly copy-paste from the previous checkpoint
 
 ### 6. Context Hygiene Gate
 
