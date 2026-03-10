@@ -1,6 +1,6 @@
 # ❓ Frequently Asked Questions
 
-*Last Updated: 2026-03-10 · v9.4.9*
+*Last Updated: 2026-03-11 · v9.5.1*
 
 ---
 
