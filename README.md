@@ -50,7 +50,7 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 
 Athena's centralised design principle: **augment human cognition, not replace it.** The more context you give Athena, the sharper its answers become — not by remembering your preferences, but by **reasoning differently because of what it knows about you.**
 
-A generic LLM gives generic textbook answers. Athena gives answers that are calibrated to *your specific situation*:
+A generic LLM gives the internet's statistically average answer — correct *on average, across all humans*. Athena gives answers calibrated to *your specific situation*, because statistical correctness and personal correctness are completely different things:
 
 <table>
 <tr>
@@ -85,9 +85,27 @@ Challenges the false binary. Generates third options. Asks why you’re on the t
 Cross-references your risk profile, career decision history, financial runway, and the regret patterns from your last 3 career transitions to give a recommendation specific to <em>your</em> situation.
 </td>
 </tr>
+<tr>
+<td><strong>“I keep self-sabotaging — why?”</strong></td>
+<td>
+“Consider therapy, practice self-compassion, journal your triggers.”
+</td>
+<td>
+Same words, 3 different diagnoses depending on <em>who’s asking</em>: attachment wound → IFS unburdening. Executive burnout → workload audit. Undiagnosed ADHD → flag for screening. The intervention follows the diagnosis, not the surface question. — <a href="docs/CASE_STUDIES.md#case-study-2-the-200hr-therapist-alternative">Case Study #2</a>
+</td>
+</tr>
+<tr>
+<td><strong>“My partner cheated — what should I do?”</strong></td>
+<td>
+“They broke their vows. Leave.”
+</td>
+<td>
+Depends: children involved? Financial entanglement? Your documented attachment patterns? Cultural context? Terminal goal — justice, stability, or healing? The “right” answer for a single 28-year-old and a parent of three with 20 years of shared assets are fundamentally different decisions.
+</td>
+</tr>
 </table>
 
-> **The gap between intelligence and wisdom is context.** A generic LLM has intelligence — it can reason and calculate. But it operates in a vacuum. Athena closes that gap by maintaining a persistent, evolving model of *who you are* — your values, your constraints, your history of decisions and their outcomes. The same faculty that separates a mentor from a textbook.
+> **Generic LLMs solve the question. Athena solves the person.** The same question, asked by different people with different lives, demands fundamentally different answers. A generic LLM can’t differentiate because it has no context. Athena can’t give the same answer twice — because the context files are different. The memory **is** the product.
 
 ### What Athena Actually Does With Your Problem
 
