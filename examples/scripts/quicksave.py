@@ -31,18 +31,14 @@ def main():
     semantic = gov._state.get("semantic_search_performed", False)
     web = gov._state.get("web_search_performed", False)
 
-    if not (semantic and web):
-        missing = []
-        if not semantic:
-            missing.append("Semantic Search")
-        if not web:
-            missing.append("Web Research")
-
+    if not (semantic or web):
         print(
-            f"\033[91m⚠️  TRIPLE-LOCK VIOLATION: Quicksave initiated. Missing: {', '.join(missing)}.\033[0m"
+            "\033[91m⚠️  TRIPLE-LOCK VIOLATION: Quicksave initiated with NO retrieval (neither Semantic nor Web Search).\033[0m"
         )
         # Log violation via shared util
         log_violation(
+            "triple_lock", "Quicksave triggered with zero retrieval context"
+        )
             "triple_lock", f"Quicksave triggered. Missing: {', '.join(missing)}"
         )
 
