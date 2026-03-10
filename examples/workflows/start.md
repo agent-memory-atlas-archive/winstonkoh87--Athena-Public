@@ -23,7 +23,7 @@ tools:
 - [/] Load Core Identity (resolved dynamically via `constants.py`) — Laws #0-#4, Identity, RSI (~2K tokens)
 - [/] **Identity**: Load `.context/memory_bank/userContext.md` — Core profile, constraints, psychology (Robust)
 - [/] **Mission**: Load `.context/memory_bank/productContext.md` — Soul purpose, philosophy (Robust)
-- [/] **State**: Load `.context/memory_bank/activeContext.md` — Current focus (Robust)
+- [/] **State**: Load `.context/memory_bank/activeContext.md` — **Surgical load**: (1) Header block (Current Focus + Active Tasks + System Status — up to first `---`), (2) The last `[[ S__` checkpoint block, (3) Any unclosed session. Skip compacted archives and closed sessions — retrievable via Exocortex on demand. (Robust)
 - [ ] **Boot Orchestrator**: Run `python3 .agent/scripts/boot.py` — recalls last session, creates new session, captures context, primes semantic memory (single call)
 - [ ] **Active OS**: Start Athena Daemon `python3 Athena-Public/src/athena/core/athenad.py` (Background Service)
 // turbo

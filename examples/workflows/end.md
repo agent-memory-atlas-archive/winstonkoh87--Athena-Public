@@ -31,9 +31,10 @@ tools:
    * Main topics covered
    * Key decisions made (Update `decisionLog.md` if critical)
    * Notable insights (if any)
-3. **Canonical Check**:
-   * "Did we learn a new fact that contradicts `.context/CANONICAL.md`?"
-   * If YES: Update Canonical Memory immediately.
+3. **Canonical Check** (Conditional):
+   * **Gate**: Did `@decided` involve architecture changes, new protocols, or axiom updates?
+   * If NO: Skip entirely.
+   * If YES: Load `.context/CANONICAL.md`. Ask: "Does any learning contradict a fact here?" If yes → update immediately.
 4. **Add** closure block:
 
 ```markdown
@@ -47,9 +48,9 @@ tools:
 
 > **Rule**: Check for stale data. Update the Materialized View.
 
-1. **Diff**: Did we establish new costs, decisions, or facts that contradict `.context/CANONICAL.md`?
-2. **Sync**: If yes, **update `.context/CANONICAL.md` immediately**.
-3. **Log**: "Updated Canonical: [Fact A] -> [Fact B]"
+1. **Gate**: Did `@decided` involve architecture changes, new protocols, new axioms, or constraint modifications?
+2. **If NO**: Skip — most sessions don't touch canonical rules.
+3. **If YES**: Load `.context/CANONICAL.md`. Diff against session learnings. Update if contradicted.
 
 ## 1.3 Session Checkpoint (S__)
 
@@ -155,7 +156,19 @@ Copy changed `docs/`, `AGENTS.md`, and wiki files to the private repo. No filter
 
 > See also: `/push-public` workflow → "Post-Push: Sync Back to Private" section.
 
-## 1.5 Shutdown Orchestrator
+## 1.5.5 Context Hygiene Gate
+
+> **Rule**: Keep `activeContext.md` under the boot-weight ceiling.
+
+**Gate**: Is `activeContext.md` > 500 lines?
+
+* **If NO**: Skip.
+* **If YES**: Move all fully-closed session blocks (from `## Session` to `!checkpoint ]]`) older than the most recent 5 sessions into a one-liner summary in the `## Compacted Archive` section. Delete the full blocks.
+
+> Format: `- **[Date] – [Topic]**: [One-line summary of decisions/learnings].`
+> Rationale: Keeps `activeContext.md` under the boot-weight ceiling. `/start` surgical load stays fast.
+
+## 1.6 Shutdown Orchestrator
 
 > **Rule**: Single script handles harvest check, git commit, and compliance.
 
