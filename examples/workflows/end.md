@@ -258,7 +258,7 @@ python3 .agent/scripts/shutdown.py
 
 ## References
 
-- [/save](file://.agent/workflows/save.md) — Mid-session checkpoint
+- **/save** — Mid-session checkpoint
 
 ---
 

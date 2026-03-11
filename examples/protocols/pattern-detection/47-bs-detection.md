@@ -125,4 +125,4 @@ When running `/ultrathink` or `/research` on a knowledge corpus:
 
 ## Related Protocols
 
-- [Protocol 115: First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md)
+- [Protocol 115: First Principles Deconstruction](../decision/115-first-principles-deconstruction.md)

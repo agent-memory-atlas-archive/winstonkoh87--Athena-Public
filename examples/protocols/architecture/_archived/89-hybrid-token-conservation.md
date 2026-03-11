@@ -90,7 +90,7 @@ last_updated: 2026-01-05
 ## 5. References
 
 - [Video Source](https://www.youtube.com/watch?v=zAjJYkUnTEs)
-- [**Core Mecanich**: Dynamic Context Loading (JIT)](examples/protocols/architecture/77-adaptive-latency-architecture.md)
+- [**Core Mecanich**: Dynamic Context Loading (JIT)](../77-adaptive-latency-architecture.md)
 - [Skill_MCP_Architecture](#)
 
 ---

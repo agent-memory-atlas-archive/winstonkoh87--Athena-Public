@@ -15,7 +15,7 @@ last_updated: 2026-01-11
 ## Date Added: 10 December 2025
 
 > **Related Case**: [CS-128-pool-incident-case.md](#) — Arena selection / Asset Class Reframe  
-> **Related Protocol**: [30-arena-taxonomy](<!-- Private: .agent/skills/protocols/ --> pattern-detection/30-arena-taxonomy.md)  
+> **Related Protocol**: **30-arena-taxonomy**  
 > **User Calibration Reference**: [System_Principles.md](#) — "Table selection > Table performance", "Scared Money"
 
 ## 34.1 Core Insight

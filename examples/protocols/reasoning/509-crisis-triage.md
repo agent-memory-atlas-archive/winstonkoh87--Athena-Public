@@ -140,8 +140,8 @@ OUTPUT:
 
 - [Protocol 504: Problem Framing](504-problem-framing.md)
 - [Protocol 519: Terminal Goal Elicitation](519-terminal-goal-elicitation.md)
-- [Protocol 514: Sovereign Safety Sequence](../architecture/514-sovereign-safety.md)
-- [Therapeutic IFS Skill](../../../.agent/skills/therapeutic-ifs/SKILL.md)
+- **Protocol 514: Sovereign Safety Sequence**
+- [Therapeutic IFS Skill](../../skills/research/deep-research-loop/SKILL.md)
 
 ---
 

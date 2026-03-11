@@ -329,7 +329,7 @@ When ambiguous → Default to **Problem-Solving (#15)** as a standalone cluster.
 - [Protocol 503: Cognitive Clusters](../architecture/503-cognitive-clusters.md)
 - [Protocol 508: Intent Classifier](508-intent-classifier.md)
 - CLUSTER_INDEX.md (see your workspace's `.agent/CLUSTER_INDEX.md`)
-- [Protocol 504: Problem Framing](504-problem-framing.md)
+- [Protocol 504: Problem Framing](../reasoning/504-problem-framing.md)
 
 ---
 

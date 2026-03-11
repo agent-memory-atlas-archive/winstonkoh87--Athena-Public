@@ -116,4 +116,4 @@ Rank top 3 recommendations.
 
 ## Related Protocols
 
-- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](<!-- Private: .agent/skills/protocols/ --> decision/121-mcda-eev-framework.md)
+- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](../decision/121-mcda-eev-framework.md)

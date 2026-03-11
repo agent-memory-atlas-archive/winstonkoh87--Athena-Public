@@ -86,7 +86,7 @@ Bypassing STANDARD/ULTRA protocol is a high-severity violation. SNIPER queries m
 > **Architecture**: P508 Intent Classifier → P507 Cognitive Systems → P503 Clusters → Skills → Protocols
 > **Philosophy**: Classify the *human need archetype* first (top-down), then cascade to clusters. Fall back to keyword matching for SNIPER queries.
 
-**Routing Table**: [CLUSTER_INDEX.md](../CLUSTER_INDEX.md) (8 Cognitive Systems, 15 clusters, 100% skill coverage)
+**Routing Table**: **CLUSTER_INDEX.md** (8 Cognitive Systems, 15 clusters, 100% skill coverage)
 
 **Intent Classification (Λ ≥ 10 — STANDARD/ULTRA):**
 
@@ -145,13 +145,13 @@ Problem Query → #15 Problem-Solving → GoT Phase 5 → #8 Adversarial QA
 | `/think` | **Escalation** — Force L4 depth + Output_Standards | +2K |
 | `/ultrathink` | Maximum depth + Full stack | +28K |
 
-> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](../protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
+> - **Default Mode**: JIT Knowledge Routing (**Protocol 133**). Reasoning scales to query complexity.
 
 ---
 
 ## References
 
-- [Protocol 133: JIT Routing](../protocols/architecture/133-query-archetype-routing.md)
+- **Protocol 133: JIT Routing**
 - WORKFLOW_INDEX.md (see your local workspace)
 - Session logs (see your local `.context/memories/`)
 

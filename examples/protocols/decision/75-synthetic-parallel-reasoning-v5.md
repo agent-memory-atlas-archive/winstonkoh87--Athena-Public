@@ -153,8 +153,8 @@ python3 scripts/core/reasoning/agot_orchestrator.py "Your query" --output output
 
 ## 9. References
 
-- [Protocol 75 v4.0](examples/protocols/decision/75-synthetic-parallel-reasoning.md) — Static predecessor
-- [Protocol 137](examples/protocols/decision/137-graph-of-thoughts.md) — Static GoT topology
+- [Protocol 75 v4.0](75-synthetic-parallel-reasoning.md) — Static predecessor
+- [Protocol 137](137-graph-of-thoughts.md) — Static GoT topology
 - [AGoT Paper](https://arxiv.org/abs/2502.05078) — Pandey et al. (2025)
 - [RouteGoT Paper](https://arxiv.org/abs/2603.05818) — Liu et al. (2026)
 - [GoT Paper](https://arxiv.org/abs/2308.09687) — Besta et al. (2024, AAAI)

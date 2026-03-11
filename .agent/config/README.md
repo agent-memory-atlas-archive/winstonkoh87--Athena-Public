@@ -37,5 +37,5 @@ print(f"RRF k: {retrieval.rrf_k}")
 
 ## Documentation
 
-- [Architecture Overview](../docs/ARCHITECTURE.md)
-- [Protocol 415: Exoskeleton](../examples/protocols/architecture/415-exoskeleton-architecture.md)
+- [Architecture Overview](../../docs/ARCHITECTURE.md)
+- [Protocol 415: Exoskeleton](../../docs/protocols/415-exoskeleton-architecture.md)

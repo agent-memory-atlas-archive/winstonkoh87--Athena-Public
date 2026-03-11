@@ -84,7 +84,7 @@ For each component of the skeleton:
 
 ## References
 
-- [Protocol 128: Internal Family Systems](<!-- Private: .agent/skills/protocols/ --> psychology/128-internal-family-systems.md)
+- **Protocol 128: Internal Family Systems**
 
 See [References.md](#) for full citation.
 

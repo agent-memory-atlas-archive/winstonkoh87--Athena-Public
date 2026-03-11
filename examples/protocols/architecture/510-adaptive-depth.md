@@ -3,7 +3,7 @@
 > **Category**: Architecture  
 > **Created**: 2026-03-04  
 > **Status**: Active  
-> **Dependencies**: [P133 JIT Routing](133-query-archetype-routing.md), [P508 Intent Classifier](508-intent-classifier.md)
+> **Dependencies**: **P133 JIT Routing**, [P508 Intent Classifier](508-intent-classifier.md)
 
 ## Principle
 
@@ -62,7 +62,7 @@ This protocol is enforced structurally:
 
 ## References
 
-- [Protocol 133: JIT Routing](133-query-archetype-routing.md)
+- **Protocol 133: JIT Routing**
 - [Protocol 508: Intent Classifier](508-intent-classifier.md)
 - [WORKFLOWS.md](../../../docs/WORKFLOWS.md) — Escalation ladder reference
 

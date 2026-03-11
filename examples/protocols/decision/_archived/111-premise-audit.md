@@ -153,13 +153,13 @@ Only deliver when 10/10 pass → "Correct Reasoning Chain" ensured ✅
 ---
 
 ## Cross-References
-- [Protocol 112: Form-Substance Gap](<!-- Private: .agent/skills/protocols/ --> pattern-detection/112-form-substance-gap.md)
+- [Protocol 112: Form-Substance Gap](../../pattern-detection/112-form-substance-gap.md)
 
-- [Protocol 113: Missing Baseline Model](<!-- Private: .agent/skills/protocols/ --> psychology/113-missing-baseline-model.md)
-- [Protocol 114: Limerent Reality Distortion](<!-- Private: .agent/skills/protocols/ --> psychology/114-limerent-reality-distortion.md)
-- [Protocol 115: First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md)
-- [Protocol 123: Einstein Protocol](<!-- Private: .agent/skills/protocols/ --> decision/123-einstein-protocol.md)
-- [Protocol 117: Randian Dilemma](<!-- Private: .agent/skills/protocols/ --> pattern-detection/117-randian-dilemma.md)
+- **Protocol 113: Missing Baseline Model**
+- **Protocol 114: Limerent Reality Distortion**
+- [Protocol 115: First Principles Deconstruction](../115-first-principles-deconstruction.md)
+- [Protocol 123: Einstein Protocol](../123-einstein-protocol.md)
+- **Protocol 117: Randian Dilemma**
 
 ---
 

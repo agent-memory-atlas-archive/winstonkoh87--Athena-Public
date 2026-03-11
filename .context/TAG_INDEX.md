@@ -9,9 +9,9 @@
 
 | Category | File | Description |
 | :--- | :--- | :--- |
-| **Core Architecture** | [.agent/skills/protocols/architecture/051-hybrid-rag-router.md](file://.agent/skills/protocols/architecture/051-hybrid-rag-router.md) | Hybrid RAG routing logic. |
-| **Logic Engine** | [.agent/skills/protocols/creation/053-kinetic-information-engine.md](file://.agent/skills/protocols/creation/053-kinetic-information-engine.md) | Kinetic Engine operational protocol. |
-| **Workflows** | [.agent/workflows/diagram.md](file://.agent/workflows/diagram.md) | System visualization workflow. |
+| **Core Architecture** | **.agent/skills/protocols/architecture/051-hybrid-rag-router.md** | Hybrid RAG routing logic. |
+| **Logic Engine** | **.agent/skills/protocols/creation/053-kinetic-information-engine.md** | Kinetic Engine operational protocol. |
+| **Workflows** | **.agent/workflows/diagram.md** | System visualization workflow. |
 
 ## 📦 Project Modules
 

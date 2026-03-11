@@ -131,10 +131,10 @@ When facing strategic decision:
 ---
 
 ## Cross-References
-- [Protocol 124: SDR Diagnosis](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-diagnosis.md)
+- **Protocol 124: SDR Diagnosis**
 
-- [Protocol 75: Synthetic Parallel Reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md)
-- [Protocol 108: Bionic Operational Physics](examples/protocols/architecture/108-bionic-operational-physics.md)
+- [Protocol 75: Synthetic Parallel Reasoning](../decision/75-synthetic-parallel-reasoning.md)
+- **Protocol 108: Bionic Operational Physics**
 
 ---
 

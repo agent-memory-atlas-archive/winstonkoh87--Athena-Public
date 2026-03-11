@@ -42,7 +42,7 @@ Weights were determined using **Analytic Hierarchy Process (AHP)** pairwise comp
 | **1** | [Protocol 001: Law of Ruin](../examples/protocols/safety/001-law-of-ruin.md) | **4.70** | Safety |
 | **2** | [Protocol 193: Ergodicity Check](../examples/protocols/decision/193-ergodicity-check.md) | **4.55** | Decision |
 | **3** | [Protocol 75: Synthetic Parallel Reasoning](../examples/protocols/decision/75-synthetic-parallel-reasoning.md) | **4.50** | Decision |
-| **4** | [Protocol 140: Base Rate Audit](../examples/protocols/decision/140-base-rate-audit.md) | **4.35** | Decision |
+| **4** | [Protocol 140: Base Rate Audit](../examples/protocols/decision/_archived/140-base-rate-audit.md) | **4.35** | Decision |
 | **5** | [Protocol 28: 3-Second Override](../examples/protocols/engineering/28-three-second-override.md) | **4.25** | Engineering |
 | **6** | [Protocol 115: First Principles Deconstruction](../examples/protocols/decision/115-first-principles-deconstruction.md) | **4.15** | Decision |
 | **7** | [Protocol 48: Circuit Breaker (Systemic Pause)](../examples/protocols/safety/48-circuit-breaker-systemic.md) | **4.10** | Safety |

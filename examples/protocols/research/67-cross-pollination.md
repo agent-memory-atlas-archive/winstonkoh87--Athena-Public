@@ -138,9 +138,9 @@ This protocol runs **silently** at every `/end`.
 
 ## References
 
-- [Protocol 23: Isomorphism Detection](protocols/pattern-detection/23-isomorphism-detection.md) — The detection framework (macro)
-- [Escalation Framework](concepts/escalation_framework.md) — Persuasion ≅ Sales origin
-- [Session 38](session_logs/archive/session-38.md) — Origin session
+- **Protocol 23: Isomorphism Detection** — The detection framework (macro)
+- **Escalation Framework** — Persuasion ≅ Sales origin
+- **Session 38** — Origin session
 
 ---
 

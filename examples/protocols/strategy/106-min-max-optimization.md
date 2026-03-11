@@ -180,7 +180,7 @@ $$ U'(c) = \frac{U(c)}{c} $$
 
 ## References
 
-For full APA citations, see the [central reference list](../../docs/REFERENCES.md).
+For full APA citations, see the [central reference list](../../../docs/REFERENCES.md).
 
 - Gigerenzer, G., & Goldstein, D. G. (1996). Reasoning the fast and frugal way. *Psychological Review, 103*(4), 650–669.
 - Koch, R. (1998). *The 80/20 principle*. Nicholas Brealey Publishing.

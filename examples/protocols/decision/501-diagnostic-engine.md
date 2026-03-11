@@ -265,10 +265,10 @@ graph TD
 
 ## Cross-References
 
-- [Protocol 500: GTO Problem Solver](<!-- Private: .agent/skills/protocols/ --> decision/500-gto-problem-solver.md) — Downstream solver
-- [Protocol 121: MCDA / EEV / Pairwise](<!-- Private: .agent/skills/protocols/ --> decision/121-mcda-eev-framework.md) — Lightweight solver
-- [Protocol 330: EEV](<!-- Private: .agent/skills/protocols/ --> decision/330-economic-expected-value.md) — Value engine
-- [Protocol 193: Ergodicity Check](<!-- Private: .agent/skills/protocols/ --> decision/193-ergodicity-check.md) — Risk gate
+- [Protocol 500: GTO Problem Solver](500-gto-problem-solver.md) — Downstream solver
+- [Protocol 121: MCDA / EEV / Pairwise](121-mcda-eev-framework.md) — Lightweight solver
+- [Protocol 330: EEV](330-economic-expected-value.md) — Value engine
+- [Protocol 193: Ergodicity Check](193-ergodicity-check.md) — Risk gate
 
 ## Protocols Absorbed
 

@@ -65,7 +65,7 @@ When building a new capability:
 ## Source
 
 - [Session 37 Analysis of OpenAI "Leak"](#)
-- [Protocol 42: Scrambled Eggs Strategy](examples/protocols/engineering/42-scrambled-eggs-strategy.md)
+- [Protocol 42: Scrambled Eggs Strategy](../42-scrambled-eggs-strategy.md)
 
 ---
 

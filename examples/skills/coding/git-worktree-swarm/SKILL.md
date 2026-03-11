@@ -74,7 +74,7 @@ Never: full conversation history, debug logs, unrelated research.
 
 ## Reference Paths
 
-- [Protocol 513: Context Isolation](../../Athena-Public/examples/protocols/engineering/513-context-isolation.md)
-- [Protocol 43: Micro-Commit](../../Athena-Public/examples/protocols/engineering/43-micro-commit-protocol.md)
+- [Protocol 513: Context Isolation](../../../protocols/engineering/513-context-isolation.md)
+- [Protocol 43: Micro-Commit](../../../protocols/engineering/43-micro-commit-protocol.md)
 - `.context/memories/protocols/engineering/100-git-worktree-parallelism.md`
 - `.context/memories/protocols/architecture/409-parallel-worktree-orchestration.md`

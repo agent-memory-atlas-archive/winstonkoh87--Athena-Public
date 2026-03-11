@@ -130,10 +130,10 @@ Each task in a wave runs in full isolation. State merges between waves.
 
 ## Cross-References
 
-- [Skill: context-compactor](.agent/skills/context-compactor/SKILL.md) — Reactive compaction
-- [Protocol 510: Adaptive Depth](architecture/510-adaptive-depth.md) — Query classification
-- [Protocol 43: Micro-Commit](engineering/43-micro-commit-protocol.md) — Commit discipline
-- [Skill: git-worktree-swarm](.agent/skills/git-worktree-swarm/SKILL.md) — Wave execution
+- [Skill: context-compactor](../../skills/research/deep-research-loop/SKILL.md) — Reactive compaction
+- [Protocol 510: Adaptive Depth](../architecture/510-adaptive-depth.md) — Query classification
+- [Protocol 43: Micro-Commit](43-micro-commit-protocol.md) — Commit discipline
+- [Skill: git-worktree-swarm](../../skills/research/deep-research-loop/SKILL.md) — Wave execution
 
 ## Tags
 

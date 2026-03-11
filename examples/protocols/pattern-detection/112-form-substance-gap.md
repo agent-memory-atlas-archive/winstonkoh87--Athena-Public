@@ -325,10 +325,10 @@ Monitor: Any escalation = addiction forming → Initiate FFP ⚠️
 
 ## 12. Related Protocols
 
-- [Protocol 111: Premise Audit](examples/protocols/decision/111-premise-audit.md)
-- [Protocol 113: Missing Baseline Model](<!-- Private: .agent/skills/protocols/ --> psychology/113-missing-baseline-model.md)
-- [Protocol 114: Emotionally biased Reality Distortion](<!-- Private: .agent/skills/protocols/ --> psychology/114-limerent-reality-distortion.md)
-- [Protocol 197: The Consigliere Protocol](<!-- Private: .agent/skills/protocols/ --> decision/197-consiglieri-protocol.md)
+- [Protocol 111: Premise Audit](../decision/_archived/111-premise-audit.md)
+- **Protocol 113: Missing Baseline Model**
+- **Protocol 114: Emotionally biased Reality Distortion**
+- [Protocol 197: The Consigliere Protocol](../decision/197-consiglieri-protocol.md)
 - Psychology Profile: Your own L1-L5 schema mapping (private)
 
 ---
@@ -343,6 +343,6 @@ Monitor: Any escalation = addiction forming → Initiate FFP ⚠️
 
 ## Related Protocols
 
-- [Protocol 124: SDR Diagnosis](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-diagnosis.md)
+- **Protocol 124: SDR Diagnosis**
 
-- [Protocol 128: Internal Family Systems](<!-- Private: .agent/skills/protocols/ --> psychology/128-internal-family-systems.md)
+- **Protocol 128: Internal Family Systems**

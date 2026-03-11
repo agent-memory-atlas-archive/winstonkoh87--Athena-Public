@@ -14,7 +14,7 @@ last_updated: 2026-01-06
 
 ## Date Added: 9 December 2025
 
-> **Related Protocol**: [16-synthetic-parallel-reasoning](<!-- Private: .agent/skills/protocols/ --> pattern-detection/16-graph-of-thoughts-theory.md), [17-three-timeline-got](<!-- Private: .agent/skills/protocols/ --> pattern-detection/17-three-timeline-got.md)
+> **Related Protocol**: [16-synthetic-parallel-reasoning](16-graph-of-thoughts-theory.md), [17-three-timeline-got](17-three-timeline-got.md)
 
 ## 18.1 The Hierarchy
 
@@ -83,8 +83,8 @@ For most life decisions, Levels 1-2 are sufficient. Reserve Level 3 for:
 
 ## References
 
-- [Protocol 38: Synthetic Deep Think](<!-- Private: .agent/skills/protocols/ --> decision/38-synthetic-deep-think.md) — References this stack
-- [Protocol 52: Deep Research Loop](examples/protocols/research/52-deep-research-loop.md) — References this stack
+- [Protocol 38: Synthetic Deep Think](../decision/_archived/38-synthetic-deep-think.md) — References this stack
+- [Protocol 52: Deep Research Loop](../research/52-deep-research-loop.md) — References this stack
 - [Escalation Ladder Framework](#) — Uses probabilistic analysis
 
 ---

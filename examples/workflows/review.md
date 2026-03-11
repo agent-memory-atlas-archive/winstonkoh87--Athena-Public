@@ -87,6 +87,6 @@ Combine all sections into a single, clean artifact. Keep it to one page. If the 
 
 ## Notes
 
-- This workflow references [Protocol 382: Cross-Domain Constraint Propagation](.agent/skills/protocols/decision/382-cross-domain-constraint-propagation.md).
+- This workflow references **Protocol 382: Cross-Domain Constraint Propagation**.
 - The health ratings are based on available context, not self-reported data. If data is missing, flag it: "Health domain rated with low confidence — no recent data."
 - Avoid sycophancy. If everything is fine, say so briefly. If something is declining, say it directly.

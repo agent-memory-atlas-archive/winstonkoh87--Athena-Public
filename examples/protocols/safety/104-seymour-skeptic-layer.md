@@ -69,8 +69,8 @@ Add to `/circuit` ceremony:
 ## References
 
 - [Case: Project Vend](#)
-- [/circuit](examples/workflows/circuit.md)
-- [Protocol 47: BS Detection](<!-- Private: .agent/skills/protocols/ --> pattern-detection/47-bs-detection.md)
+- [/circuit](../../workflows/circuit.md)
+- [Protocol 47: BS Detection](../pattern-detection/47-bs-detection.md)
 
 ---
 

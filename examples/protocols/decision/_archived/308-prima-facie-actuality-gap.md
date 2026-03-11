@@ -81,7 +81,7 @@ Identify where value leaks:
 
 ### Step 5: Run the SDR Calculator
 
-[Protocol 46: SDR Calculator](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-calculator.md)
+**Protocol 46: SDR Calculator**
 
 If **SDR > 5:1**, the arena is structurally unwinnable. Exit or pivot.
 
@@ -154,15 +154,15 @@ If you answer NO to 3+ of these → **Do not enter.**
 
 ## Related Protocols
 
-- [Protocol 124: SDR Diagnosis](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-diagnosis.md)
+- **Protocol 124: SDR Diagnosis**
 - [CS044: ILP Trust Arbitrage](#)
 - [CS044: ILP Trust Arbitrage](#)
 
 - [CS-142: Tuition Agency Trap](#)
 - [CS-127: Business Trap Physics](#)
 - [CS-044: ILP Trust Arbitrage](#)
-- [Protocol 46: SDR Calculator](<!-- Private: .agent/skills/protocols/ --> decision/124-sdr-calculator.md)
-- [Protocol 121: Good Boy Paradox](<!-- Private: .agent/skills/protocols/ --> strategy/121-amoral-realism.md)
+- **Protocol 46: SDR Calculator**
+- **Protocol 121: Good Boy Paradox**
 
 ---
 

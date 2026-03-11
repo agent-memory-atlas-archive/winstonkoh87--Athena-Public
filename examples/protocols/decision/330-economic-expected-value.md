@@ -456,7 +456,7 @@ To maximize the **E(EV) Curve** over a lifetime, you must solve for **Geometric 
 
 - [Protocol 193: Ergodicity Check](../decision/193-ergodicity-check.md)
 - [Protocol 180: Utility Function Analysis](../decision/180-utility-function-analysis.md)
-- [Protocol 245: Value Trinity](../decision/245-value-trinity.md)
+- [Protocol 245: Value Trinity](../strategy/245-value-trinity.md)
 - [Core Identity: Law #1](../../framework/Core_Identity.md)
 - Friedman, M. & Savage, L.J. (1948). "The Utility Analysis of Choices Involving Risk." *Journal of Political Economy*, 56(4), 279–304.
 - Kahneman, D. & Tversky, A. (1979). "Prospect Theory: An Analysis of Decision under Risk." *Econometrica*, 47(2), 157–185.

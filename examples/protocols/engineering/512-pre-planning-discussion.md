@@ -98,9 +98,9 @@ Different cognitive modes. Don't collapse them.
 
 ## Cross-References
 
-- [Protocol 107: Spec-Driven Development](engineering/107-spec-driven-development.md) — Step 2 in the chain
-- [Protocol 500: GTO Problem Solver](decision/500-gto-problem-solver.md) — Phase 0 classification
-- [Skill: spec-driven-dev](.agent/skills/spec-driven-dev/SKILL.md) — Execution wrapper
+- [Protocol 107: Spec-Driven Development](../coding/107-spec-driven-development.md) — Step 2 in the chain
+- [Protocol 500: GTO Problem Solver](../decision/500-gto-problem-solver.md) — Phase 0 classification
+- [Skill: spec-driven-dev](../../skills/research/deep-research-loop/SKILL.md) — Execution wrapper
 
 ## Tags
 

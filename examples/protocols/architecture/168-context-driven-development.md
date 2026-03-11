@@ -11,7 +11,7 @@ last_updated: 2026-01-06
 
 # Protocol 168: Context-Driven Development (CDD)
 
-> **Reference**: [Protocol 215](examples/protocols/architecture/215-canonical-memory.md)
+> **Reference**: **Protocol 215**
 
 > **Source**: Google Gemini Conductor / World of AI (2025)
 > **Core Concept**: Code = Content + Context

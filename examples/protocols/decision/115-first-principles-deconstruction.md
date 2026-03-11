@@ -185,7 +185,7 @@ Why it works:
 
 ## Cross-References
 
-- [Protocol 117: Zero-Point Protocol](examples/protocols/meta/117-zero-point-protocol.md)
+- [Protocol 117: Zero-Point Protocol](../meta/117-zero-point-protocol.md)
 - [RCS Phases](#) — Reality Calibration System
 
 ---

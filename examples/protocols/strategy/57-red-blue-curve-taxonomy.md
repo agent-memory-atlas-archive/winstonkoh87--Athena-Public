@@ -59,11 +59,11 @@ last_updated: 2026-01-16
 
 ## 5. Linked Protocols
 
-- [Protocol 30: Arena Taxonomy](<!-- Private: .agent/skills/protocols/ --> pattern-detection/30-arena-taxonomy.md)
-- [Protocol 34: Rigged Game Principle](<!-- Private: .agent/skills/protocols/ --> pattern-detection/34-rigged-game-principle.md)
+- **Protocol 30: Arena Taxonomy**
+- [Protocol 34: Rigged Game Principle](../pattern-detection/34-rigged-game-principle.md)
 
 ## Related Protocols
 - [CS044: ILP Trust Arbitrage](#)
 - [CS044: ILP Trust Arbitrage](#)
 
-- [Protocol 161: Sovereign Operating Protocol](<!-- Private: .agent/skills/protocols/ --> decision/161-sovereign-operating-protocol.md)
+- **Protocol 161: Sovereign Operating Protocol**

@@ -47,7 +47,7 @@ The character embodies a precise engineering tradeoff: **maximum capability with
 | Human core with machine components surgically integrated | Human operator with AI cognition layer integrated via protocols |
 | Enhanced strength, speed, vision — the *person* drives | Enhanced memory, reasoning, routing — *you* drive |
 | HUD providing real-time tactical data | Exocortex providing real-time contextual recall ([Semantic Search](../SEMANTIC_SEARCH.md)) |
-| Burns energy fast — crashes after intense combat, needs medication | Burns context fast — degrades after deep co-activation chains, needs [context compaction](../../examples/protocols/memory/context-compactor.md) |
+| Burns energy fast — crashes after intense combat, needs medication | Burns context fast — degrades after deep co-activation chains, needs **context compaction** |
 | Volunteered for augmentation after being wounded protecting Dani | You build the augmentation to solve problems platform AI can't |
 | Still mortal. Still bleeds. The machine parts don't make her a machine. | Still human. Still biased. The AI layer doesn't make you an AI. |
 

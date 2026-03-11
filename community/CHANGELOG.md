@@ -243,7 +243,7 @@ README restructured with Table of Contents, all counts verified, capability clai
 
 - ✅ **27 Audit Fixes**: Refined language (veto → refusal), added COS limitations, honest Λ scoring
 - ✅ **Governance Documents**: RISK_REGISTER, DECISION_LOG, DATA_GOVERNANCE, SUCCESSION_PROTOCOL
-- ✅ **Override Logging**: `/circuit` now auto-logs to `[DECISION_LOG.md](docs/DECISION_LOG.md)`
+- ✅ **Override Logging**: `/circuit` now auto-logs to `**DECISION_LOG.md**`
 - ✅ **Founder Mode Integrated**: Paul Graham's direct, skip-level reasoning as native standard
 - ✅ **70% Rule**: Taylor Pearson's "ship at 70%" integrated into execution philosophy
 
