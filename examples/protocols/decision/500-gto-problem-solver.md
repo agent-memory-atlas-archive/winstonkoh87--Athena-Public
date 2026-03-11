@@ -42,7 +42,7 @@ graph TD
 
 ## Phase 0: Game Classification
 
-> **Invoke**: [Protocol 422: Game Taxonomy](<!-- Private: .agent/skills/protocols/ --> decision/422-game-taxonomy.md)
+> **Invoke**: Protocol 422: Game Taxonomy
 
 Before solving, classify the environment along **three axes**:
 
@@ -89,7 +89,7 @@ GAME CLASSIFICATION:
 
 ## Phase 1: Stakeholder Utility Mapping
 
-> **Invoke**: [Protocol 180: Utility Function Analysis](<!-- Private: .agent/skills/protocols/ --> decision/180-utility-function-analysis.md)
+> **Invoke**: [Protocol 180: Utility Function Analysis](180-utility-function-analysis.md)
 
 For **each agent/stakeholder**, extract their utility function:
 
@@ -139,7 +139,7 @@ UTILITY MAP:
 
 ## Phase 2: Strategy Generation (Divergence)
 
-> **Invoke**: [Protocol 137: Graph of Thoughts](<!-- Private: .agent/skills/protocols/ --> decision/137-graph-of-thoughts.md) + [Protocol 75: Synthetic Parallel Reasoning](decision/75-synthetic-parallel-reasoning.md)
+> **Invoke**: [Protocol 137: Graph of Thoughts](137-graph-of-thoughts.md) + [Protocol 75: Synthetic Parallel Reasoning](75-synthetic-parallel-reasoning.md)
 
 Generate **minimum 3 distinct strategic paths**. Do NOT evaluate yet. Just diverge.
 
@@ -182,7 +182,7 @@ A **GoT Graph** (minimum 3 paths, with state probabilities and agent counter-mov
 
 ## Phase 3: Multi-Criteria Ranking
 
-> **Invoke**: [Protocol 121: MCDA / EEV / Pairwise](<!-- Private: .agent/skills/protocols/ --> decision/121-mcda-eev-framework.md)
+> **Invoke**: [Protocol 121: MCDA / EEV / Pairwise](121-mcda-eev-framework.md)
 
 ### 3A: Define Criteria and Weights
 
@@ -231,7 +231,7 @@ MCDA RANKING:
 
 ## Phase 4: EEV Optimisation & Safety Gates
 
-> **Invoke**: [Protocol 330: EEV](<!-- Private: .agent/skills/protocols/ --> decision/330-economic-expected-value.md) + [Protocol 193: Ergodicity Check](<!-- Private: .agent/skills/protocols/ --> decision/193-ergodicity-check.md)
+> **Invoke**: [Protocol 330: EEV](330-economic-expected-value.md) + [Protocol 193: Ergodicity Check](193-ergodicity-check.md)
 
 For the **top-ranked path** from Phase 3:
 
@@ -385,14 +385,14 @@ MONTE CARLO RESULTS (N = [X] iterations):
 
 ## Cross-References
 
-- [Protocol 422: Game Taxonomy](<!-- Private: .agent/skills/protocols/ --> decision/422-game-taxonomy.md) — Phase 0 classifier
-- [Protocol 180: Utility Function Analysis](<!-- Private: .agent/skills/protocols/ --> decision/180-utility-function-analysis.md) — Phase 1 utility mapping
-- [Protocol 137: Graph of Thoughts](<!-- Private: .agent/skills/protocols/ --> decision/137-graph-of-thoughts.md) — Phase 2 strategy generation
-- [Protocol 75: Synthetic Parallel Reasoning](decision/75-synthetic-parallel-reasoning.md) — Phase 2 divergence engine
-- [Protocol 121: MCDA / EEV / Pairwise](<!-- Private: .agent/skills/protocols/ --> decision/121-mcda-eev-framework.md) — Phase 3 ranking
-- [Protocol 330: Economic Expected Value (EEV)](<!-- Private: .agent/skills/protocols/ --> decision/330-economic-expected-value.md) — Phase 4 value engine
-- [Protocol 193: Ergodicity Check](<!-- Private: .agent/skills/protocols/ --> decision/193-ergodicity-check.md) — Phase 4 safety gate
-- [Monte Carlo Sim Skill](<!-- Private: .agent/skills/ --> monte-carlo-sim/SKILL.md) — Phase 5 validation
+- Protocol 422: Game Taxonomy — Phase 0 classifier
+- [Protocol 180: Utility Function Analysis](180-utility-function-analysis.md) — Phase 1 utility mapping
+- [Protocol 137: Graph of Thoughts](137-graph-of-thoughts.md) — Phase 2 strategy generation
+- [Protocol 75: Synthetic Parallel Reasoning](75-synthetic-parallel-reasoning.md) — Phase 2 divergence engine
+- [Protocol 121: MCDA / EEV / Pairwise](121-mcda-eev-framework.md) — Phase 3 ranking
+- [Protocol 330: Economic Expected Value (EEV)](330-economic-expected-value.md) — Phase 4 value engine
+- [Protocol 193: Ergodicity Check](193-ergodicity-check.md) — Phase 4 safety gate
+- Monte Carlo Sim Skill — Phase 5 validation
 
 ## Tags
 

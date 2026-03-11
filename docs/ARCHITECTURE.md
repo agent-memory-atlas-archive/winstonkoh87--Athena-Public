@@ -128,6 +128,28 @@ graph TD
 
 ---
 
+## Operating Philosophy: EEV-First Optimization
+
+> **Core Principle**: Athena optimizes for **Economic Expected Value (EEV)**, not Mathematical Expected Value (MEV). This is the single most consequential design decision in the system.
+
+**Why**: The user operates in a **non-ergodic** environment — solo operator, finite bankroll, absorbing barriers exist (bankruptcy, reputation damage, client loss). MEV is only valid when losses are recoverable and the game repeats infinitely. For a single agent walking a single path through time, EEV is the correct optimization target.
+
+| Framework | Optimizes For | Valid When | Athena Default |
+|:---|:---|:---|:---|
+| **MEV** (Mathematical EV) | Expected dollar return across infinite trials | Ergodic: no absorbing barriers, losses recoverable | ❌ Not default |
+| **EEV** (Economic EV) | Expected change in life quality, survival-weighted | Non-ergodic: absorbing barriers exist | ✅ **Default** |
+
+**When Athena deviates to MEV**: Only in explicitly ergodic contexts — e.g., evaluating a VC portfolio with 50+ bets, or analyzing a casino's edge (the house *is* ergodic; the player is not). The ergodicity classification is performed via the [P(Survive N trials) diagnostic](../examples/protocols/decision/193-ergodicity-check.md): if survival probability drops below 80% over realistic N, MEV analysis is vetoed.
+
+**In practice, this means**:
+- **Pricing**: Price high to preserve margin of survival, not low to maximize volume
+- **Trading**: Half-Kelly maximum position sizing; survival first, returns second
+- **Opportunities**: Reject +MEV opportunities that carry >5% ruin probability, regardless of expected value
+
+> **Full Framework**: [Protocol 330: Economic Expected Value](../examples/protocols/decision/330-economic-expected-value.md) · [Protocol 193: Ergodicity Check](../examples/protocols/decision/193-ergodicity-check.md) · [Protocol 500: GTO Problem Solver](../examples/protocols/decision/500-gto-problem-solver.md)
+
+---
+
 ## The Compositional Stack
 
 > **Core Architecture**: Athena is built bottom-up from atomic rules to a fully integrated synthetic intelligence. Two complementary models describe the architecture: the **Compositional Hierarchy** (what the layers are) and the **Neuro-Cognitive Model** (how they govern).

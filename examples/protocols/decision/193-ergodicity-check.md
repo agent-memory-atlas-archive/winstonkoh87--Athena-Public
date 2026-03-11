@@ -135,7 +135,7 @@ Your schema runs this flawed logic:
 
 ## Integration
 
-- Use with **[Protocol 187: Terminal Node](<!-- Private: .agent/skills/protocols/ --> decision/187-terminal-node-protocol.md)** (project 20 years).
+- Use with **[Protocol 187: Terminal Node](187-terminal-node-protocol.md)** (project 20 years).
 - Use with **[Law #1: Ruin Prevention](#the-absorbing-barrier)**.
 
 ---
