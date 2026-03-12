@@ -116,18 +116,8 @@ def _hash_text(text: str) -> str:
     return hashlib.md5(text.encode()).hexdigest()
 
 
-def get_embedding(text: str) -> List[float]:
-    """Generate embedding with persistent disk caching.
-
-    Uses gemini-embedding-001 (3072 dimensions).
-    """
-    text_hash = _hash_text(text)
-    cache = get_embedding_cache()
-    cached = cache.get(text_hash)
-    if cached:
-        return cached
-
-    # Fetch remote (Gemini) - Lazy load requests
+def _get_embedding_gemini(text: str) -> List[float]:
+    """Fetch embedding from Google Gemini API (gemini-embedding-001, 3072 dims)."""
     import requests
     from dotenv import load_dotenv
 
@@ -145,8 +135,67 @@ def get_embedding(text: str) -> List[float]:
 
     response = requests.post(url, json=payload, timeout=30)
     response.raise_for_status()
-    embedding = response.json()["embedding"]["values"]
+    return response.json()["embedding"]["values"]
 
+
+def _get_embedding_ollama(text: str) -> List[float]:
+    """Fetch embedding from local Ollama instance.
+
+    Requires Ollama running locally (default: http://localhost:11434).
+    Default model: nomic-embed-text (768 dims). Override via OLLAMA_EMBED_MODEL.
+
+    Install:
+        curl -fsSL https://ollama.com/install.sh | sh
+        ollama pull nomic-embed-text
+    """
+    import requests
+    from dotenv import load_dotenv
+
+    load_dotenv()
+
+    base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+    model = os.getenv("OLLAMA_EMBED_MODEL", "nomic-embed-text")
+
+    response = requests.post(
+        f"{base_url}/api/embed",
+        json={"model": model, "input": text},
+        timeout=60,
+    )
+    response.raise_for_status()
+    return response.json()["embeddings"][0]
+
+
+# Provider registry
+_EMBEDDING_PROVIDERS = {
+    "gemini": _get_embedding_gemini,
+    "ollama": _get_embedding_ollama,
+}
+
+
+def get_embedding(text: str) -> List[float]:
+    """Generate embedding with persistent disk caching.
+
+    Provider is selected via EMBEDDING_PROVIDER env var:
+        - "gemini" (default): Google Gemini API (3072 dims, requires GOOGLE_API_KEY)
+        - "ollama": Local Ollama instance (768 dims default, zero-cost, fully offline)
+
+    Set EMBEDDING_PROVIDER=ollama in your .env for local-only operation.
+    """
+    text_hash = _hash_text(text)
+    cache = get_embedding_cache()
+    cached = cache.get(text_hash)
+    if cached:
+        return cached
+
+    provider_name = os.getenv("EMBEDDING_PROVIDER", "gemini").lower()
+    provider_fn = _EMBEDDING_PROVIDERS.get(provider_name)
+    if not provider_fn:
+        raise ValueError(
+            f"Unknown EMBEDDING_PROVIDER='{provider_name}'. "
+            f"Supported: {', '.join(_EMBEDDING_PROVIDERS.keys())}"
+        )
+
+    embedding = provider_fn(text)
     cache.set(text_hash, embedding)
     return embedding
 
