@@ -9,11 +9,11 @@
 
 | Metric | Count |
 |--------|-------|
-| **Automation Scripts** | 102 |
-| **Decision Protocols** | 269 |
-| **Orchestration Workflows** | 31 |
-| **Case Studies** | 204+ |
-| **Total Sessions** | 540+ |
+| **Automation Scripts** | 540+ |
+| **Decision Protocols** | 144+ |
+| **Orchestration Workflows** | 59 |
+| **Case Studies** | 417+ |
+| **Total Sessions** | 1,100+ |
 
 ---
 

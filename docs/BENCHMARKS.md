@@ -87,7 +87,7 @@ The core boot payload is **~10K tokens** on `/start` and **~20K tokens** on `/ul
 | Asset | Count | Size |
 |-------|-------|------|
 | Protocols & Workflows | 120+ protocols, 50+ workflows | ~1.5 MB |
-| Case Studies | 42 | ~2.4 MB |
+| Case Studies | 417+ | ~2.4 MB |
 | Session Logs | 1,100+ | ~4.2 MB |
 | GraphRAG Entities | 4,200+ | ~46 MB |
 | Vector Embeddings | 12,800+ | ~78 MB |

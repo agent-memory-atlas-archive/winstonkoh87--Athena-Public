@@ -167,7 +167,7 @@ These protocols are already loaded via `SKILL_INDEX.md`. Invoke by name:
 
 | Protocol | Score | Why It Narrowly Missed |
 |----------|-------|----------------------|
-| **330: Economic Expected Value** | 3.95 | Powerful utility framework (Friedman-Savage). Merged from former Protocol 331. Consider for re-ranking. |
+| **330: Economic Expected Value (EEV)** | 3.95 | Unified utility framework (Friedman-Savage). Merged from former Protocol 331. Consider for re-ranking. |
 | **44: Micro-Commit** | 3.90 | Excellent engineering discipline, but coding-specific (Portability: 3). |
 | **68: Anti-Karason** | 3.85 | Critical self-deception detector, but lower daily usage (Applicability: 3). |
 | **104: Seymour Skeptic** | 3.80 | Strong adversarial safety layer. Narrower trigger conditions than ranked protocols. |
