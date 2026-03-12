@@ -1,8 +1,35 @@
 # Best Practices
 
-> **Last Updated**: 10 March 2026
+> **Last Updated**: 12 March 2026
 
 Operational discipline for running Athena sustainably. These aren't features — they're habits that prevent data loss, reduce friction, and keep your system compounding.
+
+---
+
+## 0. The Fastest Way to Learn (The Dual Pressure Model)
+
+> *"Criticism sharpens the blade. Paid work proves it cuts."*
+
+The single fastest way to accelerate mastery of AI agents isn't reading docs or watching tutorials. It's **taking on projects** — specifically, two kinds simultaneously:
+
+| Pressure | What It Teaches | Feedback Loop |
+|:---------|:----------------|:--------------|
+| **Open-source projects** | **Robustness** — adversarial users find every edge case, every broken assumption, every gap in your architecture | Public criticism forces you to harden what works and kill what doesn't |
+| **Paid projects** | **Velocity** — real deadlines + real money force you to find the fastest path through unknown domains | Revenue validates that the system creates tangible value |
+
+### Why Neither Alone Is Sufficient
+
+| Configuration | Outcome |
+|:-------------|:--------|
+| Open-source only | Beautiful system that nobody pays for — high prestige, zero revenue |
+| Paid projects only | You ship fast but never harden the architecture — technical debt compounds |
+| **Both together** | Criticism hardens the system, paid work validates its value — **compounding loop** |
+
+**The mechanism**: Open-source projects (like publishing Athena on Reddit) generate adversarial feedback from strangers who have zero incentive to be polite. This feedback is *more valuable* than self-testing because it surfaces blind spots you can't see from the inside. Paid projects (like speed-running a capstone in a day with AI) generate *empirical proof* that the system works under real constraints — deadlines, client expectations, unfamiliar domains.
+
+Together, they create the [Symbiotic RSI](./USER_DRIVEN_RSI.md) loop at the project level: the open-source community is the "human correction" arm (they tell you what's broken), and paid clients are the "validation" arm (they prove what works by paying for it).
+
+> **The insight that "AI agents can perform magic" doesn't come from reading a blog post. It comes from shipping a capstone in a day.** Lived experience creates conviction that no amount of documentation can replicate.
 
 ---
 
