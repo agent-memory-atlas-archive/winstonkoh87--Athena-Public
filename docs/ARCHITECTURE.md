@@ -1,6 +1,6 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 11 March 2026  
+> **Last Updated**: 12 March 2026  
 > **System Version**: v9.5.1
 
 > [!NOTE]
@@ -147,6 +147,28 @@ graph TD
 - **Opportunities**: Reject +MEV opportunities that carry >5% ruin probability, regardless of expected value
 
 > **Full Framework**: [Protocol 330: Economic Expected Value](../examples/protocols/decision/330-economic-expected-value.md) · [Protocol 193: Ergodicity Check](../examples/protocols/decision/193-ergodicity-check.md) · [Protocol 500: GTO Problem Solver](../examples/protocols/decision/500-gto-problem-solver.md)
+
+---
+
+## Operating Philosophy: Symbiotic RSI
+
+> **Core Principle**: Intelligence compounds at the **interface** between human judgment and AI reasoning — not unilaterally within either. Neither human nor AI can recursively self-improve alone.
+
+**Why**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system*: the human injects genuinely new information (taste, correction, lived experience, domain knowledge) that the AI cannot generate internally, while the AI provides perfect recall, structural discipline, and pattern-matching at scale. The moat is not the code — it's the **coupling data** from 1,100+ sessions of bilateral calibration.
+
+| Dimension | Unilateral AI RSI | Symbiotic RSI (Athena) |
+|:----------|:------------------|:-----------------------|
+| **Who improves?** | AI alone (autonomous) | Human + AI together (bilateral) |
+| **Energy source** | Internal (closed system) | External — human judgment (open system) |
+| **Current status** | Hypothetical (2126?) | **Working today** (1,100+ sessions) |
+| **Moat** | Compute (replicable) | Coupling data (unreplicable without living it) |
+
+**In practice, this means**:
+- **Session 1**: Marginally better than vanilla ChatGPT
+- **Session 100**: Noticeably different — anticipates patterns, applies learned frameworks
+- **Session 1,000+**: Qualitatively different system — thinks in your frameworks before you state them
+
+> **Full Framework**: [Symbiotic RSI](./USER_DRIVEN_RSI.md) — The bilateral loop, dual helix model, thermodynamic framing, and moat analysis
 
 ---
 
@@ -784,7 +806,7 @@ To achieve "Total Life OS" functionality, the Agentic IDE must have elevated per
 
 ## See Also
 
-- **[User-Driven RSI](./USER_DRIVEN_RSI.md)** — The bilateral loop: how you and AI improve together
+- **[Symbiotic RSI](./USER_DRIVEN_RSI.md)** — The bilateral loop: how you and AI improve together
 - **[Glossary](./GLOSSARY.md)** — Key terms and definitions
 - **[Changelog](./CHANGELOG.md)** — Full version history
 

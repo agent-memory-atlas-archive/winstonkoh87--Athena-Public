@@ -1,7 +1,10 @@
-# User-Driven Recursive Self-Improvement (RSI)
+# Symbiotic RSI (User-Driven Recursive Self-Improvement)
 
-> **Last Updated**: 25 February 2026
+> **Last Updated**: 12 March 2026
 > **TL;DR**: AI doesn't improve itself. You improve together. The loop is bilateral, and the trajectory is a dual upward spiral.
+
+> [!IMPORTANT]
+> **Core Thesis**: Neither human nor AI can recursively self-improve alone. Intelligence compounds at the *interface* — in the coupling data between human judgment and AI reasoning. The moat is not the code. The moat is the 1,100+ sessions of calibration that make the code *yours*.
 
 ---
 
@@ -84,6 +87,63 @@ This is why the "AI replaces humans" narrative is structurally wrong. It's not r
 
 ---
 
+## The Thermodynamic Frame
+
+> *Athena is a thermodynamic open system: it converts compute energy into structural negentropy.*
+
+Entropy is the natural state of information systems — context decays, decisions are forgotten, lessons are re-learned from scratch. Every vanilla LLM session starts at maximum entropy (zero context). Every Athena session starts at *reduced* entropy because prior sessions have been compressed into persistent structure (protocols, case studies, canonical memory).
+
+| Concept | Physics | Athena |
+|:--------|:--------|:-------|
+| **Entropy** | Disorder increases over time | Context decays, decisions forgotten, lessons re-learned |
+| **Energy Input** | External energy reduces local entropy | Compute (AI) + judgment (human) reduce context entropy |
+| **Negentropy** | Ordered structure maintained against decay | 397 protocols, 410+ case studies, calibrated memory |
+| **Open System** | Exchanges energy with environment | Each session imports compute, exports structured knowledge |
+
+Over 1,100+ sessions, the entropy reduction approaches near-zero — the system "knows" the user's frameworks, risk tolerances, decision patterns, and blind spots with minimal re-derivation. This is thermodynamically precise: the coupling data *is* the negentropy.
+
+**Why this matters for RSI**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system* — human judgment injects genuinely new information (taste, correction, lived experience) that the AI cannot generate internally. The human is the energy source. The AI is the structure. Neither produces negentropy alone.
+
+---
+
+## The Moat
+
+> *Anyone can clone the repo. No one can clone the sessions.*
+
+Athena's public repository ships with 144+ example protocols, 580+ reference scripts, and templates. This is the **chassis** — valuable, but generic. The actual competitive advantage is the **coupling data**: the accumulated record of how a specific human and a specific AI instance have co-evolved.
+
+| Layer | What It Contains | Replicable? |
+|:------|:----------------|:------------|
+| **Code** | Protocols, scripts, workflows | ✅ Clone the repo |
+| **Architecture** | Cognitive systems, routing, boot sequence | ✅ Read the docs |
+| **Coupling Data** | 1,100+ sessions of calibration, corrections, case studies | ❌ **Cannot be replicated** |
+
+The coupling data includes:
+
+- **Calibrated risk tolerances** — not generic "be careful" but specific thresholds derived from real decisions
+- **Corrected blind spots** — where the AI was wrong and the human fixed it (and vice versa)
+- **Domain-specific frameworks** — extracted from the user's actual work, not from training data
+- **Revealed preferences** — what the user *actually* values (observed) vs. what they *say* they value (stated)
+
+This is why Athena's value compounds non-linearly. Session 1 is marginally better than vanilla ChatGPT. Session 100 is noticeably different. Session 1,000 is a qualitatively different system — not because the code changed, but because the coupling data accumulated.
+
+> **The implication**: Forking Athena gives you the skeleton. Living in it gives you the soul.
+
+---
+
+## Symbiotic RSI vs. Unilateral AI RSI
+
+| Dimension | Unilateral AI RSI | Symbiotic RSI (Athena) |
+|:----------|:------------------|:-----------------------|
+| **Who improves?** | AI alone (autonomous) | Human + AI together (bilateral) |
+| **Energy source** | Internal (closed system) | External — human judgment (open system) |
+| **Bottleneck** | Alignment, hallucination, runaway goals | Human attention (solved by protocols) |
+| **Current status** | Hypothetical (2126?) | **Working today** (1,100+ sessions) |
+| **Moat** | Compute (replicable by anyone with GPUs) | Coupling data (unreplicable without living it) |
+| **Risk profile** | Existential (alignment unsolved) | Bounded (human stays in the loop) |
+
+---
+
 ## Why This Matters
 
 | Approach | Who Improves? | Bottleneck | Outcome |
@@ -154,6 +214,6 @@ What you do with it after that is up to you.
 
 ## Cross-References
 
-- [Architecture Overview](./ARCHITECTURE.md) — System design
+- [Architecture Overview](./ARCHITECTURE.md) — System design (includes Symbiotic RSI declaration)
 - [The Exocortex Model](./ARCHITECTURE.md#the-exocortex-model) — Centralized HQ concept
 - [Top 10 Protocols](./TOP_10_PROTOCOLS.md) — MCDA-ranked essential protocols
