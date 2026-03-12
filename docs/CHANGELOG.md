@@ -1,10 +1,40 @@
 # Athena Changelog
 
-> **Last Updated**: 11 March 2026
+> **Last Updated**: 13 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.5.2 (13 March 2026)
+
+**Ollama Integration, Symbiotic RSI, Metrics Sync**
+
+### Key Changes
+
+- **Ollama Embedding Provider** (`vectors.py`): Added provider pattern — `EMBEDDING_PROVIDER` env var selects between `gemini` (default, 3072 dims) and `ollama` (local, zero-cost, 768 dims). Configurable via `OLLAMA_BASE_URL` and `OLLAMA_EMBED_MODEL`. Fully backward compatible. Closes #29.
+- **Symbiotic RSI Codification** (`USER_DRIVEN_RSI.md`, `ARCHITECTURE.md`): Renamed User-Driven RSI → Symbiotic RSI. Added thesis declaration, thermodynamic framing (open vs closed systems), moat analysis (coupling data as defensibility), and Unilateral vs Symbiotic comparison table.
+- **Dual Pressure Model** (`BEST_PRACTICES.md`): New §0 best practice — accelerate agent mastery by running open-source projects (adversarial hardening) and paid projects (velocity validation) simultaneously.
+- **Metrics Sync**: Full refresh of stale counts across `CAPABILITIES.md` (5 metrics), `BENCHMARKS.md` (case studies 42→417+), `TOP_10_PROTOCOLS.md` (P330 canonical name).
+- **VECTORRAG.md Full Refresh**: Corrected embedding model name (`text-embedding-004` → `gemini-embedding-001`), updated all domain counts (sessions ~468→1,100+, protocols ~226→144+, etc.), added Ollama provider documentation.
+- **Protocol Count**: Bumped from 141+ to 144+.
+
+### Files Changed
+
+- `src/athena/memory/vectors.py` — Ollama provider + registry pattern
+- `docs/USER_DRIVEN_RSI.md` — Symbiotic RSI thesis
+- `docs/ARCHITECTURE.md` — Symbiotic RSI top-level section
+- `docs/BEST_PRACTICES.md` — Dual Pressure Model
+- `docs/CAPABILITIES.md` — 5 metric updates
+- `docs/BENCHMARKS.md` — Case study count
+- `docs/TOP_10_PROTOCOLS.md` — P330 canonical name
+- `docs/VECTORRAG.md` — Full refresh (model, counts, Ollama docs)
+- `docs/CHANGELOG.md` — This entry
+- `README.md` — Version badge, date
+- `AGENTS.md` — Version sync
+- `pyproject.toml` — Version bump
 
 ---
 

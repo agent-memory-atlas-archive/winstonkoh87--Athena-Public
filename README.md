@@ -12,7 +12,7 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.5.1-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.5.2-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
@@ -515,6 +515,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.5.2** (Mar 13 2026): Ollama Integration & Docs Sync — Ollama local embedding provider (`vectors.py` provider pattern), Symbiotic RSI codification, Dual Pressure Model, VECTORRAG.md full refresh (model name, counts, Ollama docs), metrics sync
 - **v9.5.1** (Mar 11 2026): Conviction-Decisiveness Split — Protocol 524 (decouple epistemic conviction from operational decisiveness in semi-stochastic domains), README `/ultrastart` compute recommendation for MAX subscribers
 - **v9.5.0** (Mar 11 2026): Adaptive Graph of Thoughts — Protocol 75 v5.0 (AGoT-enhanced parallel reasoning), `agot_orchestrator.py` with 3-tier complexity routing (lite/full/tracks), adaptive convergence gate, recursive sub-graph spawning, `/ultrastart` AGoT wiring
 - **v9.4.9** (Mar 10 2026): Deep Session Close — `/ultraend` workflow (System-2 deep close counterpart to `/ultrastart`), cross-session pattern scan, CANONICAL deep reconciliation, reflexion archive, strategic portfolio review, next session seeding
