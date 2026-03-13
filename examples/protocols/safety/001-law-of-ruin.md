@@ -33,7 +33,7 @@ graph TD
 
 ## 2. Theoretical Foundation (Physics & Math)
 
-### 2.1 The Ergodicity Problem (Taleb, 2018)
+### 2.1 The Ergodicity Problem (Peters, 2019; Taleb, 2018)
 
 In most life arenas, you cannot "average" your way out of death. If you go bust once, you are out of the game.
 
@@ -73,9 +73,19 @@ When evaluating a proposal, Athena must fill this:
 
 ---
 
+## References
+
+For full APA citations, see the [central reference list](../../../docs/REFERENCES.md).
+
+- Kelly, J. L., Jr. (1956). A new interpretation of information rate. *Bell System Technical Journal, 35*(4), 917–926. <https://doi.org/10.1002/j.1538-7305.1956.tb03809.x>
+- Peters, O. (2019). The ergodicity problem in economics. *Nature Physics, 15*(12), 1216–1221. <https://doi.org/10.1038/s41567-019-0732-0>
+- Taleb, N. N. (2018). *Skin in the game: Hidden asymmetries in daily life*. Random House.
+
+---
+
 ## Tags
 
-# law #governance #risk #ruin-prevention #physics #ergodicity #taleb
+# law #governance #risk #ruin-prevention #physics #ergodicity #taleb #peters
 
 ## Related Protocols
 

@@ -21,7 +21,7 @@ last_updated: 2026-01-05
 
 > **"The casino always wins, not because it has better odds on any single hand, but because it plays infinitely while you play finitely."**
 
-Ergodicity is the single most important statistical concept for personal strategy. Most people confuse **ensemble average** (what happens across a population) with **time average** (what happens to YOU over time).
+Ergodicity is the single most important statistical concept for personal strategy. Most people confuse **ensemble average** (what happens across a population) with **time average** (what happens to YOU over time). Peters (2019) formalized this distinction in *Nature Physics*, demonstrating that standard expected utility theory fails in non-ergodic (multiplicative) dynamics — the ensemble average and the time average diverge.
 
 ---
 
@@ -48,7 +48,7 @@ An **Absorbing Barrier** is a state from which you cannot recover:
 | Legal | Criminal Record | Doors Close |
 | Relationships | Nuclear Rejection | Bridge Burned |
 
-**Rule**: If an action has a non-zero probability of hitting an absorbing barrier, repeated execution **guarantees** eventual ruin, regardless of how "good" the odds look on any single trial.
+**Rule**: If an action has a non-zero probability of hitting an absorbing barrier, repeated execution **guarantees** eventual ruin, regardless of how "good" the odds look on any single trial (Peters, 2019; Taleb, 2018).
 
 ---
 
@@ -140,6 +140,15 @@ Your schema runs this flawed logic:
 
 ---
 
+## References
+
+For full APA citations, see the [central reference list](../../../docs/REFERENCES.md).
+
+- Peters, O. (2019). The ergodicity problem in economics. *Nature Physics, 15*(12), 1216–1221. <https://doi.org/10.1038/s41567-019-0732-0>
+- Taleb, N. N. (2018). *Skin in the game: Hidden asymmetries in daily life*. Random House.
+
+---
+
 ## Tags
 
-# protocol #ergodicity #ruin-prevention #risk-management #law-1 #statistics #absorbing-barrier
+# protocol #ergodicity #ruin-prevention #risk-management #law-1 #statistics #absorbing-barrier #peters

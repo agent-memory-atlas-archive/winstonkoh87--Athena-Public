@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-03-06
+last_updated: 2026-03-13
 tags: #references #apa #academic #citations
 ---
 
@@ -82,6 +82,10 @@ Saaty, T. L. (1980). *The analytic hierarchy process: Planning, priority setting
 
 Fishburn, P. C. (1967). Additive utilities with incomplete product sets: Application to priorities and assignments. *Operations Research, 15*(3), 537–542.
 
+Peters, O. (2019). The ergodicity problem in economics. *Nature Physics, 15*(12), 1216–1221. <https://doi.org/10.1038/s41567-019-0732-0>
+
+> **Note**: Peters demonstrated that the ensemble average (expected value across many agents) and the time average (expected value for one agent over time) diverge in multiplicative dynamics — making standard expected utility theory inapplicable to non-ergodic situations. This is the formal foundation of Athena's Law #1 (No Irreversible Ruin): in non-ergodic systems, a single absorbing state (bankruptcy, liquidation) makes the game's time-average payoff zero regardless of its ensemble-average payoff. Protocol 330 (EEV) and Protocol 001 (Law of Ruin) are direct applications.
+
 ---
 
 ## AI, Machine Learning & Retrieval-Augmented Generation
@@ -93,6 +97,8 @@ Dell'Acqua, F., McFowland, E., III, Mollick, E. R., Lifshitz-Assaf, H., Kellogg,
 Du, Y., Li, S., Torralba, A., Tenenbaum, J. B., & Mordatch, I. (2023). Improving factuality and reasoning in language models through multiagent debate. *arXiv preprint arXiv:2305.14325*. <https://arxiv.org/abs/2305.14325>
 
 Khattab, O., Singhvi, A., Maheshwari, P., Zhang, Z., Santhanam, K., Vardhamanan, S., ... & Potts, C. (2023). DSPy: Compiling declarative language model calls into self-improving pipelines. *arXiv preprint arXiv:2310.03714*. <https://arxiv.org/abs/2310.03714>
+
+Besta, M., Blach, N., Kubíček, A., Gerstenberger, R., Podstawski, M., Gianinazzi, L., ... & Hoefler, T. (2024). Graph of thoughts: Solving elaborate problems with large language models. *Proceedings of the AAAI Conference on Artificial Intelligence, 38*(16), 17682–17690. <https://arxiv.org/abs/2308.09687>
 
 Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., ... & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. *Advances in Neural Information Processing Systems, 33*, 9459–9474. <https://arxiv.org/abs/2005.11401>
 
@@ -164,6 +170,10 @@ Pearson, T. (2018, June 6). The ultimate guide to apprenticeships. *Mission.org*
 
 Ries, E. (2011). *The lean startup: How today's entrepreneurs use continuous innovation to create radically successful businesses*. Crown Business.
 
+Balfour, B. (2017). Why product market fit isn't enough. *Brian Balfour's Essays*. <https://brianbalfour.com/essays/product-market-fit-isnt-enough>
+
+> **Note**: Balfour's Four Fits framework — Market↔Product, Product↔Channel, Channel↔Model, Model↔Market — extends single-fit analysis (Andreessen's PMF) into a system of simultaneous constraints. All four must hold for sustainable growth. This is the tech-native equivalent of Protocol 162 (PMOD / Distribution First). Empirically validated across 6 FnB businesses in CNA documentary analysis (Session S12, Mar 2026) where every failure was a Fit #2–4 failure, never Fit #1.
+
 Taleb, N. N. (2004). *Fooled by randomness: The hidden role of chance in life and in the markets* (2nd ed.). Random House.
 
 Taleb, N. N. (2012). *Antifragile: Things that gain from disorder*. Random House.
@@ -179,6 +189,10 @@ Frankfurt, H. G. (2005). *On bullshit*. Princeton University Press. [Academic ba
 Rumsfeld, D. H. (2002, February 12). DoD news briefing — Secretary Rumsfeld and Gen. Myers [Press briefing transcript]. U.S. Department of Defense. [Origin of the "known unknowns" framework, widely attributed]
 
 > **Note**: The "known unknowns" matrix predates Rumsfeld's press conference. The conceptual framework traces to the Johari Window (Luft & Ingham, 1955) and NASA risk management literature from the 1990s. Rumsfeld popularized the terminology.
+
+Peterson, J. B. (1999). *Maps of meaning: The architecture of belief*. Routledge.
+
+> **Note**: Peterson's synthesis of neuropsychology, Jungian archetypes, and cognitive science formalizes how humans construct internal "maps" — narrative structures that mediate between chaos (the unknown) and order (the known). In Athena's framework, this maps to the schema correction function (§0.1.2, Augmentation Mandate): detecting where `Internal Belief ≠ External Reality` and patching the map before reality lag compounds. The dual function — hold space (psychological safety) + correct schema (augmentation) — is the operational implementation of Peterson's thesis that meaning-structures must be voluntarily updated to prevent catastrophic disintegration.
 
 ---
 

@@ -40,9 +40,7 @@ EEV = [P(Win) × U(Gain)] - [P(Lose) × U(Cost)]
 
 > **Key Distinction**: Math EV answers *"What is the expected dollar return?"* EEV answers *"What is the expected change in my life quality?"*
 
-### The Friedman-Savage Utility Function (1948)
-
-> **Citation**: Friedman, M. & Savage, L.J. (1948). "The Utility Analysis of Choices Involving Risk." *Journal of Political Economy*, 56(4), 279–304.
+### The Friedman-Savage Utility Function (Friedman & Savage, 1948)
 
 Standard economic theory assumes a **concave** utility function (diminishing marginal utility of wealth), which predicts that rational agents should *never* buy lottery tickets. Yet millions of people simultaneously buy lottery tickets (risk-seeking) and insurance (risk-averse).
 
@@ -329,7 +327,7 @@ Both insurance and lottery tickets are negative Math EV. Both are positive EEV:
 | **Insurance** | Negative | Positive | You pay a premium to avoid catastrophic loss (left tail) |
 | **$1 TOTO ticket** | Negative | Positive | You pay a premium to access a phase transition (right tail) |
 
-> **Citation**: Kahneman, D. & Tversky, A. (1979). "Prospect Theory: An Analysis of Decision under Risk." *Econometrica*, 47(2), 157–185. — Prospect theory adds that people systematically **overweight** small probabilities, which further explains lottery appeal beyond pure utility calculus.
+Prospect theory adds that people systematically **overweight** small probabilities (Kahneman & Tversky, 1979), which further explains lottery appeal beyond pure utility calculus.
 
 ---
 
