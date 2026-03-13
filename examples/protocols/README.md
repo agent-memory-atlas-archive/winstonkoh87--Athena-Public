@@ -7,7 +7,7 @@
 >
 > See [Creating Your Own Protocols](#creating-new-protocols) to build yours.
 
-**109 protocols across 13 categories** — battle-tested thinking patterns that standardize how an AI agent reasons.
+**128 active protocols across 15 categories** — battle-tested thinking patterns that standardize how an AI agent reasons. (146 total including 18 archived protocols.)
 
 ## Featured Protocols
 
@@ -17,37 +17,43 @@
 | **47** | BS Detection | Pattern Detection | Systematic identification of unsound reasoning |
 | **49** | Efficiency-Robustness Tradeoff | Decision | Navigate speed vs resilience decisions |
 | **77** | Adaptive Latency | Architecture | Scale reasoning depth to query complexity |
-| **111** | Premise Audit | Decision | Validate assumptions before building on them |
-| **130** | Vibe Coding | Engineering | Iterative UI development by "feel" |
-| **171** | Cross-Model Validation | Verification | Multi-model consensus checking |
+| **138** | Third Choice Generation | Reasoning | Dissolve false binaries via meta-thinking |
 | **193** | Ergodicity Check | Decision | Distinguish time-average from ensemble-average risks |
-| **240** | Context Engineering | Engineering | Manage context window efficiently |
-| **408** | Autonomous Contribution Engine | Workflow | Transform user insights into contributions |
+| **504** | Problem Framing | Reasoning | 5-gate structured problem decomposition |
+| **507** | Cognitive Systems | Architecture | 8-system biological stack orchestration |
+| **511** | Business Viability Trinity | Strategy | Buyer × Demand × Niche pre-qualification |
+| **526** | Business Viability Assessment | Strategy | 3-Layer Stack (BMC → Four Fits → Pro Forma) |
 | **416** | Agent Swarm | Workflow | Parallel multi-agent orchestration |
 
 ---
 
 ## Categories
 
-### 🧭 Decision (28 protocols)
+### 🧭 Decision (19 protocols)
 
 Decision frameworks, reasoning patterns, multi-criteria analysis, risk assessment, ergodicity, commitment devices.
 
 [Browse Decision Protocols →](decision/)
 
-### 🏗️ Architecture (12 protocols)
+### 🏗️ Architecture (17 protocols)
 
-System design, token management, context handling, latency architecture, recovery patterns.
+System design, token management, context handling, latency architecture, cognitive systems, intent classification, recovery patterns.
 
 [Browse Architecture Protocols →](architecture/)
 
-### ⚙️ Engineering (19 protocols)
+### 🧩 Reasoning (13 protocols)
 
-Code patterns, TDD, vibe coding, git workflows, context compaction, infrastructure.
+Problem framing, graph of thought, GTO execution, crisis triage, cross-domain weighting, third choice generation, conviction-decisiveness split.
+
+[Browse Reasoning Protocols →](reasoning/)
+
+### ⚙️ Engineering (13 protocols)
+
+Code patterns, TDD, vibe coding, git workflows, context compaction, infrastructure, micro-commits.
 
 [Browse Engineering Protocols →](engineering/)
 
-### 📋 Workflow (17 protocols)
+### 📋 Workflow (16 protocols)
 
 Agentic loops, multi-agent coordination, JIT context, handoff protocols, iteration patterns.
 
@@ -58,6 +64,12 @@ Agentic loops, multi-agent coordination, JIT context, handoff protocols, iterati
 Analytical heuristics — BS detection, AI slop detection, form-substance gaps, cynical baseline.
 
 [Browse Pattern Detection Protocols →](pattern-detection/)
+
+### 🎯 Strategy (8 protocols)
+
+Competitive positioning, min-max optimization, value trinity, business viability assessment, product-market fit.
+
+[Browse Strategy Protocols →](strategy/)
 
 ### 🧠 Meta (8 protocols)
 
@@ -71,21 +83,15 @@ Risk management, circuit breakers, governance, anti-karason, honesty protocol.
 
 [Browse Safety Protocols →](safety/)
 
-### 🎯 Strategy (6 protocols)
-
-Competitive positioning, min-max optimization, value trinity, ecosystem analysis.
-
-[Browse Strategy Protocols →](strategy/)
-
 ### 💻 Coding (5 protocols)
 
 Spec-driven development, semantic search standards, structured decoding, project scaffolding.
 
 [Browse Coding Protocols →](coding/)
 
-### 🔬 Research (3 protocols)
+### 🔬 Research (4 protocols)
 
-Deep investigation, cyborg methodology, agentic absorption.
+Deep investigation, cyborg methodology, agentic absorption, research orchestration.
 
 [Browse Research Protocols →](research/)
 
@@ -95,17 +101,23 @@ Claim atomization, cross-model validation, neuro-symbolic verification.
 
 [Browse Verification Protocols →](verification/)
 
-### 🧩 Reasoning (3 protocols)
-
-Deep thinking, re-reading strategies, senior-principal review.
-
-[Browse Reasoning Protocols →](reasoning/)
-
 ### 💾 Memory (3 protocols)
 
 Semantic compression, graph memory architecture, compaction.
 
 [Browse Memory Protocols →](memory/)
+
+### 📈 Trading (2 protocols)
+
+High win-rate supremacy, trade structure levers.
+
+[Browse Trading Protocols →](trading/)
+
+### 🎨 Content (1 protocol)
+
+High-performance UX design patterns.
+
+[Browse Content Protocols →](content/)
 
 ---
 

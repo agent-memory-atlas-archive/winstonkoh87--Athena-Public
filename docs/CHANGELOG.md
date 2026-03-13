@@ -8,6 +8,32 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.5.4 (14 March 2026)
+
+**Architecture Integrity Audit — Protocol Index & Routing Sync**
+
+### Key Changes
+
+- **Protocol Index** (`examples/protocols/README.md`): Full rewrite. Corrected stale counts from 109→128 active protocols, 13→15 categories. Added missing Trading (2 protocols) and Content (1 protocol) categories. Updated Featured Protocols to reflect architecturally significant entries (P504, P507, P511, P526, P138).
+- **Cluster Index** (`examples/templates/cluster_index_template.md`): Wired P138 (Third Choice Generation) into Problem-Solving Engine (#15) with new triggers ("false binary", "only two options", "dilemma"). Wired P526 (Business Viability Assessment) + P511 into Distribution Engine (#10) with new triggers ("business model", "four fits", "viability", "pro forma").
+- **Integrity Fix**: Protocol counts now consistent between `protocols/README.md` (128 active + 18 archived = 146), top-level `README.md` (146+), and `CHANGELOG.md`.
+
+### Design Decisions
+
+- P138 placed in Cluster #15 (Problem-Solving) rather than #9 (Strategic Reasoning) — false binary dissolution is a *framing* operation (upstream) not an *analysis* operation (downstream). It fires *before* options are evaluated, not after.
+- P526 placed in Cluster #10 (Distribution Engine) rather than standalone — business viability assessment is part of the GTM pipeline. You assess viability before you distribute.
+- Decision category dropped from 28→19 active protocols because the original count included 9 archived files. Reasoning jumped from 3→13 reflecting 10 protocols added since the original index was written.
+
+### Files Changed
+
+- `examples/protocols/README.md` — Full rewrite (counts, categories, featured)
+- `examples/templates/cluster_index_template.md` — P138/P526 wiring, date sync
+- `docs/CHANGELOG.md` — This entry
+- `README.md` — Version badge
+- `pyproject.toml` — Version bump
+
+---
+
 ## v9.5.3 (14 March 2026)
 
 **Independent Cross-Model Audit — Strategy & Reasoning Protocols**

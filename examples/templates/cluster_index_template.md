@@ -1,6 +1,6 @@
 ---
 created: 2026-03-01
-last_updated: 2026-03-04
+last_updated: 2026-03-14
 description: Athena routing infrastructure — Intent Classifier (P508) → Cognitive Systems (P507) → Cognitive Clusters (P503)
 ---
 
@@ -115,10 +115,10 @@ Any system + ruin signal → IMMEDIATE → Survival System
 ### 10. Distribution Engine 📣
 
 - **Capstone**: `distribution-physics` (expanded)
-- **Skills**: `distribution-physics` + `brand-foundations` + `seo-auditor`
-- **Triggers**: "marketing", "GTM", "SEO", "brand", "positioning", "distribution", "audience", "launch"
-- **Co-activates**: → Cluster 11 (Swarm Orchestrator) for multi-agent campaigns
-- **Domain**: Marketing
+- **Skills**: `distribution-physics` + `brand-foundations` + `seo-auditor` + P526 (Business Viability Assessment) + P511 (Business Viability Trinity)
+- **Triggers**: "marketing", "GTM", "SEO", "brand", "positioning", "distribution", "audience", "launch", "business model", "four fits", "viability", "pro forma"
+- **Co-activates**: → Cluster 11 (Swarm Orchestrator) for multi-agent campaigns; → P526 when client/venture pre-qualification is needed
+- **Domain**: Marketing / Strategy
 
 ### 11. Swarm Orchestrator 🐝
 
@@ -151,9 +151,9 @@ Any system + ruin signal → IMMEDIATE → Survival System
 ### 15. Problem-Solving Engine 🔧
 
 - **Capstone**: Protocol 504 (Problem Framing)
-- **Skills**: P504 (Problem Framing) + P115 (First Principles) + P505 (Graph of Thought) + `red-team-review` + P506 (GTO Execution Plan)
-- **Triggers**: "solve", "how do I", "problem", "stuck", "fix", "approach", "what should I do", "broken", "challenge"
-- **Co-activates**: → Cluster 9 (Strategic Reasoning) if solution requires option ranking → Cluster 8 (Adversarial QA) at GoT Phase 5 → Cluster 13 (Build Lifecycle) for implementation
+- **Skills**: P504 (Problem Framing) + P115 (First Principles) + P505 (Graph of Thought) + `red-team-review` + P506 (GTO Execution Plan) + P138 (Third Choice Generation)
+- **Triggers**: "solve", "how do I", "problem", "stuck", "fix", "approach", "what should I do", "broken", "challenge", "false binary", "only two options", "dilemma"
+- **Co-activates**: → P138 when user presents a binary choice → Cluster 9 (Strategic Reasoning) if solution requires option ranking → Cluster 8 (Adversarial QA) at GoT Phase 5 → Cluster 13 (Build Lifecycle) for implementation
 - **Domain**: Reasoning / Execution
 
 ---
