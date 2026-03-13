@@ -1,10 +1,10 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 12 March 2026  
-> **System Version**: v9.5.1
+> **Last Updated**: 14 March 2026  
+> **System Version**: v9.5.4
 
 > [!NOTE]
-> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 144+ example protocols, 580+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
+> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 146+ example protocols, 580+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
 
 ---
 
@@ -712,6 +712,9 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.5.4 | 14 Mar 2026 | Architecture Integrity Audit — protocol index rewrite (109→128 active, 13→15 categories), P138/P526 cluster wiring |
+| v9.5.3 | 14 Mar 2026 | Independent Cross-Model Audit — P526 (Business Viability Assessment), P138 (Third Choice Generation), Cold Start Rule |
+| v9.5.2 | 13 Mar 2026 | Ollama Integration & Docs Sync — Ollama local embedding provider, Symbiotic RSI codification, Dual Pressure Model |
 | v9.5.1 | 11 Mar 2026 | Protocol 524 (Conviction-Decisiveness Split), version sync fixes, protocol count update |
 | v9.5.0 | 11 Mar 2026 | Adaptive Graph of Thoughts — Protocol 75 v5.0 (AGoT), multi-strategy reasoning |
 | v9.4.9 | 10 Mar 2026 | Boot/Shutdown Architecture Redesign — `/ultrastart` workflow (20K-token System-2 deep boot), `/end` GTO v3 rewrite (dual-write architecture), `quicksave.py` Triple-Lock AND→OR, Context-Dependence Thesis (README comparison table, Case Study enrichment) |
