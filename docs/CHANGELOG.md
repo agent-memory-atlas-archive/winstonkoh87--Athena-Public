@@ -1,10 +1,38 @@
 # Athena Changelog
 
-> **Last Updated**: 13 March 2026
+> **Last Updated**: 14 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.5.3 (14 March 2026)
+
+**Independent Cross-Model Audit — Strategy & Reasoning Protocols**
+
+### Key Changes
+
+- **Protocol 526** (NEW): Business Viability Assessment — The 3-Layer Stack (BMC → Four Fits → Pro Forma P&L). Mandatory pre-qualification gate for business models and client ventures. Validated across 4 empirical cases (FnB, tuition, web design, AI consulting).
+- **Protocol 138** (NEW): Third Choice Generation (Kobayashi Maru). Meta-thinking protocol for dissolving false binaries. 5-step framework: name the binary → challenge the frame → generate third options → evaluate expanded set → identify systemic failure.
+- **Cold Start Rule** (`BEST_PRACTICES.md`): New §9 — verify all code deliverables from a clean clone before submission. Catches hidden local state dependencies.
+- **Protocol Count**: Bumped from 144+ to 146+.
+
+### Design Decisions
+
+- P526 is the _deep_ follow-up to P511 (Business Viability Trinity). P511 is the 3-question pre-filter ("is this worth investigating?"); P526 is the 3-layer assessment ("can this actually work?"). Complementary, not redundant.
+- P138 placed in `reasoning/` not `strategy/` — false binary dissolution is a domain-general cognitive tool, not limited to business decisions.
+- Cold Start Rule derived from A6 Q2b empirical failure — a delivered project that failed to boot on the client machine. Prevention time: 60 seconds vs 2-hour debug.
+
+### Files Changed
+
+- `examples/protocols/strategy/526-business-viability-assessment.md` — NEW
+- `examples/protocols/reasoning/138-third-choice-generation.md` — NEW
+- `docs/BEST_PRACTICES.md` — Added §9 (Cold Start Rule), date sync
+- `docs/CHANGELOG.md` — This entry
+- `README.md` — Version badge, protocol count, date, changelog summary
+- `pyproject.toml` — Version bump
 
 ---
 

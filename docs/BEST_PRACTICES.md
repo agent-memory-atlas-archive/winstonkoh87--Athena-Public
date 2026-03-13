@@ -1,6 +1,6 @@
 # Best Practices
 
-> **Last Updated**: 12 March 2026
+> **Last Updated**: 14 March 2026
 
 Operational discipline for running Athena sustainably. These aren't features — they're habits that prevent data loss, reduce friction, and keep your system compounding.
 
@@ -192,6 +192,34 @@ If you use multiple AI accounts or models:
 | **Boot fails** | Run `python -m athena doctor` to diagnose |
 | **Context feels "off"** | Review `activeContext.md` for stale/incorrect entries |
 | **Model quality drops mid-session** | You've likely hit ~150K tokens. Run `/save` and start fresh |
+
+---
+
+## 9. The Cold Start Rule
+
+> *"If it doesn't run from a clean clone, it doesn't run."*
+
+Before submitting any code deliverable — to a client, a professor, or a public repo — verify it from **a clean directory with zero local state**:
+
+```bash
+# Clone into a temp directory
+git clone <your-repo> /tmp/cold-start-test
+cd /tmp/cold-start-test
+
+# Run the exact startup commands from your README
+npm install && npm run dev    # or equivalent
+```
+
+**Why this matters**: Local development environments accumulate hidden state — cached modules, environment variables, global packages, IDE settings. Code that "works on my machine" fails on the client's machine because it depends on state you didn't ship. The Cold Start Rule catches these failures *before* the client sees them.
+
+| Anti-Pattern | Cold Start Catches It |
+|:-------------|:---------------------|
+| Missing dependency in `package.json` | ✅ `npm install` fails |
+| Hardcoded local path | ✅ Path doesn't exist in `/tmp/` |
+| Uncommitted file | ✅ Not in the clone |
+| Environment variable not documented | ✅ App crashes on boot |
+
+> Derived from empirical failure: a working project shipped to a client that failed to start because a required dependency was installed globally but never added to `package.json`. Time to diagnose: 2 hours. Time to prevent: 60 seconds.
 
 ---
 

@@ -595,6 +595,91 @@ sequenceDiagram
 
 ---
 
+## Lifecycle Hooks
+
+> **Stolen from**: [claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) — formalized hooks pattern. Athena had these behaviors scattered; this section consolidates them as a **first-class extension mechanism**.
+
+Hooks are **deterministic scripts** that run outside the agentic loop on specific lifecycle events. Unlike protocols (which are reasoning templates), hooks are code — they execute unconditionally.
+
+**Configuration**: `.agent/hooks/hooks.yaml`
+
+```text
+Event                  Hook                          Maps To
+─────────────────────  ────────────────────────       ──────────────────────
+on_session_start       quicksave.py (checkpoint)      /start workflow
+on_session_end         quicksave.py (final save)      /end workflow
+pre_tool_use           ruin_check.py                  Law #1 (No Ruin)
+                       trading_gate.py                Cluster #3
+                       public_repo_guard.py           /deploy workflow
+post_tool_use          asset_logger.py                Session inventory
+pre_compact            pre_compact.py                 Context lifecycle
+on_error               circuit_breaker.py             Protocol 514
+on_task_complete       reflexion_check.py             Protocol 515
+```
+
+**Hook Contract**: Each hook receives context as JSON on stdin and returns one of:
+
+- `{ "action": "allow" }` — proceed normally
+- `{ "action": "block", "reason": "..." }` — halt execution (Law #1 veto)
+- `{ "action": "modify", "args": { ... } }` — alter parameters before execution
+
+---
+
+## Orchestration Pattern
+
+> **Stolen from**: [claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) — explicit 3-layer `Command → Agent → Skill` pattern. Athena's equivalent: **Workflow → Skill → Protocol**.
+
+When a user invokes a slash command, the runtime follows a 3-layer orchestration:
+
+```text
+┌─────────────────────────────────────────────────┐
+│  Layer 1: WORKFLOW (Entry Point)                │
+│  User invokes /plan, /research, /vibe, etc.     │
+│  → Defines the macro-level sequence             │
+│  → Lives in .agent/workflows/*.md               │
+├─────────────────────────────────────────────────┤
+│  Layer 2: SKILL (Domain Bundle)                 │
+│  Workflow activates relevant skill(s)           │
+│  → Bundles 2-5 protocols into a domain unit     │
+│  → Lives in .agent/skills/*/SKILL.md            │
+│  → Progressive disclosure (loaded JIT)          │
+├─────────────────────────────────────────────────┤
+│  Layer 3: PROTOCOL (Atomic Procedure)           │
+│  Skill activates specific protocol(s)           │
+│  → Single-purpose, composable, ~200 tokens      │
+│  → Lives in .agent/skills/protocols/**/*.md     │
+│  → 397 protocols across 35 domains              │
+└─────────────────────────────────────────────────┘
+```
+
+**Example Flow**:
+
+```text
+User: /plan
+
+ → Workflow: plan.md
+     Defines 4 phases: Scope → Architecture → Pre-Mortem → Execution Plan
+
+    → Skill: spec-driven-dev (SKILL.md)
+        Bundles: scoping protocol + architecture template + verification plan
+
+       → Protocol: P330 (Economic Expected Value)
+           If financial component detected, evaluate EEV before proceeding
+
+       → Protocol: P504 (Problem Diagnostics)
+           Structured problem decomposition
+
+    → Skill: red-team-review (SKILL.md)
+        Phase 3 invokes adversarial review
+
+       → Protocol: P112 (Form-Substance Gap)
+           Check for hollow plans that look good but lack substance
+```
+
+**Key Design Rule**: Each layer can only invoke the layer below it, never sideways or upward. A protocol cannot invoke a workflow. A skill cannot invoke another skill. This prevents circular dependencies and keeps the stack debuggable.
+
+---
+
 ## Key Files Reference
 
 | Purpose | File | Update Frequency |
