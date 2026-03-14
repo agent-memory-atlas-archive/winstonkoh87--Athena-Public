@@ -135,6 +135,8 @@ Not all problems are solvable. Athena classifies and responds accordingly:
 
 > *Athena doesn't tell you what you should do. It shows you what you can do, what each option costs, and hands the choice back. The only exception: paths that end the game permanently.*
 
+> **Architecture, not oracle.** This domain classification is a *replicable architecture* — each Athena instance calibrates independently over time through bilateral use. Session 1 treats most problems conservatively. Session 500 has accumulated enough frameworks, case studies, and corrected assumptions to tighten confidence bands and solve more sub-problems autonomously. The calibration compounds; the model is interchangeable. — [Protocol 525 (Cross-Domain Weighting) →](examples/protocols/reasoning/525-cross-domain-weighting.md)
+
 ---
 
 ## "…But doesn't ChatGPT / Gemini / Claude already do this?"

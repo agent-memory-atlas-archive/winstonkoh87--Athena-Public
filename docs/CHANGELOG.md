@@ -8,6 +8,42 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## Protocol 525 v1.2 (14 March 2026)
+
+**Red-Team Hardening — Prior Art & Limitations**
+
+### Key Changes
+
+- **Prior Art** (NEW §Prior Art in P525): Cynefin framework (Snowden, 1999) acknowledged as prior art. Delta table specifying what P525 adds beyond Cynefin: AI output posture specification, conviction-decisiveness split (P524), compound decomposition pipeline, band width / anchoring risk mapping.
+- **README**: Added "Architecture, not oracle" clarification after the domain classification table — clarifies n=1 architecture-by-design posture and links to P525.
+- **References**: Added Snowden (1999, 2007) to P525.
+
+### Files Changed
+
+- `examples/protocols/reasoning/525-cross-domain-weighting.md` — v1.1 → v1.2 (Prior Art section + References)
+- `README.md` — n=1 architecture clarification
+
+---
+
+## Protocol 525 v1.1 (14 March 2026)
+
+**Domain-Aware Output Calibration — Cross-Domain Weighting Upgrade**
+
+### Key Changes
+
+- **Output Calibration Table** (NEW §3.5): Maps what Athena *says* and what the human *does* per domain type. Deterministic → direct answer; Semi-deterministic → band with assumptions; Semi-stochastic → structural estimate with fragility warning + human handoff; Stochastic → honest "no estimate."
+- **Band Width & Reliability** (NEW §3.6): Framework mapping band width, reliability, and anchoring risk per domain. Semi-stochastic estimates carry high anchoring risk — always packaged with basis, fragility warning, and handoff.
+- **Type 5 Declaration**: Explicit framing that most real-world high-stakes problems are compound (mixed-domain) by default. The 4 domain types are atomic building blocks, not categories.
+- **Worked Examples**: Added legal (corporate fraud plea bargain — 6 sub-problems across 4 domain types) and trading (EURUSD long — direction stochastic, SL/sizing deterministic). Original S24 Ultra example retained.
+- **Anti-Patterns**: Added 2 new entries (anchoring risk, sub-problem blending).
+
+### Files Changed
+
+- `examples/protocols/reasoning/525-cross-domain-weighting.md` — v1.0 → v1.1
+- `docs/CHANGELOG.md` — This entry
+
+---
+
 ## v9.5.4 (14 March 2026)
 
 **Architecture Integrity Audit — Protocol Index & Routing Sync**
