@@ -23,7 +23,17 @@ Athena works best with focused sessions. If your project has ten features, work 
 
 Each session gets its own log, its own context, and its own clean thread of reasoning. This creates better memory, cleaner recall, and fewer context collisions in future sessions.
 
-**Bonus:** Each session starts with a fresh ~190K token workspace. One focused feature will typically use 30–80K tokens — well within the budget and well below the point where model quality degrades.
+**Why this works — Attention Physics:**
+
+This isn't just a workflow preference — it's an architectural constraint driven by how AI models process context:
+
+1. **Context coherence**: Your ~57K boot context is fully aligned to one objective. No dilution across unrelated topics.
+2. **JIT compounding**: Each retrieval builds on the last. Turn 8's search is informed by turns 1-7.
+3. **Reasoning compounding**: Adversarial and cross-domain checks improve as the conversation accumulates more data points about a single problem.
+4. **No context-switching tax**: Switching topics mid-session wastes tokens on transition overhead.
+5. **Attention degradation**: Past 200K tokens, models lose reliable cross-referencing between early and late context. Splitting focus across topics accelerates this.
+
+**Budget:** Each focused session starts with a fresh ~128K token workspace (after boot). One deep feature will typically use 80–128K tokens across ~16 turns — well within the budget and well below the point where model quality degrades.
 
 ## ☁️ Sync to the Cloud — GitHub + Supabase
 

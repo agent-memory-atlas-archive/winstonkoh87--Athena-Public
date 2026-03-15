@@ -712,6 +712,7 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.5.5 | 15 Mar 2026 | `/ultrastart` v3.0 Maximum Compute — 20K→57K boot (all 11 framework modules), Pre-Paid Compute Doctrine, 200K ECL Architecture (15K platform + 57K boot = 128K session), One-Session-One-Feature (attention physics rationale), 4-Phase Turn Allocation, JIT retrieval supplement |
 | v9.5.4 | 14 Mar 2026 | Architecture Integrity Audit — protocol index rewrite (109→128 active, 13→15 categories), P138/P526 cluster wiring |
 | v9.5.3 | 14 Mar 2026 | Independent Cross-Model Audit — P526 (Business Viability Assessment), P138 (Third Choice Generation), Cold Start Rule |
 | v9.5.2 | 13 Mar 2026 | Ollama Integration & Docs Sync — Ollama local embedding provider, Symbiotic RSI codification, Dual Pressure Model |
