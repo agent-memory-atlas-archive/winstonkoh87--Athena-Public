@@ -125,7 +125,7 @@ Bypassing STANDARD/ULTRA protocol is a high-severity violation. SNIPER queries m
 
 | Archetype | Cognitive System | Cluster Sequence |
 |---|---|---|
-| Crisis / ruin signal | 🛡️ **Survival** | #14 → **P509** → #15 → #8 → P506 → **[P529 HUD](file://examples/protocols/safety/529-survival-hud.md)** |
+| Crisis / ruin signal | 🛡️ **Survival** | #14 → **P509** → #15 → #8 → P506 |
 | Irreversible personal choice | 🫀 **Life Decision** | **P509** → **P519** → #15 → #7 → #9 → #6 → #8 → P506 |
 | Capital deployment | 📈 **Trading** | #3 → #4 → #5 → #9 |
 | Interpersonal dynamics | 🤝 **Social** | **P519** → #15 → #7 → #6 → #8 → P506 |

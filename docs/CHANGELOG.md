@@ -1,10 +1,34 @@
 # Athena Changelog
 
-> **Last Updated**: 14 March 2026
+> **Last Updated**: 16 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.5.5 (16 March 2026)
+
+**Abundance Mindset Alignment & Workspace Hygiene**
+
+### Key Changes
+
+- **P529 Survival HUD Removed**: Deleted `examples/protocols/safety/529-survival-hud.md` — fear-based crisis output mode replaced by existing safety stack (Law #1 + Circuit Breaker + Threat Playbooks). Aligns workspace with thriving/abundance mindset over scarcity framing.
+- **`/start` Workflow Fix** (`examples/workflows/start.md`): Removed P529 reference from the Survival routing chain. Chain now correctly terminates at P506 (GTO Execution).
+- **Protocol Count**: 128 → 127 active (147 → 146 total including archived). Safety category: 7 → 6 protocols.
+
+### Design Decisions
+
+- P529 was never triggered in practice across 1,000+ sessions. Its function (crisis-mode output compression to ≤15 lines) is redundant with the existing Survival System routing chain (P509 → #14 → P519 → #15 → P521 → P520 → #8 → P506) which already handles crisis contexts with full analytical depth.
+- The removal is philosophically aligned: Athena's safety architecture should protect through *better reasoning*, not through *output restriction*.
+
+### Files Changed
+
+- `examples/protocols/safety/529-survival-hud.md` — DELETED
+- `examples/workflows/start.md` — P529 reference removed from routing chain
+- `docs/CHANGELOG.md` — This entry
+- `pyproject.toml` — Version bump
 
 ---
 

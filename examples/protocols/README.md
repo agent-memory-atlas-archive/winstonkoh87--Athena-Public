@@ -7,7 +7,7 @@
 >
 > See [Creating Your Own Protocols](#creating-new-protocols) to build yours.
 
-**128 active protocols across 15 categories** — battle-tested thinking patterns that standardize how an AI agent reasons. (146 total including 18 archived protocols.)
+**127 active protocols across 15 categories** — battle-tested thinking patterns that standardize how an AI agent reasons. (145 total including 18 archived protocols.)
 
 ## Featured Protocols
 
