@@ -49,6 +49,7 @@ Before any synthesis, classify the session:
 
 @decided: No new decisions.
 @pending: [Copy from previous checkpoint]
+@seeded: [Suggested next session focus — what naturally comes next]
 
 !checkpoint ]]
 ```
@@ -126,6 +127,7 @@ Create `.context/memories/session_logs/[DATE]-session-[N].md` with:
 
 @decided: [Key Decision A], [Key Decision B]
 @pending: [Next Step X], [Next Step Y]
+@seeded: [Suggested next session focus — what naturally comes next]
 
 !checkpoint ]]
 ```
@@ -157,6 +159,7 @@ Append **only** the summary block and checkpoint — not the full session log:
 
 @decided: [Key Decision A], [Key Decision B]
 @pending: [Next Step X], [Next Step Y]
+@seeded: [Suggested next session focus — what naturally comes next]
 
 !checkpoint ]]
 ```
@@ -177,6 +180,19 @@ Update `decisionLog.md` **only** if a decision involved:
 - Architecture changes (new protocols, cluster rewiring, skill additions)
 
 All other decisions stay in `activeContext.md` only.
+
+### 4.5. Execution Awareness (Protocol 528 — Advisory)
+
+Before writing the `@pending` line in the checkpoint block:
+
+1. **Scan** previous `[[ S__ ]]` checkpoint blocks in `activeContext.md`
+2. For each item about to be written to `@pending`, count its consecutive appearances
+3. If any item has been pending **7+ sessions**: quietly promote it to `@seeded` for next session's Phase 4
+
+> This step is **advisory only** — it never blocks session close.
+> See [Protocol 528](file://examples/protocols/architecture/528-execution-enforcement.md).
+
+---
 
 ### 5. Update Project Switchboard (MANDATORY)
 
@@ -204,7 +220,7 @@ Before writing the `@pending` line in the checkpoint block:
 
 ### 6. Context Hygiene Gate
 
-**Gate**: Is `activeContext.md` > 500 lines?
+**Gate**: Is `activeContext.md` > 1000 lines?
 
 - **If NO**: Skip.
 - **If YES**: Move all fully-closed session blocks (from `## Session` to `!checkpoint ]]`) older than the most recent 5 sessions into a one-liner summary in the `## Compacted Archive` section. Delete the full blocks.
@@ -230,6 +246,7 @@ python3 .agent/scripts/shutdown.py
 4. Compliance report + reset
 5. Pre-compaction state flush (OpenClaw pattern)
 6. Auto-hygiene (background — `compress_sessions.py`)
+7. Protocol heat map update (background, non-fatal — `protocol_heatmap.py --update`)
 
 ### Failure Recovery
 
@@ -258,7 +275,8 @@ python3 .agent/scripts/shutdown.py
 
 ## References
 
-- **/save** — Mid-session checkpoint
+- [/save](file://.agent/workflows/save.md) — Mid-session checkpoint
+- [/ultraend](file://.agent/workflows/ultraend.md) — Deep close (System-2 counterpart)
 
 ---
 
