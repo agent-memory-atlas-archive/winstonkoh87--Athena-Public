@@ -20,6 +20,23 @@ Protocol 501 (Diagnostic Engine) ensures you **found** the right problem first.
 
 ---
 
+## Triage Gate (Pre-Pipeline Routing)
+
+Not every query needs the full diagnostic pipeline. A complexity score (Λ) routes queries to the appropriate depth:
+
+| Λ Score | Route | Example |
+|---------|-------|---------|
+| **≤ 20** | Direct answer (Chain of Thought only) | "What time is our meeting?" |
+| **21-40** | Phase 1 only (light premise audit + answer) | "Should I send this email now or tomorrow?" |
+| **41-60** | Full 3-phase pipeline | "Should I take this job offer?" |
+| **> 60** | Full pipeline + 4-track parallel reasoning (Protocol 75) | "Plea bargain vs trial" |
+
+The triage gate prevents **false-positive complexity** — over-analyzing simple questions. If Phase 1 (Premise Audit) determines the problem is genuinely simple, it bypasses Phases 2-3 and routes directly to a solver.
+
+> **Red-Team Finding (v2.0)**: Without an explicit triage gate, the pipeline optimizes for false negatives (missing complexity) but is blind to false positives (hallucinating complexity). The Λ routing was added to address this.
+
+---
+
 ## The Three-Phase Pipeline
 
 ```mermaid
@@ -249,6 +266,24 @@ graph TD
 | **Diagnosis** | Protocol 501 | "What is actually happening?" |
 | **Decision** | Protocol 121 | "Which option is best?" |
 | **Problem Solving** | Protocol 500 | "What is the optimal move in a complex game?" |
+
+---
+
+## Known Limitations
+
+### The Narrative Coherence Trap
+
+> **Added in v2.0** (Red-Team Finding)
+
+The diagnostic engine rewards hypotheses that form a *coherent story*. But real problems — especially psychological ones — often involve contradictory, incoherent drives that don't decompose cleanly. Forcing them into a structured taxonomy may produce an **elegant wrong answer** over a messy right one.
+
+**Mitigation**: When Phase 2 produces a suspiciously clean classification with no ambiguity, that *itself* is a diagnostic signal. Real problems are rarely mono-causal. A mandatory check: "Is this diagnosis *too* clean? Am I forcing resolution on contradictions that should remain tracked as unresolved?"
+
+### Decision Outcome Ledger (Blocking Requirement)
+
+> **Status**: Not yet implemented.
+
+Until tracked outcomes exist (recommendation → action → result → delta), the diagnostic engine's superiority claim is **assertion, not evidence**. Target: 50+ tracked high-stakes diagnoses compared against baseline approaches.
 
 ---
 

@@ -87,7 +87,7 @@ Life Management is an *outcome*, not a *promise*. Nobody downloads a GitHub repo
 
 ### The Claim
 
-Athena runs structured diagnostic frameworks (IFS, schema interviews) and connects patterns across sessions — delivering structured analysis at AI subscription cost, available 24/7.
+Athena runs structured diagnostic frameworks (IFS, schema interviews, Graph of Thoughts decomposition) and connects patterns across sessions — delivering structured analysis at AI subscription cost, available 24/7. The methodology is **diagnostic-first**: it invests the majority of compute in accurately identifying the root cause before generating any solution.
 
 ### How It Works: Pre-Work Convergence
 
@@ -141,6 +141,12 @@ The human doesn't need domain knowledge because the AI acquires it. The AI doesn
 **2. Not a clinical substitute.** Structured schema work and IFS-style analysis are *analytical frameworks*, not clinical interventions. Athena does not diagnose, does not prescribe, and carries no professional liability. For acute psychological distress, professional support should be the first recourse — Athena can augment, but not replace, that relationship. See [SAFETY.md](../SAFETY.md).
 
 **3. Input quality ceiling.** The inductive loop is only as good as the data fed into it. If your self-report is distorted by active crisis, dissociation, or deliberate omission, the hypothesis space is constrained to a subset of reality.
+
+**4. The Narrative Coherence Trap.** The diagnostic pipeline rewards hypotheses that form coherent stories. Real psychology often involves contradictory, incoherent drives that don't decompose cleanly. The pipeline is structurally biased toward narratively satisfying diagnoses. — *[Identified in red-team audit, March 2026]*
+
+**5. No outcome tracking (yet).** The claim that diagnostic-first produces better outcomes is structurally sound but not yet empirically validated. A Decision Outcome Ledger (tracking recommendations to real-world results) is a blocking requirement for moving from assertion to evidence. — *[Protocol 501 v2.0]*
+
+> **Fair comparison**: A well-prompted LLM with user context via RAG + session summaries closes ~60% of the gap versus a zero-context LLM. Athena's remaining edge is in cross-domain pattern detection, revealed preference tracking, and intervention outcome history — all of which require raw longitudinal data, not summaries.
 
 ---
 
