@@ -34,6 +34,7 @@ Each case study follows a consistent format defined in the [case study template]
 | [CS-001](CS-001-sunk-cost-career-pivot.md) | Decision / Career | Sunk cost fallacy in career decisions |
 | [CS-002](CS-002-scope-creep-freelance.md) | Execution / Business | Scope creep in freelance projects |
 | [CS-003](CS-003-confirmation-bias-research.md) | Research / Reasoning | Confirmation bias in research synthesis |
+| [CS-004](CS-004-plea-bargain-diagnostic.md) | Decision / Legal | Non-ergodic plea bargain — diagnostic pipeline demo |
 
 ## Creating Your Own
 
