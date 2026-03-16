@@ -196,6 +196,14 @@ The third row is where the majority of the value sits. A generic LLM gives a pro
 
 > **The stand fan and the divorce run through the same framework. The difference is that nobody needs permission to buy a fan.**
 
+### Real-World Example: The Min-Max Purchasing Framework
+
+A concrete application of EEV to consumer purchases: [CS-005 →](../examples/case_studies/CS-005-min-max-purchasing-framework.md)
+
+Most people buy in one of two modes — *prestige* (maximise status) or *cheapskate* (minimise cost). Both are suboptimal. The **min-max** approach maximises the *ratio* (value ÷ price) by exploiting depreciation curves, warranty transfers, and generational upgrade waves. In one documented case, this produced a **3.3× value multiplier** on a flagship smartphone — paying 1/3 of MSRP for identical utility.
+
+> **Don't minimise price. Don't maximise prestige. Maximise the ratio.**
+
 ### The Decision-Making Limitation (Honest)
 
 **1. Probability humility.** In semi-stochastic domains (trading, relationships, market timing), Athena can structure the decision and size the risk — but **cannot assign reliable probability estimates** to outcomes. The honest posture: high decisiveness (precise setup, sizing, invalidation criteria), low conviction (uncertainty explicitly acknowledged). You, not the model, make the final call on probability. — [Protocol 524 →](../examples/protocols/reasoning/524-conviction-decisiveness-split.md)
