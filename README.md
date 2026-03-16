@@ -18,7 +18,7 @@ Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](docs/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 16 March 2026*
+*Last updated: 17 March 2026*
 
 </div>
 
@@ -183,7 +183,7 @@ There's a difference between *remembering your name* and *thinking in your frame
 <details>
 <summary><strong>🧬 Why Thousands of Files?</strong></summary>
 
-Athena's workspace looks unusual — **350+ Markdown files** and **600+ Python scripts** out of the box, growing to thousands as your memory compounds. **This is deliberate.**
+Athena's workspace looks unusual — **420+ Markdown files** and **650+ Python scripts** out of the box, growing to thousands as your memory compounds. **This is deliberate.**
 
 AI agents don't read files top-to-bottom like humans. They **query** — by filename, semantic search, or tag lookup. Each small file is an **addressable memory node** the agent can retrieve surgically, without loading everything else.
 
@@ -387,8 +387,8 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
 | 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/507-cognitive-systems.md) |
 | 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
-| 📋 **146+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
-| ⚡ **50+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
+| 📋 **147+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
+| ⚡ **60+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
 | 🪝 **Lifecycle Hooks** | Scriptable pre/post gates on every action — block destructive ops, enforce risk checks, log assets |
@@ -486,9 +486,9 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) / GPT-5.4 (High) |
-| **SDK** | `athena` Python package (v9.5.4) |
+| **SDK** | `athena` Python package (v9.5.5) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
-| **Embeddings** | `text-embedding-004` (768-dim) |
+| **Embeddings** | `gemini-embedding-001` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
 | **Routing** | Risk-Proportional Triple-Lock — SNIPER / STANDARD / ULTRA |
 
@@ -508,8 +508,8 @@ Athena-Public/
 ├── tools/                   # Declarative tool definitions (YAML)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
-│   ├── protocols/           # 146+ starter frameworks (15 categories)
-│   ├── scripts/             # 580+ reference scripts
+│   ├── protocols/           # 147+ starter frameworks (15 categories)
+│   ├── scripts/             # 650+ reference scripts
 │   └── templates/           # Starter templates (framework, memory bank)
 ├── docs/                    # Architecture, benchmarks, security, guides
 └── pyproject.toml           # Modern packaging
@@ -520,6 +520,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.5.5** (Mar 16 2026): Abundance Mindset Alignment — P529 Survival HUD removed (redundant with existing safety stack), `/start` workflow fix, protocol count 128→127
 - **v9.5.4** (Mar 14 2026): Architecture Integrity Audit — Protocol index rewrite (109→128 active, 13→15 categories), P138/P526 cluster wiring, version sync
 - **v9.5.3** (Mar 14 2026): Independent Cross-Model Audit — Protocol 526 (Business Viability Assessment — 3-Layer Stack), Protocol 138 (Third Choice Generation / Kobayashi Maru), Cold Start Rule (`BEST_PRACTICES.md` §9)
 - **v9.5.2** (Mar 13 2026): Ollama Integration & Docs Sync — Ollama local embedding provider (`vectors.py` provider pattern), Symbiotic RSI codification, Dual Pressure Model, VECTORRAG.md full refresh (model name, counts, Ollama docs), metrics sync
