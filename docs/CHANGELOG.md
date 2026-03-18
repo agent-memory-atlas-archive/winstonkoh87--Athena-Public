@@ -1,10 +1,38 @@
 # Athena Changelog
 
-> **Last Updated**: 17 March 2026
+> **Last Updated**: 19 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.5.6 (19 March 2026)
+
+**Operator Optimization — The Phase 2 Thesis**
+
+### Key Changes
+
+- **CS-006** (NEW): [The Replacement Trap](../examples/case_studies/CS-006-the-replacement-trap.md) — 5 anonymized decision failures documenting the pattern where AI replaces human judgment instead of augmenting it. Root cause analysis ("Mode Confusion"), quantified impact (~$2,300 underpricing + 1 health risk + 1 positioning error), and the 3-Question Pre-Flight fix.
+- **USER_DRIVEN_RSI.md**: New "Phase 2: Optimising the Operator" section. Documents the phase transition from AI system optimization to human operator optimization. Three axes: (1) supply richer training data, (2) constant calibration via outcome logging, (3) fine-tune personal thinking process via pre-flight checklist.
+- **BEST_PRACTICES.md**: New §10 "Decision Sovereignty (The Pre-Flight Checklist)". Anti-pattern table, 3-question pre-flight, when-to-apply decision matrix. Quick Reference updated with new do/don't items.
+- **README.md**: Phase 2 thesis referenced in the Human Augmentation section. Version, date, SDK version, and changelog updated.
+
+### Design Decisions
+
+- CS-006 is fully anonymized — no client, project, or domain identifiers. All references use generic framing ("technical report", "healthcare provider", "consulting engagement") to protect operational security.
+- Phase 2 is positioned as an evolution of the Symbiotic RSI thesis, not a replacement. Phase 1 (building the AI) and Phase 2 (optimising the human) are complementary stages in the bilateral loop.
+- Decision Sovereignty is placed as §10 in BEST_PRACTICES rather than as a standalone protocol — it's operational guidance for the user, not system behavior for the AI.
+
+### Files Changed
+
+- `examples/case_studies/CS-006-the-replacement-trap.md` — NEW
+- `docs/USER_DRIVEN_RSI.md` — Phase 2 section added
+- `docs/BEST_PRACTICES.md` — §10 Decision Sovereignty, Quick Reference updated, date synced
+- `README.md` — Version badge, date, SDK version, Phase 2 reference, changelog entry
+- `pyproject.toml` — Version bump (9.5.5 → 9.5.6)
+- `docs/CHANGELOG.md` — This entry
 
 ---
 

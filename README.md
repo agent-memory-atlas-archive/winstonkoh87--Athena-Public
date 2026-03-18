@@ -12,13 +12,13 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.5.5-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.5.6-10b981?style=for-the-badge&label=Version)](file:///Users/winstonkoh/Project Athena/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
-[Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](docs/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
+[Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](file:///Users/winstonkoh/Project Athena/docs/GETTING_STARTED.md) · [FAQ](file:///Users/winstonkoh/Project Athena/Athena-Public.wiki/FAQ.md) · [Safety](file:///Users/winstonkoh/Project Athena/SAFETY.md) · [Contributing](file:///Users/winstonkoh/Project Athena/Athena-Public/CONTRIBUTING.md)
 
-*Last updated: 17 March 2026*
+*Last updated: 19 March 2026*
 
 </div>
 
@@ -44,7 +44,7 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 >
 > *Or in engineering terms: The LLM is the engine. Athena is the chassis, the memory, and the rules of the road. Swap the engine anytime — the car remembers every road you've driven.*
 >
-> *The design philosophy: [augment the human, not replace them](docs/concepts/Grace_Protocol.md).*
+> *The design philosophy: [augment the human, not replace them](file:///Users/winstonkoh/Project Athena/Athena-Public/docs/concepts/Grace_Protocol.md). After 1,100+ sessions, the bottleneck shifted — [optimising the operator is now higher-leverage than optimising the AI](docs/USER_DRIVEN_RSI.md#phase-2-optimising-the-operator).*
 
 ### The Human Augmentation Thesis
 
@@ -129,13 +129,13 @@ Not all problems are solvable. Athena classifies and responds accordingly:
 
 > As uncertainty increases, Athena shifts from *"here's the answer"* to *"here's the valid structural zone"* to *"here are your options — you choose."* This is deliberate: false confidence in stochastic domains is more dangerous than honest uncertainty. Athena's conviction is proportional to domain determinism and context completeness.
 
-> **Crucially, conviction and decisiveness are independent axes.** Low certainty about outcomes doesn't require vague output. A surgeon operates with high decisiveness and low conviction about outcomes. In semi-stochastic domains, Athena delivers precise, operational setups — then explicitly defers the probability judgment to you. *"Setup: Long 1.0850 / SL 1.0800 / TP1 1.0920. Your calibration: structural tell present Y/N?"* — not *"you might want to consider..."* — [Protocol 524 →](examples/protocols/reasoning/524-conviction-decisiveness-split.md)
+> **Crucially, conviction and decisiveness are independent axes.** Low certainty about outcomes doesn't require vague output. A surgeon operates with high decisiveness and low conviction about outcomes. In semi-stochastic domains, Athena delivers precise, operational setups — then explicitly defers the probability judgment to you. *"Setup: Long 1.0850 / SL 1.0800 / TP1 1.0920. Your calibration: structural tell present Y/N?"* — not *"you might want to consider..."* — [Protocol 524 →](file:///Users/winstonkoh/Project Athena/Athena-Public/examples/protocols/reasoning/524-conviction-decisiveness-split.md)
 
 > **Law #0** (Sovereignty): Your life, your weights, your choice. **Law #1** (No Irreversible Ruin): …unless the choice ends the game permanently. Law #1 overrides Law #0. Always.
 
 > *Athena doesn't tell you what you should do. It shows you what you can do, what each option costs, and hands the choice back. The only exception: paths that end the game permanently.*
 
-> **Architecture, not oracle.** This domain classification is a *replicable architecture* — each Athena instance calibrates independently over time through bilateral use. Session 1 treats most problems conservatively. Session 500 has accumulated enough frameworks, case studies, and corrected assumptions to tighten confidence bands and solve more sub-problems autonomously. The calibration compounds; the model is interchangeable. — [Protocol 525 (Cross-Domain Weighting) →](examples/protocols/reasoning/525-cross-domain-weighting.md)
+> **Architecture, not oracle.** This domain classification is a *replicable architecture* — each Athena instance calibrates independently over time through bilateral use. Session 1 treats most problems conservatively. Session 500 has accumulated enough frameworks, case studies, and corrected assumptions to tighten confidence bands and solve more sub-problems autonomously. The calibration compounds; the model is interchangeable. — [Protocol 525 (Cross-Domain Weighting) →](file:///Users/winstonkoh/Project Athena/Athena-Public/examples/protocols/reasoning/525-cross-domain-weighting.md)
 
 ---
 
@@ -281,7 +281,7 @@ This walks you through everything: what Athena is, how it works, builds your pro
 > **Forks of public repos are public by default.** If you plan to store personal data (health records, finances, journals), **create a new private repo** instead of forking. Copy the files manually or use `git clone` + `git remote set-url` to point to your private repo. [GitHub docs on fork visibility →](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks)
 
 > [!TIP]
-> See the [full setup guide →](docs/YOUR_FIRST_SESSION.md) for detailed walkthroughs and troubleshooting.
+> See the [full setup guide →](file:///Users/winstonkoh/Project Athena/docs/YOUR_FIRST_SESSION.md) for detailed walkthroughs and troubleshooting.
 
 <details>
 <summary><strong>🪟 Windows Compatibility (Unicode Errors)</strong></summary>
@@ -384,15 +384,15 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | Component | What It Does For You |
 |:----------|:---------------------|
 | 📄 **Agent Manifest** | Single `athena.yaml` file defines your agent — model, tools, skills, hooks, governance. Fork it, override it, boot a new agent — [manifest](athena.yaml) |
-| 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
-| 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/507-cognitive-systems.md) |
-| 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
+| 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](file:///Users/winstonkoh/Project Athena/Athena-Public/examples/templates/core_identity_template.md) |
+| 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](file:///Users/winstonkoh/Project Athena/Athena-Public/examples/protocols/architecture/507-cognitive-systems.md) |
+| 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](file:///Users/winstonkoh/Project Athena/Athena-Public/examples/templates/cluster_index_template.md) |
 | 📋 **147+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
-| ⚡ **60+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
-| 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
-| 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
+| ⚡ **60+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](file:///Users/winstonkoh/Project Athena/docs/WORKFLOWS.md) |
+| 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](file:///Users/winstonkoh/Project Athena/docs/SEMANTIC_SEARCH.md) |
+| 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](file:///Users/winstonkoh/Project Athena/docs/MCP_SERVER.md) |
 | 🪝 **Lifecycle Hooks** | Scriptable pre/post gates on every action — block destructive ops, enforce risk checks, log assets |
-| 🛡️ **Safety Rails** | Controls what the AI can and can't do autonomously (4 levels, from read-only to full agency) — [security](docs/SECURITY.md) |
+| 🛡️ **Safety Rails** | Controls what the AI can and can't do autonomously (4 levels, from read-only to full agency) — [security](file:///Users/winstonkoh/Project Athena/docs/SECURITY.md) |
 
 > [!TIP]
 > Run `/tutorial` on your first session for a guided walkthrough (~20 min). It explains everything above and builds your personal profile.
@@ -411,9 +411,9 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 | [Kilo Code](https://kilocode.ai/) | ✅ | `athena init --ide kilocode` |
 | [Roo Code](https://roocode.com/) | ✅ | `athena init --ide roocode` |
 
-> More agents planned — [full compatibility list →](docs/COMPATIBLE_IDES.md)
+> More agents planned — [full compatibility list →](file:///Users/winstonkoh/Project Athena/docs/COMPATIBLE_IDES.md)
 >
-> **"How is this different from ChatGPT Projects?"** — Projects reset every new chat and are locked to one platform. Athena persists across *all* chats, *all* models, with full version history. [Details →](docs/FAQ.md)
+> **"How is this different from ChatGPT Projects?"** — Projects reset every new chat and are locked to one platform. Athena persists across *all* chats, *all* models, with full version history. [Details →](file:///Users/winstonkoh/Project Athena/Athena-Public.wiki/FAQ.md)
 
 ---
 
@@ -424,16 +424,16 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 | 🏠 | **Life Management** | The superset. Health, career, relationships, finances, client work — all managed as projects in one unified switchboard. By day 3, Athena remembers your schedule. By month 3, it anticipates your patterns. Athena doesn't have a separate project manager and life tracker — it has one board where your gym routine and your client deadline are rows governed by the same triage rules. That's how it can tell you *"skip the client call — your sleep debt is a higher-urgency blocker than the $250 deliverable."* No other system crosses the work/life boundary. — [case study →](docs/CASE_STUDIES.md#case-study-1-from-routine-app-to-life-engine-in-72-hours) |
 | 🧠 | **Problem Solving** | *"I can't afford $200/hr therapy but I need to understand why I keep self-sabotaging."* — Athena runs a structured schema interview, maps your internal protective parts (IFS methodology), and connects the pattern to your documented history. Session 40 recalls the wound identified in session 3. A therapist charges $200+/hr and sees you once a week. Athena is available 24/7 for the cost of your AI subscription. — [case study →](docs/CASE_STUDIES.md#case-study-2-the-200hr-therapist-alternative) |
 | 🎯 | **Decision Making** | *"Should I take this job? Sign this contract? Confront this person?"* — Athena cross-references your risk profile, financial runway, career decision history, and the regret patterns from your last 3 similar decisions to produce a recommendation no generic LLM could give. A business coach charges $500+/hr. Athena does it in under an hour. — [case study →](docs/CASE_STUDIES.md#case-study-3-the-multi-stakeholder-career-decision) |
-| 💼 | **Work & Projects** | A subset of Life Management. Juggle 5+ projects without dropping context. `/project` gives you a visual switchboard — phase-gated progress, urgency/EV ranking, and instant context-switching. Internal projects (health, career) and external projects (clients, revenue) tracked separately with cross-project dependency awareness. — [workflow →](examples/workflows/project.md) |
+| 💼 | **Work & Projects** | A subset of Life Management. Juggle 5+ projects without dropping context. `/project` gives you a visual switchboard — phase-gated progress, urgency/EV ranking, and instant context-switching. Internal projects (health, career) and external projects (clients, revenue) tracked separately with cross-project dependency awareness. — [workflow →](file:///Users/winstonkoh/Project Athena/Athena-Public/examples/workflows/project.md) |
 | ✍️ | **Writing & Voice** | After 30 sessions, the AI stops sounding like ChatGPT and starts sounding like *you*. Learns your style from your own writing samples. |
 | 🔬 | **Research & Synthesis** | Compile 200 sources into one framework — still searchable and citable 6 months later. |
 | 📐 | **Strategic Planning** | Long-term planning across dozens of sessions. Budget modeling, scenario analysis, with full context of your past decisions. |
 
-> 📖 **Deep Dive**: [How Athena Solves — The Three Core Use Cases](docs/USE_CASES.md) — covers the vulnerability prerequisite, pre-work convergence, domain reclassification, the EEV decision framework, privacy architecture, and honest limitations.
+> 📖 **Deep Dive**: [How Athena Solves — The Three Core Use Cases](file:///Users/winstonkoh/Project Athena/Athena-Public/docs/USE_CASES.md) — covers the vulnerability prerequisite, pre-work convergence, domain reclassification, the EEV decision framework, privacy architecture, and honest limitations.
 
 > **The asymmetry.** A licensed therapist costs $200+/hr. A business coach costs $500+/hr. A negotiation consultant costs $1,000+/hr. Athena gives you structured, context-aware guidance across *all* of these domains — 24/7, for the cost of your existing AI subscription. It doesn't replace professionals for clinical emergencies, but for the 90% of life decisions and psychological patterns that don't require a medical license, it closes the gap between *having access to wisdom* and *not being able to afford it*.
 >
-> ⚠️ **Important**: Athena is an experimental AI tool, not a licensed professional service. It cannot diagnose, treat, or manage any medical or psychiatric condition. See [SAFETY.md](SAFETY.md) for crisis contacts and responsible use guidelines.
+> ⚠️ **Important**: Athena is an experimental AI tool, not a licensed professional service. It cannot diagnose, treat, or manage any medical or psychiatric condition. See [SAFETY.md](file:///Users/winstonkoh/Project Athena/SAFETY.md) for crisis contacts and responsible use guidelines.
 
 > **Not just for coding.** Athena is used for personal knowledge management, health tracking, creative writing, business strategy, and daily life — by people who've never written a line of code.
 
@@ -455,7 +455,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 > **For peak performance, use `/ultrastart` every session.** On a flat-rate plan, the marginal cost of deeper thinking is $0 — so the cost of under-thinking always exceeds the cost of over-thinking. `/ultrastart` loads ~20K tokens of structured context (identity, canonical memory, active state, semantic bridge) every session. On API pricing, this costs $2–5/session. On a $200/mo flat plan, it costs nothing. The pricing model of the underlying compute layer directly determines Athena's performance ceiling.
 
-> Boot cost is 2K–20K tokens (depending on mode) — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
+> Boot cost is 2K–20K tokens (depending on mode) — constant whether it's session 1 or session 10,000. [Details →](file:///Users/winstonkoh/Project Athena/docs/BENCHMARKS.md)
 
 > [!NOTE]
 > Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Opus 4.6, Gemini 3.1 Pro, GPT-5.4 (High)). Start with the free tier to test compatibility with your preferred model.
@@ -469,14 +469,14 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 | | | |
 |:--|:--|:--|
-| 📖 [Getting Started](docs/GETTING_STARTED.md) | 🏗️ [Architecture](docs/ARCHITECTURE.md) | 🔒 [Security](docs/SECURITY.md) |
-| 🎯 [Your First Session](docs/YOUR_FIRST_SESSION.md) | 🔍 [Semantic Search](docs/SEMANTIC_SEARCH.md) | 📊 [Benchmarks](docs/BENCHMARKS.md) |
-| 💡 [Tips](docs/TIPS.md) | 🔌 [MCP Server](docs/MCP_SERVER.md) | ❓ [FAQ](docs/FAQ.md) |
-| 🔄 [Updating Athena](docs/UPDATING.md) | 📥 [Importing Data](docs/IMPORTING.md) | ⌨️ [CLI Reference](docs/CLI.md) |
-| 📋 [All Workflows](docs/WORKFLOWS.md) | 📐 [Spec Sheet](docs/SPEC_SHEET.md) | 📓 [Glossary](docs/GLOSSARY.md) |
-| 🧠 [Manifesto](docs/MANIFESTO.md) | 📈 [Changelog](docs/CHANGELOG.md) | 🔀 [Multi-Model Strategy](docs/MULTI_MODEL_STRATEGY.md) |
-| ✅ [Best Practices](docs/BEST_PRACTICES.md) | 🤖 [Your First Agent](docs/YOUR_FIRST_AGENT.md) | 🧩 [What Is an AI Agent?](docs/WHAT_IS_AN_AI_AGENT.md) |
-| 🎯 [Use Cases Deep Dive](docs/USE_CASES.md) | 📋 [Case Studies](docs/CASE_STUDIES.md) | 🛡️ [Safety](SAFETY.md) |
+| 📖 [Getting Started](file:///Users/winstonkoh/Project Athena/docs/GETTING_STARTED.md) | 🏗️ [Architecture](file:///Users/winstonkoh/Project Athena/ARCHITECTURE.md) | 🔒 [Security](file:///Users/winstonkoh/Project Athena/docs/SECURITY.md) |
+| 🎯 [Your First Session](file:///Users/winstonkoh/Project Athena/docs/YOUR_FIRST_SESSION.md) | 🔍 [Semantic Search](file:///Users/winstonkoh/Project Athena/docs/SEMANTIC_SEARCH.md) | 📊 [Benchmarks](file:///Users/winstonkoh/Project Athena/docs/BENCHMARKS.md) |
+| 💡 [Tips](file:///Users/winstonkoh/Project Athena/docs/TIPS.md) | 🔌 [MCP Server](file:///Users/winstonkoh/Project Athena/docs/MCP_SERVER.md) | ❓ [FAQ](file:///Users/winstonkoh/Project Athena/Athena-Public.wiki/FAQ.md) |
+| 🔄 [Updating Athena](file:///Users/winstonkoh/Project Athena/docs/UPDATING.md) | 📥 [Importing Data](file:///Users/winstonkoh/Project Athena/docs/IMPORTING.md) | ⌨️ [CLI Reference](file:///Users/winstonkoh/Project Athena/docs/CLI.md) |
+| 📋 [All Workflows](file:///Users/winstonkoh/Project Athena/docs/WORKFLOWS.md) | 📐 [Spec Sheet](file:///Users/winstonkoh/Project Athena/docs/SPEC_SHEET.md) | 📓 [Glossary](file:///Users/winstonkoh/Project Athena/docs/GLOSSARY.md) |
+| 🧠 [Manifesto](file:///Users/winstonkoh/Project Athena/.framework/v8.2-stable/MANIFESTO.md) | 📈 [Changelog](file:///Users/winstonkoh/Project Athena/CHANGELOG.md) | 🔀 [Multi-Model Strategy](file:///Users/winstonkoh/Project Athena/docs/MULTI_MODEL_STRATEGY.md) |
+| ✅ [Best Practices](file:///Users/winstonkoh/Project Athena/docs/BEST_PRACTICES.md) | 🤖 [Your First Agent](file:///Users/winstonkoh/Project Athena/docs/YOUR_FIRST_AGENT.md) | 🧩 [What Is an AI Agent?](file:///Users/winstonkoh/Project Athena/docs/WHAT_IS_AN_AI_AGENT.md) |
+| 🎯 [Use Cases Deep Dive](file:///Users/winstonkoh/Project Athena/Athena-Public/docs/USE_CASES.md) | 📋 [Case Studies](file:///Users/winstonkoh/Project Athena/docs/CASE_STUDIES.md) | 🛡️ [Safety](file:///Users/winstonkoh/Project Athena/SAFETY.md) |
 
 ---
 
@@ -486,7 +486,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) / GPT-5.4 (High) |
-| **SDK** | `athena` Python package (v9.5.5) |
+| **SDK** | `athena` Python package (v9.5.6) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -520,6 +520,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.5.6** (Mar 19 2026): Operator Optimization — CS-006 (The Replacement Trap), Phase 2 thesis (USER_DRIVEN_RSI.md), Decision Sovereignty pre-flight checklist (BEST_PRACTICES.md §10)
 - **v9.5.5** (Mar 16 2026): Abundance Mindset Alignment — P529 Survival HUD removed (redundant with existing safety stack), `/start` workflow fix, protocol count 128→127
 - **v9.5.4** (Mar 14 2026): Architecture Integrity Audit — Protocol index rewrite (109→128 active, 13→15 categories), P138/P526 cluster wiring, version sync
 - **v9.5.3** (Mar 14 2026): Independent Cross-Model Audit — Protocol 526 (Business Viability Assessment — 3-Layer Stack), Protocol 138 (Third Choice Generation / Kobayashi Maru), Cold Start Rule (`BEST_PRACTICES.md` §9)
@@ -550,7 +551,7 @@ Athena-Public/
 - **v9.1.0** (Feb 17 2026): Deep Audit & Sync — Fixed 15 issues (dead links, version drift)
 - **v9.0.0** (Feb 16 2026): First-Principles Workspace Refactor — root dir cleaned, build artifacts purged
 
-👉 [Full Changelog →](docs/CHANGELOG.md)
+👉 [Full Changelog →](file:///Users/winstonkoh/Project Athena/CHANGELOG.md)
 
 </details>
 
@@ -562,7 +563,7 @@ Athena-Public/
 
 [![Star History Chart](https://api.star-history.com/svg?repos=winstonkoh87/Athena-Public&type=Date)](https://star-history.com/#winstonkoh87/Athena-Public&Date)
 
-**MIT License** · [Contributing](CONTRIBUTING.md) · [Safety](SAFETY.md) · [Security](SECURITY.md) · [Code of Conduct](CODE_OF_CONDUCT.md)
+**MIT License** · [Contributing](file:///Users/winstonkoh/Project Athena/Athena-Public/CONTRIBUTING.md) · [Safety](file:///Users/winstonkoh/Project Athena/SAFETY.md) · [Security](file:///Users/winstonkoh/Project Athena/docs/SECURITY.md) · [Code of Conduct](file:///Users/winstonkoh/Project Athena/Athena-Public/CODE_OF_CONDUCT.md)
 
 *Clone it. Boot it. Make it yours.*
 
