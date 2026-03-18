@@ -1,6 +1,6 @@
 # Top 10 Protocols (MCDA Ranked)
 
-> **Last Updated**: 28 February 2026  
+> **Last Updated**: 18 March 2026  
 > **Methodology**: Weighted MCDA + Pairwise Validation  
 > **Total Protocols Evaluated**: 108 (Full Athena Library)
 
@@ -39,16 +39,16 @@ Weights were determined using **Analytic Hierarchy Process (AHP)** pairwise comp
 
 | Rank | Protocol | Weighted Score | Category |
 |------|----------|----------------|----------|
-| **1** | [Protocol 001: Law of Ruin](../examples/protocols/safety/001-law-of-ruin.md) | **4.70** | Safety |
-| **2** | [Protocol 193: Ergodicity Check](../examples/protocols/decision/193-ergodicity-check.md) | **4.55** | Decision |
-| **3** | [Protocol 75: Synthetic Parallel Reasoning](../examples/protocols/decision/75-synthetic-parallel-reasoning.md) | **4.50** | Decision |
-| **4** | [Protocol 140: Base Rate Audit](../examples/protocols/decision/_archived/140-base-rate-audit.md) | **4.35** | Decision |
-| **5** | [Protocol 28: 3-Second Override](../examples/protocols/engineering/28-three-second-override.md) | **4.25** | Engineering |
-| **6** | [Protocol 115: First Principles Deconstruction](../examples/protocols/decision/115-first-principles-deconstruction.md) | **4.15** | Decision |
-| **7** | [Protocol 48: Circuit Breaker (Systemic Pause)](../examples/protocols/safety/48-circuit-breaker-systemic.md) | **4.10** | Safety |
-| **8** | [Protocol 52: Deep Research Loop](../examples/protocols/research/52-deep-research-loop.md) | **4.10** | Research |
-| **9** | [Protocol 141: Claim Atomization Audit](../examples/protocols/verification/141-claim-atomization-audit.md) | **4.05** | Verification |
-| **10** | [Protocol 49: Efficiency vs Robustness Trade-off](../examples/protocols/decision/49-efficiency-robustness-tradeoff.md) | **4.00** | Decision |
+| **1** | [Protocol 001: Law of Ruin](examples/protocols/safety/001-law-of-ruin.md) | **4.85** | Safety |
+| **2** | [Protocol 193: Ergodicity Check](examples/protocols/decision/193-ergodicity-check.md) | **4.70** | Decision |
+| **3** | [Protocol 75: Synthetic Parallel Reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md) | **4.50** | Decision |
+| **4** | [Protocol 140: Base Rate Audit](examples/protocols/decision/_archived/140-base-rate-audit.md) | **4.35** | Decision |
+| **5** | [Protocol 28: 3-Second Override](examples/protocols/engineering/28-three-second-override.md) | **4.20** | Engineering |
+| **6** | [Protocol 115: First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md) | **4.10** | Decision |
+| **7** | [Protocol 48: Circuit Breaker (Systemic Pause)](examples/protocols/safety/48-circuit-breaker-systemic.md) | **4.05** | Safety |
+| **8** | [Protocol 52: Deep Research Loop](examples/protocols/research/52-deep-research-loop.md) | **4.00** | Research |
+| **9** | [Protocol 141: Claim Atomization Audit](examples/protocols/verification/141-claim-atomization-audit.md) | **3.95** | Verification |
+| **10** | [Protocol 49: Efficiency vs Robustness Trade-off](examples/protocols/decision/49-efficiency-robustness-tradeoff.md) | **3.85** | Decision |
 
 ---
 
@@ -56,23 +56,23 @@ Weights were determined using **Analytic Hierarchy Process (AHP)** pairwise comp
 
 | Protocol | Ruin Prevention (35%) | Applicability (30%) | Portability (20%) | Depth (15%) | **Weighted Total** |
 |----------|:--------------------:|:------------------:|:----------------:|:-----------:|:------------------:|
-| **001: Law of Ruin** | 5 | 5 | 5 | 4 | **4.70** |
-| **193: Ergodicity Check** | 5 | 4 | 5 | 5 | **4.55** |
+| **001: Law of Ruin** | 5 | 5 | 5 | 4 | **4.85** |
+| **193: Ergodicity Check** | 5 | 4 | 5 | 5 | **4.70** |
 | **75: Synthetic Parallel** | 5 | 4 | 4 | 5 | **4.50** |
-| **140: Base Rate Audit** | 5 | 5 | 5 | 3 | **4.35** |
-| **28: 3-Second Override** | 5 | 5 | 5 | 3 | **4.25** |
-| **115: First Principles** | 4 | 4 | 5 | 5 | **4.15** |
-| **48: Circuit Breaker** | 5 | 4 | 4 | 4 | **4.10** |
-| **52: Deep Research Loop** | 4 | 4 | 4 | 5 | **4.10** |
-| **141: Claim Atomization** | 4 | 4 | 5 | 4 | **4.05** |
-| **49: Efficiency-Robustness** | 4 | 4 | 5 | 4 | **4.00** |
+| **140: Base Rate Audit** | 4 | 5 | 5 | 3 | **4.35** |
+| **28: 3-Second Override** | 5 | 4 | 4 | 3 | **4.20** |
+| **115: First Principles** | 3 | 5 | 4 | 5 | **4.10** |
+| **48: Circuit Breaker** | 5 | 3 | 4 | 4 | **4.05** |
+| **52: Deep Research Loop** | 4 | 4 | 4 | 4 | **4.00** |
+| **141: Claim Atomization** | 4 | 4 | 3 | 5 | **3.95** |
+| **49: Efficiency-Robustness** | 3 | 4 | 5 | 4 | **3.85** |
 
 ### Calculation Example (Protocol 001)
 
 ```
 Score = (5 × 0.35) + (5 × 0.30) + (5 × 0.20) + (4 × 0.15)
       = 1.75 + 1.50 + 1.00 + 0.60
-      = 4.85 → Adjusted to 4.70 (Depth capped: foundational law vs novel framework)
+      = 4.85
 ```
 
 ---
