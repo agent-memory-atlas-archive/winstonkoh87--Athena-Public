@@ -47,7 +47,7 @@ The buyer's *ability to pay* is a hard constraint that no amount of product qual
 | Student / Broke | $200–$400 | Assignment freelancing |
 | SME / Professional | $1K–$5K | Technical consultancy retainer |
 | Enterprise / Institutional | $5K–$50K+ | SaaS contracts, agency retainers |
-| Vice / Compulsive | Elastic (scales with urge) | Gambling, escort, luxury |
+| Vice / Compulsive | Elastic (scales with urge) | Gambling, companionship services, luxury |
 
 **Diagnostic**: *"If my ideal customer got my invoice, would they flinch?"*
 
@@ -68,7 +68,7 @@ Not all demand is equal. The *nature* of what you're selling determines how desp
 
 | Category | Demand Driver | Price Sensitivity | Repeat Rate | Example |
 |:---|:---|:---|:---|:---|
-| **Pleasure-Seeking** | Biological / emotional urge | Inelastic (willing to overpay) | Compulsive / recurring | Escorts, gambling, luxury goods |
+| **Pleasure-Seeking** | Biological / emotional urge | Inelastic (willing to overpay) | Compulsive / recurring | Companionship services, gambling, luxury goods |
 | **Revenue-Generating** | ROI calculation | Anchored to expected return | Contract / milestone-based | Lead-gen pages, ad campaigns, SaaS |
 | **Pain-Avoiding** | Fear of loss / compliance | Moderate (budget-constrained but motivated) | Event-driven | Legal, insurance, security |
 | **Obligation** | External mandate (grades, regulation) | Capped by budget, not desire | Seasonal / one-shot | Assignment work, tax filing |

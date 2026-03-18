@@ -41,6 +41,9 @@ SCANNABLE_EXTENSIONS = {
 # Directories to always skip
 SKIP_DIRS = {".git", "node_modules", "__pycache__", ".venv", "dist"}
 
+# Files to always skip (e.g., the blocklist itself — it contains the patterns by definition)
+SKIP_FILES = {".github/privacy_blocklist.txt"}
+
 
 def load_blocklist() -> list[re.Pattern]:
     """Load regex patterns from the blocklist file."""
@@ -89,6 +92,13 @@ def should_scan(filepath: Path) -> bool:
     for skip in SKIP_DIRS:
         if skip in filepath.parts:
             return False
+    # Skip files that contain the patterns by definition (e.g., blocklist itself)
+    try:
+        rel = str(filepath.relative_to(REPO_ROOT))
+        if rel in SKIP_FILES:
+            return False
+    except ValueError:
+        pass
     return filepath.exists() and filepath.is_file()
 
 
