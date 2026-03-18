@@ -113,7 +113,7 @@ athena --version              # Show version (v9.5.1)
 | `/brief interview` | Initial user profiling session |
 | `/save` | Quick checkpoint during session |
 
-> See [WORKFLOWS.md](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/WORKFLOWS.md) in the repo for the full list of all 50+ commands.
+> See [WORKFLOWS.md](../docs/WORKFLOWS.md) in the repo for the full list of all 50+ commands.
 
 ---
 

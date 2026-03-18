@@ -125,4 +125,4 @@ This creates a **self-correcting system** where each caught error makes the next
 
 - Liu, N. F., et al. (2024). *Lost in the Middle: How Language Models Use Long Contexts*. arXiv. <https://arxiv.org/abs/2307.03172>
 
-*[← Back to README](../protocols/README.md)*
+*[← Back to README](../../README.md)*

@@ -1,6 +1,6 @@
 # Skill: Frontend Patterns (Stolen from Claude Insider)
 
-> **Source**: [Claude Insider CLAUDE.md](https://github.com/siliconyouth/claude-insider/blob/main/CLAUDE.md)  
+> **Source**: [Claude Insider CLAUDE.md](../../CLAUDE.md)  
 > **Last Updated**: 2026-01-11
 
 ---

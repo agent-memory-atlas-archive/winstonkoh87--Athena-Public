@@ -85,7 +85,7 @@ Athena works with any agent that can read Markdown files. For first-class integr
 - **Kilo Code** — `athena init --ide kilocode`
 - **Roo Code** — `athena init --ide roocode`
 
-See the [full compatibility guide](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/COMPATIBLE_IDES.md).
+See the [full compatibility guide](../docs/COMPATIBLE_IDES.md).
 
 ### 🎨 How do I customize the AI's personality?
 
@@ -93,4 +93,4 @@ Edit `.framework/v8.2-stable/modules/Core_Identity.md`. This file contains the *
 
 For output formatting preferences, edit `.framework/v8.2-stable/modules/Output_Standards.md`.
 
-See the [.framework README](https://github.com/winstonkoh87/Athena-Public/blob/main/.framework/README.md) for a guide.
+See the [.framework README](../README.md) for a guide.

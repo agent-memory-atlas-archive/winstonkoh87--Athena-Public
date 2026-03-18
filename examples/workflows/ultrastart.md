@@ -470,9 +470,9 @@ preference — it's an architectural constraint:
 
 ## References
 
-- [/ultraend](file://.agent/workflows/ultraend.md) — Symmetric deep close counterpart
-- [/start](file://.agent/workflows/start.md) — Lightweight boot
-- [/end](file://.agent/workflows/end.md) — Lightweight close
+- [/ultraend](ultraend.md) — Symmetric deep close counterpart
+- [/start](start.md) — Lightweight boot
+- [/end](end.md) — Lightweight close
 
 ---
 

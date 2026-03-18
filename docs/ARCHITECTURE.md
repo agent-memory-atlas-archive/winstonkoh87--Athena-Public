@@ -168,7 +168,7 @@ graph TD
 - **Session 100**: Noticeably different — anticipates patterns, applies learned frameworks
 - **Session 1,000+**: Qualitatively different system — thinks in your frameworks before you state them
 
-> **Full Framework**: [Symbiotic RSI](./USER_DRIVEN_RSI.md) — The bilateral loop, dual helix model, thermodynamic framing, and moat analysis
+> **Full Framework**: [Symbiotic RSI](USER_DRIVEN_RSI.md) — The bilateral loop, dual helix model, thermodynamic framing, and moat analysis
 
 ---
 
@@ -895,9 +895,9 @@ To achieve "Total Life OS" functionality, the Agentic IDE must have elevated per
 
 ## See Also
 
-- **[Symbiotic RSI](./USER_DRIVEN_RSI.md)** — The bilateral loop: how you and AI improve together
-- **[Glossary](./GLOSSARY.md)** — Key terms and definitions
-- **[Changelog](./CHANGELOG.md)** — Full version history
+- **[Symbiotic RSI](USER_DRIVEN_RSI.md)** — The bilateral loop: how you and AI improve together
+- **[Glossary](GLOSSARY.md)** — Key terms and definitions
+- **[Changelog](CHANGELOG.md)** — Full version history
 
 ---
 
@@ -905,4 +905,4 @@ To achieve "Total Life OS" functionality, the Agentic IDE must have elevated per
 
 Built by **Winston Koh** — 10+ years in financial services, now building AI systems.
 
-→ **[About Me](./ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**
+→ **[About Me](ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**

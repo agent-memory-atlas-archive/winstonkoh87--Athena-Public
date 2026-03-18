@@ -14,13 +14,13 @@
 | #architecture | [77-adaptive-latency-architecture](../examples/protocols/architecture/77-adaptive-latency-architecture.md), [75-synthetic-parallel-reasoning](../examples/protocols/decision/75-synthetic-parallel-reasoning.md), [130-vibe-coding](../examples/protocols/workflow/130-vibe-coding.md) |
 | #audit | [audit](../examples/workflows/audit.md), [primer](../examples/workflows/primer.md), [111-premise-audit](../examples/protocols/decision/_archived/111-premise-audit.md) |
 | #automation | [start](../examples/workflows/start.md), [end](../examples/workflows/end.md), [think](../examples/workflows/think.md), [ultrathink](../examples/workflows/ultrathink.md), [refactor](../examples/workflows/refactor.md), [diagnose](../examples/workflows/diagnose.md) |
-| #bcm | [CS-140-bcm-silent-partner-analysis](#private-CS-140-bcm-silent-partner-analysis.md) |
+| #bcm | [CS-140-bcm-silent-partner-analysis](../.agent/skills/protocols/decision/140-base-rate-audit.md) |
 | #circuit-breaker | [circuit](../examples/workflows/circuit.md) |
 | #decision | [111-premise-audit](../examples/protocols/decision/_archived/111-premise-audit.md), [115-first-principles-deconstruction](../examples/protocols/decision/115-first-principles-deconstruction.md), [137-graph-of-thoughts](../examples/protocols/decision/137-graph-of-thoughts.md) |
 | #decentralized | 139-decentralized-command |
 | #deep-think | [ultrathink](../examples/workflows/ultrathink.md), [75-synthetic-parallel-reasoning](../examples/protocols/decision/75-synthetic-parallel-reasoning.md) |
 | #diagnostics | [diagnose](../examples/workflows/diagnose.md) |
-| #due-diligence | [CS-140-bcm-silent-partner-analysis](#private-CS-140-bcm-silent-partner-analysis.md) |
+| #due-diligence | [CS-140-bcm-silent-partner-analysis](../.agent/skills/protocols/decision/140-base-rate-audit.md) |
 | #efficiency | [77-adaptive-latency-architecture](../examples/protocols/architecture/77-adaptive-latency-architecture.md) |
 | #end | [end](../examples/workflows/end.md) |
 | #first-principles | [115-first-principles-deconstruction](../examples/protocols/decision/115-first-principles-deconstruction.md) |
@@ -28,7 +28,7 @@
 | #governance | [primer](../examples/workflows/primer.md) |
 | #graph-of-thoughts | [137-graph-of-thoughts](../examples/protocols/decision/137-graph-of-thoughts.md) |
 | #hallucination | [141-claim-atomization-audit](../examples/protocols/verification/141-claim-atomization-audit.md) |
-| #investment-report | [CS-140-bcm-silent-partner-analysis](#private-CS-140-bcm-silent-partner-analysis.md) |
+| #investment-report | [CS-140-bcm-silent-partner-analysis](../.agent/skills/protocols/decision/140-base-rate-audit.md) |
 | #latency | [77-adaptive-latency-architecture](../examples/protocols/architecture/77-adaptive-latency-architecture.md), [96-latency-indicator](../examples/protocols/architecture/96-latency-indicator.md) |
 | #leadership | 139-decentralized-command |
 | #observability | [96-latency-indicator](../examples/protocols/architecture/96-latency-indicator.md) |
@@ -89,9 +89,9 @@
 
 | File | Topic |
 |------|-------|
-| [CS-140-bcm-silent-partner-analysis](#private-CS-140-bcm-silent-partner-analysis.md) | Investment due diligence |
-| [CS-120-vibe-coding-zero-cost-stack](#private-CS-120-vibe-coding-zero-cost-stack.md) | Zero-cost development |
-| [CS-144-n8n-auto-blog-workflow](#private-CS-218-n8n-auto-blog-workflow.md) | Content automation |
+| [CS-140-bcm-silent-partner-analysis](../.agent/skills/protocols/decision/140-base-rate-audit.md) | Investment due diligence |
+| [CS-120-vibe-coding-zero-cost-stack](../.agent/skills/protocols/psychology/120-power-inversion.md) | Zero-cost development |
+| [CS-144-n8n-auto-blog-workflow](../.context/memories/case_studies/CS-218-n8n-auto-blog-workflow.md) | Content automation |
 
 ### Concepts
 

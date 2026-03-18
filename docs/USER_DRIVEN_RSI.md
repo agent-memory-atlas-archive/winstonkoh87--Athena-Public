@@ -261,6 +261,6 @@ What you do with it after that is up to you.
 
 ## Cross-References
 
-- [Architecture Overview](file:///Users/winstonkoh/Project Athena/ARCHITECTURE.md) — System design (includes Symbiotic RSI declaration)
+- [Architecture Overview](ARCHITECTURE.md) — System design (includes Symbiotic RSI declaration)
 - [The Exocortex Model](./ARCHITECTURE.md#the-exocortex-model) — Centralized HQ concept
-- [Top 10 Protocols](file:///Users/winstonkoh/Project Athena/docs/TOP_10_PROTOCOLS.md) — MCDA-ranked essential protocols
+- [Top 10 Protocols](TOP_10_PROTOCOLS.md) — MCDA-ranked essential protocols

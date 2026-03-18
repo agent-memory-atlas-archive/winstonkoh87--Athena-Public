@@ -276,8 +276,8 @@ git reset --hard <checkpoint-hash>
 ## References
 
 - [/diagnose](../../examples/workflows/diagnose.md) — Read-only diagnostics
-- [/end](./end.md) — Quick session close
-- [/vibe](./vibe.md) — Vibe engineering mode
+- [/end](../../examples/workflows/end.md) — Quick session close
+- [/vibe](../../examples/workflows/vibe.md) — Vibe engineering mode
 
 ---
 

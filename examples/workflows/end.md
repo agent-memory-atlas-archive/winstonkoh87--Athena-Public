@@ -190,7 +190,7 @@ Before writing the `@pending` line in the checkpoint block:
 3. If any item has been pending **7+ sessions**: quietly promote it to `@seeded` for next session's Phase 4
 
 > This step is **advisory only** — it never blocks session close.
-> See [Protocol 528](file://examples/protocols/architecture/528-execution-enforcement.md).
+> See [Protocol 528](../../.agent/skills/protocols/architecture/528-execution-enforcement.md).
 
 ---
 
@@ -275,8 +275,8 @@ python3 .agent/scripts/shutdown.py
 
 ## References
 
-- [/save](file://.agent/workflows/save.md) — Mid-session checkpoint
-- [/ultraend](file://.agent/workflows/ultraend.md) — Deep close (System-2 counterpart)
+- [/save](save.md) — Mid-session checkpoint
+- [/ultraend](ultraend.md) — Deep close (System-2 counterpart)
 
 ---
 

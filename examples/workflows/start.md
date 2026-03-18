@@ -33,7 +33,7 @@ After loading the latest checkpoint from `activeContext.md`, scan `@pending` ite
 - If any item has been pending **7+ sessions**: include one neutral line in boot output: `ℹ️ Long-pending: [TASK] — N sessions.`
 - No escalation, no gate. The user decides what to act on.
 
-See [Protocol 528](file://examples/protocols/architecture/528-execution-enforcement.md).  
+See [Protocol 528](../../.agent/skills/protocols/architecture/528-execution-enforcement.md).  
 
 > **Note**: Boot Orchestrator (`boot.py`), Daemon, and UI Sync are handled automatically by the orchestrator's background thread pool. Do NOT run them as separate subprocess calls — they are redundant and add 2-5 minutes of latency.
 
@@ -119,7 +119,7 @@ Bypassing STANDARD/ULTRA protocol is a high-severity violation. SNIPER queries m
 > **Architecture**: P508 Intent Classifier → P507 Cognitive Systems → P503 Clusters → Skills → Protocols
 > **Philosophy**: Classify the *human need archetype* first (top-down), then cascade to clusters. Fall back to keyword matching for SNIPER queries.
 
-**Routing Table**: [CLUSTER_INDEX.md](file://.agent/CLUSTER_INDEX.md) (8 Cognitive Systems, 15 clusters, 100% skill coverage)
+**Routing Table**: [CLUSTER_INDEX.md](../../.agent/CLUSTER_INDEX.md) (8 Cognitive Systems, 15 clusters, 100% skill coverage)
 
 **Intent Classification (Λ ≥ 10 — STANDARD/ULTRA):**
 
@@ -179,15 +179,15 @@ Crisis Query → P509 (Triage) → P519 (Goal) → #15 Problem-Solving → P521 
 | `/think` | **Escalation** — Force L4 depth + Output_Standards | +2K |
 | `/ultrathink` | Maximum depth + Full stack | +28K |
 
-> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](file://examples/protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
+> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](../../.agent/skills/protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
 
 ---
 
 ## References
 
-- [Protocol 133: JIT Routing](file://examples/protocols/architecture/133-query-archetype-routing.md)
-- [WORKFLOW_INDEX.md](WORKFLOW_INDEX.md)
-- [Session 2025-12-13-04](.context/memories/session_logs/archive/2025-12-13-session-04.md)
+- [Protocol 133: JIT Routing](../../.agent/skills/protocols/architecture/133-query-archetype-routing.md)
+- [WORKFLOW_INDEX.md](../../.agent/WORKFLOW_INDEX.md)
+- [Session 2025-12-13-04](../../.context/memories/session_logs/archive/2025-12-13-session-04.md)
 
 ---
 

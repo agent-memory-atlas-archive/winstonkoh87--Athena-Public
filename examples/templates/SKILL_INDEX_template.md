@@ -51,7 +51,7 @@
 
 - **../case-studies/27-sg-healthcare-de-facto.md**
 - **../case-studies/33-chia-boon-teck-case.md**
-- [CS-052-naive-idealism-tax.md](#private-CS-052-naive-idealism-tax.md)
+- [CS-052-naive-idealism-tax.md](../../.agent/skills/protocols/creation/052-lateral-innovation-engine.md)
 
 ## Safety
 

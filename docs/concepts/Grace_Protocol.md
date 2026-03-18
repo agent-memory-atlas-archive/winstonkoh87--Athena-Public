@@ -123,9 +123,9 @@ Neither side can reach their potential without the other. That's the Grace Proto
 
 | Protocol | Relationship to Grace Protocol |
 |:---|:---|
-| [Protocol 418: Rev-9 Architecture](../../docs/protocols/418-rev9-architecture.md) | The machine-side complement. P418 describes what the *AI* does (Proxy vs Augmentation). Grace Protocol describes what the *human* becomes (the Augment). |
+| [Protocol 418: Rev-9 Architecture](../protocols/418-rev9-architecture.md) | The machine-side complement. P418 describes what the *AI* does (Proxy vs Augmentation). Grace Protocol describes what the *human* becomes (the Augment). |
 | [Quadrant IV](Quadrant_IV.md) | The compound mechanism. Quadrant IV explains *how* augmentation gets better over time (5 mechanisms). Grace Protocol explains *why* — the philosophical position that makes the mechanisms matter. |
-| [Philosophy §6](../../wiki/Philosophy.md) | The original statement. "Augmentation, Not Delegation" is the Grace Protocol in three words. |
+| [Philosophy §6](../../Athena-Public.wiki/Philosophy.md) | The original statement. "Augmentation, Not Delegation" is the Grace Protocol in three words. |
 | [Differentiation Thesis](../marketing/DIFFERENTIATION.md) | The market positioning. Everyone else builds Terminators. We build Graces. |
 
 ---
@@ -134,7 +134,7 @@ Neither side can reach their potential without the other. That's the Grace Proto
 
 | Document | What It Covers |
 |:---|:---|
-| [Protocol 418: Rev-9 Architecture](../../docs/protocols/418-rev9-architecture.md) | The dual-mode identity model (Proxy vs Augmentation) |
+| [Protocol 418: Rev-9 Architecture](../protocols/418-rev9-architecture.md) | The dual-mode identity model (Proxy vs Augmentation) |
 | [Quadrant IV](Quadrant_IV.md) | How the augmentation compounds over hundreds of sessions |
 | [User-Driven RSI](../USER_DRIVEN_RSI.md) | The bilateral improvement loop |
 | [Cognitive Architecture](Cognitive_Architecture.md) | The neuro-cognitive model underlying the Bionic Unit |

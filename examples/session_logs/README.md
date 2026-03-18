@@ -31,4 +31,4 @@ Example: `2026-02-01-session-01.md`
 
 ## Example
 
-See [example-session.md](./example-session.md) for a complete example.
+See [example-session.md](example-session.md) for a complete example.

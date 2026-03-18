@@ -27,7 +27,7 @@ The single fastest way to accelerate mastery of AI agents isn't reading docs or 
 
 **The mechanism**: Open-source projects (like publishing Athena on Reddit) generate adversarial feedback from strangers who have zero incentive to be polite. This feedback is *more valuable* than self-testing because it surfaces blind spots you can't see from the inside. Paid projects (like speed-running a capstone in a day with AI) generate *empirical proof* that the system works under real constraints — deadlines, client expectations, unfamiliar domains.
 
-Together, they create the [Symbiotic RSI](file:///Users/winstonkoh/Project Athena/docs/USER_DRIVEN_RSI.md) loop at the project level: the open-source community is the "human correction" arm (they tell you what's broken), and paid clients are the "validation" arm (they prove what works by paying for it).
+Together, they create the [Symbiotic RSI](USER_DRIVEN_RSI.md) loop at the project level: the open-source community is the "human correction" arm (they tell you what's broken), and paid clients are the "validation" arm (they prove what works by paying for it).
 
 > **The insight that "AI agents can perform magic" doesn't come from reading a blog post. It comes from shipping a capstone in a day.** Lived experience creates conviction that no amount of documentation can replicate.
 
@@ -179,7 +179,7 @@ If you use multiple AI accounts or models:
 | **Use Secret Mode for demos** | `set_secret_mode(True)` redacts sensitive data |
 | **Review agent permissions** | Don't grant filesystem access to `~/.ssh` or credential stores |
 
-> 👉 Full security model: [SECURITY.md](file:///Users/winstonkoh/Project Athena/docs/SECURITY.md)
+> 👉 Full security model: [SECURITY.md](SECURITY.md)
 
 ---
 
@@ -287,16 +287,16 @@ The rule: if the decision has **high variance** (multiple reasonable answers) an
 
 ## See Also
 
-- **[Tips](file:///Users/winstonkoh/Project Athena/docs/TIPS.md)** — Getting the most out of Athena
-- **[Security](file:///Users/winstonkoh/Project Athena/docs/SECURITY.md)** — Data residency and permissions
-- **[FAQ](file:///Users/winstonkoh/Project Athena/Athena-Public.wiki/FAQ.md)** — Common questions
-- **[Your First Session](file:///Users/winstonkoh/Project Athena/docs/YOUR_FIRST_SESSION.md)** — Guided walkthrough
+- **[Tips](TIPS.md)** — Getting the most out of Athena
+- **[Security](SECURITY.md)** — Data residency and permissions
+- **[FAQ](../Athena-Public.wiki/FAQ.md)** — Common questions
+- **[Your First Session](YOUR_FIRST_SESSION.md)** — Guided walkthrough
 - **[CS-006: The Replacement Trap](../examples/case_studies/CS-006-the-replacement-trap.md)** — Why augmentation ≠ replacement
 
 ---
 
 <div align="center">
 
-**[Back to README](file:///Users/winstonkoh/Project Athena/README.md)**
+**[Back to README](../README.md)**
 
 </div>

@@ -21,7 +21,7 @@ Just as Linux provides the kernel, file system, and permissions for applications
 **You own the data** (Markdown files on your machine, git-versioned). You only **rent the intelligence** (LLM API calls). Switch models tomorrow and your memory stays exactly where it is.
 
 > [!TIP]
-> **Before you begin, ask yourself**: *"How do I want Athena to best help me in my daily life?"* — This is the guiding principle. Everything else exists to serve your answer. See [Your First Session](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/YOUR_FIRST_SESSION.md) for the full guide.
+> **Before you begin, ask yourself**: *"How do I want Athena to best help me in my daily life?"* — This is the guiding principle. Everything else exists to serve your answer. See [Your First Session](../docs/YOUR_FIRST_SESSION.md) for the full guide.
 
 ---
 
@@ -60,7 +60,7 @@ Or use [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) fo
 | Page | Description |
 |:-----|:------------|
 | **🚀 [Getting Started](Getting-Started)** | Installation, first boot, workspace modes, CLI commands |
-| **📖 [Your First Session](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/YOUR_FIRST_SESSION.md)** | The intent-first onboarding guide |
+| **📖 [Your First Session](../docs/YOUR_FIRST_SESSION.md)** | The intent-first onboarding guide |
 | **🏗️ [Architecture](Architecture-Overview)** | OS layers, Hybrid RAG, MCP Server, Tech Stack |
 | **⚡ [Workflows](Workflow-Reference)** | `/start`, `/end`, `/think`, `/refactor` and 50+ commands |
 | **🎯 [Use Cases](Use-Cases)** | Decision-making, research, planning, meta-thinking |

@@ -100,7 +100,7 @@ Different cognitive modes. Don't collapse them.
 
 - [Protocol 107: Spec-Driven Development](../coding/107-spec-driven-development.md) — Step 2 in the chain
 - [Protocol 500: GTO Problem Solver](../decision/500-gto-problem-solver.md) — Phase 0 classification
-- [Skill: spec-driven-dev](../../skills/research/deep-research-loop/SKILL.md) — Execution wrapper
+- [Skill: spec-driven-dev](../../skills/research/synthetic-parallel-reasoning/SKILL.md) — Execution wrapper
 
 ## Tags
 

@@ -149,7 +149,7 @@ If implementing in your own Athena instance, create:
 
 ### Related Protocols
 
-* [Protocol 130: Vibe Coding](../workflow/130-vibe-coding.md) — Iterative refinement pattern
+* [Protocol 130: Vibe Coding](130-vibe-coding.md) — Iterative refinement pattern
 * [Protocol 72: Proactive Extrapolation](_archived/72-proactive-extrapolation-framework.md) — Anticipating user needs
 
 ### Meta Note

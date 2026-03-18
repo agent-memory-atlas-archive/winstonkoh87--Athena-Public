@@ -161,7 +161,7 @@ CONTINGENCY:    [fallback paths]
 - [Protocol 504: Problem Framing](504-problem-framing.md)
 - [Protocol 505: Graph of Thought](505-graph-of-thought.md)
 - [Protocol 115: First Principles Deconstruction](../decision/115-first-principles-deconstruction.md)
-- [Red Team Review](../../skills/research/deep-research-loop/SKILL.md)
+- [Red Team Review](../../skills/research/synthetic-parallel-reasoning/SKILL.md)
 
 ---
 

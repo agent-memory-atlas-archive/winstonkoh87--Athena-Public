@@ -162,7 +162,7 @@ Athena cross-references your risk profile, financial runway, career history, and
 
 The methodology is solved. The pipeline:
 
-1. **Decompose** — Break the decision into sub-problems ([Protocol 501](../examples/protocols/reasoning/501-problem-decomposition.md) / [525](../examples/protocols/reasoning/525-cross-domain-weighting.md))
+1. **Decompose** — Break the decision into sub-problems ([Protocol 501](../.agent/skills/protocols/decision/501-diagnostic-engine.md) / [525](../examples/protocols/reasoning/525-cross-domain-weighting.md))
 2. **Classify** — Assign each sub-problem to its domain type (deterministic → stochastic)
 3. **Solve** — Apply domain-appropriate reasoning to each sub-problem
 4. **Weight** — Combine sub-solutions using your personal utility function, not generic expected value
