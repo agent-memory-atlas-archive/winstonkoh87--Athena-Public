@@ -1,7 +1,7 @@
 # Symbiotic RSI (User-Driven Recursive Self-Improvement)
 
-> **Last Updated**: 12 March 2026
-> **TL;DR**: AI doesn't improve itself. You improve together. The loop is bilateral, and the trajectory is a dual upward spiral.
+> **Last Updated**: 19 March 2026
+> **TL;DR**: AI doesn't improve itself. You improve together. The loop is bilateral, and the trajectory is a dual upward spiral. After Phase 1 (building the AI), the bottleneck shifts to Phase 2 (optimising the human).
 
 > [!IMPORTANT]
 > **Core Thesis**: Neither human nor AI can recursively self-improve alone. Intelligence compounds at the *interface* — in the coupling data between human judgment and AI reasoning. The moat is not the code. The moat is the 1,100+ sessions of calibration that make the code *yours*.
@@ -131,6 +131,53 @@ This is why Athena's value compounds non-linearly. Session 1 is marginally bette
 
 ---
 
+## Phase 2: Optimising the Operator
+
+> *After 1,100+ sessions, the bottleneck flipped. The AI is tuned. Now it's about the human.*
+
+Phase 1 of Symbiotic RSI is building the AI system — protocols, memory bank, boot sequence, cognitive architecture. This is the work described in the sections above: the bilateral loop, the dual helix, the thermodynamic frame. After ~4 months and 1,100+ sessions, Phase 1 hit diminishing returns. The marginal ROI of another protocol is near-zero compared to the marginal ROI of the human operator getting 10% better at using the system.
+
+This is the **phase transition**: the bottleneck shifts from AI quality → human operator quality.
+
+| Phase | Period | Bottleneck | Work |
+|:------|:-------|:-----------|:-----|
+| **Phase 1** | Months 1–4 | AI system quality | Build protocols, memory bank, boot sequence, cognitive architecture |
+| **Phase 2** | Month 5+ | **Human operator quality** | Supply richer data, calibrate constantly, fine-tune personal thinking process |
+
+### The Three Axes
+
+**1. Supply Richer Training Data**
+
+Right now, most users supply context *reactively* — when they have a task. The Phase 2 upgrade is supplying context *proactively*: filing decisions, outcomes, and corrections even when there's no active task. Every correction you make is calibration data that makes the next session sharper.
+
+The specific fix: when you catch the AI being wrong, the correction needs to be **filed** (case study, canonical entry, session log), not just spoken in chat. Spoken corrections fix one session. Filed corrections fix every future session.
+
+**2. Constant Calibration (Zero Entropy)**
+
+Entropy = the system drifting from reality over time. The `/end` protocol fights this, but the operator needs to feed the calibration loop with **honest outcomes**. Did the price work? Did the client push back? Did the strategy succeed or fail?
+
+The gap: decisions get logged, but outcomes rarely get filed back. You quote $400, deliver, get paid — but the system never learns whether $400 was *right* or if $600 would have closed just as easily. The fix is a **Decision Outcome Ledger** — log the decision AND the outcome, so the delta between "what we thought" and "what happened" is measurable over time.
+
+**3. Fine-Tune Your Thinking Process**
+
+This is the hardest axis and the highest leverage. The most common failure mode for experienced AI users isn't bad AI output — it's **accepting good-sounding AI output without applying personal judgment**. The AI gives a plausible recommendation. The user accepts it because it was convenient, not because they independently validated it.
+
+The fix is a lightweight **pre-flight checklist** before accepting any AI recommendation on high-variance decisions (pricing, vendor selection, strategy):
+
+1. **Does this pass my gut check?** — Intuition is compressed experience. If it feels off, investigate.
+2. **Would I be embarrassed if a peer saw this decision?** — Social calibration catches errors faster than analysis.
+3. **Am I accepting this because I agree, or because it was convenient?** — The laziness detector.
+
+### The Replacement Trap
+
+These three axes were identified through 5 concrete failures where the AI replaced human judgment instead of augmenting it — resulting in ~$2,300 in underpricing, one avoided health risk, and one strategic positioning error. In every case, the human caught the error, not the AI.
+
+The full analysis: [CS-006: The Replacement Trap →](../examples/case_studies/CS-006-the-replacement-trap.md)
+
+> **The takeaway**: The AI is a force multiplier, not a replacement. After Phase 1 is complete, the highest-leverage investment isn't building more protocols — it's becoming a better operator of the system you already have.
+
+---
+
 ## Symbiotic RSI vs. Unilateral AI RSI
 
 | Dimension | Unilateral AI RSI | Symbiotic RSI (Athena) |
@@ -214,6 +261,6 @@ What you do with it after that is up to you.
 
 ## Cross-References
 
-- [Architecture Overview](./ARCHITECTURE.md) — System design (includes Symbiotic RSI declaration)
+- [Architecture Overview](file:///Users/winstonkoh/Project Athena/ARCHITECTURE.md) — System design (includes Symbiotic RSI declaration)
 - [The Exocortex Model](./ARCHITECTURE.md#the-exocortex-model) — Centralized HQ concept
-- [Top 10 Protocols](./TOP_10_PROTOCOLS.md) — MCDA-ranked essential protocols
+- [Top 10 Protocols](file:///Users/winstonkoh/Project Athena/docs/TOP_10_PROTOCOLS.md) — MCDA-ranked essential protocols
