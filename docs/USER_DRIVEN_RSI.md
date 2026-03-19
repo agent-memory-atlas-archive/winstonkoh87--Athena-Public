@@ -264,3 +264,4 @@ What you do with it after that is up to you.
 - [Architecture Overview](ARCHITECTURE.md) — System design (includes Symbiotic RSI declaration)
 - [The Exocortex Model](./ARCHITECTURE.md#the-exocortex-model) — Centralized HQ concept
 - [Top 10 Protocols](TOP_10_PROTOCOLS.md) — MCDA-ranked essential protocols
+- [Time Compression Thesis](concepts/Time_Compression_Thesis.md) — How AI compresses 100hrs → 10hrs and inverts the effort ratio
