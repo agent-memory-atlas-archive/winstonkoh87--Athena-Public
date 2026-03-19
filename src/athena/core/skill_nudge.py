@@ -82,10 +82,10 @@ SKILL_REGISTRY: dict[str, dict] = {
         ],
         "hint": "Product-Market Optimization Diagnostic. Use for go-to-market analysis.",
     },
-    "Consultancy Curriculum": {
+    "Consultancy Framework": {
         "primary": ["consultancy", "consulting", "curriculum", "onboarding"],
-        "secondary": ["client", "engagement", "workshop", "sherpa", "setup"],
-        "hint": "Structure the Technical Consultancy service offering.",
+        "secondary": ["client", "engagement", "workshop", "retainer", "setup"],
+        "hint": "Structure a technical consultancy service offering.",
     },
     # --- AI Systems ---
     "Protocol 133: JIT Routing": {

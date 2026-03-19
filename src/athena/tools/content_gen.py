@@ -30,7 +30,7 @@ Target Keyword: "{keyword}"
 
 Generate 3 variations of marketing copy:
 
-1. [CAROUSELL] - Outcome-focused, urgency-driven, price-anchored ($1500 upfront / $1500 on delivery).
+1. [CAROUSELL] - Outcome-focused, urgency-driven, price-anchored (milestone-based delivery).
 2. [LINKEDIN] - Authority-focused, mentioning "Bionic Unit" and "Agentic Workflows".
 3. [TWITTER/X] - Insight-driven thread hook.
 
