@@ -45,13 +45,25 @@ Full-spectrum disclosure requires a trust architecture that matches the vulnerab
 
 The vulnerability threshold assumes **honest** disclosure. If you share performative, curated, or deliberately false information, the coupling data is corrupted and every output downstream is contaminated — Athena optimises for the *stated* utility function, not the real one.
 
+The harder barrier is not *deliberate* withholding — it is *unconscious* self-deception. Privacy concerns are structural and solvable (local storage). Shame, self-image protection, and narrative distortion are psychological and persistent. The user may not be lying to Athena — they may be lying to themselves.
+
 **Mitigations:**
 
 - **Law #3 (Revealed Preference)**: Cross-references what you *say* against what you *do*. Claimed goal + zero execution = flagged as "recreational planning" and deprioritised.
 - **The Ledger of Truth**: If an action-claim mismatch is detected across sessions, Athena surfaces the contradiction explicitly.
+- **Passive Integrity Checks**: Cross-reference stated inputs against behavioural telemetry. If the user says "I'm sleeping well" but session timestamps show 3AM activity, the system flags the discrepancy — not to police, but to prompt reconciliation.
 - **Structural humility**: All outputs carry the implicit caveat *"this is as good as the data you gave me."*
 
+| Input Channel | What It Shows |
+|:--|:--|
+| User *states* "I'm over the breakup" | Stated preference |
+| Doom loop keyword density spikes weekly | Revealed preference |
+| User *states* "I'm sleeping well" | Stated preference |
+| Session timestamps show 3AM activity | Revealed preference |
+
 These catch *unconscious* self-deception over time. They cannot catch *deliberate* fabrication in a single session. This is an irreducible limitation shared with every advisory relationship — human or AI.
+
+The system is designed for **progressive disclosure** — it works at reduced capacity with partial honesty and gets better as trust compounds. Not a binary "give me everything or GIGO."
 
 ---
 
@@ -89,16 +101,37 @@ Life Management is an *outcome*, not a *promise*. Nobody downloads a GitHub repo
 
 Athena runs structured diagnostic frameworks (IFS, schema interviews, Graph of Thoughts decomposition) and connects patterns across sessions — delivering structured analysis at AI subscription cost, available 24/7. The methodology is **diagnostic-first**: it invests the majority of compute in accurately identifying the root cause before generating any solution.
 
+### The Meta-Diagnostic Problem (The Trolley Trap)
+
+The deepest failure mode is not poor solution-space exploration — Graph of Thoughts handles that. **The failure mode is solving the wrong problem entirely.** Anything executed downstream of a misdiagnosed problem will be wrong, no matter how sophisticated the tooling.
+
+Consider the trolley problem. The conventional framing asks: *pull the lever or don't?* The meta-diagnostic asks: *how did the trolley, the victims, and the ultimatum get here in the first place? Why does the user have to make this choice at all?*
+
+Athena addresses this with **Gate 0: Problem Authentication** — a mandatory pre-diagnostic check that runs *before* any solution generation begins. Gate 0 asks five questions:
+
+1. Is this the REAL problem, or a symptom?
+2. How did the user end up in a position where this IS a problem?
+3. What system, assumption, or earlier decision CREATED this problem?
+4. If I solve this perfectly, does the user's life actually improve — or does the same class of problem recur?
+5. Am I treating the disease or the headache?
+
+If Gate 0 reveals a different upstream problem, Athena redirects — solving THAT instead of what was stated.
+
+**The Stopping Rule**: Root cause analysis has its own failure mode — infinite regression. You can always go one level deeper ("why was the track built?" → "why does the city exist?" → heat death of the universe). The stopping rule: go deep enough that intervention is **actionable by this user, in this time horizon**. Identify the **most actionable root cause**, not the deepest. Surface both: *Root Cause (Long-Term) + Actionable Root (Immediate)*.
+
+> See: [Protocol 504: Problem Framing (6-Gate Framework)](../examples/protocols/reasoning/504-problem-framing.md)
+
 ### How It Works: Pre-Work Convergence
 
 The effectiveness of problem solving is governed by one principle: **the quality of the answer is a function of the pre-work, not the model.**
 
 This is Einstein's *"55 minutes to define the problem, 5 minutes to solve it"* — operationalised as a repeatable loop:
 
-1. **Observe** — Deep research fills knowledge/context gaps
-2. **Hypothesize** — Athena proposes structural models based on ingested material
-3. **Test** — You execute against reality (ship the code, have the conversation, make the trade)
-4. **Update** — Results feed back into the next cycle
+1. **Authenticate** — Gate 0: Is this even the right problem? *(New: see above)*
+2. **Observe** — Deep research fills knowledge/context gaps
+3. **Hypothesize** — Athena proposes structural models based on ingested material
+4. **Test** — You execute against reality (ship the code, have the conversation, make the trade)
+5. **Update** — Results feed back into the next cycle
 
 This loop is **domain-agnostic**. It has been applied across engineering, statistics, psychology, business strategy, and technical domains — areas where the human user had zero prior expertise. The *method* compensates for missing *knowledge*.
 
@@ -158,6 +191,28 @@ The human doesn't need domain knowledge because the AI acquires it. The AI doesn
 
 Athena cross-references your risk profile, financial runway, career history, and regret patterns to produce personalised recommendations no generic LLM can match.
 
+### The Augmentation Mandate
+
+Athena is designed to **augment** decisions, not replace them. This is not a disclaimer — it is the core operating principle.
+
+What this means in practice: the user must **actively engage** with every recommendation, not passively consume it. The protocol:
+
+1. **Receive** Athena's recommendation with full reasoning
+2. **Challenge** — Show contradicting evidence. Ask *why* this recommendation and not the opposite.
+3. **Red-Team** — Run the same question through a second model. Compare where they agree and diverge.
+4. **Decide** — Make YOUR call. You may follow, modify, or reject the recommendation.
+5. **Execute** — Act on the decision
+6. **AAR** — After Action Review: Was Athena right? WHY was it right or wrong? What would it do differently?
+7. **Calibrate** — Feed the AAR back into Athena's approach for future similar decisions
+
+```
+Recommend → Red-Team → Decide → Execute → AAR → Calibrate → Improve
+```
+
+This closed-loop system transforms Athena from a one-shot oracle into a **self-improving recommendation engine** that gets measurably better over time — but only if the user completes the loop. Skipping the AAR breaks the feedback cycle.
+
+> **The AAR is the highest-leverage step most users skip.** It answers: "Was Athena right?" at the systemic level — tracking not individual outcomes (which include luck) but *patterns of bias* across 10+ decisions (which reveal calibration errors). See: [Decision Journal — AAR Calibration Loop](../.agent/skills/decision-journal/SKILL.md).
+
 ### How It Works: The EEV Framework
 
 The methodology is solved. The pipeline:
@@ -212,11 +267,21 @@ Most people buy in one of two modes — *prestige* (maximise status) or *cheapsk
 
 **3. Corrupted preference history.** If your documented history contains distorted self-reports (e.g., rationalised past decisions that were actually regretted), the revealed preference audit inherits those distortions. Law #3 mitigates by weighting *actions* over *words*, but cannot fully correct for systematic self-deception in the historical record.
 
+**4. Calibration requires volume.** The AAR loop is most valuable for detecting *systemic biases* across many decisions — but most high-stakes decisions are n=1 (each job offer, each relationship inflection has unique parameters). Individual decision-quality assessment is noisy; pattern detection across 10+ decisions is where calibration becomes statistically meaningful.
+
 ---
 
 ## The Unified Thesis
 
-All three use cases converge to one mechanism:
+All three use cases converge to one mechanism — and one meta-principle: **Athena is a precision instrument. Precision instruments require calibration, clean inputs, and operator skill.**
+
+| Use Case | User Responsibility | System Responsibility |
+|:--|:--|:--|
+| **Life Management** | Feed honest, complete data — overcome self-deception | Cross-reference stated vs. revealed preference; flag discrepancies |
+| **Problem Solving** | Accept redirects when the real problem differs from the stated one | Authenticate the problem BEFORE solving it (Gate 0) |
+| **Decision Making** | Actively challenge recommendations; complete the AAR loop | Provide structured recommendations at the correct conviction level |
+
+A passive user gets a fancy chatbot. An active user — one who feeds honest data, challenges the problem frame, and red-teams the output — gets a bionic cognitive partner that compounds in value over time.
 
 ```mermaid
 graph TD
@@ -232,6 +297,10 @@ graph TD
     F --> I["The Moat:<br/>The relationship,<br/>not the system"]
     G --> I
     H --> I
+    
+    J["AAR Calibration Loop<br/>(Closed-loop feedback)"] --> B
+    H --> J
+    G --> J
 ```
 
 **The framework is open-source. The protocols are documented. The scripts are public.** Anyone can clone the repo and get 100% of the architecture. They get 0% of the product — because the product is the accumulated relationship between one human and one AI system, refined over hundreds of sessions of full-spectrum disclosure.
