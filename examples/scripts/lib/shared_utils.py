@@ -48,9 +48,9 @@ def get_supabase_client():
 @lru_cache(maxsize=128)
 def _get_embedding_cached(text_hash: str, text: str, api_key: str) -> tuple:
     """Internal cached embedding function."""
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key={api_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key={api_key}"
     payload = {
-        "model": "models/text-embedding-004",
+        "model": "models/gemini-embedding-001",
         "content": {"parts": [{"text": text}]},
     }
     response = requests.post(url, json=payload)

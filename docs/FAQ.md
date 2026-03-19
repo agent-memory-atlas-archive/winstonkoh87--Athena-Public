@@ -1,6 +1,6 @@
 # Frequently Asked Questions (FAQ)
 
-> **Last Updated**: 10 March 2026
+> **Last Updated**: 19 March 2026
 
 ---
 
@@ -61,7 +61,7 @@ For full power features (vector search, GraphRAG), budget 30-60 minutes.
 **Full setup** (recommended):
 
 - `ANTHROPIC_API_KEY` — For Claude reasoning
-- `GOOGLE_API_KEY` — For embeddings (text-embedding-004)
+- `GOOGLE_API_KEY` — For embeddings (gemini-embedding-001)
 - `SUPABASE_URL` + `SUPABASE_ANON_KEY` — For vector database (optional)
 
 ### Does it work with Cursor? Windsurf?

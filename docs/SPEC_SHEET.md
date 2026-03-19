@@ -1,7 +1,7 @@
 # Athena Spec Sheet
 
-> **Version**: v9.5.1
-> **Date**: 11 March 2026
+> **Version**: v9.5.6
+> **Date**: 19 March 2026
 > **Architect**: Winston Koh
 > **Status**: Production (1,100+ sessions)
 
@@ -95,7 +95,7 @@ tags: [memory, search, mcp]
 |--------|------|-------------|
 | `id` | UUID | Primary key |
 | `content` | TEXT | Raw text chunk |
-| `embedding` | VECTOR(768) | text-embedding-004 |
+| `embedding` | VECTOR(768) | gemini-embedding-001 |
 | `metadata` | JSONB | Source file, tags, timestamp |
 
 ### Tag Index (Markdown)
@@ -151,7 +151,7 @@ Query → [Semantic Search (pgvector)] ──┘
 | Layer | Technology |
 |-------|-----------|
 | **Language** | Python 3.13 |
-| **Embeddings** | Google text-embedding-004 (768d) |
+| **Embeddings** | Google gemini-embedding-001 (768d) |
 | **Vector DB** | Supabase + pgvector (IVFFlat index) |
 | **Graph** | Microsoft GraphRAG pattern (community detection) |
 | **Packaging** | pyproject.toml (PEP 621) |

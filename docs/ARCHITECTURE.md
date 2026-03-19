@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 14 March 2026  
-> **System Version**: v9.5.4
+> **Last Updated**: 19 March 2026  
+> **System Version**: v9.5.6
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 146+ example protocols, 580+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -712,6 +712,7 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.5.6 | 19 Mar 2026 | Deep Audit — `text-embedding-004` → `gemini-embedding-001` (7 files), removed `dspy-ai` dep (security), version consistency sweep, stale doc dates updated |
 | v9.5.5 | 15 Mar 2026 | `/ultrastart` v3.0 Maximum Compute — 20K→57K boot (all 11 framework modules), Pre-Paid Compute Doctrine, 200K ECL Architecture (15K platform + 57K boot = 128K session), One-Session-One-Feature (attention physics rationale), 4-Phase Turn Allocation, JIT retrieval supplement |
 | v9.5.4 | 14 Mar 2026 | Architecture Integrity Audit — protocol index rewrite (109→128 active, 13→15 categories), P138/P526 cluster wiring |
 | v9.5.3 | 14 Mar 2026 | Independent Cross-Model Audit — P526 (Business Viability Assessment), P138 (Third Choice Generation), Cold Start Rule |

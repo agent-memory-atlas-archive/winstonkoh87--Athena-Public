@@ -387,7 +387,7 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
 | 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/507-cognitive-systems.md) |
 | 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
-| 📋 **147+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
+| 📋 **148+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
 | ⚡ **60+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
@@ -508,7 +508,7 @@ Athena-Public/
 ├── tools/                   # Declarative tool definitions (YAML)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
-│   ├── protocols/           # 147+ starter frameworks (15 categories)
+│   ├── protocols/           # 148+ starter frameworks (15 categories)
 │   ├── scripts/             # 650+ reference scripts
 │   └── templates/           # Starter templates (framework, memory bank)
 ├── docs/                    # Architecture, benchmarks, security, guides
