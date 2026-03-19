@@ -31,6 +31,9 @@
 .agent/inputs/
 .agent/state/
 .athenad.pid
+.context/CANONICAL.md
+.context/.semantic_audit_log.json
+.context/.session_start_ref
 .context/memories/session_logs/
 .env
 .env.local
