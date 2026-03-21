@@ -1,6 +1,6 @@
 # ❓ Frequently Asked Questions
 
-*Last Updated: 2026-03-11 · v9.5.1*
+*Last Updated: 2026-03-22 · v9.5.7*
 
 ---
 
@@ -94,3 +94,15 @@ Edit `.framework/v8.2-stable/modules/Core_Identity.md`. This file contains the *
 For output formatting preferences, edit `.framework/v8.2-stable/modules/Output_Standards.md`.
 
 See the [.framework README](../README.md) for a guide.
+
+### 🎁 Why is this open-source and free?
+
+**Because the value isn't in the code — it's in the data.**
+
+The architecture is the storefront. Your sessions, decisions, case studies, and accumulated context — that's the IP. Anyone can fork Athena. Nobody can fork your 500+ sessions of calibrated history.
+
+Publishing the framework doesn't create competitors — it creates **awareness**. Every clone is someone who sees the value of structured AI infrastructure. And anyone disciplined enough to build their own 500 sessions was going to build something regardless — your published architecture just saved them 2 months of engineering.
+
+**Open-source the algorithm. Keep the data.** Same play as Linux (free kernel, $34B support business), Android (free OS, proprietary ecosystem), and Lao Gan Ma (public recipe, sovereign supply chain).
+
+→ Read the full thesis: [The Compounding Effect](The-Compounding-Effect)

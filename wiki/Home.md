@@ -3,7 +3,7 @@
 > **The Linux OS for AI Agents**
 > Open Source · Sovereign · Model-Agnostic
 
-*Last Updated: 2026-03-11 · v9.5.1*
+*Last Updated: 2026-03-22 · v9.5.7*
 
 Athena is not an AI Agent. It is the **Operating System** they run on.
 
@@ -65,6 +65,7 @@ Or use [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) fo
 | **⚡ [Workflows](Workflow-Reference)** | `/start`, `/end`, `/think`, `/refactor` and 50+ commands |
 | **🎯 [Use Cases](Use-Cases)** | Decision-making, research, planning, meta-thinking |
 | **🧠 [Philosophy](Philosophy)** | Own the state. Rent the intelligence. |
+| **📈 [The Compounding Effect](The-Compounding-Effect)** | Why data quality is the real moat |
 | **❓ [FAQ](FAQ)** | Privacy, cost, models, and comparisons |
 
 ---
