@@ -6,15 +6,33 @@
 
 ---
 
+## Origin
+
+The pattern was first observed in the **personal training industry** — a pure human-labor service with zero technology disruption:
+
+```text
+$300/session  ←  Premium brand (Ultimate Performance, boutique studio, prestige)
+$150/session  ←  Commercial gym PT (certified, salaried, gym takes a cut)
+ $75/session  ←  Independent / new-to-the-game PT (same certification, no overhead)
+```
+
+Each tier halves. Each tier delivers **the same fundamental service** — a human coaching another human through exercises. The price difference isn't quality. It's **brand, overhead, and positioning**.
+
+This is not an AI phenomenon. It's a **universal pricing law in service industries**: when the core deliverable is commoditized (identical certifications, identical exercises, identical knowledge base), the only differentiator is **structural cost** — and structural cost halves at each step down the size ladder.
+
+AI didn't create this pattern. AI **added a new tier at the bottom**.
+
+---
+
 ## The Rule
 
-In service industries where AI can automate execution, pricing tiers halve at each step down the operator-size ladder:
+In any service industry, pricing tiers halve at each step down the operator-size ladder. In AI-disrupted industries, a new tier appears:
 
-```
+```text
 $100K  ←  Enterprise agency (SOPs, compliance, teams, office)
  $50K  ←  Mid-tier agency (same scope, smaller team, overhead)
  $25K  ←  Small agency (lean, 3-5 people, still has overhead)
-$12.5K ←  Solo operator + AI agents
+$12.5K ←  Solo operator + AI agents                              ← NEW TIER
 ```
 
 Each tier delivers **approximately equivalent scope**. The price difference is almost entirely **structural overhead** — rent, account managers, HR, sales commissions, admin staff — not delivery quality.
