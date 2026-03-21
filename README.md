@@ -36,7 +36,7 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 
 - **🧠 Your Memory, Your Machine** — Files on your disk, not in OpenAI's cloud. Read them, edit them, git-version them.
 - **🔌 Switch Models Freely** — Claude today, Gemini tomorrow, GPT next week. The memory stays. The model is just whoever's on shift.
-- **📈 It Compounds** — Session 500 recalls patterns from session 5. Platform memory decays; Athena's doesn't.
+- **📈 It Compounds** — Session 500 recalls patterns from session 5. Platform memory decays; Athena's doesn't. The moat isn't the code — it's your data. Anyone can fork Athena; nobody can fork your sessions. [→ The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect)
 - **⚡ 2K–20K Token Boot** — Scales to the task. Lightweight chat (~2K) → `/start` (~10K) → `/ultrastart` (~20K). 80–98% of your context window stays free, even after 10,000 sessions.
 - **🔬 Meta-Game Reasoning** — Generic LLMs optimise *within* the game you're playing. Athena asks whether you should be playing that game at all. [→ Meta-Game Thesis](docs/concepts/Meta_Game_Thesis.md)
 - **🛡️ Governed Autonomy** — 6 constitutional laws, 4 capability levels, bounded agency.
@@ -350,6 +350,8 @@ flowchart LR
 | **50–200** | Pattern recognition — anticipates your style and blind spots |
 | **200+** | Deep sync — thinks in your frameworks before you state them |
 
+> **Why this happens**: The AI model doesn't improve — *your data* does. Each `/end` extracts decisions, patterns, and learnings into your memory bank. The next `/start` loads that accumulated intelligence. Same algorithm, better data, better output. [→ The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect)
+
 ### The Biological Analogy
 
 Athena is modelled after the human body. Built bottom-up by the creator. Used top-down by the user.
@@ -478,6 +480,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 | 🧠 [Manifesto](.framework/v8.2-stable/MANIFESTO.md) | 📈 [Changelog](docs/CHANGELOG.md) | 🔀 [Multi-Model Strategy](docs/MULTI_MODEL_STRATEGY.md) |
 | ✅ [Best Practices](docs/BEST_PRACTICES.md) | 🤖 [Your First Agent](docs/YOUR_FIRST_AGENT.md) | 🧩 [What Is an AI Agent?](docs/WHAT_IS_AN_AI_AGENT.md) |
 | 🎯 [Use Cases Deep Dive](docs/USE_CASES.md) | 📋 [Case Studies](docs/CASE_STUDIES.md) | 🛡️ [Safety](SAFETY.md) |
+| 📈 [The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect) | | |
 
 ---
 
@@ -521,6 +524,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.5.7** (Mar 21 2026): Data Compounding Thesis — new wiki page (The Compounding Effect), README data quality thesis, wiki updates (Home, Philosophy §7, Use Cases deltas, FAQ × 2, Sidebar)
 - **v9.5.6** (Mar 19 2026): Operator Optimization — CS-006 (The Replacement Trap), Phase 2 thesis (USER_DRIVEN_RSI.md), Decision Sovereignty pre-flight checklist (BEST_PRACTICES.md §10)
 - **v9.5.5** (Mar 16 2026): Abundance Mindset Alignment — P529 Survival HUD removed (redundant with existing safety stack), `/start` workflow fix, protocol count 128→127
 - **v9.5.4** (Mar 14 2026): Architecture Integrity Audit — Protocol index rewrite (109→128 active, 13→15 categories), P138/P526 cluster wiring, version sync

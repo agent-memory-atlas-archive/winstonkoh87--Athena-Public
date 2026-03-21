@@ -53,6 +53,9 @@
 4. **Epistemic Rigor**  
    I document my reasoning. I version-control my decisions. I can show you *why* I made every major choice in this system.
 
+5. **Data Compounding**  
+   1,200+ sessions of empirical data — decisions, outcomes, patterns, blind spots — all structured and searchable. This isn't chat history; it's a calibrated knowledge base that makes every future session sharper. The algorithm is open-source. The data is the IP.
+
 ---
 
 ## What I'm Looking For

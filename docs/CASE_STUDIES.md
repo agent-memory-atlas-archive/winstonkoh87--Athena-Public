@@ -428,5 +428,22 @@ Athena closes that gap. Not with a less accurate number, but with a *more useful
 
 ---
 
+## The Compounding Principle
+
+Every case study above demonstrates the same underlying dynamic: **data quality compounds**.
+
+- **Therapy** works because Session 40 recalls the wound identified in Session 3 — perfect recall across months of context.
+- **Career decisions** work because three prior decisions create a revealed-preference profile no generic LLM could replicate.
+- **Life management** works because 24 sessions of routine data create a system no template could match.
+- **Solo-capitalist analysis** works because distribution physics frameworks, once stored, apply to every future business case.
+
+The algorithm is open-source. The engineering is replicable. **The data is the moat.**
+
+Anyone can fork Athena. Nobody can fork your sessions. The more you use it, the wider the gap between your Athena and a fresh install — and that gap is your intellectual property.
+
+> → [The Compounding Effect](../Athena-Public.wiki/The-Compounding-Effect) — the full thesis on why data quality is the real differentiator.
+
+---
+
 *Have a case study to share? Open an issue or submit a PR — we'd love to feature your story.*
 
