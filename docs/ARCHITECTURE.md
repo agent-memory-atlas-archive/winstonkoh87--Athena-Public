@@ -1,10 +1,10 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 19 March 2026  
-> **System Version**: v9.5.6
+> **Last Updated**: 21 March 2026  
+> **System Version**: v9.5.7
 
 > [!NOTE]
-> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 146+ example protocols, 580+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
+> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 148+ example protocols, 540+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
 
 ---
 
@@ -154,13 +154,13 @@ graph TD
 
 > **Core Principle**: Intelligence compounds at the **interface** between human judgment and AI reasoning — not unilaterally within either. Neither human nor AI can recursively self-improve alone.
 
-**Why**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system*: the human injects genuinely new information (taste, correction, lived experience, domain knowledge) that the AI cannot generate internally, while the AI provides perfect recall, structural discipline, and pattern-matching at scale. The moat is not the code — it's the **coupling data** from 1,100+ sessions of bilateral calibration.
+**Why**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system*: the human injects genuinely new information (taste, correction, lived experience, domain knowledge) that the AI cannot generate internally, while the AI provides perfect recall, structural discipline, and pattern-matching at scale. The moat is not the code — it's the **coupling data** from 1,200+ sessions of bilateral calibration.
 
 | Dimension | Unilateral AI RSI | Symbiotic RSI (Athena) |
 |:----------|:------------------|:-----------------------|
 | **Who improves?** | AI alone (autonomous) | Human + AI together (bilateral) |
 | **Energy source** | Internal (closed system) | External — human judgment (open system) |
-| **Current status** | Hypothetical (2126?) | **Working today** (1,100+ sessions) |
+| **Current status** | Hypothetical (2126?) | **Working today** (1,200+ sessions) |
 | **Moat** | Compute (replicable) | Coupling data (unreplicable without living it) |
 
 **In practice, this means**:
@@ -712,6 +712,7 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.5.7 | 21 Mar 2026 | GTO Update — metrics sync (650→540 scripts), Case Study #4 (NTU SDR Analysis), Meta-Game Thesis concept doc, Cross-Model Research Arbitrage protocol, wiki refresh |
 | v9.5.6 | 19 Mar 2026 | Deep Audit — `text-embedding-004` → `gemini-embedding-001` (7 files), removed `dspy-ai` dep (security), version consistency sweep, stale doc dates updated |
 | v9.5.5 | 15 Mar 2026 | `/ultrastart` v3.0 Maximum Compute — 20K→57K boot (all 11 framework modules), Pre-Paid Compute Doctrine, 200K ECL Architecture (15K platform + 57K boot = 128K session), One-Session-One-Feature (attention physics rationale), 4-Phase Turn Allocation, JIT retrieval supplement |
 | v9.5.4 | 14 Mar 2026 | Architecture Integrity Audit — protocol index rewrite (109→128 active, 13→15 categories), P138/P526 cluster wiring |

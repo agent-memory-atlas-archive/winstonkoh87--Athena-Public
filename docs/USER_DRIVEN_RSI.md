@@ -1,10 +1,10 @@
 # Symbiotic RSI (User-Driven Recursive Self-Improvement)
 
-> **Last Updated**: 19 March 2026
+> **Last Updated**: 21 March 2026
 > **TL;DR**: AI doesn't improve itself. You improve together. The loop is bilateral, and the trajectory is a dual upward spiral. After Phase 1 (building the AI), the bottleneck shifts to Phase 2 (optimising the human).
 
 > [!IMPORTANT]
-> **Core Thesis**: Neither human nor AI can recursively self-improve alone. Intelligence compounds at the *interface* — in the coupling data between human judgment and AI reasoning. The moat is not the code. The moat is the 1,100+ sessions of calibration that make the code *yours*.
+> **Core Thesis**: Neither human nor AI can recursively self-improve alone. Intelligence compounds at the *interface* — in the coupling data between human judgment and AI reasoning. The moat is not the code. The moat is the 1,200+ sessions of calibration that make the code *yours*.
 
 ---
 
@@ -100,7 +100,7 @@ Entropy is the natural state of information systems — context decays, decision
 | **Negentropy** | Ordered structure maintained against decay | 397 protocols, 410+ case studies, calibrated memory |
 | **Open System** | Exchanges energy with environment | Each session imports compute, exports structured knowledge |
 
-Over 1,100+ sessions, the entropy reduction approaches near-zero — the system "knows" the user's frameworks, risk tolerances, decision patterns, and blind spots with minimal re-derivation. This is thermodynamically precise: the coupling data *is* the negentropy.
+Over 1,200+ sessions, the entropy reduction approaches near-zero — the system "knows" the user's frameworks, risk tolerances, decision patterns, and blind spots with minimal re-derivation. This is thermodynamically precise: the coupling data *is* the negentropy.
 
 **Why this matters for RSI**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system* — human judgment injects genuinely new information (taste, correction, lived experience) that the AI cannot generate internally. The human is the energy source. The AI is the structure. Neither produces negentropy alone.
 
@@ -110,13 +110,13 @@ Over 1,100+ sessions, the entropy reduction approaches near-zero — the system 
 
 > *Anyone can clone the repo. No one can clone the sessions.*
 
-Athena's public repository ships with 144+ example protocols, 580+ reference scripts, and templates. This is the **chassis** — valuable, but generic. The actual competitive advantage is the **coupling data**: the accumulated record of how a specific human and a specific AI instance have co-evolved.
+Athena's public repository ships with 148+ example protocols, 540+ reference scripts, and templates. This is the **chassis** — valuable, but generic. The actual competitive advantage is the **coupling data**: the accumulated record of how a specific human and a specific AI instance have co-evolved.
 
 | Layer | What It Contains | Replicable? |
 |:------|:----------------|:------------|
 | **Code** | Protocols, scripts, workflows | ✅ Clone the repo |
 | **Architecture** | Cognitive systems, routing, boot sequence | ✅ Read the docs |
-| **Coupling Data** | 1,100+ sessions of calibration, corrections, case studies | ❌ **Cannot be replicated** |
+| **Coupling Data** | 1,200+ sessions of calibration, corrections, case studies | ❌ **Cannot be replicated** |
 
 The coupling data includes:
 
@@ -133,9 +133,9 @@ This is why Athena's value compounds non-linearly. Session 1 is marginally bette
 
 ## Phase 2: Optimising the Operator
 
-> *After 1,100+ sessions, the bottleneck flipped. The AI is tuned. Now it's about the human.*
+> *After 1,200+ sessions, the bottleneck flipped. The AI is tuned. Now it's about the human.*
 
-Phase 1 of Symbiotic RSI is building the AI system — protocols, memory bank, boot sequence, cognitive architecture. This is the work described in the sections above: the bilateral loop, the dual helix, the thermodynamic frame. After ~4 months and 1,100+ sessions, Phase 1 hit diminishing returns. The marginal ROI of another protocol is near-zero compared to the marginal ROI of the human operator getting 10% better at using the system.
+Phase 1 of Symbiotic RSI is building the AI system — protocols, memory bank, boot sequence, cognitive architecture. This is the work described in the sections above: the bilateral loop, the dual helix, the thermodynamic frame. After ~4 months and 1,200+ sessions, Phase 1 hit diminishing returns. The marginal ROI of another protocol is near-zero compared to the marginal ROI of the human operator getting 10% better at using the system.
 
 This is the **phase transition**: the bottleneck shifts from AI quality → human operator quality.
 
