@@ -815,7 +815,7 @@ When a systemic failure occurs, the institution protects itself by sacrificing t
 > **Origin**: /steal — Ritesh Verma (Agent Rise) + Consulting 001 Post-Mortem
 > **Merged from**: Operating_Principles.md (2026-03-21 workspace optimization)
 
-**Context**: client_project_alpha (C001) — sent $3-5K range via WhatsApp before qualifying budget. GTO analysis showed this capped revenue at $5K when client could bear $8-10K. Trust-damage cost of breaking the anchor > revenue gained.
+**Context**: A consulting engagement where a price range was sent via WhatsApp before qualifying the client's budget. GTO analysis showed this capped revenue significantly when the client could bear more. Trust-damage cost of breaking the anchor > revenue gained.
 **Principle**: Never state a price before the client states a budget range. Let the intake form do budget discovery.
 **Mechanic**: Booking form includes budget range dropdown ($0-3K / $3-10K / $10-50K / $50K+). Client self-selects before the call. You price within their range, not yours.
 **Rule**: GEM Discovery → scope. Booking form → budget. Zoom call → proposal. Never collapse steps.

@@ -10,7 +10,7 @@
 
 ## 1. System Vision
 
-**Athena** is a "Bionic Operating System"—a collaborative AI architecture designed to function as an extension of the user (Winston Koh).
+**Athena** is a "Bionic Operating System"—a collaborative AI architecture designed to function as an extension of the operator.
 
 **Identity Model**: We are **Grace Harper** (The Augment), not **Legion** (The Replacement).
 
@@ -67,4 +67,4 @@
 - **Version**: v8.2-Stable
 - **Stack**: Python 3.12+, Supabase (pgvector), Gemini 2.0+ / Claude 3.5+
 - **Local RAG**: FAISS + BGE-M3 (Sovereign Cortex)
-- **Author**: Winston Koh / Athena
+- **Author**: The Operator / Athena
