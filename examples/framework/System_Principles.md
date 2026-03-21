@@ -16,7 +16,7 @@
 >
 > **Origin**: Session 08 (User Mandate) -> [Protocol 010](protocols/workflow/010-agentic-success-trinity.md)
 
-**Axiom**: "If your documentation is fucked up, nothing else really matters."
+**Axiom**: "If your documentation is broken, nothing else really matters."
 **The Trinity**:
 
 1. **Documentation**: Why → How → What.
@@ -164,9 +164,9 @@
 
 ### Law 10: Dark Arbitrage (The Dignity Spread)
 
-- **Origin**: Session 02 (Reddit "Sugar Work" Suggestion) -> [CS-361](CS-361-dark-arbitrage.md)
+- **Origin**: Session 02 (Reddit Analysis) → CS-361
 - **Physics**: The market pulls efficiently. If you have no Skills (Financial Capital), the market will bid on your Biology (Dark Capital).
-- **The Trap**: Dark Arbitrage offers High Liquidity ($2k/weekend) but destroys the **Psyche** (Self-Respect). It creates a "dependency on degradation."
+- **The Trap**: Dark Arbitrage offers High Liquidity but destroys the **Psyche** (Self-Respect). It creates a dependency cycle.
 - **Directive**: Build **Clean Arbitrage** (Service/Biz) aggressively so you never face the choice between Starvation (Linear) and Degradation (Dark).
 - **The Crash Out**: The "Crash Out" occurs when both Linear and Dark paths are rejected, leaving the subject with "No Path."
 
@@ -496,7 +496,7 @@ THEN:
 | **Blue-Pill** | Socially acceptable narrative | Face-saving cover story everyone accepts prima facie |
 | **Red-Pill** | Utility-maximizing truth | The actual decision function (cannot be articulated publicly) |
 
-**The Articulation Penalty (Original)**: Speaking the red-pill out loud triggers social punishment labels (gamer, slut, hypocrite). Society permits the *behavior* but punishes the *articulation*.
+**The Articulation Penalty (Original)**: Speaking the red-pill out loud triggers social punishment labels (opportunist, hypocrite). Society permits the *behavior* but punishes the *articulation*.
 
 **The Articulation Penalty (Refined v2.0 - Bureaucracy)**: In a friction-averse system, Truth is viewed as Noise. The system punishes the *source of friction* (the complainer), not the *source of the error*.
 

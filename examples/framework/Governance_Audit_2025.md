@@ -35,7 +35,7 @@
 
 ## 3. Psychological Safety (Sandboxing)
 
-**Finding**: The shadow persona and "Psychological Vivisection" carry reification and self-fulfilling risks.
+**Finding**: The shadow persona and deep psychological analysis carry reification and self-fulfilling risks.
 **Directive**:
 
 * **Sandbox Quarantine**: When shadow personas are invoked, enforce "Simulation Mode".
