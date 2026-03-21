@@ -428,6 +428,129 @@ Athena closes that gap. Not with a less accurate number, but with a *more useful
 
 ---
 
+## Case Study #6: The $50,000 Agency vs. The $12,500 Solo Operator
+
+**User profile:** Solo consultant auditing a competitor's pricing page.
+**Setup:** Google AI Ultra (flat-rate subscription).
+**Sessions:** Single-session structural analysis.
+
+### The Starting Point
+
+A mid-tier digital marketing agency in Singapore publishes their pricing page. Their rates:
+
+| Service | Monthly Fee |
+|:--------|:-----------|
+| SEO | $2,800/mo minimum |
+| Facebook Ads | $2,000/mo or 20% ad spend |
+| Google Ads | $2,000/mo or 20% ad spend |
+| Landing Page | $997/page + $350 copywriting |
+| Website Design | From $6,800 |
+
+All services require 3-month minimum commitments. A typical SME client running SEO + one ads platform pays **~$57,600/year** — squarely in the mid-tier bracket.
+
+The agency's copy promises "the only thing we care about is results" and "return on investment." But their deliverables list tells a different story.
+
+### What Athena Found
+
+#### Step 1: The Execution Commodity Test
+
+Athena ran every item on the agency's deliverables list through a single filter: **can AI do this?**
+
+Their SEO package includes 11 line items. Here's the breakdown:
+
+| Category | Items | AI Automatable? |
+|:---------|:------|:---------------:|
+| **One-time setup** | GA install, GSC install, sitemap submission, robots.txt, sitewide audit | ✅ Fully (templated, ~1hr) |
+| **Monthly execution** | 4 blog articles, title tags, meta descriptions, link building, content rewriting | ✅ Mostly (~$200/mo AI + 4-6hrs human review) |
+
+**Result: 100% of the deliverables are AI-automatable.** The human value-add is quality review and relationship-based link building — perhaps 6-8 hours of skilled work per month.
+
+#### Step 2: The COGS Decomposition
+
+If the actual execution costs ~$400-600/month, where does the other $2,200 go?
+
+| Cost Component | Approximate % | What It Pays For |
+|:--------------|:------------:|:----------------|
+| Office lease (commercial tower) | ~20% | Landlord |
+| Account manager salary (÷ clients) | ~15% | Middleman between client and doer |
+| Sales team commissions | ~15% | Customer acquisition |
+| Admin / HR / legal overhead | ~10% | Corporate structure |
+| Tools (Ahrefs, SEMrush, etc.) | ~10% | Solo license costs 80% less |
+| **Actual deliverable work** | **~30%** | **The thing the client is buying** |
+
+**~70% of the client's fee subsidizes the agency's existence, not the client's results.**
+
+#### Step 3: The Displacement Stack
+
+This gap creates a predictable pricing ladder:
+
+```
+$100K/yr  ←  Enterprise agency (compliance, SLAs, dedicated teams)
+ $50K/yr  ←  Mid-tier agency (same scope, overhead-heavy)        ← THIS AGENCY
+ $25K/yr  ←  Small agency (lean team, lower overhead)
+$12.5K/yr ←  Solo operator + AI agents (near-zero overhead)
+```
+
+Each tier halves the price. Each tier delivers approximately the same scope. The difference is almost entirely structural overhead.
+
+#### Step 4: The Structural Diagnosis
+
+The agency is caught in a **dead zone**:
+
+- **Not cheap enough** to compete with solo+AI operators ($12.5K vs. $57.6K)
+- **Not premium enough** to justify enterprise-level trust (no compliance certifications, no SLAs with teeth)
+- Their entire value proposition — "we write your blog posts, optimise your tags, run your ads" — is a list of **AI-automatable tasks priced at human-team rates**
+
+Their copy says they care about ROI. But their deliverables list is 100% **inputs** (blog posts, title tags, ad creative). Not one output guarantee — no promised lead count, no minimum ROAS, no performance floor.
+
+### The Reframe
+
+> **They sell ~$400 worth of AI-automatable execution for $2,800, and call the $2,400 difference "trust." That spread closes to zero when the SME buyer has a cheaper reference point.**
+
+The trigger isn't technology — it's **social proof**. The displacement accelerates when enough SME owners hear from their network: *"I cancelled my $3K/month agency and hired someone for $1K/month. Same results."* That single anecdote, repeated at networking events and WhatsApp groups, is what kills the mid-tier model.
+
+### The Moat Erosion Table
+
+| Moat Layer | Current Strength | Erosion Speed |
+|-----------|:----------------:|:-------------:|
+| **Brand recognition** | Medium | Fast — AI content floods the market they optimize |
+| **Client testimonials** | Strong | Slow — but solo operators build these within 6-12 months |
+| **Process knowledge** | Medium | Very Fast — AI agents execute these SOPs autonomically |
+| **Client relationships** | Strong | Medium — erodes when peers report 75% savings |
+| **Lock-in** (3-month minimum) | Weak | N/A — creates resentment, not loyalty |
+
+### The One Survival Path
+
+The only pivot that works: **sell strategy, not execution.**
+
+| What Dies | What Survives |
+|:----------|:-------------|
+| $2,800/mo execution retainers | $5K one-time marketing audit + strategy blueprint |
+| "4 blog posts per month" | "We design your marketing system, you execute with AI" |
+| Headcount-dependent capacity | Knowledge-dependent capacity |
+
+Lawyers don't type contracts — they design legal architecture. Consultants don't run operations — they diagnose and prescribe. Agencies need the same evolution.
+
+But most won't make the pivot. Their entire org chart is built around execution headcount. Restructuring means dismantling the team that generates current revenue — the definition of a structural trap.
+
+### Why This Worked
+
+1. **COGS decomposition revealed the truth.** The client isn't paying for results — they're paying for an office in a commercial tower and an account manager who forwards emails.
+
+2. **The Execution Commodity Test is binary.** If >80% of deliverables are AI-automatable, the pricing is structurally vulnerable. This agency scored 100%.
+
+3. **The displacement is predictable.** It follows the same pattern as every previous technology disruption: the middle gets squeezed, the bottom and top survive.
+
+4. **Cost:** Single-session analysis, $0 marginal cost. A competitive intelligence firm would charge $5,000+ for this analysis.
+
+### Key Takeaway
+
+> The Half-Half-Half Rule: in service industries where AI commoditizes execution, each tier of operator size halves the price to the buyer. Mid-tier agencies — too expensive to compete on cost, too small to compete on trust — occupy the structural kill zone. The question isn't whether they get displaced. It's whether they pivot to strategy before the social proof wave reaches their client base.
+
+→ **Related concept**: [The Half-Half-Half Rule](concepts/Half_Half_Half_Rule.md)
+
+---
+
 ## The Compounding Principle
 
 Every case study above demonstrates the same underlying dynamic: **data quality compounds**.
