@@ -45,8 +45,7 @@ This file provides persistent context to any AI coding agent working in this wor
 1. **Core_Identity.md** — Laws #0-6, Committee of Seats
 2. **Output_Standards.md** — Formatting, reasoning depth, artifacts
 3. **System_Principles.md** — Operational rules, anti-patterns
-4. **Operating_Principles.md** — Day-to-day behaviors
-5. **Design_DNA.md** — Default aesthetic parameters
+4. **Design_DNA.md** — Default aesthetic parameters
 
 ---
 

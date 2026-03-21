@@ -7,7 +7,7 @@
 >
 > See [Creating Your Own Protocols](#creating-new-protocols) to build yours.
 
-**127 active protocols across 15 categories** — battle-tested thinking patterns that standardize how an AI agent reasons. (145 total including 18 archived protocols.)
+**130 active protocols across 15 categories** — battle-tested thinking patterns that standardize how an AI agent reasons. (148 total including 18 archived protocols.)
 
 ## Featured Protocols
 
@@ -35,7 +35,7 @@ Decision frameworks, reasoning patterns, multi-criteria analysis, risk assessmen
 
 [Browse Decision Protocols →](decision/)
 
-### 🏗️ Architecture (17 protocols)
+### 🏗️ Architecture (18 protocols)
 
 System design, token management, context handling, latency architecture, cognitive systems, intent classification, recovery patterns.
 
@@ -89,7 +89,7 @@ Spec-driven development, semantic search standards, structured decoding, project
 
 [Browse Coding Protocols →](coding/)
 
-### 🔬 Research (4 protocols)
+### 🔬 Research (5 protocols)
 
 Deep investigation, cyborg methodology, agentic absorption, research orchestration.
 

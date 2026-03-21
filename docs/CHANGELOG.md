@@ -1,10 +1,44 @@
 # Athena Changelog
 
-> **Last Updated**: 19 March 2026
+> **Last Updated**: 21 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.5.7 (21 March 2026)
+
+**Data Compounding Thesis & GTO Metrics Sync**
+
+### Key Changes
+
+- **Data Compounding Thesis**: New wiki page ([The Compounding Effect](../Athena-Public.wiki/The-Compounding-Effect.md)) + README data quality thesis + CASE_STUDIES compounding section + ABOUT_ME advantage #5. Core argument: the moat isn't the code — it's your data. Anyone can fork Athena; nobody can fork your sessions.
+- **GTO Metrics Sync**: Version badges, SDK reference, protocol counts, session counts filesystem-verified and synced across README, ARCHITECTURE, SPEC_SHEET, pyproject.toml.
+- **Star History Chart Fix**: Replaced broken `<picture>` element with reliable HTML dual-mode rendering (dark/light theme support).
+- **Case Studies**: New CS-004 (NTU SDR Analysis) and CS-005 (Min-Max Purchasing Framework) added to CASE_STUDIES.md.
+- **Meta-Game Thesis**: New concept doc (`docs/concepts/Meta_Game_Thesis.md`) — generic LLMs optimise within the game; Athena asks whether you should be playing that game at all.
+- **Cross-Model Research Arbitrage Protocol (P527)**: Run identical prompts through ≥3 models, intersection = consensus truth, union minus intersection = novel insights.
+- **Problem Authentication Gate**: P504 Gate 0 expansion — authenticate the problem before solving it.
+- **Security**: Deep PnC audit (16+ scans, 4 files fixed), CANONICAL.md removed from tracking (contained private financial data).
+
+### Design Decisions
+
+- Data Compounding Thesis positioned as the answer to "what's the moat?" — the most common question from GitHub visitors. Empirical data > synthetic data > no data. The coupling data (1,200+ sessions of decisions, outcomes, corrections) is unreplicable.
+- Star History chart uses the `<picture>` HTML element with `<source>` media queries for robust dark/light mode rendering across GitHub's themes.
+
+### Files Changed
+
+- `Athena-Public.wiki/The-Compounding-Effect.md` — NEW (wiki page, linked from README)
+- `README.md` — Data quality thesis, Star History fix, version/date/counts sync
+- `docs/CASE_STUDIES.md` — Compounding section, CS-004, CS-005
+- `docs/ABOUT_ME.md` — Advantage #5 (data compounding)
+- `docs/concepts/Meta_Game_Thesis.md` — NEW
+- `examples/protocols/research/527-cross-model-research-arbitrage.md` — NEW
+- `docs/USE_CASES.md` — Problem Authentication Gate refinement
+- `pyproject.toml` — Version bump (9.5.6 → 9.5.7)
+- `docs/CHANGELOG.md` — This entry
 
 ---
 
