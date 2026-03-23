@@ -551,6 +551,105 @@ But most won't make the pivot. Their entire org chart is built around execution 
 
 ---
 
+## Case Study #7: The Consulting Convergence Problem
+
+**User profile:** Solo consultant running a first multi-stakeholder engagement.
+**Setup:** Google AI Ultra (flat-rate subscription).
+**Sessions:** Ongoing — 8+ convergence rounds across multiple weeks.
+
+### The Starting Point
+
+The user took on a consulting engagement for a small real estate services company — their first multi-domain, multi-stakeholder project. The scope: evaluate the business model, identify growth channels, build a go-to-market strategy, and deliver implementation support.
+
+Previously, the user's work had been primarily academic — assignments with clear rubrics, single evaluators, and predictable deliverable structures. Those followed a clean, single-loop pipeline:
+
+```text
+1. Intake (folder + brief + rubric)
+2. Deep research (cross-model triangulation)
+3. Output (draft)
+4. Trilateral audit (3 passes)
+5. Deliver → done
+```
+
+One loop. Every time. The rubric defines convergence — you either match it or you don't.
+
+### What Happened
+
+The consulting engagement broke this model immediately:
+
+- **Loop 1:** Initial business model canvas + four fits analysis. Identified structural issues with the company's go-to-market approach. Delivered initial findings.
+- **Loop 2:** Client revealed new constraints that didn't come up in Loop 1. The target market was narrower than initially scoped. Revenue model needed restructuring.
+- **Loop 3:** Competitor analysis surfaced a pricing dynamic that invalidated the Loop 2 recommendation. Strategy pivoted.
+- **Loop 4:** Red-team audit from multiple AI models identified 3 critical blind spots in the pricing structure that neither the consultant nor the client had considered.
+- **Loop 5:** Stakeholder feedback revealed the client's real concern (not stated in Loops 1–3) — they needed the strategy to be implementable by a non-technical founder, not just theoretically sound.
+- **Loops 6–8:** Implementation planning, channel-specific tactics, and delivery format iteration — each loop refining based on what the previous loop surfaced.
+
+### The Key Insight
+
+With academic assignments, the user never needed more than one loop because the problem was **convergent** — a correct answer exists, defined by the rubric.
+
+Consulting problems are **divergent** — there is no correct answer, only a least-wrong answer that all stakeholders can live with. Each loop doesn't just refine the answer — it reveals new constraints:
+
+| Loop | What Was Revealed |
+|:-----|:-----------------|
+| 1 | Problem structure |
+| 2 | Hidden constraints (client didn't know to mention them) |
+| 3 | Market dynamics that invalidated previous assumptions |
+| 4 | Blind spots (adversarial audit catches what consensus misses) |
+| 5 | Stakeholder's *real* concern (different from their *stated* concern) |
+| 6–8 | Implementation fit, delivery format, tactical refinement |
+
+**Nobody withheld information maliciously.** Stakeholders don't state their real preferences upfront — they often don't *know* their real preferences until they see a recommendation that violates them. Each loop is a discovery process, not just a refinement process.
+
+### The Economics
+
+Here's why this engagement was viable:
+
+| Model | Loops | Cost Per Loop | Total Cost |
+|:------|:------|:-------------|:-----------|
+| **McKinsey** | 3–4 | ~$30K (team × weeks) | $90–120K |
+| **Solo Consultant** | 2–3 | ~$2K (time × hours) | $4–6K |
+| **Bionic Unit (this case)** | 8 | ~$375 (session cost) | $3K |
+
+McKinsey would have capped at 3–4 loops — not because the problem was solved, but because the budget was exhausted. The client would have received a "good enough" recommendation with blind spots that loops 5–8 would have caught.
+
+The bionic unit ran 8 loops at $375/session because the AI compute cost per iteration was $0 (flat-rate subscription). The only real cost was the consultant's cognitive time — about 2–4 hours per loop.
+
+**The client received McKinsey-depth convergence at 1/40th the cost.** Both sides win simultaneously.
+
+### The Pattern: Why Loop Count Scales with Complexity
+
+```text
+Iteration Count ∝ Stakeholder Count × Domain Count × Ambiguity
+```
+
+| Problem Type | Stakeholders | Domains | Ambiguity | Typical Loops |
+|:------------|:------------|:--------|:----------|:-------------|
+| University assignment | 1 (professor) | 1 (subject) | Low (rubric exists) | 1 |
+| Freelance website | 1 (client) | 2 (design + content) | Medium | 2–3 |
+| Small business consulting | 2–3 (founder + partners) | 3–4 (ops + fin + mkt + legal) | High | 5–8 |
+| Enterprise strategy | 5+ (C-suite + board) | 5+ (cross-functional) | Very high | 10+ |
+
+The traditional consulting model assumes loops cost $10K–30K, so it caps them. Flat-rate AI removes the cap. The bionic unit can iterate until convergence — not until budget exhaustion.
+
+### Why This Worked
+
+1. **Uncapped iterations.** After Loop 4, a traditional consultant would have been over budget. The bionic unit ran 4 more loops at ~$0 marginal compute cost per loop. Those extra loops caught the implementation fit issue (Loop 5) that would have sunk the strategy.
+
+2. **Context compounded across loops.** Each loop built on the full context of all previous loops — something an AI with perfect recall handles better than a human consultant re-reading their own notes from 3 weeks ago.
+
+3. **Multi-model adversarial testing.** Loop 4 ran the same strategy through multiple AI models (different training data, different biases). The intersection was consensus; the divergence surfaced blind spots.
+
+4. **Session-based pricing.** The $375/session model aligned price with iteration count. If the problem had converged in 4 loops, the client would have paid $1.5K instead of $3K. The pricing structure matches the problem structure.
+
+### Key Takeaway
+
+> Traditional consultants stop iterating when they run out of budget — not when they find the answer. Flat-rate AI makes each iteration 10–50× cheaper. This means the bionic unit can reach convergence depths that are structurally impossible for cost-constrained competitors. The moat isn't intelligence — it's iteration economics.
+
+→ **Related concept**: [Iteration Arbitrage](concepts/Iteration_Arbitrage.md)
+
+---
+
 ## The Compounding Principle
 
 Every case study above demonstrates the same underlying dynamic: **data quality compounds**.
