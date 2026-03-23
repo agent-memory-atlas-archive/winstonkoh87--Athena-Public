@@ -1,6 +1,6 @@
 # 🏷️ TAG INDEX — Global Hashtag System
 
-> **Last Updated**: 22 February 2026
+> **Last Updated**: 24 March 2026
 
 > **Purpose**: Instant file retrieval via keywords.
 
@@ -16,19 +16,25 @@
 | #automation | [start](../examples/workflows/start.md), [end](../examples/workflows/end.md), [think](../examples/workflows/think.md), [ultrathink](../examples/workflows/ultrathink.md), [refactor](../examples/workflows/refactor.md), [diagnose](../examples/workflows/diagnose.md) |
 | #bcm | [CS-140-bcm-silent-partner-analysis](../.agent/skills/protocols/decision/140-base-rate-audit.md) |
 | #circuit-breaker | [circuit](../examples/workflows/circuit.md) |
+| #consulting | [Iteration_Arbitrage](concepts/Iteration_Arbitrage.md), [CASE_STUDIES #7](CASE_STUDIES.md#case-study-7-the-consulting-convergence-problem) |
+| #convergence | [Iteration_Arbitrage](concepts/Iteration_Arbitrage.md) |
 | #decision | [111-premise-audit](../examples/protocols/decision/_archived/111-premise-audit.md), [115-first-principles-deconstruction](../examples/protocols/decision/115-first-principles-deconstruction.md), [137-graph-of-thoughts](../examples/protocols/decision/137-graph-of-thoughts.md) |
 | #decentralized | 139-decentralized-command |
 | #deep-think | [ultrathink](../examples/workflows/ultrathink.md), [75-synthetic-parallel-reasoning](../examples/protocols/decision/75-synthetic-parallel-reasoning.md) |
 | #diagnostics | [diagnose](../examples/workflows/diagnose.md) |
 | #due-diligence | [CS-140-bcm-silent-partner-analysis](../.agent/skills/protocols/decision/140-base-rate-audit.md) |
+| #divergent-problems | [Iteration_Arbitrage](concepts/Iteration_Arbitrage.md), [CASE_STUDIES #7](CASE_STUDIES.md#case-study-7-the-consulting-convergence-problem) |
 | #efficiency | [77-adaptive-latency-architecture](../examples/protocols/architecture/77-adaptive-latency-architecture.md) |
 | #end | [end](../examples/workflows/end.md) |
 | #first-principles | [115-first-principles-deconstruction](../examples/protocols/decision/115-first-principles-deconstruction.md) |
 | #framework | [75-synthetic-parallel-reasoning](../examples/protocols/decision/75-synthetic-parallel-reasoning.md), [77-adaptive-latency-architecture](../examples/protocols/architecture/77-adaptive-latency-architecture.md) |
 | #governance | [primer](../examples/workflows/primer.md) |
 | #graph-of-thoughts | [137-graph-of-thoughts](../examples/protocols/decision/137-graph-of-thoughts.md) |
+| #flat-rate-ai | [Iteration_Arbitrage](concepts/Iteration_Arbitrage.md), [Half_Half_Half_Rule](concepts/Half_Half_Half_Rule.md) |
+| #half-half-half | [Half_Half_Half_Rule](concepts/Half_Half_Half_Rule.md), [CASE_STUDIES #6](CASE_STUDIES.md#case-study-6-the-50000-agency-vs-the-12500-solo-operator) |
 | #hallucination | [141-claim-atomization-audit](../examples/protocols/verification/141-claim-atomization-audit.md) |
 | #investment-report | [CS-140-bcm-silent-partner-analysis](../.agent/skills/protocols/decision/140-base-rate-audit.md) |
+| #iteration-arbitrage | [Iteration_Arbitrage](concepts/Iteration_Arbitrage.md), [CASE_STUDIES #7](CASE_STUDIES.md#case-study-7-the-consulting-convergence-problem) |
 | #latency | [77-adaptive-latency-architecture](../examples/protocols/architecture/77-adaptive-latency-architecture.md), [96-latency-indicator](../examples/protocols/architecture/96-latency-indicator.md) |
 | #leadership | 139-decentralized-command |
 | #observability | [96-latency-indicator](../examples/protocols/architecture/96-latency-indicator.md) |
@@ -100,6 +106,13 @@
 | [amoral_realism](../examples/concepts/amoral_realism.md) | Core philosophy |
 | [adaptive_latency](../examples/concepts/adaptive_latency.md) | Reasoning modes |
 | [origin_story](../examples/concepts/origin_story.md) | Project genesis |
+| [Iteration_Arbitrage](concepts/Iteration_Arbitrage.md) | Flat-rate AI lifts iteration ceiling for consulting |
+| [Half_Half_Half_Rule](concepts/Half_Half_Half_Rule.md) | Service pricing halves at each operator-size tier |
+| [Time_Compression_Thesis](concepts/Time_Compression_Thesis.md) | 10x compression inverts thinking-to-doing ratio |
+| [Meta_Game_Thesis](concepts/Meta_Game_Thesis.md) | Ask if the game is winnable, not just how to win |
+| [Grace_Protocol](concepts/Grace_Protocol.md) | Augment the human, not replace them |
+| [Quadrant_IV](concepts/Quadrant_IV.md) | Important-not-urgent: where compounding happens |
+| [Cognitive_Architecture](concepts/Cognitive_Architecture.md) | Biological stack from atoms to organism |
 
 ### Templates
 

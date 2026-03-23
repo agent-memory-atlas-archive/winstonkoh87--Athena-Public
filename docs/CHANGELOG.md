@@ -1,10 +1,35 @@
 # Athena Changelog
 
-> **Last Updated**: 23 March 2026
+> **Last Updated**: 24 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.5.9 (24 March 2026)
+
+**Iteration Arbitrage Framework — Consulting Delivery Model**
+
+### Key Changes
+
+- **Iteration Arbitrage Concept Page** (NEW): `docs/concepts/Iteration_Arbitrage.md` — The structural argument for why flat-rate AI lifts the iteration ceiling on complex problem-solving. Traditional consultants stop iterating when budget runs out, not when they find the answer. Builds on Maximum Depth Doctrine (vertical) by extending it horizontally (unlimited convergence loops per problem).
+- **Case Study #7** (NEW): The Consulting Convergence Problem — 8 convergence loops for multi-stakeholder consulting at $375/session vs McKinsey's 3-4 at $30K/loop. Introduces the Paper-Reality Gap (convergent vs divergent problems), loop count scaling formula, and per-session pricing thesis.
+- **Compounding Principle**: Updated to reference CS#7 (consulting loops compound context across iterations).
+
+### Design Decisions
+
+- Convergent vs Divergent problem taxonomy: assignments have correct answers (1 loop), consulting has least-wrong answers (N loops). The iteration count is a problem-type property, not an efficiency metric.
+- Pricing implication: per-session pricing structurally correct for divergent problems because it aligns price with the iteration count — the variable that actually drives cost.
+- Framework extends CANONICAL §260 (private repo) into public documentation.
+
+### Files Changed
+
+- `docs/concepts/Iteration_Arbitrage.md` — NEW
+- `docs/CASE_STUDIES.md` — Case Study #7 added, Compounding Principle updated
+- `docs/CHANGELOG.md` — This entry
+- `docs/TAG_INDEX.md` — New tags and concept entries
 
 ---
 
