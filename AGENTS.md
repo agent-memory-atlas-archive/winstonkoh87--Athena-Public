@@ -36,6 +36,7 @@ This file provides persistent context to any AI coding agent working in this wor
 | `/ultrathink` | `.agent/workflows/ultrathink.md` | Extended reasoning mode |
 | `/steal` | `.agent/workflows/steal.md` | Pattern extraction from repos |
 | `/diagnose` | `.agent/workflows/diagnose.md` | Troubleshooting workflow |
+| `/fix` | `.agent/workflows/fix.md` | Analyze test failures, propose fixes |
 | `/416-agent-swarm` | `.agent/workflows/416-agent-swarm.md` | Parallel agent orchestration |
 
 ---
@@ -101,6 +102,6 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 
 ## Version
 
-- **Framework**: v9.5.7
-- **Last Updated**: 2026-03-21
+- **Framework**: v9.5.8
+- **Last Updated**: 2026-03-23
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules

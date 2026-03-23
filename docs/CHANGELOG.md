@@ -1,10 +1,38 @@
 # Athena Changelog
 
-> **Last Updated**: 21 March 2026
+> **Last Updated**: 23 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.5.8 (23 March 2026)
+
+**Red-Team GTO Audit — Workspace Hardening & Hygiene**
+
+### Key Changes
+
+- **`/fix` Workflow** (NEW): Analyzes test failures from `/test` output, classifies them (config/code/infra/flaky), proposes fixes, and re-runs tests. Unblocks the `/test` → `/fix` self-healing chain that was referenced but undefined.
+- **Confidence Model Fix** (`Athena_Profile.md`): Resolved duplication between §2.1 (inline rubric) and §7 (canonical rubric). §2.1 now cross-references §7, establishing a single source of truth.
+- **Protocol Naming Standardization**: 30 protocol files renamed from Title_Case/SCREAMING_CASE/PascalCase to kebab-case convention. TAG_INDEX and SKILL_INDEX references updated.
+- **Deduplication**: Full MD5 scan across 393 protocols found 2 byte-identical duplicates — removed `329-consiglieri-protocol.md` (dupe of P197) and `protocol-webflow-bridge.md` (dupe of P066).
+- **Pruning Checklist** (`/audit` workflow): New Phase 4.5 "Inventory Hygiene Check" for `--deep` audit mode. Checks deprecated protocols, stale indexes, context size, and activeContext line count.
+- **KNOWLEDGE_GRAPH.md**: Updated stale counts (405→391 protocols, 63→60 workflows, 28→26 skills).
+
+### Design Decisions
+
+- Red-team (Claude Opus 4.6) flagged 3 factual inaccuracies in its own report — wiring ratio was 43% (not 9.9%), WORKFLOW_INDEX was 2 days stale (not 18), and ad-hoc pruning existed (not absent). Only 5 of 12 recommendations accepted — rejected protocol health dashboard, hard cap on protocols, and `/router` workflow as anti-patterns under the "better search > less inventory" principle.
+- Protocol number collisions (50+ pairs with same NNN prefix in different domain dirs) confirmed as namespace-only — unique content, just shared numbers. Not worth renumbering since `smart_search.py` discovery is semantic, not numeric.
+- Pruning checklist embedded in `/audit` rather than creating a separate `/prune` workflow — avoids the maintenance overhead of another workflow while surfacing hygiene at the right moment.
+
+### Files Changed
+
+- `examples/workflows/fix.md` — NEW
+- `.framework/v8.2-stable/modules/Athena_Profile.md` — §2.1 cross-reference fix
+- `AGENTS.md` — Version bump (v9.5.7 → v9.5.8), `/fix` workflow added
+- `docs/CHANGELOG.md` — This entry
 
 ---
 
