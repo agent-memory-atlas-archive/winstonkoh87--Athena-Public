@@ -1,10 +1,45 @@
 # Athena Changelog
 
-> **Last Updated**: 25 March 2026
+> **Last Updated**: 26 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.6.1 (26 March 2026)
+
+**The Ousen Protocol — Pre-Execution Battle Planning**
+
+### Key Changes
+
+- **`/battleplan` Workflow** (NEW): `examples/workflows/battleplan.md` — 7-phase pre-execution battle planning protocol for complex deliverables. Inspired by General Ou Sen's doctrine: "I only fight battles I can win." Introduces the **Double-Envelope Audit Architecture** — Red-Team #1 audits the *plan* (catches strategic failures before writing begins), Red-Team #2 audits the *output* (catches execution failures after writing). The pipeline: `Brief → Deep Research (scouts) → /battleplan → Red-Team #1 → Execute → Red-Team #2 → Humanize → Ship`.
+- **Scout/General Sequencing**: Deep research agents (Gemini, ChatGPT, Perplexity) act as expendable scouts — gather intelligence in 5 minutes at near-zero cost. The premium agent (Athena) then designs the battle plan with full terrain knowledge. "Don't send the General to scout when you have scouts."
+- **Examiner Anticipation Matrix**: Phase 3 war-games the evaluator's likely moves — what they're *really* looking for, where students typically fail, trap questions, unmarked minefields. The "opponent's game plan" is mapped before the first word is written.
+
+### The 7 Phases
+
+1. **Intelligence Briefing** — Digest deep research outputs, find consensus/contested positions, flag citation deserts
+2. **Terrain Scan** — Read every source document, extract rubric/deadline/constraints
+3. **Examiner's Game Plan** — War-game the evaluator's anticipated moves
+4. **KSA Gap Map** — Post-research 🟢/🟡/🔴 gap assessment per section
+5. **Battle Formation** — Military-style troop deployment (center/left/right wing with kill shots per section)
+6. **Win Conditions & Risk Register** — Distinction vs Pass vs Fail markers + risk mitigations
+7. **Commander's Intent** — One-line North Star directive that governs all execution decisions
+
+### Design Decisions
+
+- Deep research comes *before* the battle plan (not after) — scouts are cheap, the General's time is not. The 5-minute deep research cost is dominated by the value of a well-informed plan.
+- The Double-Envelope architecture catches fundamentally different failure modes: strategic failures (wrong thesis, missing rubric criteria) are caught in Red-Team #1 before any writing begins, preventing costly rewrites. Execution failures (hallucinated citations, tone drift) are caught in Red-Team #2 post-writing, fixable with targeted edits.
+- Battle Formation uses military terminology (center army, left/right wing, reserves, defensive positions) — this makes section-importance mapping visceral and immediately legible.
+
+### Files Changed
+
+- `examples/workflows/battleplan.md` — NEW
+- `docs/CHANGELOG.md` — This entry
+- `README.md` — Version badge (9.6.0 → 9.6.1), changelog entry
+- `pyproject.toml` — Version bump (9.6.0 → 9.6.1)
 
 ---
 
