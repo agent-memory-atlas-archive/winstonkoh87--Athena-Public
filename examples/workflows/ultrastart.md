@@ -81,7 +81,7 @@ Philosophy: Fill the boot with signal. Supplement with JIT.
 
 // turbo
 
-Load the **complete** framework module stack. All 11 files, in dependency order:
+Load the **complete** framework module stack. All 10 files, in dependency order:
 
 ### Tier 1: Immutable Core (load first, abort if missing)
 
@@ -98,13 +98,13 @@ Load the **complete** framework module stack. All 11 files, in dependency order:
 ```
 .framework/v8.2-stable/modules/Output_Standards.md        (~3.2K)
 .framework/v8.2-stable/modules/System_Principles.md       (~10K)
-.framework/v8.2-stable/modules/Operating_Principles.md    (~1.4K)
 ```
+
+> **Note**: `Operating_Principles.md` was deprecated and merged into `System_Principles.md` (March 2026). Do not load it.
 
 This gives you:
 - **Output Standards**: Formatting, reasoning depth, artifacts, IOD structure
-- **System Principles**: All strategic heuristics and operational constants
-- **Operating Principles**: Tactical rules of engagement (day-to-day behavior)
+- **System Principles**: All strategic heuristics plus operational constants (includes former Operating Principles)
 
 ### Tier 3: Cognitive Identity (load in parallel)
 
@@ -139,7 +139,7 @@ This gives you:
 - **System Manifest**: Technical architecture reference
 
 > **Why load ALL modules?** On a flat-rate subscription, the marginal cost of
-> loading Operating_Principles.md (1.4K tokens) is $0. The marginal benefit is:
+> loading every module is $0. The marginal benefit is:
 > the model natively follows tactical rules without JIT lookup. Every module loaded
 > is one fewer mid-session file read, one fewer attention break, one more seamless
 > cross-reference.
@@ -230,16 +230,34 @@ Read the search results. For each result:
 **No hard cap.** Load until results are exhausted or relevance drops below threshold.
 Dense signal > padded context, but on flat-rate, "dense" means "everything above noise floor."
 
-### Step 4: Cross-Domain Sweep
+### Step 4: Mandatory Cross-Domain Sweep
 
-If the resolved objective touches multiple domains (detected by keyword overlap):
+**Always run at least ONE cross-domain search**, even if the objective looks single-domain.
+On unlimited compute, 1-2 extra searches cost $0. The marginal benefit: Track C
+(Cross-Domain Pattern Matcher) operates on enriched context instead of boot-only data.
+
+**How to pick the cross-domain keyword**: Ask _"What adjacent domain could inform this objective?"_
+
+| Objective Domain | Cross-Domain Search |
+|:-----------------|:--------------------|
+| Trading | Psychology (emotional patterns), Statistics (probability) |
+| Consulting | Sales (pricing patterns), Architecture (system design parallels) |
+| Academic | Business (real-world application), Research methodology |
+| Architecture | Engineering (software patterns), Decision science |
+| Psychology | Neuroscience, Behavioral economics |
+| Any | Search for the user's NAME to pull personal case studies |
 
 ```bash
-python3 .agent/scripts/smart_search.py "<domain 2 keywords>" --limit 5 --include-personal
+# Mandatory: at least 1 cross-domain search
+python3 .agent/scripts/smart_search.py "<cross-domain keywords>" --limit 5 --include-personal
+
+# If objective spans 3+ domains, add a second:
 python3 .agent/scripts/smart_search.py "<domain 3 keywords>" --limit 5 --include-personal
 ```
 
 Load cross-domain results to enable the Cross-Domain Pattern Matcher (Track C in reasoning).
+This is what separates `/ultrastart` from `/start` — the ability to see connections that
+single-domain retrieval misses.
 
 ---
 

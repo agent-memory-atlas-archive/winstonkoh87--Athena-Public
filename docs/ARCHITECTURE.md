@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 21 March 2026  
-> **System Version**: v9.5.7
+> **Last Updated**: 26 March 2026  
+> **System Version**: v9.6.2
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 148+ example protocols, 540+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -712,6 +712,7 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.6.2 | 26 Mar 2026 | `/ultrastart` + `/ultraend` GTO Upgrade — Mandatory cross-domain sweep (Phase 4 Step 4), Decision Outcome Tracking (ultraend Phase 1 Step 2.5), Insight Compounding (ultraend Phase 2.5), Reflexion Explicit Propagation (ultraend Phase 3 Step 3). Same token budget, higher signal extraction. |
 | v9.5.7 | 21 Mar 2026 | GTO Update — metrics sync (650→540 scripts), Case Study #4 (NTU SDR Analysis), Meta-Game Thesis concept doc, Cross-Model Research Arbitrage protocol, wiki refresh |
 | v9.5.6 | 19 Mar 2026 | Deep Audit — `text-embedding-004` → `gemini-embedding-001` (7 files), removed `dspy-ai` dep (security), version consistency sweep, stale doc dates updated |
 | v9.5.5 | 15 Mar 2026 | `/ultrastart` v3.0 Maximum Compute — 20K→57K boot (all 11 framework modules), Pre-Paid Compute Doctrine, 200K ECL Architecture (15K platform + 57K boot = 128K session), One-Session-One-Feature (attention physics rationale), 4-Phase Turn Allocation, JIT retrieval supplement |
