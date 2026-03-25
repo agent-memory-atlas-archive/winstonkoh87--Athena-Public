@@ -34,7 +34,7 @@
 │   └── Scripts: Privacy scanner, smart_search.py, test runners
 │
 ├── Knowledge Layer
-│   ├── Concepts: 7 documented thesis pages
+│   ├── Concepts: 8 documented thesis pages
 │   ├── Case Studies: 13 total (6 example + 7 documented)
 │   ├── Docs: 44+ reference documents
 │   └── Wiki: 7 pages (Home, FAQ, Philosophy, etc.)
@@ -83,6 +83,7 @@
 | [Grace Protocol](concepts/Grace_Protocol.md) | Augment the human, don't replace them | Meta-Game, Committee of Seats |
 | [Quadrant IV](concepts/Quadrant_IV.md) | Important-not-urgent is where compounding happens | Time Compression, Data Compounding |
 | [Cognitive Architecture](concepts/Cognitive_Architecture.md) | Biological stack from atoms to organism | Identity Layer, Committee |
+| [Outcome Economy](concepts/Outcome_Economy.md) | AI shifts value from output to outcomes; labor-leisure economics of augmentation | Time Compression, Half-Half-Half, Iteration Arbitrage |
 
 ---
 
@@ -210,6 +211,7 @@ graph TB
 | Protocol 413 (Multi-Agent Safety) | Git operations | No stash, no branch-switch, commit-only-yours |
 | Iteration Arbitrage | Half-Half-Half Rule | Both exploit flat-rate AI economics |
 | Time Compression | Quadrant IV | Freed time flows to important-not-urgent |
+| Outcome Economy | Time Compression, Grace Protocol | Economic proof of why augmentation generates more value per hour |
 | Grace Protocol | Meta-Game Thesis | Human augmentation = correct game to play |
 | Data Compounding (CS#5) | All Case Studies | Compound effect is the moat |
 | Vulnerability Threshold | USE_CASES.md | Prerequisite for all use cases |
@@ -244,7 +246,7 @@ graph TB
 | Archived Protocols | 18 |
 | Workflows | 63 |
 | Skills | 26 |
-| Concept Pages | 7 |
+| Concept Pages | 8 |
 | Case Studies (total) | 13 |
 | Docs Pages | 44+ |
 | Wiki Pages | 7 |

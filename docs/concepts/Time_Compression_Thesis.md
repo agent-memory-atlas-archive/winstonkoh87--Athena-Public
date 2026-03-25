@@ -151,6 +151,7 @@ This connects to the [Grace Protocol](Grace_Protocol.md): the augmentation doesn
 | [User-Driven RSI](../USER_DRIVEN_RSI.md) | The bilateral loop that makes the compression sustainable |
 | [Quadrant IV](Quadrant_IV.md) | How the thinking-to-doing ratio compounds over time |
 | [Cognitive Architecture](Cognitive_Architecture.md) | The system design that enables AI-side execution |
+| [Outcome Economy](Outcome_Economy.md) | The economic model explaining why the compression creates a pricing arbitrage |
 
 ---
 

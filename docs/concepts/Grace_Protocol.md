@@ -140,6 +140,7 @@ Neither side can reach their potential without the other. That's the Grace Proto
 | [User-Driven RSI](../USER_DRIVEN_RSI.md) | The bilateral improvement loop |
 | [Time Compression Thesis](Time_Compression_Thesis.md) | The hourglass model — how AI redistributes engineering time |
 | [Cognitive Architecture](Cognitive_Architecture.md) | The neuro-cognitive model underlying the Bionic Unit |
+| [Outcome Economy](Outcome_Economy.md) | The economics underlying "augmentation not replacement" — why the bionic unit generates more value per hour |
 
 ---
 

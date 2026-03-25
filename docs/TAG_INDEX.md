@@ -16,6 +16,9 @@
 | #automation | [start](../examples/workflows/start.md), [end](../examples/workflows/end.md), [think](../examples/workflows/think.md), [ultrathink](../examples/workflows/ultrathink.md), [refactor](../examples/workflows/refactor.md), [diagnose](../examples/workflows/diagnose.md) |
 | #bcm | [CS-140-bcm-silent-partner-analysis](../.agent/skills/protocols/decision/140-base-rate-audit.md) |
 | #circuit-breaker | [circuit](../examples/workflows/circuit.md) |
+| #backward-bending-supply | [Outcome_Economy](concepts/Outcome_Economy.md) |
+| #bionic-pricing | [Outcome_Economy](concepts/Outcome_Economy.md) |
+| #comparative-advantage | [Outcome_Economy](concepts/Outcome_Economy.md) |
 | #consulting | [Iteration_Arbitrage](concepts/Iteration_Arbitrage.md), [CASE_STUDIES #7](CASE_STUDIES.md#case-study-7-the-consulting-convergence-problem) |
 | #convergence | [Iteration_Arbitrage](concepts/Iteration_Arbitrage.md) |
 | #decision | [111-premise-audit](../examples/protocols/decision/_archived/111-premise-audit.md), [115-first-principles-deconstruction](../examples/protocols/decision/115-first-principles-deconstruction.md), [137-graph-of-thoughts](../examples/protocols/decision/137-graph-of-thoughts.md) |
@@ -30,14 +33,16 @@
 | #framework | [75-synthetic-parallel-reasoning](../examples/protocols/decision/75-synthetic-parallel-reasoning.md), [77-adaptive-latency-architecture](../examples/protocols/architecture/77-adaptive-latency-architecture.md) |
 | #governance | [primer](../examples/workflows/primer.md) |
 | #graph-of-thoughts | [137-graph-of-thoughts](../examples/protocols/decision/137-graph-of-thoughts.md) |
-| #flat-rate-ai | [Iteration_Arbitrage](concepts/Iteration_Arbitrage.md), [Half_Half_Half_Rule](concepts/Half_Half_Half_Rule.md) |
+| #flat-rate-ai | [Iteration_Arbitrage](concepts/Iteration_Arbitrage.md), [Half_Half_Half_Rule](concepts/Half_Half_Half_Rule.md), [Outcome_Economy](concepts/Outcome_Economy.md) |
 | #half-half-half | [Half_Half_Half_Rule](concepts/Half_Half_Half_Rule.md), [CASE_STUDIES #6](CASE_STUDIES.md#case-study-6-the-50000-agency-vs-the-12500-solo-operator) |
 | #hallucination | [141-claim-atomization-audit](../examples/protocols/verification/141-claim-atomization-audit.md) |
 | #investment-report | [CS-140-bcm-silent-partner-analysis](../.agent/skills/protocols/decision/140-base-rate-audit.md) |
 | #iteration-arbitrage | [Iteration_Arbitrage](concepts/Iteration_Arbitrage.md), [CASE_STUDIES #7](CASE_STUDIES.md#case-study-7-the-consulting-convergence-problem) |
+| #labor-economics | [Outcome_Economy](concepts/Outcome_Economy.md) |
 | #latency | [77-adaptive-latency-architecture](../examples/protocols/architecture/77-adaptive-latency-architecture.md), [96-latency-indicator](../examples/protocols/architecture/96-latency-indicator.md) |
 | #leadership | 139-decentralized-command |
 | #observability | [96-latency-indicator](../examples/protocols/architecture/96-latency-indicator.md) |
+| #outcome-economy | [Outcome_Economy](concepts/Outcome_Economy.md) |
 | #parallel | [75-synthetic-parallel-reasoning](../examples/protocols/decision/75-synthetic-parallel-reasoning.md) |
 | #premise | [111-premise-audit](../examples/protocols/decision/_archived/111-premise-audit.md) |
 | #primer | [primer](../examples/workflows/primer.md) |
@@ -113,6 +118,7 @@
 | [Grace_Protocol](concepts/Grace_Protocol.md) | Augment the human, not replace them |
 | [Quadrant_IV](concepts/Quadrant_IV.md) | Important-not-urgent: where compounding happens |
 | [Cognitive_Architecture](concepts/Cognitive_Architecture.md) | Biological stack from atoms to organism |
+| [Outcome_Economy](concepts/Outcome_Economy.md) | AI shifts value from output to outcomes; labor-leisure economics |
 
 ### Templates
 

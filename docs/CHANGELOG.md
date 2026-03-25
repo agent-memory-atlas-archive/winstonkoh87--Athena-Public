@@ -1,10 +1,40 @@
 # Athena Changelog
 
-> **Last Updated**: 24 March 2026
+> **Last Updated**: 25 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.6.0 (25 March 2026)
+
+**The Outcome Economy — Labor Economics of Human Augmentation**
+
+### Key Changes
+
+- **Outcome Economy Concept Page** (NEW): `docs/concepts/Outcome_Economy.md` — The economic thesis for why AI-augmented operators earn more per hour while charging less per deliverable. Grounds the Bionic Unit philosophy in formal labor economics: utility maximisation (`U(C,L)` → `U(C,L,K)`), backward-bending labor supply curve, Ricardian comparative advantage within one person, and the Bionic Pricing Arbitrage (client pays 67% less, operator earns 233% more per hour).
+- **Cross-References**: Updated Time Compression Thesis, Grace Protocol, KNOWLEDGE_GRAPH, and TAG_INDEX with Outcome Economy links. 7 new tags added (`#outcome-economy`, `#labor-economics`, `#backward-bending-supply`, `#comparative-advantage`, `#bionic-pricing`), 2 existing tags updated (`#flat-rate-ai`, `#human-augmentation`).
+- **Concept Count**: 7 → 8 documented thesis pages.
+
+### Design Decisions
+
+- Titled "Outcome Economy" rather than "Labor Economics" because the labour-leisure model is a _mechanism_ — the concept page's thesis is about the _economic regime shift_ from output-based to outcome-based value.
+- The "Third Good" extension (`U(C,L,K)`) is the novel contribution — standard labor economics models only have 2 goods. Adding K (capital/asset building) captures the asymmetry between augmented and unaugmented operators: freed hours enable upstream investment that shifts _future_ budget constraints.
+- Backward-bending supply curve explanation uses the user's "enjoy life lor" phrasing (anonymised) as the intuition pump — makes formal economics accessible via lived experience.
+- No separate case study — the bionic pricing arbitrage ($3K→$1K worked example) is embedded in the concept page itself because it's a _structural pattern_, not a single narrative.
+- All examples fully anonymised: no client names, project codes, or assignment identifiers.
+
+### Files Changed
+
+- `docs/concepts/Outcome_Economy.md` — NEW
+- `docs/KNOWLEDGE_GRAPH.md` — Count (7→8), new concept entry, new relationship entry
+- `docs/TAG_INDEX.md` — 7 new tags, 2 updated tags, new concept entry
+- `docs/concepts/Time_Compression_Thesis.md` — Cross-reference added
+- `docs/concepts/Grace_Protocol.md` — Cross-reference added
+- `docs/CHANGELOG.md` — This entry
+- `pyproject.toml` — Version bump (9.5.8 → 9.6.0)
 
 ---
 
