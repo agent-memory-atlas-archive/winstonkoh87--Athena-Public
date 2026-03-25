@@ -1,8 +1,8 @@
 # Knowledge Graph — Athena System Architecture
 
-> **Last Updated**: 24 March 2026
+> **Last Updated**: 25 March 2026
 >
-> **Version**: v9.5.9
+> **Version**: v9.6.0
 >
 > **Purpose**: Compressed representation of the full Athena knowledge domain for instant retrieval. All counts are filesystem-verified.
 
@@ -258,4 +258,4 @@ graph TB
 
 ---
 
-*This graph is filesystem-verified as of 24 March 2026. Update via `/diagnose` workflow or manual audit.*
+*This graph is filesystem-verified as of 25 March 2026. Update via `/diagnose` workflow or manual audit.*

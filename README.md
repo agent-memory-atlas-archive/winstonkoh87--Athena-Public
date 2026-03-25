@@ -12,13 +12,13 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.5.7-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.6.0-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 24 March 2026*
+*Last updated: 25 March 2026*
 
 </div>
 
@@ -524,6 +524,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.6.0** (Mar 25 2026): Outcome Economy — new concept page #8 (labor economics of human augmentation), 7 new tags, cross-references updated across 6 files
 - **v9.5.7** (Mar 21 2026): Data Compounding Thesis — new wiki page (The Compounding Effect), README data quality thesis, wiki updates (Home, Philosophy §7, Use Cases deltas, FAQ × 2, Sidebar)
 - **v9.5.6** (Mar 19 2026): Operator Optimization — CS-006 (The Replacement Trap), Phase 2 thesis (USER_DRIVEN_RSI.md), Decision Sovereignty pre-flight checklist (BEST_PRACTICES.md §10)
 - **v9.5.5** (Mar 16 2026): Abundance Mindset Alignment — P529 Survival HUD removed (redundant with existing safety stack), `/start` workflow fix, protocol count 128→127
