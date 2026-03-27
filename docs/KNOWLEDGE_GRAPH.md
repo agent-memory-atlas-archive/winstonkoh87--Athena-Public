@@ -1,8 +1,8 @@
 # Knowledge Graph — Athena System Architecture
 
-> **Last Updated**: 25 March 2026
+> **Last Updated**: 28 March 2026
 >
-> **Version**: v9.6.0
+> **Version**: v9.6.3
 >
 > **Purpose**: Compressed representation of the full Athena knowledge domain for instant retrieval. All counts are filesystem-verified.
 
@@ -11,7 +11,7 @@
 ## System Architecture (Tree)
 
 ```text
-[Athena System v9.5.9]
+[Athena System v9.6.3]
 │
 ├── Identity Layer
 │   ├── Laws: {#0 Ruin Prevention, #1 Context is King, #2 Charity with Limits,
@@ -30,7 +30,7 @@
 ├── Execution Layer
 │   ├── Workflows: 63 slash commands (/start → /web-build)
 │   ├── Skills: 26 packaged capability modules (6 categories)
-│   ├── Protocols: 130 active + 18 archived (15 categories)
+│   ├── Protocols: 149 active + 18 archived (15 categories)
 │   └── Scripts: Privacy scanner, smart_search.py, test runners
 │
 ├── Knowledge Layer
@@ -48,7 +48,7 @@
 
 ---
 
-## Protocol Categories (130 Active)
+## Protocol Categories (149 Active)
 
 | Category | Active | Archived | Key Protocols |
 |----------|--------|----------|---------------|
@@ -68,11 +68,11 @@
 | **Trading** | 2 | 0 | Kelly criterion, risk management |
 | **Content** | 1 | 0 | Content strategy protocols |
 
-**Total**: 130 active + 18 archived = **148 protocols**
+**Total**: 149 active + 18 archived = **167 protocols**
 
 ---
 
-## Concept Pages (7)
+## Concept Pages (8)
 
 | Concept | Core Thesis | Relates To |
 |---------|-------------|------------|
@@ -242,7 +242,7 @@ graph TB
 
 | Category | Count |
 |----------|-------|
-| Active Protocols | 130 |
+| Active Protocols | 149 |
 | Archived Protocols | 18 |
 | Workflows | 63 |
 | Skills | 26 |
@@ -258,4 +258,4 @@ graph TB
 
 ---
 
-*This graph is filesystem-verified as of 25 March 2026. Update via `/diagnose` workflow or manual audit.*
+*This graph is filesystem-verified as of 28 March 2026. Update via `/diagnose` workflow or manual audit.*

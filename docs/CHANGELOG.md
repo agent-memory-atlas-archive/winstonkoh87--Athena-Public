@@ -1,10 +1,63 @@
 # Athena Changelog
 
-> **Last Updated**: 26 March 2026
+> **Last Updated**: 28 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.6.3 (28 March 2026)
+
+**Metrics Sync & Deep Audit — Filesystem-Verified Counts**
+
+### Key Changes
+
+- **Version Sync**: All version references aligned to v9.6.3 across README, AGENTS.md, pyproject.toml, KNOWLEDGE_GRAPH.
+- **Session Count**: Updated 1,100+ → 1,500+ (filesystem-verified: 1,569 session logs). Affects ABOUT_ME.md (3 references).
+- **Case Study Count**: Updated 42 → 430+ (filesystem-verified: 431 case study files). Affects ABOUT_ME.md.
+- **Protocol Count**: Updated 148+ → 149+ (filesystem-verified: 149 protocol files). Affects README, KNOWLEDGE_GRAPH.
+- **CHANGELOG Backfill**: Added missing v9.6.2 entry (committed but undocumented).
+- **Date Sync**: All core files updated to 28 March 2026.
+
+### Design Decisions
+
+- Counts use conservative rounding (1,569 → "1,500+", 431 → "430+") to avoid needing updates on every minor addition.
+- Protocol count now uses exact number (149+) since it changes less frequently.
+
+### Files Changed
+
+- `README.md` — Version badge, SDK version, protocol count, date, changelog entries
+- `AGENTS.md` — Framework version, date
+- `pyproject.toml` — Version bump (9.6.1 → 9.6.3)
+- `docs/ABOUT_ME.md` — Session count (×2), case study count, compounding data reference
+- `docs/KNOWLEDGE_GRAPH.md` — Version, date, protocol counts, concept count
+- `docs/CHANGELOG.md` — This entry + v9.6.2 backfill
+
+---
+
+## v9.6.2 (26 March 2026)
+
+**ultrastart + ultraend GTO Upgrade — Cross-Domain Sweep & Insight Compounding**
+
+### Key Changes
+
+- **Mandatory Cross-Domain Sweep** (`/ultrastart`): Phase 2 now explicitly loads `PROJECTS.md` and `activeContext.md` to prevent tunnel vision during deep boot. Ensures pipeline awareness before entering focused work.
+- **Decision Outcome Tracking** (`/ultraend`): New Phase 3 sub-step — log decision outcomes from the session, not just insights. Captures the feedback loop that calibrates future decisions.
+- **Insight Compounding Chain** (`/ultraend`): Phase 4 now requires explicit propagation directives — where does each insight go? (CANONICAL, Protocol, Workflow, Session Observation). Prevents insights from dying in session logs.
+- **Architecture Version History**: Updated ARCHITECTURE.md version table.
+
+### Design Decisions
+
+- Cross-domain sweep is mandatory (not optional) because the highest-value sessions often reveal cross-domain connections that aren't visible when context is siloed.
+- Propagation directives force the question "where should this live?" — the most common failure mode is generating insights that never get filed.
+
+### Files Changed
+
+- `examples/workflows/ultrastart.md` — Phase 2 cross-domain sweep
+- `examples/workflows/ultraend.md` — Decision tracking + propagation directives
+- `docs/ARCHITECTURE.md` — Version history update
 
 ---
 

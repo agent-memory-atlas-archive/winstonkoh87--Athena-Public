@@ -102,6 +102,6 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 
 ## Version
 
-- **Framework**: v9.5.8
-- **Last Updated**: 2026-03-23
+- **Framework**: v9.6.3
+- **Last Updated**: 2026-03-28
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules
