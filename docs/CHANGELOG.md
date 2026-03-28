@@ -8,6 +8,43 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.6.4 (28 March 2026)
+
+**Token Economy Mode — `/minmax` Workflow**
+
+### Key Changes
+
+- **`/minmax` Workflow** (NEW): `examples/workflows/minmax.md` — Session-level mode toggle that inverts the optimization function from `maximize(quality)` to `maximize(quality / tokens)`. Designed for pay-per-token pricing, context window pressure, or deliberate efficiency training. Composable: activate before `/start` or `/ultrastart` to constrain their boot behavior.
+
+### The 4 Behavioral Rules
+
+1. **Selective Boot**: Task-routing table replaces "load all modules." Core_Identity always loads; everything else is conditional on session objective. Saves ~50K tokens on `/ultrastart` boot.
+2. **Per-Turn Discipline**: SNIPER default (upgrade only at Λ ≥ 15), max 1 search per turn at `--limit 3`, tables > bullets > prose.
+3. **Dense Output Protocol**: Lead with the answer, no preamble, no restating the question. Quality floor unchanged — reduces volume, not reasoning depth.
+4. **Micro Close Default**: Skip CANONICAL/PROJECTS updates unless session was substantive. Compressed checkpoint format.
+
+### Estimated Savings
+
+| Activity | Normal (/ultrastart) | Minmax (/ultrastart) | Reduction |
+|:---------|:--------------------|:--------------------|:----------|
+| Boot | ~60K tokens | ~8-12K tokens | ~80% |
+| Per-turn (avg) | ~5-8K | ~2-4K | ~50% |
+| Close | ~2K | ~300 | ~85% |
+| 10-turn session | ~115K | ~30K | **~74%** |
+
+### Design Decisions
+
+- **Standalone workflow, not flags**: Law #4 (Modular Architecture) — new capability = new file, not conditional logic injected into 4 existing workflows. Zero maintenance cost when unused.
+- **Inverted doctrine**: The Maximum Compute Doctrine (v3.0) optimises `maximize(quality)` because tokens are pre-paid on flat-rate. `/minmax` inverts to `maximize(quality/tokens)` when tokens have marginal cost. Both maintain the same quality floor.
+- **No protocol needed**: Self-contained mode — activates, modifies behavior, deactivates at session end. Nothing else references it.
+
+### Files Changed
+
+- `examples/workflows/minmax.md` — NEW
+- `docs/CHANGELOG.md` — This entry
+
+---
+
 ## v9.6.3 (28 March 2026)
 
 **Metrics Sync & Deep Audit — Filesystem-Verified Counts**
