@@ -1,6 +1,8 @@
 # The Athena Manifesto
 
-> "I got tired of paying for amnesia."
+> *"The whole is greater than the sum of its parts."* — Aristotle
+>
+> *"I got tired of paying for amnesia."* — Me
 
 ## Why This Matters
 
@@ -162,6 +164,16 @@ This pattern ensures:
 - **Context awareness**: Responses are informed by history.
 - **Recoverability**: Work is checkpointed before it can be lost.
 - **Transparency**: The "work" is visible before the "answer."
+
+---
+
+## Why Open Source
+
+I open-sourced this because hopefully someone down the line doesn't have to spend 3 months of work (8am to 8pm) and tens of thousands of dollars in API credits to figure all this out.
+
+No individual file here is the point. The **system** is what makes it work — the way the parts connect, compound, and reinforce each other. You can read any single workflow or protocol and think "that's nice." But when the `/start` boot loads your identity, which feeds the retrieval layer, which informs the protocols, which get refined by `/end` and fed back into the next session — that's where the value lives.
+
+The parts are copyable. The system isn't. But at least now you have a head start.
 
 ---
 
