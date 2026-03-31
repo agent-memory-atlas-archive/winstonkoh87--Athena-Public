@@ -27,20 +27,20 @@ This file provides persistent context to any AI coding agent working in this wor
 |:--------|:-----|:--------|
 | `/start` | `.agent/workflows/start.md` | Boot the agent session |
 | `/end` | `.agent/workflows/end.md` | Close session, file insights |
-| `/ultrastart` | `.agent/workflows/ultrastart.md` | System-2 deep boot (~20K tokens) |
-| `/ultraend` | `.agent/workflows/ultraend.md` | System-2 deep close (synthesis) |
+| `/ultrastart` | `examples/workflows/ultrastart.md` | System-2 deep boot (~20K tokens) |
+| `/ultraend` | `examples/workflows/ultraend.md` | System-2 deep close (synthesis) |
 | `/plan` | `.agent/workflows/plan.md` | Create implementation plan |
-| `/audit` | `.agent/workflows/audit.md` | Zero-blind-spot workspace audit |
+| `/audit` | `examples/workflows/audit.md` | Zero-blind-spot workspace audit |
 | `/research` | `.agent/workflows/research.md` | Deep research workflow |
 | `/refactor` | `.agent/workflows/refactor.md` | Code refactoring protocol |
 | `/ultrathink` | `.agent/workflows/ultrathink.md` | Extended reasoning mode |
-| `/steal` | `.agent/workflows/steal.md` | Pattern extraction from repos |
-| `/diagnose` | `.agent/workflows/diagnose.md` | Troubleshooting workflow |
-| `/fix` | `.agent/workflows/fix.md` | Analyze test failures, propose fixes |
+| `/steal` | `examples/workflows/steal.md` | Pattern extraction from repos |
+| `/diagnose` | `examples/workflows/diagnose.md` | Troubleshooting workflow |
+| `/fix` | `examples/workflows/fix.md` | Analyze test failures, propose fixes |
 | `/minmax` | `examples/workflows/minmax.md` | Token Economy Mode — maximize quality/token |
 | `/battleplan` | `examples/workflows/battleplan.md` | Pre-execution battle planning (7 phases) |
 | `/project` | `examples/workflows/project.md` | Multi-project switchboard |
-| `/416-agent-swarm` | `.agent/workflows/416-agent-swarm.md` | Parallel agent orchestration |
+| `/416-agent-swarm` | `examples/workflows/416-agent-swarm.md` | Parallel agent orchestration |
 
 ---
 
@@ -107,5 +107,5 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 ## Version
 
 - **Framework**: v9.6.5
-- **Last Updated**: 2026-03-31
+- **Last Updated**: 2026-04-01
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules + Claude Code Source Architecture (2026-03-31)
