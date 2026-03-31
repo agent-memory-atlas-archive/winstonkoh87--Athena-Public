@@ -40,6 +40,7 @@ This file provides persistent context to any AI coding agent working in this wor
 | `/minmax` | `examples/workflows/minmax.md` | Token Economy Mode — maximize quality/token |
 | `/battleplan` | `examples/workflows/battleplan.md` | Pre-execution battle planning (7 phases) |
 | `/project` | `examples/workflows/project.md` | Multi-project switchboard |
+| `/dream` | `examples/workflows/dream.md` | Background memory consolidation daemon |
 | `/416-agent-swarm` | `examples/workflows/416-agent-swarm.md` | Parallel agent orchestration |
 
 ---
