@@ -45,7 +45,7 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 >
 > *Or in engineering terms: The LLM is the engine. Athena is the chassis, the memory, and the rules of the road. Swap the engine anytime — the car remembers every road you've driven.*
 >
-> *The design philosophy: [augment the human, not replace them](docs/concepts/Grace_Protocol.md). After 1,200+ sessions, the bottleneck shifted — [optimising the operator is now higher-leverage than optimising the AI](docs/USER_DRIVEN_RSI.md#phase-2-optimising-the-operator).*
+> *The design philosophy: [augment the human, not replace them](docs/concepts/Grace_Protocol.md). After 1,500+ sessions, the bottleneck shifted — [optimising the operator is now higher-leverage than optimising the AI](docs/USER_DRIVEN_RSI.md#phase-2-optimising-the-operator).*
 
 ### The Human Augmentation Thesis
 
@@ -184,7 +184,7 @@ There's a difference between *remembering your name* and *thinking in your frame
 <details>
 <summary><strong>🧬 Why Thousands of Files?</strong></summary>
 
-Athena's workspace looks unusual — **420+ Markdown files** and **540+ Python scripts** out of the box, growing to thousands as your memory compounds. **This is deliberate.**
+Athena's workspace looks unusual — **450+ Markdown files** and **540+ Python scripts** out of the box, growing to thousands as your memory compounds. **This is deliberate.**
 
 AI agents don't read files top-to-bottom like humans. They **query** — by filename, semantic search, or tag lookup. Each small file is an **addressable memory node** the agent can retrieve surgically, without loading everything else.
 
@@ -391,7 +391,7 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/507-cognitive-systems.md) |
 | 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
 | 📋 **150+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
-| ⚡ **60+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
+| ⚡ **65+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
 | 🪝 **Lifecycle Hooks** | Scriptable pre/post gates on every action — block destructive ops, enforce risk checks, log assets |
@@ -525,6 +525,7 @@ Athena-Public/
 <summary><strong>📋 Recent Changelog</strong></summary>
 
 - **v9.6.5** (Mar 31 2026): Claude Code Architectural Integration — context-compactor v2.0 (9-section summary + `<analysis>` scratchpad), coordinator synthesis discipline (anti-delegation rule for agent swarms), Protocol 530 (conditional skill activation — ~40-60% token savings), `/end` validated patterns capture (`[V]` markers), memory drift trust-gate
+- **v9.6.4** (Mar 31 2026): Token Economy Mode — `/minmax` workflow (maximize quality/token ratio), selective boot (~80% token reduction), per-turn SNIPER discipline, dense output protocol, micro close default
 - **v9.6.3** (Mar 28 2026): Metrics Sync & Deep Audit — filesystem-verified counts (149 protocols, 1,500+ sessions, 430+ case studies), version sync across 6 files, v9.6.2 CHANGELOG backfill, ABOUT_ME metrics refresh
 - **v9.6.2** (Mar 26 2026): ultrastart + ultraend GTO Upgrade — mandatory cross-domain sweep (PROJECTS.md + activeContext.md), decision outcome tracking, insight compounding chain, explicit propagation directives in `/ultraend`
 - **v9.6.1** (Mar 26 2026): The Ousen Protocol — `/battleplan` workflow (7-phase pre-execution battle planning), Double-Envelope Audit Architecture (Red-Team #1 on plan, Red-Team #2 on output), scout/general sequencing, examiner anticipation matrix

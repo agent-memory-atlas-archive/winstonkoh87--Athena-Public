@@ -37,6 +37,9 @@ This file provides persistent context to any AI coding agent working in this wor
 | `/steal` | `.agent/workflows/steal.md` | Pattern extraction from repos |
 | `/diagnose` | `.agent/workflows/diagnose.md` | Troubleshooting workflow |
 | `/fix` | `.agent/workflows/fix.md` | Analyze test failures, propose fixes |
+| `/minmax` | `examples/workflows/minmax.md` | Token Economy Mode — maximize quality/token |
+| `/battleplan` | `examples/workflows/battleplan.md` | Pre-execution battle planning (7 phases) |
+| `/project` | `examples/workflows/project.md` | Multi-project switchboard |
 | `/416-agent-swarm` | `.agent/workflows/416-agent-swarm.md` | Parallel agent orchestration |
 
 ---
