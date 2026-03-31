@@ -12,13 +12,13 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.6.3-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.6.5-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 28 March 2026*
+*Last updated: 31 March 2026*
 
 </div>
 
@@ -390,7 +390,7 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
 | 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/507-cognitive-systems.md) |
 | 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
-| 📋 **149+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
+| 📋 **150+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
 | ⚡ **60+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
@@ -490,7 +490,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) / GPT-5.4 (High) |
-| **SDK** | `athena` Python package (v9.6.3) |
+| **SDK** | `athena` Python package (v9.6.5) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -512,7 +512,7 @@ Athena-Public/
 ├── tools/                   # Declarative tool definitions (YAML)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
-│   ├── protocols/           # 149+ starter frameworks (15 categories)
+│   ├── protocols/           # 150+ starter frameworks (15 categories)
 │   ├── scripts/             # 540+ reference scripts
 │   └── templates/           # Starter templates (framework, memory bank)
 ├── docs/                    # Architecture, benchmarks, security, guides
@@ -524,6 +524,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.6.5** (Mar 31 2026): Claude Code Architectural Integration — context-compactor v2.0 (9-section summary + `<analysis>` scratchpad), coordinator synthesis discipline (anti-delegation rule for agent swarms), Protocol 530 (conditional skill activation — ~40-60% token savings), `/end` validated patterns capture (`[V]` markers), memory drift trust-gate
 - **v9.6.3** (Mar 28 2026): Metrics Sync & Deep Audit — filesystem-verified counts (149 protocols, 1,500+ sessions, 430+ case studies), version sync across 6 files, v9.6.2 CHANGELOG backfill, ABOUT_ME metrics refresh
 - **v9.6.2** (Mar 26 2026): ultrastart + ultraend GTO Upgrade — mandatory cross-domain sweep (PROJECTS.md + activeContext.md), decision outcome tracking, insight compounding chain, explicit propagation directives in `/ultraend`
 - **v9.6.1** (Mar 26 2026): The Ousen Protocol — `/battleplan` workflow (7-phase pre-execution battle planning), Double-Envelope Audit Architecture (Red-Team #1 on plan, Red-Team #2 on output), scout/general sequencing, examiner anticipation matrix

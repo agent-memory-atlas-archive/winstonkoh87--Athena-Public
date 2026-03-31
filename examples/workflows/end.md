@@ -1,7 +1,7 @@
 ---
 description: Close session and update System Prompt files with new insights (lightweight)
 created: 2025-12-09
-last_updated: 2026-03-10
+last_updated: 2026-03-31
 model: default
 temperature: 0.5
 tools:
@@ -76,6 +76,28 @@ python3 .agent/scripts/shutdown.py --micro
 >
 > Both must be written. They serve different consumers.
 
+### 0.5. Analysis Scratchpad (v9.6.5)
+
+> **Source**: Claude Code `/compact` prompt architecture.
+> **Key Insight**: An `<analysis>` scratchpad block (chain-of-thought) **improves synthesis quality** but gets stripped before the output reaches persistent storage. You think harder, but pay zero tokens in the written artifact.
+
+Before writing the session log, perform private analysis in `<analysis>` tags:
+
+```
+<analysis>
+1. Chronologically replay each message exchange
+2. For each exchange, identify:
+   - User's explicit request and implicit intent
+   - Your approach and key decisions
+   - Errors encountered and how resolved
+   - User feedback (corrections AND confirmations)
+3. Surface any validated patterns (approaches user confirmed worked)
+4. Double-check for technical accuracy
+</analysis>
+```
+
+This analysis is **private** — it informs the session log quality but is NOT written to any file. Discard after synthesis.
+
 ### 1. Write Session Log File
 
 Create `.context/memories/session_logs/[DATE]-session-[N].md` with:
@@ -107,7 +129,7 @@ Create `.context/memories/session_logs/[DATE]-session-[N].md` with:
 
 | Action | Owner | Status |
 |--------|-------|--------|
-| [Next step] | Winston | Pending |
+| [Next step] | User | Pending |
 
 ---
 
@@ -115,6 +137,15 @@ Create `.context/memories/session_logs/[DATE]-session-[N].md` with:
 
 - [S] [System learning — propagated to SYSTEM_LEARNINGS.md by shutdown.py]
 - [U] [User learning — propagated to USER_PROFILE.yaml by shutdown.py]
+
+## Validated Patterns (v9.6.5)
+
+> Only populate if the session confirmed a non-obvious approach worked.
+> Format: `- [V] [Pattern]: [Why it worked] | Reapply: [When]`
+
+- [V] [Pattern that was confirmed this session — e.g., "Iteration Arbitrage: deliver 70% first"]: [Why] | Reapply: [Context]
+
+> **Propagation**: `shutdown.py` extracts `[V]` markers and appends to `Session_Observations.md § Validated Patterns`.
 
 ## Session Closed
 
@@ -190,7 +221,7 @@ Before writing the `@pending` line in the checkpoint block:
 3. If any item has been pending **7+ sessions**: quietly promote it to `@seeded` for next session's Phase 4
 
 > This step is **advisory only** — it never blocks session close.
-> See [Protocol 528](../../.agent/skills/protocols/architecture/528-execution-enforcement.md).
+> See [Protocol 528](../../examples/protocols/architecture/528-execution-enforcement.md).
 
 ---
 
@@ -260,7 +291,7 @@ python3 .agent/scripts/shutdown.py
 **Output**: "✅ Session closed. Time: [HH:MM SGT]"
 
 > [!CAUTION]
-> **Do NOT run `/push-public` inside `/end`.** Bilateral repo sync is a separate workflow. If `shutdown.py` attempts to push to `Athena-Public`, that is a bug.
+> **Do NOT run `/push-public` inside `/end`.** Bilateral repo sync is a separate workflow. If `shutdown.py` attempts to push to the public repo, that is a bug.
 
 ---
 

@@ -53,6 +53,7 @@ This file provides persistent context to any AI coding agent working in this wor
 ## Skills Index (5W1H Compliant)
 
 > **IMPORTANT**: Check trigger conditions BEFORE invoking any skill.
+> **NEW (2026-03-31)**: Skills with `context_trigger` frontmatter are **conditional** — dormant until matching files/topics/projects activate them. See [Protocol 530](examples/protocols/architecture/530-conditional-skill-activation.md).
 
 | Skill | Invoke When... | Path |
 | :---- | :------------- | :--- |
@@ -102,6 +103,6 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 
 ## Version
 
-- **Framework**: v9.6.3
-- **Last Updated**: 2026-03-28
-- **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules
+- **Framework**: v9.6.5
+- **Last Updated**: 2026-03-31
+- **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules + Claude Code Source Architecture (2026-03-31)

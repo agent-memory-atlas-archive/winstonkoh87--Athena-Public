@@ -1,10 +1,39 @@
 # Athena Changelog
 
-> **Last Updated**: 28 March 2026
+> **Last Updated**: 31 March 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.6.5 (31 March 2026)
+
+**Claude Code Architectural Integration**
+
+### Key Changes
+
+- **Context Compactor v2.0** (UPGRADED): `examples/skills/workflow/context-compactor/SKILL.md` — Complete rewrite adopting Claude Code's 9-section summary template. Replaces the old 4-step compress workflow with a structured analysis scratchpad (`<analysis>` tags) that improves summary quality while consuming zero tokens in the final context window. Includes auto-continue rule and anti-pattern checklist.
+
+- **Protocol 530 — Conditional Skill Activation** (NEW): `examples/protocols/architecture/530-conditional-skill-activation.md` — Path-based and context-triggered skill system. Skills with `context_trigger` frontmatter fields (`paths:`, `topics:`, `projects:`) are dormant by default and only activate when matching conditions are met. Estimated ~40-60% token savings on skill metadata in system prompts.
+
+- **Coordinator Synthesis Discipline** (ADDED to `/416-agent-swarm`): `examples/workflows/416-agent-swarm.md` §6 — 4-phase workflow (Research → Synthesis → Implementation → Verification). Anti-delegation rule: orchestrators must never write "based on your findings" — they must synthesize worker output into a concrete implementation spec. Includes Continue vs. Spawn decision matrix and worker prompt requirements.
+
+- **Analysis Scratchpad in `/end`** (ADDED): `examples/workflows/end.md` §0.5 — Before writing session logs, agents perform private analysis in `<analysis>` tags (chain-of-thought) that improves synthesis quality but gets stripped before output reaches persistent storage.
+
+- **Validated Patterns** (ADDED to `/end`): `[V]` markers in session logs capture non-obvious approaches that worked. `shutdown.py` extracts these and appends to `Session_Observations.md § Validated Patterns` — preventing "cautious drift" where the system becomes overly conservative about proven approaches.
+
+- **Token Budget Allocation** (ADDED to `/416-agent-swarm`): `examples/workflows/416-agent-swarm.md` §5 — Static per-role budget caps (Research: HIGH, Code Gen: MEDIUM, Review: LOW, Docs: LOW) to prevent expensive agents from crowding out cheap ones in shared-budget swarms.
+
+### Version Sync
+
+| File | Version |
+|:-----|:--------|
+| `pyproject.toml` | 9.6.5 |
+| `README.md` badge | v9.6.5 |
+| `AGENTS.md` | v9.6.5 |
+| `docs/CHANGELOG.md` | v9.6.5 |
 
 ---
 
