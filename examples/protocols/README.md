@@ -1,13 +1,13 @@
 # Athena Protocols
 
 > [!NOTE]
-> **These are reference implementations from a production AI-agent system (1,100+ sessions).**
+> **These are reference implementations from a production AI-agent system (1,500+ sessions).**
 >
 > Use them to understand the *pattern* — not as prescriptions. Your protocols will reflect your own context, domain, and decision history.
 >
 > See [Creating Your Own Protocols](#creating-new-protocols) to build yours.
 
-**130 active protocols across 15 categories** — battle-tested thinking patterns that standardize how an AI agent reasons. (148 total including 18 archived protocols.)
+**149 active protocols across 15 categories** — battle-tested thinking patterns that standardize how an AI agent reasons. (167 total including 18 archived protocols.)
 
 ## Featured Protocols
 
@@ -29,13 +29,13 @@
 
 ## Categories
 
-### 🧭 Decision (19 protocols)
+### 🧭 Decision (28 protocols)
 
 Decision frameworks, reasoning patterns, multi-criteria analysis, risk assessment, ergodicity, commitment devices.
 
 [Browse Decision Protocols →](decision/)
 
-### 🏗️ Architecture (18 protocols)
+### 🏗️ Architecture (22 protocols)
 
 System design, token management, context handling, latency architecture, cognitive systems, intent classification, recovery patterns.
 
@@ -47,13 +47,13 @@ Problem framing, graph of thought, GTO execution, crisis triage, cross-domain we
 
 [Browse Reasoning Protocols →](reasoning/)
 
-### ⚙️ Engineering (13 protocols)
+### ⚙️ Engineering (18 protocols)
 
 Code patterns, TDD, vibe coding, git workflows, context compaction, infrastructure, micro-commits.
 
 [Browse Engineering Protocols →](engineering/)
 
-### 📋 Workflow (16 protocols)
+### 📋 Workflow (17 protocols)
 
 Agentic loops, multi-agent coordination, JIT context, handoff protocols, iteration patterns.
 

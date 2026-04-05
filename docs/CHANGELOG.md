@@ -1,10 +1,40 @@
 # Athena Changelog
 
-> **Last Updated**: 31 March 2026
+> **Last Updated**: 5 April 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.6.6 (5 April 2026)
+
+**GTO Metrics Sync & Deep Audit — Filesystem-Verified Counts**
+
+### Key Changes
+
+- **Protocol Count Sync**: Category-level counts corrected to match filesystem (Architecture 18→22, Decision 19→28, Engineering 13→18, Workflow 16→17). Total active 149, unchanged. Propagated to KNOWLEDGE_GRAPH, protocols/README, ABOUT_ME.
+- **Workflow Count**: Updated 63→66 across 5 files (KNOWLEDGE_GRAPH, README). Reflects 3 new workflows added since v9.6.3 (/dream and others).
+- **Protocol Index Session Count**: Updated 1,100+ → 1,500+ in `examples/protocols/README.md` (stale since v9.6.3).
+- **ABOUT_ME Protocol Count**: Updated 120+ → 150+ (stale since initial release).
+- **Version Sync**: All version references aligned to v9.6.6 across README, AGENTS.md, pyproject.toml, KNOWLEDGE_GRAPH, CHANGELOG.
+- **Date Sync**: All core files updated to 5 April 2026.
+
+### Design Decisions
+
+- Category counts now use exact filesystem numbers rather than rounded-down estimates, since `find` commands are cheap and exact counts prevent credibility erosion.
+- Conservative rounding retained at the README level (150+, 66+) to avoid micro-updates on every single file addition.
+
+### Files Changed
+
+- `README.md` — Version badge, date, SDK version, workflow count, changelog entry
+- `AGENTS.md` — Version, date
+- `pyproject.toml` — Version bump (9.6.5 → 9.6.6)
+- `docs/KNOWLEDGE_GRAPH.md` — Version, date, workflow counts, category-level protocol counts, mermaid diagram counts
+- `docs/ABOUT_ME.md` — Protocol count (120+ → 150+)
+- `examples/protocols/README.md` — Session count, active/total protocol counts, category counts
+- `docs/CHANGELOG.md` — This entry
 
 ---
 

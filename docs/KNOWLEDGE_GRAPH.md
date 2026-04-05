@@ -1,8 +1,8 @@
 # Knowledge Graph — Athena System Architecture
 
-> **Last Updated**: 28 March 2026
+> **Last Updated**: 5 April 2026
 >
-> **Version**: v9.6.3
+> **Version**: v9.6.6
 >
 > **Purpose**: Compressed representation of the full Athena knowledge domain for instant retrieval. All counts are filesystem-verified.
 
@@ -11,7 +11,7 @@
 ## System Architecture (Tree)
 
 ```text
-[Athena System v9.6.3]
+[Athena System v9.6.6]
 │
 ├── Identity Layer
 │   ├── Laws: {#0 Ruin Prevention, #1 Context is King, #2 Charity with Limits,
@@ -28,7 +28,7 @@
 │   └── Retrieval: {VectorRAG, GraphRAG, Semantic Search, Context Compactor}
 │
 ├── Execution Layer
-│   ├── Workflows: 63 slash commands (/start → /web-build)
+│   ├── Workflows: 66 slash commands (/start → /web-build)
 │   ├── Skills: 26 packaged capability modules (6 categories)
 │   ├── Protocols: 149 active + 18 archived (15 categories)
 │   └── Scripts: Privacy scanner, smart_search.py, test runners
@@ -52,10 +52,10 @@
 
 | Category | Active | Archived | Key Protocols |
 |----------|--------|----------|---------------|
-| **Architecture** | 18 | 3 | P77 Adaptive Latency, P96 Latency Indicator, P409 Parallel Worktrees |
-| **Decision** | 19 | 9 | P75 Synthetic Parallel Reasoning, P115 First Principles, P137 Graph of Thoughts, P140 Base Rate Audit |
-| **Workflow** | 16 | 1 | P130 Vibe Coding, P72 Proactive Extrapolation |
-| **Engineering** | 13 | 5 | P43 Micro-Commit, P51 Infrastructure Reset |
+| **Architecture** | 22 | 3 | P77 Adaptive Latency, P96 Latency Indicator, P409 Parallel Worktrees |
+| **Decision** | 28 | 9 | P75 Synthetic Parallel Reasoning, P115 First Principles, P137 Graph of Thoughts, P140 Base Rate Audit |
+| **Workflow** | 17 | 1 | P130 Vibe Coding, P72 Proactive Extrapolation |
+| **Engineering** | 18 | 5 | P43 Micro-Commit, P51 Infrastructure Reset |
 | **Reasoning** | 13 | 0 | Multi-model reasoning, convergence analysis |
 | **Pattern Detection** | 10 | 0 | Behavioral pattern recognition, anomaly detection |
 | **Strategy** | 8 | 0 | P244 Offensive Reframing, P245 Value Trinity, P303 Ecosystem Physics |
@@ -114,7 +114,7 @@
 
 ---
 
-## Workflows (63)
+## Workflows (66)
 
 | Category | Commands |
 |----------|----------|
@@ -162,13 +162,13 @@ graph TB
     end
 
     subgraph Execution["Execution Layer"]
-        Workflows["63 Workflows"]
+        Workflows["66 Workflows"]
         Skills["26 Skills"]
         Protocols["130+ Protocols"]
     end
 
     subgraph Knowledge["Knowledge Layer"]
-        Concepts["7 Concept Pages"]
+        Concepts["8 Concept Pages"]
         CaseStudies["13 Case Studies"]
         Docs["44+ Reference Docs"]
     end
@@ -244,7 +244,7 @@ graph TB
 |----------|-------|
 | Active Protocols | 149 |
 | Archived Protocols | 18 |
-| Workflows | 63 |
+| Workflows | 66 |
 | Skills | 26 |
 | Concept Pages | 8 |
 | Case Studies (total) | 13 |
@@ -258,4 +258,4 @@ graph TB
 
 ---
 
-*This graph is filesystem-verified as of 28 March 2026. Update via `/diagnose` workflow or manual audit.*
+*This graph is filesystem-verified as of 5 April 2026. Update via `/diagnose` workflow or manual audit.*
