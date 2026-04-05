@@ -2,7 +2,7 @@
 
 > **Why Athena gets smarter over time — and why that's the moat.**
 
-*Last Updated: 2026-03-21 · v9.5.7*
+*Last Updated: 2026-04-05 · v9.6.6*
 
 ---
 
@@ -25,7 +25,7 @@ Session 1000: "What should I prioritize?"     → Knows which of YOUR frameworks
 
 | Property | Generic AI | Athena After 1,000 Sessions |
 |----------|-----------|----------------------------|
-| **Memory** | None (resets every chat) | 1,200+ sessions of decisions, outcomes, corrections |
+| **Memory** | None (resets every chat) | 1,500+ sessions of decisions, outcomes, corrections |
 | **Personalization** | Infers from a single prompt | Knows your risk profile, communication style, domain expertise |
 | **Decision Quality** | Generic best-practice | Calibrated to YOUR outcome history |
 | **Error Correction** | Repeats the same mistakes | Reflexion journaling prevents recurrence |
@@ -37,7 +37,7 @@ Session 1000: "What should I prioritize?"     → Knows which of YOUR frameworks
 Empirical coupling data (YOUR sessions)  >>>  Synthetic training data  >>>  No data
 ```
 
-This is why **anyone can fork Athena; nobody can fork your sessions**. The code is MIT-licensed and freely available. The value is in the 1,200+ sessions of decisions, outcomes, patterns, and corrections that compound over time.
+This is why **anyone can fork Athena; nobody can fork your sessions**. The code is MIT-licensed and freely available. The value is in the 1,500+ sessions of decisions, outcomes, patterns, and corrections that compound over time.
 
 ---
 
@@ -65,14 +65,14 @@ A single file containing your verified operating truths — risk tolerance, stra
 
 | Metric | Value |
 |--------|-------|
-| Total sessions | 1,200+ |
-| Session logs | ~1,100 structured entries |
+| Total sessions | 1,500+ |
+| Session logs | ~1,400 structured entries |
 | Tag index | 8,079 semantic tags |
 | Vector embeddings | 78MB knowledge graph |
-| Protocols | 148 decision frameworks |
+| Protocols | 150+ decision frameworks |
 | Average context per `/start` | 2K–20K tokens of YOUR history |
 
-Each session adds ~500–2,000 tokens of new coupling data. Over 1,200 sessions, that's **~1.2M tokens of personalized intelligence** that no other system on the planet has.
+Each session adds ~500–2,000 tokens of new coupling data. Over 1,500 sessions, that's **~1.5M tokens of personalized intelligence** that no other system on the planet has.
 
 ---
 
@@ -99,7 +99,7 @@ This is **Symbiotic RSI** — recursive self-improvement that requires both huma
 2. **Use `/end` religiously.** Every skipped close is lost compounding.
 3. **Be honest with the AI.** The quality of compounding depends on the quality of your input data.
 4. **Review your CANONICAL.md monthly.** Active truths decay — prune aggressively.
-5. **The moat isn't the code.** It's the 10,000 hours of coupling data that makes Athena think like *you*.
+5. **The moat isn't the code.** It's the thousands of hours of coupling data that makes Athena think like *you*.
 
 ---
 

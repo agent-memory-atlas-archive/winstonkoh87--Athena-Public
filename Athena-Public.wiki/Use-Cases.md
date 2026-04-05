@@ -2,7 +2,7 @@
 
 Athena is domain-agnostic — it adapts to whatever *you* do. Most users converge on six core workflows.
 
-*Last Updated: 2026-03-11 · v9.5.1*
+*Last Updated: 2026-04-05 · v9.6.6*
 
 ---
 
