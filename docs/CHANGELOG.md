@@ -1,10 +1,46 @@
 # Athena Changelog
 
-> **Last Updated**: 5 April 2026
+> **Last Updated**: 10 April 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.7.0 (10 April 2026)
+
+**Biological Analogy v2 & GTO Metrics Deep Sync**
+
+### Key Changes
+
+- **Biological Analogy Upgrade**: README and ARCHITECTURE.md standardized to the **7-tier** compositional hierarchy (was 6-tier in README). The README previously mapped Molecule → Protocol and Cell → Skill, compressing two distinct abstraction layers. Now correctly maps: Atom (Law) → Molecule (Rule/Constraint) → Cell (Protocol) → Tissue (Skill) → Organ (Cluster) → Organ System (System) → Organism (Athena). Matches the actual workspace hierarchy.
+- **Metrics Sync**: Full GTO metrics pass across 8 files:
+  - Protocols: 397 → 408 (ARCHITECTURE, GLOSSARY, ABOUT_ME)
+  - Skills: 24 → 28 (ARCHITECTURE)
+  - Case studies: 410 → 440+ (ARCHITECTURE, ABOUT_ME)
+  - Sessions: 1,200 → 1,500+ (ARCHITECTURE, SPEC_SHEET)
+  - Workflows: 53 → 66+ (ARCHITECTURE)
+  - Scripts: 220 → 211 (corrected, ARCHITECTURE)
+  - GLOSSARY key metrics: sessions 500→1,500+, protocols 241→408, scripts 97→211, embedded docs 800→2,100+
+- **Date Sync**: All core files updated to 10 April 2026.
+- **Version Sync**: All version references aligned to v9.7.0.
+
+### Design Decisions
+
+- The 7-tier model was already present in ARCHITECTURE.md but the README compressed it to 6 tiers. This release standardizes: the distinction between a Rule/Constraint (compound but non-executable) and a Protocol (executable with defined I/O) is architecturally meaningful and worth preserving in the public-facing documentation.
+- Scripts count *decreased* from 220+ to 211 — reflects accurate filesystem count after pruning passes in v9.5.7–v9.6.6.
+
+### Files Changed
+
+- `README.md` — Version badge, date, biological analogy table (6→7 tier), SDK version
+- `docs/ARCHITECTURE.md` — Version, date, compositional hierarchy (counts + diagram), session counts, version history entry
+- `docs/SPEC_SHEET.md` — Version, date, session count
+- `docs/GLOSSARY.md` — Date, protocol count, key metrics table
+- `docs/ABOUT_ME.md` — Protocol count, case study count, scripts count
+- `AGENTS.md` — Version, date
+- `pyproject.toml` — Version bump (9.6.6 → 9.7.0)
+- `docs/CHANGELOG.md` — This entry
 
 ---
 

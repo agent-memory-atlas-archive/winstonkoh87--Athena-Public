@@ -12,13 +12,13 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.6.6-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.7.0-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 5 April 2026*
+*Last updated: 10 April 2026*
 
 </div>
 
@@ -358,10 +358,11 @@ Athena is modelled after the human body. Built bottom-up by the creator. Used to
 
 | Biology | Athena | What It Does |
 |:--------|:-------|:-------------|
-| Atom | Rule / Axiom | Smallest indivisible truth (`Law #1: No Irreversible Ruin`) |
-| Molecule | Protocol (`.md`) | Rules composed into a reusable procedure |
-| Cell | Skill | Self-contained executable unit |
-| Organ | Cognitive Cluster | Multi-skill unit for one cognitive domain |
+| Atom | Law / Axiom | Smallest indivisible truth (`Law #1: No Irreversible Ruin`) |
+| Molecule | Rule / Constraint | Atomic laws composed into compound constraints (`Never risk >5% of bankroll`) |
+| Cell | Protocol (`.md`) | Self-contained executable procedure with defined inputs/outputs |
+| Tissue | Skill | Domain-specialised skill bundle (groups 2–5 protocols) |
+| Organ | Cognitive Cluster | Multi-skill routing unit for one cognitive domain |
 | Organ System | Cognitive System | Multi-cluster orchestration for a human need archetype |
 | Organism | Athena | The complete synthetic intelligence |
 
@@ -490,7 +491,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) / GPT-5.4 (High) |
-| **SDK** | `athena` Python package (v9.6.6) |
+| **SDK** | `athena` Python package (v9.7.0) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -524,6 +525,8 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.7.0** (Apr 10 2026): Biological Analogy v2 (6-tier → 7-tier: Atom/Molecule/Cell/Tissue/Organ/System/Organism), GTO Metrics Sync (protocols 397→408, skills 24→28, case studies 410→440, sessions 1,200→1,500+, workflows 53→66+), date alignment across 8 files
+- **v9.6.6** (Apr 05 2026): GTO Metrics Sync & Deep Audit — filesystem-verified category-level counts, workflow count 63→66, protocol index session count 1,100→1,500+, version sync across 7 files
 - **v9.6.5** (Mar 31 2026): Claude Code Architectural Integration — context-compactor v2.0 (9-section summary + `<analysis>` scratchpad), coordinator synthesis discipline (anti-delegation rule for agent swarms), Protocol 530 (conditional skill activation — ~40-60% token savings), `/end` validated patterns capture (`[V]` markers), memory drift trust-gate
 - **v9.6.4** (Mar 31 2026): Token Economy Mode — `/minmax` workflow (maximize quality/token ratio), selective boot (~80% token reduction), per-turn SNIPER discipline, dense output protocol, micro close default
 - **v9.6.3** (Mar 28 2026): Metrics Sync & Deep Audit — filesystem-verified counts (149 protocols, 1,500+ sessions, 430+ case studies), version sync across 6 files, v9.6.2 CHANGELOG backfill, ABOUT_ME metrics refresh

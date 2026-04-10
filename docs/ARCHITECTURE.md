@@ -1,10 +1,10 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 26 March 2026  
-> **System Version**: v9.6.2
+> **Last Updated**: 10 April 2026  
+> **System Version**: v9.7.0
 
 > [!NOTE]
-> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 148+ example protocols, 540+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
+> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 150+ example protocols, 540+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
 
 ---
 
@@ -24,7 +24,7 @@ Athena/
 ├── .context/                      # ← USER-SPECIFIC DATA (frequently updated)
 │   ├── User_Vault/                # Personal vault (credentials, secrets)
 │   ├── memories/
-│   │   ├── case_studies/          # 410+ documented patterns
+│   │   ├── case_studies/          # 440+ documented patterns
 │   │   ├── session_logs/          # Historical session analysis
 │   │   └── patterns/              # Formalized patterns
 │   ├── references/                # External frameworks (Dalio, Halbert, Graham)
@@ -37,7 +37,7 @@ Athena/
 │   ├── CLUSTER_INDEX.md           # Routing index: Systems → Clusters → Skills
 │   ├── skills/
 │   │   ├── SKILL_INDEX.md         # Protocol loading registry
-│   │   ├── protocols/             # 397 modular skill files across 35 domains
+│   │   ├── protocols/             # 408 modular skill files across 35 domains
 │   │   │   ├── architecture/      # System protocols (latency, modularity)
 │   │   │   ├── business/          # Business frameworks
 │   │   │   ├── coding/            # Development standards
@@ -54,12 +54,12 @@ Athena/
 │   │   │   ├── verification/      # Verification & QA
 │   │   │   └── ... (+20 more)     # workflow, research, health, etc.
 │   │   └── capabilities/          # Bionic Triple Crown
-│   ├── workflows/                 # 53 slash commands
+│   ├── workflows/                 # 66+ slash commands
 │   │   ├── start.md               # Session boot
 │   │   ├── end.md                 # Session close + maintenance
 │   │   ├── think.md               # Deep reasoning (L4)
 │   │   └── ...
-│   ├── scripts/                   # 220+ Python automation scripts
+│   ├── scripts/                   # 211 Python automation scripts
 │   │   ├── boot.py                # Resilient boot shim + recovery shell
 │   │   ├── quicksave.py           # Auto-checkpoint every exchange
 │   │   ├── smart_search.py        # Semantic search (hybrid RAG)
@@ -119,7 +119,7 @@ graph TD
     AGENT --> SCRIPTS[scripts/]
     AGENT --> SWARMS[swarms/]
 
-    SKILLS --> PROTOCOLS["protocols/ (397)"]
+    SKILLS --> PROTOCOLS["protocols/ (408)"]
     SKILLS --> CAPS[capabilities/]
 
     SRC --> BOOT[boot/orchestrator.py]
@@ -154,13 +154,13 @@ graph TD
 
 > **Core Principle**: Intelligence compounds at the **interface** between human judgment and AI reasoning — not unilaterally within either. Neither human nor AI can recursively self-improve alone.
 
-**Why**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system*: the human injects genuinely new information (taste, correction, lived experience, domain knowledge) that the AI cannot generate internally, while the AI provides perfect recall, structural discipline, and pattern-matching at scale. The moat is not the code — it's the **coupling data** from 1,200+ sessions of bilateral calibration.
+**Why**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system*: the human injects genuinely new information (taste, correction, lived experience, domain knowledge) that the AI cannot generate internally, while the AI provides perfect recall, structural discipline, and pattern-matching at scale. The moat is not the code — it's the **coupling data** from 1,500+ sessions of bilateral calibration.
 
 | Dimension | Unilateral AI RSI | Symbiotic RSI (Athena) |
 |:----------|:------------------|:-----------------------|
 | **Who improves?** | AI alone (autonomous) | Human + AI together (bilateral) |
 | **Energy source** | Internal (closed system) | External — human judgment (open system) |
-| **Current status** | Hypothetical (2126?) | **Working today** (1,200+ sessions) |
+| **Current status** | Hypothetical (2126?) | **Working today** (1,500+ sessions) |
 | **Moat** | Compute (replicable) | Coupling data (unreplicable without living it) |
 
 **In practice, this means**:
@@ -181,8 +181,8 @@ graph TD
 ```mermaid
 graph BT
     L1["⚛️ Atoms<br/>Laws #0-#4"] --> L2["🧬 Molecules<br/>Rules & Constraints"]
-    L2 --> L3["🦠 Cells<br/>397 Protocols"]
-    L3 --> L4["🧫 Tissues<br/>24 Skills"]
+    L2 --> L3["🦠 Cells<br/>408 Protocols"]
+    L3 --> L4["🧫 Tissues<br/>28 Skills"]
     L4 --> L5["🫁 Organs<br/>15 Cognitive Clusters"]
     L5 --> L6["🏥 Organ Systems<br/>8 Cognitive Systems"]
     L6 --> L7["🧠 Organism<br/>Athena"]
@@ -194,9 +194,9 @@ graph BT
 | Layer | Analogy | Athena Equivalent | Example |
 |:---:|:---|:---|:---|
 | 1 | **Atoms** | Laws #0-#4 | Law #1: No Ruin (absolute, non-negotiable) |
-| 2 | **Molecules** | Rules & Constraints | "Never risk >5% of bankroll" |
-| 3 | **Cells** | 397 Protocols | Protocol 330: Economic Expected Value |
-| 4 | **Tissues** | 24 Skills | `trading-risk-gate` (bundles 3 protocols) |
+| 2 | **Molecules** | Rules & Constraints | "Never risk >5% of bankroll" (compound constraint) |
+| 3 | **Cells** | 408 Protocols | Protocol 330: Economic Expected Value |
+| 4 | **Tissues** | 28 Skills | `trading-risk-gate` (bundles 3 protocols) |
 | 5 | **Organs** | 15 Cognitive Clusters | Cluster #3: Trading Risk Gate |
 | 6 | **Organ Systems** | 8 Cognitive Systems | Trading System 📈 |
 | 7 | **Organism** | Athena | The complete synthetic intelligence |
@@ -648,7 +648,7 @@ When a user invokes a slash command, the runtime follows a 3-layer orchestration
 │  Skill activates specific protocol(s)           │
 │  → Single-purpose, composable, ~200 tokens      │
 │  → Lives in .agent/skills/protocols/**/*.md     │
-│  → 397 protocols across 35 domains              │
+│  → 408 protocols across 35 domains              │
 └─────────────────────────────────────────────────┘
 ```
 
@@ -712,6 +712,7 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.7.0 | 10 Apr 2026 | Biological Analogy v2 (6-tier → 7-tier: Atom/Molecule/Cell/Tissue/Organ/System/Organism), GTO Metrics Sync (protocols 397→408, skills 24→28, case studies 410→440, sessions 1,200→1,500+, workflows 53→66+), date alignment across 8 files |
 | v9.6.2 | 26 Mar 2026 | `/ultrastart` + `/ultraend` GTO Upgrade — Mandatory cross-domain sweep (Phase 4 Step 4), Decision Outcome Tracking (ultraend Phase 1 Step 2.5), Insight Compounding (ultraend Phase 2.5), Reflexion Explicit Propagation (ultraend Phase 3 Step 3). Same token budget, higher signal extraction. |
 | v9.5.7 | 21 Mar 2026 | GTO Update — metrics sync (650→540 scripts), Case Study #4 (NTU SDR Analysis), Meta-Game Thesis concept doc, Cross-Model Research Arbitrage protocol, wiki refresh |
 | v9.5.6 | 19 Mar 2026 | Deep Audit — `text-embedding-004` → `gemini-embedding-001` (7 files), removed `dspy-ai` dep (security), version consistency sweep, stale doc dates updated |
