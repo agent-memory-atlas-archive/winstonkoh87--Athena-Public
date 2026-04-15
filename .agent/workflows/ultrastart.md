@@ -492,9 +492,9 @@ preference — it's an architectural constraint:
 
 ## References
 
-- [/ultraend](file:///../workflows/ultraend.md) — Symmetric deep close counterpart
-- [/start](file:///../workflows/start.md) — Lightweight boot
-- [/end](file:///../workflows/end.md) — Lightweight close
+- [/ultraend](../workflows/ultraend.md) — Symmetric deep close counterpart
+- [/start](../workflows/start.md) — Lightweight boot
+- [/end](../workflows/end.md) — Lightweight close
 
 ---
 

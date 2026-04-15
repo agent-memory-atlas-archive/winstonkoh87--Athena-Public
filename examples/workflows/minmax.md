@@ -19,7 +19,7 @@ tools:
 > **Composable**: Activate BEFORE `/start` or `/ultrastart` to constrain their boot behavior.
 
 > [!IMPORTANT]
-> This is an **inverted optimization** from the default Maximum Compute Doctrine.
+> This is an **inverted optimization** from the default Maximum Compute Doctrine (CANONICAL §216).
 >
 > | Mode | Optimization Function | When |
 > |:-----|:---------------------|:-----|
@@ -71,23 +71,23 @@ Close: Micro-default
 When `/start` or `/ultrastart` follows `/minmax`:
 
 **For `/start`** (already lean — minimal changes):
-- Skip `productContext.md` unless session is about system identity/philosophy
+- Skip `productContext.md` unless session is about Athena identity/philosophy
 - Load only the `@pending` + `@seeded` lines from `activeContext.md`, not the full header block
 - Skip Protocol 528 scan (execution awareness) — defer to `/end`
 
 **For `/ultrastart`** (major savings — this is where the big wins are):
 
-Instead of loading all framework modules, use this task-routing table:
+Instead of loading all 11 framework modules (~29K tokens), use this task-routing table:
 
 | Session Objective | Load These Modules Only | Skip | Est. Tokens |
 |:-----------------|:-----------------------|:-----|:------------|
-| Client deliverable (capstone, code) | Core_Identity, Output_Standards | Others | ~5K |
-| Consulting / business strategy | Core_Identity, System_Principles, Operating_Principles | Others | ~8K |
-| Trading / risk analysis | Core_Identity, System_Principles | Others | ~5K |
-| Therapy / IFS / psychology | Core_Identity, Athena_Profile, User_Profile_Core | Others | ~6K |
-| System maintenance / refactor | Core_Identity, System_Manifest | Others | ~4K |
-| Research / deep analysis | Core_Identity, Output_Standards, System_Principles | Others | ~8K |
-| General / mixed | Core_Identity + let JIT handle the rest | Others | ~3K |
+| Client deliverable (capstone, code) | Core_Identity, Output_Standards | 9 others | ~5K |
+| Consulting / business strategy | Core_Identity, System_Principles, Operating_Principles | 8 others | ~8K |
+| Trading / risk analysis | Core_Identity, System_Principles | 9 others | ~5K |
+| Therapy / IFS / psychology | Core_Identity, Athena_Profile, User_Profile_Core | 8 others | ~6K |
+| System maintenance / refactor | Core_Identity, System_Manifest | 9 others | ~4K |
+| Research / deep analysis | Core_Identity, Output_Standards, System_Principles | 8 others | ~8K |
+| General / mixed | Core_Identity + let JIT handle the rest | 10 others | ~3K |
 
 > **Core_Identity is ALWAYS loaded.** It contains the Laws. Everything else is conditional.
 
@@ -216,9 +216,11 @@ To deactivate mid-session: user says "normal mode" or "/fullload" — immediatel
 
 ## References
 
-- [/start](start.md) — Standard boot (modified by Minmax Rule 1)
-- [/ultrastart](ultrastart.md) — Deep boot (most savings from Minmax Rule 1)
-- [/end](end.md) — Standard close (modified by Minmax Rule 4)
+- [/start](../workflows/start.md) — Standard boot (modified by Minmax Rule 1)
+- [/ultrastart](../workflows/ultrastart.md) — Deep boot (most savings from Minmax Rule 1)
+- [/end](../workflows/end.md) — Standard close (modified by Minmax Rule 4)
+- [Maximum Compute Doctrine](../../.context/CANONICAL.md) — §216 (the inverse of this workflow)
+- [Context Density](../../.context/CANONICAL.md) — §194 (Dense Signal > Padded Context)
 
 ---
 

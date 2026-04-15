@@ -298,14 +298,18 @@ User query → Extract keywords/entities
 > The SNIPER exemption from Law #6 is **disabled**. Every response goes through
 > the full Triple-Lock. If you wanted fast, you'd use `/start`.
 
-### Multi-Track Reasoning (Always-On, Λ ≥ 25)
+### AGoT Reasoning Scaffold (Always-On, Λ ≥ 25)
+
+> Adaptive Graph of Thoughts (Protocol 75 v5.0). A cognitive scaffold that produces
+> better answers by forcing structured consideration across 4 phases. Not simulated
+> independence — structured breadth. The structure prevents tunnel vision.
 
 Every response with Λ ≥ 25 runs all four tracks:
 
 | Track | Role | Function |
 |:------|:-----|:---------|
 | **A (Domain Expert)** | The direct answer | What does the evidence/protocol/data say? |
-| **B (Adversarial Skeptic)** | What's wrong with Track A | Challenge premises, find failure modes, steelman alternatives |
+| **B (Counter-Arguments)** | What could be wrong | Challenge premises, find failure modes, steelman alternatives |
 | **C (Cross-Domain Pattern Matcher)** | Analogies and precedents | Where have we seen this before? What cross-domain insight applies? |
 | **D (Synthesis)** | Converge A+B+C | Produce final output with full nuance, flag unresolved tensions |
 
@@ -488,9 +492,9 @@ preference — it's an architectural constraint:
 
 ## References
 
-- [/ultraend](ultraend.md) — Symmetric deep close counterpart
-- [/start](start.md) — Lightweight boot
-- [/end](end.md) — Lightweight close
+- [/ultraend](../workflows/ultraend.md) — Symmetric deep close counterpart
+- [/start](../workflows/start.md) — Lightweight boot
+- [/end](../workflows/end.md) — Lightweight close
 
 ---
 

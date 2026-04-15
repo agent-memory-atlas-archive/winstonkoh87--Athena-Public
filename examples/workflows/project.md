@@ -7,32 +7,22 @@ temperature: 0.5
 tools:
   read: true
   write: true
-  bash: false
-  search: true
+  bash: true
+  search: false
 ---
 
 # /project — Project Switchboard
 
-> **Latency Profile**: LOW (~500 tokens to display, ~200 tokens to update)
-> **Core Principle**: "One board. All projects. Always current."
-> **Pattern**: GSD methodology applied at the portfolio level.
+> **Latency Profile**: LOW (~1K tokens)
+> **Philosophy**: Make project state explicit. Make context-switching instant.
 
-## Overview
-
-Multi-project dashboard that tracks phase, urgency, estimated value, dependencies, and next action across all active work. Manages context-switching without state loss.
-
-### Requirements
-
-- A `PROJECTS.md` file in your context directory (e.g., `.context/PROJECTS.md`)
-- Projects separated into **Internal** (personal: health, career, learning) and **External** (clients, revenue, business)
-
----
+// turbo
 
 ## Commands
 
-### `/project` (default — View + Triage)
+### `/project` (default — Dashboard)
 
-1. Load `PROJECTS.md`
+1. Load `.context/PROJECTS.md`
 2. **Triage**: Sort active projects by urgency tier (🔴 → 🟠 → 🟡 → 🟢 → 🔵), break ties by EV descending
 3. **Dependency check**: Skip blocked items, surface what unblocks them
 4. **Cross-zone check**: If any Internal project (health, energy) is flagged as degraded, note capacity risk for External projects
@@ -59,19 +49,21 @@ Append to the correct section (Internal or External) in `PROJECTS.md`. Assign `I
 ### `/project switch <ID>` (e.g., `E3`, `I1`)
 
 1. Read `PROJECTS.md` to get project name and domain
-2. Run semantic search for project-related context (if available)
-3. Load relevant session logs or state files
-4. **Announce switch**:
-   - "Switching to: **[Project Name]** (Phase X, 🟡 This Week)"
-   - Last touched: [date]
-   - Related context results
+2. Run Exocortex search: `python3 Athena-Public/examples/scripts/smart_search.py "<project name>" --limit 3 --include-personal`
+3. Load the most recent session log mentioning this project
+4. **Output**:
+   - Project: `<name>`
+   - Phase: `<phase bar>`
+   - Last session: `<summary of last work>`
+   - Next action: `<from PROJECTS.md>`
+   - Related context: `<Exocortex top 3 results>`
 5. Carry on — the agent is now in this project context
 
 ### `/project close <ID>`
 
 1. Ask for **outcome** (one line: "Delivered, $250" or "Cancelled — scope changed")
 2. Move the row from Active → Completed table with today's date and outcome
-3. Ask: "Should I update urgency on any remaining projects?" (sometimes closing one project changes priority of others)
+3. Renumber remaining active projects
 
 ### `/project triage`
 
@@ -82,82 +74,27 @@ Full re-rank of all active projects:
 2. Re-sort by urgency tier × EV
 3. Identify **blocked** items and surface what unblocks them
 4. Update `Last triaged:` timestamp
-
----
-
-## PROJECTS.md Template
-
-```markdown
-# Project Switchboard
-
-> Last triaged: [DATE]
-
-## 🏠 Internal Projects
-
-| # | Project | Domain | Phase | Status | Next Action | Urgency | EV | Depends On |
-|---|---------|--------|-------|--------|-------------|---------|-----|------------|
-| I1 | [Name] | 🏠 Life | ░░░░░ | 💤 Parked | [Next step] | 🔵 Someday | [Value] | — |
-
-## 💼 External Projects
-
-| # | Project | Domain | Phase | Status | Next Action | Urgency | EV | Depends On |
-|---|---------|--------|-------|--------|-------------|---------|-----|------------|
-| E1 | [Name] | 💼 Client | ▓░░░░ | ⏳ Active | [Next step] | 🟡 This Week | $X | — |
-
-## ✅ Completed
-
-| # | Project | Domain | Completed | Outcome |
-|---|---------|--------|-----------|---------|
-| — | [Name] | 💼 Client | [Date] | ✅ Delivered |
-```
-
----
-
-## Legends
-
-### Phase Bars
-
-| Symbol | Phase | GSD Equivalent |
-|--------|-------|----------------|
-| ░░░░░ | Not Started | — |
-| ▓░░░░ | Phase 1 (Spec / Setup) | `design.md` drafted |
-| ▓▓░░░ | Phase 2 (Executing) | `atomic-execution` in progress |
-| ▓▓▓░░ | Phase 3 (Verifying) | Verify gate |
-| ▓▓▓▓░ | Phase 4 (Delivering) | Handoff / ship |
-| ▓▓▓▓▓ | Complete | → Move to Completed table |
-
-### Urgency
-
-| Tag | Meaning | Action Rule |
-|-----|---------|-------------|
-| 🔴 TODAY | Due today or blocking revenue | Work on this FIRST |
-| 🟠 URGENT | Due within 48hrs | Queue after 🔴 |
-| 🟡 This Week | Active but not time-critical | Batch when capacity available |
-| 🟢 Backlog | Planned, not started | Pick up when higher tiers clear |
-| 🔵 Someday | Parked ideas / nice-to-haves | Don't touch unless idle |
-
-### Dependencies
-
-- **`—`** = No dependency, unblocked
-- **Named dependency** = Cannot advance until the named condition resolves
-- **Cross-reference** (e.g., `E2 demand signal`) = Progress on another project gates this one
-
-## Triage Rules
-
-1. 🔴 items first (sorted by EV descending)
-2. 🟠 items next
-3. 🟡 items in EV order
-4. 🟢 and 🔵 stay in backlog — only surface if all higher tiers are blocked or done
-5. **Blocked** items: skip during triage, surface the blocker reason instead
-6. **Cross-zone check**: If an Internal project (health, energy) is degraded, flag capacity risk for External projects
+5. **Output**: Re-ranked table + "Top 3 actions for today"
 
 ---
 
 ## Integration Points
 
-- **`/start`**: Load `PROJECTS.md` in adaptive Phase 2 when the user asks about projects or "what should I work on"
-- **`/end`**: Step 5 — prompt for project state updates before shutdown (advance phases, update next actions, adjust urgency, close completed projects)
+- **`/start`**: `PROJECTS.md` is loaded on-demand when the user asks "what should I work on", "project", or "switch context"
+- **`/end`**: Prompt to update `PROJECTS.md` — advance phases, update next actions, adjust urgency for shifted deadlines
+- **`activeContext.md`**: Checkpoint blocks (`[[ S__ |`) should reference `PROJECTS.md` for project-level state instead of inlining `@pending` lists. Session-level `@decided` and `@work_debt` stay in checkpoints.
+
+---
+
+## Design Notes
+
+- **No code, no scripts**. Pure markdown state + agent workflow. Works on any AI provider.
+- **Phase bars are visual shorthand**, not numeric. The agent updates them by editing the markdown table.
+- **EV column forces prioritization honesty**. "Someday/Maybe" projects with no EV articulated are 🔵 by default.
+- **Triage is a verb, not a state**. The switchboard goes stale without periodic re-ranking. `/project triage` or `/end` keeps it fresh.
+
+---
 
 ## Tagging
 
-# workflow #project #gsd #orchestration #multi-project
+# workflow #project-management #gsd #multi-project

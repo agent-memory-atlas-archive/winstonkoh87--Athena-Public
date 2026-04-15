@@ -318,9 +318,9 @@ Seed Accuracy (prev session): [Match/Partial/Miss]
 
 ## References
 
-- [/end](file:///../workflows/end.md) — Standard close (Phase 0 source)
-- [/ultrastart](file:///../workflows/ultrastart.md) — Symmetric deep boot counterpart
-- [/save](file:///../workflows/save.md) — Mid-session checkpoint
+- [/end](../workflows/end.md) — Standard close (Phase 0 source)
+- [/ultrastart](../workflows/ultrastart.md) — Symmetric deep boot counterpart
+- [/save](../workflows/save.md) — Mid-session checkpoint
 
 ---
 

@@ -1,14 +1,14 @@
 ---
 description: Orchestrate parallel agent swarms using worktrees
 created: 2026-02-03
-last_updated: 2026-03-31
+last_updated: 2026-02-03
 ---
 
 # /swarm — Parallel Agent Orchestration
 
 > **Purpose**: Convert linear "wait time" into parallel "build time".
 > **Power Level**: High (Requires M2/M3 Chip for >2 Agents).
-> **Protocol**: Protocol 409 (Worktrees) — see `.framework/` for details
+> **Protocol**: [Protocol 409 (Worktrees)](../../examples/protocols/409_Parallel_Worktree_Orchestration.md)
 
 ---
 
@@ -58,7 +58,7 @@ git commit -am "Feat: Frontend complete"
 git push origin feature/session-swarm-fe
 
 # 2. Merge in Main
-cd ../../Athena
+cd ../../Project\ Athena
 git merge feature/session-swarm-fe
 git merge feature/session-swarm-be
 ```
@@ -71,7 +71,7 @@ git merge feature/session-swarm-be
 
 ## 5. Token Budget Allocation (Per Role)
 
-> **Source**: r/ClaudeCode thread (2026-02-27). Insight: treating all agents with one shared budget lets expensive agents (design, research) crowd out cheap ones (linting, tests). Static caps per role force right-sizing.
+> **Stolen from**: r/ClaudeCode thread (2026-02-27). Insight: treating all agents with one shared budget lets expensive agents (design, research) crowd out cheap ones (linting, tests). Static caps per role force right-sizing.
 
 | Agent Role | Budget Cap | Rationale |
 |:-----------|:-----------|:----------|
@@ -86,7 +86,7 @@ git merge feature/session-swarm-be
 - If an agent exceeds its cap mid-task, it must checkpoint progress to disk before requesting more.
 - The Orchestrator (you) can override caps with explicit approval.
 
-## 6. Coordinator Synthesis Discipline (v9.6.5)
+## 6. Coordinator Synthesis Discipline (Stolen: Claude Code 2026-03-31)
 
 > **Source**: Claude Code coordinator system prompt (`coordinatorMode.ts`).
 > **Rule**: The Orchestrator MUST synthesize worker findings into a specific spec before delegating implementation. Lazy delegation is an anti-pattern.
@@ -152,4 +152,4 @@ access — if null, return 401 with 'Session expired'."
 
 ---
 
-# workflow #swarm #parallel #productivity
+# workflow #swarm #parallel #productivity #stolen-claude-code

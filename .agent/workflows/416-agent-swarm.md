@@ -8,7 +8,7 @@ last_updated: 2026-02-03
 
 > **Purpose**: Convert linear "wait time" into parallel "build time".
 > **Power Level**: High (Requires M2/M3 Chip for >2 Agents).
-> **Protocol**: [Protocol 409 (Worktrees)](file:///../examples/protocols/409_Parallel_Worktree_Orchestration.md)
+> **Protocol**: [Protocol 409 (Worktrees)](../../examples/protocols/409_Parallel_Worktree_Orchestration.md)
 
 ---
 
