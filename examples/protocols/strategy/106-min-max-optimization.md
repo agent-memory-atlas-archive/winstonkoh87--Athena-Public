@@ -1,6 +1,6 @@
 ---
 created: 2026-02-07
-last_updated: 2026-02-09
+last_updated: 2026-04-15
 tags: #protocol #strategy #efficiency #minmax #sovereign #economics
 ---
 
@@ -32,7 +32,7 @@ tags: #protocol #strategy #efficiency #minmax #sovereign #economics
 This is the **Utility Function**. It shows:
 
 - As you spend more (move right), you get more value (move up).
-- **But** the curve flattens (diminishing returns). The 600th dollar gives you less extra value than the 40th dollar.
+- **But** the curve flattens (diminishing returns). The 883rd dollar gives you less extra value than the 30th dollar.
 
 ### The Teal Line (Max U/c)
 
@@ -47,8 +47,10 @@ This is a **straight line from the origin** to the curve.
 | Dot | Price | What It Represents |
 |-----|-------|-------------------|
 | 🔴 **Red** | $19 | **The Trap**. Cheap but broken/scam. Near-zero utility despite low cost. |
-| 🟢 **Green** | $39 | **Sovereign Zone**. Optimal ratio of Utility to Cost. **BUY HERE.** |
-| 🟠 **Orange** | $600 | **Luxury Trap**. High cost, marginal extra utility. Diminishing returns. |
+| 🟢 **Green** | $30 | **Sovereign Zone**. Optimal ratio of Utility to Cost. **BUY HERE.** |
+| 🟠 **Orange** | $883 | **Luxury Trap**. High cost, marginal extra utility. Diminishing returns. |
+
+> *The diagram uses illustrative values. See each case study below for verified market prices.*
 
 ### The Light Green Shaded Area
 
@@ -88,10 +90,12 @@ $$ U'(c) = \frac{U(c)}{c} $$
 | Product | CapEx | Utility | U/c Ratio | Verdict |
 |---------|-------|---------|-----------|---------|
 | **$19 KDK (Fake)** | $19 | ~0 (Breaks instantly) | 0 | ❌ **Trap** |
-| **$39 Mistral** | $39 | ~80 (Solid airflow, 5yr life) | **2.05** | ✅ **Sovereign** |
-| **$600 Dyson** | $600 | ~100 (Quieter, prettier) | 0.17 | ⚠️ **Luxury Trap** |
+| **$30 Mistral** | $30 | ~80 (Solid airflow, 8yr motor warranty, 4.9★) | **2.67** | ✅ **Sovereign** |
+| **$883 Dyson** | $883 | ~100 (Quieter, bladeless, air purifier) | 0.11 | ⚠️ **Luxury Trap** |
 
-**Verdict**: Buy the Mistral. The Dyson gives you +20 utility for +$561. That's $28/utility point. The Mistral gives you 80 utility for $39. That's $0.49/utility point. **57x more efficient.**
+**Verdict**: Buy the Mistral. The Dyson gives you +20 utility for +$853. That's $42.65/utility point. The Mistral gives you 80 utility for $30. That's $0.38/utility point. **112x more efficient.**
+
+> *Prices verified via Shopee SG (Apr 2026). Mistral MSF1603 at S$29.52–33.34 on flash sale; Dyson TP12 at S$883.*
 
 ---
 
@@ -135,12 +139,63 @@ $$ U'(c) = \frac{U(c)}{c} $$
 
 ---
 
-## The Three Pillars of Application
+## Real-World Example: Headphones (2026)
+
+![Headphones Curve](protocol_106_headphones.png)
+
+> **Context**: Evaluating noise-cancelling headphones. AirPods Max 2 (S$749) vs UGREEN Studio Max5c (S$31 after voucher).
+
+| Product | CapEx | Utility | U/c Ratio | Verdict |
+|---------|-------|---------|-----------|---------|
+| **UGREEN Studio Max5c** | S$31 | ~80 (ANC, Hi-Res, 75hr battery, 4.9★) | **2.58** | ✅ **Sovereign** |
+| **AirPods Max 2** | S$749 | ~100 (H2 chip ANC, Spatial Audio, Apple ecosystem) | 0.13 | ⚠️ **Luxury Trap** |
+
+**The Math**: The UGREEN delivers ~80% of functional utility at **4% of the price**. The AirPods Max 2 charges S$718 extra for +20 utility points — that's **S$35.90/utility point** vs UGREEN's **S$0.39/utility point**. **92x more efficient.**
+
+> [!TIP]
+> The UGREEN reviews consistently state: "better than midrange JBL" and "can't find a better headphone at this price." This is the Sovereign Zone in action — the knee of the diminishing returns curve sits around S$30–80 for headphones.
+
+---
+
+## Real-World Example: Laptops — MacBook Pro (2026 Singapore)
+
+![Laptops Curve](protocol_106_laptops.png)
+
+> **Context**: Buying a MacBook Pro on the secondhand market. Applying the N-2 depreciation strategy (buy 2 generations behind current to capture maximum seller-absorbed depreciation).
+
+### The Depreciation Curve
+
+| Generation | Chip | Original Retail | Secondhand (Apr 2026) | Depreciation | Verdict |
+|:---|:---|---:|---:|---:|:---|
+| Current (N) | M5 | S$2,299 | — | 0% | ❌ Full retail |
+| N-1 | M4 (16GB) | ~S$2,199 | **S$1,550** | ~30% | ✅ **Sovereign** |
+| N-2 | M3 (8GB) | S$2,299 | ~S$1,250 | ~46% | ⚠️ Spec-crippled |
+
+### The Anomaly: RAM Discontinuity
+
+> [!IMPORTANT]
+> The M3→M4 generation was when Apple corrected the 8GB base RAM mistake. The M3 base (8GB) is **functionally inferior** for modern workloads despite being cheaper. This creates a **curve discontinuity** — the N-2 rule breaks when a spec floor shifts between generations.
+
+### The Strategic Play
+
+| Strategy | Price | RAM | Chip | Value Assessment |
+|:---|---:|:---|:---|:---|
+| M3 base now | ~S$1,250 | 8GB ❌ | M3 | Cheap but RAM-bottlenecked |
+| **M4 base now** | **S$1,550** | **16GB ✅** | M4 | **GTO — N-1 price, N-1 specs** |
+| Wait for M6, then buy M4 | ~S$1,100–1,300 | 16GB ✅ | M4 | **Patient GTO — N-2 price, 16GB intact** |
+
+**Verdict**: The patient move is to wait for the M6 launch (late 2026/early 2027), which pushes M4 from N-1 → N-2 territory and compresses pricing to ~S$1,150 — capturing ~50% depreciation while retaining the 16GB spec floor.
+
+> **Heuristic**: The N-2 rule works *unless* a critical spec floor shifts between generations. Always check for discontinuities before defaulting to the cheapest option.
+
+---
+
+## The Four Pillars of Application
 
 ### 1. Procurement (Buying Stuff)
 
 - **Goal**: Maximize Utility per Dollar.
-- **Application**: $39 Mistral fan > $600 Dyson fan.
+- **Application**: $30 Mistral fan > $883 Dyson fan. S$31 UGREEN headphones > S$749 AirPods Max. M4 MacBook at N-2 pricing > M5 at retail.
 
 ### 2. Operations (Doing Work)
 
