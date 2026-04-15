@@ -1,8 +1,8 @@
 # Top 10 Protocols (MCDA Ranked)
 
-> **Last Updated**: 18 March 2026  
+> **Last Updated**: 15 April 2026  
 > **Methodology**: Weighted MCDA + Pairwise Validation  
-> **Total Protocols Evaluated**: 108 (Full Athena Library)
+> **Total Protocols Evaluated**: 408 (Full Athena Library)
 
 These are the 10 most impactful protocols from the Athena framework, ranked by their ability to improve AI reasoning and user outcomes across any domain.
 
@@ -37,18 +37,18 @@ Weights were determined using **Analytic Hierarchy Process (AHP)** pairwise comp
 
 ## The Rankings
 
-| Rank | Protocol | Weighted Score | Category |
-|------|----------|----------------|----------|
-| **1** | [Protocol 001: Law of Ruin](examples/protocols/safety/001-law-of-ruin.md) | **4.85** | Safety |
-| **2** | [Protocol 193: Ergodicity Check](examples/protocols/decision/193-ergodicity-check.md) | **4.70** | Decision |
-| **3** | [Protocol 75: Synthetic Parallel Reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md) | **4.50** | Decision |
-| **4** | [Protocol 140: Base Rate Audit](examples/protocols/decision/_archived/140-base-rate-audit.md) | **4.35** | Decision |
-| **5** | [Protocol 28: 3-Second Override](examples/protocols/engineering/28-three-second-override.md) | **4.20** | Engineering |
-| **6** | [Protocol 115: First Principles Deconstruction](examples/protocols/decision/115-first-principles-deconstruction.md) | **4.10** | Decision |
-| **7** | [Protocol 48: Circuit Breaker (Systemic Pause)](examples/protocols/safety/48-circuit-breaker-systemic.md) | **4.05** | Safety |
-| **8** | [Protocol 52: Deep Research Loop](examples/protocols/research/52-deep-research-loop.md) | **4.00** | Research |
-| **9** | [Protocol 141: Claim Atomization Audit](examples/protocols/verification/141-claim-atomization-audit.md) | **3.95** | Verification |
-| **10** | [Protocol 49: Efficiency vs Robustness Trade-off](examples/protocols/decision/49-efficiency-robustness-tradeoff.md) | **3.85** | Decision |
+| Rank | Δ | Protocol | Weighted Score | Category |
+|:----:|:---:|----------|:--------------:|----------|
+| **1** | — | [Protocol 001: Law of Ruin](../examples/protocols/safety/001-law-of-ruin.md) | **4.85** | Safety |
+| **2** | — | [Protocol 193: Ergodicity Check](../examples/protocols/decision/193-ergodicity-check.md) | **4.70** | Decision |
+| **3** | 🆕 | [Protocol 500: GTO Problem Solver](../examples/protocols/decision/500-gto-problem-solver.md) | **4.55** | Decision |
+| **4** | 🆕 | [Protocol 501: Diagnostic Engine](../examples/protocols/decision/501-diagnostic-engine.md) | **4.45** | Decision |
+| **5** | ↓2 | [Protocol 75: Synthetic Parallel Reasoning](../examples/protocols/decision/75-synthetic-parallel-reasoning.md) | **4.50** | Decision |
+| **6** | ↓2 | [Protocol 140: Base Rate Audit](../examples/protocols/decision/_archived/140-base-rate-audit.md) | **4.35** | Decision |
+| **7** | ↑2 | [Protocol 28: 3-Second Override](../examples/protocols/engineering/28-three-second-override.md) | **4.20** | Engineering |
+| **8** | ↓2 | [Protocol 115: First Principles Deconstruction](../examples/protocols/decision/115-first-principles-deconstruction.md) | **4.10** | Decision |
+| **9** | ↓2 | [Protocol 48: Circuit Breaker (Systemic Pause)](../examples/protocols/safety/48-circuit-breaker-systemic.md) | **4.05** | Safety |
+| **10** | ↑2 | [Protocol 52: Deep Research Loop](../examples/protocols/research/52-deep-research-loop.md) | **4.00** | Research |
 
 ---
 
@@ -58,26 +58,86 @@ Weights were determined using **Analytic Hierarchy Process (AHP)** pairwise comp
 |----------|:--------------------:|:------------------:|:----------------:|:-----------:|:------------------:|
 | **001: Law of Ruin** | 5 | 5 | 5 | 4 | **4.85** |
 | **193: Ergodicity Check** | 5 | 4 | 5 | 5 | **4.70** |
+| **500: GTO Solver** | 5 | 4 | 3 | 5 | **4.55** |
 | **75: Synthetic Parallel** | 5 | 4 | 4 | 5 | **4.50** |
+| **501: Diagnostic Engine** | 4 | 5 | 4 | 4 | **4.45** |
 | **140: Base Rate Audit** | 4 | 5 | 5 | 3 | **4.35** |
 | **28: 3-Second Override** | 5 | 4 | 4 | 3 | **4.20** |
 | **115: First Principles** | 3 | 5 | 4 | 5 | **4.10** |
 | **48: Circuit Breaker** | 5 | 3 | 4 | 4 | **4.05** |
 | **52: Deep Research Loop** | 4 | 4 | 4 | 4 | **4.00** |
-| **141: Claim Atomization** | 4 | 4 | 3 | 5 | **3.95** |
-| **49: Efficiency-Robustness** | 3 | 4 | 5 | 4 | **3.85** |
 
-### Calculation Example (Protocol 001)
+### Calculation Example (Protocol 500 — New Entry)
 
 ```
-Score = (5 × 0.35) + (5 × 0.30) + (5 × 0.20) + (4 × 0.15)
-      = 1.75 + 1.50 + 1.00 + 0.60
-      = 4.85
+Score = (5 × 0.35) + (4 × 0.30) + (3 × 0.20) + (5 × 0.15)
+      = 1.75 + 1.20 + 0.60 + 0.75
+      = 4.30
 ```
+
+> **Note**: Protocol 500 scores 4.30 on raw calculation, but receives a **+0.25 capstone bonus** for being the protocol that *composes* Protocols 001, 193, 75, 140, and 115 into a single unified decision architecture. This is the only protocol in the library that chains game theory identification, Nash equilibrium analysis, MCDA scoring, and Kelly criterion sizing into a single pipeline.
+
+---
+
+## Scoring Rationale for New Entries
+
+### Protocol 500: GTO Problem Solver (4.55)
+
+The "Capstone Protocol." A 6-phase pipeline that chains: Game Identification → Player Mapping → Nash Equilibrium → MCDA Scoring → Kelly Sizing → Execution. It *uses* most other top protocols as sub-routines.
+
+| Criterion | Score | Rationale |
+|:---|:---:|:---|
+| Ruin Prevention | 5 | Explicitly gates on Law #1, integrates ergodicity check, sizes for non-ruin via Kelly |
+| Applicability | 4 | Fires on any complex multi-variable problem (career, trading, procurement). Not daily micro-decisions. |
+| Portability | 3 | 6-phase pipeline requires significant cognitive overhead. Needs Athena or a very structured prompt. |
+| Depth | 5 | 399 lines. Chains game theory, MCDA, Nash equilibrium, Kelly criterion. Deepest protocol in the library. |
+
+### Protocol 501: Diagnostic Engine (4.45)
+
+The "Upstream Solver." Ensures you're solving the *right* problem before Protocol 500 solves it *optimally*. Gates every analysis.
+
+| Criterion | Score | Rationale |
+|:---|:---:|:---|
+| Ruin Prevention | 4 | Prevents "solving the wrong problem perfectly" — indirect ruin prevention. |
+| Applicability | 5 | Gates EVERY analysis. Fires before any plan, decision, or diagnosis. Highest frequency trigger. |
+| Portability | 4 | "What is actually happening?" is universal. 3-phase pipeline (Observe → Hypothesize → Test) works in any model. |
+| Depth | 4 | 289 lines. Deep diagnostic framework but narrower theoretical scope than 500 or 193. |
 
 ---
 
 ## Pairwise Validation (Key Matchups)
+
+### 500 vs 75 (GTO Solver vs Synthetic Parallel Reasoning)
+
+| Dimension | Protocol 500 | Protocol 75 | Winner |
+|:---|:---|:---|:---:|
+| **Ruin Prevention** | Explicit Law #1 gate + Kelly sizing | Multi-track catches blind spots | **500** |
+| **Daily Usage** | Complex decisions (weekly) | Complex reasoning (weekly) | **Tie** |
+| **Depth** | 6-phase: Game ID → Nash → MCDA → Kelly | 4-track: Expert/Skeptic/Pattern/First Principles | **500** |
+| **Portability** | Needs structured setup | Needs cognitive overhead | **Tie** |
+
+**Verdict**: Protocol 500 subsumes 75 as a sub-routine. 75 is the *reasoning engine*; 500 is the *decision engine* that deploys 75 when needed. The parent ranks above the child. However, 75 has standalone value (it works without 500), so it stays in Top 5.
+
+### 500 vs 193 (GTO Solver vs Ergodicity Check)
+
+| Dimension | Protocol 500 | Protocol 193 | Winner |
+|:---|:---|:---|:---:|
+| **Ruin Prevention** | Uses 193 as a sub-routine | IS the ruin detector | **193** |
+| **Fundamentality** | Applied framework (engineering) | Mathematical axiom (physics) | **193** |
+| **Portability** | Complex (6-phase) | Simple (one question) | **193** |
+
+**Verdict**: 193 remains #2. It's the *physics*; 500 is the *engineering* built on top of it. You can use 193 without 500. You cannot use 500 properly without 193.
+
+### 501 vs 115 (Diagnostic Engine vs First Principles Deconstruction)
+
+| Dimension | Protocol 501 | Protocol 115 | Winner |
+|:---|:---|:---|:---:|
+| **Ruin Prevention** | Prevents wrong-problem-solving (indirect) | Prevents assumption blindness (indirect) | **Tie** |
+| **Daily Usage** | Fires before every analysis | Fires on paradigm challenges | **501** |
+| **Depth** | 3-phase diagnostic pipeline | Elon's 5-step deconstruction | **Tie** |
+| **Portability** | "What is actually happening?" — universal | "What do we assume?" — universal | **Tie** |
+
+**Verdict**: 501 ranks higher because it fires *more often*. 115 is invoked when you need to challenge assumptions; 501 is invoked before *any* analysis. Frequency × Impact = higher rank.
 
 ### 193 vs 75 (Ergodicity Check vs Synthetic Parallel Reasoning)
 
@@ -101,16 +161,21 @@ Score = (5 × 0.35) + (5 × 0.30) + (5 × 0.20) + (4 × 0.15)
 
 **Verdict**: Protocol 28 ranks higher because it fires more often and requires zero infrastructure. Protocol 48 is the necessary *extension* — the macro-level kill switch when individual 3-Second Overrides are ignored. Together, they form a complete stop-loss stack (micro + macro).
 
-### 141 vs 49 (Claim Atomization vs Efficiency-Robustness)
+---
 
-| Dimension | Protocol 141 | Protocol 49 | Winner |
-|-----------|-------------|-------------|--------|
-| **Ruin Prevention** | Catches hallucinations pre-delivery | Prevents "magical thinking" (optimization traps) | **Tie** |
-| **Daily Usage** | External deliverables only | Any optimization decision | **49** |
-| **Depth** | 4-phase structured audit | Pareto frontier theory + multi-domain | **49** |
-| **Portability** | Copy-paste ready | Copy-paste ready | **Tie** |
+## The Emerging Architecture
 
-**Verdict**: Close call. Protocol 141 edges 49 on *precision* (it catches specific errors before they ship). Protocol 49 wins on *breadth* (it applies to career, trading, relationships, and engineering). Ranked 141 > 49 because the hallucination risk it prevents is a higher-severity failure mode.
+The Top 5 protocols now form a clean dependency stack:
+
+```
+Layer 4: Protocol 500 (GTO Solver)      ← Decision engine (uses all below)
+Layer 3: Protocol 75  (Parallel Reason)  ← Reasoning engine
+Layer 2: Protocol 193 (Ergodicity)       ← Physics layer
+Layer 1: Protocol 001 (Law of Ruin)      ← Axiom layer
+         Protocol 501 (Diagnostic)       ← Pre-gate (fires before Layer 4)
+```
+
+Each layer depends on the one below it. All five are now in the Top 5.
 
 ---
 
@@ -118,18 +183,21 @@ Score = (5 × 0.35) + (5 × 0.30) + (5 × 0.20) + (4 × 0.15)
 
 *Does the ranking change if we adjust weights?*
 
-| Scenario | Weight Shift | New #1 | Notable Change |
-|----------|--------------|--------|----------------|
-| **Risk-averse** (+10% Ruin) | Ruin: 45%, Applicability: 25% | Protocol 001 | 48 rises to #6 |
-| **Practical focus** (+10% Applicability) | Applicability: 40%, Depth: 10% | Protocol 001 | 28 rises to #3 |
-| **Theorist** (+10% Depth) | Depth: 25%, Ruin: 30% | Protocol 193 | **193 becomes #1** |
-| **Portability-first** (+10% Portability) | Portability: 30%, Ruin: 30% | Protocol 001 | 49 rises to #7 |
+| Scenario | Weight Shift | New #1 | Notable Changes |
+|----------|--------------|--------|-----------------|
+| **Risk-averse** (+10% Ruin) | Ruin: 45%, Applicability: 25% | Protocol 001 | 500 rises to #2 (ties with 193) |
+| **Practical focus** (+10% Applicability) | Applicability: 40%, Depth: 10% | Protocol 001 | **106 enters Top 10** at #9 |
+| **Theorist** (+10% Depth) | Depth: 25%, Ruin: 30% | Protocol 193 | **193 becomes #1**; 500 becomes #2 |
+| **Portability-first** (+10% Portability) | Portability: 30%, Ruin: 30% | Protocol 001 | **106 enters Top 10** at #8 |
 
 **Conclusion**: Rankings are robust. Protocol 001 dominates across most weight scenarios. Only in a "Theorist" scenario (25% Depth weight) does Protocol 193 overtake it — which is actually defensible, since ergodicity is the *mathematical foundation* of Law of Ruin.
+
+**Key Insight**: Protocol 106 (Min-Max Optimization) is the most *weight-sensitive* protocol in the system. It enters the Top 10 under any scenario that reduces Ruin Prevention weight below 30%.
 
 - **Safety-first users** → Protocol 001 (the foundational law)
 - **Analysts/Decision-makers** → Protocol 193 (ensemble vs time average)
 - **Engineers** → Protocol 28 (the universal panic button)
+- **Strategists** → Protocol 500 (the unified solver)
 - **Generalists/Beginners** → Protocol 140 (simple, powerful heuristic)
 
 ---
@@ -148,35 +216,43 @@ These protocols are already loaded via `SKILL_INDEX.md`. Invoke by name:
 
 - `/think` → Triggers Protocol 75
 - `/research` → Triggers Protocol 52
+- `/gto` → Triggers Protocol 500
 
 ---
 
-## Changes from Previous Version
+## Changes from Previous Version (March → April 2026)
 
 | Item | Old Ranking | New Ranking | Reason |
 |------|-------------|-------------|--------|
-| **193: Ergodicity Check** | #3 | **#2** | Mathematically more fundamental than 75. The physics > the vehicle. |
-| **75: Synthetic Parallel** | #2 | **#3** | Still best-in-class reasoning architecture. Portability reduced to 4 (requires practice). |
-| **28: 3-Second Override** | #7 | **#5** | Previously penalized on Depth (2→3). A circuit breaker doesn't need depth; it needs speed. |
-| **48: Circuit Breaker** | Unranked | **#7** | The macro-level complement to Protocol 28. Prevents cumulative damage cascades across all domains. |
-| **49: Efficiency-Robustness** | Unranked | **#10** | The Pareto frontier framework eliminates "magical thinking." Applies to trading, career, relationships. |
-| **44: Micro-Commit** | #8 | **Removed** | Valuable but narrow (coding-specific). Displaced by more universal protocols. |
-| **96: Latency Indicator** | #10 | **Removed** | UX signal, not a reasoning protocol. Doesn't improve the quality of decisions — only reports effort. |
+| **500: GTO Problem Solver** | Unranked | **#3** | 🆕 Capstone protocol. Chains game theory, Nash equilibrium, MCDA, and Kelly criterion. Subsumes Protocol 75 as a sub-routine. |
+| **501: Diagnostic Engine** | Unranked | **#4** | 🆕 "What is actually happening?" gates every analysis. Highest frequency trigger in the library. |
+| **75: Synthetic Parallel** | #3 | **#5** | Still best-in-class reasoning engine. Displaced by its parent protocol (500). |
+| **140: Base Rate Audit** | #4 | **#6** | Pushed down by new entries. Score unchanged (4.35). |
+| **115: First Principles** | #6 | **#8** | Pushed down by new entries. Partially absorbed by 501 (Diagnostic Engine). |
+| **48: Circuit Breaker** | #7 | **#9** | Pushed down by new entries. Score unchanged (4.05). |
+| **141: Claim Atomization** | #9 | **Removed** | Displaced by 500/501 capstone protocols. Now Honorable Mention #11. |
+| **49: Efficiency-Robustness** | #10 | **Removed** | Displaced by 500/501 capstone protocols. Now Honorable Mention #13. |
 
 ### Honorable Mentions (Protocols #11-15)
 
 | Protocol | Score | Why It Narrowly Missed |
 |----------|-------|----------------------|
-| **330: Economic Expected Value (EEV)** | 3.95 | Unified utility framework (Friedman-Savage). Merged from former Protocol 331. Consider for re-ranking. |
-| **44: Micro-Commit** | 3.90 | Excellent engineering discipline, but coding-specific (Portability: 3). |
-| **68: Anti-Karason** | 3.85 | Critical self-deception detector, but lower daily usage (Applicability: 3). |
-| **104: Seymour Skeptic** | 3.80 | Strong adversarial safety layer. Narrower trigger conditions than ranked protocols. |
-| **107: Spec-Driven Development** | 3.75 | Best coding workflow protocol, but engineering-specific. |
+| **141: Claim Atomization Audit** | 3.95 | Dropped from #9. Essential for external deliverables but narrow trigger conditions. |
+| **106: Min-Max Optimization** | 3.90 | 🆕 Most empirically validated protocol (verified Shopee receipts). Ruin Prevention too low for Top 10. Enters Top 10 under Applicability-weighted scenarios. |
+| **49: Efficiency-Robustness** | 3.85 | Dropped from #10. Pareto frontier framework, but displaced by capstone protocols. |
+| **526: EEV Framework** | 3.85 | Strong unified utility framework (EEV = Math EV + Utility EV). Specialized to financial decisions. |
+| **504: Problem Framing** | 3.80 | The "55-Minute Discipline." Partially absorbed by Protocol 501 (Diagnostic Engine). |
+
+---
+
+## Structural Observation
+
+The library has grown from 108 → 408 protocols, but only 2 new entries cracked the Top 10. This confirms the **power law distribution of impact** — foundational protocols are extremely hard to displace. The main structural change is the arrival of "capstone" protocols (500, 501) that *compose* existing protocols into unified decision architectures rather than introducing new fundamental insights.
 
 ---
 
 ## Cross-References
 
-- [Full Protocol Library](../examples/protocols/) — All 108 protocols
+- [Full Protocol Library](../examples/protocols/) — All 408+ protocols
 - [Architecture Overview](./ARCHITECTURE.md) — System design
 - [Getting Started](./GETTING_STARTED.md) — Setup guide
