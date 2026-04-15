@@ -1,10 +1,10 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 10 April 2026  
+> **Last Updated**: 15 April 2026  
 > **System Version**: v9.7.0
 
 > [!NOTE]
-> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 150+ example protocols, 540+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
+> This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 149+ example protocols, 130+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
 
 ---
 
@@ -59,7 +59,7 @@ Athena/
 │   │   ├── end.md                 # Session close + maintenance
 │   │   ├── think.md               # Deep reasoning (L4)
 │   │   └── ...
-│   ├── scripts/                   # 211 Python automation scripts
+│   ├── scripts/                   # 240+ Python automation scripts
 │   │   ├── boot.py                # Resilient boot shim + recovery shell
 │   │   ├── quicksave.py           # Auto-checkpoint every exchange
 │   │   ├── smart_search.py        # Semantic search (hybrid RAG)

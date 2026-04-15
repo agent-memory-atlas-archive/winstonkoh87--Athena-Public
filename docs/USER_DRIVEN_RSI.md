@@ -110,7 +110,7 @@ Over 1,200+ sessions, the entropy reduction approaches near-zero — the system 
 
 > *Anyone can clone the repo. No one can clone the sessions.*
 
-Athena's public repository ships with 148+ example protocols, 540+ reference scripts, and templates. This is the **chassis** — valuable, but generic. The actual competitive advantage is the **coupling data**: the accumulated record of how a specific human and a specific AI instance have co-evolved.
+Athena's public repository ships with 149+ example protocols, 130+ reference scripts, and templates. This is the **chassis** — valuable, but generic. The actual competitive advantage is the **coupling data**: the accumulated record of how a specific human and a specific AI instance have co-evolved.
 
 | Layer | What It Contains | Replicable? |
 |:------|:----------------|:------------|

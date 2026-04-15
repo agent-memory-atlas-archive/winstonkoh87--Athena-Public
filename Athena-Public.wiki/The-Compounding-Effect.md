@@ -69,7 +69,7 @@ A single file containing your verified operating truths — risk tolerance, stra
 | Session logs | ~1,400 structured entries |
 | Tag index | 8,079 semantic tags |
 | Vector embeddings | 78MB knowledge graph |
-| Protocols | 150+ decision frameworks |
+| Protocols | 149+ decision frameworks |
 | Average context per `/start` | 2K–20K tokens of YOUR history |
 
 Each session adds ~500–2,000 tokens of new coupling data. Over 1,500 sessions, that's **~1.5M tokens of personalized intelligence** that no other system on the planet has.

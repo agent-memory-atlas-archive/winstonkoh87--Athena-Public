@@ -9,7 +9,7 @@
 
 | Metric | Count |
 |--------|-------|
-| **Automation Scripts** | 540+ |
+| **Automation Scripts** | 240+ |
 | **Decision Protocols** | 144+ |
 | **Orchestration Workflows** | 59 |
 | **Case Studies** | 417+ |

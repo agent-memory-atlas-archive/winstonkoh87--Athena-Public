@@ -49,7 +49,7 @@ score = Σ ( weight * (0.5 + doc_score) * (1 / (k + rank)) )
 
 ---
 
-## 3. Protocol Library (150+)
+## 3. Protocol Library (149+)
 
 Athena's protocols are modular thinking patterns, organized by domain:
 

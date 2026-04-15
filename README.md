@@ -18,7 +18,7 @@ Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 10 April 2026*
+*Last updated: 15 April 2026*
 
 </div>
 
@@ -36,7 +36,7 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 
 - **🧠 Your Memory, Your Machine** — Files on your disk, not in OpenAI's cloud. Read them, edit them, git-version them.
 - **🔌 Switch Models Freely** — Claude today, Gemini tomorrow, GPT next week. The memory stays. The model is just whoever's on shift.
-- **📈 It Compounds** — Session 500 recalls patterns from session 5. Platform memory decays; Athena's doesn't. The moat isn't the code — it's your data. Anyone can fork Athena; nobody can fork your sessions. [→ The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect)
+- **📈 It Compounds** — Session 500 recalls patterns from session 5. Platform memory decays; Athena's doesn't. The moat isn't the code — it's your data. Anyone can fork Athena; nobody can fork your sessions. [→ The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect.md)
 - **⚡ 2K–20K Token Boot** — Scales to the task. Lightweight chat (~2K) → `/start` (~10K) → `/ultrastart` (~20K). 80–98% of your context window stays free, even after 10,000 sessions.
 - **🔬 Meta-Game Reasoning** — Generic LLMs optimise *within* the game you're playing. Athena asks whether you should be playing that game at all. [→ Meta-Game Thesis](docs/concepts/Meta_Game_Thesis.md)
 - **🛡️ Governed Autonomy** — 6 constitutional laws, 4 capability levels, bounded agency.
@@ -184,7 +184,7 @@ There's a difference between *remembering your name* and *thinking in your frame
 <details>
 <summary><strong>🧬 Why Thousands of Files?</strong></summary>
 
-Athena's workspace looks unusual — **450+ Markdown files** and **540+ Python scripts** out of the box, growing to thousands as your memory compounds. **This is deliberate.**
+Athena's workspace looks unusual — **450+ Markdown files** and **240+ Python scripts** out of the box, growing to thousands as your memory compounds. **This is deliberate.**
 
 AI agents don't read files top-to-bottom like humans. They **query** — by filename, semantic search, or tag lookup. Each small file is an **addressable memory node** the agent can retrieve surgically, without loading everything else.
 
@@ -350,7 +350,7 @@ flowchart LR
 | **50–200** | Pattern recognition — anticipates your style and blind spots |
 | **200+** | Deep sync — thinks in your frameworks before you state them |
 
-> **Why this happens**: The AI model doesn't improve — *your data* does. Each `/end` extracts decisions, patterns, and learnings into your memory bank. The next `/start` loads that accumulated intelligence. Same algorithm, better data, better output. [→ The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect)
+> **Why this happens**: The AI model doesn't improve — *your data* does. Each `/end` extracts decisions, patterns, and learnings into your memory bank. The next `/start` loads that accumulated intelligence. Same algorithm, better data, better output. [→ The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect.md)
 
 ### The Biological Analogy
 
@@ -391,7 +391,7 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
 | 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/507-cognitive-systems.md) |
 | 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
-| 📋 **150+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
+| 📋 **149+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
 | ⚡ **66+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
@@ -481,7 +481,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 | 🧠 [Manifesto](.framework/v8.2-stable/MANIFESTO.md) | 📈 [Changelog](docs/CHANGELOG.md) | 🔀 [Multi-Model Strategy](docs/MULTI_MODEL_STRATEGY.md) |
 | ✅ [Best Practices](docs/BEST_PRACTICES.md) | 🤖 [Your First Agent](docs/YOUR_FIRST_AGENT.md) | 🧩 [What Is an AI Agent?](docs/WHAT_IS_AN_AI_AGENT.md) |
 | 🎯 [Use Cases Deep Dive](docs/USE_CASES.md) | 📋 [Case Studies](docs/CASE_STUDIES.md) | 🛡️ [Safety](SAFETY.md) |
-| 📈 [The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect) | | |
+| 📈 [The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect.md) | | |
 
 ---
 
@@ -513,8 +513,8 @@ Athena-Public/
 ├── tools/                   # Declarative tool definitions (YAML)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
-│   ├── protocols/           # 150+ starter frameworks (15 categories)
-│   ├── scripts/             # 540+ reference scripts
+│   ├── protocols/           # 149+ starter frameworks (15 categories)
+│   ├── scripts/             # 130+ reference scripts
 │   └── templates/           # Starter templates (framework, memory bank)
 ├── docs/                    # Architecture, benchmarks, security, guides
 └── pyproject.toml           # Modern packaging

@@ -73,5 +73,5 @@ Or use [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) fo
 ## 📊 Community
 
 - **1M+** Reddit Views · **#1 All-Time** on r/ChatGPT · **#2 All-Time** on r/GeminiAI
-- **150+** Protocols · **540+** Scripts · **66+** Slash Workflows
+- **149+** Protocols · **240+** Scripts · **66+** Slash Workflows
 - **MIT Licensed** · [Main Repository](https://github.com/winstonkoh87/Athena-Public)
