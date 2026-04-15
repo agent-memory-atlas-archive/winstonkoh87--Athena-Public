@@ -112,7 +112,7 @@ def main():
 
     if args.test:
         print("Running smoke test...")
-        rag.insert("Project Athena is a Sovereign AI system designed by Winston Koh.")
+        rag.insert("Project Athena is a Sovereign AI system designed by [AUTHOR].")
         res = rag.query("Who designed Project Athena?", param=QueryParam(mode="local"))
         print(f"Test Result: {res}")
         return

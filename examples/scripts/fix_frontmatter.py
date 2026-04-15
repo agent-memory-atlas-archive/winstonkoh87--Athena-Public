@@ -5,7 +5,7 @@ import yaml
 from pathlib import Path
 
 # Configuration
-TARGET_DIR = "/Users/[AUTHOR]/Desktop/Project Athena/.context"
+TARGET_DIR = "../../.context"
 DRY_RUN = False
 
 
