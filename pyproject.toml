@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "athena-agent"
-version = "9.7.0"
+version = "9.8.0"
 description = "Athena Bionic OS — The Linux Distro for AI Agents. Model-agnostic, local-first, sovereign."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -68,8 +68,8 @@ dev = [
     "pytest",
     "black",
     "ruff",
-    "pipreqs",
-    "pydeps",
+    "mypy",
+    "pip-audit",
 ]
 
 [tool.hatch.build.targets.wheel]

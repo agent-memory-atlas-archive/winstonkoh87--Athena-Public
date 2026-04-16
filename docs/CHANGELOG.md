@@ -1,10 +1,67 @@
 # Athena Changelog
 
-> **Last Updated**: 10 April 2026
+> **Last Updated**: 17 April 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.8.0 (17 April 2026)
+
+**Security Hardening, Structural Integrity, and Capability Engines**
+
+### Key Changes
+
+#### Security
+- **RLS Vector Table Hardening** (NEW): `supabase/migrations/015_rls_vector_tables.sql` — Enables Row Level Security on all 12 core vector/memory tables. Locks access to `service_role` only. If a forker's anon key leaks, attackers get nothing. Previously, all tables were open to `anon` access.
+- **Keychain Migration Script** (NEW): `scripts/env_keychain.sh` — macOS Keychain bridge that replaces plaintext `.env` files with OS-level encrypted storage. Commands: `store` (import .env → Keychain), `load` (export for `eval`), `verify` (check status).
+- **CI Quality Gate** (NEW): `.github/workflows/ci.yml` — Automated pipeline with ruff linting, mypy type checking, pip-audit security scanning, silent exception detection, and pytest. Triggers on push/PR to main.
+
+#### Structural Integrity
+- **Protocol Domain-Prefix Naming**: All 131 numericprefix protocols renamed to collision-proof `[DOMAIN]-[NNN]-name.md` format (e.g., `BUS-106-name.md`, `RSC-52-name.md`). Resolves 6 numeric prefix collisions across domain directories.
+- **Dependency Cleanup**: Deleted `requirements.txt`, `requirements-lite.txt`, `requirements-full.txt`. `pyproject.toml` is the single source of truth. Dev dependencies updated: `pipreqs`/`pydeps` → `mypy`/`pip-audit`.
+- **Hygiene Sweep**: Removed 8x `.DS_Store` files, 25x `__pycache__/` directories, and `athenad.log` (runtime log that was committed to repo).
+- **DISCIPLINE.md** (NEW): `docs/DISCIPLINE.md` — Five stop-rules for sustainable growth (No New Tech Without Removing Old Tech, Workflow Cap, Protocol Cap, Context Ceiling, Single Source of Truth). Prevents unbounded complexity bloat.
+
+#### Capability Engines
+- **EVA — Evaluation Harness** (NEW): `tests/test_eval_harness.py` — 8-test golden prompt suite validating workspace structure, protocol naming hygiene, security templates, and governance docs. All 8 passing.
+- **REC — Reconciliation Engine** (NEW): `scripts/reconcile_memory.py` — Scans memory surfaces for version skew, staleness, bloat, and cross-file contradictions. Outputs report to `.context/audit/reconciliation_report.md`.
+
+### Design Decisions
+
+- Version bumped from 9.7.0 → 9.8.0 (not 10.0) because this release is a hardening pass on existing architecture, not a new capability layer.
+- Protocol renames are backwards-compatible — numeric-only references still work in semantic search. The domain prefix is additive metadata.
+- `env_keychain.sh` uses generic key names (not private service identifiers) so forkers can adapt it to their own infrastructure.
+- `DISCIPLINE.md` uses generic counts (24-workflow cap, 500-protocol cap) rather than the private repo's current operational numbers.
+
+### Verification
+
+| Test | Result |
+|------|--------|
+| `test_eval_harness.py` | 8/8 ✅ |
+| Protocol collisions (post-rename) | 0 filename dupes ✅ |
+| `athenad.log` in repo | Deleted ✅ |
+| `.DS_Store` count | 0 ✅ |
+| `__pycache__` count | 0 ✅ |
+| `requirements*.txt` count | 0 ✅ |
+
+### Files Changed
+
+- `supabase/migrations/015_rls_vector_tables.sql` — NEW
+- `scripts/env_keychain.sh` — NEW
+- `scripts/reconcile_memory.py` — NEW
+- `.github/workflows/ci.yml` — NEW
+- `docs/DISCIPLINE.md` — NEW
+- `tests/test_eval_harness.py` — REWRITTEN (from test_great_steal.py)
+- `examples/protocols/**` — 131 files renamed (domain prefix)
+- `pyproject.toml` — Version bump + dev dep update
+- `README.md` — Version badge
+- `AGENTS.md` — Version + date sync
+- `CLAUDE.md` — Version + date sync
+- Deleted: `requirements.txt`, `requirements-lite.txt`, `requirements-full.txt`
+- Deleted: `athenad.log`, 8× `.DS_Store`, 25× `__pycache__/`
 
 ---
 

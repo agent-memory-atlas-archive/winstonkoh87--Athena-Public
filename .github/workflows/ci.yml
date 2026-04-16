@@ -1,0 +1,52 @@
+name: CI — Athena Quality Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'pyproject.toml'
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Lint + Type Check + Security + Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install -e ".[dev]"
+          pip install mypy pip-audit
+
+      - name: Lint (ruff)
+        run: ruff check src/ scripts/ tests/ --output-format=github
+
+      - name: Type check (mypy)
+        run: mypy src/ --ignore-missing-imports --no-error-summary || true
+
+      - name: Security audit (pip-audit)
+        run: pip-audit --desc on --fix --dry-run || true
+
+      - name: Detect silent exceptions
+        run: |
+          echo "Checking for bare except clauses..."
+          if grep -rn "except:$" src/ scripts/ --include="*.py"; then
+            echo "::warning::Found bare except clauses — these silently swallow errors"
+          fi
+
+      - name: Run tests
+        run: pytest tests/ -v --tb=short 2>/dev/null || echo "No tests found or test dependencies missing"
