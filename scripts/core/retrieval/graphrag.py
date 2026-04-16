@@ -12,9 +12,10 @@ was enabled in config but returned empty results.
 """
 
 from __future__ import annotations
+
+import re
 from dataclasses import dataclass
 from pathlib import Path
-import re
 
 
 @dataclass
@@ -211,7 +212,7 @@ if __name__ == "__main__":
         )
 
         result = parser.search("protocol boot")
-        print(f"Search 'protocol boot':")
+        print("Search 'protocol boot':")
         print(f"  Entities: {len(result.entities)}")
         print(f"  Relationships: {len(result.relationships)}")
         print(f"  Context preview: {result.context[:200]}...")

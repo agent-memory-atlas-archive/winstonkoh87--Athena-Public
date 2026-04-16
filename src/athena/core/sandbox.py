@@ -16,12 +16,12 @@ Runs untrusted/experimental Python scripts in an isolated Docker container with:
   - Writable /tmp only via tmpfs
 """
 
-import subprocess
+import contextlib
 import logging
-import time
+import subprocess
 import tempfile
+import time
 from pathlib import Path
-from typing import Optional, Dict, Any
 
 from pydantic import BaseModel
 
@@ -152,10 +152,8 @@ class SandboxRunner:
 
         finally:
             # Clean up temp file
-            try:
+            with contextlib.suppress(OSError):
                 Path(script_path).unlink()
-            except OSError:
-                pass
 
 
 # Singleton runner

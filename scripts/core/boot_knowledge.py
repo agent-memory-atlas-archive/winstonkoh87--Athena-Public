@@ -8,7 +8,6 @@ context window during system boot.
 Target: Fixes the "Hydration Gap" where learnings exist but are ignored.
 """
 
-import sys
 import re
 from pathlib import Path
 

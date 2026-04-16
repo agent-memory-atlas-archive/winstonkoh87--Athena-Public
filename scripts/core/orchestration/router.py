@@ -13,10 +13,10 @@ This is the missing link between STATIC manifest config and DYNAMIC execution.
 """
 
 from __future__ import annotations
+
+import re
 from dataclasses import dataclass, field
 from enum import Enum
-from pathlib import Path
-import re
 
 # Try to load manifest config
 try:
@@ -280,6 +280,6 @@ if __name__ == "__main__":
         print(f"  Mode: {decision.mode.value}")
         print(f"  Signals: {[s.value for s in decision.signals]}")
         print(
-            f"  Sources: {list(k for k, v in decision.retrieval_sources.items() if v)}"
+            f"  Sources: {[k for k, v in decision.retrieval_sources.items() if v]}"
         )
         print(f"  Reason: {decision.reasoning}\n")

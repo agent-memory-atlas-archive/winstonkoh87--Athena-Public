@@ -7,10 +7,8 @@ Provides a high-level overview of system metrics, recent activity, and health.
 """
 
 import os
-import sys
-from pathlib import Path
-import glob
 from datetime import datetime
+from pathlib import Path
 
 # ANSI Colors
 BLUE = "\033[94m"
@@ -62,7 +60,7 @@ def get_system_health():
     if not state_file.exists():
         return "Unknown"
 
-    with open(state_file, "r") as f:
+    with open(state_file) as f:
         content = f.read()
         for line in content.split("\n"):
             if "Health**" in line or "Health:" in line:
@@ -118,7 +116,7 @@ def main():
     # Print columns (simple side-by-side)
     lines1 = col1.split("\n")
     lines2 = col2.split("\n")
-    for l1, l2 in zip(lines1, lines2):
+    for l1, l2 in zip(lines1, lines2, strict=False):
         print(f"{l1:<30} {l2}")
     print()
 

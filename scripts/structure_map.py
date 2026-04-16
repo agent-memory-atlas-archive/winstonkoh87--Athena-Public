@@ -19,14 +19,12 @@ Usage:
     python3 .agent/scripts/structure_map.py --json       # JSON report for CI
 """
 
-import os
-import sys
 import json
 import shutil
+import sys
 import time
-from pathlib import Path
 from datetime import datetime
-from typing import Optional
+from pathlib import Path
 
 # === Configuration ===
 ROOT_DIR = Path.cwd()
@@ -83,7 +81,7 @@ def get_size_and_count(path: Path) -> tuple[int, int]:
     return total_size, file_count
 
 
-def get_age_days(path: Path) -> Optional[float]:
+def get_age_days(path: Path) -> float | None:
     """Get file/dir age in days."""
     try:
         return (time.time() - path.stat().st_mtime) / (24 * 3600)

@@ -16,9 +16,7 @@ If sentence-transformers is not installed, falls back to simple keyword search.
 """
 
 import argparse
-import sys
 from pathlib import Path
-from datetime import datetime
 
 # Project structure
 SCRIPT_DIR = Path(__file__).parent
@@ -69,8 +67,8 @@ def semantic_search(query: str, limit: int = 10) -> list[dict]:
     Falls back to keyword search if library is unavailable.
     """
     try:
+        import torch  # noqa: F401 — runtime availability check
         from sentence_transformers import SentenceTransformer, util
-        import torch
     except ImportError:
         print("⚠️  sentence-transformers not installed. Falling back to keyword search.")
         print("   Install: pip install sentence-transformers\n")

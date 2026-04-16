@@ -5,16 +5,16 @@ quicksave.py — SDK Shim
 Saves a checkpoint to the current session log via athena.sessions.
 """
 
-import sys
 import argparse
+import sys
 from pathlib import Path
 
-from lib.shared_utils import setup_paths, log_violation
+from lib.shared_utils import log_violation, setup_paths
 
 setup_paths()
 
-from athena.sessions import append_checkpoint, log_to_decision_ledger
 from athena.core.governance import get_governance
+from athena.sessions import append_checkpoint, log_to_decision_ledger
 
 
 def main():
@@ -58,7 +58,7 @@ def main():
         if res.returncode != 0:
             print(f"\n{res.stdout}")  # Print the specific violation message
             print(
-                f"\033[91m❌ QUICKSAVE BLOCKED: Promise Violation (Protocol 416).\033[0m"
+                "\033[91m❌ QUICKSAVE BLOCKED: Promise Violation (Protocol 416).\033[0m"
             )
             print("You promised an action in the summary but no files were changed.")
             sys.exit(1)

@@ -11,10 +11,8 @@ Tests the three features extracted from OpenClaw:
 Usage: python3 -m pytest Athena-Public/tests/test_great_steal.py -v
 """
 
-import sys
 import os
-import tempfile
-import sqlite3
+import sys
 from pathlib import Path
 
 import pytest
@@ -39,9 +37,9 @@ class TestSessionsRPC:
     def setup_rpc(self, tmp_path):
         """Create a fresh RPC instance with a temp database."""
         from athena.core.sessions_rpc import (
-            SessionsRPC,
-            SessionRegister,
             SessionMessage,
+            SessionRegister,
+            SessionsRPC,
             SessionStatus,
         )
 
@@ -188,8 +186,9 @@ class TestEdgeNode:
 
     def test_location_ingest(self):
         """Location payload should create a .json file."""
-        from athena.core.edge_node import IngestPayload, process_ingest
         import json
+
+        from athena.core.edge_node import IngestPayload, process_ingest
 
         result = process_ingest(
             IngestPayload(
@@ -208,6 +207,7 @@ class TestEdgeNode:
     def test_camera_ingest(self):
         """Camera payload (base64) should create a .jpg file."""
         import base64
+
         from athena.core.edge_node import IngestPayload, process_ingest
 
         fake_image = b"\xff\xd8\xff\xe0" + b"\x00" * 100  # Fake JPEG header

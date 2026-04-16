@@ -17,11 +17,11 @@ Key Insight: ToT is a special case of GoT (tree ⊂ DAG).
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import Callable, Any
-from enum import Enum
-from collections import defaultdict
+
 import uuid
+from collections.abc import Callable
+from dataclasses import dataclass, field
+from enum import Enum
 
 
 class ThoughtState(Enum):

@@ -1,6 +1,6 @@
 from typing import Any
 
-from athena.memory.vectors import get_embedding, get_client
+from athena.memory.vectors import get_client, get_embedding
 
 
 class HealthCheck:

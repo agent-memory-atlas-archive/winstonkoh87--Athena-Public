@@ -15,7 +15,7 @@ Usage:
 """
 
 import re
-from collections import Counter, defaultdict
+from collections import defaultdict
 from datetime import datetime
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -115,7 +115,7 @@ def find_similar_questions(all_questions: dict[str, list[str]]) -> list[dict]:
                 used.add(j)
 
         # Only flag if question appears across MIN_REPEAT_COUNT+ sessions
-        unique_sessions = set(s for _, s in cluster)
+        unique_sessions = {s for _, s in cluster}
         if len(unique_sessions) >= MIN_REPEAT_COUNT:
             clusters.append(
                 {

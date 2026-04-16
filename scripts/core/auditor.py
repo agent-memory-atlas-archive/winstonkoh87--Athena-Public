@@ -10,11 +10,10 @@ Purpose: Disagreement detection, not truth oracle.
 
 import json
 import os
-from datetime import datetime
-from pathlib import Path
-from typing import Dict, Any, Optional, List, Tuple
 from dataclasses import dataclass
+from datetime import datetime
 from enum import Enum
+from pathlib import Path
 
 # Find project root
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -41,7 +40,7 @@ class AuditRequest:
     trigger: AuditTrigger
     context: str
     timestamp: str
-    session_id: Optional[str] = None
+    session_id: str | None = None
 
 
 @dataclass
@@ -51,10 +50,10 @@ class AuditResponse:
     model_name: str
     verdict: str  # 'approve', 'reject', 'concern'
     reasoning: str
-    cited_claims: List[str]
-    risks_identified: List[str]
-    contradictions: List[str]
-    proposed_tests: List[str]
+    cited_claims: list[str]
+    risks_identified: list[str]
+    contradictions: list[str]
+    proposed_tests: list[str]
     confidence: float
 
 
@@ -63,10 +62,10 @@ class AuditResult:
     """Aggregated audit result."""
 
     request: AuditRequest
-    responses: List[AuditResponse]
+    responses: list[AuditResponse]
     consensus: bool  # True if all auditors agree
     recommendation: str  # 'proceed', 'review', 'reject'
-    disagreement_points: List[str]
+    disagreement_points: list[str]
 
 
 class TrilateralAuditor:
@@ -135,8 +134,8 @@ Be adversarial. Find the flaws. Do not rubber-stamp.
         content: str,
         trigger: AuditTrigger,
         context: str = "",
-        session_id: Optional[str] = None,
-    ) -> Optional[AuditResult]:
+        session_id: str | None = None,
+    ) -> AuditResult | None:
         """
         Perform cross-model audit.
 
@@ -173,7 +172,7 @@ Be adversarial. Find the flaws. Do not rubber-stamp.
 
     def _call_auditor(
         self, auditor_name: str, request: AuditRequest
-    ) -> Optional[AuditResponse]:
+    ) -> AuditResponse | None:
         """
         Call an auditor model.
 
@@ -252,7 +251,7 @@ Be adversarial. Find the flaws. Do not rubber-stamp.
         )
 
     def _aggregate_responses(
-        self, request: AuditRequest, responses: List[AuditResponse]
+        self, request: AuditRequest, responses: list[AuditResponse]
     ) -> AuditResult:
         """Aggregate responses from multiple auditors."""
         if not responses:
@@ -320,13 +319,13 @@ Be adversarial. Find the flaws. Do not rubber-stamp.
 
 
 # Convenience functions
-def audit_high_stakes(content: str, context: str = "") -> Optional[AuditResult]:
+def audit_high_stakes(content: str, context: str = "") -> AuditResult | None:
     """Quick audit for high-stakes content."""
     auditor = TrilateralAuditor()
     return auditor.audit(content, AuditTrigger.HIGH_STAKES, context)
 
 
-def audit_public_output(content: str, context: str = "") -> Optional[AuditResult]:
+def audit_public_output(content: str, context: str = "") -> AuditResult | None:
     """Quick audit for public-facing output."""
     auditor = TrilateralAuditor()
     return auditor.audit(content, AuditTrigger.PUBLIC_FACING, context)

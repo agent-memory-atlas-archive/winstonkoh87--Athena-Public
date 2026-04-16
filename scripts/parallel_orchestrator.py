@@ -13,22 +13,21 @@ Changes in v4.0:
 - Auto-creates output directory
 """
 
+import argparse
 import asyncio
+import json
 import os
 import sys
-import json
-import argparse
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 from datetime import datetime
+from pathlib import Path
 
 # Add src to path
 src_path = (Path(__file__).parent.parent.parent / "src").resolve()
 sys.path.insert(0, str(src_path))
 
-from dotenv import load_dotenv
 import google.generativeai as genai
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -56,7 +55,7 @@ class ConvergenceResult:
     score: int
     passed: bool
     critique: str
-    suggestions: List[str]
+    suggestions: list[str]
 
 
 # --- User Domain Injection (CUSTOMIZE THIS) ---
@@ -305,7 +304,7 @@ class ParallelOrchestrator:
 
     async def dispatch_parallel_tracks(
         self, query: str, context: str = ""
-    ) -> Dict[str, TrackResult]:
+    ) -> dict[str, TrackResult]:
         """Dispatch all 4 tracks in parallel."""
         self._log("\n🚀 Dispatching parallel tracks...")
 
@@ -321,7 +320,7 @@ class ParallelOrchestrator:
         return {r.track_name: r for r in results}
 
     async def synthesize_tracks(
-        self, query: str, track_results: Dict[str, TrackResult]
+        self, query: str, track_results: dict[str, TrackResult]
     ) -> str:
         """Synthesize all track outputs into unified analysis."""
         self._log("\n🔗 Synthesizing tracks...")
@@ -407,14 +406,14 @@ class ParallelOrchestrator:
                 suggestions=[],
             )
 
-    async def run(self, query: str, context: str = "") -> Tuple[str, int, List[dict]]:
+    async def run(self, query: str, context: str = "") -> tuple[str, int, list[dict]]:
         """
         Main entry point. Runs orchestrator with convergence loop.
 
         Returns: (final_synthesis, total_iterations, iteration_history)
         """
         self._log(f"\n{'=' * 60}")
-        self._log(f"🧠 PARALLEL ORCHESTRATOR v4.0")
+        self._log("🧠 PARALLEL ORCHESTRATOR v4.0")
         self._log(f"{'=' * 60}")
         self._log(f"Query: {query[:100]}...")
 
@@ -459,7 +458,7 @@ Suggestions for improvement:
 Previous synthesis (to improve upon):
 {synthesis[:2000]}...
 """
-            self._log(f"  ↩️ Iterating with feedback...")
+            self._log("  ↩️ Iterating with feedback...")
 
         # Max iterations reached
         self._log(

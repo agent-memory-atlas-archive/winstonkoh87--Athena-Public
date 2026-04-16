@@ -9,10 +9,11 @@ Based on: "Reciprocal Rank Fusion outperforms Condorcet and individual
           Rank Learning Methods" (Cormack et al., 2009)
 """
 
-from typing import List, Dict, Any, Optional, Tuple
+import contextlib
+import json
 from dataclasses import dataclass
 from pathlib import Path
-import json
+from typing import Any, Optional
 
 # Try to import config loader
 try:
@@ -29,8 +30,8 @@ class RetrievalResult:
     content: str
     source: str  # 'vector', 'canonical', 'tags', 'filenames', 'graph_rag'
     score: float
-    metadata: Dict[str, Any]
-    file_path: Optional[str] = None
+    metadata: dict[str, Any]
+    file_path: str | None = None
 
 
 class RRFPipeline:
@@ -44,10 +45,8 @@ class RRFPipeline:
     def __init__(self, config: Optional["RetrievalConfig"] = None):
         """Initialize with optional config from manifest."""
         if config is None and ManifestLoader is not None:
-            try:
+            with contextlib.suppress(Exception):
                 config = ManifestLoader.get_retrieval_config()
-            except Exception:
-                pass
 
         # Defaults if no config
         self.rrf_k = config.rrf_k if config else 60
@@ -96,8 +95,8 @@ class RRFPipeline:
         return weight * (1.0 / (self.rrf_k + rank))
 
     def fuse(
-        self, source_results: Dict[str, List[RetrievalResult]]
-    ) -> List[RetrievalResult]:
+        self, source_results: dict[str, list[RetrievalResult]]
+    ) -> list[RetrievalResult]:
         """
         Fuse results from multiple sources using RRF.
 
@@ -108,7 +107,7 @@ class RRFPipeline:
             Fused and re-ranked results
         """
         # Document ID -> (total_score, best_result)
-        doc_scores: Dict[str, Tuple[float, RetrievalResult]] = {}
+        doc_scores: dict[str, tuple[float, RetrievalResult]] = {}
 
         for source_name, results in source_results.items():
             if not self.enabled_sources.get(source_name, False):
@@ -145,8 +144,8 @@ class RRFPipeline:
         return fused_results
 
     def rerank(
-        self, query: str, results: List[RetrievalResult]
-    ) -> List[RetrievalResult]:
+        self, query: str, results: list[RetrievalResult]
+    ) -> list[RetrievalResult]:
         """
         Rerank results using a cross-encoder (placeholder for integration).
 
@@ -161,6 +160,7 @@ class RRFPipeline:
             return results[: self.post_rerank_top_k]
 
         import os
+
         import google.generativeai as genai
 
         has_api = os.getenv("GOOGLE_API_KEY") is not None
@@ -209,8 +209,8 @@ class RRFPipeline:
             return results[: self.post_rerank_top_k]
 
     def retrieve(
-        self, query: str, sources: Optional[Dict[str, List[RetrievalResult]]] = None
-    ) -> List[RetrievalResult]:
+        self, query: str, sources: dict[str, list[RetrievalResult]] | None = None
+    ) -> list[RetrievalResult]:
         """
         Full retrieval pipeline: gather sources -> fuse -> rerank.
 
@@ -230,7 +230,7 @@ class RRFPipeline:
 
         return final
 
-    def _gather_sources(self, query: str) -> Dict[str, List[RetrievalResult]]:
+    def _gather_sources(self, query: str) -> dict[str, list[RetrievalResult]]:
         """
         Gather results from all enabled sources.
         Override this in subclasses to add real retrieval logic.
@@ -262,7 +262,7 @@ class AthenaRetriever(RRFPipeline):
             self.project_root / ".context" / "TAG_INDEX_N-Z.md",
         ]
 
-    def _gather_sources(self, query: str) -> Dict[str, List[RetrievalResult]]:
+    def _gather_sources(self, query: str) -> dict[str, list[RetrievalResult]]:
         """Gather from Athena's actual sources."""
         results = {}
 
@@ -283,7 +283,7 @@ class AthenaRetriever(RRFPipeline):
 
         return results
 
-    def _search_vector(self, query: str) -> List[RetrievalResult]:
+    def _search_vector(self, query: str) -> list[RetrievalResult]:
         """Search vector store (Supabase pgvector)."""
         try:
             from athena.tools.search import search_memory
@@ -302,7 +302,7 @@ class AthenaRetriever(RRFPipeline):
         except Exception:
             return []
 
-    def _search_tags(self, query: str) -> List[RetrievalResult]:
+    def _search_tags(self, query: str) -> list[RetrievalResult]:
         """Search TAG_INDEX shards for matching tags."""
         results = []
         query_lower = query.lower()
@@ -333,7 +333,7 @@ class AthenaRetriever(RRFPipeline):
 
         return results[: self.per_source_top_k]
 
-    def _search_filenames(self, query: str) -> List[RetrievalResult]:
+    def _search_filenames(self, query: str) -> list[RetrievalResult]:
         """Search for files matching query in name."""
         results = []
         query_lower = query.lower().replace(" ", "_")
@@ -361,12 +361,12 @@ class AthenaRetriever(RRFPipeline):
 
         return results[: self.per_source_top_k]
 
-    def _search_canonical(self, query: str) -> List[RetrievalResult]:
+    def _search_canonical(self, query: str) -> list[RetrievalResult]:
         """Search canonical markdown files by content."""
         # This is expensive - in production, use pre-indexed content
         return []
 
-    def _search_graph(self, query: str) -> List[RetrievalResult]:
+    def _search_graph(self, query: str) -> list[RetrievalResult]:
         """Search knowledge graph for related entities and relationships."""
         try:
             from athena.core.retrieval.graphrag import search_graph
@@ -394,7 +394,7 @@ class AthenaRetriever(RRFPipeline):
 
 
 # Convenience function
-def retrieve(query: str, top_k: int = 10) -> List[RetrievalResult]:
+def retrieve(query: str, top_k: int = 10) -> list[RetrievalResult]:
     """Quick access to Athena retrieval."""
     retriever = AthenaRetriever()
     results = retriever.retrieve(query)

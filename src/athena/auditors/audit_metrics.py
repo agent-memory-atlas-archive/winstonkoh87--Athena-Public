@@ -1,12 +1,12 @@
-import os
 import glob
+import os
 
 
 def count_files(base_path, pattern, ignore_dirs=None):
     if ignore_dirs is None:
         ignore_dirs = []
     count = 0
-    for root, dirs, files in os.walk(base_path):
+    for _root, dirs, files in os.walk(base_path):
         # Modify dirs in-place to skip ignored
         dirs[:] = [d for d in dirs if d not in ignore_dirs and not d.startswith(".")]
         for file in files:

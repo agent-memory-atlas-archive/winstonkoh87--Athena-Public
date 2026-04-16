@@ -11,8 +11,8 @@ Usage: python3 .agent/scripts/index_workspace.py
 
 import os
 import re
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 # Setup Paths
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -41,7 +41,6 @@ def generate_tag_index():
         "__pycache__",
         ".pytest_cache",
         ".shared",
-        ".athena",
         ". Clawdhub",
     }
 

@@ -9,11 +9,11 @@ Writes lessons, anti-patterns, and checklist items to persistent storage.
 """
 
 import json
+from dataclasses import asdict, dataclass
 from datetime import datetime
-from pathlib import Path
-from typing import Dict, Any, Optional, List, Literal
-from dataclasses import dataclass, asdict
 from enum import Enum
+from pathlib import Path
+from typing import Any
 
 # Find project root
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -38,14 +38,14 @@ class Reflection:
         str  # What triggered the reflection (tool_failure, plan_failure, session_end)
     )
     timestamp: str
-    session_id: Optional[str] = None
-    tags: List[str] = None
+    session_id: str | None = None
+    tags: list[str] = None
 
     def __post_init__(self):
         if self.tags is None:
             self.tags = []
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         d = asdict(self)
         d["type"] = self.type.value
         return d
@@ -54,9 +54,9 @@ class Reflection:
         """Format as markdown for human readability."""
         return f"""## {self.title}
 
-**Type**: {self.type.value}  
-**Trigger**: {self.trigger}  
-**Timestamp**: {self.timestamp}  
+**Type**: {self.type.value}
+**Trigger**: {self.trigger}
+**Timestamp**: {self.timestamp}
 **Tags**: {", ".join(self.tags) if self.tags else "none"}
 
 ### Context
@@ -75,7 +75,7 @@ class ReflectionStore:
     Supports both JSON (machine) and Markdown (human) formats.
     """
 
-    def __init__(self, store_dir: Optional[Path] = None):
+    def __init__(self, store_dir: Path | None = None):
         self.store_dir = store_dir or REFLECTIONS_DIR
         self.store_dir.mkdir(parents=True, exist_ok=True)
         self.json_path = self.store_dir / "reflections.jsonl"
@@ -91,13 +91,13 @@ class ReflectionStore:
         with open(self.md_path, "a") as f:
             f.write(reflection.to_markdown())
 
-    def get_all(self) -> List[Reflection]:
+    def get_all(self) -> list[Reflection]:
         """Load all reflections from store."""
         if not self.json_path.exists():
             return []
 
         reflections = []
-        with open(self.json_path, "r") as f:
+        with open(self.json_path) as f:
             for line in f:
                 if line.strip():
                     data = json.loads(line)
@@ -107,8 +107,8 @@ class ReflectionStore:
         return reflections
 
     def search(
-        self, query: str, type_filter: Optional[ReflectionType] = None
-    ) -> List[Reflection]:
+        self, query: str, type_filter: ReflectionType | None = None
+    ) -> list[Reflection]:
         """Search reflections by content."""
         query_lower = query.lower()
         results = []
@@ -127,7 +127,7 @@ class ReflectionStore:
 
         return results
 
-    def get_recent(self, n: int = 5) -> List[Reflection]:
+    def get_recent(self, n: int = 5) -> list[Reflection]:
         """Get the N most recent reflections."""
         all_refs = self.get_all()
         return all_refs[-n:]
@@ -151,7 +151,7 @@ class ReflectionExtractor:
         tool_name: str,
         error_message: str,
         context: str,
-        session_id: Optional[str] = None,
+        session_id: str | None = None,
     ) -> Reflection:
         """
         Extract lesson from a tool failure.
@@ -184,7 +184,7 @@ class ReflectionExtractor:
         plan_description: str,
         failure_point: str,
         root_cause: str,
-        session_id: Optional[str] = None,
+        session_id: str | None = None,
     ) -> Reflection:
         """Extract lesson from a plan failure."""
         reflection = Reflection(
@@ -204,9 +204,9 @@ class ReflectionExtractor:
     def on_session_end(
         self,
         session_summary: str,
-        key_decisions: List[str],
-        session_id: Optional[str] = None,
-    ) -> List[Reflection]:
+        key_decisions: list[str],
+        session_id: str | None = None,
+    ) -> list[Reflection]:
         """Extract checklist items from session end."""
         reflections = []
 
@@ -226,7 +226,7 @@ class ReflectionExtractor:
 
         return reflections
 
-    def recall_relevant(self, context: str, limit: int = 3) -> List[Reflection]:
+    def recall_relevant(self, context: str, limit: int = 3) -> list[Reflection]:
         """Recall reflections relevant to current context."""
         # Extract keywords from context
         keywords = [w for w in context.lower().split() if len(w) > 4]
@@ -255,7 +255,7 @@ def record_failure(tool_name: str, error: str, context: str) -> Reflection:
     return extractor.on_tool_failure(tool_name, error, context)
 
 
-def recall_lessons(context: str) -> List[Reflection]:
+def recall_lessons(context: str) -> list[Reflection]:
     """Quick access to recall relevant lessons."""
     extractor = ReflectionExtractor()
     return extractor.recall_relevant(context)

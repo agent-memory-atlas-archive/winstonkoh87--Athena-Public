@@ -12,10 +12,11 @@ loaded but never enforced.
 """
 
 from __future__ import annotations
+
+import time
+from collections.abc import Callable
 from dataclasses import dataclass
 from functools import wraps
-from typing import Callable
-import time
 
 # Try to load manifest config
 try:

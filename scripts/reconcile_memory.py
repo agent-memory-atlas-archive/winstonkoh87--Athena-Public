@@ -19,11 +19,11 @@ Usage:
 Output: .context/audit/reconciliation_report.md
 """
 
-import re
 import os
-from pathlib import Path
-from datetime import datetime, timedelta
+import re
 from collections import defaultdict
+from datetime import datetime
+from pathlib import Path
 
 
 def find_project_root() -> Path:
@@ -126,7 +126,7 @@ def find_contradictions(all_facts: dict) -> list[dict]:
     issues = []
     # Group by count context (rough matching)
     count_facts = defaultdict(list)
-    for source, facts in all_facts.items():
+    for _source, facts in all_facts.items():
         for f in facts:
             if f["type"] == "count":
                 # Use surrounding context as a rough key
@@ -134,7 +134,7 @@ def find_contradictions(all_facts: dict) -> list[dict]:
 
     # Check version consistency
     versions = defaultdict(list)
-    for source, facts in all_facts.items():
+    for _source, facts in all_facts.items():
         for f in facts:
             if f["type"] == "version":
                 versions[f["value"]].append(f)

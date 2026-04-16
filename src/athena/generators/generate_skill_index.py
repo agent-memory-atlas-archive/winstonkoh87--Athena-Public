@@ -5,7 +5,6 @@ Tree Mode v2.0 - Implements Hierarchical Skill Tree.
 """
 
 import os
-import sys
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).parent.parent.parent.parent
@@ -74,13 +73,13 @@ def main():
     lines.append("")
 
     # Detailed walk logic
-    for root, dirs, files in os.walk(protocols_dir):
+    for root, _dirs, files in os.walk(protocols_dir):
         files = [f for f in sorted(files) if f.endswith(".md")]
         if not files:
             continue
 
         subdir = Path(root).relative_to(SKILLS_DIR)
-        level = len(subdir.parts)
+        len(subdir.parts)
 
         dirname = " > ".join([p.replace("-", " ").title() for p in subdir.parts])
         lines.append(f"### {dirname}")

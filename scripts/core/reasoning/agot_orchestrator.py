@@ -21,8 +21,8 @@ Key design decisions:
 
 from __future__ import annotations
 
-import asyncio
 import argparse
+import asyncio
 import json
 import os
 import re
@@ -37,8 +37,8 @@ from pathlib import Path
 src_path = (Path(__file__).parent.parent.parent.parent / "src").resolve()
 sys.path.insert(0, str(src_path))
 
-from dotenv import load_dotenv  # noqa: E402
 import google.generativeai as genai  # noqa: E402
+from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv()
 

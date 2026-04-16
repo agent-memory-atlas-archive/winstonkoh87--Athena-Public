@@ -5,8 +5,8 @@ context_monitor.py — Session Hygiene
 Monitors session entropy and triggers compression protocols.
 """
 
-import sys
 import argparse
+import sys
 from pathlib import Path
 
 # Add project root to path

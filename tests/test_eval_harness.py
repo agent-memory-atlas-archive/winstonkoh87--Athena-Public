@@ -15,8 +15,9 @@ Ported from the private repo audit (Apr 2026).
 """
 
 import re
-import pytest
 from pathlib import Path
+
+import pytest
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 

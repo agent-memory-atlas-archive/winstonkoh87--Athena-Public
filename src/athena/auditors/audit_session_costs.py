@@ -6,9 +6,8 @@ Assumption: All previous sessions used the "Monolith" architecture (~30k boot) u
 However, for fair comparison to the NEW architecture, we will display what they WOULD have cost vs what they DID cost.
 """
 
-import os
 import glob
-import re
+import os
 
 # Configuration
 PROJECT_ROOT = os.path.dirname(
@@ -65,10 +64,10 @@ def analyze_sessions():
     total_sessions = 0
 
     for log_path in files:
-        filename = os.path.basename(log_path)
+        os.path.basename(log_path)
 
         # Read content
-        with open(log_path, "r", encoding="utf-8") as f:
+        with open(log_path, encoding="utf-8") as f:
             content = f.read()
 
         # Estimate session tokens
@@ -102,8 +101,7 @@ def analyze_sessions():
         total_sessions += 1
 
         # Color coding
-        savings = cost_monolith - cost_adaptive
-        savings_color = GREEN if savings > 0 else RED
+        cost_monolith - cost_adaptive
 
         # print(f"{filename:<30} | {session_tokens:<15,} | ${cost_monolith:<19.2f} | ${cost_adaptive:<19.2f}")
 
