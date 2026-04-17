@@ -12,7 +12,7 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.8.0-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.8.1-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
@@ -491,7 +491,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) / GPT-5.4 (High) |
-| **SDK** | `athena` Python package (v9.7.0) |
+| **SDK** | `athena` Python package (v9.8.1) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -525,6 +525,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.8.1** (Apr 17 2026): Mechanical Enforcement — `DISCIPLINE.md` v2 (human rules → pre-commit gates), reference `pre-commit` hook (`scripts/hooks/pre-commit`), Version Lint Gate (blocks version drift), Protocol Cap Gate (blocks accumulation past threshold), Workflow Cap Gate (warns/blocks workflow creep), Override logging to `decisionLog.md`
 - **v9.7.0** (Apr 10 2026): Biological Analogy v2 (6-tier → 7-tier: Atom/Molecule/Cell/Tissue/Organ/System/Organism), GTO Metrics Sync (protocols 397→408, skills 24→28, case studies 410→440, sessions 1,200→1,500+, workflows 53→66+), date alignment across 8 files
 - **v9.6.6** (Apr 05 2026): GTO Metrics Sync & Deep Audit — filesystem-verified category-level counts, workflow count 63→66, protocol index session count 1,100→1,500+, version sync across 7 files
 - **v9.6.5** (Mar 31 2026): Claude Code Architectural Integration — context-compactor v2.0 (9-section summary + `<analysis>` scratchpad), coordinator synthesis discipline (anti-delegation rule for agent swarms), Protocol 530 (conditional skill activation — ~40-60% token savings), `/end` validated patterns capture (`[V]` markers), memory drift trust-gate

@@ -8,6 +8,51 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.8.1 (17 April 2026)
+
+**Mechanical Enforcement — From Aspirational Rules to Pre-Commit Gates**
+
+### Key Changes
+
+#### Enforcement Architecture
+- **Pre-Commit Hook** (NEW): `scripts/hooks/pre-commit` — Reference implementation of mechanical enforcement for DISCIPLINE.md rules. Three gates:
+  - **Version Lint Gate**: Blocks commits if `README.md` or `AGENTS.md` contain version strings that don't match `pyproject.toml`. Prevents the most common failure mode (version drift across surfaces).
+  - **Protocol Cap Gate**: Blocks commits if protocol count exceeds the cap. To add a new protocol, the commit message must contain `RETIRES: <protocol_name>`, forcing one-in-one-out discipline.
+  - **Workflow Cap Gate**: Warns if workflow count exceeds the target threshold. Hard-blocks above a ceiling.
+- **Override Protocol**: Include `DISCIPLINE_OVERRIDE` in commit message to bypass all gates. Overrides are automatically logged to `decisionLog.md` for 30-day review — accountability without rigidity.
+
+#### Documentation
+- **DISCIPLINE.md v2** (REWRITTEN): `docs/DISCIPLINE.md` — The "human discipline first" hypothesis was tested in the private workspace and failed: all 5 rules were simultaneously violated within 30 days. Updated to document the mechanical enforcement model, override protocol, and the Meta-Rule (no version bump without updating every public surface in the same commit).
+
+### Design Decisions
+
+- The pre-commit hook is provided as a *reference implementation* in `scripts/hooks/`, not auto-installed. Forkers install it manually (`cp scripts/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit`) — this preserves the learning moment of understanding *what* it enforces.
+- Override protocol requires `DISCIPLINE_OVERRIDE` in the commit message (not a flag, not a config toggle) — this makes overrides visible in `git log --grep` and creates a searchable audit trail.
+- The hook uses `|| true` on bash arithmetic increments to prevent `set -e` from killing the script when `((WARNINGS++))` evaluates to 0→1 (a known bash gotcha).
+
+### Verification
+
+| Test | Result |
+|------|--------|
+| Version lint (match) | ✅ Pass |
+| Version lint (mismatch) | ✅ Blocks |
+| Protocol cap (at limit) | ✅ Pass |
+| Protocol cap (over limit, no RETIRES) | ✅ Blocks |
+| Workflow cap (at target) | ✅ Warns |
+| Override bypass | ✅ Logs + passes |
+| Exit codes (warnings=0, errors=1) | ✅ Correct |
+
+### Files Changed
+
+- `scripts/hooks/pre-commit` — NEW (reference pre-commit hook)
+- `docs/DISCIPLINE.md` — REWRITTEN (enforcement model v2)
+- `README.md` — Version badge (v9.8.0 → v9.8.1), SDK version, changelog entry
+- `AGENTS.md` — Version sync
+- `pyproject.toml` — Version bump (9.8.0 → 9.8.1)
+- `docs/CHANGELOG.md` — This entry
+
+---
+
 ## v9.8.0 (17 April 2026)
 
 **Security Hardening, Structural Integrity, and Capability Engines**
