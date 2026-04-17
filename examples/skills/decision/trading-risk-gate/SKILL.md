@@ -4,6 +4,7 @@ description: "Unified pre-trade safety gate: Ruin check (Law #1), ergodicity aud
 argument-hint: "ruin check | should I take this trade | is this safe | compare WR vs RR"
 auto-invoke: true
 model: default
+context_trigger: "ruin, is this safe, should I risk, veto, ergodic, sequence risk, WR vs RR, position size, Law #1, bankruptcy"
 ---
 
 # Trading Risk Gate (Pre-Trade Safety)

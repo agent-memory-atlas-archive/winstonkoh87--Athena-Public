@@ -7,6 +7,7 @@ allowed-tools:
   - Read
 auto-invoke: false
 model: default
+context_trigger: "marketing campaign, launch, full marketing, 16-agent, marketing team, content calendar, multi-channel"
 ---
 
 # Bionic Marketing Swarm

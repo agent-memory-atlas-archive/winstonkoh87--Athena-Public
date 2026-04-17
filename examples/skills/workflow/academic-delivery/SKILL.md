@@ -13,6 +13,7 @@ triggers:
   - TMA
   - deliverable
   - submission
+context_trigger: "*.docx, *.pdf, essay, report, assignment, capstone, coursework, academic, university, grade, APA, Harvard, MLA, literature review, methodology, research paper"
 ---
 
 # Academic Delivery Skill

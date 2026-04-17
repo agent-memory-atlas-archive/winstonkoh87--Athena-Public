@@ -7,6 +7,7 @@ allowed-tools:
   - Read
 auto-invoke: false
 model: default
+context_trigger: "decision, should I, trade-off, regret, post-mortem, what went wrong, calibration, prediction, hindsight, journal"
 ---
 
 # Decision Engine (Journal + Post-Mortem)

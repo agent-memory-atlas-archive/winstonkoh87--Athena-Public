@@ -8,6 +8,7 @@ allowed-tools:
   - Write
 auto-invoke: false
 model: default
+context_trigger: "atomic, execution plan, XML plan, GSD, isolated state, step-by-step execution, task decomposition"
 ---
 
 # Atomic Execution Engine

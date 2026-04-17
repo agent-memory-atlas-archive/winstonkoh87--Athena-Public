@@ -4,6 +4,7 @@ description: Mandatory pre-flight checklist for high-variance social contracts. 
 argument-hint: "safety check | meeting someone | pre-flight | street level | check this email | how to respond to | they are being condescending"
 auto-invoke: true
 model: default
+context_trigger: "high-stakes meeting, social contract, partnership, collaboration, should I trust, pre-flight, vibe check, Pryce Test, exit strategy, blast radius"
 ---
 
 # The Consigliere Protocol (Meta-Cognition Layer)

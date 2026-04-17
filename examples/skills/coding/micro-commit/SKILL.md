@@ -7,6 +7,7 @@ allowed-tools:
   - Read
 auto-invoke: false
 model: default
+context_trigger: "commit, git, atomic commit, large diff, split commit, commit hygiene, PR too big"
 ---
 
 # Micro-Commit Architect

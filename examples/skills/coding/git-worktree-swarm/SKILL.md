@@ -6,6 +6,7 @@ allowed-tools:
   - Bash
 auto-invoke: false
 model: default
+context_trigger: "worktree, parallel agents, swarm, multi-agent, concurrent development, wave execution"
 ---
 
 # Git Worktree Swarm Orchestrator

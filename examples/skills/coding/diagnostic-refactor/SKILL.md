@@ -5,6 +5,7 @@ created: 2026-02-04
 source: r/vibecoding community pattern
 auto-invoke: false
 model: default
+context_trigger: "refactor, code smell, tech debt, cleanup, restructure, modularize, extract function, DRY"
 ---
 
 # 🩺 Diagnostic-First Refactoring (The "Surgeon's Scan")

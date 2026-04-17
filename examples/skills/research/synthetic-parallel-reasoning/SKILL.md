@@ -7,6 +7,7 @@ allowed-tools:
   - Read
 auto-invoke: false
 model: default
+context_trigger: "difficult problem, complex analysis, ultrathink, parallel reasoning, Einstein protocol, multi-perspective, deep evaluation"
 ---
 
 # Parallel Synthetic Architect (Protocol 75 Engine v4.0)

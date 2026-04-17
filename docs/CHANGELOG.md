@@ -8,6 +8,44 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.8.2 (17 April 2026)
+
+**Progressive Disclosure, Telemetry Foundation & Auto-Gen Indexes**
+
+### Key Changes
+
+#### Progressive Disclosure (Protocol 530 — Full Rollout)
+- **`context_trigger` Migration**: All 26 example skills now have `context_trigger` frontmatter. Skills are dormant by default and activate only when the user's query matches trigger phrases (e.g., `circuit-breaker` activates on "losing streak", "tilt", "revenge trade"). Estimated ~40-60% token savings on skill metadata injection.
+
+#### Telemetry Foundation
+- **`log_invocation.py`** (NEW): `scripts/log_invocation.py` — Structured JSONL invocation logger. Tracks every workflow/skill/protocol invocation with timestamp, trigger source, session ID, and token counts. Outputs to `.athena/invocations.jsonl`. CLI and importable module.
+- **Purpose**: After 30 days of collection, analyze the data to identify unused components for evidence-based archival (bottom 40% by invocation count). Replaces "vibe-based" pruning with data-driven pruning.
+
+#### Auto-Generate Indexes (Pre-Commit Gate 4)
+- **Gate 4** added to reference pre-commit hook (`scripts/hooks/pre-commit`): When protocol, skill, or workflow files are staged, the hook automatically regenerates the corresponding index files. Ensures DISCIPLINE Rule 3 ("no hand-maintained indexes") is mechanically enforced.
+
+#### Version Drift Fix
+- **`docs/ARCHITECTURE.md`**: Version was stuck at v9.7.0 while all other surfaces were at v9.8.1. Fixed to v9.8.2. This is exactly the kind of drift that Gate 1 (Version Lint) was built to catch.
+
+### Design Decisions
+
+- `context_trigger` uses free-text comma-separated phrases rather than structured YAML arrays — this makes triggers readable in frontmatter and easy to grep. Pattern matching is fuzzy by design; false positives (loading an extra skill) are cheap, false negatives (missing a relevant skill) are expensive.
+- Gate 4 is non-blocking (warnings only) — index generation failure should never prevent a commit. The gate's job is to auto-fix, not to enforce.
+- `log_invocation.py` appends to a single JSONL file rather than per-session files. This makes analysis trivial (`cat | jq | sort`) and avoids the fragmentation that killed previous logging attempts.
+
+### Files Changed
+
+- `examples/skills/*/*/SKILL.md` — 26 files updated (added `context_trigger`)
+- `scripts/log_invocation.py` — NEW
+- `scripts/hooks/pre-commit` — Gate 4 added
+- `docs/ARCHITECTURE.md` — Version fix (v9.7.0 → v9.8.2)
+- `README.md` — Version badge (v9.8.1 → v9.8.2), SDK version
+- `AGENTS.md` — Version sync
+- `pyproject.toml` — Version bump (9.8.1 → 9.8.2)
+- `docs/CHANGELOG.md` — This entry
+
+---
+
 ## v9.8.1 (17 April 2026)
 
 **Mechanical Enforcement — From Aspirational Rules to Pre-Commit Gates**

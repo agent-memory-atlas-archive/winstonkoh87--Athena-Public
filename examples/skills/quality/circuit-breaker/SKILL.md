@@ -4,6 +4,7 @@ description: Mandatory systemic pause when cumulative red flags exceed threshold
 argument-hint: "stop | pause | circuit breaker | drawdown | losing streak"
 auto-invoke: true
 model: default
+context_trigger: "losing streak, tilt, red flag, burnout, stop trading, pause, circuit breaker, emergency stop, ruin, overtrading, revenge trade"
 ---
 
 # Circuit Breaker (Systemic Pause)

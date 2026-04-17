@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 15 April 2026  
-> **System Version**: v9.7.0
+> **Last Updated**: 17 April 2026  
+> **System Version**: v9.8.2
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 149+ example protocols, 130+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -712,6 +712,9 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.8.2 | 17 Apr 2026 | Progressive Disclosure (Protocol 530 full rollout — `context_trigger` on all 26 example skills), Telemetry Foundation (`log_invocation.py` — JSONL invocation tracking), Auto-Gen Indexes (pre-commit Gate 4), ARCHITECTURE.md version drift fix |
+| v9.8.1 | 17 Apr 2026 | Mechanical Enforcement — DISCIPLINE.md v2 (human rules → pre-commit gates), reference pre-commit hook with Version Lint, Protocol Cap, Workflow Cap gates, override logging |
+| v9.8.0 | 17 Apr 2026 | Security Hardening (RLS vector tables, env_keychain.sh), Protocol Domain-Prefix Naming (131 renames), CI Quality Gate, EVA Eval Harness, REC Reconciliation Engine, DISCIPLINE.md |
 | v9.7.0 | 10 Apr 2026 | Biological Analogy v2 (6-tier → 7-tier: Atom/Molecule/Cell/Tissue/Organ/System/Organism), GTO Metrics Sync (protocols 397→408, skills 24→28, case studies 410→440, sessions 1,200→1,500+, workflows 53→66+), date alignment across 8 files |
 | v9.6.2 | 26 Mar 2026 | `/ultrastart` + `/ultraend` GTO Upgrade — Mandatory cross-domain sweep (Phase 4 Step 4), Decision Outcome Tracking (ultraend Phase 1 Step 2.5), Insight Compounding (ultraend Phase 2.5), Reflexion Explicit Propagation (ultraend Phase 3 Step 3). Same token budget, higher signal extraction. |
 | v9.5.7 | 21 Mar 2026 | GTO Update — metrics sync (650→540 scripts), Case Study #4 (NTU SDR Analysis), Meta-Game Thesis concept doc, Cross-Model Research Arbitrage protocol, wiki refresh |

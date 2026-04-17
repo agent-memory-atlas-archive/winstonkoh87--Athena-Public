@@ -15,6 +15,7 @@ triggers:
   - hypothesis test
   - p-value
   - survey analysis
+context_trigger: "SPSS, statistics, regression, chi-square, correlation, reliability, Cronbach, hypothesis test, p-value, survey analysis, t-test, ANOVA"
 ---
 
 # Statistical Analysis Skill

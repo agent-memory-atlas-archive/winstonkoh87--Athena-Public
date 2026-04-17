@@ -4,6 +4,7 @@ description: Interrogates the user to build a complete design specification befo
 created: 2026-02-27
 auto-invoke: false
 model: default
+context_trigger: "build app, create feature, new project, spec out, design doc, requirements, let's build, software project"
 ---
 
 # 📋 Spec-Driven Development

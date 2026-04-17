@@ -12,6 +12,7 @@ triggers:
   - rate
   - negotiate price
   - client budget
+context_trigger: "pricing, quote, proposal, how much should I charge, rate card, hourly rate, project fee, freelance pricing, scope creep, negotiation"
 ---
 
 # Client Pricing Skill

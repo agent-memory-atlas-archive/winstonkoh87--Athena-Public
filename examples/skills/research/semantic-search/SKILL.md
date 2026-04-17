@@ -7,6 +7,7 @@ allowed-tools:
 auto-invoke: false
 model: default
 user-invocable: false
+context_trigger: "search memory, find protocol, do we have, case study, recall, look up, exocortex, knowledge base"
 ---
 
 # The Exocortex Semantic Engine

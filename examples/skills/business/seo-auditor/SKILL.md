@@ -7,6 +7,7 @@ allowed-tools:
   - Bash
 auto-invoke: false
 model: default
+context_trigger: "SEO, audit website, why isn't this ranking, lighthouse, technical SEO, site audit, search performance"
 ---
 
 # Technical SEO & Content Auditor

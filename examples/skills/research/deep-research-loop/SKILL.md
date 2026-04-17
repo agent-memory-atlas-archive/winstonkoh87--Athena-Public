@@ -4,6 +4,7 @@ description: Multi-step web research, compilation, and synthesis workflow. Scrap
 created: 2026-02-27
 auto-invoke: true
 model: default
+context_trigger: "research, deep dive, investigate, scrape, compile, multi-source, rabbit hole, comprehensive analysis, literature search"
 ---
 
 # 🔬 Deep Research Loop

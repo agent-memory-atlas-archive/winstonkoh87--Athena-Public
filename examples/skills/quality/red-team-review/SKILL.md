@@ -4,6 +4,7 @@ description: Bias-aware adversarial review for any artifact before shipping. 5-p
 created: 2026-02-27
 auto-invoke: true
 model: default
+context_trigger: "review, red team, what did I miss, QA, bias check, critique, pre-mortem, is this ready, stress test, adversarial"
 ---
 
 # 🔴 Red-Team Review

@@ -8,6 +8,7 @@ allowed-tools:
   - Write
 auto-invoke: false
 model: default
+context_trigger: "context window, running low, compress, compact, too long, token limit, summarize context, /compact"
 ---
 
 # Semantic Context Compactor v2.0

@@ -6,6 +6,7 @@ allowed-tools:
   - Read
 auto-invoke: true
 model: default
+context_trigger: "go-to-market, distribution, channel, GTM, market entry, reach, acquisition channel, organic vs paid"
 ---
 
 # Distribution Physics

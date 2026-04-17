@@ -7,6 +7,7 @@ allowed-tools:
   - Bash
 auto-invoke: true
 model: default
+context_trigger: "analyze trades, journal patterns, win rate, edge audit, losing streak, drawdown, is my system broken, trade review"
 ---
 
 # Trade Journal Analyzer (Expanded)

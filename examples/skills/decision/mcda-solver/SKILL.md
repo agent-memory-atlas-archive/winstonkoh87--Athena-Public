@@ -4,6 +4,7 @@ description: Multi-Criteria Decision Analysis calculator. Breaks complex decisio
 created: 2026-02-27
 auto-invoke: false
 model: default
+context_trigger: "decision matrix, multi-criteria, MCDA, weighted scoring, trade-off analysis, alternatives, prioritization"
 ---
 
 # ⚖️ Decision Matrix (MCDA / EEV)

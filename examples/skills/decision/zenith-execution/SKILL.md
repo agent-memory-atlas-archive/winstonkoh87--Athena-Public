@@ -8,6 +8,7 @@ allowed-tools:
   - WebFetch
 auto-invoke: true
 model: default
+context_trigger: "position sizing, Kelly, stop loss, Monte Carlo, simulate, rebalance, trade execution, portfolio optimization"
 ---
 
 # ZenithFX Execution Suite (Expanded)

@@ -7,6 +7,7 @@ allowed-tools:
   - Read
 auto-invoke: false
 model: default
+context_trigger: "check UI, screenshot, does this look right, visual QA, responsive, browser test, layout check"
 ---
 
 # Visual QA & UI Verification

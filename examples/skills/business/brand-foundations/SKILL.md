@@ -6,6 +6,7 @@ allowed-tools:
   - Write
 auto-invoke: false
 model: default
+context_trigger: "brand, branding, brand guidelines, logo, visual identity, tone of voice, brand pillars, brand strategy, positioning statement"
 ---
 
 # Brand Foundations (The 7 Pillars)

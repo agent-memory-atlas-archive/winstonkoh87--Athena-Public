@@ -7,6 +7,7 @@ allowed-tools:
   - Write
 auto-invoke: true
 model: default
+context_trigger: "negotiation, BATNA, leverage, dignity premium, they want info first, pricing pushback, protect this deal"
 ---
 
 # Negotiation Engine (Power Inversion + Commitment)
