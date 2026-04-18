@@ -12,11 +12,12 @@ This file provides persistent context to any AI coding agent working in this wor
 [Athena Docs Index]|root: .
 |IMPORTANT: Always consult authoritative files before relying on training data.
 |.framework/v8.2-stable/modules:{Core_Identity.md,Output_Standards.md}
-|.framework/README.md
-|.agent/workflows:{start.md,end.md,ultrastart.md,ultraend.md,plan.md,audit.md,research.md,refactor.md,brief.md,ultrathink.md,steal.md,diagnose.md,416-agent-swarm.md,release-public.md,preset.md}
-|.agent/skills/protocols:{000-ultimate-auditor.md,137-graph-of-thoughts.md,139-decentralized-command.md,+300 more in subdirs}
-|.context:{project_state.md,CANONICAL.md,TAG_INDEX.md,PROTOCOL_SUMMARIES.md,KNOWLEDGE_GRAPH.md,TECH_DEBT.md}
-|docs:{ARCHITECTURE.md,SEMANTIC_SEARCH.md,GETTING_STARTED.md,YOUR_FIRST_SESSION.md,MANIFESTO.md,ABOUT_ME.md,FAQ.md}
+|.agent/workflows (22):{start.md,end.md,do.md,plan.md,research.md,ultrathink.md,diagnose.md,...}
+|examples/workflows (66):{ultrastart.md,ultraend.md,audit.md,battleplan.md,minmax.md,project.md,dream.md,...}
+|examples/protocols (150 across 15 categories):{architecture/,decision/,trading/,safety/,...}
+|examples/skills (26):{coding/spec-driven-dev,research/deep-research-loop,quality/red-team-review,...}
+|.context:{project_state.md,CANONICAL.md,TAG_INDEX.md,PROTOCOL_SUMMARIES.md}
+|docs:{ARCHITECTURE.md,SEMANTIC_SEARCH.md,GETTING_STARTED.md,YOUR_FIRST_SESSION.md,FAQ.md}
 ```
 
 ---
@@ -25,14 +26,15 @@ This file provides persistent context to any AI coding agent working in this wor
 
 | Command | File | Purpose |
 |:--------|:-----|:--------|
+| **`/do`** | **`.agent/workflows/do.md`** | **Universal entry point — auto-detects intent and routes** |
 | `/start` | `.agent/workflows/start.md` | Boot the agent session |
 | `/end` | `.agent/workflows/end.md` | Close session, file insights |
+| `/tutorial` | `examples/workflows/tutorial.md` | Guided first-session walkthrough |
 | `/ultrastart` | `examples/workflows/ultrastart.md` | System-2 deep boot (~20K tokens) |
 | `/ultraend` | `examples/workflows/ultraend.md` | System-2 deep close (synthesis) |
 | `/plan` | `.agent/workflows/plan.md` | Create implementation plan |
 | `/audit` | `examples/workflows/audit.md` | Zero-blind-spot workspace audit |
 | `/research` | `.agent/workflows/research.md` | Deep research workflow |
-| `/refactor` | `.agent/workflows/refactor.md` | Code refactoring protocol |
 | `/ultrathink` | `.agent/workflows/ultrathink.md` | Extended reasoning mode |
 | `/steal` | `examples/workflows/steal.md` | Pattern extraction from repos |
 | `/diagnose` | `examples/workflows/diagnose.md` | Troubleshooting workflow |
@@ -74,10 +76,11 @@ This file provides persistent context to any AI coding agent working in this wor
 
 When working on any task in this workspace:
 
-1. **Check `.context/project_state.md`** for current priorities
-2. **Grep `.context/TAG_INDEX.md`** for topic → file mappings
-3. **Read authoritative files** before generating code
-4. **Consult `.context/PROTOCOL_SUMMARIES.md`** for protocol overviews
+1. **Check `.context/project_state.md`** for current priorities and active projects
+2. **Check `.context/CANONICAL.md`** for materialized view of active facts
+3. **Grep `.context/TAG_INDEX.md`** for topic → file mappings
+4. **Read authoritative files** before generating code from training data
+5. **Consult `.context/PROTOCOL_SUMMARIES.md`** for protocol overviews
 
 ---
 

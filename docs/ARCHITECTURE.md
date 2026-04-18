@@ -88,7 +88,7 @@ Athena/
 │
 ├── Athena-Public/                 # ← PUBLIC PORTFOLIO
 │   ├── docs/                      # This documentation
-│   ├── examples/                  # 144+ public protocol examples, 580+ scripts, templates
+│   ├── examples/                  # 150+ protocols, 129 scripts, templates
 │   ├── src/                       # Public SDK source
 │   ├── community/                 # Community resources
 │   └── README.md                  # Repository overview
