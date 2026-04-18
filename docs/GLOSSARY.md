@@ -1,6 +1,6 @@
 # Glossary
 
-> **Last Updated**: 15 April 2026
+> **Last Updated**: 19 April 2026
 
 > **Purpose**: Quick reference for Athena-specific terminology. Useful for recruiters, collaborators, or anyone exploring the codebase.
 
@@ -57,7 +57,7 @@ Retrieval-Augmented Generation using vector embeddings. Athena stores notes/docu
 
 ### Protocols
 
-Reusable "thinking patterns" stored as Markdown files. Each protocol codifies a specific reasoning approach (e.g., risk analysis, design critique, negotiation). Currently 408 protocols in the library.
+Reusable "thinking patterns" stored as Markdown files. Each protocol codifies a specific reasoning approach (e.g., risk analysis, design critique, negotiation). Currently 378 active protocols in the library (32 archived).
 
 ### Edge Functions
 
@@ -108,7 +108,7 @@ Inspired by *Bleach* anime power scaling (for flavor):
 | Metric | Value |
 |--------|-------|
 | Sessions logged | 1,500+ |
-| Protocols | 408 |
+| Protocols | 378 active (32 archived) |
 | Automation scripts | 240+ |
 | Embedded documents | 2,100+ |
 | Monthly cost | <SGD 30 |

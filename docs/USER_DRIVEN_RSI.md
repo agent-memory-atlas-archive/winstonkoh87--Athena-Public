@@ -97,7 +97,7 @@ Entropy is the natural state of information systems — context decays, decision
 |:--------|:--------|:-------|
 | **Entropy** | Disorder increases over time | Context decays, decisions forgotten, lessons re-learned |
 | **Energy Input** | External energy reduces local entropy | Compute (AI) + judgment (human) reduce context entropy |
-| **Negentropy** | Ordered structure maintained against decay | 397 protocols, 410+ case studies, calibrated memory |
+| **Negentropy** | Ordered structure maintained against decay | 378 protocols, 433 case studies, calibrated memory |
 | **Open System** | Exchanges energy with environment | Each session imports compute, exports structured knowledge |
 
 Over 1,200+ sessions, the entropy reduction approaches near-zero — the system "knows" the user's frameworks, risk tolerances, decision patterns, and blind spots with minimal re-derivation. This is thermodynamically precise: the coupling data *is* the negentropy.

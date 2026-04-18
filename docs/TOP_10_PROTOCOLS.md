@@ -1,8 +1,8 @@
 # Top 10 Protocols (MCDA Ranked)
 
-> **Last Updated**: 15 April 2026  
+> **Last Updated**: 19 April 2026  
 > **Methodology**: Weighted MCDA + Pairwise Validation  
-> **Total Protocols Evaluated**: 408 (Full Athena Library)
+> **Total Protocols Evaluated**: 378 active (Full Athena Library)
 
 These are the 10 most impactful protocols from the Athena framework, ranked by their ability to improve AI reasoning and user outcomes across any domain.
 
@@ -247,12 +247,12 @@ These protocols are already loaded via `SKILL_INDEX.md`. Invoke by name:
 
 ## Structural Observation
 
-The library has grown from 108 → 408 protocols, but only 2 new entries cracked the Top 10. This confirms the **power law distribution of impact** — foundational protocols are extremely hard to displace. The main structural change is the arrival of "capstone" protocols (500, 501) that *compose* existing protocols into unified decision architectures rather than introducing new fundamental insights.
+The library has grown from 108 → 378 active protocols (32 archived), but only 2 new entries cracked the Top 10. This confirms the **power law distribution of impact** — foundational protocols are extremely hard to displace. The main structural change is the arrival of "capstone" protocols (500, 501) that *compose* existing protocols into unified decision architectures rather than introducing new fundamental insights.
 
 ---
 
 ## Cross-References
 
-- [Full Protocol Library](../examples/protocols/) — All 408+ protocols
+- [Full Protocol Library](../examples/protocols/) — All 378 active protocols
 - [Architecture Overview](./ARCHITECTURE.md) — System design
 - [Getting Started](./GETTING_STARTED.md) — Setup guide
