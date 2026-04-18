@@ -1,10 +1,53 @@
 # Athena Changelog
 
-> **Last Updated**: 17 April 2026
+> **Last Updated**: 19 April 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.8.3 (19 April 2026)
+
+**Synaptic Pruning — Neural Network Consolidation Pass**
+
+### Key Changes
+
+#### Protocol Deduplication Audit
+- **17 duplicate protocols archived**: 3 exact duplicates (DIA-002, DIA-003, ENG-43), 11 concept duplicates (absorbed into superior versions), 3 red-team versioning artifacts. All moved to `.agent/skills/protocols/archive/` with successor references.
+- **`quality/` category purged**: All contents redundant with existing protocols. Category eliminated.
+- **Active protocols**: 395 → **378** | Archived: 15 → **32** | Total: 410 (unchanged)
+- **Categories**: 35 → **34**
+
+#### Case Study Deduplication Audit
+- **7 duplicate case studies merged and archived**: Content from each deprecated file was merged into the surviving canonical version (no data loss). Archived to `.context/memories/case_studies/_archived/`.
+  - CS-527 ← CS-528 (Athena Feb 11 launch: final numbers + 12hr snapshot merged)
+  - CS-525 ← CS-524 (FX data analysis: refined + full CSV stats merged)
+  - CS-236 ← CS-190 (Reddit Jan 3 launch: authenticity premium + early metrics merged)
+  - CS-508 ← CS-484 (OpenClaw: architecture analysis + sandbox steal merged)
+  - CS-425 ← CS-374 (Academic essay: workflow + theory force-fitting pattern merged)
+  - CS-543 ← CS-447 (Vibe SaaS: $10K MRR + early 1500 users data point merged)
+  - CST-33 kept, CS-497 archived (public_matter_reference: protocol version richer at 105 vs 52 lines)
+- **Active case studies**: 440 → **433** | Archived: **7**
+
+#### ARCHITECTURE.md Metrics Reconciliation
+- All counts across README.md, AGENTS.md, docs/ARCHITECTURE.md, pyproject.toml synchronized to filesystem-verified values.
+- Biological analogy (Compositional Hierarchy) updated: Cells layer now reads "378 Protocols (32 archived)".
+
+### Design Decisions
+
+- **Neural Network Model**: The consolidation follows the principle that every node (protocol, case study, skill) must be unique — no redundant neurons. Overlapping content is merged into the surviving version as an appendix, creating new cross-references (synaptic connections) that didn't exist before. This is "synaptic pruning" — trimming redundant connections so the remaining network fires cleaner.
+- **No Re-Organization Policy**: Case studies remain in their flat directory structure. Moving files would break vector store, GraphRAG, and Supabase routing references. The `_archived/` subdirectory is the only structural change.
+- **Protocol Cap**: Set to 500 in CAPS.json to accommodate future growth without immediate pressure.
+
+### Files Changed
+
+- `docs/ARCHITECTURE.md` — Protocol counts (408→378), case study counts (440→433), version (v9.8.2→v9.8.3), version history entry
+- `README.md` — Version badge, SDK version, changelog entry
+- `AGENTS.md` — Version sync
+- `pyproject.toml` — Version bump (9.8.2→9.8.3)
+- `docs/CHANGELOG.md` — This entry
 
 ---
 

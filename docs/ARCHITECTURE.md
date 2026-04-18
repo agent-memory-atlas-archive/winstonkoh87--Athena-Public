@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 17 April 2026  
-> **System Version**: v9.8.2
+> **Last Updated**: 19 April 2026  
+> **System Version**: v9.8.3
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 149+ example protocols, 130+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -24,7 +24,7 @@ Athena/
 ├── .context/                      # ← USER-SPECIFIC DATA (frequently updated)
 │   ├── User_Vault/                # Personal vault (credentials, secrets)
 │   ├── memories/
-│   │   ├── case_studies/          # 440+ documented patterns
+│   │   ├── case_studies/          # 433+ documented patterns
 │   │   ├── session_logs/          # Historical session analysis
 │   │   └── patterns/              # Formalized patterns
 │   ├── references/                # External frameworks (Dalio, Halbert, Graham)
@@ -37,7 +37,7 @@ Athena/
 │   ├── CLUSTER_INDEX.md           # Routing index: Systems → Clusters → Skills
 │   ├── skills/
 │   │   ├── SKILL_INDEX.md         # Protocol loading registry
-│   │   ├── protocols/             # 408 modular skill files across 35 domains
+│   │   ├── protocols/             # 378 active protocols across 34 domains (32 archived)
 │   │   │   ├── architecture/      # System protocols (latency, modularity)
 │   │   │   ├── business/          # Business frameworks
 │   │   │   ├── coding/            # Development standards
@@ -54,7 +54,7 @@ Athena/
 │   │   │   ├── verification/      # Verification & QA
 │   │   │   └── ... (+20 more)     # workflow, research, health, etc.
 │   │   └── capabilities/          # Bionic Triple Crown
-│   ├── workflows/                 # 66+ slash commands
+│   ├── workflows/                 # 68+ slash commands
 │   │   ├── start.md               # Session boot
 │   │   ├── end.md                 # Session close + maintenance
 │   │   ├── think.md               # Deep reasoning (L4)
@@ -119,7 +119,7 @@ graph TD
     AGENT --> SCRIPTS[scripts/]
     AGENT --> SWARMS[swarms/]
 
-    SKILLS --> PROTOCOLS["protocols/ (408)"]
+    SKILLS --> PROTOCOLS["protocols/ (378 active)"]
     SKILLS --> CAPS[capabilities/]
 
     SRC --> BOOT[boot/orchestrator.py]
@@ -181,7 +181,7 @@ graph TD
 ```mermaid
 graph BT
     L1["⚛️ Atoms<br/>Laws #0-#4"] --> L2["🧬 Molecules<br/>Rules & Constraints"]
-    L2 --> L3["🦠 Cells<br/>408 Protocols"]
+    L2 --> L3["🦠 Cells<br/>378 Protocols"]
     L3 --> L4["🧫 Tissues<br/>28 Skills"]
     L4 --> L5["🫁 Organs<br/>15 Cognitive Clusters"]
     L5 --> L6["🏥 Organ Systems<br/>8 Cognitive Systems"]
@@ -195,7 +195,7 @@ graph BT
 |:---:|:---|:---|:---|
 | 1 | **Atoms** | Laws #0-#4 | Law #1: No Ruin (absolute, non-negotiable) |
 | 2 | **Molecules** | Rules & Constraints | "Never risk >5% of bankroll" (compound constraint) |
-| 3 | **Cells** | 408 Protocols | Protocol 330: Economic Expected Value |
+| 3 | **Cells** | 378 Protocols (32 archived) | Protocol 330: Economic Expected Value |
 | 4 | **Tissues** | 28 Skills | `trading-risk-gate` (bundles 3 protocols) |
 | 5 | **Organs** | 15 Cognitive Clusters | Cluster #3: Trading Risk Gate |
 | 6 | **Organ Systems** | 8 Cognitive Systems | Trading System 📈 |
@@ -648,7 +648,7 @@ When a user invokes a slash command, the runtime follows a 3-layer orchestration
 │  Skill activates specific protocol(s)           │
 │  → Single-purpose, composable, ~200 tokens      │
 │  → Lives in .agent/skills/protocols/**/*.md     │
-│  → 408 protocols across 35 domains              │
+│  → 378 active protocols across 34 domains        │
 └─────────────────────────────────────────────────┘
 ```
 
@@ -712,6 +712,7 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.8.3 | 19 Apr 2026 | Synaptic Pruning — Protocol deduplication (395→378 active, 17 archived), Case Study deduplication (440→433, 7 merged+archived), ARCHITECTURE.md metrics reconciliation, quality/ category purged, neural-network-model consolidation pass |
 | v9.8.2 | 17 Apr 2026 | Progressive Disclosure (Protocol 530 full rollout — `context_trigger` on all 26 example skills), Telemetry Foundation (`log_invocation.py` — JSONL invocation tracking), Auto-Gen Indexes (pre-commit Gate 4), ARCHITECTURE.md version drift fix |
 | v9.8.1 | 17 Apr 2026 | Mechanical Enforcement — DISCIPLINE.md v2 (human rules → pre-commit gates), reference pre-commit hook with Version Lint, Protocol Cap, Workflow Cap gates, override logging |
 | v9.8.0 | 17 Apr 2026 | Security Hardening (RLS vector tables, env_keychain.sh), Protocol Domain-Prefix Naming (131 renames), CI Quality Gate, EVA Eval Harness, REC Reconciliation Engine, DISCIPLINE.md |
