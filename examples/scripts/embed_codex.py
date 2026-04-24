@@ -19,7 +19,7 @@ import chromadb
 from chromadb.utils import embedding_functions
 
 # === Configuration ===
-ROOT_DIR = Path(__file__).parent.parent.parent  # /Users/.../AI LLM
+ROOT_DIR = Path(__file__).parent.parent.parent  # project root
 CHROMA_DIR = ROOT_DIR / ".agent" / "chroma_db"
 COLLECTION_NAME = "codex"
 

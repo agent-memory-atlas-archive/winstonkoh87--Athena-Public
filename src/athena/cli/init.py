@@ -16,7 +16,6 @@ Usage:
 from datetime import datetime
 from pathlib import Path
 
-
 # --- Templates ---
 
 CORE_IDENTITY_TEMPLATE = """# Core Identity
@@ -159,7 +158,7 @@ ANTIGRAVITY_RULES = """# Antigravity Agent Rules
 ## Boot Sequence
 On `/start`, run: `athena`
 
-## Save Sequence  
+## Save Sequence
 On `/end`, run: `athena --end`
 
 ## Quicksave
@@ -167,7 +166,7 @@ On `/save`, run: `athena save "summary"`
 
 ## Directory Context
 - `.framework/` — Core identity and laws
-- `.context/` — Session logs and memories  
+- `.context/` — Session logs and memories
 - `.agent/` — Workflows and scripts
 """
 

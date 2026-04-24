@@ -6,15 +6,13 @@ Optimizations:
     - Atomic Cache: PersistentEmbeddingCache now uses Locks and Atomic Writes.
 """
 
-import os
-import sys
 import hashlib
 import json
+import os
 import random
-import threading
 import tempfile
-from pathlib import Path
-from typing import List, Dict, Any, Optional
+import threading
+from typing import Any
 
 # Global cache instance
 _embedding_cache = None
@@ -39,8 +37,9 @@ _thread_local = threading.local()
 def get_client() -> Any:
     """Returns a thread-safe Supabase client instance."""
     if not hasattr(_thread_local, "client"):
-        from supabase import create_client
         from dotenv import load_dotenv
+
+        from supabase import create_client
 
         load_dotenv()
 
@@ -61,7 +60,7 @@ class PersistentEmbeddingCache:
 
         self.cache_file = AGENT_DIR / "state" / filename
         self.lock = threading.Lock()
-        self._cache: Dict[str, List[float]] = {}
+        self._cache: dict[str, list[float]] = {}
         self._dirty = False
         self._load()
 
@@ -105,11 +104,11 @@ class PersistentEmbeddingCache:
         except Exception:
             pass
 
-    def get(self, text_hash: str) -> Optional[List[float]]:
+    def get(self, text_hash: str) -> list[float] | None:
         with self.lock:
             return self._cache.get(text_hash)
 
-    def set(self, text_hash: str, embedding: List[float]):
+    def set(self, text_hash: str, embedding: list[float]):
         with self.lock:
             self._cache[text_hash] = embedding
             self._dirty = True
@@ -120,7 +119,7 @@ def _hash_text(text: str) -> str:
     return hashlib.md5(text.encode()).hexdigest()
 
 
-def get_embedding(text: str, max_retries: int = 7) -> List[float]:
+def get_embedding(text: str, max_retries: int = 7) -> list[float]:
     """Generate embedding with persistent disk caching and exponential backoff.
 
     Uses gemini-embedding-001 (3072 dimensions).
@@ -192,8 +191,8 @@ def get_embedding(text: str, max_retries: int = 7) -> List[float]:
 
 
 def search_rpc(
-    rpc_name: str, query_embedding: List[float], limit: int = 5, threshold: float = 0.3
-) -> List[Dict]:
+    rpc_name: str, query_embedding: list[float], limit: int = 5, threshold: float = 0.3
+) -> list[dict]:
     client = get_client()
     result = client.rpc(
         rpc_name,
