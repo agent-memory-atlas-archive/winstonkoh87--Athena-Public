@@ -1,11 +1,12 @@
 ---
-description: Background memory consolidation — the "Dream" pass.
+description: Background memory consolidation — the "Dream" pass. Stolen from Claude Code autoDream system (2026-04-01).
 created: 2026-04-01
 last_updated: 2026-04-01
 ---
 
 # /dream — Memory Consolidation Daemon
 
+> **Source**: Claude Code `services/autoDream/consolidationPrompt.ts` (leaked 2026-03-31).
 > **Philosophy**: "Synthesize what you've learned recently into durable, well-organized memories so that future sessions can orient quickly."
 
 ## What This Is
@@ -21,7 +22,7 @@ A reflective pass over memory files — distinct from `/end` session close. Whil
 All three gates must pass before a dream runs:
 
 | Gate | Condition | Rationale |
-|------|-----------|-----------| 
+|------|-----------|-----------|
 | **Time** | ≥ 24 hours since last dream | Prevents over-dreaming |
 | **Session** | ≥ 5 sessions since last dream | Ensures enough new signal |
 | **Lock** | No concurrent dream running | Prevents duplicate consolidation |
@@ -80,7 +81,7 @@ For each thing worth remembering:
 - **READ-ONLY for source code** — dream can read the codebase but must NOT modify any source files
 - **CAN write to**: `.context/`, `.agent/temp/`, session logs
 - **CANNOT**: commit, push, or modify anything outside the memory system
-- **Blocking budget**: 15 seconds max for any single operation
+- **Blocking budget**: 15 seconds max for any single operation (stolen from KAIROS)
 - **Total budget**: 5 minutes max per dream pass
 
 ---
@@ -122,7 +123,7 @@ Return a brief summary of what was consolidated, updated, or pruned:
 🌙 Dream complete:
 - Consolidated 3 session logs into existing memory files
 - Updated CANONICAL.md: removed stale entry for Protocol 319 (archived)
-- Resolved contradiction: activeContext.md said project was "paused" but latest session log shows active work
+- Resolved contradiction: activeContext.md said Project E9 was "paused" but session log 2026-03-31 shows active work
 - Pruned TAG_INDEX.md: removed 2 dead links
 - No action needed on 12 other memory files (already tight)
 ```
@@ -133,9 +134,11 @@ If nothing changed: "🌙 Dream pass: memories are already tight. No changes."
 
 ## References
 
-- [/end](../../../.agent/workflows/end.md) — Session close (writes raw signal)
-- [daemon-loop SKILL](../../../.agent/skills/daemon-loop/SKILL.md) — Background loop infrastructure
+- [/end](file:///Users/[AUTHOR]/Project Athena/.agent/workflows/end.md) — Session close (writes raw signal)
+- [/daemon](file:///Users/[AUTHOR]/Project Athena/.agent/workflows/daemon.md) — Daemon management
+- [daemon-loop](file:///Users/[AUTHOR]/Project Athena/.agent/skills/daemon-loop/SKILL.md) — Background loop infrastructure
+- [Protocol 215 — Canonical Memory](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/215-canonical-memory.md)
 
 ---
 
-`#workflow` `#memory` `#consolidation` `#daemon`
+`#workflow` `#memory` `#consolidation` `#stolen-claude-code`

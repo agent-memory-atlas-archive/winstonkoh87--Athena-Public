@@ -6,16 +6,22 @@ Optimizations:
     - Atomic Cache: PersistentEmbeddingCache now uses Locks and Atomic Writes.
 """
 
+import os
+import sys
 import hashlib
 import json
-import os
-import tempfile
+import random
 import threading
-from typing import Any
+import tempfile
+from pathlib import Path
+from typing import List, Dict, Any, Optional
 
 # Global cache instance
 _embedding_cache = None
 _embedding_cache_lock = threading.Lock()
+
+# Rate limiter: serialize embedding API calls to prevent 429 on free-tier Gemini
+_embedding_semaphore = threading.Semaphore(1)
 
 
 def get_embedding_cache():
@@ -33,9 +39,8 @@ _thread_local = threading.local()
 def get_client() -> Any:
     """Returns a thread-safe Supabase client instance."""
     if not hasattr(_thread_local, "client"):
-        from dotenv import load_dotenv
-
         from supabase import create_client
+        from dotenv import load_dotenv
 
         load_dotenv()
 
@@ -56,7 +61,7 @@ class PersistentEmbeddingCache:
 
         self.cache_file = AGENT_DIR / "state" / filename
         self.lock = threading.Lock()
-        self._cache: dict[str, list[float]] = {}
+        self._cache: Dict[str, List[float]] = {}
         self._dirty = False
         self._load()
 
@@ -100,11 +105,11 @@ class PersistentEmbeddingCache:
         except Exception:
             pass
 
-    def get(self, text_hash: str) -> list[float] | None:
+    def get(self, text_hash: str) -> Optional[List[float]]:
         with self.lock:
             return self._cache.get(text_hash)
 
-    def set(self, text_hash: str, embedding: list[float]):
+    def set(self, text_hash: str, embedding: List[float]):
         with self.lock:
             self._cache[text_hash] = embedding
             self._dirty = True
@@ -115,8 +120,21 @@ def _hash_text(text: str) -> str:
     return hashlib.md5(text.encode()).hexdigest()
 
 
-def _get_embedding_gemini(text: str) -> list[float]:
-    """Fetch embedding from Google Gemini API (gemini-embedding-001, 3072 dims)."""
+def get_embedding(text: str, max_retries: int = 7) -> List[float]:
+    """Generate embedding with persistent disk caching and exponential backoff.
+
+    Uses gemini-embedding-001 (3072 dimensions).
+    Retries on 429 (rate limit) and 5xx (server error) with exponential backoff + jitter.
+    Semaphore-gated (1 concurrent) to prevent thundering herd on free-tier Gemini API.
+    Backoff ceiling: 60s. Floor delay: 1s per call to avoid burst patterns.
+    """
+    text_hash = _hash_text(text)
+    cache = get_embedding_cache()
+    cached = cache.get(text_hash)
+    if cached:
+        return cached
+
+    # Fetch remote (Gemini) - Lazy load requests
     import requests
     from dotenv import load_dotenv
 
@@ -132,76 +150,50 @@ def _get_embedding_gemini(text: str) -> list[float]:
         "content": {"parts": [{"text": text}]},
     }
 
-    response = requests.post(url, json=payload, timeout=30)
-    response.raise_for_status()
-    return response.json()["embedding"]["values"]
+    last_error = None
+    for attempt in range(max_retries):
+        with _embedding_semaphore:
+            try:
+                response = requests.post(url, json=payload, timeout=60)
 
+                if response.status_code == 429 or response.status_code >= 500:
+                    # Respect Retry-After header if present, else exponential backoff (cap 60s)
+                    retry_after = response.headers.get("Retry-After")
+                    if retry_after:
+                        wait = min(float(retry_after), 60)
+                    else:
+                        wait = min((2 ** attempt) + random.uniform(0, 1), 60)
+                    last_error = f"HTTP {response.status_code}"
+                    if attempt < max_retries - 1:
+                        import time
+                        time.sleep(wait)
+                        continue
+                    else:
+                        response.raise_for_status()
 
-def _get_embedding_ollama(text: str) -> list[float]:
-    """Fetch embedding from local Ollama instance.
+                response.raise_for_status()
+                embedding = response.json()["embedding"]["values"]
+                cache.set(text_hash, embedding)
+                # Floor delay: prevent burst even on success (free-tier courtesy)
+                import time
+                time.sleep(1)
+                return embedding
 
-    Requires Ollama running locally (default: http://localhost:11434).
-    Default model: nomic-embed-text (768 dims). Override via OLLAMA_EMBED_MODEL.
+            except requests.exceptions.RequestException as e:
+                last_error = e
+                if attempt < max_retries - 1:
+                    import time
+                    wait = (2 ** attempt) + random.uniform(0, 1)
+                    time.sleep(wait)
+                else:
+                    raise
 
-    Install:
-        curl -fsSL https://ollama.com/install.sh | sh
-        ollama pull nomic-embed-text
-    """
-    import requests
-    from dotenv import load_dotenv
-
-    load_dotenv()
-
-    base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-    model = os.getenv("OLLAMA_EMBED_MODEL", "nomic-embed-text")
-
-    response = requests.post(
-        f"{base_url}/api/embed",
-        json={"model": model, "input": text},
-        timeout=60,
-    )
-    response.raise_for_status()
-    return response.json()["embeddings"][0]
-
-
-# Provider registry
-_EMBEDDING_PROVIDERS = {
-    "gemini": _get_embedding_gemini,
-    "ollama": _get_embedding_ollama,
-}
-
-
-def get_embedding(text: str) -> list[float]:
-    """Generate embedding with persistent disk caching.
-
-    Provider is selected via EMBEDDING_PROVIDER env var:
-        - "gemini" (default): Google Gemini API (3072 dims, requires GOOGLE_API_KEY)
-        - "ollama": Local Ollama instance (768 dims default, zero-cost, fully offline)
-
-    Set EMBEDDING_PROVIDER=ollama in your .env for local-only operation.
-    """
-    text_hash = _hash_text(text)
-    cache = get_embedding_cache()
-    cached = cache.get(text_hash)
-    if cached:
-        return cached
-
-    provider_name = os.getenv("EMBEDDING_PROVIDER", "gemini").lower()
-    provider_fn = _EMBEDDING_PROVIDERS.get(provider_name)
-    if not provider_fn:
-        raise ValueError(
-            f"Unknown EMBEDDING_PROVIDER='{provider_name}'. "
-            f"Supported: {', '.join(_EMBEDDING_PROVIDERS.keys())}"
-        )
-
-    embedding = provider_fn(text)
-    cache.set(text_hash, embedding)
-    return embedding
+    raise RuntimeError(f"get_embedding failed after {max_retries} retries: {last_error}")
 
 
 def search_rpc(
-    rpc_name: str, query_embedding: list[float], limit: int = 5, threshold: float = 0.3
-) -> list[dict]:
+    rpc_name: str, query_embedding: List[float], limit: int = 5, threshold: float = 0.3
+) -> List[Dict]:
     client = get_client()
     result = client.rpc(
         rpc_name,

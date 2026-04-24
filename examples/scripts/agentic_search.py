@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 # Add src to sys.path
-src_path = (Path(__file__).parent.parent.parent / "Athena-Public" / "src").resolve()
+src_path = (Path(__file__).parent.parent.parent.parent / "Athena-Public" / "src").resolve()
 if src_path.exists():
     sys.path.insert(0, str(src_path))
 

@@ -2,30 +2,42 @@
 """
 shutdown.py — Consolidated Shutdown Orchestrator & Session Compiler
 ====================================================================
-Single-call script that runs the entire /end close sequence:
-  0. Session log finalization (YAML update, Λ aggregates, R__ generation)
-  1. Learnings propagation ([S] → SYSTEM_LEARNINGS.md, [U] → USER_PROFILE.yaml)
-  2. Harvest check (detect unfiled insights)
-  3. Git commit & push
-  4. Protocol compliance report
-  5. Compliance reset for next session
+Single-call script that runs the entire /end close sequence.
+
+Supports two modes:
+  --micro    Fast-path: git commit only. Skips compilation, compliance, harvest.
+  (default)  Full-path: Session compilation + harvest + git + compliance.
 
 Usage:
-    python3 .agent/scripts/shutdown.py
-    python3 .agent/scripts/shutdown.py --dry-run  # Preview changes without writing
+    python3 .agent/scripts/shutdown.py           # Full close
+    python3 .agent/scripts/shutdown.py --micro    # Micro close (~3s)
+    python3 .agent/scripts/shutdown.py --dry-run  # Preview only
 
-Replaces 4+ separate script calls with 1 orchestrated call.
+Phases (Full Mode):
+  0. Session Log Finalization (Session Compiler)
+  1. Harvest Check (background — fire-and-forget)
+  2. Git Commit & Push (inlined, fast)
+  3. Protocol Compliance (inlined)
+  4. Auto-Hygiene (background — fire-and-forget)
+
+v2.0 — GTO Rewrite (2026-03-09)
+  - Added --micro fast-path
+  - Removed dead semantic audit phase
+  - Tightened git timeouts (10s → 5s)
+  - Moved compliance imports to top-level
+  - Made Phase 0 skip cleanly when no session log found
 """
 
-import os
-import sys
+from __future__ import annotations
+
 import re
+import sys
 import subprocess
 from datetime import datetime
-from pathlib import Path
 from collections import Counter
+from pathlib import Path
 
-# Optional: YAML support (graceful degradation if not installed)
+# --- YAML (optional) ---
 try:
     import yaml
 
@@ -33,15 +45,13 @@ try:
 except ImportError:
     HAS_YAML = False
 
-# Fix sys.path for SDK access
+# --- SDK imports ---
 SDK_PATH = Path(__file__).resolve().parent.parent.parent / "src"
 if str(SDK_PATH) not in sys.path:
     sys.path.insert(0, str(SDK_PATH))
 
 from athena.core.config import (
     PROJECT_ROOT,
-    SESSIONS_DIR,
-    MEMORY_DIR,
     SYSTEM_LEARNINGS_FILE,
     USER_PROFILE_FILE,
 )
@@ -49,12 +59,21 @@ from athena.sessions import (
     get_current_session_log,
     extract_learnings,
     extract_lambda_stats,
-    update_session_metadata,
     parse_yaml_frontmatter,
 )
-from athena.intelligence.sentinel import check_shutdown_sentinel, update_active_context
+from athena.intelligence.sentinel import check_shutdown_sentinel
 
+# --- Compliance imports (top-level, not runtime) ---
 SCRIPTS_DIR = PROJECT_ROOT / ".agent" / "scripts"
+sys.path.insert(0, str(SCRIPTS_DIR))
+try:
+    from protocol_compliance import generate_report as compliance_generate_report
+    from protocol_compliance import update_markdown_log as compliance_update_log
+    from protocol_compliance import reset_violations as compliance_reset
+
+    HAS_COMPLIANCE = True
+except ImportError:
+    HAS_COMPLIANCE = False
 
 
 # Stopwords for keyphrase extraction (deterministic, no NLP deps)
@@ -132,7 +151,6 @@ STOPWORDS = {
     "all",
     "each",
     "every",
-    "both",
     "few",
     "more",
     "most",
@@ -175,6 +193,9 @@ BOLD = "\033[1m"
 DIM = "\033[2m"
 RESET = "\033[0m"
 
+# Git timeout (tightened from 10s → 5s)
+GIT_TIMEOUT = 5
+
 
 def divider(title: str):
     """Print a section divider."""
@@ -183,43 +204,94 @@ def divider(title: str):
     print(f"{BOLD}{CYAN}{'─' * 60}{RESET}\n")
 
 
-def run_script(
-    script_name: str, args: list = None, timeout: int = 60, silent: bool = False
-) -> tuple[bool, str]:
-    """Run a script and return (success, output)."""
-    script_path = SCRIPTS_DIR / script_name
+# ============================================================
+# GIT (Shared by both micro and full paths)
+# ============================================================
 
-    if not script_path.exists():
-        return False, f"Script not found: {script_name}"
 
-    cmd = ["python3", str(script_path)]
-    if args:
-        cmd.extend(args)
-
+def _run_git(args, timeout=GIT_TIMEOUT):
+    """Run a git command directly. Returns (stdout, stderr, returncode)."""
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=timeout, cwd=str(PROJECT_ROOT)
+            ["git"] + args,
+            capture_output=True,
+            text=True,
+            cwd=str(PROJECT_ROOT),
+            timeout=timeout,
         )
-        output = result.stdout + result.stderr
-        if not silent and output.strip():
-            print(output)
-        return result.returncode == 0, output
+        return result.stdout.strip(), result.stderr.strip(), result.returncode
     except subprocess.TimeoutExpired:
-        return False, f"Script timed out: {script_name}"
+        return "", "timeout", 1
     except Exception as e:
-        return False, f"Error running {script_name}: {e}"
+        return "", str(e), 1
+
+
+def git_commit(commit_msg: str | None = None) -> bool:
+    """Git add + commit (synchronous) + background push."""
+    print("📦 Committing changes...")
+
+    # Stage all
+    _, stderr, code = _run_git(["add", "-A"])
+    if code != 0:
+        print(f"{YELLOW}⚠️ Git add failed: {stderr}{RESET}")
+        return False
+
+    # Check if anything to commit
+    stdout, _, _ = _run_git(["status", "--porcelain"])
+    if not stdout.strip():
+        print(f"{GREEN}✓ Working directory clean.{RESET}")
+    else:
+        # Commit
+        if not commit_msg:
+            time_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+            commit_msg = f"chore(session): close {time_str}"
+        _, stderr, code = _run_git(["commit", "-m", commit_msg])
+        if code != 0 and "nothing to commit" not in stderr:
+            print(f"{YELLOW}⚠️ Git commit failed: {stderr}{RESET}")
+            return False
+        print(f"{GREEN}✓ Committed.{RESET}")
+
+    # Background push (fire-and-forget, non-fatal)
+    try:
+        subprocess.Popen(
+            ["git", "push"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            cwd=str(PROJECT_ROOT),
+            start_new_session=True,
+        )
+        print(f"{DIM}Push → background{RESET}")
+    except Exception:
+        pass
+
+    return True
 
 
 # ============================================================
-# PHASE 0: Session Log Finalization (Session Compiler)
+# MICRO PATH — Git-only close (~3s)
 # ============================================================
 
-# Logic moved to athena.sessions SDK
+
+def micro_close() -> int:
+    """Fast-path shutdown: git commit only. No compilation, no compliance."""
+    divider("🔒 ATHENA SHUTDOWN (MICRO)")
+
+    if not git_commit("chore(session): close (micro)"):
+        print(f"{YELLOW}⚠️ Git commit had issues{RESET}")
+
+    time_now = datetime.now().strftime("%H:%M SGT")
+    print(f"\n{GREEN}{BOLD}✅ Session closed (micro).{RESET} Time: {time_now}")
+    print(f"{BOLD}{'─' * 60}{RESET}\n")
+    return 0
+
+
+# ============================================================
+# SESSION COMPILATION (Phase 0) — Full path only
+# ============================================================
 
 
 def extract_keyphrases(content: str) -> str:
     """Extract dominant topic from checkpoints (deterministic, no NLP)."""
-    # Find checkpoint content
     checkpoints = re.findall(
         r"### ⚡ Checkpoint \[.*?\]\n\n?(.*?)(?=\n###|\n## |$)", content, re.DOTALL
     )
@@ -227,19 +299,13 @@ def extract_keyphrases(content: str) -> str:
     if len(checkpoints) < 2:
         return "General Development"
 
-    # Skip first checkpoint (often warm-up), use rest
     text = " ".join(checkpoints[1:]).lower()
-
-    # Tokenize
     words = re.findall(r"\b[a-z]{3,}\b", text)
-
-    # Remove stopwords
     filtered = [w for w in words if w not in STOPWORDS]
 
     if not filtered:
         return "General Development"
 
-    # Get most common bigrams
     bigrams = []
     for i in range(len(filtered) - 1):
         bigrams.append(f"{filtered[i]} {filtered[i + 1]}")
@@ -249,7 +315,6 @@ def extract_keyphrases(content: str) -> str:
         top_bigram = counter.most_common(1)[0][0]
         return top_bigram.title()
 
-    # Fallback to most common word
     counter = Counter(filtered)
     return counter.most_common(1)[0][0].title()
 
@@ -257,27 +322,14 @@ def extract_keyphrases(content: str) -> str:
 def extract_tags(content: str) -> list[str]:
     """Extract unique tags from session log."""
     tags = set(re.findall(r"#([\w-]+)", content))
-    # Remove common/noise tags
     tags.discard("session")
     tags.discard("...")
     return sorted(list(tags))
 
 
 def extract_threads(focus: str, tags: list[str], content: str) -> list[str]:
-    """
-    Auto-detect thread IDs from focus, tags, and content.
-    Threads are multi-session arcs on related topics.
-
-    Known threads:
-    - TH-001: Athena Architecture
-    - TH-002: Portfolio/Resume
-    - TH-003: ZenithFX/Trading
-    - TH-004: Melvin Portfolio
-    - TH-005: Session Logging
-    """
+    """Auto-detect thread IDs from focus, tags, and content."""
     threads = []
-
-    # Keywords for known threads
     THREAD_PATTERNS = {
         "TH-001": [
             "athena",
@@ -294,27 +346,16 @@ def extract_threads(focus: str, tags: list[str], content: str) -> list[str]:
         "TH-005": ["session log", "template", "yaml", "migration", "checkpoint"],
     }
 
-    # Combine searchable text
     search_text = f"{focus} {' '.join(tags)} {content[:1000]}".lower()
-
     for thread_id, keywords in THREAD_PATTERNS.items():
         matches = sum(1 for kw in keywords if kw in search_text)
-        if matches >= 2:  # Require at least 2 keyword matches
+        if matches >= 2:
             threads.append(thread_id)
 
-    return threads[:3]  # Max 3 threads per session
+    return threads[:3]
 
 
-# Logic moved to athena.sessions SDK
-
-
-def generate_r_block(
-    metadata: dict,
-    lambda_stats: dict,
-    tags: list[str],
-    decisions: list[str],
-    actions: list[str],
-) -> str:
+def generate_r_block(metadata, lambda_stats, tags, decisions, actions) -> str:
     """Generate the R__ Compressed Context block."""
     decided_str = "; ".join(decisions[:3]) if decisions else "None recorded"
     pending_str = "; ".join(actions[:3]) if actions else "None recorded"
@@ -351,33 +392,24 @@ def extract_pending_actions(content: str) -> list[str]:
     return actions
 
 
-def propagate_system_learnings(
-    learnings: list[str], session_id: str, dry_run: bool = False
-) -> int:
+def propagate_system_learnings(learnings, session_id, dry_run=False) -> int:
     """Append system learnings to SYSTEM_LEARNINGS.md."""
     if not learnings:
         return 0
-
     if not SYSTEM_LEARNINGS_FILE.exists():
-        print(f"{YELLOW}⚠️ SYSTEM_LEARNINGS.md not found, skipping propagation{RESET}")
+        print(f"{YELLOW}⚠️ SYSTEM_LEARNINGS.md not found, skipping{RESET}")
         return 0
 
     today = datetime.now().strftime("%Y-%m-%d")
-    new_rows = []
-    for learning in learnings:
-        new_rows.append(f"| {today} | {session_id} | {learning} | ⏳ Pending |")
+    new_rows = [f"| {today} | {session_id} | {l} | ⏳ Pending |" for l in learnings]
 
     if dry_run:
         print(f"{DIM}[DRY-RUN] Would append {len(new_rows)} system learnings{RESET}")
-        for row in new_rows:
-            print(f"  {DIM}{row}{RESET}")
         return len(new_rows)
 
     content = SYSTEM_LEARNINGS_FILE.read_text()
-    # Find the table and append
     table_end = content.rfind("|")
     if table_end != -1:
-        # Find end of that line
         line_end = content.find("\n", table_end)
         if line_end == -1:
             line_end = len(content)
@@ -389,31 +421,24 @@ def propagate_system_learnings(
     return len(new_rows)
 
 
-def propagate_user_learnings(
-    learnings: list[str], session_id: str, dry_run: bool = False
-) -> int:
+def propagate_user_learnings(learnings, session_id, dry_run=False) -> int:
     """Append user learnings to USER_PROFILE.yaml notes section safely."""
-    if not learnings:
+    if not learnings or not HAS_YAML:
         return 0
-
     if not USER_PROFILE_FILE.exists():
-        print(f"{YELLOW}⚠️ USER_PROFILE.yaml not found, skipping propagation{RESET}")
+        print(f"{YELLOW}⚠️ USER_PROFILE.yaml not found, skipping{RESET}")
         return 0
 
     if dry_run:
         print(f"{DIM}[DRY-RUN] Would append {len(learnings)} user learnings{RESET}")
-        for l in learnings:
-            print(f"  {DIM}- {l}{RESET}")
         return len(learnings)
 
-    # Load existing YAML safely
     header_comment = """# User Profile (Machine-Readable Preferences)
 # Auto-managed by shutdown.py from session [U] markers.
 # Manual edits allowed for corrections.
 """
     try:
         content = USER_PROFILE_FILE.read_text()
-        # Remove header comments for parsing if needed, but safe_load usually ignores them
         data = yaml.safe_load(content) or {}
     except Exception as e:
         print(f"{YELLOW}⚠️ Failed to parse USER_PROFILE.yaml: {e}{RESET}")
@@ -422,13 +447,11 @@ def propagate_user_learnings(
     if "notes" not in data:
         data["notes"] = []
 
-    # Append new learnings
     for learning in learnings:
         data["notes"].append(
             {"learned": learning, "session": session_id, "confidence": "medium"}
         )
 
-    # Write back with header
     try:
         yaml_str = yaml.dump(data, sort_keys=False, allow_unicode=True)
         USER_PROFILE_FILE.write_text(header_comment + "\n" + yaml_str)
@@ -439,29 +462,37 @@ def propagate_user_learnings(
     return len(learnings)
 
 
+def validate_log_synthesis(content: str) -> bool:
+    """Check if session log has placeholder content. Returns False if found."""
+    critical_patterns = [
+        r"## 1\. Agenda\s*\n\s*- \[ \] \.\.\.",
+        r"\*\*Decision\*\*:\s*\.\.\.",
+        r"\*\*Insight\*\*:\s*\.\.\.",
+        r"\| \.\.\. \| AI / User \| Pending \|",
+    ]
+    for pattern in critical_patterns:
+        if re.search(pattern, content):
+            return False
+    return True
+
+
 def finalize_session_log(dry_run: bool = False) -> bool:
-    """
-    Main session compiler function. Parses, computes, and updates the session log.
-    Idempotent: safe to run multiple times.
-    """
+    """Main session compiler. Parses, computes, and updates the session log. Idempotent."""
     log_path = get_current_session_log()
     if not log_path:
-        print(f"{YELLOW}⚠️ No session log found to finalize{RESET}")
-        return False
+        print(f"{DIM}No session log found — skipping compilation.{RESET}")
+        return True  # Not an error — just nothing to do
 
     print(f"📋 Compiling session: {log_path.name}")
-
     content = log_path.read_text()
     metadata, body_start = parse_yaml_frontmatter(content)
     body = content[body_start:]
 
     if not metadata:
-        print(f"{YELLOW}⚠️ No YAML frontmatter found (legacy format){RESET}")
-        return False
+        print(f"{DIM}No YAML frontmatter (legacy format) — skipping.{RESET}")
+        return True
 
     session_id = metadata.get("session_id", log_path.stem)
-
-    # Compute derived values
     end_time = datetime.now().astimezone()
     lambda_stats = extract_lambda_stats(content)
     tags = extract_tags(content)
@@ -482,12 +513,9 @@ def finalize_session_log(dry_run: bool = False) -> bool:
     metadata["lambda_coverage_n"] = lambda_stats["coverage_n"]
     metadata["lambda_coverage_d"] = lambda_stats["coverage_d"]
     metadata["tags"] = tags
+    metadata["threads"] = extract_threads(metadata.get("focus", ""), tags, content)
 
-    # Extract threads (multi-session arcs)
-    threads = extract_threads(metadata.get("focus", ""), tags, content)
-    metadata["threads"] = threads
-
-    # Calculate duration if start time exists
+    # Calculate duration
     start_str = metadata.get("start", "")
     if start_str:
         try:
@@ -497,7 +525,6 @@ def finalize_session_log(dry_run: bool = False) -> bool:
         except (ValueError, TypeError):
             pass
 
-    # Generate R__ block
     r_block = generate_r_block(metadata, lambda_stats, tags, decisions, pending_actions)
 
     # Extract and propagate learnings
@@ -523,13 +550,9 @@ def finalize_session_log(dry_run: bool = False) -> bool:
             "---\n" + yaml.dump(metadata, sort_keys=False, allow_unicode=True) + "---\n"
         )
     else:
-        # Simple fallback
         lines = ["---"]
         for k, v in metadata.items():
-            if isinstance(v, list):
-                lines.append(f"{k}: {v}")
-            else:
-                lines.append(f"{k}: {v}")
+            lines.append(f"{k}: {v}")
         lines.append("---\n")
         new_frontmatter = "\n".join(lines)
 
@@ -540,18 +563,15 @@ def finalize_session_log(dry_run: bool = False) -> bool:
     new_r_section = f"## 0. R__ Compressed Context\n\n> Auto-generated on close by `shutdown.py`. Do not manually edit.\n\n{r_block}"
     body = re.sub(r_block_pattern, new_r_section, body, flags=re.DOTALL)
 
-    # Write updated file
     log_path.write_text(new_frontmatter + body)
 
     # Propagate learnings
     sys_count = propagate_system_learnings(system_learnings, session_id)
     user_count = propagate_user_learnings(user_learnings, session_id)
 
-    # Sentinel Checks (Protocol 420)
-    update_active_context(session_id, dry_run=dry_run)
+    # Sentinel Check (Protocol 420) — shutdown sentinel only, no activeContext write
     sentinel_msg = check_shutdown_sentinel(log_path)
 
-    # Print summary
     print(f"{GREEN}✅ Session compiled{RESET}")
     print(f"   📊 Focus: {metadata.get('focus', 'Unknown')}")
     print(f"   ⏱️  Duration: {metadata.get('duration_min', '?')} min")
@@ -560,7 +580,6 @@ def finalize_session_log(dry_run: bool = False) -> bool:
     )
     if sys_count or user_count:
         print(f"   📚 Learnings propagated: {sys_count} system, {user_count} user")
-
     if sentinel_msg:
         print(f"\n{YELLOW}{sentinel_msg}{RESET}")
 
@@ -568,72 +587,157 @@ def finalize_session_log(dry_run: bool = False) -> bool:
 
 
 # ============================================================
-# PHASE 1: Harvest Check
+# HARVEST CHECK (Phase 1)
 # ============================================================
 
 
-def harvest_check() -> bool:
-    """Run harvest check to detect unfiled insights."""
-    print("🌾 Checking for unharvested insights...")
-    success, output = run_script("harvest_check.py")
-    return success
+def harvest_check_background():
+    """Fire-and-forget harvest check."""
+    try:
+        subprocess.Popen(
+            ["python3", str(SCRIPTS_DIR / "harvest_check.py")],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            cwd=str(PROJECT_ROOT),
+            start_new_session=True,
+        )
+    except Exception:
+        pass
 
 
 # ============================================================
-# PHASE 2: Git Commit & Push
+# COMPLIANCE (Phase 3)
 # ============================================================
 
 
-def git_commit() -> bool:
-    """Run git commit script."""
-    print("📦 Committing changes...")
-    success, output = run_script("git_commit.py", timeout=120)
-    return success
+def run_compliance():
+    """Generate compliance report and reset. Uses top-level imports."""
+    if not HAS_COMPLIANCE:
+        return
 
-
-# ============================================================
-# PHASE 3: Protocol Compliance
-# ============================================================
-
-
-def compliance_report() -> bool:
-    """Generate and display compliance report."""
-    print("📊 Generating compliance report...")
-    success, output = run_script("protocol_compliance.py", ["report"])
-    return success
-
-
-def compliance_reset() -> bool:
-    """Reset violations for next session."""
-    success, output = run_script("protocol_compliance.py", ["reset"], silent=True)
-    if success:
+    try:
+        report = compliance_generate_report()
+        if report:
+            print(report)
+        compliance_update_log()
+        compliance_reset()
         print(f"{GREEN}✅ Violations reset for next session{RESET}")
-    return success
+    except Exception as e:
+        print(f"{YELLOW}⚠️ Compliance failed: {e}{RESET}")
 
 
-def validate_log_synthesis(content: str) -> bool:
+# ============================================================
+# PRE-COMPACTION STATE FLUSH (Phase 4a — OpenClaw Pattern)
+# ============================================================
+
+
+def flush_critical_state():
+    """Flush critical state to protected sections BEFORE any compaction.
+
+    The 'OpenClaw' pattern from research: before ANY compactor runs,
+    extract and protect the current working state so it survives
+    summarization. This prevents the 'I just forgot what I was doing'
+    failure mode.
+
+    Protected sections (## Current Focus, ## Active Tasks, ## System Status)
+    are left in place. This function ensures they contain the latest state.
     """
-    Check if the session log has been properly synthesized.
-    Returns False if placeholders like '...' or '- [ ] ...' are found in key sections.
-    """
-    # Key sections that MUST be filled
-    # We relax the check to only look for specific placeholder strings that indicate
-    # the user hasn't filled in the section at all.
-    critical_patterns = [
-        r"## 1\. Agenda\s*\n\s*- \[ \] \.\.\.",  # Empty agenda item
-        r"\*\*Decision\*\*:\s*\.\.\.",  # Empty decision
-        r"\*\*Insight\*\*:\s*\.\.\.",  # Empty insight
-        r"\| \.\.\. \| AI / User \| Pending \|",  # Empty action item table row
-    ]
+    context_file = PROJECT_ROOT / ".context" / "memory_bank" / "activeContext.md"
+    if not context_file.exists():
+        return
 
-    for pattern in critical_patterns:
-        match = re.search(pattern, content)
-        if match:
-            print(f"❌ Validation Failed on pattern: {pattern}")
-            print(f"   Found match: '{match.group(0)}'")
-            return False
+    try:
+        content = context_file.read_text(encoding="utf-8")
+        lines = content.split("\n")
+        line_count = len(lines)
 
-    return True
+        # Only flush if the file is large enough to warrant compaction
+        # Trigger rule: > 100 lines (token check requires tiktoken, skip here)
+        if line_count <= 100:
+            return
+
+        # Ensure ## System Status has the current timestamp
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M SGT")
+        status_marker = "## System Status"
+
+        if status_marker in content:
+            # Find the line after ## System Status and update the health timestamp
+            sections = content.split(status_marker)
+            status_body = sections[1] if len(sections) > 1 else ""
+
+            # Add/update a last-compaction timestamp
+            flush_line = f"- **Last State Flush**: {timestamp}"
+            if "**Last State Flush**" in status_body:
+                # Replace existing flush line
+                import re
+
+                status_body = re.sub(
+                    r"- \*\*Last State Flush\*\*:.*",
+                    flush_line,
+                    status_body,
+                )
+            else:
+                # Insert after the first line of the status section
+                first_newline = status_body.find("\n")
+                if first_newline != -1:
+                    next_newline = status_body.find("\n", first_newline + 1)
+                    if next_newline != -1:
+                        status_body = (
+                            status_body[:next_newline]
+                            + "\n"
+                            + flush_line
+                            + status_body[next_newline:]
+                        )
+
+            content = sections[0] + status_marker + status_body
+            context_file.write_text(content, encoding="utf-8")
+            print(f"{DIM}💾 State flush → activeContext.md ({line_count} lines){RESET}")
+
+    except Exception as e:
+        # Non-fatal — don't break shutdown if flush fails
+        print(f"{DIM}⚠️ State flush skipped: {e}{RESET}")
+
+
+# ============================================================
+# AUTO-HYGIENE (Phase 4b — background)
+# ============================================================
+
+
+def auto_hygiene_background():
+    """Fire-and-forget session compression."""
+    try:
+        subprocess.Popen(
+            ["python3", str(SCRIPTS_DIR / "compress_sessions.py")],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            cwd=str(PROJECT_ROOT),
+            start_new_session=True,
+        )
+    except Exception:
+        pass
+
+
+# ============================================================
+# EMERGENCY HATCH
+# ============================================================
+
+
+def safe_commit():
+    """Emergency commit if main orchestrator fails."""
+    print(f"\n{RED}{BOLD}🚨 EMERGENCY COMMIT TRIGGERED{RESET}")
+    try:
+        _run_git(["add", "-A"])
+        _run_git(["commit", "-m", "emergency: save state on shutdown failure"])
+        subprocess.Popen(
+            ["git", "push"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            cwd=str(PROJECT_ROOT),
+            start_new_session=True,
+        )
+        print(f"{GREEN}✅ Emergency Save Complete.{RESET}")
+    except Exception as e:
+        print(f"{RED}❌ Emergency Save Failed: {e}{RESET}")
 
 
 # ============================================================
@@ -641,104 +745,57 @@ def validate_log_synthesis(content: str) -> bool:
 # ============================================================
 
 
-def safe_commit():
-    """
-    EMERGENCY HATCH: Commits all changes if the main orchestrator fails.
-    Ensures no data loss in volatile memory.
-    """
-    print(f"\n{RED}{BOLD}🚨 EMERGENCY COMMIT TRIGGERED{RESET}")
-    print("Attempting to save state despite failure...")
-    try:
-        run_script("git_commit.py", ["--force"], timeout=60)
-        print(f"{GREEN}✅ Emergency Save Complete.{RESET}")
-    except Exception as e:
-        print(f"{RED}❌ Emergency Save Failed: {e}{RESET}")
-
-
 def main():
-    # Check for --dry-run flag
+    # Parse flags
     dry_run = "--dry-run" in sys.argv
+    micro = "--micro" in sys.argv
 
-    divider("🔒 ATHENA SHUTDOWN SEQUENCE (Titanium Protocol)")
+    # MICRO PATH — git-only close
+    if micro:
+        return micro_close()
+
+    # FULL PATH — complete shutdown sequence
+    divider("🔒 ATHENA SHUTDOWN SEQUENCE (Titanium Protocol v2)")
 
     exit_code = 0
 
     try:
-        # Phase 0: Session Log Finalization (Session Compiler)
+        # Phase 0: Session Compilation
         print(f"{BOLD}📋 Phase 0: Session Compilation{RESET}")
 
         log_path = get_current_session_log()
         if log_path:
-            # Force fresh read from disk to bypass any memory caching
             content = log_path.read_text()
-
-            # [Fail-Safe Validation]
-            # Instead of aborting, we warn. Robustness > Correctness.
-        if not validate_log_synthesis(content):
-            print(f"\n{YELLOW}{BOLD}⚠️ WARNING: Incomplete Session Log detected.{RESET}")
-            print(f"{YELLOW}Proceeding with shutdown to preserve data.{RESET}")
-            # We do NOT return 1 here anymore. We must save.
+            if not validate_log_synthesis(content):
+                print(
+                    f"\n{YELLOW}{BOLD}⚠️ WARNING: Incomplete Session Log detected.{RESET}"
+                )
+                print(f"{YELLOW}Proceeding with shutdown to preserve data.{RESET}")
 
         if not finalize_session_log(dry_run=dry_run):
-            print(f"{YELLOW}⚠️ Session finalization had issues (skipping step){RESET}")
+            print(f"{YELLOW}⚠️ Session finalization had issues (skipping){RESET}")
         print()
 
         if dry_run:
             print(f"\n{BOLD}{CYAN}[DRY-RUN MODE] No changes written. Exiting.{RESET}\n")
             return 0
 
-        # Phase 1: Harvest check (Background)
-        print("🌾 Harvest Check (Background)...")
-        try:
-            subprocess.Popen(
-                ["python3", ".agent/scripts/harvest_check.py"],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                start_new_session=True,
-            )
-        except Exception:
-            pass
+        # Phase 1: Harvest check (background)
+        harvest_check_background()
 
-        print()
-
-        # Phase 2: Git commit (The Critical Step - SYNCHRONOUS)
+        # Phase 2: Git commit + background push
         if not git_commit():
             print(f"{YELLOW}⚠️ Git commit had issues{RESET}")
             exit_code = 1
 
-        print()
+        # Phase 3: Compliance (inlined, top-level imports)
+        run_compliance()
 
-        # Phase 3: Compliance
-        compliance_report()
-        compliance_reset()
+        # Phase 4a: Pre-compaction state flush (in-process, fast)
+        flush_critical_state()
 
-        # Phase 4: Semantic Search Compliance
-        try:
-            from semantic_audit import print_compliance_report
-
-            print_compliance_report()
-        except Exception:
-            pass
-
-        # Phase 5: Update CANONICAL metrics
-        try:
-            from update_metrics import main as update_metrics_main
-
-            update_metrics_main()
-        except Exception:
-            pass
-
-        # Phase 6: Auto-Hygiene (Background)
-        print(f"\n{CYAN}🧹 Running Hygiene Protocol (Background)...{RESET}")
-        try:
-            subprocess.Popen(
-                ["python3", ".agent/scripts/compress_sessions.py"],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                start_new_session=True,
-            )
-        except Exception as e:
-            print(f"{YELLOW}⚠️  Hygiene trigger failed: {e}{RESET}")
+        # Phase 4b: Auto-Hygiene (background)
+        auto_hygiene_background()
 
         # Summary
         print(f"\n{BOLD}{'─' * 60}{RESET}")
@@ -754,14 +811,11 @@ def main():
         return exit_code
 
     except Exception as e:
-        # GLOBAL CATCH-ALL
         print(f"\n{RED}❌ CRITICAL SHUTDOWN FAILURE: {e}{RESET}")
-        print(f"{RED}Traceback available in logs.{RESET}")
         import traceback
 
         traceback.print_exc()
 
-        # Deploy Emergency Parachute
         if not dry_run:
             safe_commit()
 

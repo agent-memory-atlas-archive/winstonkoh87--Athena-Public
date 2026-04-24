@@ -1,12 +1,8 @@
----created: 2025-12-28
-last_updated: 2026-01-30
 ---
-
----description: Resume interrupted session — recover context and continue
+description: Resume interrupted session — recover context and continue
 created: 2025-12-28
 last_updated: 2026-01-06
 ---
-
 # /resume — Session Recovery
 
 > **Use Case**: Recover from browser crash, context switch, or unexpected interruption
@@ -83,8 +79,8 @@ python3 .agent/scripts/resume_session.py
 
 ## References
 
-- **/start** — Fresh session boot
-- **/save** — Mid-session checkpoint
+- [/start](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/start.md) — Fresh session boot
+- [/save](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
 
 ---
 

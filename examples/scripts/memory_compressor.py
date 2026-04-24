@@ -11,6 +11,7 @@ import sys
 import argparse
 import google.generativeai as genai
 from datetime import datetime
+from pathlib import Path
 from dotenv import load_dotenv
 
 # Protocol 104 Prompt
@@ -30,13 +31,18 @@ Return ONLY the bulleted list. No intro.
 """
 
 
-# Robust Auth (Stolen from gemini_client.py)
-def get_api_key() -> str:
-    """Retrieve API key from env, preferring GEMINI_API_KEY."""
-    candidate = os.environ.get("GEMINI_API_KEY")
-    if candidate and "your_gemini_api_key_here" not in candidate:
-        return candidate
-    return os.environ.get("GOOGLE_API_KEY", "")
+# Import shared API key utility (canonical source: gemini_client.py)
+try:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from gemini_client import get_api_key
+except ImportError:
+    # Fallback if running from a different directory
+    def get_api_key() -> str:
+        """Retrieve API key from env, preferring GEMINI_API_KEY."""
+        candidate = os.environ.get("GEMINI_API_KEY")
+        if candidate and "your_gemini_api_key_here" not in candidate:
+            return candidate
+        return os.environ.get("GOOGLE_API_KEY", "")
 
 
 def compress_text(text):

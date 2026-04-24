@@ -5,8 +5,9 @@ Mechanical Kill-Switch (Law #1: No Irreversible Ruin).
 Scans for destructive patterns before execution.
 """
 
-import re
 import sys
+import re
+from pathlib import Path
 
 # Destructive patterns that trigger a Hard Veto
 RUINOUS_PATTERNS = [

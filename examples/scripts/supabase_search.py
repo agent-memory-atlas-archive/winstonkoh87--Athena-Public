@@ -681,7 +681,7 @@ def main():
             tag_index_path = os.path.join(repo_root, ".context", "TAG_INDEX.md")
             if not os.path.exists(tag_index_path):
                 tag_index_path = os.path.join(
-                    repo_root, "Athena-Public", "TAG_INDEX.md"
+                    repo_root, "..", "Athena-Public", "TAG_INDEX.md"
                 )
 
             if os.path.exists(tag_index_path):

@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
-Parallel Orchestrator v4.0
+Parallel Orchestrator v4.1
 True parallel execution of reasoning tracks with adversarial convergence gate.
 
 Protocol 75 Implementation - Synthetic Parallel Reasoning (Real Parallelism)
 
-Changes in v4.0:
+Changes in v4.1:
 - Added --output flag for file persistence
 - Added --context-file flag for large context injection
-- Added user domain injection template (customize for your use case)
+- Injected user domain into all track prompts
 - Fixed deprecated asyncio.get_event_loop()
 - Auto-creates output directory
+- Switched to generate_content_async (fixes gRPC deadlock)
+- Added rate-limit retry with 30s backoff
 """
 
 import asyncio
@@ -19,7 +21,7 @@ import sys
 import json
 import argparse
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Optional  # noqa: F401 — kept for potential future use
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -29,6 +31,7 @@ sys.path.insert(0, str(src_path))
 
 from dotenv import load_dotenv
 import google.generativeai as genai
+import google.api_core.exceptions
 
 load_dotenv()
 
@@ -56,17 +59,17 @@ class ConvergenceResult:
     score: int
     passed: bool
     critique: str
-    suggestions: List[str]
+    suggestions: list[str]
 
 
-# --- User Domain Injection (CUSTOMIZE THIS) ---
-# Replace this with your own constraints, principles, and domain context.
-# This gets injected into every track prompt so the LLM reasons within YOUR framework.
-USER_DOMAIN_CONTEXT = """IMPORTANT CONTEXT — You are reasoning within the user's framework.
-Key constraints:
+# --- User Domain Injection ---
+USER_DOMAIN_CONTEXT = """IMPORTANT CONTEXT — You are reasoning within the Athena framework.
+The user (Winston) is a Sovereign Operator. Key constraints:
 - Law #1: No Irreversible Ruin (veto any path with >5% probability of permanent destruction)
 - Law #2: Context Is King (the game matters more than the move)
 - Robustness > Efficiency on the Pareto frontier (unless stakes are low and recoverable)
+- The user trades FX (IC Markets, 1:1000 leverage) using a Barbell Strategy (5-10% Spear, 90-95% Bunker/HYSA)
+- The user values calibration rate (mutual error correction) over agreement
 Apply these constraints to your analysis where relevant."""
 
 # --- Track System Prompts ---
@@ -82,7 +85,7 @@ Instructions:
 2. Apply relevant frameworks, mental models, and best practices from the user's domain
 3. Provide structured analysis with clear recommendations
 4. Be thorough but focused on actionable insights
-5. Ground your analysis in the user's actual constraints
+5. Ground your analysis in the user's actual constraints (leverage, account size, risk rules)
 
 Output format:
 ## Domain Analysis
@@ -282,11 +285,16 @@ class ParallelOrchestrator:
                 ),
             )
 
-            # Run in executor since genai isn't truly async
-            loop = asyncio.get_running_loop()
-            response = await loop.run_in_executor(
-                None, lambda: model.generate_content(full_prompt)
-            )
+            while True:
+                try:
+                    # Use native async to prevent ThreadPool/gRPC deadlocks
+                    response = await model.generate_content_async(full_prompt)
+                    break
+                except google.api_core.exceptions.ResourceExhausted as e:
+                    self._log(
+                        f"  ⏳ Rate limit hit on Track {track_name}, waiting 30s..."
+                    )
+                    await asyncio.sleep(30)
 
             latency = int((time.time() - start) * 1000)
             content = response.text if response.text else "[No response]"
@@ -305,7 +313,7 @@ class ParallelOrchestrator:
 
     async def dispatch_parallel_tracks(
         self, query: str, context: str = ""
-    ) -> Dict[str, TrackResult]:
+    ) -> dict[str, TrackResult]:
         """Dispatch all 4 tracks in parallel."""
         self._log("\n🚀 Dispatching parallel tracks...")
 
@@ -321,7 +329,7 @@ class ParallelOrchestrator:
         return {r.track_name: r for r in results}
 
     async def synthesize_tracks(
-        self, query: str, track_results: Dict[str, TrackResult]
+        self, query: str, track_results: dict[str, TrackResult]
     ) -> str:
         """Synthesize all track outputs into unified analysis."""
         self._log("\n🔗 Synthesizing tracks...")
@@ -344,10 +352,13 @@ class ParallelOrchestrator:
             ),
         )
 
-        loop = asyncio.get_running_loop()
-        response = await loop.run_in_executor(
-            None, lambda: model.generate_content(full_prompt)
-        )
+        while True:
+            try:
+                response = await model.generate_content_async(full_prompt)
+                break
+            except google.api_core.exceptions.ResourceExhausted:
+                self._log("  ⏳ Rate limit hit during synthesis, waiting 30s...")
+                await asyncio.sleep(30)
 
         return response.text if response.text else "[Synthesis failed]"
 
@@ -367,10 +378,15 @@ class ParallelOrchestrator:
             ),
         )
 
-        loop = asyncio.get_running_loop()
-        response = await loop.run_in_executor(
-            None, lambda: model.generate_content(full_prompt)
-        )
+        while True:
+            try:
+                response = await model.generate_content_async(full_prompt)
+                break
+            except google.api_core.exceptions.ResourceExhausted:
+                self._log(
+                    "  ⏳ Rate limit hit during convergence check, waiting 30s..."
+                )
+                await asyncio.sleep(30)
 
         # Parse JSON response
         try:
@@ -407,15 +423,15 @@ class ParallelOrchestrator:
                 suggestions=[],
             )
 
-    async def run(self, query: str, context: str = "") -> Tuple[str, int, List[dict]]:
+    async def run(self, query: str, context: str = "") -> tuple[str, int, list[dict]]:
         """
         Main entry point. Runs orchestrator with convergence loop.
 
         Returns: (final_synthesis, total_iterations, iteration_history)
         """
-        self._log(f"\n{'=' * 60}")
-        self._log(f"🧠 PARALLEL ORCHESTRATOR v4.0")
-        self._log(f"{'=' * 60}")
+        self._log("\n" + "=" * 60)
+        self._log("🧠 PARALLEL ORCHESTRATOR v4.1")
+        self._log("=" * 60)
         self._log(f"Query: {query[:100]}...")
 
         iteration_history = []
@@ -459,7 +475,7 @@ Suggestions for improvement:
 Previous synthesis (to improve upon):
 {synthesis[:2000]}...
 """
-            self._log(f"  ↩️ Iterating with feedback...")
+            self._log("  ↩️ Iterating with feedback...")
 
         # Max iterations reached
         self._log(

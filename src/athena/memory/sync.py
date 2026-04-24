@@ -53,7 +53,7 @@ def chunk_text(text: str, chunk_size: int = 4000, overlap: int = 200) -> list[st
     return chunks
 
 
-def parse_session_filename(filename: str) -> tuple[str | None, int | None]:
+def parse_session_filename(filename: str) -> "tuple[str | None, int | None]":
     """Extract date and session number from standard filename."""
     pattern = re.compile(r"(\d{4}-\d{2}-\d{2})-session-(\d+)\.md")
     match = pattern.match(filename)
@@ -62,7 +62,7 @@ def parse_session_filename(filename: str) -> tuple[str | None, int | None]:
     return None, None
 
 
-def extract_title(content: str) -> str | None:
+def extract_title(content: str) -> "str | None":
     """Find the first H1 markdown header."""
     match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
     return match.group(1).strip() if match else None
@@ -71,8 +71,8 @@ def extract_title(content: str) -> str | None:
 def sync_file_to_supabase(
     file_path: Path,
     table_name: str,
-    extra_metadata: dict | None = None,
-    manifest: DeltaManifest | None = None,
+    extra_metadata: "dict | None" = None,
+    manifest: "DeltaManifest | None" = None,
     max_retries: int = 3,
 ):
     """
@@ -93,24 +93,25 @@ def sync_file_to_supabase(
         meta.update(extra_metadata)
 
     client = get_client()
-    embedding = get_embedding(content[:30000])
 
     try:
         db_path = str(abs_file.relative_to(abs_root))
     except ValueError:
         db_path = str(abs_file)
 
-    data = {
-        "content": content,
-        "embedding": embedding,
-        "file_path": db_path,
-        "title": meta.get("title", abs_file.name),
-    }
-    _enrich_data_by_table(data, abs_file, table_name, meta)
-
-    # Retry Loop
+    # Retry Loop (now wraps BOTH embedding + upsert)
     for attempt in range(max_retries):
         try:
+            embedding = get_embedding(content[:30000])
+
+            data = {
+                "content": content,
+                "embedding": embedding,
+                "file_path": db_path,
+                "title": meta.get("title", abs_file.name),
+            }
+            _enrich_data_by_table(data, abs_file, table_name, meta)
+
             client.table(table_name).upsert(data, on_conflict="file_path").execute()
             if manifest:
                 manifest.update_entry(abs_file)
@@ -127,7 +128,6 @@ def sync_file_to_supabase(
 
             if attempt < max_retries - 1:
                 wait = (2**attempt) + 0.5
-                # print(f"  ⚠ Retry {attempt+1} for {abs_file.name} in {wait}s...")
                 time.sleep(wait)
             else:
                 raise e
@@ -139,10 +139,9 @@ def _enrich_data_by_table(data: dict, file_path: Path, table_name: str, meta: di
     if table_name == "sessions":
         date_match = re.search(r"(\d{4}-\d{2}-\d{2})", file_path.name)
         data["date"] = date_match.group(1) if date_match else "2026-01-01"
+        session_num_match = re.search(r"session-(\d+)", file_path.name)
         data["session_number"] = (
-            int(re.search(r"session-(\d+)", file_path.name).group(1))
-            if "session-" in file_path.name
-            else 1
+            int(session_num_match.group(1)) if session_num_match else 1
         )
     elif table_name == "protocols":
         code_match = re.match(r"(\d+)", file_path.name)

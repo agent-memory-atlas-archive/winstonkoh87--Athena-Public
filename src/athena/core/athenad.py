@@ -7,13 +7,13 @@ Responsibilities:
   2.  Health Monitor -> Self-healing
 """
 
+import os
+import time
+import sqlite3
+import re
+import sys
 import logging
 import logging.handlers
-import os
-import re
-import sqlite3
-import sys
-import time
 from pathlib import Path
 
 # --- CONFIGURATION ---
@@ -27,9 +27,11 @@ WATCH_DIRS = [
     PROJECT_ROOT / ".context",
     PROJECT_ROOT / ".agent" / "skills",
     PROJECT_ROOT / "src",
+    PROJECT_ROOT / "Athena-Public",
 ]
 
 EXCLUDED_PATTERNS = [
+    "/Winston/",
     "/archive/",
     "/history/",
     "/.venv/",
@@ -74,7 +76,7 @@ def extract_tags(filepath):
     """Extract tags from Markdown."""
     tags = []
     try:
-        with open(filepath, encoding="utf-8", errors="ignore") as f:
+        with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
             content = f.read()
             tags = re.findall(r"#([\w-]+)", content)
     except Exception as e:
@@ -96,6 +98,7 @@ class AthenaDaemon:
         self.init_db()
 
         # 2. Main Loop
+
         logging.info(f"👀 Watching: {[str(d) for d in WATCH_DIRS]}")
         try:
             self.watch_loop()
@@ -110,7 +113,7 @@ class AthenaDaemon:
     def init_db(self):
         if not DB_PATH.exists() and SCHEMA_PATH.exists():
             conn = self.get_db_connection()
-            with open(SCHEMA_PATH) as f:
+            with open(SCHEMA_PATH, "r") as f:
                 conn.executescript(f.read())
             conn.commit()
             conn.close()

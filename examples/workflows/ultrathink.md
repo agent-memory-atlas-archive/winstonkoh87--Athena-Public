@@ -1,9 +1,9 @@
 ---
-description: Maximum depth mode — v4.1 (HITL Optional Bypass)
+description: Maximum depth mode — v4.0 (Mandatory Parallel Orchestrator)
 created: 2025-12-12
-last_updated: 2026-03-02
+last_updated: 2026-03-01
 ---
-# /ultrathink — Execution Script (v4.1)
+# /ultrathink — Execution Script (v4.0)
 
 > **Version**: 4.1 (HITL Optional Bypass)
 > **Refactored**: 2026-03-02 (Added Manual Gemini Sandbox execution path)
@@ -12,7 +12,7 @@ last_updated: 2026-03-02
 ---
 
 > [!CAUTION]
-> **ENFORCEMENT CONTRACT**: You MUST NOT write a single-pass essay. The entire point of `/ultrathink` is that reasoning happens across **multiple independent channels**, not inside a single LLM context window. A single LLM checking its own homework will hit a quality ceiling. However, the automated script execution is optional; you may orchestrate the tracks manually via the Human-in-the-Loop sandbox.
+> **ENFORCEMENT CONTRACT**: You MUST NOT write a single-pass essay. The entire point of `/ultrathink` is that reasoning happens across **multiple independent channels**, not inside a single LLM context window. A single LLM checking its own homework will hit a quality ceiling (Trilateral Feedback Loop principle). However, the automated script execution is optional; you may orchestrate the tracks manually via the Human-in-the-Loop sandbox.
 
 ---
 
@@ -31,10 +31,12 @@ last_updated: 2026-03-02
 
 ## Phase 1: Prime (Context Gathering)
 
+// turbo
+
 1. **Semantic Search** (MANDATORY):
 
     ```bash
-    python3 scripts/smart_search.py "<extract keywords from query>" --limit 5
+    python3 .agent/scripts/smart_search.py "<extract keywords from query>" --limit 5 --include-personal
     ```
 
     - Capture the top results. These become the `--context-file` input for Phase 2.
@@ -62,8 +64,10 @@ last_updated: 2026-03-02
 
 ### Option A: The Automated Orchestrator (High API Cost)
 
+// turbo
+
 ```bash
-python3 scripts/parallel_orchestrator.py "<the user's query>" \
+python3 .agent/scripts/parallel_orchestrator.py "<the user's query>" \
   --context-file /tmp/ultrathink_context.md \
   --output .context/state/ultrathink/ultrathink_$(date +%Y%m%d_%H%M%S).md \
   --json
@@ -76,7 +80,7 @@ python3 scripts/parallel_orchestrator.py "<the user's query>" \
 If the user prefers to preserve API credits, use the Human-in-the-Loop (HITL) bypass.
 
 1. Athena produces a structured synthesis prompt containing the 4 track prompts mapped to the `ultrathink_context.md`.
-2. Athena places this large prompt inside a markdown `text` code block.
+2. Athena places this large prompt inside a markdown ````text` code block.
 3. The user copies the text, pastes it into their native Gemini Advanced UI, and runs it natively.
 4. The user pastes the Gemini output back into the Athena chat to feed the deposit phase.
 
@@ -84,19 +88,24 @@ If the user prefers to preserve API credits, use the Human-in-the-Loop (HITL) by
 
 ## Phase 3: Deposit (Synthesis & Persistence)
 
-1. **Read the output file** from Phase 2 (or the pasted user response if using Option B).
+1. **Read the output file** from Phase 2.
 2. **Present to user**: Format the synthesis into a clean, structured response. Include:
    - The convergence score and number of iterations
    - Key points of agreement across tracks
    - Resolved conflicts
    - Risk integration from the Adversarial track
    - Final recommendation with confidence level
-3. **Log**: Save the exchange for future reference.
-4. **Auto-Document**: If the analysis produced a novel insight or framework, file it as a case study or protocol.
+3. **Quicksave**: Log the exchange.
+
+    ```bash
+    python3 .agent/scripts/quicksave.py "Executed /ultrathink on: <brief query summary>. Convergence score: <score>. Key insight: <one-liner>."
+    ```
+
+4. **Auto-Document**: If the analysis produced a novel insight or framework, file it as a case study or protocol per the Auto-Documentation Protocol (Section 0.7).
 
 ---
 
-## Stability Controls (v4.1)
+## Stability Controls (v4.0)
 
 | Trigger | Action |
 |---------|--------|
@@ -104,10 +113,9 @@ If the user prefers to preserve API credits, use the Human-in-the-Loop (HITL) by
 | **Iterations > 3** | **HALT**. (Cost Cap) |
 | **Ruin Risk Detected** | **ESCALATE**. (Track B Veto — present risk to user immediately) |
 | **Script fails to execute** | **REPORT**. (Do NOT simulate. Tell user the script failed and why.) |
-| **User opts for Option B** | **GENERATE PROMPT**. (Produce HITL prompt and wait for pasted output.) |
 
 ---
 
 ## Tagging
 
-`#workflow` `#safety` `#ultrathink` `#v4.1` `#parallel-orchestrator` `#hitl-bypass`
+`#workflow` `#safety` `#ultrathink` `#v4.0` `#parallel-orchestrator` `#mandatory-execution`

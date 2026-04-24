@@ -13,7 +13,7 @@ This file provides persistent context to any AI coding agent working in this wor
 |IMPORTANT: Always consult authoritative files before relying on training data.
 |.framework/v8.2-stable/modules:{Core_Identity.md,Output_Standards.md}
 |.agent/workflows (22):{start.md,end.md,do.md,plan.md,research.md,ultrathink.md,diagnose.md,...}
-|examples/workflows (66):{ultrastart.md,ultraend.md,audit.md,battleplan.md,minmax.md,project.md,dream.md,...}
+|examples/workflows (70):{ultrastart.md,ultraend.md,audit.md,battleplan.md,minmax.md,project.md,dream.md,...}
 |examples/protocols (150 across 15 categories):{architecture/,decision/,trading/,safety/,...}
 |examples/skills (26):{coding/spec-driven-dev,research/deep-research-loop,quality/red-team-review,...}
 |.context:{project_state.md,CANONICAL.md,TAG_INDEX.md,PROTOCOL_SUMMARIES.md}
@@ -111,5 +111,5 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 ## Version
 
 - **Framework**: v9.8.3
-- **Last Updated**: 2026-04-19
+- **Last Updated**: 2026-04-25
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules + Claude Code Source Architecture (2026-03-31)

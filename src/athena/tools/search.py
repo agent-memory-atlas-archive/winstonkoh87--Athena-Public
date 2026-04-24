@@ -11,20 +11,19 @@ import contextlib
 import json
 import subprocess
 import sys
-from collections import defaultdict
-from concurrent.futures import ALL_COMPLETED, ThreadPoolExecutor, wait
 from pathlib import Path
+from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED
 
-from athena.core.cache import get_search_cache
 from athena.core.config import (
-    CANONICAL_PATH,
     PROJECT_ROOT,
+    TAG_INDEX_PATH,
     TAG_INDEX_AM_PATH,
     TAG_INDEX_NZ_PATH,
-    TAG_INDEX_PATH,
+    CANONICAL_PATH,
 )
 from athena.core.models import SearchResult
-
+from athena.core.cache import get_search_cache
 # Lazy imports to speed up CLI startup
 # from athena.memory.vectors import ... (Moved inside functions)
 # from athena.tools.reranker import ... (Moved inside functions)
@@ -83,7 +82,7 @@ SKIP_PATHS = [
 GRAPHRAG_DIR = PROJECT_ROOT / ".agent" / "graphrag"
 COMMUNITIES_FILE = GRAPHRAG_DIR / "communities.json"
 GRAPH_FILE = GRAPHRAG_DIR / "knowledge_graph.gpickle"
-CHROMA_DIR = PROJECT_ROOT / ".agent" / "chroma_db"
+# CHROMA_DIR removed — chroma_db never existed on disk (GTO fix 2026-03-26)
 
 # --- Collection Functions ---
 
@@ -191,10 +190,9 @@ def collect_tags(query: str) -> list[SearchResult]:
 def collect_vectors(
     query: str,
     limit: int = 20,
-    embedding: list[float] | None = None,
-    exclude_domains: list[str] | None = None,
-    skills_only: bool = False,
-) -> list[SearchResult]:
+    embedding: "list[float] | None" = None,
+    exclude_domains: "list[str] | None" = None,
+) -> "list[SearchResult]":
     """Collect semantic matches via Supabase"""
     if exclude_domains is None:
         exclude_domains = ["personal"]  # Default: exclude personal domain
@@ -202,19 +200,19 @@ def collect_vectors(
     results = []
     try:
         from athena.memory.vectors import (
-            get_client,
             get_embedding,
-            search_capabilities,
-            search_case_studies,
-            search_entities,
-            search_frameworks,
-            search_playbooks,
-            search_protocols,
-            search_references,
+            get_client,
             search_sessions,
-            search_system_docs,
-            search_user_profile,
+            search_case_studies,
+            search_protocols,
+            search_capabilities,
+            search_playbooks,
+            search_references,
+            search_frameworks,
             search_workflows,
+            search_entities,
+            search_user_profile,
+            search_system_docs,
         )
 
         query_embedding = embedding if embedding else get_embedding(query)
@@ -225,25 +223,19 @@ def collect_vectors(
         low_limit = 5 if not GOD_MODE else 3
 
         # Parallel search using ThreadPoolExecutor
-        if skills_only:
-            search_tasks = [
-                ("protocol", search_protocols, high_limit, 0.3),
-                ("capability", search_capabilities, high_limit, 0.3),
-            ]
-        else:
-            search_tasks = [
-                ("protocol", search_protocols, high_limit, 0.3),
-                ("case_study", search_case_studies, high_limit, 0.3),
-                ("session", search_sessions, mid_limit, 0.35),
-                ("capability", search_capabilities, low_limit, 0.3),
-                ("playbook", search_playbooks, low_limit, 0.3),
-                ("workflow", search_workflows, low_limit, 0.3),
-                ("entity", search_entities, low_limit, 0.3),
-                ("reference", search_references, low_limit, 0.3),
-                ("framework", search_frameworks, low_limit, 0.3),
-                ("user_profile", search_user_profile, low_limit, 0.3),
-                ("system_doc", search_system_docs, low_limit, 0.3),
-            ]
+        search_tasks = [
+            ("protocol", search_protocols, high_limit, 0.3),
+            ("case_study", search_case_studies, high_limit, 0.3),
+            ("session", search_sessions, mid_limit, 0.35),
+            ("capability", search_capabilities, low_limit, 0.3),
+            ("playbook", search_playbooks, low_limit, 0.3),
+            ("workflow", search_workflows, low_limit, 0.3),
+            ("entity", search_entities, low_limit, 0.3),
+            ("reference", search_references, low_limit, 0.3),
+            ("framework", search_frameworks, low_limit, 0.3),
+            ("user_profile", search_user_profile, low_limit, 0.3),
+            ("system_doc", search_system_docs, low_limit, 0.3),
+        ]
 
         def run_task(task):
             type_label, func, limit, threshold = task
@@ -269,9 +261,6 @@ def collect_vectors(
                 # Domain filtering: skip items from excluded domains
                 item_domain = item.get("domain", "technical")
                 if item_domain in exclude_domains:
-                    continue
-
-                if skills_only and ".agent/skills/" not in path:
                     continue
 
                 # Dynamic Title/ID construction
@@ -559,7 +548,6 @@ def collect_framework_docs(query: str) -> list[SearchResult]:
 def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
     """Sovereign Fallback: Search the local SQLite index (athena.db)."""
     import sqlite3
-
     from athena.core.config import INPUTS_DIR
 
     db_path = INPUTS_DIR / "athena.db"
@@ -594,7 +582,7 @@ def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
         # 2. Search by Tags
         cursor.execute(
             """
-            SELECT f.path, t.name
+            SELECT f.path, t.name 
             FROM files f
             JOIN file_tags ft ON f.path = ft.file_path
             JOIN tags t ON ft.tag_id = t.id
@@ -642,7 +630,7 @@ def collect_exocortex(query: str, limit: int = 5) -> list[SearchResult]:
         # Sanitize term for FTS5
         # Tokenize and wrap in quotes to prevent column syntax interpretation (e.g. 1:1)
         # "trend" "continuation" "1:1"
-        tokens = ['"{}"'.format(token.replace('"', '""')) for token in query.split()]
+        tokens = [f'"{token.replace(chr(34), chr(34)*2)}"' for token in query.split()]
         clean_query = " ".join(tokens)
 
         # FTS query syntax
@@ -711,11 +699,10 @@ def run_search(
     debug: bool = False,
     json_output: bool = False,
     include_personal: bool = False,
-    skills_only: bool = False,
 ):
     # 0. Check cache first
     cache = get_search_cache()
-    cache_key = f"{query}|{limit}|{strict}|{rerank}|{skills_only}"
+    cache_key = f"{query}|{limit}|{strict}|{rerank}"
     cached_results = cache.get(cache_key)
 
     if cached_results is not None:
@@ -732,17 +719,16 @@ def run_search(
         try:
             # We need the embedding for semantic check
             # This corresponds to "Step 2: Fetch embedding" in the plan
-            import signal
-
             from athena.memory.vectors import get_embedding
+            import signal
 
             # Timeout wrapper for get_embedding (Supabase cold start issues)
             def handler(signum, frame):
                 raise TimeoutError("Embedding fetch timed out")
 
-            # Set the signal handler and a 3-second alarm
+            # Set the signal handler and a 15-second alarm (allows exponential backoff retries)
             signal.signal(signal.SIGALRM, handler)
-            signal.alarm(3)
+            signal.alarm(15)
 
             try:
                 query_embedding = get_embedding(query)
@@ -796,30 +782,18 @@ def run_search(
                     print(f"   ⚠️ {name} task failed: {e}", file=sys.stderr)
                     return []
 
-            if skills_only:
-                collection_tasks = {
-                    "vector": lambda: collect_vectors(
-                        query,
-                        embedding=query_embedding,
-                        exclude_domains=exclude_domains,
-                        skills_only=True,
-                    )
-                }
-            else:
-                collection_tasks = {
-                    "canonical": lambda: collect_canonical(query),
-                    "tags": lambda: collect_tags(query),
-                    "graphrag": lambda: collect_graphrag(query),
-                    "vector": lambda: collect_vectors(
-                        query,
-                        embedding=query_embedding,
-                        exclude_domains=exclude_domains,
-                    ),
-                    "sqlite": lambda: collect_sqlite(query),
-                    "filename": lambda: collect_filenames(query),
-                    "framework_docs": lambda: collect_framework_docs(query),
-                    "exocortex": lambda: collect_exocortex(query),
-                }
+            collection_tasks = {
+                "canonical": lambda: collect_canonical(query),
+                "tags": lambda: collect_tags(query),
+                "graphrag": lambda: collect_graphrag(query),
+                "vector": lambda: collect_vectors(
+                    query, embedding=query_embedding, exclude_domains=exclude_domains
+                ),
+                "sqlite": lambda: collect_sqlite(query),
+                "filename": lambda: collect_filenames(query),
+                "framework_docs": lambda: collect_framework_docs(query),
+                "exocortex": lambda: collect_exocortex(query),
+            }
 
             lists = {}
             with ThreadPoolExecutor(max_workers=len(collection_tasks)) as executor:
@@ -837,10 +811,10 @@ def run_search(
                     for x in ["protocol", "session", "case study", "cs-"]
                 )
 
-                if is_low_entropy and not include_personal and not skills_only:
+                if is_low_entropy and not include_personal:
                     if not json_output:
                         print(
-                            "   ⚡ Low Entropy Query: Skipping deep retrieval (Vectors bypassed)"
+                            f"   ⚡ Low Entropy Query: Skipping deep retrieval (Vectors bypassed)"
                         )
                 else:
                     # Launch vector search
@@ -849,7 +823,9 @@ def run_search(
                     ] = "vector"
 
                 # God Mode Timeout
-                timeout = 8 if not GOD_MODE else 5
+                # Vector search needs ~5-6s (embedding + 11 Supabase RPCs)
+                # Cold starts can push this to ~8s. 10s gives headroom.
+                timeout = 12 if not GOD_MODE else 10
 
                 # Wait for ALL to finish (or timeout)
                 done, not_done = wait(
@@ -967,10 +943,47 @@ def run_search(
         print("-" * 60)
         print("</athena_grounding>\n")
 
-        # Log (Optional compliance hook)
+        # Retrieval Telemetry — A7 Instrumentation (MCDA Rank #1)
+        # Logs every search invocation to enable data-driven pruning.
         with contextlib.suppress(Exception):
-            # Assuming logging logic will be migrated later or importable
-            pass
+            import datetime
+            telemetry_dir = Path(__file__).parent.parent.parent.parent / ".agent" / "telemetry"
+            telemetry_dir.mkdir(parents=True, exist_ok=True)
+            log_path = telemetry_dir / "retrieval_log.jsonl"
+
+            top_results = fused_results[:limit]
+            high_count = sum(1 for r in top_results if r.rrf_score >= CONFIDENCE_HIGH)
+            med_count = sum(1 for r in top_results if CONFIDENCE_LOW <= r.rrf_score < CONFIDENCE_HIGH)
+            low_count = sum(1 for r in top_results if r.rrf_score < CONFIDENCE_LOW)
+
+            # Classify retrieval quality
+            if high_count >= 3:
+                quality = "hit"
+            elif high_count >= 1 or med_count >= 3:
+                quality = "partial"
+            else:
+                quality = "miss"
+
+            # Source distribution — which retrieval channels contributed
+            source_counts = defaultdict(int)
+            for r in top_results:
+                source_counts[r.source] += 1
+
+            entry = {
+                "ts": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                "query": query,
+                "limit": limit,
+                "strict": strict,
+                "rerank": rerank,
+                "total_results": len(fused_results),
+                "quality": quality,
+                "confidence": {"high": high_count, "med": med_count, "low": low_count},
+                "sources": dict(source_counts),
+                "top_rrf": round(top_results[0].rrf_score, 5) if top_results else 0,
+            }
+
+            with open(log_path, "a", encoding="utf-8") as f:
+                f.write(json.dumps(entry) + "\n")
     else:
         # JSON output logic
         output = [doc.to_dict() for doc in fused_results[:limit]]

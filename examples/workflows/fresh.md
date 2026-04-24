@@ -1,12 +1,8 @@
----created: 2026-01-03
-last_updated: 2026-01-30
 ---
-
----description: Soft Reset — Close current session and start a fresh one immediately.
+description: Soft Reset — Close current session and start a fresh one immediately.
 created: 2026-01-03
 last_updated: 2026-01-03
 ---
-
 # /fresh — Session Hot Swap
 
 > **Purpose**: Rotates the session log to a new file, effectively starting a "fresh slate" for the agent's long-term memory tracking.
@@ -20,7 +16,7 @@ last_updated: 2026-01-03
    - Write closing timestamp.
 
    ```bash
-   python3 .agent/scripts/shutdown.py
+   .venv/bin/python3 .agent/scripts/shutdown.py
    ```
 
 // turbo

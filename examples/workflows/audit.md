@@ -1,17 +1,29 @@
----created: 2025-12-13
-last_updated: 2026-01-30
 ---
-
----description: Cross-check work (Gemini vs Claude) focusing on structural integrity and reasoning alignment.
+description: Cross-check work (Gemini vs Claude) focusing on structural integrity and reasoning alignment.
 created: 2025-12-13
 last_updated: 2026-01-03
 ---
-
 # /audit — Cross-Model Validation Protocol
 
 > **Last Updated**: 03 January 2026
 > **Core Principle**: "Structure is for Attention, not Storage."
 > **Goal**: Ensure changes guide reasoning effectively, not just save space.
+
+### Structured Scoring Rubric *(CS-550)*
+
+> **Source:** Adapted from [everything-claude-code](https://github.com/affaan-m/everything-claude-code) deterministic harness-audit
+
+When performing a `--deep` audit, score each category 0-10 for reproducibility:
+
+| Category | What It Measures |
+|----------|-----------------|
+| **Structural Integrity** | File links valid, no orphaned modules, graph connectivity |
+| **Context Efficiency** | Token budgets respected, progressive disclosure followed |
+| **Protocol Compliance** | Workflows follow stated sequences, no skipped phases |
+| **Memory Persistence** | Session observations filed, insights propagated |
+| **Consistency** | Tags match files, naming conventions followed |
+
+Total score: /50. Report at end of audit output.
 
 ---
 
@@ -48,6 +60,72 @@ These files/paths are **NEVER** auto-modified by audit. Changes require explicit
 | `--deep` | Full `protocols/` + `case_studies/` scan | High (RAG-chunked) | Monthly maintenance |
 
 > **Note**: `--deep` requires RAG-based chunking. Do NOT attempt full-context load on >50 files.
+
+---
+
+## 0.5 Scope Drift Detection (Pre-Review Gate)
+
+> **Source:** Adapted from [garrytan/gstack `/review`](https://github.com/garrytan/gstack) (CS-544)
+> **Philosophy:** Before reviewing output quality, verify output matches stated intent.
+
+1. **Identify stated intent:** Read `implementation_plan.md`, `task.md`, or commit messages to determine what was *supposed* to change.
+2. **Compare against actual changes:** Run `git diff --stat` or review session artifacts against the stated intent.
+3. **Evaluate:**
+
+   **SCOPE CREEP detection:**
+   - Files/artifacts changed that are unrelated to stated intent
+   - New features or refactors not in the plan
+   - "While I was in there..." changes that expand blast radius
+
+   **MISSING REQUIREMENTS detection:**
+   - Requirements from plan not addressed
+   - Partial implementations (started but not finished)
+   - Tests/verification gaps for stated requirements
+
+4. **Output (before main audit begins):**
+
+```
+Scope Check: [CLEAN / DRIFT DETECTED / REQUIREMENTS MISSING]
+Intent: <1-line summary of what was planned>
+Delivered: <1-line summary of what actually changed>
+[If drift: list each out-of-scope change]
+[If missing: list each unaddressed requirement]
+```
+
+5. This is **INFORMATIONAL** — does not block the audit. Proceed to Phase 1.
+
+---
+
+## 0.8 Review Standards (Priority Markers + Evidence Gate)
+
+> **Source:** Adapted from [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) (CS-546)
+
+### Priority Markers
+
+All findings across Phases 1-5 must use severity markers:
+
+| Marker | Meaning | Action |
+|--------|---------|--------|
+| 🔴 **Blocker** | Security vuln, data loss, breaking change, Law #1 violation | Must fix before proceeding |
+| 🟡 **Suggestion** | Missing validation, unclear naming, missing tests, scope gap | Should fix |
+| 💭 **Nit** | Style, minor naming, docs, formatting | Nice to have |
+
+**Finding format:**
+```
+🔴 **[Category]: [Issue Name]**
+[Location/File]: [What's wrong]
+**Why:** [Why this matters]
+**Fix:** [Specific remediation]
+```
+
+### Evidence-Over-Claims Posture ("Reality Checker")
+
+> **Default posture: NEEDS WORK.** Every assessment starts skeptical.
+
+- 🚫 Never rate work as "A+" or "looks good" without evidence
+- ✅ Evidence = screenshots, test output, metrics, command results, diff verification
+- ❌ "Fantasy approvals" = rating implementations as passing based on assertions alone
+- **3-attempt maximum:** If a finding fails verification 3 times → escalate to user, don't infinite loop
 
 ---
 
@@ -101,6 +179,18 @@ python3 .agent/scripts/cross_reference.py
 
 > **Rule**: If "Missing bidirectional links" > 0, fix them now.
 
+## 4.5 Inventory Hygiene Check (The "Pruning Pass")
+
+> **Source**: Red-Team GTO Response (2026-03-23). Embedded here to avoid a separate `/prune` workflow.
+> **Scope**: Only runs during `--deep` audits. Skipped on `--session`.
+
+- [ ] **Deprecated protocols**: `grep -rli 'DEPRECATED\|SUPERSEDED' .agent/skills/protocols/ | grep -v '/archive/'` → move any results to `archive/`
+- [ ] **Stale indexes**: Check `WORKFLOW_INDEX.md`, `SKILL_INDEX.md`, `TAG_INDEX*.md` dates vs current date. Flag if >7 days stale.
+- [ ] **Context size**: `du -sh .context/` → if >250MB, flag for manual review
+- [ ] **activeContext.md line count**: `wc -l < .context/memory_bank/activeContext.md` → if >80 lines, compact oldest checkpoints to `sessionArchive.md`
+
+> **Philosophy**: Better search > less inventory. Do NOT delete protocols that are findable via `smart_search.py`. Only archive those explicitly marked deprecated.
+
 ## 5. Adversarial Review (The "Gemini vs Claude" Protocol)
 
 > **Scope**: Audit **ONLY** the work done in **THIS** current session.
@@ -115,7 +205,7 @@ python3 .agent/scripts/cross_reference.py
 ### If you are Claude (Auditing Gemini's Session Work)
 
 - [ ] **Check Hallucination**: "Did Gemini invent a path in the new files?" → *Verify existence.*
-- [ ] **Check Robotic Tone**: "Do the new artifacts sound generic?" → *Inject operator personality.*
+- [ ] **Check Robotic Tone**: "Do the new artifacts sound generic?" → *Inject 'Jun Kai' personality.*
 - [ ] **Check Depth**: "Did the session changes skim the surface?" → *Apply /ultrathink logic.*
 
 ### Tie-Breaking Protocol (When Models Disagree)

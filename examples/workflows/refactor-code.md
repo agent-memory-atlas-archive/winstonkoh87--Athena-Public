@@ -5,13 +5,26 @@ description: Apply the Diagnostic-First Refactoring protocol to a specific file 
 # /refactor-code — Code Hygiene & Optimization
 
 > **Trigger**: `/refactor-code <filename>`
-> **Skill**: Diagnostic-First Refactoring (part of Build Lifecycle Cluster 13)
+> **Skill**: [Diagnostic-First Refactoring](file:///Users/[AUTHOR]/Athena-Public/examples/skills/research/synthetic-parallel-reasoning/SKILL.md)
 > **Source**: r/vibecoding pattern.
 
 ## Philosophy
 >
 > **"Measure twice, cut once."**
 > We do not blindly refactor. We generate a "Bill of Materials" (Diagnostic Report) first, review the ROI (LOC reduction), and then execute.
+
+### Simplicity Criterion *(CS-549)*
+
+> **Source:** [karpathy/autoresearch](https://github.com/karpathy/autoresearch)
+
+When evaluating whether to keep a refactoring change, weigh **complexity cost** against **improvement magnitude**:
+
+- Small improvement + ugly complexity → **Not worth it**
+- Small improvement from *deleting* code → **Definitely keep**
+- ~Zero improvement but simpler code → **Keep** (simplification win)
+- Large improvement + modest complexity → **Keep** (justified)
+
+The highest-value refactor outcome is *removing something and getting equal or better results.*
 
 ## Execution Steps
 

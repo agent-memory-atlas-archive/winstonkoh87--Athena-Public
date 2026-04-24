@@ -1,12 +1,8 @@
----created: 2026-01-04
-last_updated: 2026-01-30
 ---
-
----description: Run verification loop on current work (Protocol 270)
+description: Run verification loop on current work (Protocol 270)
 created: 2026-01-04
 last_updated: 2026-01-04
 ---
-
 # /check — Verification Loop
 
 > **Purpose**: Enforce Protocol 270. Verify the last action taken.

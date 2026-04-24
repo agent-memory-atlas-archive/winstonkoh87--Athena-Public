@@ -44,8 +44,8 @@ AUTO_TAG_RULES = {
         "schema",
         "pattern",
         "attachment",
-        "emotional-pattern",
-        "stress-pattern",
+        "limerence",
+        "trauma",
         "boundary",
     ],
     "coding": ["script", "bug", "api", "deploy", "function", "refactor", "code"],
@@ -178,7 +178,7 @@ def sync_captures():
     """Sync all capture files to Supabase."""
     try:
         # Add src to path for SDK imports
-        src_path = PROJECT_ROOT / "Athena-Public" / "src"
+        src_path = PROJECT_ROOT.parent / "Athena-Public" / "src"
         if src_path.exists() and str(src_path) not in sys.path:
             sys.path.insert(0, str(src_path))
 

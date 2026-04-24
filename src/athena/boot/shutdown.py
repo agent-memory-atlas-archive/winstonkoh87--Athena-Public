@@ -16,9 +16,10 @@ Usage:
 import os
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 
-def find_current_session(logs_dir: Path) -> Path | None:
+def find_current_session(logs_dir: Path) -> Optional[Path]:
     """Find the most recent session log for today."""
     today = datetime.now().strftime("%Y-%m-%d")
     sessions = sorted(logs_dir.glob(f"{today}-session-*.md"), reverse=True)
@@ -67,7 +68,7 @@ def close_session(session_file: Path) -> bool:
     return True
 
 
-def run_shutdown(project_root: Path | None = None) -> bool:
+def run_shutdown(project_root: Optional[Path] = None) -> bool:
     """
     Execute the full shutdown sequence.
 

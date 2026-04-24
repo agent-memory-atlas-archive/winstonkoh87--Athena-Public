@@ -216,11 +216,11 @@ To deactivate mid-session: user says "normal mode" or "/fullload" — immediatel
 
 ## References
 
-- [/start](../workflows/start.md) — Standard boot (modified by Minmax Rule 1)
-- [/ultrastart](../workflows/ultrastart.md) — Deep boot (most savings from Minmax Rule 1)
-- [/end](../workflows/end.md) — Standard close (modified by Minmax Rule 4)
-- [Maximum Compute Doctrine](../../.context/CANONICAL.md) — §216 (the inverse of this workflow)
-- [Context Density](../../.context/CANONICAL.md) — §194 (Dense Signal > Padded Context)
+- [/start](file:///Users/[AUTHOR]/Project Athena/.agent/workflows/start.md) — Standard boot (modified by Minmax Rule 1)
+- [/ultrastart](file:///Users/[AUTHOR]/Project Athena/.agent/workflows/ultrastart.md) — Deep boot (most savings from Minmax Rule 1)
+- [/end](file:///Users/[AUTHOR]/Project Athena/.agent/workflows/end.md) — Standard close (modified by Minmax Rule 4)
+- [Maximum Compute Doctrine](file:///Users/[AUTHOR]/Project Athena/.context/CANONICAL.md) — §216 (the inverse of this workflow)
+- [Context Density](file:///Users/[AUTHOR]/Project Athena/.context/CANONICAL.md) — §194 (Dense Signal > Padded Context)
 
 ---
 

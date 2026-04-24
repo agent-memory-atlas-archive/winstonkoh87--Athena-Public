@@ -1,17 +1,17 @@
-import subprocess
 import sys
+import subprocess
 from datetime import datetime
-
+from pathlib import Path
 from athena.boot.constants import (
+    PROJECT_ROOT,
+    LOGS_DIR,
+    SUPABASE_SEARCH_SCRIPT,
+    GREEN,
+    YELLOW,
+    RED,
     BOLD,
     DIM,
-    GREEN,
-    LOGS_DIR,
-    PROJECT_ROOT,
-    RED,
     RESET,
-    SUPABASE_SEARCH_SCRIPT,
-    YELLOW,
 )
 
 
@@ -92,7 +92,7 @@ class MemoryLoader:
 
     @staticmethod
     def prime_semantic():
-        """Run semantic search silently (10s timeout — fail fast)."""
+        """Run semantic search silently."""
         if not SUPABASE_SEARCH_SCRIPT.exists():
             print(f"{YELLOW}⚠️ Semantic search skipped (script not found){RESET}")
             return False
@@ -102,7 +102,7 @@ class MemoryLoader:
                 ["python3", str(SUPABASE_SEARCH_SCRIPT), "recent session context"],
                 capture_output=True,
                 text=True,
-                timeout=10,  # Was 60s — if Supabase is slow, don't block boot
+                timeout=60,
             )
             if result.returncode == 0:
                 print(f"{GREEN}✅ Semantic memory primed{RESET}")
@@ -110,17 +110,27 @@ class MemoryLoader:
             else:
                 print(f"{YELLOW}⚠️ Semantic search returned non-zero{RESET}")
                 return False
-        except subprocess.TimeoutExpired:
-            print(f"{YELLOW}⚠️ Semantic prime timed out (10s) — skipping{RESET}")
-            return False
         except Exception as e:
             print(f"{YELLOW}⚠️ Semantic search error: {e}{RESET}")
             return False
 
     @staticmethod
     def prewarm_search_cache():
-        """No-op. Removed for boot performance (was adding 15-45s for negligible benefit)."""
-        pass
+        """Pre-run common queries to populate the search cache."""
+        try:
+            from athena.tools.search import run_search
+
+            hot_queries = ["protocol", "session", "user profile"]
+            for query in hot_queries:
+                try:
+                    run_search(query, limit=5, json_output=True)
+                except Exception:
+                    pass  # Best effort
+            print(
+                f"{GREEN}🔥 Search cache pre-warmed ({len(hot_queries)} queries){RESET}"
+            )
+        except Exception as e:
+            print(f"{YELLOW}⚠️ Cache pre-warm skipped: {e}{RESET}")
 
     @staticmethod
     def display_learnings_snapshot():

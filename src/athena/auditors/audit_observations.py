@@ -66,7 +66,7 @@ def record_start_ref():
     return None
 
 
-def get_start_ref() -> str | None:
+def get_start_ref() -> "str | None":
     """Read the session start reference."""
     if START_REF_FILE.exists():
         return START_REF_FILE.read_text().strip()
@@ -180,7 +180,7 @@ def get_commit_messages(start_ref: str) -> list[str]:
     return []
 
 
-def find_current_session_log() -> Path | None:
+def find_current_session_log() -> "Path | None":
     """Find today's most recent session log."""
     if not SESSION_LOG_DIR.exists():
         return None

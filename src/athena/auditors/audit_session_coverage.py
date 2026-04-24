@@ -9,10 +9,10 @@ Checks for:
 3. Learning section presence
 """
 
+import os
 import re
-from pathlib import Path
-
 import yaml
+from pathlib import Path
 
 SESSION_DIR = Path(".context/memories/session_logs")
 ARCHIVE_DIR = SESSION_DIR / "archive"
@@ -30,7 +30,7 @@ def parse_frontmatter(content):
 
 def audit_file(filepath):
     try:
-        with open(filepath) as f:
+        with open(filepath, "r") as f:
             content = f.read()
 
         frontmatter = parse_frontmatter(content)
@@ -70,8 +70,8 @@ def main():
     )
     backlog = total - extracted
 
-    print("\n📊 Session Audit Result")
-    print("=======================")
+    print(f"\n📊 Session Audit Result")
+    print(f"=======================")
     print(f"Total Sessions: {total}")
     print(f"GraphRAG Extracted: {extracted} ({extracted / total * 100:.1f}%)")
     print(f"Backlog: {backlog}")
@@ -83,7 +83,7 @@ def main():
             if not r.get("is_extracted"):
                 f.write(f"{r['file']}\n")
 
-    print("\n✅ Backlog written to .context/graphrag_backlog.txt")
+    print(f"\n✅ Backlog written to .context/graphrag_backlog.txt")
 
 
 if __name__ == "__main__":

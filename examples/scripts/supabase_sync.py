@@ -30,7 +30,7 @@ TARGET_DIRS = {
     "protocols": PROJECT_ROOT / ".agent" / "skills" / "protocols",
     "capabilities": PROJECT_ROOT / ".agent" / "skills" / "capabilities",
     "workflows": PROJECT_ROOT / ".agent" / "workflows",
-    "system_docs": PROJECT_ROOT / ".framework" / "v8.0-alpha" / "modules",
+    "system_docs": PROJECT_ROOT / ".framework" / "v8.2-stable" / "modules",
 }
 
 # Supplementary logic for siloed directories mapped to existing tables
@@ -111,9 +111,9 @@ def sync_workspace(force: bool = False):
         "deleted": 0,
     }
 
-    # 2. Execute Parallel Sync
-    print(f"🚀 Processing {len(all_tasks)} files using 5 threads...")
-    with ThreadPoolExecutor(max_workers=5) as executor:
+    # 2. Execute Serial Sync (1 thread — free-tier Gemini API rate limit safe)
+    print(f"🚀 Processing {len(all_tasks)} files using 1 thread (rate-limit safe)...")
+    with ThreadPoolExecutor(max_workers=1) as executor:
         future_to_file = {
             executor.submit(sync_file_task, f, table, manifest, force): f
             for f, table in all_tasks
@@ -122,6 +122,7 @@ def sync_workspace(force: bool = False):
         for future in as_completed(future_to_file):
             result = future.result()
             stats[result] += 1
+            time.sleep(1.5)  # Rate-limit safe delay (free-tier Gemini embedding API)
 
     # 3. Cleanup Stale Entries
     flat_all_files = [t[0] for t in all_tasks]

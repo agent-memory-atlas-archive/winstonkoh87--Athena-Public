@@ -1,7 +1,15 @@
 ---
 description: Unified Test Runner with Self-Healing capabilities. Detects test command, runs suite, and triggers deeper debugging on failure.
 created: 2026-02-13
+last_updated: 2026-02-23
 tags: [workflow, testing, qa, automation]
+model: default
+temperature: 0.3
+tools:
+  read: true
+  write: false
+  bash: true
+  search: false
 ---
 
 # /test — Universal Test Runner & Self-Healer

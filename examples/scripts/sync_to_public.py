@@ -18,7 +18,7 @@ import re
 # --- Configuration ---
 
 SOURCE_ROOT = os.getcwd()
-DEST_ROOT = os.path.join(SOURCE_ROOT, "Athena-Public")
+DEST_ROOT = os.path.join(SOURCE_ROOT, "..", "Athena-Public")
 
 # Directory Mappings (Source -> Dest relative to roots)
 DIR_MAP = {

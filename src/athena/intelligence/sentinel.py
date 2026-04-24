@@ -7,8 +7,8 @@ Autonomically scans for unknown-unknowns at session boundaries.
 
 import re
 from pathlib import Path
-
-from athena.core.config import CANONICAL_PATH, CONTEXT_DIR
+from typing import Optional
+from athena.core.config import PROJECT_ROOT, CONTEXT_DIR, CANONICAL_PATH
 
 ACTIVE_CONTEXT_PATH = CONTEXT_DIR / "memory_bank" / "activeContext.md"
 SESSION_LOGS_DIR = CONTEXT_DIR / "memories" / "session_logs"
@@ -34,7 +34,7 @@ def update_active_context(session_id: str, dry_run: bool = False) -> None:
         print(f"Error updating active context for session {session_id}: {e}")
 
 
-def check_boot_sentinel() -> str | None:
+def check_boot_sentinel() -> Optional[str]:
     """
     Boot Phase Sentinel: Cross-references Active Context against Canonical Constraints.
     """
@@ -43,7 +43,7 @@ def check_boot_sentinel() -> str | None:
 
     try:
         active_content = ACTIVE_CONTEXT_PATH.read_text(encoding="utf-8")
-        CANONICAL_PATH.read_text(encoding="utf-8")
+        canonical_content = CANONICAL_PATH.read_text(encoding="utf-8")
 
         # 1. Extraction: Find Current Focus
         focus_match = re.search(
@@ -72,7 +72,7 @@ def check_boot_sentinel() -> str | None:
         return f"🔭 **Sentinel Error**: {e}"
 
 
-def check_shutdown_sentinel(session_log_path: Path) -> str | None:
+def check_shutdown_sentinel(session_log_path: Path) -> Optional[str]:
     """Shutdown Phase Sentinel: Checks for unfiled insights or protocol drift."""
     if not session_log_path.exists():
         return None

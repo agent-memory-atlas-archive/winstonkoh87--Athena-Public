@@ -21,7 +21,7 @@ from datetime import datetime
 WORKSPACE = Path(__file__).resolve().parent.parent.parent
 SESSION_LOGS_DIR = WORKSPACE / ".context" / "memories" / "session_logs"
 ARCHIVE_DIR = SESSION_LOGS_DIR / "archive"
-OUTPUT_DIR = WORKSPACE / ".context" / "memories" / "session_insights"
+OUTPUT_DIR = WORKSPACE / ".context" / "memories" / "insights"
 
 def extract_existing_insights(content: str) -> list[str] | None:
     """Extract existing ### Key Insights or ### Learnings section."""

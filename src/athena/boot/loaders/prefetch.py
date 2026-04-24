@@ -1,6 +1,6 @@
 import json
-
-from athena.boot.constants import DIM, PROJECT_ROOT, RESET
+from pathlib import Path
+from athena.boot.constants import PROJECT_ROOT, DIM, RESET
 
 
 class PrefetchLoader:
@@ -12,7 +12,7 @@ class PrefetchLoader:
             return
 
         try:
-            with open(manifest_path) as f:
+            with open(manifest_path, "r") as f:
                 manifest = json.load(f)
 
             files = manifest.get("files", [])
@@ -26,6 +26,6 @@ class PrefetchLoader:
                     f_path.read_text(encoding="utf-8")
                     # print(f"   {DIM}• {f_info['name']}{RESET}")
 
-        except Exception:
+        except Exception as e:
             # print(f"{DIM}⚠️ Prefetch error: {e}{RESET}")
             pass

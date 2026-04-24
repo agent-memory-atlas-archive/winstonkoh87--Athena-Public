@@ -6,10 +6,12 @@ Automated Marketing Asset Generator based on SEO Strategy.
 Implements Outcome Positioning (CS-240) and Visceral Copywriting (Protocol 272).
 """
 
+import os
+import sys
 import argparse
 import re
-import sys
 from pathlib import Path
+from typing import Dict, List
 
 # Fix sys.path for SDK access
 SDK_PATH = Path(__file__).resolve().parent.parent.parent
@@ -28,18 +30,18 @@ Target Keyword: "{keyword}"
 
 Generate 3 variations of marketing copy:
 
-1. [CAROUSELL] - Outcome-focused, urgency-driven, price-anchored (milestone-based delivery).
+1. [CAROUSELL] - Outcome-focused, urgency-driven, price-anchored ($1500 upfront / $1500 on delivery).
 2. [LINKEDIN] - Authority-focused, mentioning "Bionic Unit" and "Agentic Workflows".
 3. [TWITTER/X] - Insight-driven thread hook.
 
 Constraint: Follow Protocol 272 (Visceral triggers) and CS-240 (Outcome framing).
 """
 
-def get_keywords() -> list[str]:
+def get_keywords() -> List[str]:
     """Parse keywords from SEO_STRATEGY_MASTER.md."""
     if not SEO_MASTER.exists():
         return []
-
+    
     content = SEO_MASTER.read_text(encoding="utf-8")
     # Matches bullet points like "- `Keyword`"
     keywords = re.findall(r'- `([^`]+)`', content)
@@ -48,23 +50,23 @@ def get_keywords() -> list[str]:
 def generate_assets(keyword: str):
     """
     Generate assets for a keyword.
-    Note: In a full implementation, this calls the LLM.
+    Note: In a full implementation, this calls the LLM. 
     In this SDK shim, we provide a placeholder integration point.
     """
     print(f"🛠️  Generating assets for: {keyword}")
-
+    
     # Placeholder for actual LLM call (e.g. via athena.core.models)
     # Since this is a local tool, we output the prompt for the user to use in the AI chat
     # or implement a simple mock.
-
+    
     output_file = OUTPUT_DIR / f"{keyword.replace(' ', '_').lower()}.md"
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
+    
     # We output the specific prompt to the user as the 'generated' asset for now,
     # effectively becoming a 'Prompt Scaffolder' for marketing efforts.
-
+    
     final_prompt = PROMPT_TEMPLATE.replace("{keyword}", keyword)
-
+    
     output_file.write_text(final_prompt, encoding="utf-8")
     print(f"  ✅ Prompt Scaffolded: {output_file.relative_to(PROJECT_ROOT)}")
 

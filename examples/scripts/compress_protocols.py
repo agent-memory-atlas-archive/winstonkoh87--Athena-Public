@@ -23,7 +23,7 @@ from datetime import datetime
 # Configuration
 WORKSPACE = Path(__file__).resolve().parent.parent.parent
 PROTOCOLS_DIR = WORKSPACE / ".agent" / "skills" / "protocols"
-PUBLIC_PROTOCOLS_DIR = WORKSPACE / "Athena-Public" / "examples" / "protocols"
+PUBLIC_PROTOCOLS_DIR = WORKSPACE.parent / "Athena-Public" / "examples" / "protocols"
 OUTPUT_PATH = WORKSPACE / ".context" / "PROTOCOL_SUMMARIES.md"
 
 # CONCURRENCY LIMIT

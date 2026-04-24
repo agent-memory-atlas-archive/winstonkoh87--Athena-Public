@@ -1,12 +1,8 @@
----created: 2025-12-12
-last_updated: 2026-01-30
 ---
-
----description: Ultra-deep research mode — exhaustive multi-source rabbit-hole exploration
+description: Ultra-deep research mode — exhaustive multi-source rabbit-hole exploration
 created: 2025-12-12
 last_updated: 2025-12-17
 ---
-
 # /research — Execution Script
 
 ---
@@ -118,6 +114,14 @@ When `/research` is invoked, go **maximum depth**. This is NOT a quick lookup �
 
 ## Codex Deposit
 [What should be saved permanently]
+
+## Decision Matrix (when applicable) *(CS-550)*
+| Signal | Action |
+|--------|--------|
+| Exact match found, well-maintained | **Adopt** — use directly |
+| Partial match, good foundation | **Extend** — use + write thin wrapper |
+| Multiple weak matches | **Compose** — combine 2-3 sources |
+| Nothing suitable found | **Build** — create custom, informed by research |
 ```
 
 ---
@@ -129,6 +133,7 @@ When `/research` is invoked, go **maximum depth**. This is NOT a quick lookup �
 - **Maximum time**: No limit (go as deep as needed)
 - **Citation density**: Every factual claim cited
 - **Contradiction flagging**: Mandatory
+- **Tool-call budget per layer**: ~5 calls max *(CS-548)*. Plan your tool usage before executing — "you have 5 calls per layer, make them count." If a layer needs more than 5–7 calls, decompose the query first rather than calling blindly.
 
 ---
 

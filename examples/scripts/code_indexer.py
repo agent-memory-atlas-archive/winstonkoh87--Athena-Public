@@ -38,7 +38,7 @@ from athena.memory.vectors import get_client, get_embedding
 TARGET_DIRS = [
     PROJECT_ROOT / "src",
     PROJECT_ROOT / ".agent" / "scripts",
-    PROJECT_ROOT / "Athena-Public" / "src",
+    PROJECT_ROOT.parent / "Athena-Public" / "src",
 ]
 
 CODE_INDEX_PATH = PROJECT_ROOT / ".context" / "CODE_INDEX.json"

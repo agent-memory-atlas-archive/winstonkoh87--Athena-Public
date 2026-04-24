@@ -408,7 +408,10 @@ class PermissionEngine:
             return True
 
         tool_def = TOOL_REGISTRY.get(tool_name)
-        sensitivity = Sensitivity.INTERNAL if not tool_def else tool_def["sensitivity"]
+        if not tool_def:
+            sensitivity = Sensitivity.INTERNAL
+        else:
+            sensitivity = tool_def["sensitivity"]
 
         if sensitivity != Sensitivity.PUBLIC:
             self._audit(

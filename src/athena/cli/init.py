@@ -16,6 +16,7 @@ Usage:
 from datetime import datetime
 from pathlib import Path
 
+
 # --- Templates ---
 
 CORE_IDENTITY_TEMPLATE = """# Core Identity
@@ -158,7 +159,7 @@ ANTIGRAVITY_RULES = """# Antigravity Agent Rules
 ## Boot Sequence
 On `/start`, run: `athena`
 
-## Save Sequence
+## Save Sequence  
 On `/end`, run: `athena --end`
 
 ## Quicksave
@@ -166,7 +167,7 @@ On `/save`, run: `athena save "summary"`
 
 ## Directory Context
 - `.framework/` — Core identity and laws
-- `.context/` — Session logs and memories
+- `.context/` — Session logs and memories  
 - `.agent/` — Workflows and scripts
 """
 
@@ -386,7 +387,7 @@ def init_workspace(target_dir: Path = None, ide: str = None) -> bool:
     print("   1. Open this folder in your AI IDE")
     print('   2. Type "/start" to boot your agent')
     print('   3. Work with your agent, then type "/end" to save')
-    print("\n📚 Docs: https://github.com/winstonkoh87/Athena-Public")
+    print("\n📚 Docs: https://github.com/[AUTHOR]87/Athena-Public")
 
     return True
 

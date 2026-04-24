@@ -1,12 +1,8 @@
----created: 2026-01-02
-last_updated: 2026-01-30
 ---
-
----description: High-Stakes Documentation Workflow (The Anthropic Method)
+description: High-Stakes Documentation Workflow (The Anthropic Method)
 created: 2026-01-02
 last_updated: 2026-01-02
 ---
-
 # Document Co-Authoring Workflow
 
 > **Purpose**: Create high-stakes documentation (PRD, RFC, Strategy) using the "Editor vs. Writer" separation of concerns.

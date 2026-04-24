@@ -1,12 +1,8 @@
----created: 2025-12-22
-last_updated: 2026-01-30
 ---
-
----description: Analyze external content for patterns worth integrating into Athena
+description: Analyze external content for patterns worth integrating into Athena
 created: 2025-12-22
 last_updated: 2026-01-11
 ---
-
 # /steal — Pattern Extraction & Integration
 
 > **Philosophy**: Action over documentation. If it doesn't improve the workspace, skip it.

@@ -1,12 +1,8 @@
----created: 2025-12-18
-last_updated: 2026-01-30
 ---
-
----description: Ruin override ceremony - explicit user acknowledgment before proceeding with high-risk actions
+description: Ruin override ceremony - explicit user acknowledgment before proceeding with high-risk actions
 created: 2025-12-18
 last_updated: 2025-12-19
 ---
-
 # /circuit — Ruin Override Ceremony
 
 > **Purpose**: Replace silent Law #0 veto with explicit user acknowledgment.
@@ -80,7 +76,7 @@ If user proceeds:
 | Financial | 💰 | Leveraged positions, large investments, debt |
 | Reputational | 👥 | Public statements, professional relationships |
 | Legal | ⚖️ | Contracts, regulatory compliance, criminal risk |
-| Psychological | 🧠 | Emotional triggers, identity threats |
+| Psychological | 🧠 | Trauma triggers, identity threats |
 | Moral | 💔 | Harm to others, ethical violations |
 
 ---

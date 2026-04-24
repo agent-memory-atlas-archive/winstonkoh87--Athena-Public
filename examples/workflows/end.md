@@ -1,7 +1,7 @@
 ---
 description: Close session and update System Prompt files with new insights (lightweight)
 created: 2025-12-09
-last_updated: 2026-03-31
+last_updated: 2026-03-10
 model: default
 temperature: 0.5
 tools:
@@ -59,7 +59,7 @@ Before any synthesis, classify the session:
 // turbo
 
 ```bash
-python3 .agent/scripts/shutdown.py --micro
+.venv/bin/python3 .agent/scripts/shutdown.py --micro
 ```
 
 **Done.** No further steps.
@@ -76,9 +76,9 @@ python3 .agent/scripts/shutdown.py --micro
 >
 > Both must be written. They serve different consumers.
 
-### 0.5. Analysis Scratchpad (v9.6.5)
+### 0.5. Analysis Scratchpad (Stolen: Claude Code 2026-03-31)
 
-> **Source**: Claude Code `/compact` prompt architecture.
+> **Source**: Claude Code `/compact` prompt (`prompt.ts`).
 > **Key Insight**: An `<analysis>` scratchpad block (chain-of-thought) **improves synthesis quality** but gets stripped before the output reaches persistent storage. You think harder, but pay zero tokens in the written artifact.
 
 Before writing the session log, perform private analysis in `<analysis>` tags:
@@ -129,7 +129,7 @@ Create `.context/memories/session_logs/[DATE]-session-[N].md` with:
 
 | Action | Owner | Status |
 |--------|-------|--------|
-| [Next step] | User | Pending |
+| [Next step] | Winston | Pending |
 
 ---
 
@@ -138,7 +138,7 @@ Create `.context/memories/session_logs/[DATE]-session-[N].md` with:
 - [S] [System learning — propagated to SYSTEM_LEARNINGS.md by shutdown.py]
 - [U] [User learning — propagated to USER_PROFILE.yaml by shutdown.py]
 
-## Validated Patterns (v9.6.5)
+## Validated Patterns (Stolen: Claude Code 2026-03-31)
 
 > Only populate if the session confirmed a non-obvious approach worked.
 > Format: `- [V] [Pattern]: [Why it worked] | Reapply: [When]`
@@ -221,7 +221,7 @@ Before writing the `@pending` line in the checkpoint block:
 3. If any item has been pending **7+ sessions**: quietly promote it to `@seeded` for next session's Phase 4
 
 > This step is **advisory only** — it never blocks session close.
-> See [Protocol 528](../../examples/protocols/architecture/528-execution-enforcement.md).
+> See [Protocol 528](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/528-execution-enforcement.md).
 
 ---
 
@@ -266,7 +266,7 @@ Before writing the `@pending` line in the checkpoint block:
 // turbo
 
 ```bash
-python3 .agent/scripts/shutdown.py
+.venv/bin/python3 .agent/scripts/shutdown.py
 ```
 
 **What it does** (single call, no subprocesses):
@@ -291,7 +291,7 @@ python3 .agent/scripts/shutdown.py
 **Output**: "✅ Session closed. Time: [HH:MM SGT]"
 
 > [!CAUTION]
-> **Do NOT run `/push-public` inside `/end`.** Bilateral repo sync is a separate workflow. If `shutdown.py` attempts to push to the public repo, that is a bug.
+> **Do NOT run `/push-public` inside `/end`.** Bilateral repo sync is a separate workflow. If `shutdown.py` attempts to push to `Athena-Public`, that is a bug.
 
 ---
 
@@ -306,8 +306,8 @@ python3 .agent/scripts/shutdown.py
 
 ## References
 
-- [/save](save.md) — Mid-session checkpoint
-- [/ultraend](ultraend.md) — Deep close (System-2 counterpart)
+- [/save](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
+- [/ultraend](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/ultraend.md) — Deep close (System-2 counterpart)
 
 ---
 

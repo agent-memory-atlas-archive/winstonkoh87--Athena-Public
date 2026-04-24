@@ -199,14 +199,14 @@ graph TD
 
 | Protocol | Name | Function in Chain |
 |:---------|:-----|:-----------------|
-| P501 | Diagnostic Engine | Triage: right problem? right game? SDR check |
-| P500 | GTO Problem Solver | 6-phase: Classify → Map → Generate → Rank → EEV → Monte Carlo |
-| P506 | GTO Execution Plan | DAG sequencing with reversibility and kill criteria |
-| P121 | MCDA / Pairwise | Multi-criteria ranking for GTO-Lite |
-| P422 | Game Taxonomy | Game classification (Phase 0 of P500) |
-| P330 | EEV Calculator | MEV + E(U) - E(O) = Economic Expected Value |
-| P193 | Ergodicity Check | Safety gate: non-ergodic dimensions |
-| P180 | Utility Function Analysis | Stakeholder mapping (Phase 1 of P500) |
+| [P501](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/501-diagnostic-engine.md) | Diagnostic Engine | Triage: right problem? right game? SDR check |
+| [P500](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/500-gto-problem-solver.md) | GTO Problem Solver | 6-phase: Classify → Map → Generate → Rank → EEV → Monte Carlo |
+| [P506](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/reasoning/506-gto-execution-plan.md) | GTO Execution Plan | DAG sequencing with reversibility and kill criteria |
+| [P121](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/121-mcda-eev-framework.md) | MCDA / Pairwise | Multi-criteria ranking for GTO-Lite |
+| [P422](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/decision/422-game-taxonomy.md) | Game Taxonomy | Game classification (Phase 0 of P500) |
+| [P330](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/330-economic-expected-value.md) | EEV Calculator | MEV + E(U) - E(O) = Economic Expected Value |
+| [P193](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/193-ergodicity-check.md) | Ergodicity Check | Safety gate: non-ergodic dimensions |
+| [P180](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/180-utility-function-analysis.md) | Utility Function Analysis | Stakeholder mapping (Phase 1 of P500) |
 
 ---
 
@@ -216,7 +216,7 @@ graph TD
 
 ### As a Noun: "The GTO"
 
-The **single best strategy** given all constraints. Not the best _outcome_ — the best _process_. The move that cannot be punished regardless of what the other player does.
+The **single best strategy** given all constraints. Not the best *outcome* — the best *process*. The move that cannot be punished regardless of what the other player does.
 
 - "The GTO is exit." (When SDR > 5:1)
 - "The GTO is structural prevention." (The best defence is never being in the position)
@@ -264,8 +264,7 @@ Adopt the 5-point cognitive stance (§ The GTO Reasoning Stance). Physics before
 
 This workflow is **Version 1.0 (Prompt-Only, Reversibility 5)**.
 
-If kill signals fire repeatedly, the GTO escalation is to build `gto_orchestrator.py` that:
-
+If kill signals fire repeatedly, the GTO escalation is to build `.agent/scripts/gto_orchestrator.py` that:
 1. Forces the LLM through phases one-by-one (no skipping)
 2. Executes Monte Carlo numerically (not simulated in-context)
 3. Validates the GTO footer is present before returning
@@ -273,7 +272,7 @@ If kill signals fire repeatedly, the GTO escalation is to build `gto_orchestrato
 This is **Version 2.0 (Reversibility 3)** — only build if Version 1.0 demonstrates measurable decay.
 
 > **Architectural Note**: Sequential protocol chains (P501 → P500 → P506) are structurally different from
-> parallel reasoning (P75), which _does_ require script enforcement. Sequential chains are what LLMs
+> parallel reasoning (P75), which *does* require script enforcement. Sequential chains are what LLMs
 > handle well with explicit structure. The orchestrator is insurance, not a prerequisite.
 
 ---

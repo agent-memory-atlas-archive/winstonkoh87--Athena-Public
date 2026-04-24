@@ -18,7 +18,7 @@ Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 19 April 2026*
+*Last updated: 25 April 2026*
 
 </div>
 
@@ -45,7 +45,7 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 >
 > *Or in engineering terms: The LLM is the engine. Athena is the chassis, the memory, and the rules of the road. Swap the engine anytime — the car remembers every road you've driven.*
 >
-> *The design philosophy: [augment the human, not replace them](docs/concepts/Grace_Protocol.md). After 1,500+ sessions, the bottleneck shifted — [optimising the operator is now higher-leverage than optimising the AI](docs/USER_DRIVEN_RSI.md#phase-2-optimising-the-operator).*
+> *The design philosophy: [augment the human, not replace them](docs/concepts/Grace_Protocol.md). After 1,700+ sessions, the bottleneck shifted — [optimising the operator is now higher-leverage than optimising the AI](docs/USER_DRIVEN_RSI.md#phase-2-optimising-the-operator).*
 
 ### The Human Augmentation Thesis
 
@@ -184,7 +184,7 @@ There's a difference between *remembering your name* and *thinking in your frame
 <details>
 <summary><strong>🧬 Why Thousands of Files?</strong></summary>
 
-Athena's workspace looks unusual — **450+ Markdown files** and **240+ Python scripts** out of the box, growing to thousands as your memory compounds. **This is deliberate.**
+Athena's workspace looks unusual — **450+ Markdown files** and **250+ Python scripts** out of the box, growing to thousands as your memory compounds. **This is deliberate.**
 
 AI agents don't read files top-to-bottom like humans. They **query** — by filename, semantic search, or tag lookup. Each small file is an **addressable memory node** the agent can retrieve surgically, without loading everything else.
 
@@ -392,7 +392,7 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/507-cognitive-systems.md) |
 | 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
 | 📋 **150+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 15 categories — [browse](examples/protocols/) |
-| ⚡ **66+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
+| ⚡ **70+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 sources, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
 | 🪝 **Lifecycle Hooks** | Scriptable pre/post gates on every action — block destructive ops, enforce risk checks, log assets |
@@ -514,7 +514,7 @@ Athena-Public/
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
 │   ├── protocols/           # 150+ starter frameworks (15 categories)
-│   ├── scripts/             # 129 reference scripts
+│   ├── scripts/             # 163 reference scripts
 │   └── templates/           # Starter templates (framework, memory bank)
 ├── docs/                    # Architecture, benchmarks, security, guides
 └── pyproject.toml           # Modern packaging

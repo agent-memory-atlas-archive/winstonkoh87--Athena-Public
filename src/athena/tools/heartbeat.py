@@ -24,6 +24,7 @@ import sys
 import threading
 import time
 from pathlib import Path
+from typing import Dict, Optional
 
 try:
     from watchdog.events import FileSystemEventHandler
@@ -34,9 +35,9 @@ except ImportError:
     print("⚠️ watchdog not installed. Run: pip install watchdog", file=sys.stderr)
 
 from athena.core.config import (
+    PROJECT_ROOT,
     CORE_DIRS,
     EXTENDED_DIRS,
-    PROJECT_ROOT,
 )
 
 # ── Logging ───────────────────────────────────────────────────────────────────
@@ -64,7 +65,7 @@ def setup_logging():
 # ── Table Routing ─────────────────────────────────────────────────────────────
 
 
-def resolve_table(file_path: Path) -> str | None:
+def resolve_table(file_path: Path) -> Optional[str]:
     """
     Determine which Supabase table a file should sync to.
     Returns None if the file is not in a watched directory.
@@ -98,7 +99,7 @@ class DebouncedSyncHandler(FileSystemEventHandler if Observer else object):
     def __init__(self, dry_run: bool = False):
         super().__init__()
         self.dry_run = dry_run
-        self._pending: dict[str, threading.Timer] = {}
+        self._pending: Dict[str, threading.Timer] = {}
         self._lock = threading.Lock()
         self._stats = {"synced": 0, "skipped": 0, "errors": 0}
 
@@ -252,11 +253,7 @@ class Heartbeat:
         setup_logging()
         logger.info("🔍 Running single-pass scan...")
 
-        from athena.memory.sync import (
-            get_file_hash,
-            load_manifest,
-            sync_file_to_supabase,
-        )
+        from athena.memory.sync import sync_file_to_supabase, load_manifest, get_file_hash
 
         manifest = load_manifest()
         synced = 0

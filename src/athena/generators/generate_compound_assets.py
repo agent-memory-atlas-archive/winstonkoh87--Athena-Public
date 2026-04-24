@@ -5,13 +5,12 @@ Uses Gemini 3 Flash Preview to generate durable value assets.
 Budget: 19 API calls total.
 """
 
-import json
 import os
-from datetime import datetime
+import json
 from pathlib import Path
-
-import google.generativeai as genai
+from datetime import datetime
 from dotenv import load_dotenv
+import google.generativeai as genai
 
 load_dotenv()
 
@@ -140,8 +139,7 @@ def refresh_entity_extraction():
         / ".context/memories/case_studies/CS-346-GEO-Pivot-Content-Agencies.md",
         WORKSPACE
         / ".context/memories/case_studies/CS-347-Digital-Marketing-Principles.md",
-        # User profile path — customize per workspace
-        # WORKSPACE / "your_profile/User_Profile.md",
+        WORKSPACE / "Winston/profile/User_Profile.md",
     ]
 
     all_entities = []
@@ -205,7 +203,7 @@ def generate_stealable_prompts():
 
         try:
             response = model.generate_content(f"""
-Convert this workflow into a "stealable prompt" — a standalone system instruction that could be copy-pasted into any AI to replicate this behavior.
+Convert this workflow into a "stealable prompt" — a standalone system instruction that could be copy-pasted into any AI to replicate this behavior. 
 
 Requirements:
 1. Self-contained (no external file references)
@@ -229,8 +227,8 @@ Workflow:
 if __name__ == "__main__":
     print("=" * 60)
     print("⚡ COMPOUND ASSET GENERATOR")
-    print("   Model: gemini-3-flash-preview")
-    print("   Budget: 19 API calls")
+    print(f"   Model: gemini-3-flash-preview")
+    print(f"   Budget: 19 API calls")
     print(f"   Time: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print("=" * 60)
 

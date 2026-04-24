@@ -1,12 +1,8 @@
----created: 2025-12-19
-last_updated: 2026-01-30
 ---
-
----description: Pre-prompt fact-finding and scope clarification before executing complex tasks
+description: Pre-prompt fact-finding and scope clarification before executing complex tasks
 created: 2025-12-19
 last_updated: 2026-01-11
 ---
-
 # /brief v2.1 — Pre-Prompt Clarification Protocol
 
 **Trigger:** User invokes `/brief <task description>` before a complex or underspecified request.
@@ -186,6 +182,82 @@ G. **ENGINEERING EDGE CASES**: Race conditions, Offline states, Error handling, 
 
 ---
 
+## Product Diagnostic Extension (`/brief product`)
+
+> **Source:** Adapted from [garrytan/gstack `/office-hours`](https://github.com/garrytan/gstack) (CS-544)
+> **Trigger:** "I want to build X", product/service/business ideas, consulting diagnostics, BMC/Four Fits analysis.
+> **Philosophy:** Understand the problem before proposing solutions. Push until answers are specific, evidence-based, and uncomfortable. Comfort means the founder hasn't gone deep enough.
+
+### Smart Routing by Stage
+
+| Stage | Questions to Ask |
+|-------|-----------------|
+| Pre-product (idea only) | Q1, Q2, Q3 |
+| Has users/traction | Q2, Q4, Q5 |
+| Has paying customers | Q4, Q5, Q6 |
+| Consulting diagnostic | Q1, Q2, Q3, Q4 (adapted for client) |
+
+### The Six Forcing Questions
+
+Ask **ONE AT A TIME**. Push on each until the answer is specific. Skip questions already answered by previous responses.
+
+#### Q1: Demand Reality
+**Ask:** "What's the strongest evidence that someone actually *needs* this — not 'is interested,' not 'signed up,' but would be genuinely upset if it disappeared tomorrow?"
+
+**Push until you hear:** Specific behaviour. Someone paying. Someone expanding usage. Someone who'd scramble if you vanished.
+
+**Red flags:** "People say it's interesting." "We got waitlist signups." "The market is growing." None of these are demand.
+
+#### Q2: Status Quo
+**Ask:** "What are users doing *right now* to solve this problem — even badly? What does that workaround cost them?"
+
+**Push until you hear:** A specific workflow. Hours wasted. Dollars spent. Tools duct-taped together.
+
+**Red flags:** "Nothing — no solution exists." If truly nothing exists and nobody is doing anything, the problem probably isn't painful enough.
+
+#### Q3: Desperate Specificity
+**Ask:** "Name the actual human who needs this most. What's their title? What gets them promoted? What keeps them up at night?"
+
+**Push until you hear:** A name. A role. A specific consequence.
+
+**Red flags:** Category-level answers — "SMBs," "marketing teams." You can't email a category.
+
+**Consulting adaptation:** "Who in the client's org owns this problem? What KPI are they measured on?"
+
+#### Q4: Narrowest Wedge (Law #2 Aligned)
+**Ask:** "What's the smallest possible version someone would pay real money for — this week, not after you build the platform?"
+
+**Push until you hear:** One feature. One workflow. Something shippable in days.
+
+**Red flags:** "We need the full platform first." This is attachment to architecture over value.
+
+**Bonus push:** "What if the user didn't have to do anything at all — no login, no setup? What would that look like?"
+
+#### Q5: Observation & Surprise (Law #3 — Revealed Preference)
+**Ask:** "Have you actually sat down and watched someone use this without helping them? What did they do that surprised you?"
+
+**Push until you hear:** A specific surprise. Something that contradicted assumptions.
+
+**Red flags:** "We sent a survey." Surveys lie. "Nothing surprising." = Not watching closely.
+
+**The gold:** Users doing something the product wasn't designed for. That's the real product trying to emerge.
+
+#### Q6: Future-Fit
+**Ask:** "If the world looks meaningfully different in 3 years — does this product become more essential or less?"
+
+**Push until you hear:** A specific claim about how change makes the product *more* valuable. Not "AI makes everything better" — that's a rising tide argument.
+
+### Output
+
+After diagnostic, produce a brief with:
+1. **Problem Statement** (refined from user's original framing)
+2. **Evidence Score** (1-10, how much real evidence vs speculation)
+3. **Narrowest Wedge** (the MVP that validates the thesis)
+4. **Key Premises** (3-5 statements user must agree with before proceeding)
+5. **Recommendation** (Build / Pivot framing / Gather more evidence / Kill)
+
+---
+
 ## Research Extension (`/brief research`)
 
 > **Trigger:** "Find out about X", "Analyze Y", "What is the best Z"
@@ -306,6 +378,7 @@ Do not auto-trigger. User controls the gate.
 | Multi-step project | `/brief ++` |
 | New feature/code | `/brief build` |
 | Investigation/analysis | `/brief research` |
+| Product/business idea | `/brief product` |
 | Underspecified idea | `/brief interview` → `/spec` |
 | Client work | Add "Veto holders" field |
 

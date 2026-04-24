@@ -1,12 +1,20 @@
 #!/usr/bin/env python3
 """
-compact_context.py — Active Context Compactor (v2.0)
+compact_context.py — Active Context Compactor (v3.0)
 =====================================================
 Prunes activeContext.md to keep it lean for boot token budgets.
+
+Head/Tail Preservation (v3.0, from research):
+- HEAD (## Current Focus, ## Active Tasks): NEVER pruned — identity/state.
+- TAIL (## System Status): NEVER pruned — operational health.
+- MIDDLE (## Recent Context, session markers): Target for aggressive pruning.
+
+Trigger Rule: Run compaction when activeContext.md > 8,000 tokens OR > 100 lines.
 
 Fixes applied:
 - v2.0: Index-based line removal (no duplicate-line bugs).
 - v2.0: Session completion marker pruning (prevents unbounded growth).
+- v3.0: Head/tail preservation + documented trigger thresholds.
 """
 
 import os
@@ -24,6 +32,15 @@ MAX_RECENT_CONTEXT_AGE_HOURS = 48  # Prune narrative blocks older than this
 SESSION_LOG_DIR = ".context/memories/session_logs"
 SESSION_LOG_ARCHIVE = ".context/memories/session_logs/archive"
 SESSION_ARCHIVE_DAYS = 7
+
+# Compaction Trigger Thresholds (documented rule from research)
+COMPACT_TOKEN_TRIGGER = 8_000  # Trigger compaction above this token count
+COMPACT_LINE_TRIGGER = 100  # Trigger compaction above this line count
+
+# Protected Sections (head/tail preservation — NEVER pruned)
+# These section headers define the boundaries of protected content.
+PROTECTED_HEAD_SECTIONS = {"## Current Focus", "## Active Tasks"}
+PROTECTED_TAIL_SECTIONS = {"## System Status"}
 
 
 def compact_active_context(aggressive: bool = False):

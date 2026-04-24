@@ -3,7 +3,7 @@ set -e
 
 # Configuration
 PRIVATE_REPO="/Users/[AUTHOR]/Desktop/Project Athena"
-PUBLIC_REPO="/Users/[AUTHOR]/Desktop/Project Athena/Athena-Public"
+PUBLIC_REPO="/Users/[AUTHOR]/Athena-Public"
 VERSION="v1.0.0"
 
 echo "🚀 Deploying Athena-Public $VERSION..."

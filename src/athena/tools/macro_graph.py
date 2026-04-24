@@ -6,8 +6,9 @@ Automatically regenerates the .context/KNOWLEDGE_GRAPH.md file.
 Reflects the actual workspace structure in a Mermaid diagram.
 """
 
-import sys
 from pathlib import Path
+import os
+import sys
 
 # SDK Imports
 SDK_PATH = Path(__file__).resolve().parent.parent.parent
@@ -38,7 +39,7 @@ def generate_mermaid() -> str:
     }
 
     # Filter only existing ones
-    {k: v.exists() for k, v in nodes.items()}
+    exists = {k: v.exists() for k, v in nodes.items()}
 
     mermaid = """graph TB
     subgraph CORE["🧠 CORE (Identity & SDK)"]
@@ -67,7 +68,7 @@ def generate_mermaid() -> str:
     SDK --> SL
     SL --> CS
     PR --> CS
-
+    
     SDK --> PUB
     SDK --> MKT
     MKT --> PUB

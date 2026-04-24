@@ -27,6 +27,10 @@ from fastmcp import FastMCP
 
 from athena.core.permissions import (
     get_permissions,
+    PermissionDenied,
+    SecretModeViolation,
+    Permission,
+    Sensitivity,
 )
 
 # ---------------------------------------------------------------------------
@@ -74,8 +78,8 @@ def smart_search(
     Returns:
         dict with 'results' (list of matches) and 'meta' (query info).
     """
-    from athena.core.governance import get_governance
     from athena.tools.search import run_search
+    from athena.core.governance import get_governance
 
     # Permission gate
     perms = get_permissions()
@@ -189,8 +193,8 @@ def quicksave(
     Returns:
         dict with 'status', 'log_file', and 'timestamp'.
     """
-    from athena.core.governance import get_governance
     from athena.sessions import append_checkpoint
+    from athena.core.governance import get_governance
 
     # Permission gate
     perms = get_permissions()

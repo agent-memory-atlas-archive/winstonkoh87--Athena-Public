@@ -1,6 +1,6 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 19 April 2026  
+> **Last Updated**: 25 April 2026  
 > **System Version**: v9.8.3
 
 > [!NOTE]
@@ -88,7 +88,7 @@ Athena/
 │
 ├── Athena-Public/                 # ← PUBLIC PORTFOLIO
 │   ├── docs/                      # This documentation
-│   ├── examples/                  # 150+ protocols, 129 scripts, templates
+│   ├── examples/                  # 150+ protocols, 163 scripts, templates
 │   ├── src/                       # Public SDK source
 │   ├── community/                 # Community resources
 │   └── README.md                  # Repository overview
@@ -154,13 +154,13 @@ graph TD
 
 > **Core Principle**: Intelligence compounds at the **interface** between human judgment and AI reasoning — not unilaterally within either. Neither human nor AI can recursively self-improve alone.
 
-**Why**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system*: the human injects genuinely new information (taste, correction, lived experience, domain knowledge) that the AI cannot generate internally, while the AI provides perfect recall, structural discipline, and pattern-matching at scale. The moat is not the code — it's the **coupling data** from 1,500+ sessions of bilateral calibration.
+**Why**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system*: the human injects genuinely new information (taste, correction, lived experience, domain knowledge) that the AI cannot generate internally, while the AI provides perfect recall, structural discipline, and pattern-matching at scale. The moat is not the code — it's the **coupling data** from 1,700+ sessions of bilateral calibration.
 
 | Dimension | Unilateral AI RSI | Symbiotic RSI (Athena) |
 |:----------|:------------------|:-----------------------|
 | **Who improves?** | AI alone (autonomous) | Human + AI together (bilateral) |
 | **Energy source** | Internal (closed system) | External — human judgment (open system) |
-| **Current status** | Hypothetical (2126?) | **Working today** (1,500+ sessions) |
+| **Current status** | Hypothetical (2126?) | **Working today** (1,700+ sessions) |
 | **Moat** | Compute (replicable) | Coupling data (unreplicable without living it) |
 
 **In practice, this means**:
@@ -531,7 +531,7 @@ graph TD
 
 | Trigger | File Loaded | Tokens |
 |:---|:---|:---|
-| User context query | `User_Profile_Core.md` | ~1,500 |
+| User context query | `User_Profile_Core.md` | ~1,700 |
 | Skill request | `SKILL_INDEX.md` | ~4,500 |
 | `/think` invoked | `Output_Standards.md` | ~700 |
 | Tag lookup | `TAG_INDEX.md` | ~5,500 |

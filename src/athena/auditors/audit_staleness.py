@@ -12,6 +12,7 @@ Usage:
     python -m athena.auditors.audit_staleness
 """
 
+import os
 import re
 import subprocess
 from datetime import datetime
