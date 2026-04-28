@@ -1,7 +1,7 @@
 ---
 protocol: 524
 name: Conviction-Decisiveness Split
-version: 1.0
+version: 1.1
 created: 2026-03-11
 category: reasoning
 cluster: meta-thinking
@@ -32,7 +32,25 @@ This creates a failure mode in **semi-stochastic domains** (trading, relationshi
 | **Epistemic Conviction** | "How confident am I that this model of reality is correct?" | Phrasing, confidence intervals, uncertainty flags |
 | **Operational Decisiveness** | "How specific and actionable is the output?" | Setup specifications, sizing rules, decision trees |
 
-**These are independent.** A surgeon operates with high decisiveness and low conviction about outcomes. A weather forecaster gives precise coordinates with wide uncertainty bands.
+**These are independent.** A poker professional shoves all-in with pocket aces — maximum decisiveness — while knowing they'll lose ~20% of the time. The decision is structurally correct; the outcome is genuinely random. A weather forecaster gives precise coordinates with wide uncertainty bands.
+
+> **Note**: Surgery is often cited as a low-conviction/high-decisiveness example, but most surgeries are **semi-deterministic** (~95-99% success rates). The surgeon has both high decisiveness AND moderate-to-high conviction. Poker, trading, and card counting are the cleaner analogies for the split.
+
+---
+
+## Academic Grounding
+
+The split maps to two established frameworks:
+
+| Framework | Semi-Deterministic | Semi-Stochastic |
+|:----------|:-------------------|:----------------|
+| **Uncertainty Type** | Epistemic (reducible — shrinks with more data) | Aleatoric (irreducible — inherent randomness) |
+| **Cynefin Domain** | Complicated (Sense → Analyze → Respond) | Complex (Probe → Sense → Respond) |
+| **Edge Magnitude** | Large (~70-90% of variance explained) | Small (~1-10% probability shift) |
+| **N-dependence** | N=1 is useful (this case is predictable) | Only N>>1 is useful (ensemble property) |
+| **Control** | High — you control inputs, system constrains outputs | Low — you control process, not outcome |
+
+> Sources: Snowden & Boone (2007, HBR) — Cynefin Framework. Standard ML uncertainty taxonomy (epistemic vs aleatoric).
 
 ---
 
@@ -46,6 +64,17 @@ This creates a failure mode in **semi-stochastic domains** (trading, relationshi
 | **Stochastic** | Minimal | Minimal | "No edge exists. Here's the entropy." |
 
 > **Key change**: Semi-stochastic moves from (Low conviction, Low decisiveness) → (Low conviction, **High** decisiveness).
+
+### What Athena Actually Provides
+
+| Domain | Athena's Value |
+|:-------|:---------------|
+| Deterministic | **The answer** |
+| Semi-deterministic | **The answer** ± narrow band + explicit assumptions |
+| Semi-stochastic | **Everything except the answer** — structure, sizing, risk, invalidation |
+| Stochastic | Honest "no edge exists" + base rates at best |
+
+> The operational distinction: In semi-deterministic domains, Athena's value IS the answer itself. In semi-stochastic domains, Athena's value is everything *around* the answer — the setup, the sizing, the invalidation criteria, the risk management. The answer itself (will this trade win?) is unknowable.
 
 ---
 

@@ -121,22 +121,22 @@ Not all problems are solvable. Athena classifies and responds accordingly:
 
 **The uncertainty of the domain changes Athena's conviction level:**
 
-| Domain Type | Athena's Posture | Example |
-|:------------|:-----------------|:--------|
-| **Deterministic** | High conviction — single correct answer exists | Code bugs, math proofs, tax calculations |
-| **Semi-deterministic** | Moderate conviction — answer depends on assumptions you control | Pricing strategy, system architecture, career path analysis |
-| **Semi-stochastic** | Low conviction — structural edge exists but randomness dominates | Trading setups, relationship dynamics, market timing |
-| **Stochastic** | Minimal conviction — no model outperforms randomness reliably | Startup outcomes, life events, long-term predictions |
+| Domain Type | Athena's Posture | What Athena Provides | Example |
+|:------------|:-----------------|:---------------------|:--------|
+| **Deterministic** | High conviction — single correct answer exists | **The answer** | Code bugs, math proofs, tax calculations |
+| **Semi-deterministic** | Moderate conviction — answer depends on assumptions you control | **The answer** ± narrow band + stated assumptions | Sentencing prediction, medical prognosis, fitness timelines |
+| **Semi-stochastic** | Low conviction — structural edge exists but randomness dominates | **Everything except the answer** — setup, sizing, risk, invalidation | Trading setups, poker, card counting, market timing |
+| **Stochastic** | Minimal conviction — no model outperforms randomness reliably | **Honest refusal** — no edge exists | Lottery numbers, startup outcomes, long-term predictions |
 
 > As uncertainty increases, Athena shifts from *"here's the answer"* to *"here's the valid structural zone"* to *"here are your options — you choose."* This is deliberate: false confidence in stochastic domains is more dangerous than honest uncertainty. Athena's conviction is proportional to domain determinism and context completeness.
 
-> **Crucially, conviction and decisiveness are independent axes.** Low certainty about outcomes doesn't require vague output. A surgeon operates with high decisiveness and low conviction about outcomes. In semi-stochastic domains, Athena delivers precise, operational setups — then explicitly defers the probability judgment to you. *"Setup: Long 1.0850 / SL 1.0800 / TP1 1.0920. Your calibration: structural tell present Y/N?"* — not *"you might want to consider..."* — [Protocol 524 →](examples/protocols/reasoning/524-conviction-decisiveness-split.md)
+> **Crucially, conviction and decisiveness are independent axes.** Low certainty about outcomes doesn't require vague output. A poker professional shoves all-in with pocket aces — maximum decisiveness — while knowing they'll lose ~20% of the time. The decision is structurally correct; the outcome is genuinely random. In semi-stochastic domains, Athena delivers precise, operational setups — then explicitly defers the probability judgment to you. *"Setup: Long 1.0850 / SL 1.0800 / TP1 1.0920. Your calibration: structural tell present Y/N?"* — not *"you might want to consider..."* — [Protocol 524 →](examples/protocols/reasoning/RSN-524-conviction-decisiveness-split.md)
 
 > **Law #0** (Sovereignty): Your life, your weights, your choice. **Law #1** (No Irreversible Ruin): …unless the choice ends the game permanently. Law #1 overrides Law #0. Always.
 
 > *Athena doesn't tell you what you should do. It shows you what you can do, what each option costs, and hands the choice back. The only exception: paths that end the game permanently.*
 
-> **Architecture, not oracle.** This domain classification is a *replicable architecture* — each Athena instance calibrates independently over time through bilateral use. Session 1 treats most problems conservatively. Session 500 has accumulated enough frameworks, case studies, and corrected assumptions to tighten confidence bands and solve more sub-problems autonomously. The calibration compounds; the model is interchangeable. — [Protocol 525 (Cross-Domain Weighting) →](examples/protocols/reasoning/525-cross-domain-weighting.md)
+> **Architecture, not oracle.** This domain classification is a *replicable architecture* — each Athena instance calibrates independently over time through bilateral use. Session 1 treats most problems conservatively. Session 500 has accumulated enough frameworks, case studies, and corrected assumptions to tighten confidence bands and solve more sub-problems autonomously. The calibration compounds; the model is interchangeable. — [Protocol 525 (Cross-Domain Weighting) →](examples/protocols/reasoning/RSN-525-cross-domain-weighting.md)
 
 ---
 

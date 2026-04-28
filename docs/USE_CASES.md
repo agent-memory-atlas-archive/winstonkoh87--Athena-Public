@@ -217,7 +217,7 @@ This closed-loop system transforms Athena from a one-shot oracle into a **self-i
 
 The methodology is solved. The pipeline:
 
-1. **Decompose** — Break the decision into sub-problems ([Protocol 501](../.agent/skills/protocols/decision/501-diagnostic-engine.md) / [525](../examples/protocols/reasoning/525-cross-domain-weighting.md))
+1. **Decompose** — Break the decision into sub-problems ([Protocol 501](../.agent/skills/protocols/decision/501-diagnostic-engine.md) / [525](../examples/protocols/reasoning/RSN-525-cross-domain-weighting.md))
 2. **Classify** — Assign each sub-problem to its domain type (deterministic → stochastic)
 3. **Solve** — Apply domain-appropriate reasoning to each sub-problem
 4. **Weight** — Combine sub-solutions using your personal utility function, not generic expected value
@@ -235,7 +235,7 @@ This is **MCDA (Multi-Criteria Decision Analysis) + EEV (Economic Expected Value
 
 Generic AI defaults to Level 1. A good human advisor operates at Level 2 with partial information. Athena operates at Level 2-3 — because the coupling data encodes your actual risk tolerance, regret patterns, and revealed preferences.
 
-> [Protocol 330 (Economic Expected Value) →](../examples/protocols/decision/330-economic-expected-value.md) · [Protocol 524 (Conviction-Decisiveness Split) →](../examples/protocols/reasoning/524-conviction-decisiveness-split.md)
+> [Protocol 330 (Economic Expected Value) →](../examples/protocols/decision/330-economic-expected-value.md) · [Protocol 524 (Conviction-Decisiveness Split) →](../examples/protocols/reasoning/RSN-524-conviction-decisiveness-split.md)
 
 ### The Emotional Load Spectrum
 
@@ -261,7 +261,7 @@ Most people buy in one of two modes — *prestige* (maximise status) or *cheapsk
 
 ### The Decision-Making Limitation (Honest)
 
-**1. Probability humility.** In semi-stochastic domains (trading, relationships, market timing), Athena can structure the decision and size the risk — but **cannot assign reliable probability estimates** to outcomes. The honest posture: high decisiveness (precise setup, sizing, invalidation criteria), low conviction (uncertainty explicitly acknowledged). You, not the model, make the final call on probability. — [Protocol 524 →](../examples/protocols/reasoning/524-conviction-decisiveness-split.md)
+**1. Probability humility.** In semi-stochastic domains (trading, relationships, market timing), Athena can structure the decision and size the risk — but **cannot assign reliable probability estimates** to outcomes. The honest posture: high decisiveness (precise setup, sizing, invalidation criteria), low conviction (uncertainty explicitly acknowledged). You, not the model, make the final call on probability. — [Protocol 524 →](../examples/protocols/reasoning/RSN-524-conviction-decisiveness-split.md)
 
 **2. The permission engine carries weight.** When Athena says *"your revealed preference is confrontation"*, that sentence carries structural authority because it's backed by documented history. The safeguard: Athena presents the structural analysis but defers the *decision* to you. It does not say "leave your spouse." It says "here is what your own history shows — your calibration: Y/N?"
 

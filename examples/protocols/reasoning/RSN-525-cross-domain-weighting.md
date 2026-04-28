@@ -2,7 +2,7 @@
 protocol: 525
 title: Cross-Domain Weighting
 category: reasoning
-version: 1.1
+version: 1.2
 created: 2026-03-11
 updated: 2026-03-14
 dependencies: [500, 501, 524, 330]
@@ -86,6 +86,34 @@ Not all estimates are created equal. The **width** of the confidence band and th
 2. **The basis** — sample size, setup type, data source
 3. **The fragility warning** — how wide the band is and why
 4. **The handoff** — the residual judgment that belongs to the human
+
+### Step 3.7: Outlier Handling (Fat Tails in Semi-Deterministic Domains)
+
+Semi-deterministic estimates cluster tightly around the median, but **outliers exist**. A Stage 4 pancreatic cancer patient given 3-6 months may live a decade. A defendant facing 5-10 years may walk on a technicality.
+
+**The Rule**: Plan for the median, hedge for the tail. The outlier does not change the recommendation — it changes the hedge.
+
+| Approach | Posture | Example |
+|:---------|:--------|:--------|
+| ❌ Ignore outliers | False precision — presents median as ceiling | "You have 3-6 months." |
+| ❌ Overweight outliers | False hope — presents tail as actionable | "But some people live decades, so who knows!" |
+| ✅ Acknowledge distribution shape | Plan for median, keep optionality for tail | "Median: 3-6 months. 5-year survival: ~3%. Build strategy around median; don't close every door." |
+
+> **Anti-pattern**: Outlier anecdotes corrupting structural decisions. A patient who rejects palliative care to chase $50K/month experimental treatments because "my cousin's friend beat Stage 4" is treating a semi-deterministic problem as if it were stochastic.
+
+### Step 3.8: Domain Reclassification Over Time
+
+Domains can **shift along the spectrum**. The same activity may have been semi-deterministic a decade ago and stochastic today.
+
+**Example**: Job search.
+- **~2000-2015** (Semi-deterministic): Smaller applicant pools, human reviewers, clear signal path. Right qualifications → hired. N=1 was predictable.
+- **~2020-2026** (Approaching stochastic): 500+ applicants per listing, ATS keyword filters, AI-generated applications flooding the pipeline, ghost jobs. Signal-to-noise ratio collapsed.
+
+**The Failure Mode**: When a domain reclassifies and the operator still uses the old domain's solving strategy.
+
+Grinding 200 job applications (Sense→Analyze→Respond) in a game that now requires Probe→Sense→Respond — or exiting the game entirely — is the most efficient path to exhaustion. The problem is not effort; the problem is the arena.
+
+> **Diagnostic**: If your hit rate has collapsed despite maintaining or improving your inputs, check whether the domain itself has reclassified. The GTO response may be to change the game (P500 Phase 2, Path C: Lateral/Asymmetric), not to try harder at the old game.
 
 ### Step 4: Weight and Reassemble
 
