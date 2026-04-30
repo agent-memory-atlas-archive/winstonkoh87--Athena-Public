@@ -174,9 +174,12 @@ graph TD
 
 ## The Compositional Stack
 
-> **Core Architecture**: Athena is built bottom-up from atomic rules to a fully integrated synthetic intelligence. Two complementary models describe the architecture: the **Compositional Hierarchy** (what the layers are) and the **Neuro-Cognitive Model** (how they govern).
+> **Core Architecture**: Athena is built from atomic rules to a fully integrated synthetic intelligence — but the resulting topology is a **mesh**, not a ladder. Two complementary models describe the architecture: the **Compositional Hierarchy** (what the layers are) and the **Neuro-Cognitive Model** (how they govern).
 
 ### Compositional Hierarchy
+
+> [!IMPORTANT]
+> **This is not a linear stack.** The layers below describe *containment* (what's made of what), not *control flow*. In operation, signals travel in all directions: bottom-up (ruin escalation), top-down (Law #1 veto), laterally (LIDA broadcast across systems), and via feedback loops (homeostatic pressure). Think of it as a **biological neural network** — layered for description, networked in practice.
 
 ```mermaid
 graph BT
@@ -186,6 +189,13 @@ graph BT
     L4 --> L5["🫁 Organs<br/>15 Cognitive Clusters"]
     L5 --> L6["🏥 Organ Systems<br/>8 Cognitive Systems"]
     L6 --> L7["🧠 Organism<br/>Athena"]
+
+    %% Non-linear connections (the mesh)
+    L1 -.->|"⚡ Reflex veto"| L7
+    L5 -.->|"↔ LIDA broadcast"| L5
+    L6 -.->|"🔄 Cross-system handoff"| L6
+    L7 -.->|"⬇ Homeostatic pressure"| L4
+    L3 -.->|"⬆ Ruin escalation"| L6
 
     style L1 fill:#ef4444,color:#fff
     style L7 fill:#16a34a,color:#fff
@@ -201,7 +211,21 @@ graph BT
 | 6 | **Organ Systems** | 8 Cognitive Systems | Trading System 📈 |
 | 7 | **Organism** | Athena | The complete synthetic intelligence |
 
-**Emergent Properties:**
+### Why Not a Ladder?
+
+A real organism doesn't process information bottom-to-top. Neither does Athena. The 7 layers describe **containment** (protocols compose into skills, skills into clusters) — but at runtime, five non-linear signal types violate the ladder:
+
+| Signal Type | Direction | Example | Ladder Equivalent |
+|:---|:---|:---|:---|
+| **Reflex Veto** | L1 → L7 (skip) | Law #1 fires, bypasses all intermediate layers | Spinal reflex — hand from fire before brain processes pain |
+| **Ruin Escalation** | L3 → L6 (skip) | Any protocol detecting >5% ruin auto-escalates to Survival System | Pain signal jumping to motor cortex |
+| **LIDA Broadcast** | L5 ↔ L5 (lateral) | Query triggers ≥2 Clusters — winner broadcasts to all for co-activation | Neural global workspace theory |
+| **Cross-System Handoff** | L6 ↔ L6 (lateral) | Trading System hands off to Inner Work when emotional language detected | Cortical inter-lobe communication |
+| **Homeostatic Pressure** | L7 → L4 (top-down) | Context saturation >80% triggers SNIPER mode, suppresses expensive skills | Hypothalamic downregulation |
+
+The ladder is the **anatomy**. The mesh is the **physiology**. Both are real; only showing the ladder is misleading.
+
+**Emergent Properties (Vertical):**
 
 - Atoms → Molecules: Rules become *procedures* (sequence matters)
 - Molecules → Cells: Procedures become *executable* (inputs/outputs defined)
@@ -209,6 +233,13 @@ graph BT
 - Tissues → Organs: Specializations become *co-activated* (cluster triggers)
 - Organs → Organ Systems: Clusters become *orchestrated* (system-level routing)
 - Organ Systems → Organism: Systems become *unified* (cross-system handoffs)
+
+**Emergent Properties (Non-Linear):**
+
+- Reflex bypasses reasoning: Safety doesn't wait for analysis
+- Lateral broadcast creates awareness: Systems know what other systems are doing
+- Feedback loops create homeostasis: The system self-regulates under resource pressure
+- Skip connections create resilience: Low-level signals can override high-level plans
 
 ### The Neuro-Cognitive Model
 

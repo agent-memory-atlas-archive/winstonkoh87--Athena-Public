@@ -354,7 +354,7 @@ flowchart LR
 
 ### The Biological Analogy
 
-Athena is modelled after the human body. Built bottom-up by the creator. Used top-down by the user.
+Athena is modelled after the human body — but the topology is a **mesh**, not a ladder. The table below describes *containment* (what's made of what). At runtime, signals travel in all directions: reflex vetoes skip from L1→L7, clusters broadcast laterally, systems hand off to each other, and homeostatic pressure flows top-down.
 
 | Biology | Athena | What It Does |
 |:--------|:-------|:-------------|
@@ -366,7 +366,9 @@ Athena is modelled after the human body. Built bottom-up by the creator. Used to
 | Organ System | Cognitive System | Multi-cluster orchestration for a human need archetype |
 | Organism | Athena | The complete synthetic intelligence |
 
-> *"As within, so without, as above, so below." — Same pattern at every layer. Fractal by design.*
+> *"As within, so without, as above, so below." — Same pattern at every layer. Fractal by design. The ladder is the anatomy. The mesh is the physiology.*
+>
+> [→ Full Compositional Stack with non-linear signal map](docs/ARCHITECTURE.md#the-compositional-stack)
 
 ### The Linux Analogy
 
