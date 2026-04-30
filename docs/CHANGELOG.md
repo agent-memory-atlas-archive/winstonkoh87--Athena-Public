@@ -1,10 +1,54 @@
 # Athena Changelog
 
-> **Last Updated**: 19 April 2026
+> **Last Updated**: 1 May 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.8.4 (01 May 2026)
+
+**GTO Metrics Sync — Meta-Pattern Framework v2.0**
+
+### Key Changes
+
+#### Meta-Pattern Framework v2.0 (7→14 Universal Laws)
+- **7 new internal meta-patterns added** (MP-8 through MP-14): Expanding the framework from 7 external/structural patterns to 14 universal laws covering both external (market/arena) and internal (psychological/decision) domains.
+  - **MP-8 (Wound-Selects-For-Itself)**: Unexamined psychological schemas create recursive selection loops that re-select for injury.
+  - **MP-9 (Leverage Inversion)**: The GTO play is repositioning the fulcrum, not grinding harder at the lever.
+  - **MP-10 (Information-Action Gap)**: Structural barriers (utility, filtration, commitment) prevent rational action despite available information.
+  - **MP-11 (Iteration Economy)**: The winner is defined by iterations-per-unit-cost, not raw effort.
+  - **MP-12 (Articulation Penalty)**: Structural truth and social distribution are inversely correlated.
+  - **MP-13 (Principal-Agent Misalignment)**: Delegation drifts toward agent incentives unless mechanically constrained.
+  - **MP-14 (Sunk Cost Gravity Well)**: Ego-driven entrapment in legacy positions.
+- **Unified Axiom** expanded: *"Own the arena. Own the asset. Own the structure. Own the narrative. Own the exit. Everything else is rent — including the stories you tell yourself."*
+- **Interaction matrix** expanded from 7×7 to 14×14 with cross-domain (external↔internal) interaction examples.
+
+#### Filesystem-Verified Metrics Sync
+- **Protocols**: 378 → **382** active (filesystem-verified: `find .agent/skills/protocols -name '*.md'`)
+- **Case Studies**: 433 → **443** (filesystem-verified: `ls .context/memories/case_studies/*.md`)
+- **Workflows**: 68 → **73** (filesystem-verified: `find .agent/workflows -name '*.md'`)
+- **Sessions**: 1,700+ → **1,750+** (375 session log files)
+- **Scripts**: 240+ → **220+** (pruned: `find .agent/scripts -name '*.py'`)
+
+### Design Decisions
+
+- The 14-pattern framework divides cleanly into **External Structures** (MP-1→7: Arenas, Markets, Assets) and **Internal Structures** (MP-8→14: Psychology, Epistemology, Decision Architecture). Future audits now require a two-pass check: external pass + internal pass.
+- Script count *decreased* from 240+ to 220+ — reflects accurate filesystem count after pruning passes. Not a regression.
+- Meta-pattern expansion originated from a cross-workspace synthesis of 443 case studies and 382 protocols, identifying recurring internal/cognitive patterns that were previously implicit.
+
+### Files Changed
+
+- `README.md` — Version badge (v9.8.3→v9.8.4), date, protocol count (150+→155+), workflow count (70+→73+), SDK version, changelog entry
+- `docs/ARCHITECTURE.md` — Version, date, all metric counts (protocols, case studies, workflows, scripts, sessions), mermaid diagrams, compositional hierarchy, orchestration layer, version history entry
+- `docs/GLOSSARY.md` — Date, protocol count (378→382), key metrics table (sessions, protocols, scripts)
+- `docs/SPEC_SHEET.md` — Version (v9.8.3→v9.8.4), date, session count (1,662+→1,750+)
+- `docs/ABOUT_ME.md` — Session count (×3: 1,700+→1,750+), case study count (440+→443+), scripts count (240+→220+)
+- `AGENTS.md` — Version (v9.8.3→v9.8.4), date, protocol count (150→155)
+- `pyproject.toml` — Version bump (9.8.3→9.8.4)
+- `docs/CHANGELOG.md` — This entry
 
 ---
 

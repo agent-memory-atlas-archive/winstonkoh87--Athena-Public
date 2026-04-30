@@ -44,6 +44,8 @@
 TAG_INDEX_*.md
 Thumbs.db
 __pycache__/
+.pytest_cache/
+.ruff_cache/
 athenad.log
 build/
 dist/

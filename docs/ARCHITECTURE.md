@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 25 April 2026  
-> **System Version**: v9.8.3
+> **Last Updated**: 1 May 2026  
+> **System Version**: v9.8.4
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 149+ example protocols, 130+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -24,7 +24,7 @@ Athena/
 ├── .context/                      # ← USER-SPECIFIC DATA (frequently updated)
 │   ├── User_Vault/                # Personal vault (credentials, secrets)
 │   ├── memories/
-│   │   ├── case_studies/          # 433+ documented patterns
+│   │   ├── case_studies/          # 443+ documented patterns
 │   │   ├── session_logs/          # Historical session analysis
 │   │   └── patterns/              # Formalized patterns
 │   ├── references/                # External frameworks (Dalio, Halbert, Graham)
@@ -37,7 +37,7 @@ Athena/
 │   ├── CLUSTER_INDEX.md           # Routing index: Systems → Clusters → Skills
 │   ├── skills/
 │   │   ├── SKILL_INDEX.md         # Protocol loading registry
-│   │   ├── protocols/             # 378 active protocols across 34 domains (32 archived)
+│   │   ├── protocols/             # 382 active protocols across 34 domains (32 archived)
 │   │   │   ├── architecture/      # System protocols (latency, modularity)
 │   │   │   ├── business/          # Business frameworks
 │   │   │   ├── coding/            # Development standards
@@ -54,12 +54,12 @@ Athena/
 │   │   │   ├── verification/      # Verification & QA
 │   │   │   └── ... (+20 more)     # workflow, research, health, etc.
 │   │   └── capabilities/          # Bionic Triple Crown
-│   ├── workflows/                 # 68+ slash commands
+│   ├── workflows/                 # 73+ slash commands
 │   │   ├── start.md               # Session boot
 │   │   ├── end.md                 # Session close + maintenance
 │   │   ├── think.md               # Deep reasoning (L4)
 │   │   └── ...
-│   ├── scripts/                   # 240+ Python automation scripts
+│   ├── scripts/                   # 220+ Python automation scripts
 │   │   ├── boot.py                # Resilient boot shim + recovery shell
 │   │   ├── quicksave.py           # Auto-checkpoint every exchange
 │   │   ├── smart_search.py        # Semantic search (hybrid RAG)
@@ -119,7 +119,7 @@ graph TD
     AGENT --> SCRIPTS[scripts/]
     AGENT --> SWARMS[swarms/]
 
-    SKILLS --> PROTOCOLS["protocols/ (378 active)"]
+    SKILLS --> PROTOCOLS["protocols/ (382 active)"]
     SKILLS --> CAPS[capabilities/]
 
     SRC --> BOOT[boot/orchestrator.py]
@@ -154,13 +154,13 @@ graph TD
 
 > **Core Principle**: Intelligence compounds at the **interface** between human judgment and AI reasoning — not unilaterally within either. Neither human nor AI can recursively self-improve alone.
 
-**Why**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system*: the human injects genuinely new information (taste, correction, lived experience, domain knowledge) that the AI cannot generate internally, while the AI provides perfect recall, structural discipline, and pattern-matching at scale. The moat is not the code — it's the **coupling data** from 1,700+ sessions of bilateral calibration.
+**Why**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system*: the human injects genuinely new information (taste, correction, lived experience, domain knowledge) that the AI cannot generate internally, while the AI provides perfect recall, structural discipline, and pattern-matching at scale. The moat is not the code — it's the **coupling data** from 1,750+ sessions of bilateral calibration.
 
 | Dimension | Unilateral AI RSI | Symbiotic RSI (Athena) |
 |:----------|:------------------|:-----------------------|
 | **Who improves?** | AI alone (autonomous) | Human + AI together (bilateral) |
 | **Energy source** | Internal (closed system) | External — human judgment (open system) |
-| **Current status** | Hypothetical (2126?) | **Working today** (1,700+ sessions) |
+| **Current status** | Hypothetical (2126?) | **Working today** (1,750+ sessions) |
 | **Moat** | Compute (replicable) | Coupling data (unreplicable without living it) |
 
 **In practice, this means**:
@@ -181,7 +181,7 @@ graph TD
 ```mermaid
 graph BT
     L1["⚛️ Atoms<br/>Laws #0-#4"] --> L2["🧬 Molecules<br/>Rules & Constraints"]
-    L2 --> L3["🦠 Cells<br/>378 Protocols"]
+    L2 --> L3["🦠 Cells<br/>382 Protocols"]
     L3 --> L4["🧫 Tissues<br/>28 Skills"]
     L4 --> L5["🫁 Organs<br/>15 Cognitive Clusters"]
     L5 --> L6["🏥 Organ Systems<br/>8 Cognitive Systems"]
@@ -195,7 +195,7 @@ graph BT
 |:---:|:---|:---|:---|
 | 1 | **Atoms** | Laws #0-#4 | Law #1: No Ruin (absolute, non-negotiable) |
 | 2 | **Molecules** | Rules & Constraints | "Never risk >5% of bankroll" (compound constraint) |
-| 3 | **Cells** | 378 Protocols (32 archived) | Protocol 330: Economic Expected Value |
+| 3 | **Cells** | 382 Protocols (32 archived) | Protocol 330: Economic Expected Value |
 | 4 | **Tissues** | 28 Skills | `trading-risk-gate` (bundles 3 protocols) |
 | 5 | **Organs** | 15 Cognitive Clusters | Cluster #3: Trading Risk Gate |
 | 6 | **Organ Systems** | 8 Cognitive Systems | Trading System 📈 |
@@ -648,7 +648,7 @@ When a user invokes a slash command, the runtime follows a 3-layer orchestration
 │  Skill activates specific protocol(s)           │
 │  → Single-purpose, composable, ~200 tokens      │
 │  → Lives in .agent/skills/protocols/**/*.md     │
-│  → 378 active protocols across 34 domains        │
+│  → 382 active protocols across 34 domains        │
 └─────────────────────────────────────────────────┘
 ```
 
@@ -712,6 +712,7 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.8.4 | 01 May 2026 | GTO Metrics Sync — Meta-Pattern Framework v2.0 (7→14 universal laws), filesystem-verified counts (382 protocols, 443 case studies, 73 workflows, 1,750+ sessions), scripts pruned 240→220, date alignment across 8 files |
 | v9.8.3 | 19 Apr 2026 | Synaptic Pruning — Protocol deduplication (395→378 active, 17 archived), Case Study deduplication (440→433, 7 merged+archived), ARCHITECTURE.md metrics reconciliation, quality/ category purged, neural-network-model consolidation pass |
 | v9.8.2 | 17 Apr 2026 | Progressive Disclosure (Protocol 530 full rollout — `context_trigger` on all 26 example skills), Telemetry Foundation (`log_invocation.py` — JSONL invocation tracking), Auto-Gen Indexes (pre-commit Gate 4), ARCHITECTURE.md version drift fix |
 | v9.8.1 | 17 Apr 2026 | Mechanical Enforcement — DISCIPLINE.md v2 (human rules → pre-commit gates), reference pre-commit hook with Version Lint, Protocol Cap, Workflow Cap gates, override logging |
