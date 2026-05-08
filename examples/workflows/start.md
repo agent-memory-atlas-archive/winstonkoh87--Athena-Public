@@ -1,7 +1,7 @@
 ---
 description: Activate Zero-Point Codex framework for strategic analysis
 created: 2025-12-09
-last_updated: 2026-02-23
+last_updated: 2026-05-08
 model: default
 temperature: 0.7
 tools:
@@ -14,7 +14,9 @@ tools:
 # /start — Execution Script
 
 > **Latency Profile**: ULTRA-LOW (<2K tokens boot)  
-> **Philosophy**: Boot fast. Load later.
+> **Philosophy**: Boot fast. Load later.  
+> **Token Protocol**: **MinMax** — Maximize quality of output while minimizing token expenditure. JIT loading, concise responses, no unnecessary depth. This is the default session mode.  
+> **Contrast**: For MaxMax (maximum depth, no token economy), use `/ultrastart`.
 
 ## Phase 1: Instant Boot (~2K tokens)
 
@@ -69,6 +71,14 @@ Every response Turn MUST be classified by risk level and grounded accordingly:
    ```
 
    > This is the **Exocortex**. It runs Parallel Hybrid RRF (semantic embeddings + keyword + reranking) over the entire `.context/` knowledge base. Use this — NOT `grep_search` — for any query requiring contextual recall. Run it BEFORE formulating your response.
+
+**Web Search** (real-time verification):
+
+   > The Exocortex searches *internal* memory. For anything that could be stale — pricing, documentation, current events, live APIs, technical specs — use `search_web` or `read_url_content`. **Training data is a last resort when a live source exists.**
+
+**Full Tool Arsenal** (MinMax — use the right tool, never skip the job):
+
+   > All tools are available and expected to be used: Exocortex (internal recall), `search_web` (real-time facts), `read_url_content` (URL extraction), browser sub-agent (visual/interactive/JS pages), MCP servers (Supabase, GitKraken, Athena), `grep_search` (exact patterns), command execution (scripts/builds). MinMax principle: use the **cheapest tool that gets the job done** — but never skip verification to save tokens. **Accuracy > token economy.**
 
 **Quicksave** (after output):
 

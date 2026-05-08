@@ -1,7 +1,7 @@
 ---
 description: Deep boot for cognitive/computationally intensive work. System-2 counterpart to /start.
 created: 2026-03-10
-last_updated: 2026-03-15
+last_updated: 2026-05-08
 model: default
 temperature: 0.7
 tools:
@@ -15,6 +15,8 @@ tools:
 
 > **Latency Profile**: HIGH (~20-30s boot)
 > **Philosophy**: Maximum Compute. Tokens are pre-paid. Depth is free. Load everything. Reason deeply.
+> **Token Protocol**: **MaxMax** — Maximum quality × maximum depth. No token economy constraints. Full module preload. Multi-track reasoning on every response. This is the premium session mode.
+> **Contrast**: For MinMax (max quality, min tokens), use `/start`.
 > **Use When**: `/ultrathink`, complex multi-domain analysis, architectural decisions, deep research, therapeutic/IFS work.
 > **AGoT Activation**: Queries with Λ > 40 automatically use AGoT-enhanced reasoning (Protocol 75 v5.0).
 
@@ -289,6 +291,20 @@ User query → Extract keywords/entities
 | Architecture/coding question | Load relevant protocol + file scan |
 | Cross-domain reference | Load connecting case studies/protocols |
 | No clear signal | Semantic search only (smart_search.py, limit 3) |
+
+### Full Tool Arsenal (MaxMax — Use Liberally)
+
+> In Maximum Compute mode, **every available tool is in play on every non-trivial query**:
+>
+> - **Exocortex** (`smart_search.py`): Internal memory recall — run on EVERY STANDARD/ULTRA query
+> - **Web Search** (`search_web`): Real-time facts, verification, current pricing, live docs — **use aggressively**. Training data is stale by default. When in doubt, search.
+> - **`read_url_content`**: Fast URL content extraction for documentation, articles, references
+> - **Browser Sub-Agent**: Visual verification, interactive pages, JS-rendered content, UI testing
+> - **MCP Servers**: Supabase (database ops), GitKraken (git operations), Athena (memory system)
+> - **`grep_search`**: Exact pattern matching in workspace files
+> - **Command Execution**: Scripts, builds, data processing, system operations
+>
+> **MaxMax principle**: The cost of a redundant search is ~$0. The cost of a hallucinated fact is trust erosion. **Always verify. Never guess.**
 
 ---
 
