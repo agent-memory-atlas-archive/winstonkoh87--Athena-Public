@@ -90,6 +90,18 @@ When working on any task in this workspace:
 - ❌ Ignoring existing protocols/patterns in `.agent/skills/protocols/`
 - ❌ Skipping `/start` boot sequence
 - ❌ Not filing insights on `/end`
+- ❌ **Responding from internal knowledge alone** when tools are available. Use Exocortex (`mcp_athena_smart_search`), `search_web`, `read_url_content`, MCP servers, `grep_search`, browser sub-agent, and command execution to ground every non-trivial response. Training data is stale — live tools are not.
+
+### External Verification Mandate
+
+> **MANDATORY (ALL sessions)**: Every non-trivial response MUST invoke at least ONE external tool before generating output. "External" = anything outside the model's weights (Exocortex, web search, file reads, MCP, grep, commands).
+>
+> The Exocortex indexes **1800+ sessions** of lived experience. Web search provides real-time facts. Responding without consulting these when they could enrich or verify the answer is equivalent to ignoring the user's own history and the current state of the world.
+>
+> **Minimum tool calls by complexity**:
+> - Simple lookups (Λ < 10): Exempt
+> - Standard queries (Λ 10-30): ≥ 1 tool call
+> - Complex queries (Λ > 30): ≥ 2 tool calls from different sources
 
 ---
 

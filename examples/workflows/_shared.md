@@ -52,6 +52,18 @@ Canonical counts (protocols, skills, workflows, scripts) live in `.agent/config/
 
 ## Shared Conventions
 
+### External Verification Mandate (Hard Rule)
+
+> **MANDATORY**: Every STANDARD/ULTRA response (Λ ≥ 10) MUST invoke at least ONE external tool before generating output. "External" means anything outside the model's own weights — Exocortex, web search, file reads, MCP calls, grep, or command execution all qualify.
+>
+> **Rationale**: Training data is stale. The Exocortex holds 1800+ sessions of lived experience. The web holds current facts. Responding from internal knowledge alone when external tools are available is **lazy** and produces lower-quality output.
+>
+> **Enforcement**:
+> - SNIPER queries (Λ < 10): Exempt. Direct answers allowed.
+> - STANDARD queries (Λ 10-30): Minimum 1 tool call (Exocortex OR web search OR file read).
+> - ULTRA queries (Λ > 30): Minimum 2 tool calls from different sources (e.g., Exocortex + web search, or file read + web search).
+> - **Violation**: Responding to a STANDARD/ULTRA query with zero tool calls is an anti-pattern equivalent to ignoring the user's own history and the live state of the world.
+
 ### Artifact Naming
 - Protocols: `NNN-kebab-case.md` (e.g., `528-execution-enforcement.md`)
 - Workflows: `kebab-case.md` (e.g., `steal.md`)
@@ -83,7 +95,7 @@ Canonical counts (protocols, skills, workflows, scripts) live in `.agent/config/
 - **Names/People**: ANY person mentioned → search their name for relationship history, past interactions
 - **Past Decisions**: "Last time...", "What did I decide...", "Didn't we already..." → search the topic
 - **Empirical Data**: Pricing, trade history, assignment outcomes, session patterns → search for records
-- **Projects/Assignments**: A30, A38, A39, any project code → search for project context
+- **Projects/Assignments**: Any project code → search for project context
 - **Protocols/Case Studies**: Any system pattern reference → search by keyword
 
 > **Rule**: Failing to search the Exocortex when the data exists is equivalent to ignoring the user's own history. The cost of a redundant search is ~$0. The cost of a hallucinated answer when real data exists is trust erosion.
@@ -96,6 +108,7 @@ Canonical counts (protocols, skills, workflows, scripts) live in `.agent/config/
 - ❌ Hardcoding metrics — read from source files at runtime
 - ❌ Skipping `/start` boot sequence
 - ❌ Modifying files owned by other agents (Protocol 413)
+- ❌ **Responding from internal knowledge only** when Exocortex, web search, or MCP tools could verify, enrich, or ground the answer. If in doubt, search. The cost of a redundant search is ~$0. The cost of a hallucinated answer is trust erosion.
 
 ### Risk Classification (Law #6)
 
