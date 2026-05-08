@@ -15,6 +15,8 @@ tools:
 
 > **Latency Profile**: HIGH (~2-3 min)
 > **Philosophy**: Extract maximum learning value. Close once, close right.
+> **Token Protocol**: **MaxMax** — Maximum depth extraction. Cross-session patterns, CANONICAL reconciliation, compound insights, decision outcome tracking. Full synthesis.
+> **Contrast**: For lightweight close (MinMax), use `/end`.
 > **Context Constraint**: After a deep session, the 200K ECL may be 60-80% consumed.
 > Synthesize efficiently because the context window is nearly full — not because tokens cost money.
 > **Use When**: After `/ultrastart` sessions, 5+ decision sessions, weekly reviews, or any session with high insight density.

@@ -15,6 +15,8 @@ tools:
 
 > **Latency Profile**: ULTRA-LOW (micro) / LOW (full)
 > **Core Principle**: "Fast close. Match effort to session weight."
+> **Token Protocol**: **MinMax** — Minimize token expenditure on close while preserving all learnings. Fast extraction, no unnecessary depth.
+> **Contrast**: For deep close (MaxMax), use `/ultraend`.
 
 ## Step 0: Session Classification Gate
 

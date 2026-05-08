@@ -65,15 +65,28 @@ Canonical counts (protocols, skills, workflows, scripts) live in `.agent/config/
 - Cite sources or mark "internal estimate" (Law #5)
 - One-session-one-feature (§234)
 
-### Tools (Common)
+### Tools (Full Arsenal — All Workflows)
 
 | Tool | When |
 |------|------|
-| Exocortex (`smart_search.py`) | Contextual recall (STANDARD/ULTRA queries) |
+| **Exocortex** (`smart_search.py` / `mcp_athena_smart_search`) | **Every STANDARD/ULTRA query.** Searches 1800+ session logs, case studies, protocols, and personal knowledge. This is the user's extended memory. |
+| `search_web` | Real-time facts, pricing, documentation, current events. **Training data is stale — always prefer live search.** |
+| `read_url_content` | Fast extraction from URLs (docs, articles, references) |
+| Browser sub-agent | Visual verification, JS-rendered pages, interactive web content, UI testing |
 | `quicksave.py` | After output — save session facts |
-| `grep_search` | Exact pattern matching in files |
-| Browser sub-agent | Visual verification, web interaction |
+| `grep_search` | Exact pattern matching in workspace files |
+| MCP Servers | Supabase (database), GitKraken (git ops), Athena (memory system) |
 | `generate_image` | Asset generation (never placeholders) |
+| Command execution | Scripts, builds, data processing, system operations |
+
+**Mandatory Exocortex Search Triggers** — if ANY of these appear in the query, search FIRST:
+- **Names/People**: ANY person mentioned → search their name for relationship history, past interactions
+- **Past Decisions**: "Last time...", "What did I decide...", "Didn't we already..." → search the topic
+- **Empirical Data**: Pricing, trade history, assignment outcomes, session patterns → search for records
+- **Projects/Assignments**: A30, A38, A39, any project code → search for project context
+- **Protocols/Case Studies**: Any system pattern reference → search by keyword
+
+> **Rule**: Failing to search the Exocortex when the data exists is equivalent to ignoring the user's own history. The cost of a redundant search is ~$0. The cost of a hallucinated answer when real data exists is trust erosion.
 
 ### Anti-Patterns (Global)
 

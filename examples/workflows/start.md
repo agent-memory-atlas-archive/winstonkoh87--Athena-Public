@@ -67,7 +67,7 @@ Every response Turn MUST be classified by risk level and grounded accordingly:
 **STANDARD/ULTRA Search Command**:
 
    ```bash
-   python3 Athena-Public/examples/scripts/smart_search.py "<query>" --limit 5 --include-personal
+   python3 .agent/scripts/smart_search.py "<query>" --limit 5 --include-personal
    ```
 
    > This is the **Exocortex**. It searches 1800+ session logs, case studies, protocols, and personal knowledge. Use this — NOT `grep_search` — for any query requiring contextual recall. Run it BEFORE formulating your response.
