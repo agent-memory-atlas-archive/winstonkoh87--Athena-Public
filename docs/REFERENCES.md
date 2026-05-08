@@ -134,7 +134,7 @@ Park, J. S., O'Brien, J. C., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, 
 
 > **Note**: Park et al. demonstrated that LLM-based agents with persistent memory, reflection, and planning can produce believable human behavior in simulation. Their architecture — observe → reflect → plan → act — is structurally similar to Athena's session lifecycle (/start → work → /end → session log). The key insight: *reflection* (periodic synthesis of raw observations into higher-level abstractions) is what separates agents from chatbots.
 
-Hong, S., Zhuge, M., Chen, J., Zheng, X., Cheng, Y., Zhang, C., ... & Wu, Y. (2024). MetaGPT: Meta programming for a multi-agent collaborative framework. *International Conference on Learning Representations (ICLR)*. <https://arxiv.org/abs/2308.00352>
+Hong, S., Zheng, X., Chen, J., Cheng, Y., Wang, J., Zhang, C., ... & Wu, C. (2024). MetaGPT: Meta programming for a multi-agent collaborative framework. *International Conference on Learning Representations (ICLR)*. <https://arxiv.org/abs/2308.00352>
 
 > **Note**: MetaGPT introduced Standardized Operating Procedures (SOPs) for multi-agent coordination — structured role assignment with explicit handoff protocols. Athena's Protocol 413 (Multi-Agent Coordination) and the `/416-agent-swarm` workflow implement similar principles: worktree isolation, coordinator synthesis, and never-stash safety rules.
 
