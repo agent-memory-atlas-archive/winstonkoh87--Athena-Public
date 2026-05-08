@@ -1,0 +1,48 @@
+# Athena
+
+> The open-source operating system for AI agents. Persistent memory, structured reasoning, and governance for any LLM. Own the state. Rent the intelligence. MIT Licensed.
+
+Athena is a local-first cognitive augmentation framework that gives any AI model (Gemini, Claude, GPT) permanent memory, 380+ reusable decision protocols, and bounded autonomy — all stored as plain Markdown files on the user's machine. Session 1,800 recalls patterns from session 5.
+
+## Core Documentation
+
+- [README](https://github.com/winstonkoh87/Athena-Public/blob/main/README.md): Full project overview, quickstart, architecture, cost, and changelog
+- [Getting Started](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/GETTING_STARTED.md): 6-step installation and first session walkthrough
+- [Your First Session](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/YOUR_FIRST_SESSION.md): What to expect when you type /start for the first time
+- [Architecture](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/ARCHITECTURE.md): 7-tier compositional stack (Boot → Memory → Reasoning → Skills → Governance → Output → Shutdown)
+- [Features](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/FEATURES.md): Complete feature list with examples
+- [Spec Sheet](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/SPEC_SHEET.md): Technical specifications and benchmarks
+
+## Search & Memory
+
+- [Semantic Search](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/SEMANTIC_SEARCH.md): Hybrid RAG pipeline (BM25 + pgvector + knowledge graph + RRF fusion)
+- [MCP Server](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/MCP_SERVER.md): Model Context Protocol integration for external tool access
+- [Memory Bank](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/MEMORY_BANK.md): How persistent context is structured and retrieved
+- [Knowledge Graph](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/KNOWLEDGE_GRAPH.md): Entity-relationship graph for cross-session pattern detection
+
+## Guides
+
+- [Compatible IDEs](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/COMPATIBLE_IDES.md): 7 supported editors (VS Code, Cursor, Windsurf, Roo Code, Cline, Augment, Trae)
+- [Workflows](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/WORKFLOWS.md): 68 slash commands (/start, /end, /plan, /research, /ultrathink, etc.)
+- [Best Practices](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/BEST_PRACTICES.md): How to get the most out of Athena
+- [Multi-Model Strategy](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/MULTI_MODEL_STRATEGY.md): Using Gemini, Claude, and GPT together
+- [FAQ](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/FAQ.md): Frequently asked questions
+
+## Case Studies & Use Cases
+
+- [Case Studies](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/CASE_STUDIES.md): Real-world anonymized examples across therapy, career decisions, research, and business
+- [Use Cases](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/USE_CASES.md): Life management, problem solving, decision making, research, trading, academics
+- [Top 10 Protocols](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/TOP_10_PROTOCOLS.md): The most impactful decision frameworks
+
+## Philosophy
+
+- [Manifesto](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/MANIFESTO.md): Why sovereign AI matters
+- [About Me](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/ABOUT_ME.md): Who built Athena and why
+- [User-Driven RSI](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/USER_DRIVEN_RSI.md): How the system evolves through use
+
+## Reference
+
+- [Glossary](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/GLOSSARY.md): Key terms and concepts
+- [Changelog](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/CHANGELOG.md): Full version history
+- [Security](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/SECURITY.md): Privacy pipeline and data safety
+- [References](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/REFERENCES.md): Academic and industry citations

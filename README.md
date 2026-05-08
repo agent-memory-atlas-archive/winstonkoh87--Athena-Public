@@ -451,15 +451,15 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 | Plan | Cost | Who It's For |
 |:-----|:-----|:-------------|
-| **Google Antigravity (free tier)** | **$0** | **Try Athena first** — included with any Google account |
+| **Google Antigravity (free tier)** | **$0** | **Try Athena first** — included with any Google account (Flash models only since Apr 2026) |
 | Claude Pro / Google AI Pro | ~$20/mo | Daily users — the sweet spot for most people |
 | Claude Max / Google AI Ultra | $200+/mo | Power users managing multiple domains (8+ hrs/day) |
 
-> **Try before you buy.** Athena works with Google Antigravity's free tier — clone the repo, type `/start`, and see if it clicks. No credit card, no trial period, no catch. Upgrade only when you hit the free tier's daily limits.
+> **Try before you buy.** Athena works with Google Antigravity's free tier — clone the repo, type `/start`, and see if it clicks. No credit card, no trial period, no catch. Note: since April 2026, Google's free tier only includes Flash-series models (Pro has moved to paid tiers). Flash works fine for evaluation — upgrade when you need deeper reasoning.
 
-> **Why $200/mo sounds expensive — until you do the math.** A single employee costs $5,000+/mo in salary, benefits, and management overhead. An AI agent on a max-tier subscription costs $200/mo, works 24/7, doesn't call in sick, and scales to any domain you throw at it. For best results, subscribe to the max plan on any one platform (Claude Max, Google AI Ultra, etc.) — the difference between $20/mo and $200/mo is the difference between a tool you use occasionally and a tool that runs your life. Heavy users routinely consume $2K–$3K+ in equivalent API costs per month — the flat subscription turns variable cost into fixed cost. **For quota-limited plans**, use `/minmax` mode to maximize output quality per token — the MinMax doctrine maintains the same quality floor while reducing token consumption by ~74%.
+> **Why $200/mo sounds expensive — until you do the math.** A single employee costs $5,000+/mo in salary, benefits, and management overhead. An AI agent on a max-tier subscription costs $200/mo, works 24/7, doesn't call in sick, and scales to any domain you throw at it. For best results, subscribe to the max plan on any one platform (Claude Max, Google AI Ultra, etc.) — the difference between $20/mo and $200/mo is the difference between a tool you use occasionally and a tool that runs your life. Heavy users routinely consume $2K–$3K+ in equivalent API costs per month — the flat subscription turns variable cost into fixed cost. **For quota-limited plans** (which is now the norm — Google has tightened rate limits significantly since April 2026), use `/minmax` mode to maximize output quality per token — the MinMax doctrine maintains the same quality floor while reducing token consumption by ~74%.
 
-> **For peak performance, use `/ultrastart` every session.** On a flat-rate plan, the marginal cost of deeper thinking is $0 — so the cost of under-thinking always exceeds the cost of over-thinking. `/ultrastart` loads ~20K tokens of structured context (identity, canonical memory, active state, semantic bridge) every session. On API pricing, this costs $2–5/session. On a $200/mo flat plan, it costs nothing. The pricing model of the underlying compute layer directly determines Athena's performance ceiling.
+> **For peak performance, use `/ultrastart` every session.** On a flat-rate plan, the marginal cost of deeper thinking is $0 — so the cost of under-thinking always exceeds the cost of over-thinking. `/ultrastart` loads ~20K tokens of structured context (identity, canonical memory, active state, semantic bridge) every session. On API pricing, this costs $2–5/session. On a $200/mo flat plan, it costs nothing. **However:** on quota-limited plans (most plans since Apr 2026), Athena defaults to `/start` (~10K tokens) with the MinMax protocol, reserving `/ultrastart` for high-complexity sessions. The pricing model of the underlying compute layer directly determines Athena's performance ceiling.
 
 > Boot cost is 2K–20K tokens (depending on mode) — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
 
@@ -467,7 +467,9 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 > Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Opus 4.6, Gemini 3.1 Pro, GPT-5.4 (High)). Start with the free tier to test compatibility with your preferred model.
 
 > [!TIP]
-> **Save money getting started** *(as of 10 Mar 2026)*. Google offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers — enough to fully evaluate Athena with frontier-tier Antigravity limits at $0. Alternatively, if someone you know is on a Google AI Pro or Ultra plan, they can add you as a family member — each member gets their own independent Antigravity quota at no extra cost. For Ultra subscribers, this means splitting $249/mo across family members — bringing the per-person cost of frontier-tier AI below $100/mo.
+> **Save money getting started** *(updated May 2026)*. Google still offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers. If someone you know is on a Google AI Pro or Ultra plan, they can add you as a family member — each member gets their own independent Antigravity quota at no extra cost. For Ultra subscribers, this means splitting $249/mo across family members — bringing the per-person cost of frontier-tier AI below $100/mo.
+>
+> **Quota reality check (Apr 2026+):** Google now enforces a **7-day rolling baseline** on Antigravity usage and has removed Pro models from the free tier. Paid plans (Pro/Ultra) refresh every 5 hours but heavy sprint sessions can trigger the weekly cap. **The practical cost of running Athena is ~$20/mo** on any Pro-tier plan — this gives you daily access to frontier models with comfortable headroom. Power users who run 8+ hours/day should budget for $200+/mo (Ultra/Max tier).
 
 ---
 
