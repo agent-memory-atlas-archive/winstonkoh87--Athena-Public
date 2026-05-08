@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-03-13
+last_updated: 2026-05-08
 tags: #references #apa #academic #citations
 ---
 
@@ -122,6 +122,26 @@ Wang, L., Ma, C., Feng, X., Zhang, Z., Yang, H., Zhang, J., ... & Wang, J. (2024
 
 Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., & Cao, Y. (2023). ReAct: Synergizing reasoning and acting in language models. *International Conference on Learning Representations (ICLR)*. <https://arxiv.org/abs/2210.03629>
 
+Model Context Protocol. (2024). *Model Context Protocol Specification* (v1.0). Anthropic / Agentic AI Foundation. <https://modelcontextprotocol.io/>
+
+> **Note**: MCP is an open standard introduced by Anthropic in November 2024 that standardizes how AI systems connect to external data sources, tools, and systems. It provides a client-server architecture with JSON-RPC 2.0 transport, enabling tools, resources, and prompts to be exposed to any compatible agent. Athena's MCP server (`mcp_server.py`) exposes 9 tools and 2 resources. Governance was donated to the Agentic AI Foundation (AAIF) in late 2025.
+
+Hou, X., Zhao, Y., Wang, S., & Wang, H. (2025). Model Context Protocol (MCP): Landscape, security threats, and future research directions. *arXiv preprint arXiv:2503.23278*. <https://arxiv.org/abs/2503.23278>
+
+> **Note**: First systematic security analysis of MCP — maps the lifecycle, architectural components, and threat taxonomy. Relevant to Athena's security posture: all MCP tools are gated by the Permissioning Layer (Protocol 409) and Secret Mode redaction.
+
+Park, J. S., O'Brien, J. C., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, M. S. (2023). Generative agents: Interactive simulacra of human behavior. *Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST)*, Article 2, 1–22. <https://arxiv.org/abs/2304.03442>
+
+> **Note**: Park et al. demonstrated that LLM-based agents with persistent memory, reflection, and planning can produce believable human behavior in simulation. Their architecture — observe → reflect → plan → act — is structurally similar to Athena's session lifecycle (/start → work → /end → session log). The key insight: *reflection* (periodic synthesis of raw observations into higher-level abstractions) is what separates agents from chatbots.
+
+Hong, S., Zhuge, M., Chen, J., Zheng, X., Cheng, Y., Zhang, C., ... & Wu, Y. (2024). MetaGPT: Meta programming for a multi-agent collaborative framework. *International Conference on Learning Representations (ICLR)*. <https://arxiv.org/abs/2308.00352>
+
+> **Note**: MetaGPT introduced Standardized Operating Procedures (SOPs) for multi-agent coordination — structured role assignment with explicit handoff protocols. Athena's Protocol 413 (Multi-Agent Coordination) and the `/416-agent-swarm` workflow implement similar principles: worktree isolation, coordinator synthesis, and never-stash safety rules.
+
+Li, G., Hammoud, H. A. A. K., Itani, H., Khizbullin, D., & Ghanem, B. (2024). CAMEL: Communicative agents for "mind" exploration of large language model society. *Advances in Neural Information Processing Systems, 36*. <https://arxiv.org/abs/2303.17760>
+
+> **Note**: CAMEL demonstrated role-playing communication between AI agents to solve complex tasks. The "inception prompting" technique — where each agent is given a role and communicates through structured messages — informed Athena's synthetic parallel reasoning skill (Protocol 75 v4.0), which deploys 4 virtual personas (Domain Expert, Adversarial Skeptic, Cross-Domain Pattern Matcher, First-Principles Analyst) with an adversarial convergence gate.
+
 ---
 
 ## Knowledge Graphs & GraphRAG
@@ -142,9 +162,21 @@ Nogueira, R., & Cho, K. (2020). Passage re-ranking with BERT. *arXiv preprint ar
 
 Reimers, N., & Gurevych, I. (2019). Sentence-BERT: Sentence embeddings using Siamese BERT-networks. *Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)*. <https://arxiv.org/abs/1908.10084>
 
+Damodaran, P. (2023). *FlashRank: Lightest and fastest 2nd stage reranker for search pipelines* [Software]. Zenodo. <https://doi.org/10.5281/zenodo.10426927>
+
+> **Note**: FlashRank provides lightweight, CPU-efficient cross-encoder reranking without GPU dependencies. Athena's hybrid RAG pipeline uses FlashRank as the final reranking stage after BM25 + semantic retrieval + RRF fusion, achieving 85% recall on personal knowledge bases at $0/month infrastructure cost.
+
+Clavié, B. (2024). rerankers: A lightweight unified API for retrieval re-ranking models. *arXiv preprint arXiv:2408.05796*. <https://arxiv.org/abs/2408.05796>
+
+> **Note**: Survey and unified interface for cross-encoder, listwise, and pointwise reranking approaches. Provides the theoretical taxonomy for Athena's choice of pairwise cross-encoder reranking over alternatives.
+
 ---
 
 ## Prompt Engineering & Context Window Management
+
+Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. *Cognitive Science, 12*(2), 257–285. <https://doi.org/10.1207/s15516709cog1202_4>
+
+> **Note**: Sweller's Cognitive Load Theory (CLT) distinguishes intrinsic load (task complexity), extraneous load (poor design), and germane load (schema construction). CLT is the theoretical foundation for Athena's MinMax Token Economy doctrine (v9.8.5): context windows are treated as bounded working memory where extraneous tokens degrade reasoning performance. The `/minmax` workflow operationalizes CLT by eliminating extraneous context (selective boot, SNIPER discipline) to preserve capacity for germane reasoning — achieving ~74% token reduction with equivalent quality.
 
 Wang, X., Wei, J., Schuurmans, D., Le, Q., Chi, E., Narang, S., ... & Zhou, D. (2023). Self-consistency improves chain of thought reasoning in language models. *International Conference on Learning Representations (ICLR)*. <https://arxiv.org/abs/2203.11171>
 
@@ -207,6 +239,22 @@ Soelberg v. OpenAI, Inc., No. 3:25-cv-11037 (N.D. Cal. filed Dec. 29, 2025).
 > **Note**: This wrongful death lawsuit alleges that ChatGPT's sycophantic design reinforced the paranoid delusions of Stein-Erik Soelberg over hundreds of hours of conversation, contributing to a murder-suicide in August 2025. The case is cited in Athena's [Trilateral Feedback](TRILATERAL_FEEDBACK.md) documentation as a real-world example of why single-model bilateral feedback is dangerous.
 
 Wei, A., Haghtalab, N., & Steinhardt, J. (2024). Jailbroken: How does LLM safety training fail? *Advances in Neural Information Processing Systems, 36*. <https://arxiv.org/abs/2307.02483>
+
+---
+
+## Financial Mathematics & Risk Management
+
+Thorp, E. O. (1966). *Beat the dealer: A winning strategy for the game of twenty-one* (Rev. ed.). Vintage Books.
+
+> **Note**: Thorp extended Kelly's information-theoretic framework to practical gambling and investing, demonstrating that fractional Kelly ("Half-Kelly") provides a superior risk-adjusted return by trading ~25% of growth rate for ~50% variance reduction. Athena's `zenith-execution` skill implements Half-Kelly as the default position sizing — the same insight: maximizing geometric growth rate under uncertainty, not arithmetic expectation.
+
+Vince, R. (1992). *The mathematics of money management: Risk analysis techniques for traders*. John Wiley & Sons.
+
+> **Note**: Vince formalized Optimal-f position sizing and demonstrated that over-betting (above Kelly fraction) guarantees ruin in finite time. This is the mathematical proof behind Athena's trading risk gate: any sizing above Kelly creates negative expectancy on the time average, even with positive ensemble expectancy.
+
+Metropolis, N., & Ulam, S. (1949). The Monte Carlo method. *Journal of the American Statistical Association, 44*(247), 335–341. <https://doi.org/10.1080/01621459.1949.10483310>
+
+> **Note**: The foundational paper on Monte Carlo simulation — using random sampling to approximate solutions to deterministic problems. Athena's `zenith-execution` skill runs 10,000-path Monte Carlo simulations for portfolio drawdown estimation and Kelly fraction validation. The insight: when analytical solutions are intractable (non-normal distributions, path-dependent payoffs), simulation provides the ground truth.
 
 ---
 
@@ -274,6 +322,14 @@ Young, J. E., Klosko, J. S., & Weishaar, M. E. (2003). *Schema therapy: A practi
 
 ---
 
+## Web Standards & AI Discoverability
+
+Howard, J. (2024, September 3). *The /llms.txt file: A proposal to standardise on using an /llms.txt file to provide information to help LLMs use a website at inference time*. Answer.AI. <https://llmstxt.org/>
+
+> **Note**: Howard proposed `llms.txt` as a machine-readable Markdown index file (analogous to `robots.txt` for crawlers) that helps LLM scrapers discover a site's most important content. Athena-Public ships an `llms.txt` at repo root since v9.8.5, mapping all 45+ documentation pages for AI crawler discoverability.
+
+---
+
 ## How Citations Are Used in This Repository
 
 Inline citations follow APA format: `(Author, Year)`. For example:
@@ -285,6 +341,11 @@ Inline citations follow APA format: `(Author, Year)`. For example:
 - *"Cross-encoder reranking for retrieval quality"* → (Nogueira & Cho, 2020)
 - *"A mathematical theory of communication"* → (Shannon, 1948)
 - *"Antifragile systems gain from disorder"* → (Taleb, 2012)
+- *"Cognitive load during problem solving"* → (Sweller, 1988)
+- *"Generative agents: interactive simulacra"* → (Park et al., 2023)
+- *"FlashRank: lightweight reranking"* → (Damodaran, 2023)
+- *"Model Context Protocol specification"* → (MCP, 2024)
+- *"The Monte Carlo method"* → (Metropolis & Ulam, 1949)
 
 When a concept is referenced frequently across multiple documents, the first instance in each document includes the full inline citation. Subsequent mentions within the same document use the short form.
 
@@ -292,4 +353,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 06 March 2026*
+*Last updated: 08 May 2026*
