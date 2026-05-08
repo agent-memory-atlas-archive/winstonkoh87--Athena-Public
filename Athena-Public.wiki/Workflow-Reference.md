@@ -1,8 +1,8 @@
 # ⚡ Workflow Reference
 
-Athena uses a "Slash Command" interface to trigger complex agentic behaviors. These commands are defined in `.agent/workflows/`. There are **66+ workflows** available.
+Athena uses a "Slash Command" interface to trigger complex agentic behaviors. These commands are defined in `.agent/workflows/`. There are **90+ workflows** available.
 
-*Last Updated: 2026-04-05 · v9.6.6*
+*Last Updated: 2026-05-08 · v9.8.5*
 
 ---
 
@@ -20,7 +20,7 @@ athena doctor --fix           # Auto-repair fixable issues
 athena doctor --json          # Machine-readable output
 athena save "summary"         # Quicksave checkpoint
 athena --end                  # Close session and save
-athena --version              # Show version (v9.6.6)
+athena --version              # Show version (v9.8.5)
 ```
 
 ---
@@ -113,13 +113,13 @@ athena --version              # Show version (v9.6.6)
 | `/brief interview` | Initial user profiling session |
 | `/save` | Quick checkpoint during session |
 
-> See [WORKFLOWS.md](../docs/WORKFLOWS.md) in the repo for the full list of all 66+ commands.
+> See [WORKFLOWS.md](../docs/WORKFLOWS.md) in the repo for the full list of all 90+ commands.
 
 ---
 
 ## 🛡️ Protocol Usage
 
-Protocols are reusable decision frameworks — "Standard Operating Procedures" for the AI. There are **149+ protocols** across 15 categories.
+Protocols are reusable decision frameworks — "Standard Operating Procedures" for the AI. There are **150+ protocols** across 15 categories.
 
 | Category | Examples |
 |:---------|:---------|

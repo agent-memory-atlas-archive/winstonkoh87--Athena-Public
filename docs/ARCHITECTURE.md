@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 1 May 2026  
-> **System Version**: v9.8.4
+> **Last Updated**: 8 May 2026  
+> **System Version**: v9.8.5
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 149+ example protocols, 130+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -154,13 +154,13 @@ graph TD
 
 > **Core Principle**: Intelligence compounds at the **interface** between human judgment and AI reasoning — not unilaterally within either. Neither human nor AI can recursively self-improve alone.
 
-**Why**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system*: the human injects genuinely new information (taste, correction, lived experience, domain knowledge) that the AI cannot generate internally, while the AI provides perfect recall, structural discipline, and pattern-matching at scale. The moat is not the code — it's the **coupling data** from 1,750+ sessions of bilateral calibration.
+**Why**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system*: the human injects genuinely new information (taste, correction, lived experience, domain knowledge) that the AI cannot generate internally, while the AI provides perfect recall, structural discipline, and pattern-matching at scale. The moat is not the code — it's the **coupling data** from 1,800+ sessions of bilateral calibration.
 
 | Dimension | Unilateral AI RSI | Symbiotic RSI (Athena) |
 |:----------|:------------------|:-----------------------|
 | **Who improves?** | AI alone (autonomous) | Human + AI together (bilateral) |
 | **Energy source** | Internal (closed system) | External — human judgment (open system) |
-| **Current status** | Hypothetical (2126?) | **Working today** (1,750+ sessions) |
+| **Current status** | Hypothetical (2126?) | **Working today** (1,800+ sessions) |
 | **Moat** | Compute (replicable) | Coupling data (unreplicable without living it) |
 
 **In practice, this means**:
@@ -743,6 +743,7 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.8.5 | 08 May 2026 | MinMax Token Economy — operational doctrine shift from Maximum Compute to Token Economy (maximize quality/token under quota-limited plans), JIT Compute, session count 1,750+→1,800+, wiki refresh (v9.6.6→v9.8.5), date alignment across all public surfaces |
 | v9.8.4 | 01 May 2026 | GTO Metrics Sync — Meta-Pattern Framework v2.0 (7→14 universal laws), filesystem-verified counts (382 protocols, 443 case studies, 73 workflows, 1,750+ sessions), scripts pruned 240→220, date alignment across 8 files |
 | v9.8.3 | 19 Apr 2026 | Synaptic Pruning — Protocol deduplication (395→378 active, 17 archived), Case Study deduplication (440→433, 7 merged+archived), ARCHITECTURE.md metrics reconciliation, quality/ category purged, neural-network-model consolidation pass |
 | v9.8.2 | 17 Apr 2026 | Progressive Disclosure (Protocol 530 full rollout — `context_trigger` on all 26 example skills), Telemetry Foundation (`log_invocation.py` — JSONL invocation tracking), Auto-Gen Indexes (pre-commit Gate 4), ARCHITECTURE.md version drift fix |

@@ -12,13 +12,13 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.8.4-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.8.5-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 1 May 2026*
+*Last updated: 8 May 2026*
 
 </div>
 
@@ -45,7 +45,7 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 >
 > *Or in engineering terms: The LLM is the engine. Athena is the chassis, the memory, and the rules of the road. Swap the engine anytime — the car remembers every road you've driven.*
 >
-> *The design philosophy: [augment the human, not replace them](docs/concepts/Grace_Protocol.md). After 1,750+ sessions, the bottleneck shifted — [optimising the operator is now higher-leverage than optimising the AI](docs/USER_DRIVEN_RSI.md#phase-2-optimising-the-operator).*
+> *The design philosophy: [augment the human, not replace them](docs/concepts/Grace_Protocol.md). After 1,800+ sessions, the bottleneck shifted — [optimising the operator is now higher-leverage than optimising the AI](docs/USER_DRIVEN_RSI.md#phase-2-optimising-the-operator).*
 
 ### The Human Augmentation Thesis
 
@@ -457,7 +457,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 > **Try before you buy.** Athena works with Google Antigravity's free tier — clone the repo, type `/start`, and see if it clicks. No credit card, no trial period, no catch. Upgrade only when you hit the free tier's daily limits.
 
-> **Why $200/mo sounds expensive — until you do the math.** A single employee costs $5,000+/mo in salary, benefits, and management overhead. An AI agent on a max-tier subscription costs $200/mo, works 24/7, doesn't call in sick, and scales to any domain you throw at it. For best results, subscribe to the max plan on any one platform (Claude Max, Google AI Ultra, etc.) — the difference between $20/mo and $200/mo is the difference between a tool you use occasionally and a tool that runs your life. Heavy users routinely consume $2K–$3K+ in equivalent API costs per month — the flat subscription turns variable cost into fixed cost.
+> **Why $200/mo sounds expensive — until you do the math.** A single employee costs $5,000+/mo in salary, benefits, and management overhead. An AI agent on a max-tier subscription costs $200/mo, works 24/7, doesn't call in sick, and scales to any domain you throw at it. For best results, subscribe to the max plan on any one platform (Claude Max, Google AI Ultra, etc.) — the difference between $20/mo and $200/mo is the difference between a tool you use occasionally and a tool that runs your life. Heavy users routinely consume $2K–$3K+ in equivalent API costs per month — the flat subscription turns variable cost into fixed cost. **For quota-limited plans**, use `/minmax` mode to maximize output quality per token — the MinMax doctrine maintains the same quality floor while reducing token consumption by ~74%.
 
 > **For peak performance, use `/ultrastart` every session.** On a flat-rate plan, the marginal cost of deeper thinking is $0 — so the cost of under-thinking always exceeds the cost of over-thinking. `/ultrastart` loads ~20K tokens of structured context (identity, canonical memory, active state, semantic bridge) every session. On API pricing, this costs $2–5/session. On a $200/mo flat plan, it costs nothing. The pricing model of the underlying compute layer directly determines Athena's performance ceiling.
 
@@ -493,7 +493,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) / GPT-5.4 (High) |
-| **SDK** | `athena` Python package (v9.8.4) |
+| **SDK** | `athena` Python package (v9.8.5) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -527,6 +527,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.8.5** (May 08 2026): MinMax Token Economy — operational doctrine shift from Maximum Compute to Token Economy (maximize quality/token under quota-limited plans), JIT Compute doctrine, session count 1,750+→1,800+, date alignment across all public surfaces, wiki refresh (v9.6.6→v9.8.5)
 - **v9.8.4** (May 01 2026): GTO Metrics Sync — Meta-Pattern Framework v2.0 (7→14 universal laws: MP-8 Wound Loop, MP-9 Leverage Inversion, MP-10 Information-Action Gap, MP-11 Iteration Economy, MP-12 Articulation Penalty, MP-13 Principal-Agent Misalignment, MP-14 Sunk Cost Gravity Well), filesystem-verified counts (382 protocols, 443 case studies, 73 workflows, 1,750+ sessions), scripts pruned 240→220, date alignment across 8 files
 - **v9.8.3** (Apr 19 2026): Synaptic Pruning — protocol deduplication (395→378 active, 17 archived), case study deduplication (440→433, 7 merged+archived), neural-network-model consolidation pass, `quality/` category purged, ARCHITECTURE.md metrics reconciliation
 - **v9.8.2** (Apr 17 2026): Progressive Disclosure — `context_trigger` on all 26 example skills (Protocol 530), telemetry foundation (`log_invocation.py`), pre-commit Gate 4 (auto-gen indexes), ARCHITECTURE.md version drift fix

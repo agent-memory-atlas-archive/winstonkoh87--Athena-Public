@@ -2,7 +2,7 @@
 
 Boot your own AI Operating System in 5 minutes.
 
-*Last Updated: 2026-04-05 · v9.6.6*
+*Last Updated: 2026-05-08 · v9.8.5*
 
 ---
 
@@ -77,7 +77,7 @@ athena doctor                 # Full 15-check system diagnostics
 athena doctor --fix           # Auto-repair fixable issues
 athena save "summary"         # Quicksave checkpoint
 athena --end                  # Close session and save
-athena --version              # Show version (v9.6.6)
+athena --version              # Show version (v9.8.5)
 ```
 
 ---

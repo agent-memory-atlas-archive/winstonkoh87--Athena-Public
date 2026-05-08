@@ -1,8 +1,8 @@
 # Knowledge Graph — Athena System Architecture
 
-> **Last Updated**: 5 April 2026
+> **Last Updated**: 8 May 2026
 >
-> **Version**: v9.6.6
+> **Version**: v9.8.5
 >
 > **Purpose**: Compressed representation of the full Athena knowledge domain for instant retrieval. All counts are filesystem-verified.
 
@@ -11,7 +11,7 @@
 ## System Architecture (Tree)
 
 ```text
-[Athena System v9.6.6]
+[Athena System v9.8.5]
 │
 ├── Identity Layer
 │   ├── Laws: {#0 Ruin Prevention, #1 Context is King, #2 Charity with Limits,
@@ -28,9 +28,9 @@
 │   └── Retrieval: {VectorRAG, GraphRAG, Semantic Search, Context Compactor}
 │
 ├── Execution Layer
-│   ├── Workflows: 66 slash commands (/start → /web-build)
+│   ├── Workflows: 93 slash commands (/start → /web-build)
 │   ├── Skills: 26 packaged capability modules (6 categories)
-│   ├── Protocols: 149 active + 18 archived (15 categories)
+│   ├── Protocols: 150 active + 18 archived (15 categories)
 │   └── Scripts: Privacy scanner, smart_search.py, test runners
 │
 ├── Knowledge Layer
@@ -48,7 +48,7 @@
 
 ---
 
-## Protocol Categories (149 Active)
+## Protocol Categories (150 Active)
 
 | Category | Active | Archived | Key Protocols |
 |----------|--------|----------|---------------|
@@ -68,7 +68,7 @@
 | **Trading** | 2 | 0 | Kelly criterion, risk management |
 | **Content** | 1 | 0 | Content strategy protocols |
 
-**Total**: 149 active + 18 archived = **167 protocols**
+**Total**: 150 active + 18 archived = **168 protocols**
 
 ---
 
@@ -114,7 +114,7 @@
 
 ---
 
-## Workflows (66)
+## Workflows (93)
 
 | Category | Commands |
 |----------|----------|
@@ -162,9 +162,9 @@ graph TB
     end
 
     subgraph Execution["Execution Layer"]
-        Workflows["66 Workflows"]
+        Workflows["93 Workflows"]
         Skills["26 Skills"]
-        Protocols["130+ Protocols"]
+        Protocols["150+ Protocols"]
     end
 
     subgraph Knowledge["Knowledge Layer"]
@@ -231,7 +231,7 @@ graph TB
 | Understanding pricing? | Half-Half-Half Rule + Iteration Arbitrage |
 | Understanding use cases? | `docs/USE_CASES.md` (3 core use cases) |
 | Adding a case study? | `docs/CASE_STUDIES.md` (follow CS#7 format) |
-| Running a workflow? | `examples/workflows/` (63 available) |
+| Running a workflow? | `examples/workflows/` (93 available) |
 | Checking system health? | `/diagnose` workflow |
 | Auditing cross-model? | `/audit` workflow |
 | Adding a skill? | `examples/skills/` (follow SKILL.md format) |
@@ -242,9 +242,9 @@ graph TB
 
 | Category | Count |
 |----------|-------|
-| Active Protocols | 149 |
+| Active Protocols | 150 |
 | Archived Protocols | 18 |
-| Workflows | 66 |
+| Workflows | 93 |
 | Skills | 26 |
 | Concept Pages | 8 |
 | Case Studies (total) | 13 |
@@ -258,4 +258,4 @@ graph TB
 
 ---
 
-*This graph is filesystem-verified as of 5 April 2026. Update via `/diagnose` workflow or manual audit.*
+*This graph is filesystem-verified as of 8 May 2026. Update via `/diagnose` workflow or manual audit.*

@@ -1,10 +1,31 @@
 # Athena Changelog
 
-> **Last Updated**: 1 May 2026
+> **Last Updated**: 8 May 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.8.5 (08 May 2026)
+
+**MinMax Token Economy**
+
+### Operational Doctrine
+- **Token Economy Mode**: Replaced Maximum Depth + Pre-Paid Compute doctrines with MinMax Token Economy + JIT Compute doctrines. System now optimises for quality/token ratio under quota-limited AI subscriptions.
+- **`/minmax` Workflow**: Flagship workflow for quota-constrained users — maintains the same quality floor while reducing token consumption by ~74% through structured compression and attention-budget guards.
+
+### Metrics & Sync
+- **Session Count**: 1,750+ → 1,800+ (filesystem-verified)
+- **Date Alignment**: All public surfaces (README, ARCHITECTURE, SPEC_SHEET, CHANGELOG, GLOSSARY, ABOUT_ME, AGENTS.md, pyproject.toml) synced to 8 May 2026
+- **Wiki Refresh**: All 7 wiki pages updated from v9.6.6 → v9.8.5 (Home, Getting-Started, FAQ, Workflow-Reference, Use-Cases, Philosophy, The-Compounding-Effect)
+- **SDK Version**: pyproject.toml bumped to 9.8.5
+
+### Documentation
+- **README**: Added MinMax doctrine callout in pricing section for quota-limited plans
+- **AGENTS.md**: Version and date synced to v9.8.5 / 2026-05-08
+- **GLOSSARY**: Session count updated, date synced
 
 ---
 

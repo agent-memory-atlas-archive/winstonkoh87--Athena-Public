@@ -1,6 +1,6 @@
 # Glossary
 
-> **Last Updated**: 1 May 2026
+> **Last Updated**: 8 May 2026
 
 > **Purpose**: Quick reference for Athena-specific terminology. Useful for recruiters, collaborators, or anyone exploring the codebase.
 
@@ -107,7 +107,7 @@ Inspired by *Bleach* anime power scaling (for flavor):
 
 | Metric | Value |
 |--------|-------|
-| Sessions logged | 1,750+ |
+| Sessions logged | 1,800+ |
 | Protocols | 382 active (32 archived) |
 | Automation scripts | 220+ |
 | Embedded documents | 2,100+ |
