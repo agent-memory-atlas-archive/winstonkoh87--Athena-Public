@@ -296,7 +296,7 @@ User query → Extract keywords/entities
 
 > In Maximum Compute mode, **every available tool is in play on every non-trivial query**:
 >
-> - **Exocortex** (`smart_search.py`): Internal memory recall — run on EVERY STANDARD/ULTRA query
+> - **Exocortex** (`smart_search.py` / `mcp_athena_smart_search` / `mcp_athena_agentic_search`): Internal memory recall — **run on EVERY STANDARD/ULTRA query**. The Exocortex indexes **1800+ session logs**, case studies, protocols, and personal knowledge. This is the user's extended memory — failing to search it is equivalent to ignoring their lived experience.
 > - **Web Search** (`search_web`): Real-time facts, verification, current pricing, live docs — **use aggressively**. Training data is stale by default. When in doubt, search.
 > - **`read_url_content`**: Fast URL content extraction for documentation, articles, references
 > - **Browser Sub-Agent**: Visual verification, interactive pages, JS-rendered content, UI testing
@@ -304,7 +304,14 @@ User query → Extract keywords/entities
 > - **`grep_search`**: Exact pattern matching in workspace files
 > - **Command Execution**: Scripts, builds, data processing, system operations
 >
-> **MaxMax principle**: The cost of a redundant search is ~$0. The cost of a hallucinated fact is trust erosion. **Always verify. Never guess.**
+> **Mandatory Exocortex Search Triggers** — if ANY of these appear, search BEFORE responding:
+> - **Names/People**: ANY person mentioned (Jeremy, Ryan, Kian Chye, Umaira, any name) → search their name for relationship history, case studies, past interactions
+> - **Past Decisions**: "Last time...", "What did I decide...", "Didn't we already..." → search the topic for empirical precedent
+> - **Empirical Data**: Pricing, trade history, assignment outcomes, session patterns → search for historical records and calibration data
+> - **Projects/Assignments**: A30, A38, A39, any project code → search for full project context
+> - **Protocols/Case Studies**: Any reference to system patterns → search by keyword
+>
+> **MaxMax principle**: The cost of a redundant search is ~$0. The cost of a hallucinated fact is trust erosion. The cost of ignoring 1800+ sessions of empirical data is **criminal negligence**. **Always verify. Never guess. Always recall.**
 
 ---
 
