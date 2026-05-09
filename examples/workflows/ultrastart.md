@@ -523,9 +523,9 @@ preference — it's an architectural constraint:
 
 ## References
 
-- [/ultraend](file:///Users/winstonkoh/Athena-Public/examples/workflows/ultraend.md) — Symmetric deep close counterpart
-- [/start](file:///Users/winstonkoh/Athena-Public/examples/workflows/start.md) — Lightweight boot
-- [/end](file:///Users/winstonkoh/Athena-Public/examples/workflows/end.md) — Lightweight close
+- [/ultraend](ultraend.md) — Symmetric deep close counterpart
+- [/start](start.md) — Lightweight boot
+- [/end](end.md) — Lightweight close
 
 ---
 
