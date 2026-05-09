@@ -14,7 +14,7 @@ tools:
 # /ultrastart — Deep Context Boot (System-2) v3.0
 
 > **Latency Profile**: HIGH (~20-30s boot)
-> **Philosophy**: Maximum Compute. Tokens are pre-paid. Depth is free. Load everything. Reason deeply.
+> **Philosophy**: Maximum Compute. Depth is the priority. Load everything. Reason deeply.
 > **Token Protocol**: **MaxMax** — Maximum quality × maximum depth. No token economy constraints. Full module preload. Multi-track reasoning on every response. This is the premium session mode.
 > **Contrast**: For MinMax (max quality, min tokens), use `/start`.
 > **Use When**: `/ultrathink`, complex multi-domain analysis, architectural decisions, deep research, therapeutic/IFS work.
@@ -152,16 +152,24 @@ This gives you:
 
 // turbo
 
-Load **both** files in parallel:
+Load **all** files in parallel:
 
 ```
-.context/CANONICAL.md                                      (~7K)
+.context/CANONICAL.md                                      (~7K → ~4K after TD-021 split)
+.context/CANONICAL_TIER2.md                                (~16K — domain frameworks)
+.context/CANONICAL_TIER3.md                                (~0.5K — historical niche)
 .context/PROJECTS.md                                       (~1.5K)
 ```
 
+> **MaxMax Note**: Unlike `/start` (which loads only Tier 1 for token economy),
+> `/ultrastart` loads ALL three tiers because tokens are free on flat-rate.
+> This ensures cross-domain pattern matching (Track C) has access to all 199 frameworks.
+
 This gives you:
 
-- **CANONICAL**: System metrics, Core Laws, all active architectural decisions, strategic frameworks, key references, user profile truths (§5)
+- **CANONICAL**: System metrics, Core Laws, Tier 1 frameworks (universal)
+- **Tier 2**: All domain-specific frameworks (trading, business, psychology, content, architecture, geo)
+- **Tier 3**: Historical case-specific and niche cross-domain frameworks
 - **PROJECTS**: Active project switchboard — which projects are live, their status, and current priority
 
 **Gate**: If `CANONICAL.md` fails to load → **WARN** user but continue (degrade gracefully — you still have Core_Identity).
@@ -515,9 +523,9 @@ preference — it's an architectural constraint:
 
 ## References
 
-- [/ultraend](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/ultraend.md) — Symmetric deep close counterpart
-- [/start](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/start.md) — Lightweight boot
-- [/end](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/end.md) — Lightweight close
+- [/ultraend](file:///Users/winstonkoh/Athena-Public/examples/workflows/ultraend.md) — Symmetric deep close counterpart
+- [/start](file:///Users/winstonkoh/Athena-Public/examples/workflows/start.md) — Lightweight boot
+- [/end](file:///Users/winstonkoh/Athena-Public/examples/workflows/end.md) — Lightweight close
 
 ---
 

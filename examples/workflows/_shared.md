@@ -23,7 +23,7 @@
 | Priority | File | When |
 |----------|------|------|
 | 1 | `.context/memory_bank/activeContext.md` | ALWAYS (current state, active tasks, session thread) |
-| 2 | `.context/CANONICAL.md` | ALWAYS (immutable decisions, frameworks, metrics) |
+| 2 | `.context/CANONICAL.md` | ALWAYS (immutable decisions, Tier 1 frameworks, metrics). **Progressive Disclosure**: Section 4 contains Tier 1 only (~27KB). Load `CANONICAL_TIER2.md` (~64KB) when query domain matches (trading/business/psychology/content/architecture/geo). Load `CANONICAL_TIER3.md` (~1KB) on explicit request. |
 | 3 | `.context/memory_bank/userContext.md` | On identity / psychology / personal-history queries |
 | 4 | `.context/PROJECTS.md` | On project / pipeline / "what am I working on" queries |
 | 5 | `.context/PROTOCOL_SUMMARIES.md` or `PROTOCOL_HEATMAP.md` | On protocol discovery / file lookup (supersedes retired `TAG_INDEX.md`) |
@@ -95,7 +95,7 @@ Canonical counts (protocols, skills, workflows, scripts) live in `.agent/config/
 - **Names/People**: ANY person mentioned → search their name for relationship history, past interactions
 - **Past Decisions**: "Last time...", "What did I decide...", "Didn't we already..." → search the topic
 - **Empirical Data**: Pricing, trade history, assignment outcomes, session patterns → search for records
-- **Projects/Assignments**: Any project code → search for project context
+- **Projects/Assignments**: A30, A38, A39, any project code → search for project context
 - **Protocols/Case Studies**: Any system pattern reference → search by keyword
 
 > **Rule**: Failing to search the Exocortex when the data exists is equivalent to ignoring the user's own history. The cost of a redundant search is ~$0. The cost of a hallucinated answer when real data exists is trust erosion.

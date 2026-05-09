@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 8 May 2026  
-> **System Version**: v9.8.5
+> **Last Updated**: 9 May 2026  
+> **System Version**: v9.8.6
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 149+ example protocols, 130+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -37,7 +37,7 @@ Athena/
 │   ├── CLUSTER_INDEX.md           # Routing index: Systems → Clusters → Skills
 │   ├── skills/
 │   │   ├── SKILL_INDEX.md         # Protocol loading registry
-│   │   ├── protocols/             # 382 active protocols across 34 domains (32 archived)
+│   │   ├── protocols/             # 387 active protocols across 35 domains (32 archived)
 │   │   │   ├── architecture/      # System protocols (latency, modularity)
 │   │   │   ├── business/          # Business frameworks
 │   │   │   ├── coding/            # Development standards
@@ -119,7 +119,7 @@ graph TD
     AGENT --> SCRIPTS[scripts/]
     AGENT --> SWARMS[swarms/]
 
-    SKILLS --> PROTOCOLS["protocols/ (382 active)"]
+    SKILLS --> PROTOCOLS["protocols/ (387 active)"]
     SKILLS --> CAPS[capabilities/]
 
     SRC --> BOOT[boot/orchestrator.py]
@@ -184,7 +184,7 @@ graph TD
 ```mermaid
 graph BT
     L1["⚛️ Atoms<br/>Laws #0-#4"] --> L2["🧬 Molecules<br/>Rules & Constraints"]
-    L2 --> L3["🦠 Cells<br/>382 Protocols"]
+    L2 --> L3["🦠 Cells<br/>387 Protocols"]
     L3 --> L4["🧫 Tissues<br/>28 Skills"]
     L4 --> L5["🫁 Organs<br/>15 Cognitive Clusters"]
     L5 --> L6["🏥 Organ Systems<br/>8 Cognitive Systems"]
@@ -205,7 +205,7 @@ graph BT
 |:---:|:---|:---|:---|
 | 1 | **Atoms** | Laws #0-#4 | Law #1: No Ruin (absolute, non-negotiable) |
 | 2 | **Molecules** | Rules & Constraints | "Never risk >5% of bankroll" (compound constraint) |
-| 3 | **Cells** | 382 Protocols (32 archived) | Protocol 330: Economic Expected Value |
+| 3 | **Cells** | 387 Protocols (32 archived) | Protocol 330: Economic Expected Value |
 | 4 | **Tissues** | 28 Skills | `trading-risk-gate` (bundles 3 protocols) |
 | 5 | **Organs** | 15 Cognitive Clusters | Cluster #3: Trading Risk Gate |
 | 6 | **Organ Systems** | 8 Cognitive Systems | Trading System 📈 |
@@ -558,10 +558,28 @@ graph TD
 
 ## Loading Strategy
 
+### Progressive Disclosure (TD-021)
+
+> **Problem**: `CANONICAL.md` Section 4 contained all 199 strategic frameworks (~80KB). Every `/start` boot loaded the full section into context, consuming ~20K tokens — even when most frameworks were irrelevant to the current query.
+
+> **Solution**: **Tiered Loading** — Split Section 4 into three files by access frequency. Load Tier 1 always, Tier 2/3 on-demand.
+
+| Tier | File | Entries | Size | Load Strategy |
+|:---|:---|:---:|:---:|:---|
+| **1 — Always Boot** | `CANONICAL.md` (Section 4) | 40 | ~27KB | Every `/start` and `/ultrastart` |
+| **2 — Domain-Triggered** | `CANONICAL_TIER2.md` | 159 | ~64KB | When query matches trading, business, psychology, content, architecture, or geo |
+| **3 — On-Demand** | `CANONICAL_TIER3.md` | 3 | ~1KB | Explicit request or Exocortex search hit only |
+
+**Boot savings**: ~66KB (61%) removed from `/start` context. `/ultrastart` (MaxMax mode) loads all three tiers for cross-domain reasoning.
+
+**Classification**: Entries are classified by a tier analysis script (`canonical_tier_analysis.py`) that scores based on access frequency, domain breadth, and foundational importance. The mapping is stored in `.agent/telemetry/tier_map.json`.
+
 ### On-Demand (Context-Triggered)
 
 | Trigger | File Loaded | Tokens |
 |:---|:---|:---|
+| Trading, business, psychology, content | `CANONICAL_TIER2.md` | ~16K |
+| Historical case-specific precedent | `CANONICAL_TIER3.md` | ~500 |
 | User context query | `User_Profile_Core.md` | ~1,700 |
 | Skill request | `SKILL_INDEX.md` | ~4,500 |
 | `/think` invoked | `Output_Standards.md` | ~700 |
@@ -679,7 +697,7 @@ When a user invokes a slash command, the runtime follows a 3-layer orchestration
 │  Skill activates specific protocol(s)           │
 │  → Single-purpose, composable, ~200 tokens      │
 │  → Lives in .agent/skills/protocols/**/*.md     │
-│  → 382 active protocols across 34 domains        │
+│  → 387 active protocols across 35 domains        │
 └─────────────────────────────────────────────────┘
 ```
 
@@ -743,6 +761,7 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.8.6 | 09 May 2026 | Progressive Disclosure (TD-021) — CANONICAL Section 4 split into 3 tiered files (Tier 1: 40 entries always-boot, Tier 2: 159 domain-triggered, Tier 3: 3 on-demand). 66KB (61%) boot savings for `/start`. Protocol count 382→387, script count reconciled 220→219. Full tech debt resolved (TD-016/TD-020/TD-021). External Verification Mandate enforced across all workflows. |
 | v9.8.5 | 08 May 2026 | MinMax Token Economy — operational doctrine shift from Maximum Compute to Token Economy (maximize quality/token under quota-limited plans), JIT Compute, session count 1,750+→1,800+, wiki refresh (v9.6.6→v9.8.5), date alignment across all public surfaces |
 | v9.8.4 | 01 May 2026 | GTO Metrics Sync — Meta-Pattern Framework v2.0 (7→14 universal laws), filesystem-verified counts (382 protocols, 443 case studies, 73 workflows, 1,750+ sessions), scripts pruned 240→220, date alignment across 8 files |
 | v9.8.3 | 19 Apr 2026 | Synaptic Pruning — Protocol deduplication (395→378 active, 17 archived), Case Study deduplication (440→433, 7 merged+archived), ARCHITECTURE.md metrics reconciliation, quality/ category purged, neural-network-model consolidation pass |

@@ -12,13 +12,13 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.8.5-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.8.6-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 8 May 2026*
+*Last updated: 9 May 2026*
 
 </div>
 
@@ -493,7 +493,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) / GPT-5.4 (High) |
-| **SDK** | `athena` Python package (v9.8.5) |
+| **SDK** | `athena` Python package (v9.8.6) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -527,8 +527,9 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.8.6** (May 09 2026): Progressive Disclosure (TD-021) — CANONICAL Section 4 split into 3 tiered files (Tier 1: 40 entries always-boot, Tier 2: 159 domain-triggered, Tier 3: 3 on-demand). 66KB (61%) boot savings for `/start`. Protocol count 382→387, script count reconciled 220→219. Full tech debt resolved (TD-016/TD-020/TD-021). External Verification Mandate enforced across all workflows.
 - **v9.8.5** (May 08 2026): MinMax Token Economy — operational doctrine shift from Maximum Compute to Token Economy (maximize quality/token under quota-limited plans), JIT Compute doctrine, session count 1,750+→1,800+, date alignment across all public surfaces, wiki refresh (v9.6.6→v9.8.5)
-- **v9.8.4** (May 01 2026): GTO Metrics Sync — Meta-Pattern Framework v2.0 (7→14 universal laws: MP-8 Wound Loop, MP-9 Leverage Inversion, MP-10 Information-Action Gap, MP-11 Iteration Economy, MP-12 Articulation Penalty, MP-13 Principal-Agent Misalignment, MP-14 Sunk Cost Gravity Well), filesystem-verified counts (382 protocols, 443 case studies, 73 workflows, 1,750+ sessions), scripts pruned 240→220, date alignment across 8 files
+- **v9.8.4** (May 01 2026): GTO Metrics Sync — Meta-Pattern Framework v2.0 (7→14 universal laws: MP-8 Wound Loop, MP-9 Leverage Inversion, MP-10 Information-Action Gap, MP-11 Iteration Economy, MP-12 Articulation Penalty, MP-13 Principal-Agent Misalignment, MP-14 Sunk Cost Gravity Well), filesystem-verified counts (387 protocols, 443 case studies, 73 workflows, 1,800+ sessions), scripts 219, date alignment across 8 files
 - **v9.8.3** (Apr 19 2026): Synaptic Pruning — protocol deduplication (395→378 active, 17 archived), case study deduplication (440→433, 7 merged+archived), neural-network-model consolidation pass, `quality/` category purged, ARCHITECTURE.md metrics reconciliation
 - **v9.8.2** (Apr 17 2026): Progressive Disclosure — `context_trigger` on all 26 example skills (Protocol 530), telemetry foundation (`log_invocation.py`), pre-commit Gate 4 (auto-gen indexes), ARCHITECTURE.md version drift fix
 - **v9.7.0** (Apr 10 2026): Biological Analogy v2 (6-tier → 7-tier: Atom/Molecule/Cell/Tissue/Organ/System/Organism), GTO Metrics Sync (protocols 397→408, skills 24→28, case studies 410→440, sessions 1,200→1,500+, workflows 53→66+), date alignment across 8 files

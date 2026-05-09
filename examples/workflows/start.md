@@ -35,7 +35,7 @@ After loading the latest checkpoint from `activeContext.md`, scan `@pending` ite
 - If any item has been pending **7+ sessions**: include one neutral line in boot output: `ℹ️ Long-pending: [TASK] — N sessions.`
 - No escalation, no gate. The user decides what to act on.
 
-See [Protocol 528](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/528-execution-enforcement.md).  
+See [Protocol 528](file:///Users/winstonkoh/Project Athena/.agent/skills/protocols/architecture/528-execution-enforcement.md).  
 
 > **Note**: Boot Orchestrator (`boot.py`), Daemon, and UI Sync are handled automatically by the orchestrator's background thread pool. Do NOT run them as separate subprocess calls — they are redundant and add 2-5 minutes of latency.
 
@@ -121,6 +121,8 @@ Bypassing STANDARD/ULTRA protocol is a high-severity violation. SNIPER queries m
 
 | Trigger | File | Tokens |
 |---------|------|--------|
+| **Trading, Risk, Pricing, Business, Psychology, Content** | `CANONICAL_TIER2.md` | ~16K |
+| **Historical case-specific, niche precedent** | `CANONICAL_TIER3.md` | ~500 |
 | Tag lookup, "find files about" | `TAG_INDEX.md` | 5,500 |
 | Protocol/skill request | `smart_search.py --skills-only` | ~1,000 |
 | Bio, typology, "who am I" | `User_Profile_Core.md` | 1,500 |
@@ -138,7 +140,7 @@ Bypassing STANDARD/ULTRA protocol is a high-severity violation. SNIPER queries m
 > **Architecture**: P508 Intent Classifier → P507 Cognitive Systems → P503 Clusters → Skills → Protocols
 > **Philosophy**: Classify the *human need archetype* first (top-down), then cascade to clusters. Fall back to keyword matching for SNIPER queries.
 
-**Routing Table**: [CLUSTER_INDEX.md](file:///Users/[AUTHOR]/Project Athena/.agent/CLUSTER_INDEX.md) (8 Cognitive Systems, 15 clusters, 100% skill coverage)
+**Routing Table**: [CLUSTER_INDEX.md](file:///Users/winstonkoh/Project Athena/.agent/CLUSTER_INDEX.md) (8 Cognitive Systems, 15 clusters, 100% skill coverage)
 
 **Intent Classification (Λ ≥ 10 — STANDARD/ULTRA):**
 
@@ -198,15 +200,15 @@ Crisis Query → P509 (Triage) → P519 (Goal) → #15 Problem-Solving → P521 
 | `/think` | **Escalation** — Force L4 depth + Output_Standards | +2K |
 | `/ultrathink` | Maximum depth + Full stack | +28K |
 
-> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
+> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](file:///Users/winstonkoh/Project Athena/.agent/skills/protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
 
 ---
 
 ## References
 
-- [Protocol 133: JIT Routing](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/133-query-archetype-routing.md)
-- [WORKFLOW_INDEX.md](file:///Users/[AUTHOR]/Project Athena/.agent/WORKFLOW_INDEX.md)
-- [Session 2025-12-13-04](file:///Users/[AUTHOR]/Project Athena/.context/memories/session_logs/archive/2025-12-13-session-04.md)
+- [Protocol 133: JIT Routing](file:///Users/winstonkoh/Project Athena/.agent/skills/protocols/architecture/133-query-archetype-routing.md)
+- [WORKFLOW_INDEX.md](file:///Users/winstonkoh/Project Athena/.agent/WORKFLOW_INDEX.md)
+- [Session 2025-12-13-04](file:///Users/winstonkoh/Project Athena/.context/memories/session_logs/archive/2025-12-13-session-04.md)
 
 ---
 

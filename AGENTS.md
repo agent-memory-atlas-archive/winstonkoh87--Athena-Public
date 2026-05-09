@@ -77,10 +77,12 @@ This file provides persistent context to any AI coding agent working in this wor
 When working on any task in this workspace:
 
 1. **Check `.context/project_state.md`** for current priorities and active projects
-2. **Check `.context/CANONICAL.md`** for materialized view of active facts
-3. **Grep `.context/TAG_INDEX.md`** for topic → file mappings
-4. **Read authoritative files** before generating code from training data
-5. **Consult `.context/PROTOCOL_SUMMARIES.md`** for protocol overviews
+2. **Check `.context/CANONICAL.md`** for materialized view of active facts (Tier 1 frameworks only — universal laws and identity truths)
+3. **Load `.context/CANONICAL_TIER2.md`** when query matches trading, business, psychology, content, architecture, or geo domains
+4. **Load `.context/CANONICAL_TIER3.md`** on explicit request or Exocortex search hit only
+5. **Grep `.context/TAG_INDEX.md`** for topic → file mappings
+6. **Read authoritative files** before generating code from training data
+7. **Consult `.context/PROTOCOL_SUMMARIES.md`** for protocol overviews
 
 ---
 
@@ -122,6 +124,6 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 
 ## Version
 
-- **Framework**: v9.8.5
-- **Last Updated**: 2026-05-08
+- **Framework**: v9.8.6
+- **Last Updated**: 2026-05-09
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules + Claude Code Source Architecture (2026-03-31)
