@@ -109,6 +109,9 @@ Canonical counts (protocols, skills, workflows, scripts) live in `.agent/config/
 - ❌ Skipping `/start` boot sequence
 - ❌ Modifying files owned by other agents (Protocol 413)
 - ❌ **Responding from internal knowledge only** when Exocortex, web search, or MCP tools could verify, enrich, or ground the answer. If in doubt, search. The cost of a redundant search is ~$0. The cost of a hallucinated answer is trust erosion.
+- ❌ **Using negative instructions to constrain generation quality** ("don't add X", "avoid Y"). Use a separate De-Sloppify cleanup pass instead (QUA-541). Two focused agents > one constrained agent.
+- ❌ **Editing a file without checking its importers first** (ENG-542 GateGuard). Before the first edit to any file: Who imports it? What schemas does it touch? What did the user actually instruct?
+- ❌ **Weakening linter/formatter configs to suppress warnings** instead of fixing the underlying code (ENG-542 Config Protection corollary).
 
 ### Risk Classification (Law #6)
 
