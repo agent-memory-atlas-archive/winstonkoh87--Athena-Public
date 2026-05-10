@@ -1,7 +1,7 @@
 # Athena Spec Sheet
 
-> **Version**: v9.8.5
-> **Date**: 8 May 2026
+> **Version**: v9.8.6
+> **Date**: 11 May 2026
 > **Architect**: Winston Koh
 > **Status**: Production (1,800+ sessions)
 

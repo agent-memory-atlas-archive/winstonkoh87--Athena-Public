@@ -1,10 +1,43 @@
 # Athena Changelog
 
-> **Last Updated**: 8 May 2026
+> **Last Updated**: 11 May 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.8.6 (11 May 2026)
+
+**Infrastructure Hardening — GateGuard + De-Sloppify Protocols**
+
+### New Protocols
+- **ENG-542 — GateGuard (Read-Before-Write Enforcement)**: Mandates deterministic investigation before any file modification. Agents must read the target file, grep for related patterns, and verify current state before proposing changes. Prevents blind edits, stale assumptions, and hallucinated file contents.
+- **QUA-541 — De-Sloppify Pass (Two-Pass Implementation)**: Separates implementation from cleanup into two distinct passes. Pass 1 focuses on correctness and feature delivery. Pass 2 (mandatory) sweeps for leftover debug code, placeholder text, inconsistent naming, and missing edge cases. Prevents quality drift under creative flow.
+
+### Structural Changes
+- **`quality/` Category Re-introduced**: New category for quality-assurance protocols. Previously purged in v9.8.3 (contained redundant protocols); now re-populated with purpose-built QUA-series protocols.
+- **Protocol Categories**: 15 → **16** (architecture, coding, content, decision, engineering, memory, meta, pattern-detection, quality, reasoning, research, safety, strategy, trading, verification, workflow)
+- **Anti-Patterns**: 3 new entries added to `_shared.md` — De-Sloppify corollary, GateGuard corollary, Config Protection corollary
+
+### Date & Version Sync
+- All public surfaces (README, AGENTS.md, ARCHITECTURE, CHANGELOG, GLOSSARY, KNOWLEDGE_GRAPH, REFERENCES, SPEC_SHEET) synced to 11 May 2026
+- KNOWLEDGE_GRAPH and SPEC_SHEET version bumped to v9.8.6
+
+### Files Changed
+
+- `examples/protocols/engineering/ENG-542-gateguard-read-before-write.md` — NEW
+- `examples/protocols/quality/QUA-541-de-sloppify-pass.md` — NEW
+- `examples/workflows/_shared.md` — 3 new anti-patterns
+- `README.md` — Date, category count (15→16)
+- `AGENTS.md` — Date, category count, category names surfaced
+- `docs/ARCHITECTURE.md` — Date sync
+- `docs/GLOSSARY.md` — Date sync
+- `docs/KNOWLEDGE_GRAPH.md` — Date + version sync
+- `docs/REFERENCES.md` — Date sync
+- `docs/SPEC_SHEET.md` — Date + version sync
+- `docs/CHANGELOG.md` — This entry
 
 ---
 

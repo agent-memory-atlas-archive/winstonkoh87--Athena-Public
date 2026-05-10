@@ -527,7 +527,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
-- **v9.8.6** (May 09 2026): Progressive Disclosure (TD-021) — CANONICAL Section 4 split into 3 tiered files (Tier 1: 40 entries always-boot, Tier 2: 159 domain-triggered, Tier 3: 3 on-demand). 66KB (61%) boot savings for `/start`. Protocol count 382→387, script count reconciled 220→219. Full tech debt resolved (TD-016/TD-020/TD-021). External Verification Mandate enforced across all workflows.
+- **v9.8.6** (May 11 2026): Infrastructure Hardening — ENG-542 (GateGuard read-before-write), QUA-541 (De-Sloppify two-pass), quality/ category re-introduced (16 categories), Progressive Disclosure (TD-021) for boot savings, 3 new anti-patterns in `_shared.md`. External Verification Mandate enforced.
 - **v9.8.5** (May 08 2026): MinMax Token Economy — operational doctrine shift from Maximum Compute to Token Economy (maximize quality/token under quota-limited plans), JIT Compute doctrine, session count 1,750+→1,800+, date alignment across all public surfaces, wiki refresh (v9.6.6→v9.8.5)
 - **v9.8.4** (May 01 2026): GTO Metrics Sync — Meta-Pattern Framework v2.0 (7→14 universal laws: MP-8 Wound Loop, MP-9 Leverage Inversion, MP-10 Information-Action Gap, MP-11 Iteration Economy, MP-12 Articulation Penalty, MP-13 Principal-Agent Misalignment, MP-14 Sunk Cost Gravity Well), filesystem-verified counts (387 protocols, 443 case studies, 73 workflows, 1,800+ sessions), scripts 219, date alignment across 8 files
 - **v9.8.3** (Apr 19 2026): Synaptic Pruning — protocol deduplication (395→378 active, 17 archived), case study deduplication (440→433, 7 merged+archived), neural-network-model consolidation pass, `quality/` category purged, ARCHITECTURE.md metrics reconciliation
