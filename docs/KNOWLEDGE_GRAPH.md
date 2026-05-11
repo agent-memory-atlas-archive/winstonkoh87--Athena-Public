@@ -1,8 +1,8 @@
 # Knowledge Graph — Athena System Architecture
 
-> **Last Updated**: 11 May 2026
+> **Last Updated**: 12 May 2026
 >
-> **Version**: v9.8.6
+> **Version**: v9.8.8
 >
 > **Purpose**: Compressed representation of the full Athena knowledge domain for instant retrieval. All counts are filesystem-verified.
 
@@ -11,7 +11,7 @@
 ## System Architecture (Tree)
 
 ```text
-[Athena System v9.8.6]
+[Athena System v9.8.8]
 │
 ├── Identity Layer
 │   ├── Laws: {#0 Ruin Prevention, #1 Context is King, #2 Charity with Limits,
@@ -258,4 +258,4 @@ graph TB
 
 ---
 
-*This graph is filesystem-verified as of 11 May 2026. Update via `/diagnose` workflow or manual audit.*
+*This graph is filesystem-verified as of 12 May 2026. Update via `/diagnose` workflow or manual audit.*

@@ -80,7 +80,7 @@ last_updated: 2026-03-19
 | **Vector DB** | Supabase (pgvector v0.4) | Cloud-native. Exact Search used due to dim limits. |
 | **Embeddings** | gemini-embedding-001 | Optimized for Gemini |
 | **LLM (Primary)** | Gemini 3.1 Pro (Antigravity) | Long context, native reasoning |
-| **LLM (Coding)** | Claude Opus 4.6 | SOTA for code at mid-tier pricing |
+| **LLM (Coding)** | Claude Opus 4.7 | SOTA for code at mid-tier pricing |
 | **Static Hosting** | Cloudflare Pages | $0, global CDN, no server management |
 | **Blog Standards** | Content Publication Standard (Gold Standard) | Soulful Blogging (3-Sentence Rule, Hidden Gems) |
 | **URL Structure** | Trailing Slash Enforced | `trailingSlash: 'always'` to match Cloudflare Pages behavior (Session 11) |

@@ -31,17 +31,31 @@ Reduce single-model blind spots by using multiple SOTA LLMs as adversarial peer 
 
 ---
 
-## SOTA Model Reference (Dec 2025)
+## SOTA Model Reference (May 2026)
 
 | Rank | Model | Score | Best For |
 |:---:|:---|:---:|:---|
-| 1 | Gemini-3-Pro | 1490 | General reasoning, vision |
-| 2 | GPT-5.4 | 1488 | SOTA Benchmark (Adversarial Pair) |
-| 3 | Gemini-3-Flash | 1478 | Speed + quality balance |
-| 4 | Grok-4.1-Thinking | 1477 | Deep reasoning tasks |
-| 5 | Claude-Opus-4.5-Thinking | 1469 | Structured analysis (Athena primary) |
+| 1 | Claude Opus 4.7 (Thinking) | 1503 | Deep structured reasoning (Athena primary) |
+| 2 | Claude Opus 4.6 (Thinking) | 1502 | Extended context analysis |
+| 4 | Gemini 3.1 Pro (Preview) | 1492 | General reasoning, vision, planning |
+| 5 | Claude Opus 4.7 | 1491 | Code quality, architecture |
+| 8 | GPT-5.5 (High) | 1484 | Adversarial peer review, creative tasks |
+| 9 | Grok 4.20 Beta | 1480 | Alternative perspective, fast reasoning |
+| 16 | Gemini 3 Flash | 1474 | Speed + quality balance (cost-optimal) |
 
-*Source: [LMArena](https://lmarena.ai) Leaderboard, 24 Dec 2025*
+### Pareto-Optimal Models (Best Performance/Cost)
+
+| Model | Score | Blended $/M | License |
+|:------|:------|:------------|:--------|
+| Claude Opus 4.7 (Thinking) | 1503 | $20.00 | Proprietary |
+| Gemini 3.1 Pro (Preview) | 1492 | $9.50 | Proprietary |
+| Grok 4.20 (Reasoning) | 1477 | $5.00 | Proprietary |
+| Gemini 3 Flash | 1474 | $2.38 | Proprietary |
+| DeepSeek V4 Pro | 1463 | $0.76 | MIT |
+| Gemma 4 31B | 1451 | $0.34 | Apache 2.0 |
+| DeepSeek V4 Flash (Thinking) | 1440 | $0.25 | MIT |
+
+*Source: [LMArena](https://lmarena.ai) Leaderboard, 7 May 2026 (6.1M+ votes, 357 models)*
 
 ---
 
@@ -67,7 +81,7 @@ Reduce single-model blind spots by using multiple SOTA LLMs as adversarial peer 
 
 ### Phase 2: Outsource (3rd Party SOTA)
 
-1. **Select**: Choose **Gemini 3.1 Pro** or **GPT-5.4** (LMArena).
+1. **Select**: Choose **Gemini 3.1 Pro** or **GPT-5.5 (High)** (LMArena).
 2. **Prompt**: *"Act as a hostile regulatory auditor and a pessimistic investor. Your goal is to kill this deal. List the top 3 existential risks the author ignored. Be ruthless."*
 3. **Execute**: Run blind or adversarial check.
 
@@ -111,7 +125,7 @@ Models validate *reasoning*, but many errors are **fact errors** (regulations, u
 ║  ┌─────────────────────────────────────────────────────────────────────┐  ║
 ║  │  PHASE 2: ADVERSARIAL AUDIT                                         │  ║
 ║  │          ┌─────────────────┐     ┌─────────────────┐                │  ║
-║  │          │  Gemini 3.1 Pro │     │    GPT 5.2      │                │  ║
+║  │          │  Gemini 3.1 Pro │     │    GPT 5.5      │                │  ║
 ║  │          │ "Red team this" │     │ "What's wrong?" │                │  ║
 ║  │          └────────┬────────┘     └────────┬────────┘                │  ║
 ║  │                   └───────────┬───────────┘                         │  ║
@@ -160,7 +174,7 @@ Quality = f(Primary Depth × Adversarial Diversity × Synthesis Discipline)
 
 ### Case Study 1: BCM Due Diligence
 
-**Primary (Opus 4.5)**:
+**Primary (Opus 4.7)**:
 
 - Failure probability: 15%
 - Best case probability: 20%
@@ -176,9 +190,9 @@ Quality = f(Primary Depth × Adversarial Diversity × Synthesis Discipline)
 
 ### Case Study 2: Child Aggression Response (28 Dec 2025)
 
-**Primary (Opus 4.5)**: Rated 9.5/10 response on behavioral psychology.
+**Primary (Opus 4.7)**: Rated 9.5/10 response on behavioral psychology.
 
-**After Cross-Validation (Gemini 3.1 Pro + GPT 5.2)**:
+**After Cross-Validation (Gemini 3.1 Pro + GPT 5.5)**:
 
 | Issue | Original | Calibrated |
 |:---|:---|:---|
@@ -212,4 +226,4 @@ Quality = f(Primary Depth × Adversarial Diversity × Synthesis Discipline)
 
 ## Tagging
 
-# cross-model-validation #tri-lateral-iteration #lmarena #verification #peer-review #adversarial-ensembling #gemini-3-pro #gpt-5.2 #grok-4.1 #opus-4.5 #sota-models #bias-correction #hitlo
+# cross-model-validation #tri-lateral-iteration #lmarena #verification #peer-review #adversarial-ensembling #gemini-3.1-pro #gpt-5.5 #grok-4.20 #opus-4.7 #sota-models #bias-correction #hitlo

@@ -1,6 +1,6 @@
 # Frequently Asked Questions (FAQ)
 
-> **Last Updated**: 19 March 2026
+> **Last Updated**: 12 May 2026
 
 ---
 
@@ -33,8 +33,8 @@ Athena separates the **IDE** from the **Reasoning Engine**, so you are never loc
 **2. The Reasoning Engine (Who does the thinking):**
 
 - **Gemini 3.1 Pro**
-- **Claude Opus 4.6**
-- **GPT-5.4 (High)**
+- **Claude Opus 4.7**
+- **GPT-5.5 (High)**
 - Any LLM that can read your local Markdown files
 
 ---

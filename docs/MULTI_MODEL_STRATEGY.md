@@ -1,6 +1,6 @@
 # Multi-Model Strategy Guide
 
-> **Last Updated**: 10 March 2026
+> **Last Updated**: 12 May 2026
 
 Athena is model-agnostic — your memory, protocols, and governance persist across any LLM. This means you can use **different models for different tasks** and get the best of each.
 
@@ -24,10 +24,10 @@ Athena is **free and open source**. You only pay for your AI subscription. But t
 
 | Model | Strengths | Best Used For |
 |:------|:---------|:-------------|
-| **Claude Opus 4.6** | Deep reasoning, code quality, nuanced analysis | Coding, architecture, verification |
+| **Claude Opus 4.7** | Deep reasoning, code quality, nuanced analysis | Coding, architecture, verification |
 | **Gemini 3.1 Pro** | Broad knowledge, fast synthesis, strong planning | General work, research, planning |
 | **Gemini 3 Flash** | Speed, low cost | Session management (`/start`, `/end`), quick lookups |
-| **GPT-5.4 (High)** | Alternative perspective, good at creative tasks | Trilateral tiebreaker, creative work |
+| **GPT-5.5 (High)** | Alternative perspective, good at creative tasks | Trilateral tiebreaker, creative work |
 
 > [!TIP]
 > **The cheapest path to full Athena capability is a single $20/mo subscription** (Claude Pro or Google AI Pro). You don't need multiple subscriptions — one frontier model handles everything. Multiple subs unlock the trilateral feedback loop for high-stakes decisions.
@@ -102,7 +102,7 @@ Model B (e.g., Claude Opus)    →  Opinion 2
                                     ↓
                               Conflict detected?
                                     ↓
-Model C (e.g., GPT-5.4, Llama) →  Tiebreaker / Synthesis
+Model C (e.g., GPT-5.5, Llama) →  Tiebreaker / Synthesis
 ```
 
 **When to trigger**:
@@ -170,7 +170,7 @@ Phase 1: SCOPE (Strong model — e.g., Gemini 3.1 Pro)
 ├── Output: Structured spec / implementation plan
 └── Run /brief, /plan, or spec-driven-dev skill
 
-Phase 2: EXECUTE (Frontier model — e.g., Claude Opus 4.6)
+Phase 2: EXECUTE (Frontier model — e.g., Claude Opus 4.7)
 ├── Receive the structured spec (not the raw mess)
 ├── Execute ONLY the complex 30% that needs deep reasoning
 └── Output: Working code, final deliverable, strategic synthesis

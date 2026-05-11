@@ -56,7 +56,7 @@ The Workplan must define:
 
 ## Phase 3: Foundation (The Big Context Shot)
 
-**Tool**: High Context Model (Opus 4.5/Gemini 3.1 Pro)
+**Tool**: High Context Model (Opus 4.7/Gemini 3.1 Pro)
 **Action**: Initial Scaffold
 
 1. Feed the *entire* Workplan to the model.
@@ -76,7 +76,7 @@ The Workplan must define:
     * Figma -> Editor.
     * Ensure Figma structure mirrors Code structure (Components).
 4. **Iteration**:
-    * *Small fixes*: Fast Model (Opus 4.5/Gemini 3 Flash).
+    * *Small fixes*: Fast Model (Opus 4.7/Gemini 3 Flash).
     * *Architectural changes*: Reasoning Model (Opus/Gemini Pro/o1).
 
 ---

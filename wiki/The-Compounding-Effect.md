@@ -2,7 +2,7 @@
 
 > **Core Thesis:** The moat isn't the code — it's your data. Anyone can fork Athena; nobody can fork your sessions.
 
-*Last Updated: 2026-03-22 · v9.5.7*
+*Last Updated: 2026-05-12 · v9.8.8*
 
 ---
 

@@ -1,10 +1,48 @@
 # Athena Changelog
 
-> **Last Updated**: 11 May 2026
+> **Last Updated**: 12 May 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.8.8 (12 May 2026)
+
+**Model Version Sync — Provenance Standard & Frontier Model Alignment**
+
+### Key Changes
+
+#### Model Version Updates
+- **Claude Opus 4.6 → 4.7** (released April 16, 2026) across all public surfaces
+- **GPT-5.4 → 5.5** (released April 23, 2026) across all public surfaces
+- Both versions web-verified against official release announcements
+
+#### Provenance Standard (Reddit Deep-Dive Audit)
+- **CANONICAL.md Provenance Tagging**: New mandatory format for all canonical entries: `(Session S[NNN], [YYYY-MM-DD])`. Every assertion traceable to its origin session. Prevents memory drift.
+- **`/end` Workflow Gate Hardening**: Canonical Check (Phase 1B, Step 3) now blocks new entries without valid provenance tags. Mechanical enforcement, not aspirational.
+
+### Date & Version Sync
+- All public surfaces synced to 12 May 2026
+- Version badge: v9.8.7 → v9.8.8
+- SDK version: v9.8.7 → v9.8.8
+
+### Files Changed
+
+- `README.md` — Version badge, date, model refs (×3), SDK version, changelog entry
+- `AGENTS.md` — Version, date
+- `docs/ARCHITECTURE.md` — Version, date, version history entry
+- `docs/FAQ.md` — Date, model refs (×2)
+- `docs/MULTI_MODEL_STRATEGY.md` — Date, model refs (×4)
+- `docs/CAPABILITIES.md` — Model ref
+- `docs/GRAPHRAG.md` — Model ref
+- `docs/CHANGELOG.md` — This entry
+- `athena.yaml` — Model fallback refs (×2)
+- `wiki/FAQ.md` — Model ref
+- `Athena-Public.wiki/FAQ.md` — Model ref
+- `examples/concepts/anti_hallucination.md` — Model refs (×2)
+- `examples/protocols/verification/VER-171-cross-model-validation.md` — Model refs (×2)
 
 ---
 

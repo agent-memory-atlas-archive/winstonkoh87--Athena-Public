@@ -181,7 +181,7 @@ Athena (Orchestrator)  →  Generates Parsing Prompts  →  User
 User  ←  Pastes LLM Response Back  ←  Athena assembles results
 ```
 
-**Result**: SOTA entity extraction (Gemini 3.1 Pro, Claude Opus 4.6) at **$0 cost**.
+**Result**: SOTA entity extraction (Gemini 3.1 Pro, Claude Opus 4.7) at **$0 cost**.
 
 ### Why This Works
 

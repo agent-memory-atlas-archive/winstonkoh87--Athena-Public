@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 11 May 2026  
-> **System Version**: v9.8.7
+> **Last Updated**: 12 May 2026  
+> **System Version**: v9.8.8
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 149+ example protocols, 130+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -761,6 +761,7 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.8.8 | 12 May 2026 | Model Version Sync — Claude Opus 4.6→4.7 (released Apr 16), GPT-5.4→5.5 (released Apr 23) across all public surfaces. Provenance Standard added to CANONICAL.md. Date alignment. |
 | v9.8.7 | 11 May 2026 | Hermes Agent Steal — `skill-compiler` (automated solved-to-skill compiler from NousResearch/hermes-agent), curator lifecycle model (3-state: active→stale→archived), umbrella consolidation rule. Skills 28→29. |
 | v9.8.6 | 11 May 2026 | Infrastructure Hardening — ENG-542 GateGuard (read-before-write enforcement), QUA-541 De-Sloppify (two-pass implementation), quality/ category re-introduced (16 categories), Progressive Disclosure (TD-021) for 66KB boot savings, 3 new anti-patterns in `_shared.md`, External Verification Mandate. |
 | v9.8.5 | 08 May 2026 | MinMax Token Economy — operational doctrine shift from Maximum Compute to Token Economy (maximize quality/token under quota-limited plans), JIT Compute, session count 1,750+→1,800+, wiki refresh (v9.6.6→v9.8.5), date alignment across all public surfaces |
