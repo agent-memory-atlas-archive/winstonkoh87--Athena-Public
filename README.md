@@ -12,7 +12,7 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.8.6-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.8.7-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
@@ -493,7 +493,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.6 (Thinking) / GPT-5.4 (High) |
-| **SDK** | `athena` Python package (v9.8.6) |
+| **SDK** | `athena` Python package (v9.8.7) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -527,6 +527,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.8.7** (May 11 2026): Hermes Agent Steal — `skill-compiler` (automated solved-to-skill compiler from NousResearch), curator lifecycle model (3-state: active→stale→archived), umbrella consolidation rule. 5 always-on skills → 6.
 - **v9.8.6** (May 11 2026): Infrastructure Hardening — ENG-542 (GateGuard read-before-write), QUA-541 (De-Sloppify two-pass), quality/ category re-introduced (16 categories), Progressive Disclosure (TD-021) for boot savings, 3 new anti-patterns in `_shared.md`. External Verification Mandate enforced.
 - **v9.8.5** (May 08 2026): MinMax Token Economy — operational doctrine shift from Maximum Compute to Token Economy (maximize quality/token under quota-limited plans), JIT Compute doctrine, session count 1,750+→1,800+, date alignment across all public surfaces, wiki refresh (v9.6.6→v9.8.5)
 - **v9.8.4** (May 01 2026): GTO Metrics Sync — Meta-Pattern Framework v2.0 (7→14 universal laws: MP-8 Wound Loop, MP-9 Leverage Inversion, MP-10 Information-Action Gap, MP-11 Iteration Economy, MP-12 Articulation Penalty, MP-13 Principal-Agent Misalignment, MP-14 Sunk Cost Gravity Well), filesystem-verified counts (387 protocols, 443 case studies, 73 workflows, 1,800+ sessions), scripts 219, date alignment across 8 files

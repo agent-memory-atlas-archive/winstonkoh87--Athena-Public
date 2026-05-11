@@ -8,6 +8,33 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.8.7 (11 May 2026)
+
+**Hermes Agent Steal — Automated Skill Compiler**
+
+### New Skills
+- **`skill-compiler`** (NEW): `examples/skills/workflow/skill-compiler/SKILL.md` — Automated solved-to-skill compiler. When Athena solves a novel, complex task (≥5 turns, ≥3 tools, confirmed success), this skill auto-drafts a new SKILL.md from the solution trajectory. Problem classes get solved once, then never re-derived. Stolen from NousResearch/hermes-agent's learning loop architecture.
+
+### Stolen Patterns (Hermes Intelligence)
+- **Curator Lifecycle Model** (absorbed into skill-compiler): 3-state lifecycle (`active` → `stale` → `archived`) with automatic transitions based on invocation recency. Pin exemption (`pinned: true` frontmatter bypasses all auto-transitions). Never-delete invariant (maximum destructive action is archive). Source: `agent/curator.py` (800+ lines).
+- **Umbrella Consolidation Rule**: "A collection of hundreds of narrow skills where each one captures one session's specific bug is a FAILURE of the library." Narrow, session-specific fixes are absorbed into broad, class-level skills rather than proliferating micro-entries.
+
+### What Was NOT Stolen (and Why)
+- **DSPy + GEPA Self-Evolution**: Requires Python infrastructure + API costs (~$2-10/run). Deferred — not zero-overhead.
+- **SQLite Skill Telemetry**: Athena's git-tracked `.agent/skills/` provides `git log` + `git blame` — superior audit trail.
+- **Background Curator Cron**: Athena already has `/audit` + `/needful`. Adding a daemon would duplicate.
+
+### Files Changed
+
+- `examples/skills/workflow/skill-compiler/SKILL.md` — NEW
+- `AGENTS.md` — Skill table updated, version bump (v9.8.6→v9.8.7), Hermes steal in pattern source
+- `README.md` — Version badge (v9.8.6→v9.8.7), SDK version, changelog entry
+- `docs/ARCHITECTURE.md` — Version, skills count (28→29), version history entry
+- `pyproject.toml` — Version bump (9.8.5→9.8.7)
+- `docs/CHANGELOG.md` — This entry
+
+---
+
 ## v9.8.6 (11 May 2026)
 
 **Infrastructure Hardening — GateGuard + De-Sloppify Protocols**

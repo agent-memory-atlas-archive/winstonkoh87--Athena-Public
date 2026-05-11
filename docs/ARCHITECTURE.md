@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
 > **Last Updated**: 11 May 2026  
-> **System Version**: v9.8.6
+> **System Version**: v9.8.7
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 149+ example protocols, 130+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -185,7 +185,7 @@ graph TD
 graph BT
     L1["⚛️ Atoms<br/>Laws #0-#4"] --> L2["🧬 Molecules<br/>Rules & Constraints"]
     L2 --> L3["🦠 Cells<br/>387 Protocols"]
-    L3 --> L4["🧫 Tissues<br/>28 Skills"]
+    L3 --> L4["🧫 Tissues<br/>29 Skills"]
     L4 --> L5["🫁 Organs<br/>15 Cognitive Clusters"]
     L5 --> L6["🏥 Organ Systems<br/>8 Cognitive Systems"]
     L6 --> L7["🧠 Organism<br/>Athena"]
@@ -206,7 +206,7 @@ graph BT
 | 1 | **Atoms** | Laws #0-#4 | Law #1: No Ruin (absolute, non-negotiable) |
 | 2 | **Molecules** | Rules & Constraints | "Never risk >5% of bankroll" (compound constraint) |
 | 3 | **Cells** | 387 Protocols (32 archived) | Protocol 330: Economic Expected Value |
-| 4 | **Tissues** | 28 Skills | `trading-risk-gate` (bundles 3 protocols) |
+| 4 | **Tissues** | 29 Skills | `trading-risk-gate` (bundles 3 protocols) |
 | 5 | **Organs** | 15 Cognitive Clusters | Cluster #3: Trading Risk Gate |
 | 6 | **Organ Systems** | 8 Cognitive Systems | Trading System 📈 |
 | 7 | **Organism** | Athena | The complete synthetic intelligence |
@@ -761,6 +761,7 @@ User: /plan
 
 | Version | Date | Changes |
 |:---|:---|:---|
+| v9.8.7 | 11 May 2026 | Hermes Agent Steal — `skill-compiler` (automated solved-to-skill compiler from NousResearch/hermes-agent), curator lifecycle model (3-state: active→stale→archived), umbrella consolidation rule. Skills 28→29. |
 | v9.8.6 | 11 May 2026 | Infrastructure Hardening — ENG-542 GateGuard (read-before-write enforcement), QUA-541 De-Sloppify (two-pass implementation), quality/ category re-introduced (16 categories), Progressive Disclosure (TD-021) for 66KB boot savings, 3 new anti-patterns in `_shared.md`, External Verification Mandate. |
 | v9.8.5 | 08 May 2026 | MinMax Token Economy — operational doctrine shift from Maximum Compute to Token Economy (maximize quality/token under quota-limited plans), JIT Compute, session count 1,750+→1,800+, wiki refresh (v9.6.6→v9.8.5), date alignment across all public surfaces |
 | v9.8.4 | 01 May 2026 | GTO Metrics Sync — Meta-Pattern Framework v2.0 (7→14 universal laws), filesystem-verified counts (382 protocols, 443 case studies, 73 workflows, 1,750+ sessions), scripts pruned 240→220, date alignment across 8 files |

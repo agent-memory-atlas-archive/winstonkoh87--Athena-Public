@@ -67,6 +67,7 @@ This file provides persistent context to any AI coding agent working in this wor
 | `deep-research-loop` | User needs multi-source research with structured synthesis | `examples/skills/research/deep-research-loop/SKILL.md` |
 | `red-team-review` | User wants adversarial QA on any artifact or plan | `examples/skills/quality/red-team-review/SKILL.md` |
 | `context-compactor` | Context window is filling up — compress to stay within token limits | `examples/skills/workflow/context-compactor/SKILL.md` |
+| `skill-compiler` | Novel task solved → auto-draft new SKILL.md (Hermes steal) | `examples/skills/workflow/skill-compiler/SKILL.md` |
 
 **Full skill metadata**: Each skill contains 5W1H fields (Who, What, When, Where, Why, How) in its frontmatter. Read the SKILL.md before invoking.
 
@@ -124,6 +125,6 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 
 ## Version
 
-- **Framework**: v9.8.6
+- **Framework**: v9.8.7
 - **Last Updated**: 2026-05-11
-- **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules + Claude Code Source Architecture (2026-03-31)
+- **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules + Claude Code Source Architecture (2026-03-31) + Hermes Agent Steal (NousResearch/hermes-agent, 2026-05-11: skill-compiler, curator lifecycle model)
