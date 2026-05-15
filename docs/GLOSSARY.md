@@ -24,6 +24,10 @@ The philosophical position that Athena **augments** human cognition rather than 
 
 A prompt engineering pattern where the AI operates as multiple "seats" with different perspectives (Strategist, Skeptic, Guardian, etc.) rather than a single voice. Encourages diverse reasoning before output.
 
+### Systems Thinking
+
+Athena's default problem-solving methodology. Rather than treating problems as isolated events, every analysis drills through four layers: **Event** (what happened) → **Pattern** (what keeps happening) → **Structure** (why it keeps happening) → **Mental Model** (what belief sustains it). This is operationalized through the 14 Meta-Patterns, cross-domain case study matching, feedback loop identification, and leverage point targeting. See [Systems Thinking concept doc](concepts/Systems_Thinking.md).
+
 ---
 
 ## The Laws

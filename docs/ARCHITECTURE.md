@@ -957,6 +957,7 @@ To achieve "Total Life OS" functionality, the Agentic IDE must have elevated per
 
 ## See Also
 
+- **[Systems Thinking](concepts/Systems_Thinking.md)** — How Athena operationalizes systems thinking: Iceberg Model, Meta-Patterns, leverage points
 - **[Symbiotic RSI](USER_DRIVEN_RSI.md)** — The bilateral loop: how you and AI improve together
 - **[Glossary](GLOSSARY.md)** — Key terms and definitions
 - **[Changelog](CHANGELOG.md)** — Full version history

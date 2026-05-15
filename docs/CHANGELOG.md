@@ -1,10 +1,41 @@
 # Athena Changelog
 
-> **Last Updated**: 12 May 2026
+> **Last Updated**: 16 May 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## Documentation Sync (16 May 2026)
+
+**Systems Thinking Concept Doc + Reference & Link Hardening**
+
+### Key Changes
+
+#### New Concept Page
+- **Systems Thinking** (NEW): `docs/concepts/Systems_Thinking.md` — Formalizes Athena's default problem-solving methodology. Documents the 7-step implicit systems thinking pipeline (Event Scan → Pattern Match → Structural Audit → Feedback Mapping → Leverage Search → Cross-Domain Test → Ergodicity Gate), the Iceberg Model as the default analytical depth, feedback loop recognition, leverage point identification, and the "Structure Drives Behavior" principle. Cross-references the 14 Meta-Patterns as the "Unified Field Theory" engine. Concept count: 8 → **9**.
+
+#### Reference & Link Hardening
+- **Meadows (2008)** and **Senge (1990)** added to REFERENCES.md under "Systems Biology & Cognitive Architecture" — foundational systems thinking citations referenced in the new concept doc.
+- **ARCHITECTURE.md See Also** updated: Systems Thinking concept link added for cross-navigation.
+- **KNOWLEDGE_GRAPH.md**: Concept count 8 → 9, Systems Thinking row added to concept table, mermaid diagram count updated.
+- **GLOSSARY.md**: Systems Thinking entry added to Core Concepts section (from prior session).
+- **Private path sanitization**: 3 absolute private `file://` URIs in Systems_Thinking.md replaced with relative links.
+
+### Date Sync
+- All affected surfaces synced to 16 May 2026 (README, REFERENCES, KNOWLEDGE_GRAPH, CHANGELOG)
+
+### Files Changed
+
+- `docs/concepts/Systems_Thinking.md` — NEW (concept page #9)
+- `docs/GLOSSARY.md` — Systems Thinking entry added
+- `docs/REFERENCES.md` — 2 new references (Meadows 2008, Senge 1990), date sync
+- `docs/ARCHITECTURE.md` — Systems Thinking added to See Also
+- `docs/KNOWLEDGE_GRAPH.md` — Concept count 8→9, new entry, mermaid update, date sync
+- `README.md` — Date sync (12 May → 16 May)
+- `docs/CHANGELOG.md` — This entry
 
 ---
 

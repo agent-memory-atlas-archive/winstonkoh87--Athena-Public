@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-05-11
+last_updated: 2026-05-16
 tags: #references #apa #academic #citations
 ---
 
@@ -275,6 +275,14 @@ Tarjan, R. E. (1985). Amortized computational complexity. *SIAM Journal on Algeb
 ---
 
 ## Systems Biology & Cognitive Architecture
+
+Meadows, D. H. (2008). *Thinking in systems: A primer*. Chelsea Green Publishing.
+
+> **Note**: Meadows' hierarchy of leverage points (12 places to intervene in a system) provides the theoretical foundation for Athena's systems thinking pipeline. Athena operates primarily at Levels 2–4 (system goals, rules, feedback structure) rather than Levels 8–12 (parameters, buffers, numbers). See [Systems Thinking concept doc](concepts/Systems_Thinking.md).
+
+Senge, P. M. (1990). *The fifth discipline: The art and practice of the learning organization*. Doubleday.
+
+> **Note**: Senge's "Fifth Discipline" — systems thinking as the integrative framework that makes the other four disciplines (personal mastery, mental models, shared vision, team learning) work as a coherent whole — maps directly to Athena's design philosophy. The 14 Meta-Patterns are Athena's equivalent of Senge's "system archetypes" — recurring structural patterns that appear across domains. See [Systems Thinking concept doc](concepts/Systems_Thinking.md).
 
 von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.
 

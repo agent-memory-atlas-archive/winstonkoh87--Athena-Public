@@ -1,6 +1,6 @@
 # Knowledge Graph — Athena System Architecture
 
-> **Last Updated**: 12 May 2026
+> **Last Updated**: 16 May 2026
 >
 > **Version**: v9.8.8
 >
@@ -34,7 +34,7 @@
 │   └── Scripts: Privacy scanner, smart_search.py, test runners
 │
 ├── Knowledge Layer
-│   ├── Concepts: 8 documented thesis pages
+│   ├── Concepts: 9 documented thesis pages
 │   ├── Case Studies: 13 total (6 example + 7 documented)
 │   ├── Docs: 44+ reference documents
 │   └── Wiki: 7 pages (Home, FAQ, Philosophy, etc.)
@@ -72,7 +72,7 @@
 
 ---
 
-## Concept Pages (8)
+## Concept Pages (9)
 
 | Concept | Core Thesis | Relates To |
 |---------|-------------|------------|
@@ -84,6 +84,7 @@
 | [Quadrant IV](concepts/Quadrant_IV.md) | Important-not-urgent is where compounding happens | Time Compression, Data Compounding |
 | [Cognitive Architecture](concepts/Cognitive_Architecture.md) | Biological stack from atoms to organism | Identity Layer, Committee |
 | [Outcome Economy](concepts/Outcome_Economy.md) | AI shifts value from output to outcomes; labor-leisure economics of augmentation | Time Compression, Half-Half-Half, Iteration Arbitrage |
+| [Systems Thinking](concepts/Systems_Thinking.md) | Default analytical methodology: Event → Pattern → Structure → Mental Model; 14 Meta-Patterns as cross-domain unifier | Cognitive Architecture, Iteration Arbitrage, Meta-Patterns |
 
 ---
 
@@ -168,7 +169,7 @@ graph TB
     end
 
     subgraph Knowledge["Knowledge Layer"]
-        Concepts["8 Concept Pages"]
+        Concepts["9 Concept Pages"]
         CaseStudies["13 Case Studies"]
         Docs["44+ Reference Docs"]
     end
@@ -227,7 +228,7 @@ graph TB
 | Need a protocol? | `examples/protocols/` by category |
 | Building new feature? | `docs/ARCHITECTURE.md` |
 | Debugging AI behavior? | Laws in Core_Identity.md |
-| Finding a concept? | `docs/concepts/` (7 thesis pages) |
+| Finding a concept? | `docs/concepts/` (9 thesis pages) |
 | Understanding pricing? | Half-Half-Half Rule + Iteration Arbitrage |
 | Understanding use cases? | `docs/USE_CASES.md` (3 core use cases) |
 | Adding a case study? | `docs/CASE_STUDIES.md` (follow CS#7 format) |
@@ -246,7 +247,7 @@ graph TB
 | Archived Protocols | 18 |
 | Workflows | 93 |
 | Skills | 26 |
-| Concept Pages | 8 |
+| Concept Pages | 9 |
 | Case Studies (total) | 13 |
 | Docs Pages | 44+ |
 | Wiki Pages | 7 |
@@ -258,4 +259,4 @@ graph TB
 
 ---
 
-*This graph is filesystem-verified as of 12 May 2026. Update via `/diagnose` workflow or manual audit.*
+*This graph is filesystem-verified as of 16 May 2026. Update via `/diagnose` workflow or manual audit.*
