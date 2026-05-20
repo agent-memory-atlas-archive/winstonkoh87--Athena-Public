@@ -1,8 +1,8 @@
 # GraphRAG: Knowledge Graph Layer
 
-> **Status**: ⚠️ **NOT RECOMMENDED** (See Warning Below)  
-> **Last Updated**: 1 February 2026  
-> **Weight**: 2.0x in RRF fusion (balanced with Vector)
+> **Status**: 📦 **ARCHIVED** (Retained for reference; not actively maintained)  
+> **Last Updated**: 20 May 2026  
+> **Weight**: 2.0x in RRF fusion (when enabled; bypassed by default since v9.8.1)
 
 ---
 

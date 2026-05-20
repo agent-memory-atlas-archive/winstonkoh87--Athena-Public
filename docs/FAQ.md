@@ -1,6 +1,6 @@
 # Frequently Asked Questions (FAQ)
 
-> **Last Updated**: 12 May 2026
+> **Last Updated**: 20 May 2026
 
 ---
 

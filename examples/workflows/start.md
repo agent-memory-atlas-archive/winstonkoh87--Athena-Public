@@ -123,7 +123,7 @@ Bypassing STANDARD/ULTRA protocol is a high-severity violation. SNIPER queries m
 |---------|------|--------|
 | **Trading, Risk, Pricing, Business, Psychology, Content** | `CANONICAL_TIER2.md` | ~16K |
 | **Historical case-specific, niche precedent** | `CANONICAL_TIER3.md` | ~500 |
-| Tag lookup, "find files about" | `TAG_INDEX.md` | 5,500 |
+| Protocol lookup, "find protocols about" | `PROTOCOL_SUMMARIES.md` | 3,500 |
 | Protocol/skill request | `smart_search.py --skills-only` | ~1,000 |
 | Bio, typology, "who am I" | `User_Profile_Core.md` | 1,500 |
 | L1-L5, trauma, therapy, fantasy | `Psychology_L1L5.md` | 3,000 |

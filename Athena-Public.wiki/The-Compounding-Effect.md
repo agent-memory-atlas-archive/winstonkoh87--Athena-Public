@@ -2,7 +2,7 @@
 
 > **Why Athena gets smarter over time — and why that's the moat.**
 
-*Last Updated: 2026-05-12 · v9.8.8*
+*Last Updated: 2026-05-20 · v9.8.1*
 
 ---
 

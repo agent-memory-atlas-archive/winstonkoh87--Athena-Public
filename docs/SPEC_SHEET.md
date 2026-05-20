@@ -1,7 +1,7 @@
 # Athena Spec Sheet
 
-> **Version**: v9.8.8
-> **Date**: 12 May 2026
+> **Version**: v9.8.1
+> **Date**: 20 May 2026
 > **Architect**: Winston Koh
 > **Status**: Production (1,800+ sessions)
 
@@ -95,17 +95,18 @@ tags: [memory, search, mcp]
 |--------|------|-------------|
 | `id` | UUID | Primary key |
 | `content` | TEXT | Raw text chunk |
-| `embedding` | VECTOR(768) | gemini-embedding-001 |
+| `embedding` | VECTOR(768) | gemini-embedding-001 (768d; Matryoshka-capable) |
 | `metadata` | JSONB | Source file, tags, timestamp |
 
-### Tag Index (Markdown)
+### Protocol Summaries (Markdown)
 
 ```text
-#memory → 47 files
-#search → 31 files
-#protocol → 122 files
-Total: 8,079 tags
+Protocol-driven discovery via PROTOCOL_SUMMARIES.md
+Protocol usage frequency via PROTOCOL_HEATMAP.md
+Active protocols: 389 | Archived: 32 | Total: 421
 ```
+
+> **Note**: `TAG_INDEX.md` is deprecated. Use `PROTOCOL_SUMMARIES.md` for protocol discovery.
 
 ---
 
@@ -151,7 +152,7 @@ Query → [Semantic Search (pgvector)] ──┘
 | Layer | Technology |
 |-------|-----------|
 | **Language** | Python 3.13 |
-| **Embeddings** | Google gemini-embedding-001 (768d) |
+| **Embeddings** | Google gemini-embedding-001 (768d, Matryoshka-capable) |
 | **Vector DB** | Supabase + pgvector (IVFFlat index) |
 | **Graph** | Microsoft GraphRAG pattern (community detection) |
 | **Packaging** | pyproject.toml (PEP 621) |

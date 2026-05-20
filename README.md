@@ -12,13 +12,13 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.8.8-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.8.1-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 16 May 2026*
+*Last updated: 20 May 2026*
 
 </div>
 
@@ -493,7 +493,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.7 (Thinking) / GPT-5.5 (High) |
-| **SDK** | `athena` Python package (v9.8.8) |
+| **SDK** | `athena` Python package (v9.8.1) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -527,6 +527,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.8.1** (May 20 2026): GTO Maintenance Sync — Retired TAG_INDEX (replaced by PROTOCOL_SUMMARIES + PROTOCOL_HEATMAP). Enabled cross-encoder reranking in /ultrastart. Compacted activeContext. Wired retrieval telemetry. Fixed ghost references.
 - **v9.8.8** (May 12 2026): Model Version Sync — Claude Opus 4.6→4.7 (released Apr 16), GPT-5.4→5.5 (released Apr 23) across all public surfaces. Provenance Standard added to CANONICAL.md (Reddit Deep-Dive Audit). Date alignment.
 - **v9.8.7** (May 11 2026): Hermes Agent Steal — `skill-compiler` (automated solved-to-skill compiler from NousResearch), curator lifecycle model (3-state: active→stale→archived), umbrella consolidation rule. 5 always-on skills → 6.
 - **v9.8.6** (May 11 2026): Infrastructure Hardening — ENG-542 (GateGuard read-before-write), QUA-541 (De-Sloppify two-pass), quality/ category re-introduced (16 categories), Progressive Disclosure (TD-021) for boot savings, 3 new anti-patterns in `_shared.md`. External Verification Mandate enforced.

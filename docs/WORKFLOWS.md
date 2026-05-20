@@ -1,6 +1,6 @@
 # Workflows in Project Athena
 
-> **Last Updated**: April 2026
+> **Last Updated**: 20 May 2026
 
 Workflows are slash commands that trigger predefined sequences of actions. They're the backbone of Athena's session management and deep reasoning capabilities.
 
@@ -26,6 +26,21 @@ Workflows are slash commands that trigger predefined sequences of actions. They'
 | [`/refactor`](../examples/workflows/refactor.md) | Full workspace optimization | High |
 | [`/vibe`](../examples/workflows/vibe.md) | Ship at 70%, iterate fast | Low |
 | [`/deploy`](../examples/workflows/deploy.md) | Sanitized public repo sync | Medium |
+| [`/do`](../.agent/workflows/do.md) | Universal entry point — auto-routes intent | Low |
+| [`/battleplan`](../examples/workflows/battleplan.md) | Pre-execution battle planning (7 phases) | High |
+| [`/dream`](../examples/workflows/dream.md) | Background memory consolidation daemon | Medium |
+| [`/gto`](../examples/workflows/gto.md) | Game-Theory Optimal problem-solving | High |
+| [`/minmax`](../examples/workflows/minmax.md) | Token Economy Mode — maximize quality/token | Medium |
+| [`/fix`](../examples/workflows/fix.md) | Analyze test failures, propose fixes | Medium |
+| [`/steal`](../examples/workflows/steal.md) | Pattern extraction from external repos | Medium |
+| [`/fresh`](../examples/workflows/fresh.md) | Soft reset — close + immediate reboot | Low |
+| [`/416-agent-swarm`](../examples/workflows/416-agent-swarm.md) | Parallel agent orchestration | High |
+| [`/doc`](../examples/workflows/doc.md) | High-stakes documentation (Anthropic Method) | High |
+| [`/dump`](../examples/workflows/dump.md) | Quick thought capture | Low |
+| [`/check`](../examples/workflows/check.md) | Verification loop on current work | Low |
+| [`/audit`](../examples/workflows/audit.md) | Zero-blind-spot workspace audit | High |
+| [`/async-dev`](../examples/workflows/async-dev.md) | Async AI Development (Sleeper Agent) | High |
+| [`/review`](../examples/workflows/review.md) | Weekly integration review | Medium |
 
 ---
 

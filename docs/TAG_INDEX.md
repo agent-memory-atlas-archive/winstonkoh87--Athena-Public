@@ -1,6 +1,9 @@
 # 🏷️ TAG INDEX — Global Hashtag System
 
-> **Last Updated**: 25 March 2026
+> **Last Updated**: 20 May 2026
+
+> [!WARNING]
+> **DEPRECATED (v9.8.1)**: TAG_INDEX has been superseded by `PROTOCOL_SUMMARIES.md` (protocol discovery) and `PROTOCOL_HEATMAP.md` (usage frequency). This file is retained for backward compatibility but is no longer maintained or referenced by the retrieval stack.
 
 > **Purpose**: Instant file retrieval via keywords.
 

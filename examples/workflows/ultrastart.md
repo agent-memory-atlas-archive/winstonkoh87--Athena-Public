@@ -225,7 +225,7 @@ skipping the semantic bridge wastes ~15-20K of potential signal.
 // turbo
 
 ```bash
-python3 .agent/scripts/smart_search.py "<resolved objective>" --limit 15 --include-personal
+python3 .agent/scripts/smart_search.py "<resolved objective>" --limit 15 --include-personal --rerank
 ```
 
 ### Step 3: Inject Results (Full Load)

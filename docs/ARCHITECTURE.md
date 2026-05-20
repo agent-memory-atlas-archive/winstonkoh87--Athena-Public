@@ -1,7 +1,7 @@
 # Athena Workspace Architecture
 
-> **Last Updated**: 12 May 2026  
-> **System Version**: v9.8.8
+> **Last Updated**: 20 May 2026  
+> **System Version**: v9.8.1
 
 > [!NOTE]
 > This document describes the architecture of a **mature Athena workspace** — what your installation grows into over time. The public repository ([Athena-Public](https://github.com/winstonkoh87/Athena-Public)) ships with a starter subset: 149+ example protocols, 130+ reference scripts, and templates. As you use Athena, your workspace compounds toward the full architecture described here.
@@ -29,8 +29,8 @@ Athena/
 │   │   └── patterns/              # Formalized patterns
 │   ├── references/                # External frameworks (Dalio, Halbert, Graham)
 │   ├── research/                  # Steal analyses, explorations
-│   ├── TAG_INDEX_A-M.md           # Global hashtag system (split for performance)
-│   ├── TAG_INDEX_N-Z.md
+│   ├── PROTOCOL_SUMMARIES.md      # Protocol discovery index
+│   ├── PROTOCOL_HEATMAP.md        # Protocol usage frequency
 │   └── KNOWLEDGE_GRAPH.md         # Visual architecture reference
 │
 ├── .agent/                        # ← AGENT CONFIGURATION
@@ -583,7 +583,7 @@ graph TD
 | User context query | `User_Profile_Core.md` | ~1,700 |
 | Skill request | `SKILL_INDEX.md` | ~4,500 |
 | `/think` invoked | `Output_Standards.md` | ~700 |
-| Tag lookup | `TAG_INDEX.md` | ~5,500 |
+| Protocol lookup | `PROTOCOL_SUMMARIES.md` | ~3,500 |
 | Architecture query | `System_Manifest.md` | ~1,900 |
 | Cluster routing | `CLUSTER_INDEX.md` | ~3,500 |
 | Specific protocol | `protocols/*.md` | varies |
@@ -609,7 +609,7 @@ sequenceDiagram
 **Key Scripts:**
 
 - [`boot_knowledge.py`](../scripts/core/boot_knowledge.py): Extracts and prints constraints.
-- [`index_workspace.py`](../scripts/core/index_workspace.py): Rebuilds `TAG_INDEX.md` and `PROTOCOL_SUMMARIES.md` on shutdown.
+- [`index_workspace.py`](../scripts/core/index_workspace.py): Rebuilds `PROTOCOL_SUMMARIES.md` and `PROTOCOL_HEATMAP.md` on shutdown.
 
 **See Also**: Protocol 418: Active Knowledge Injection (architecture pattern for context hydration)
 
@@ -762,6 +762,7 @@ User: /plan
 | Version | Date | Changes |
 |:---|:---|:---|
 | v9.8.8 | 12 May 2026 | Model Version Sync — Claude Opus 4.6→4.7 (released Apr 16), GPT-5.4→5.5 (released Apr 23) across all public surfaces. Provenance Standard added to CANONICAL.md. Date alignment. |
+| v9.8.1 | 20 May 2026 | GTO Maintenance Sync — Retired TAG_INDEX (replaced by PROTOCOL_SUMMARIES + PROTOCOL_HEATMAP). Enabled cross-encoder reranking in /ultrastart. Compacted activeContext from 184→40 lines. Wired retrieval telemetry. Fixed ghost references. |
 | v9.8.7 | 11 May 2026 | Hermes Agent Steal — `skill-compiler` (automated solved-to-skill compiler from NousResearch/hermes-agent), curator lifecycle model (3-state: active→stale→archived), umbrella consolidation rule. Skills 28→29. |
 | v9.8.6 | 11 May 2026 | Infrastructure Hardening — ENG-542 GateGuard (read-before-write enforcement), QUA-541 De-Sloppify (two-pass implementation), quality/ category re-introduced (16 categories), Progressive Disclosure (TD-021) for 66KB boot savings, 3 new anti-patterns in `_shared.md`, External Verification Mandate. |
 | v9.8.5 | 08 May 2026 | MinMax Token Economy — operational doctrine shift from Maximum Compute to Token Economy (maximize quality/token under quota-limited plans), JIT Compute, session count 1,750+→1,800+, wiki refresh (v9.6.6→v9.8.5), date alignment across all public surfaces |
@@ -852,7 +853,7 @@ The key insight is that **humans and AI agents navigate knowledge differently**:
 |:----------|:------|:---------|
 | **Navigation** | Read sequentially (top → bottom) | Query by filename, tag, or embedding similarity |
 | **"Organized" feels like** | One well-structured document | Many small, well-named files |
-| **Index** | Table of contents | File system + TAG_INDEX + vector embeddings |
+| **Index** | Table of contents | File system + PROTOCOL_SUMMARIES + vector embeddings |
 | **Retrieval** | Ctrl+F / scroll | Semantic search + RRF fusion |
 
 A single README feels "organized" to a human. But to an agent, the file system **is** the database — each `.md` file is a row, the filename is the primary key, and cross-references are foreign keys.

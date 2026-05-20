@@ -8,15 +8,17 @@ This file provides persistent context to any AI coding agent working in this wor
 
 ## Docs Index (Compressed)
 
+> **Canonical counts live in `.agent/config/CAPS.json`** — if numbers in this file diverge, CAPS wins.
+
 ```text
 [Athena Docs Index]|root: .
 |IMPORTANT: Always consult authoritative files before relying on training data.
-|.framework/v8.2-stable/modules:{Core_Identity.md,Output_Standards.md}
+|.framework/v8.2-stable/modules:{Core_Identity.md,Output_Standards.md,System_Principles.md,Operating_Principles.md,Design_DNA.md}
 |.agent/workflows (22):{start.md,end.md,do.md,plan.md,research.md,ultrathink.md,diagnose.md,...}
 |examples/workflows (70):{ultrastart.md,ultraend.md,audit.md,battleplan.md,minmax.md,project.md,dream.md,...}
 |examples/protocols (155 across 16 categories):{architecture/,decision/,engineering/,quality/,trading/,safety/,...}
 |examples/skills (26):{coding/spec-driven-dev,research/deep-research-loop,quality/red-team-review,...}
-|.context:{project_state.md,CANONICAL.md,TAG_INDEX.md,PROTOCOL_SUMMARIES.md}
+|.context:{CANONICAL.md,PROTOCOL_SUMMARIES.md,PROTOCOL_HEATMAP.md}
 |docs:{ARCHITECTURE.md,SEMANTIC_SEARCH.md,GETTING_STARTED.md,YOUR_FIRST_SESSION.md,FAQ.md}
 ```
 
@@ -44,6 +46,10 @@ This file provides persistent context to any AI coding agent working in this wor
 | `/project` | `examples/workflows/project.md` | Multi-project switchboard |
 | `/dream` | `examples/workflows/dream.md` | Background memory consolidation daemon |
 | `/416-agent-swarm` | `examples/workflows/416-agent-swarm.md` | Parallel agent orchestration |
+| `/vibe` | `examples/workflows/vibe.md` | Vibe engineering mode — build fast, iterate |
+| `/gto` | `examples/workflows/gto.md` | Game-Theory Optimal problem-solving |
+| `/save` | `examples/workflows/save.md` | Mid-session checkpoint |
+| `/fresh` | `examples/workflows/fresh.md` | Soft Reset — close + reboot |
 
 ---
 
@@ -52,14 +58,17 @@ This file provides persistent context to any AI coding agent working in this wor
 1. **Core_Identity.md** — Laws #0-6, Committee of Seats
 2. **Output_Standards.md** — Formatting, reasoning depth, artifacts
 3. **System_Principles.md** — Operational rules, anti-patterns
-4. **Design_DNA.md** — Default aesthetic parameters
+4. **Operating_Principles.md** — Day-to-day behaviors
+5. **Design_DNA.md** — Default aesthetic parameters
 
 ---
 
 ## Skills Index (5W1H Compliant)
 
 > **IMPORTANT**: Check trigger conditions BEFORE invoking any skill.
-> **NEW (2026-03-31)**: Skills with `context_trigger` frontmatter are **conditional** — dormant until matching files/topics/projects activate them. See [Protocol 530](examples/protocols/architecture/530-conditional-skill-activation.md).
+> Skills with `context_trigger` frontmatter are **conditional** — dormant until matching files/topics/projects activate them. See [Protocol 530](examples/protocols/architecture/530-conditional-skill-activation.md).
+
+### Always-On Skills
 
 | Skill | Invoke When... | Path |
 | :---- | :------------- | :--- |
@@ -68,6 +77,22 @@ This file provides persistent context to any AI coding agent working in this wor
 | `red-team-review` | User wants adversarial QA on any artifact or plan | `examples/skills/quality/red-team-review/SKILL.md` |
 | `context-compactor` | Context window is filling up — compress to stay within token limits | `examples/skills/workflow/context-compactor/SKILL.md` |
 | `skill-compiler` | Novel task solved → auto-draft new SKILL.md (Hermes steal) | `examples/skills/workflow/skill-compiler/SKILL.md` |
+| `daemon-loop` | Autonomous recurring tasks, background agents, scheduled workflows | `examples/skills/workflow/daemon-loop/SKILL.md` |
+| `semantic-search` | Searching Athena's memory/knowledge base (Exocortex embeddings) | `examples/skills/research/semantic-search/SKILL.md` |
+| `data-analysis` | Large data dumps (JSON, CSV, Parquet) — DuckDB-powered analytics | `examples/skills/research/data-analysis/SKILL.md` |
+
+### Uber-Skills (Umbrella Consolidations)
+
+> **NEW (2026-05-11)**: 6 Uber-Skills retroactively compiled from 1800+ sessions. These are dense umbrella consolidations that absorb multiple existing skills/protocols. They auto-trigger on broad domain keywords.
+
+| Skill | Activates On | Absorbs |
+|:----- |:------------ |:------- |
+| `bionic-decision-engine` | Any "Should I?" question, pricing, tradeoffs, resource allocation | 46 decision + 24 strategy protocols |
+| `structural-trading-gate` | Trading, poker, sizing, bankroll, drawdown, commission | trading-risk-gate + zenith-execution + trade-journal-analyzer |
+| `sovereign-economics-engine` | Client, pricing, business model, distribution, SEO, content | client-pricing + distribution-physics + brand-foundations |
+| `social-physics-filter` | Relationships, boundaries, frustration, IFS, schema work | therapeutic-ifs + consiglieri-protocol |
+| `agentic-code-orchestrator` | Code, refactor, data dump, dashboard, academic delivery | data-analysis + spec-driven-dev + statistical-analysis |
+| `bionic-safety-net` | Health, finance, burnout, ruin, emergency, circuit breaker | circuit-breaker |
 
 **Full skill metadata**: Each skill contains 5W1H fields (Who, What, When, Where, Why, How) in its frontmatter. Read the SKILL.md before invoking.
 
@@ -77,13 +102,14 @@ This file provides persistent context to any AI coding agent working in this wor
 
 When working on any task in this workspace:
 
-1. **Check `.context/project_state.md`** for current priorities and active projects
-2. **Check `.context/CANONICAL.md`** for materialized view of active facts (Tier 1 frameworks only — universal laws and identity truths)
-3. **Load `.context/CANONICAL_TIER2.md`** when query matches trading, business, psychology, content, architecture, or geo domains
-4. **Load `.context/CANONICAL_TIER3.md`** on explicit request or Exocortex search hit only
-5. **Grep `.context/TAG_INDEX.md`** for topic → file mappings
+1. **Check `.context/CANONICAL.md`** — materialized view of active facts (Tier 1: universal laws and identity truths)
+2. **Load `.context/CANONICAL_TIER2.md`** — when query matches trading, business, psychology, content, architecture, or geo domains
+3. **Load `.context/CANONICAL_TIER3.md`** — on explicit request or Exocortex search hit only
+4. **Consult `.context/PROTOCOL_SUMMARIES.md`** — protocol overviews and discovery
+5. **Consult `.context/PROTOCOL_HEATMAP.md`** — protocol usage frequency and health
 6. **Read authoritative files** before generating code from training data
-7. **Consult `.context/PROTOCOL_SUMMARIES.md`** for protocol overviews
+
+> **Retired indexes**: `TAG_INDEX.md` and `project_state.md` are deprecated. Use `PROTOCOL_SUMMARIES.md` for protocol discovery and `CANONICAL.md` for project state.
 
 ---
 
@@ -125,6 +151,8 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 
 ## Version
 
-- **Framework**: v9.8.8
-- **Last Updated**: 2026-05-12
+- **Framework**: v8.2-stable (frozen as of 2026-02-01 — reference-only, not runtime-loaded)
+- **System**: v9.8.1
+- **Last Updated**: 2026-05-20
+- **Canonical Counts**: `.agent/config/CAPS.json` (single source of truth)
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules + Claude Code Source Architecture (2026-03-31) + Hermes Agent Steal (NousResearch/hermes-agent, 2026-05-11: skill-compiler, curator lifecycle model)

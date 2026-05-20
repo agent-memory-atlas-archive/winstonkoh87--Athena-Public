@@ -63,7 +63,7 @@ Execute **all steps from `/end` Phase 1B** first:
 
 ## Phase 1: Cross-Session Pattern Scan (~60s)
 
-**What**: Scan the last 5 session logs for recurring themes, unresolved threads, and behavioral patterns.
+**What**: Scan the last 5 session logs (from `.context/memories/session_logs/`, NOT compacted `activeContext.md` entries) for recurring themes, unresolved threads, and behavioral patterns.
 
 ### Step 1: Load Recent Sessions
 

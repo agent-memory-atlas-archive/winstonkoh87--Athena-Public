@@ -1,10 +1,51 @@
 # Athena Changelog
 
-> **Last Updated**: 16 May 2026
+> **Last Updated**: 20 May 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.8.1 GTO Maintenance Sync (20 May 2026)
+
+**Retrieval Hardening, Context Compaction & Ghost Reference Cleanup**
+
+### Key Changes
+
+#### Retrieval Architecture
+- **Cross-Encoder Reranking Enabled**: `/ultrastart` Phase 4 now passes `--rerank` to `smart_search.py`. The reranker model (`ms-marco-MiniLM-L6-v2`) was already loaded and functional — this flag was simply never being passed. With 15 candidates, reranking provides meaningful precision improvement. `/start` (3 candidates) remains un-reranked by design.
+- **TAG_INDEX Retirement**: All references to `TAG_INDEX.md` replaced with `PROTOCOL_SUMMARIES.md` across workflows and documentation. TAG_INDEX was the v1 discovery mechanism; PROTOCOL_SUMMARIES provides richer per-protocol summaries with frontmatter extraction.
+- **PROTOCOL_HEATMAP**: Usage-frequency index now referenced in retrieval stack alongside PROTOCOL_SUMMARIES.
+
+#### Context Management
+- **activeContext Compaction**: Compressed from 184 → 40 lines. Moved S317–S374 to `sessionArchive.md`. Constraint rule changed from "80-line cap" to "15K token / ~60KB budget" — line count is the wrong unit; boot-load token cost is what matters.
+- **Session Log Source Clarification**: `/ultraend` Phase 1 Step 1 now explicitly specifies reading from `.context/memories/session_logs/` (full session log files) rather than compacted archive entries in `activeContext.md`.
+
+#### Infrastructure
+- **Retrieval Telemetry**: Wired `retrieval_log.jsonl` instrumentation into `search.py`. Every search invocation now logs query, limit, result quality classification (hit/partial/miss), confidence distribution, and source channel distribution.
+- **Protocol Summary Generator Fix**: `generate_protocol_summaries.py` fallback logic fixed to extract substantive body paragraphs instead of echoing the protocol title.
+
+### Date & Version Sync
+- All public surfaces synced to 20 May 2026
+- System version: v9.8.1 (CAPS.json authoritative)
+
+### Files Changed
+
+- `AGENTS.md` — Full rewrite: uber-skills added, TAG_INDEX → PROTOCOL_SUMMARIES, version v9.8.1, conditional skills surfaced
+- `docs/SPEC_SHEET.md` — Version, date, Tag Index → Protocol Summaries, embedding annotation
+- `docs/ARCHITECTURE.md` — Version, date, 5 TAG_INDEX refs fixed, version history entry added
+- `docs/CHANGELOG.md` — This entry
+- `docs/TAG_INDEX.md` — Deprecation notice added
+- `docs/WORKFLOWS.md` — Updated workflow counts, new workflows added
+- `docs/SEMANTIC_SEARCH.md` — Reranking documentation, date sync
+- `docs/GRAPHRAG.md` — Status updated to archived
+- `README.md` — Date sync
+- `wiki/*.md` — Version and date sync (7 files)
+- `examples/workflows/ultrastart.md` — `--rerank` flag added
+- `examples/workflows/ultraend.md` — Session log source clarification
+- `examples/workflows/start.md` — TAG_INDEX → PROTOCOL_SUMMARIES
 
 ---
 
