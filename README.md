@@ -530,52 +530,8 @@ Athena-Public/
 - **v9.8.1** (May 20 2026): GTO Maintenance Sync — Retired TAG_INDEX (replaced by PROTOCOL_SUMMARIES + PROTOCOL_HEATMAP). Enabled cross-encoder reranking in /ultrastart. Compacted activeContext. Wired retrieval telemetry. Fixed ghost references.
 - **v9.8.8** (May 12 2026): Model Version Sync — Claude Opus 4.6→4.7 (released Apr 16), GPT-5.4→5.5 (released Apr 23) across all public surfaces. Provenance Standard added to CANONICAL.md (Reddit Deep-Dive Audit). Date alignment.
 - **v9.8.7** (May 11 2026): Hermes Agent Steal — `skill-compiler` (automated solved-to-skill compiler from NousResearch), curator lifecycle model (3-state: active→stale→archived), umbrella consolidation rule. 5 always-on skills → 6.
-- **v9.8.6** (May 11 2026): Infrastructure Hardening — ENG-542 (GateGuard read-before-write), QUA-541 (De-Sloppify two-pass), quality/ category re-introduced (16 categories), Progressive Disclosure (TD-021) for boot savings, 3 new anti-patterns in `_shared.md`. External Verification Mandate enforced.
-- **v9.8.5** (May 08 2026): MinMax Token Economy — operational doctrine shift from Maximum Compute to Token Economy (maximize quality/token under quota-limited plans), JIT Compute doctrine, session count 1,750+→1,800+, date alignment across all public surfaces, wiki refresh (v9.6.6→v9.8.5)
-- **v9.8.4** (May 01 2026): GTO Metrics Sync — Meta-Pattern Framework v2.0 (7→14 universal laws: MP-8 Wound Loop, MP-9 Leverage Inversion, MP-10 Information-Action Gap, MP-11 Iteration Economy, MP-12 Articulation Penalty, MP-13 Principal-Agent Misalignment, MP-14 Sunk Cost Gravity Well), filesystem-verified counts (387 protocols, 443 case studies, 73 workflows, 1,800+ sessions), scripts 219, date alignment across 8 files
-- **v9.8.3** (Apr 19 2026): Synaptic Pruning — protocol deduplication (395→378 active, 17 archived), case study deduplication (440→433, 7 merged+archived), neural-network-model consolidation pass, `quality/` category purged, ARCHITECTURE.md metrics reconciliation
-- **v9.8.2** (Apr 17 2026): Progressive Disclosure — `context_trigger` on all 26 example skills (Protocol 530), telemetry foundation (`log_invocation.py`), pre-commit Gate 4 (auto-gen indexes), ARCHITECTURE.md version drift fix
-- **v9.7.0** (Apr 10 2026): Biological Analogy v2 (6-tier → 7-tier: Atom/Molecule/Cell/Tissue/Organ/System/Organism), GTO Metrics Sync (protocols 397→408, skills 24→28, case studies 410→440, sessions 1,200→1,500+, workflows 53→66+), date alignment across 8 files
-- **v9.6.6** (Apr 05 2026): GTO Metrics Sync & Deep Audit — filesystem-verified category-level counts, workflow count 63→66, protocol index session count 1,100→1,500+, version sync across 7 files
-- **v9.6.5** (Mar 31 2026): Claude Code Architectural Integration — context-compactor v2.0 (9-section summary + `<analysis>` scratchpad), coordinator synthesis discipline (anti-delegation rule for agent swarms), Protocol 530 (conditional skill activation — ~40-60% token savings), `/end` validated patterns capture (`[V]` markers), memory drift trust-gate
-- **v9.6.4** (Mar 31 2026): Token Economy Mode — `/minmax` workflow (maximize quality/token ratio), selective boot (~80% token reduction), per-turn SNIPER discipline, dense output protocol, micro close default
-- **v9.6.3** (Mar 28 2026): Metrics Sync & Deep Audit — filesystem-verified counts (149 protocols, 1,500+ sessions, 430+ case studies), version sync across 6 files, v9.6.2 CHANGELOG backfill, ABOUT_ME metrics refresh
-- **v9.6.2** (Mar 26 2026): ultrastart + ultraend GTO Upgrade — mandatory cross-domain sweep (PROJECTS.md + activeContext.md), decision outcome tracking, insight compounding chain, explicit propagation directives in `/ultraend`
-- **v9.6.1** (Mar 26 2026): The Ousen Protocol — `/battleplan` workflow (7-phase pre-execution battle planning), Double-Envelope Audit Architecture (Red-Team #1 on plan, Red-Team #2 on output), scout/general sequencing, examiner anticipation matrix
-- **v9.6.0** (Mar 25 2026): Outcome Economy — new concept page #8 (labor economics of human augmentation), 7 new tags, cross-references updated across 6 files
-- **v9.5.7** (Mar 21 2026): Data Compounding Thesis — new wiki page (The Compounding Effect), README data quality thesis, wiki updates (Home, Philosophy §7, Use Cases deltas, FAQ × 2, Sidebar)
-- **v9.5.6** (Mar 19 2026): Operator Optimization — CS-006 (The Replacement Trap), Phase 2 thesis (USER_DRIVEN_RSI.md), Decision Sovereignty pre-flight checklist (BEST_PRACTICES.md §10)
-- **v9.5.5** (Mar 16 2026): Abundance Mindset Alignment — P529 Survival HUD removed (redundant with existing safety stack), `/start` workflow fix, protocol count 128→127
-- **v9.5.4** (Mar 14 2026): Architecture Integrity Audit — Protocol index rewrite (109→128 active, 13→15 categories), P138/P526 cluster wiring, version sync
-- **v9.5.3** (Mar 14 2026): Independent Cross-Model Audit — Protocol 526 (Business Viability Assessment — 3-Layer Stack), Protocol 138 (Third Choice Generation / Kobayashi Maru), Cold Start Rule (`BEST_PRACTICES.md` §9)
-- **v9.5.2** (Mar 13 2026): Ollama Integration & Docs Sync — Ollama local embedding provider (`vectors.py` provider pattern), Symbiotic RSI codification, Dual Pressure Model, VECTORRAG.md full refresh (model name, counts, Ollama docs), metrics sync
-- **v9.5.1** (Mar 11 2026): Conviction-Decisiveness Split — Protocol 524 (decouple epistemic conviction from operational decisiveness in semi-stochastic domains), README `/ultrastart` compute recommendation for MAX subscribers
-- **v9.5.0** (Mar 11 2026): Adaptive Graph of Thoughts — Protocol 75 v5.0 (AGoT-enhanced parallel reasoning), `agot_orchestrator.py` with 3-tier complexity routing (lite/full/tracks), adaptive convergence gate, recursive sub-graph spawning, `/ultrastart` AGoT wiring
-- **v9.4.9** (Mar 10 2026): Deep Session Close — `/ultraend` workflow (System-2 deep close counterpart to `/ultrastart`), cross-session pattern scan, CANONICAL deep reconciliation, reflexion archive, strategic portfolio review, next session seeding
-- **v9.4.8** (Mar 10 2026): Boot/Shutdown Architecture Redesign — `/ultrastart` workflow (20K-token System-2 deep boot), `/end` GTO v3 rewrite (dual-write architecture fix), `quicksave.py` Triple-Lock AND→OR (removes Robustness Theater)
-- **v9.4.7** (Mar 09 2026): Safety Documentation & Governance Hardening — `SAFETY.md` (clinical disclaimer, crisis contacts), README safety disclaimers, 24 MC/DC governance tests (private), compaction pipeline v3.0 (private)
-- **v9.4.6** (Mar 09 2026): Project Switchboard — `/project` workflow (view, add, switch, close, triage), PROJECTS.md template, Internal/External zones, cross-project dependencies, `/start` + `/end` integration
-- **v9.4.5** (Mar 09 2026): Two-Mode Session Architecture — Lightweight (skip `/start`) vs Full Boot. Framework Tax concept. Orchestrator-Executor Pipeline. Crisis Architecture (P509, P519, P520, P521)
-- **v9.4.4** (Mar 07 2026): GTO Routing Diagram — expanded from 2/8 → 8/8 system cluster chains, priority tier color-coding (Critical/High/Standard/Support), reordered Q4-Q6 to match priority waterfall
-- **v9.4.3** (Mar 07 2026): Maintenance — AGENTS.md version sync, file count corrections (138 protocols, 540+ scripts), date alignment
-- **v9.4.2** (Mar 05 2026): Cognitive Architecture v2.1 — Homeostatic Pressure (P517), Reflexion Journaling (P515), Memory Paging (P516), LIDA Broadcast routing, deterministic exit verification, Ebbinghaus decay, context clearing
-- **v9.4.1** (Mar 04 2026): Cognitive Systems v2 — Ideation mode (DIVERGENT/CONVERGENT), Learning→Life Decision handoff, Cluster #14 safety sequence, P503 cluster sync (15), Λ-based stealth routing, 3 new protocols (P511 Business Viability, P512 Pre-Planning, P513 Context Isolation)
-- **v9.4.0** (Mar 04 2026): Biological Stack Architecture — 5 new protocols (P504-P508), 8 Cognitive Systems layer, Intent Classifier, `ensure_env.sh` supports system Python
-- **v9.3.1** (Mar 03 2026): Cross-model Audit Fixes — file count sync, Windows section relocation, GitHub Release catch-up (v9.2.7–v9.3.0)
-- **v9.3.0** (Mar 02 2026): Onboarding Friction Audit — dependency restructuring (torch→optional), venv instructions, PEP 668 fix, stale path cleanup, two-tier install
-- **v9.2.9** (Mar 02 2026): Ultrathink v4.1 HITL Bypass — manual Gemini sandbox option, micro-pruned 10% dead skills (100% cluster coverage), broken reference audit
-- **v9.2.8** (Feb 27 2026): Skill Template Expansion — 5 starter skill templates across 4 categories for new AG users
-- **v9.2.7** (Feb 26 2026): Risk-proportional Triple-Lock, Tier 0 context summaries, 3 new academic citations
-- **v9.2.6** (Feb 25 2026): Kilo Code + Roo Code IDE integration, `COMPATIBLE_IDES.md`, issue #19 closed
-- **v9.2.5** (Feb 24 2026): Life Integration Protocol Stack — Protocols 381-383, Emotional Audit, `/review` workflow
-- **v9.2.3** (Feb 21 2026): Multi-agent safety hardening, CLAUDE.md symlinks, issue deflection
-- **v9.2.2** (Feb 21 2026): S-tier README refactor, docs restructure
-- **v9.2.1** (Feb 20 2026): Deep Audit & PnC Sanitization — 17 patterns sanitized across 13 files
-- **v9.2.0** (Feb 17 2026): Sovereignty Convergence — CVE patch, agentic search, governance upgrade
-- **v9.1.0** (Feb 17 2026): Deep Audit & Sync — Fixed 15 issues (dead links, version drift)
-- **v9.0.0** (Feb 16 2026): First-Principles Workspace Refactor — root dir cleaned, build artifacts purged
 
-👉 [Full Changelog →](docs/CHANGELOG.md)
+[→ Full changelog](docs/CHANGELOG.md)
 
 </details>
 
