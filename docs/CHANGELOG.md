@@ -1,10 +1,64 @@
 # Athena Changelog
 
-> **Last Updated**: 20 May 2026
+> **Last Updated**: 30 May 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.9.0 Architecture Model Sync (30 May 2026)
+
+**Perception Model, Uber-Skills Publish & Privacy Remediation**
+
+### Key Changes
+
+#### Architecture Model
+- **Perception Model**: Replaced waterfall routing (Intent → System → Cluster → Skill → Protocol) with Perception Model (Parallel Activation → Attention Gate → Executive Function → Response). The brain doesn't classify-then-route; it activates-then-filters. Athena's runtime now works the same way.
+- **8 Cognitive Domains**: Priority-ordered memory activation targets (Survival > Life Decision > Trading > Social > Execution > Growth > Learning > Maintenance). Priority governs tie-breaking, not routing.
+- **15 Cognitive Clusters**: Co-activating procedural memory bundles that fire as units, not sequentially.
+
+#### Skills Sync (8 New)
+- `bionic-decision-engine` (decision/) — Uber-skill: 46 decision + 24 strategy protocols
+- `sovereign-economics-engine` (business/) — Uber-skill: pricing + distribution + brand + SEO
+- `agentic-code-orchestrator` (coding/) — Uber-skill: code + data + academic + spec
+- `bionic-safety-net` (quality/) — Uber-skill: circuit-breaker + safety infrastructure
+- `daemon-loop` (workflow/) — Background agent loops (stolen from Claude Code)
+- `data-analysis` (research/) — DuckDB-powered analytics for large data dumps
+- `dashboard-builder` (coding/) — Self-contained HTML dashboards (stolen from Anthropic)
+- `web-launch-gate` (quality/) — Pre-deployment 16-point security checklist
+
+#### Privacy Remediation
+- **18 files scrubbed** of PII/leaks (friend names, client identifiers, personal details)
+- **privacy_blocklist.txt** expanded with missing terms
+- **sync_to_public.py** hardened with post-sync privacy verification gate
+- **Pre-commit hook** verified working — blocks commits containing blocklisted terms
+
+### Metrics Update
+- Skills: 27 → **35** (8 Uber-Skills published)
+- Architecture model: Waterfall → **Perception Model**
+- ARCHITECTURE.md: 973 lines → **543 lines** (removed redundancy)
+
+### Version Sync
+- All public surfaces synced to 30 May 2026
+- System version: v9.9.0 (private AGENTS.md, ARCHITECTURE.md also bumped)
+
+### Files Changed
+
+- `docs/ARCHITECTURE.md` — REWRITTEN (Perception Model replaces waterfall)
+- `README.md` — Version v9.9.0, date, skill counts, changelog, architecture link
+- `docs/SPEC_SHEET.md` — Version, date
+- `docs/CHANGELOG.md` — This entry
+- `examples/skills/decision/bionic-decision-engine/SKILL.md` — NEW
+- `examples/skills/business/sovereign-economics-engine/SKILL.md` — NEW
+- `examples/skills/coding/agentic-code-orchestrator/SKILL.md` — NEW
+- `examples/skills/quality/bionic-safety-net/SKILL.md` — NEW
+- `examples/skills/workflow/daemon-loop/SKILL.md` — NEW
+- `examples/skills/research/data-analysis/SKILL.md` — NEW
+- `examples/skills/coding/dashboard-builder/SKILL.md` — NEW
+- `examples/skills/quality/web-launch-gate/SKILL.md` — NEW
+- 18 files scrubbed of privacy violations (prior commit)
 
 ---
 
