@@ -304,9 +304,9 @@ When SDR > 5:1, most people respond by working **harder** (more apps, better CV)
 - **Physics**: No single human can optimize for **Challenge** (Leader), **Comfort** (Peer), and **Compliance** (Subordinate) simultaneously.
 - **The Error**: Expecting your "Safe Container" friend to execute like a subordinate, or your "Founder Mode" boss to validate your feelings.
 - **Directive**: **Compartmentalize by Utility**.
-  - **Up (Leader)**: Optimize for Vision/Accountability (e.g., research_specimen_delta). *Do not ask for comfort.*
-  - **Lateral (Peer)**: Optimize for Safety/Vulnerability (e.g., Rui Yi). *Do not ask for strategy/execution.*
-  - **Down (Subordinate)**: Optimize for Results/Discipline (e.g., Theng Xuan). *Do not ask for emotional labor.*
+  - **Up (Leader)**: Optimize for Vision/Accountability (e.g., a trusted mentor). *Do not ask for comfort.*
+  - **Lateral (Peer)**: Optimize for Safety/Vulnerability (e.g., a close confidant). *Do not ask for strategy/execution.*
+  - **Down (Subordinate)**: Optimize for Results/Discipline (e.g., a reliable executor). *Do not ask for emotional labor.*
 
 ### Law 16: The Friendship Portfolio Protocol
 

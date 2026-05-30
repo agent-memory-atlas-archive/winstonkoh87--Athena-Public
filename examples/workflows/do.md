@@ -13,7 +13,7 @@ last_updated: 2026-04-12
 User says `/do` followed by a natural language description of what they want.
 
 ```
-/do research the competitor landscape for client_project_alpha
+/do research the competitor landscape for [ClientCo]
 /do audit the current codebase for tech debt
 /do plan the Phase 2 implementation
 /do steal patterns from this repo
@@ -60,7 +60,7 @@ User says `/do` followed by a natural language description of what they want.
    | "preset", "save config", "load config" | Preset Management | `/preset` |
 
 3. **Confirm** the detected route (one line):
-   > `🎯 Routing to /research — "competitor landscape for client_project_alpha"`
+   > `🎯 Routing to /research — "competitor landscape for [ClientCo]"`
 
 4. **Execute** the matched workflow by reading its file and following its instructions.
 

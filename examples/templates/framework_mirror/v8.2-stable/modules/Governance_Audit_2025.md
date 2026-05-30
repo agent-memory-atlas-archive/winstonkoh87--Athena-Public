@@ -36,10 +36,10 @@ graphrag_extracted: true
 
 ## 3. Psychological Safety (Sandboxing)
 
-**Finding**: "Jun Kai" persona and "Psychological Vivisection" carry reification and self-fulfilling risks.
+**Finding**: shadow persona persona and "Psychological Vivisection" carry reification and self-fulfilling risks.
 **Directive**:
 
-* **Sandbox Quarantine**: When "Jun Kai" runs, enforce "Simulation Mode".
+* **Sandbox Quarantine**: When shadow persona runs, enforce "Simulation Mode".
 * **Logic**: "Let the shadow play in the sandbox, not the bank account."
 * **Disclaimer**: "Personas are tools, not identities."
 

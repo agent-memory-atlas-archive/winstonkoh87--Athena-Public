@@ -7,16 +7,24 @@ Filters out sensitive entity names before generating the HTML.
 import json
 from pathlib import Path
 
-# Sensitive keywords to filter out
-NSFW_KEYWORDS = [
-    'virgin', 'seduction', 'threesome', 'escort', 'sexual', 'sex',
-    'bdsm', 'erotic', 'fetish', 'porn', 'nude', 'naked',
-    'shadow-hotel', 'locker-room', 'dating-app', 'hookup',
-    'abuse', 'trauma', 'cptsd', 'rape', 'predator',
-    'yap-weng-wah', 'mermaid-girl',
-    # Personal identifiers
-    'winston', 'jun-kai', 'jj',
-]
+# Sensitive keywords to filter out (loaded from blocklist to avoid
+# embedding sensitive terms in source code)
+# See .github/privacy_blocklist.txt for the canonical list
+
+def _load_nsfw_keywords():
+    """Load NSFW filter terms from blocklist or use hashed defaults."""
+    blocklist = Path(__file__).resolve().parent.parent.parent / ".github" / "privacy_blocklist.txt"
+    if blocklist.exists():
+        keywords = []
+        for line in blocklist.read_text().splitlines():
+            line = line.strip()
+            if line and not line.startswith('#'):
+                keywords.append(line.lower().replace('\\b', '').replace('\\', ''))
+        return keywords
+    # Fallback: minimal safe list
+    return ['shadow-hotel', 'locker-room', 'dating-app', 'hookup']
+
+NSFW_KEYWORDS = _load_nsfw_keywords()
 
 # SFW categories to keep
 SFW_CATEGORIES = [

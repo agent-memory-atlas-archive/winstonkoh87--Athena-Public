@@ -91,7 +91,7 @@ Before shipping, verify:
 
 ## Applicability
 
-- E9 client_project_alpha website phase (P2–P3)
+- E9 [ClientCo] website phase (P2–P3)
 - Any future web design client work
 - Personal site redesigns
 - Portfolio website updates

@@ -143,9 +143,9 @@ When SDR > 5:1, most people respond by working **harder** (more apps, better CV)
 - **Physics**: No single human can optimize for **Challenge** (Leader), **Comfort** (Peer), and **Compliance** (Subordinate) simultaneously.
 - **The Error**: Expecting your "Safe Container" friend to execute like a subordinate, or your "Founder Mode" boss to validate your feelings.
 - **Directive**: **Compartmentalize by Utility**.
-  - **Up (Leader)**: Optimize for Vision/Accountability (e.g., research_specimen_delta). *Do not ask for comfort.*
-  - **Lateral (Peer)**: Optimize for Safety/Vulnerability (e.g., Rui Yi). *Do not ask for strategy/execution.*
-  - **Down (Subordinate)**: Optimize for Results/Discipline (e.g., Theng Xuan). *Do not ask for emotional labor.*
+  - **Up (Leader)**: Optimize for Vision/Accountability (e.g., a trusted mentor). *Do not ask for comfort.*
+  - **Lateral (Peer)**: Optimize for Safety/Vulnerability (e.g., a close confidant). *Do not ask for strategy/execution.*
+  - **Down (Subordinate)**: Optimize for Results/Discipline (e.g., a reliable executor). *Do not ask for emotional labor.*
 
 ### Law 16: The Friendship Portfolio Protocol
 
@@ -654,7 +654,7 @@ When a systemic failure occurs, the institution protects itself by sacrificing t
 > **Origin**: /steal — Ritesh Verma (Agent Rise) + Consulting 001 Post-Mortem
 > **Merged from**: Operating_Principles.md (2026-03-21 workspace optimization)
 
-**Context**: client_project_alpha (C001) — sent $3-5K range via WhatsApp before qualifying budget. GTO analysis showed this capped revenue at $5K when client could bear $8-10K. Trust-damage cost of breaking the anchor > revenue gained.
+**Context**: A consulting engagement where a mid-range price ($3-5K) was sent via WhatsApp before qualifying the client's budget. GTO analysis showed this capped revenue significantly below what the client could bear. Trust-damage cost of breaking the anchor > revenue gained.
 **Principle**: Never state a price before the client states a budget range. Let the intake form do budget discovery.
 **Mechanic**: Booking form includes budget range dropdown ($0-3K / $3-10K / $10-50K / $50K+). Client self-selects before the call. You price within their range, not yours.
 **Rule**: GEM Discovery → scope. Booking form → budget. Zoom call → proposal. Never collapse steps.

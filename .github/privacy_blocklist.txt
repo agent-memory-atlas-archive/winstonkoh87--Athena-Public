@@ -9,10 +9,19 @@
 research_entity_gamma
 research_entity_gamma
 Jun Kai
+research_specimen_delta
+Rui Yi
+Theng Xuan
+
+# === CLIENT IDENTIFIERS ===
+client_project_alpha
 
 # === PERSONAL CONTACT ===
-winstonkoh87@gmail\.com
-83581066
+# Actual email and phone patterns stored in .env (not committed).
+# The privacy_scan.py reads these from environment variables.
+# Format: PRIVACY_EMAIL_PATTERN and PRIVACY_PHONE_PATTERN in .env
+[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}
+\b(\+?65[\s-]?)?[89]\d{3}[\s-]?\d{4}\b
 
 # === LOCAL FILE PATHS ===
 file:///Users/winstonkoh
