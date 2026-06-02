@@ -188,19 +188,22 @@ Be adversarial. Find the flaws. Do not rubber-stamp.
         if has_api:
             try:
                 _client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
-                model = _client.models  # model=
-                    model_name=auditor_name
+                model_name = (
+                    auditor_name
                     if "gemini" in auditor_name
-                    else "gemini-1.5-flash",
-                    generation_config=types.GenerateContentConfig(
-                        temperature=0.3,
-                        max_output_tokens=2048,
-                        response_mime_type="application/json",
-                    ,
+                    else "gemini-1.5-flash"
                 )
 
                 prompt = self.create_auditor_prompt(request)
-                response = model.generate_content(prompt)
+                response = _client.models.generate_content(
+                    model=model_name,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        temperature=0.3,
+                        max_output_tokens=2048,
+                        response_mime_type="application/json",
+                    ),
+                )
 
                 if response and response.text:
                     text = response.text.strip()

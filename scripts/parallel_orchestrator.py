@@ -250,7 +250,7 @@ class ParallelOrchestrator:
         if not api_key:
             raise ValueError("GOOGLE_API_KEY not found")
 
-        _client = genai.Client(api_key=api_key)
+        self.client = genai.Client(api_key=api_key)
         self.model_name = model
         self.verbose = verbose
         self.iteration_count = 0
@@ -274,18 +274,18 @@ class ParallelOrchestrator:
             full_prompt += f"\n\nADDITIONAL CONTEXT:\n{context}"
 
         try:
-            model = _client.models  # model=
-                model_name=self.model_name,
-                generation_config=types.GenerateContentConfig(
-                    temperature=0.8,
-                    max_output_tokens=MAX_OUTPUT_TOKENS,
-                ,
-            )
-
             # Run in executor since genai isn't truly async
             loop = asyncio.get_running_loop()
             response = await loop.run_in_executor(
-                None, lambda: model.generate_content(full_prompt)
+                None,
+                lambda: self.client.models.generate_content(
+                    model=self.model_name,
+                    contents=full_prompt,
+                    config=types.GenerateContentConfig(
+                        temperature=0.8,
+                        max_output_tokens=MAX_OUTPUT_TOKENS,
+                    ),
+                ),
             )
 
             latency = int((time.time() - start) * 1000)
@@ -336,17 +336,17 @@ class ParallelOrchestrator:
 
         full_prompt = f"{SYNTHESIS_PROMPT}\n\n---\n\n{synthesis_input}"
 
-        model = _client.models  # model=
-            model_name=self.model_name,
-            generation_config=types.GenerateContentConfig(
-                temperature=0.7,
-                max_output_tokens=MAX_OUTPUT_TOKENS,
-            ,
-        )
-
         loop = asyncio.get_running_loop()
         response = await loop.run_in_executor(
-            None, lambda: model.generate_content(full_prompt)
+            None,
+            lambda: self.client.models.generate_content(
+                model=self.model_name,
+                contents=full_prompt,
+                config=types.GenerateContentConfig(
+                    temperature=0.7,
+                    max_output_tokens=MAX_OUTPUT_TOKENS,
+                ),
+            ),
         )
 
         return response.text if response.text else "[Synthesis failed]"
@@ -359,17 +359,17 @@ class ParallelOrchestrator:
             f"{ADVERSARIAL_SCORING_PROMPT}\n\n---\n\nSYNTHESIS TO SCORE:\n{synthesis}"
         )
 
-        model = _client.models  # model=
-            model_name=self.model_name,
-            generation_config=types.GenerateContentConfig(
-                temperature=0.3,  # Lower temp for consistent scoring
-                max_output_tokens=2048,
-            ,
-        )
-
         loop = asyncio.get_running_loop()
         response = await loop.run_in_executor(
-            None, lambda: model.generate_content(full_prompt)
+            None,
+            lambda: self.client.models.generate_content(
+                model=self.model_name,
+                contents=full_prompt,
+                config=types.GenerateContentConfig(
+                    temperature=0.3,  # Lower temp for consistent scoring
+                    max_output_tokens=2048,
+                ),
+            ),
         )
 
         # Parse JSON response

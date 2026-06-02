@@ -92,7 +92,7 @@ This document provides detailed release notes. For the brief summary, see the RE
 #### Broken Link Repair
 - **40+ broken links fixed** across `AGENTS.md`, `README.md`, `CONTRIBUTING.md`, `docs/FEATURES.md`, `docs/TAG_INDEX.md`, and 4 protocol cross-reference files.
 - Root cause: protocol files have category prefixes (ARC-, DEC-, WFL-, etc.) but many links referenced them without.
-- **3 CI-blocking path leaks fixed** (`/Users/winston/`, `/Users/.../AI LLM`) in `embed_codex.py`, `diagnostic_relay.py`, `docs/protocols/500-diagnostic-relay.md`.
+- **3 CI-blocking path leaks fixed** (private username paths) in `embed_codex.py`, `diagnostic_relay.py`, `docs/protocols/500-diagnostic-relay.md`.
 
 #### Wiki Sync
 - **8 GitHub wiki pages** updated to v9.9.1 (2 Jun 2026).

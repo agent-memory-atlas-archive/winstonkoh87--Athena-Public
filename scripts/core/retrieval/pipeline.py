@@ -162,7 +162,7 @@ class RRFPipeline:
         import os
 
         from google import genai
-from google.genai import types
+        from google.genai import types
 
         has_api = os.getenv("GOOGLE_API_KEY") is not None
         if not has_api:
@@ -170,7 +170,6 @@ from google.genai import types
 
         try:
             _client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
-            model = _client.models  # model="gemini-1.5-flash"
 
             # Pack top results for reranking
             candidates = []
@@ -182,8 +181,12 @@ from google.genai import types
             Candidates: {json.dumps(candidates)}
             """
 
-            response = model.generate_content(
-                prompt, generation_config={"response_mime_type": "application/json"}
+            response = _client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    response_mime_type="application/json",
+                ),
             )
             ranks = json.loads(response.text)
 

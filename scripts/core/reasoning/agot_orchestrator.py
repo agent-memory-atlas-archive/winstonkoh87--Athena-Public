@@ -345,7 +345,7 @@ class AGoTController:
         if not api_key:
             raise ValueError("GOOGLE_API_KEY not found in environment")
 
-        _client = genai.Client(api_key=api_key)
+        self.client = genai.Client(api_key=api_key)
         self.model_name = model
         self.verbose = verbose
         self.total_calls = 0
@@ -373,17 +373,17 @@ class AGoTController:
         self.total_calls += 1
 
         try:
-            model = _client.models  # model=
-                model_name=self.model_name,
-                generation_config=types.GenerateContentConfig(
-                    temperature=temperature,
-                    max_output_tokens=max_tokens,
-                ,
-            )
-
             loop = asyncio.get_running_loop()
             response = await loop.run_in_executor(
-                None, lambda: model.generate_content(prompt)
+                None,
+                lambda: self.client.models.generate_content(
+                    model=self.model_name,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        temperature=temperature,
+                        max_output_tokens=max_tokens,
+                    ),
+                ),
             )
 
             latency = int((time.time() - start) * 1000)

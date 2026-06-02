@@ -67,11 +67,13 @@ def call_gemini(prompt: str) -> str:
 
     try:
         from google import genai
-from google.genai import types
+        from google.genai import types
 
         _client = genai.Client(api_key=api_key)
-        model = _client.models  # model="gemini-2.0-flash"
-        response = model.generate_content(prompt)
+        response = _client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt,
+        )
         return response.text.strip()
     except ImportError:
         # Fallback to REST API
