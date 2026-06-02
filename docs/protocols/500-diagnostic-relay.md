@@ -88,7 +88,7 @@ The following patterns are automatically redacted:
 
 | Pattern | Example | Replacement |
 |---------|---------|-------------|
-| User paths | `/Users/winston/` | `/Users/<REDACTED>/` |
+| User paths | `/Users/<username>/` | `/Users/<REDACTED>/` |
 | Emails | `[EMAIL_EXAMPLE]` | `<EMAIL_REDACTED>` |
 | API Keys | `sk-abc123...` | `<API_KEY_REDACTED>` |
 | IP Addresses | `192.168.1.1` | `<IP_REDACTED>` |

@@ -3,7 +3,7 @@
 > **The Linux OS for AI Agents**
 > Open Source · Sovereign · Model-Agnostic
 
-*Last Updated: 2026-05-20 · v9.8.1*
+*Last Updated: 2026-06-02 · v9.9.1*
 
 Athena is not an AI Agent. It is the **Operating System** they run on.
 
