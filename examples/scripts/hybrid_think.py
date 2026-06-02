@@ -3,7 +3,7 @@ import os
 import sys
 import glob
 import textwrap
-import google.generativeai as genai
+from google import genai
 from dotenv import load_dotenv
 
 # --- Configuration ---
@@ -20,7 +20,7 @@ if not api_key:
     print("   Please run: export GOOGLE_API_KEY='your_key'")
     sys.exit(1)
 
-genai.configure(api_key=api_key)
+client = genai.Client(api_key=api_key)
 
 
 def read_file(path, label="FILE"):
@@ -95,8 +95,10 @@ def think(query):
     # 3. Call API
     print(f"⚡ Transmitting to Cloud ({len(full_prompt)} chars)...")
     try:
-        model = genai.GenerativeModel(MODEL_NAME)
-        response = model.generate_content(full_prompt)
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=full_prompt,
+        )
 
         print("\n" + "=" * 60)
         print(f"🤖 {MODEL_NAME} RESPONSE")

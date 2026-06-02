@@ -9,7 +9,7 @@ Uses Protocol 104 logic.
 import os
 import sys
 import argparse
-import google.generativeai as genai
+from google import genai
 from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
@@ -53,14 +53,15 @@ def compress_text(text):
 
     import time
 
-    genai.configure(api_key=api_key)
-    # Switch to generic alias to avoid specific version quotas
-    model = genai.GenerativeModel("gemini-flash-latest")
+    client = genai.Client(api_key=api_key)
 
     retries = 3
     for attempt in range(retries):
         try:
-            response = model.generate_content(f"{SYSTEM_PROMPT}\n\nInput:\n{text}")
+            response = client.models.generate_content(
+                model="gemini-flash-latest",
+                contents=f"{SYSTEM_PROMPT}\n\nInput:\n{text}",
+            )
             return response.text.strip()
         except Exception as e:
             if "429" in str(e) or "ResourceExhausted" in str(e):

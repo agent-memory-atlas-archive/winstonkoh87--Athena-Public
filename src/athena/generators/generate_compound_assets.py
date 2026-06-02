@@ -10,14 +10,13 @@ import json
 from pathlib import Path
 from datetime import datetime
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
 
 load_dotenv()
 
 # Configure Gemini
 api_key = os.environ.get("GOOGLE_API_KEY")
-genai.configure(api_key=api_key)
-model = genai.GenerativeModel("gemini-3-flash-preview")
+client = genai.Client(api_key=api_key)
 
 WORKSPACE = Path(__file__).resolve().parent.parent.parent
 CACHE_DIR = WORKSPACE / ".context" / "cache"
@@ -71,7 +70,9 @@ def generate_protocol_summaries():
         log_call(f"Summarizing {proto_path.name}")
 
         try:
-            response = model.generate_content(f"""
+            response = client.models.generate_content(
+                model="gemini-3-flash-preview",
+                contents=f"""
 Summarize this protocol in exactly 150 words. Focus on:
 1. Core purpose (1 sentence)
 2. When to invoke (triggers)
@@ -80,7 +81,8 @@ Summarize this protocol in exactly 150 words. Focus on:
 
 Protocol:
 {content}
-""")
+""",
+            )
             summary = response.text.strip()
             save_asset(f"summary_{proto_path.stem}", summary, "protocol_summaries")
         except Exception as e:
@@ -107,7 +109,9 @@ def generate_session_tldrs():
         log_call(f"TL;DR for {session_path.name}")
 
         try:
-            response = model.generate_content(f"""
+            response = client.models.generate_content(
+                model="gemini-3-flash-preview",
+                contents=f"""
 Create a TL;DR for this session in exactly 100 words:
 1. Main topic/goal
 2. Key decisions made
@@ -116,7 +120,8 @@ Create a TL;DR for this session in exactly 100 words:
 
 Session:
 {content}
-""")
+""",
+            )
             tldr = response.text.strip()
             save_asset(f"tldr_{session_path.stem}", tldr, "session_tldrs")
         except Exception as e:
@@ -153,7 +158,9 @@ def refresh_entity_extraction():
         log_call(f"Extracting entities from {doc_path.name}")
 
         try:
-            response = model.generate_content(f"""
+            response = client.models.generate_content(
+                model="gemini-3-flash-preview",
+                contents=f"""
 Extract key entities from this document. Return JSON array with:
 {{"name": "entity name", "type": "person|concept|protocol|framework|metric", "description": "one-line description"}}
 
@@ -161,7 +168,8 @@ Document:
 {content}
 
 Return ONLY valid JSON array, no markdown.
-""")
+""",
+            )
             # Try to parse JSON
             text = response.text.strip()
             if text.startswith("```"):
@@ -202,7 +210,9 @@ def generate_stealable_prompts():
         log_call(f"Generating stealable prompt for {wf_path.name}")
 
         try:
-            response = model.generate_content(f"""
+            response = client.models.generate_content(
+                model="gemini-3-flash-preview",
+                contents=f"""
 Convert this workflow into a "stealable prompt" — a standalone system instruction that could be copy-pasted into any AI to replicate this behavior. 
 
 Requirements:
@@ -214,7 +224,8 @@ Requirements:
 
 Workflow:
 {content}
-""")
+""",
+            )
             prompt = response.text.strip()
             save_asset(f"stealable_{wf_path.stem}", prompt, "stealable_prompts")
         except Exception as e:

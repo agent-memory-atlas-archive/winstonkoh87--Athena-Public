@@ -38,7 +38,7 @@ except ImportError:
 
 # Try to import Gemini for summaries
 try:
-    import google.generativeai as genai
+    from google import genai
 
     GEMINI_AVAILABLE = True
 except ImportError:
@@ -193,8 +193,7 @@ def generate_community_summaries(G: nx.Graph, communities: dict) -> list:
     use_gemini = GEMINI_AVAILABLE and api_key
 
     if use_gemini:
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-3-flash-preview")
+        client = genai.Client(api_key=api_key)
 
     summaries = []
 
@@ -227,11 +226,12 @@ def generate_community_summaries(G: nx.Graph, communities: dict) -> list:
         summary = ""
         if use_gemini:
             try:
-                response = model.generate_content(
-                    SUMMARY_PROMPT.format(
+                response = client.models.generate_content(
+                    model="gemini-3-flash-preview",
+                    contents=SUMMARY_PROMPT.format(
                         entities="\n".join(entity_info),
                         files=", ".join(list(files)[:5]),
-                    )
+                    ),
                 )
                 summary = response.text.strip()
                 # Rate limit protection

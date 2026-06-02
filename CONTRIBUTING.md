@@ -63,7 +63,7 @@ Created a useful template? Share it:
 
 ### 5. Agent-Assisted Contributions
 
-Let your Athena agent help you contribute! Using [Protocol 408](examples/protocols/workflow/408-autonomous-contribution-engine.md):
+Let your Athena agent help you contribute! Using [Protocol 408](examples/protocols/workflow/WFL-408-autonomous-contribution-engine.md):
 
 1. **Ask a question**: "Does Athena support X?"
 2. **Agent verifies**: Searches codebase to confirm it's a gap

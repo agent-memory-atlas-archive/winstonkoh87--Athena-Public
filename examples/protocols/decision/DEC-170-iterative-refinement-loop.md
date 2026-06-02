@@ -39,7 +39,7 @@ Most reasoning is single-pass. This protocol enables **multi-iteration refinemen
 
 ### Phase A: Initial Hypothesis Generation
 
-Generate 3-5 candidate solutions using existing parallel reasoning ([Protocol 75](75-synthetic-parallel-reasoning.md)).
+Generate 3-5 candidate solutions using existing parallel reasoning ([Protocol 75](DEC-75-synthetic-parallel-reasoning.md)).
 
 **Output**: Ranked list of hypotheses with confidence scores.
 
@@ -132,7 +132,7 @@ Iteration 5:
 ## Integration Points
 
 - Activated by `/ultrathink` when high-stakes detected
-- Uses [Protocol 75](75-synthetic-parallel-reasoning.md) for parallel hypothesis generation
+- Uses [Protocol 75](DEC-75-synthetic-parallel-reasoning.md) for parallel hypothesis generation
 - Uses [Protocol 38](_archived/38-synthetic-deep-think.md) for verification phases
 - Deposits to RSI per [Protocol 140](_archived/140-base-rate-audit.md)
 

@@ -9,10 +9,10 @@ from pathlib import Path
 
 # Sensitive keywords to filter out
 NSFW_KEYWORDS = [
-    '[PRIVATE]', '[PRIVATE]', '[PRIVATE]', '[PRIVATE]', 'sexual', 'sex', 
+    '[PRIVATE_TERM]', '[PRIVATE_TERM]', '[PRIVATE_TERM]', '[PRIVATE_TERM]', 'sexual', 'sex', 
     'bdsm', 'erotic', 'fetish', 'porn', 'nude', 'naked',
     'shadow-hotel', 'locker-room', 'dating-app', 'hookup',
-    'abuse', 'trauma', 'cptsd', '[PRIVATE]', 'predator',
+    'abuse', 'trauma', 'cptsd', '[PRIVATE_TERM]', 'predator',
     'yap-weng-wah', 'mermaid-girl',
     # Personal identifiers
     'winston', 'jun-kai', 'jj',

@@ -7,7 +7,8 @@ import sys
 import argparse
 from pathlib import Path
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import os
 
 load_dotenv()
@@ -26,13 +27,7 @@ def search(query: str) -> str:
     if not api_key:
         raise ValueError("GOOGLE_API_KEY not found")
     
-    genai.configure(api_key=api_key)
-    
-    # Configure model with search grounding
-    model = genai.GenerativeModel(
-        'gemini-2.5-flash',
-        tools=[{"google_search": {}}]  # Enable grounding
-    )
+    client = genai.Client(api_key=api_key)
     
     prompt = f"""{SYSTEM_PROMPT}
 
@@ -41,13 +36,22 @@ USER QUERY: {query}
 Search the web and provide a well-sourced answer:"""
     
     try:
-        response = model.generate_content(prompt)
+        # Configure model with search grounding
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                tools=[types.Tool(google_search=types.GoogleSearch())],
+            ),
+        )
         return response.text
     except Exception as e:
         # Fallback to non-grounded if quota exhausted
-        fallback_model = genai.GenerativeModel('gemini-2.5-flash-lite')
         print("⚠️ Search grounding unavailable, using standard model")
-        response = fallback_model.generate_content(prompt)
+        response = client.models.generate_content(
+            model='gemini-2.5-flash-lite',
+            contents=prompt,
+        )
         return response.text
 
 def main():

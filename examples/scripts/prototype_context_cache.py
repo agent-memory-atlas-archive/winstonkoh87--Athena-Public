@@ -1,12 +1,13 @@
 import os
 import time
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from dotenv import load_dotenv
 
 # Config
 load_dotenv()
 api_key = os.getenv("GOOGLE_API_KEY")
-genai.configure(api_key=api_key)
+client = genai.Client(api_key=api_key)
 
 # 1. Prepare Content
 # We need a large enough context to make caching worth it (>32k tokens usually, but let's try with what we have)
@@ -29,7 +30,6 @@ def prototype_caching():
     try:
         # Create a cache
         # Ref: https://ai.google.dev/gemini-api/docs/caching/python
-        from google.generativeai import caching
 
         # Try a list of potential caching models
         candidates = [
@@ -42,12 +42,12 @@ def prototype_caching():
         for m in candidates:
             try:
                 print(f"👉 Trying model: {m}")
-                cache = caching.CachedContent.create(
+                cache = client.caches.create(
                     model=m,
                     display_name="Athena_Prototype_Cache",
                     system_instruction="You are a cached assistant.",
-                    contents=[large_context],
-                    ttl=300,
+                    contents=[types.Content(parts=[types.Part(text=large_context)])],
+                    config=types.CreateCachedContentConfig(ttl="300s"),
                 )
                 print(f"✅ Cache Created with {m}")
                 break
@@ -62,16 +62,18 @@ def prototype_caching():
         print(f"   Expiration: {cache.expire_time}")
 
         # Ensure we can use it
-        model = genai.GenerativeModel.from_cached_content(cached_content=cache)
-
         t0 = time.time()
-        response = model.generate_content("Summarize the text.")
+        response = client.models.generate_content(
+            model=m,
+            contents="Summarize the text.",
+            config=types.GenerateContentConfig(cached_content=cache.name),
+        )
         t1 = time.time()
 
         print(f"⚡ Cached Response ({t1 - t0:.2f}s): {response.text[:100]}...")
 
         # Cleanup
-        cache.delete()
+        client.caches.delete(name=cache.name)
         print("🗑️ Cache deleted.")
         return True
 

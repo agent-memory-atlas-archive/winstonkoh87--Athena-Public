@@ -59,7 +59,7 @@ def install_deps(uv):
         uv, "pip", "install", 
         "--python", str(python_exe),
         "graphrag", 
-        "google-generativeai", 
+        "google-genai", 
         "chromadb", 
         "chromadb", 
         "networkx",

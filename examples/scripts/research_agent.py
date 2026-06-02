@@ -9,7 +9,8 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import os
 
 load_dotenv()
@@ -43,10 +44,7 @@ def research(query: str, depth: int = 3) -> str:
     if not api_key:
         raise ValueError("GOOGLE_API_KEY not found")
 
-    genai.configure(api_key=api_key)
-
-    # Use model with search grounding
-    model = genai.GenerativeModel("gemini-2.5-flash", tools=[{"google_search": {}}])
+    client = genai.Client(api_key=api_key)
 
     print(f"🔍 Starting deep research: {query}")
     print(f"   Depth: {depth} iterations\n")
@@ -59,14 +57,20 @@ RESEARCH QUERY: {query}
 Perform comprehensive research on this topic. Search for relevant information, analyze findings, and synthesize a complete report."""
 
     try:
-        response = model.generate_content(prompt)
+        # Use model with search grounding
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                tools=[types.Tool(google_search=types.GoogleSearch())],
+            ),
+        )
         return response.text
     except Exception as e:
         # Fallback to non-grounded if search unavailable
         print(f"⚠️ Search grounding unavailable: {e}")
         print("   Falling back to knowledge-based research...")
 
-        fallback_model = genai.GenerativeModel("gemini-3-flash-preview")
         fallback_prompt = f"""Based on your knowledge, provide a comprehensive analysis of:
 
 {query}
@@ -79,7 +83,10 @@ Include:
 
 Note: This is knowledge-based, not live search."""
 
-        response = fallback_model.generate_content(fallback_prompt)
+        response = client.models.generate_content(
+            model="gemini-3-flash-preview",
+            contents=fallback_prompt,
+        )
         return (
             response.text
             + "\n\n*Note: This report is based on training data, not live search.*"

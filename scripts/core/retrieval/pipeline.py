@@ -161,15 +161,16 @@ class RRFPipeline:
 
         import os
 
-        import google.generativeai as genai
+        from google import genai
+from google.genai import types
 
         has_api = os.getenv("GOOGLE_API_KEY") is not None
         if not has_api:
             return results[: self.post_rerank_top_k]
 
         try:
-            genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-            model = genai.GenerativeModel("gemini-1.5-flash")
+            _client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+            model = _client.models  # model="gemini-1.5-flash"
 
             # Pack top results for reranking
             candidates = []

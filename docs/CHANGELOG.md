@@ -78,6 +78,29 @@ This document provides detailed release notes. For the brief summary, see the RE
 - 21 files privacy-remediated (PII/blocklist terms)
 - 2 files email-placeholder redacted
 
+### Update 2: SDK Migration, Protocol Consolidation & Link Repair (2 Jun 2026)
+
+#### SDK Migration (google-generativeai → google-genai)
+- **11 scripts migrated** from deprecated `google.generativeai` to `google.genai` SDK. Client-object pattern replaces global `genai.configure()`.
+- **`pyproject.toml`**: Dependency updated from `google-generativeai>=0.7.0` to `google-genai>=1.0.0`.
+- Files: `gemini_client.py`, `memory_compressor.py`, `search_web.py`, `parallel_orchestrator.py`, `research_agent.py`, `hybrid_think.py`, `extract_entities.py`, `build_graph.py`, `query_graphrag.py`, `generate_compound_assets.py`, `setup_graphrag.py`.
+
+#### Protocol Consolidation
+- **11 singleton categories pruned** (quality, maintenance, learning, leadership, finance, economics, community, social, health, design, acquisition). 15 protocols merged into parent domains.
+- Categories: 35 → **24** (11 fewer empty categories). Active protocol count unchanged at 396.
+
+#### Broken Link Repair
+- **40+ broken links fixed** across `AGENTS.md`, `README.md`, `CONTRIBUTING.md`, `docs/FEATURES.md`, `docs/TAG_INDEX.md`, and 4 protocol cross-reference files.
+- Root cause: protocol files have category prefixes (ARC-, DEC-, WFL-, etc.) but many links referenced them without.
+- **3 CI-blocking path leaks fixed** (`/Users/winston/`, `/Users/.../AI LLM`) in `embed_codex.py`, `diagnostic_relay.py`, `docs/protocols/500-diagnostic-relay.md`.
+
+#### Wiki Sync
+- **8 GitHub wiki pages** updated to v9.9.1 (2 Jun 2026).
+- Content drift fixed: `FAQ.md`, `The-Compounding-Effect.md`, `Architecture-Overview.md` (was v9.4.1).
+
+#### Embedding Backfill
+- Full `supabase_sync.py --force` re-run targeting 90%+ embedding coverage across all 10 Supabase tables.
+
 ---
 
 ## v9.9.0 Architecture Model Sync (30 May 2026)

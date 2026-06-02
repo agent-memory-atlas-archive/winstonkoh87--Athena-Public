@@ -37,7 +37,8 @@ from pathlib import Path
 src_path = (Path(__file__).parent.parent.parent.parent / "src").resolve()
 sys.path.insert(0, str(src_path))
 
-import google.generativeai as genai  # noqa: E402
+from google import genai
+from google.genai import types  # noqa: E402
 from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv()
@@ -344,7 +345,7 @@ class AGoTController:
         if not api_key:
             raise ValueError("GOOGLE_API_KEY not found in environment")
 
-        genai.configure(api_key=api_key)
+        _client = genai.Client(api_key=api_key)
         self.model_name = model
         self.verbose = verbose
         self.total_calls = 0
@@ -372,12 +373,12 @@ class AGoTController:
         self.total_calls += 1
 
         try:
-            model = genai.GenerativeModel(
+            model = _client.models  # model=
                 model_name=self.model_name,
-                generation_config=genai.GenerationConfig(
+                generation_config=types.GenerateContentConfig(
                     temperature=temperature,
                     max_output_tokens=max_tokens,
-                ),
+                ,
             )
 
             loop = asyncio.get_running_loop()

@@ -66,7 +66,7 @@ This file provides persistent context to any AI coding agent working in this wor
 ## Skills Index (5W1H Compliant)
 
 > **IMPORTANT**: Check trigger conditions BEFORE invoking any skill.
-> Skills with `context_trigger` frontmatter are **conditional** — dormant until matching files/topics/projects activate them. See [Protocol 530](examples/protocols/architecture/530-conditional-skill-activation.md).
+> Skills with `context_trigger` frontmatter are **conditional** — dormant until matching files/topics/projects activate them. See [Protocol 530](examples/protocols/architecture/ARC-530-conditional-skill-activation.md).
 
 ### Always-On Skills
 

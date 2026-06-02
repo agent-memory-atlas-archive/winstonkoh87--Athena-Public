@@ -27,7 +27,7 @@ load_dotenv()
 SESSION_LOGS_DIR = Path(".context/memories/session_logs")
 
 TRAUMA_KEYWORDS = [
-    r"[PRIVATE]",
+    r"[PRIVATE_TERM]",
     r"assault",
     r"scared",
     r"hurt",

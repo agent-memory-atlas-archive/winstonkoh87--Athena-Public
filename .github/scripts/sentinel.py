@@ -59,17 +59,18 @@ MAX_FILES_AUTO = 5
 
 
 def call_gemini(prompt: str) -> str:
-    """Call Gemini API via google-generativeai or fall back to REST."""
+    """Call Gemini API via google-genai or fall back to REST."""
     api_key = os.getenv("GOOGLE_API_KEY", "")
     if not api_key:
         print("⚠️  No GOOGLE_API_KEY found. Falling back to rule-based triage.")
         return ""
 
     try:
-        import google.generativeai as genai
+        from google import genai
+from google.genai import types
 
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-2.0-flash")
+        _client = genai.Client(api_key=api_key)
+        model = _client.models  # model="gemini-2.0-flash"
         response = model.generate_content(prompt)
         return response.text.strip()
     except ImportError:

@@ -30,7 +30,8 @@ src_path = (Path(__file__).parent.parent.parent / "src").resolve()
 sys.path.insert(0, str(src_path))
 
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import google.api_core.exceptions
 
 load_dotenv()
@@ -253,7 +254,7 @@ class ParallelOrchestrator:
         if not api_key:
             raise ValueError("GOOGLE_API_KEY not found")
 
-        genai.configure(api_key=api_key)
+        self.client = genai.Client(api_key=api_key)
         self.model_name = model
         self.verbose = verbose
         self.iteration_count = 0
@@ -277,18 +278,17 @@ class ParallelOrchestrator:
             full_prompt += f"\n\nADDITIONAL CONTEXT:\n{context}"
 
         try:
-            model = genai.GenerativeModel(
-                model_name=self.model_name,
-                generation_config=genai.GenerationConfig(
-                    temperature=0.8,
-                    max_output_tokens=MAX_OUTPUT_TOKENS,
-                ),
-            )
-
             while True:
                 try:
                     # Use native async to prevent ThreadPool/gRPC deadlocks
-                    response = await model.generate_content_async(full_prompt)
+                    response = await self.client.aio.models.generate_content(
+                        model=self.model_name,
+                        contents=full_prompt,
+                        config=types.GenerateContentConfig(
+                            temperature=0.8,
+                            max_output_tokens=MAX_OUTPUT_TOKENS,
+                        ),
+                    )
                     break
                 except google.api_core.exceptions.ResourceExhausted as e:
                     self._log(
@@ -344,17 +344,16 @@ class ParallelOrchestrator:
 
         full_prompt = f"{SYNTHESIS_PROMPT}\n\n---\n\n{synthesis_input}"
 
-        model = genai.GenerativeModel(
-            model_name=self.model_name,
-            generation_config=genai.GenerationConfig(
-                temperature=0.7,
-                max_output_tokens=MAX_OUTPUT_TOKENS,
-            ),
-        )
-
         while True:
             try:
-                response = await model.generate_content_async(full_prompt)
+                response = await self.client.aio.models.generate_content(
+                    model=self.model_name,
+                    contents=full_prompt,
+                    config=types.GenerateContentConfig(
+                        temperature=0.7,
+                        max_output_tokens=MAX_OUTPUT_TOKENS,
+                    ),
+                )
                 break
             except google.api_core.exceptions.ResourceExhausted:
                 self._log("  ⏳ Rate limit hit during synthesis, waiting 30s...")
@@ -370,17 +369,16 @@ class ParallelOrchestrator:
             f"{ADVERSARIAL_SCORING_PROMPT}\n\n---\n\nSYNTHESIS TO SCORE:\n{synthesis}"
         )
 
-        model = genai.GenerativeModel(
-            model_name=self.model_name,
-            generation_config=genai.GenerationConfig(
-                temperature=0.3,  # Lower temp for consistent scoring
-                max_output_tokens=2048,
-            ),
-        )
-
         while True:
             try:
-                response = await model.generate_content_async(full_prompt)
+                response = await self.client.aio.models.generate_content(
+                    model=self.model_name,
+                    contents=full_prompt,
+                    config=types.GenerateContentConfig(
+                        temperature=0.3,  # Lower temp for consistent scoring
+                        max_output_tokens=2048,
+                    ),
+                )
                 break
             except google.api_core.exceptions.ResourceExhausted:
                 self._log(

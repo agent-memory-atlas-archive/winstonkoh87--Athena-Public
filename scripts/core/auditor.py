@@ -19,7 +19,8 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 AUDIT_LOG_DIR = PROJECT_ROOT / ".agent" / "audit"
 
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -186,16 +187,16 @@ Be adversarial. Find the flaws. Do not rubber-stamp.
 
         if has_api:
             try:
-                genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-                model = genai.GenerativeModel(
+                _client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+                model = _client.models  # model=
                     model_name=auditor_name
                     if "gemini" in auditor_name
                     else "gemini-1.5-flash",
-                    generation_config=genai.GenerationConfig(
+                    generation_config=types.GenerateContentConfig(
                         temperature=0.3,
                         max_output_tokens=2048,
                         response_mime_type="application/json",
-                    ),
+                    ,
                 )
 
                 prompt = self.create_auditor_prompt(request)

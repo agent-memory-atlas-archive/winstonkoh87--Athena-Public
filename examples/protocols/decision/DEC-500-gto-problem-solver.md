@@ -89,7 +89,7 @@ GAME CLASSIFICATION:
 
 ## Phase 1: Stakeholder Utility Mapping
 
-> **Invoke**: [Protocol 180: Utility Function Analysis](180-utility-function-analysis.md)
+> **Invoke**: [Protocol 180: Utility Function Analysis](DEC-180-utility-function-analysis.md)
 
 For **each agent/stakeholder**, extract their utility function:
 
@@ -139,7 +139,7 @@ UTILITY MAP:
 
 ## Phase 2: Strategy Generation (Divergence)
 
-> **Invoke**: [Protocol 137: Graph of Thoughts](137-graph-of-thoughts.md) + [Protocol 75: Synthetic Parallel Reasoning](75-synthetic-parallel-reasoning.md)
+> **Invoke**: [Protocol 137: Graph of Thoughts](DEC-137-graph-of-thoughts.md) + [Protocol 75: Synthetic Parallel Reasoning](DEC-75-synthetic-parallel-reasoning.md)
 
 Generate **minimum 3 distinct strategic paths**. Do NOT evaluate yet. Just diverge.
 
@@ -182,7 +182,7 @@ A **GoT Graph** (minimum 3 paths, with state probabilities and agent counter-mov
 
 ## Phase 3: Multi-Criteria Ranking
 
-> **Invoke**: [Protocol 121: MCDA / EEV / Pairwise](121-mcda-eev-framework.md)
+> **Invoke**: [Protocol 121: MCDA / EEV / Pairwise](DEC-121-mcda-eev-framework.md)
 
 ### 3A: Define Criteria and Weights
 
@@ -231,7 +231,7 @@ MCDA RANKING:
 
 ## Phase 4: EEV Optimisation & Safety Gates
 
-> **Invoke**: [Protocol 330: EEV](330-economic-expected-value.md) + [Protocol 193: Ergodicity Check](193-ergodicity-check.md)
+> **Invoke**: [Protocol 330: EEV](DEC-330-economic-expected-value.md) + [Protocol 193: Ergodicity Check](DEC-193-ergodicity-check.md)
 
 For the **top-ranked path** from Phase 3:
 
@@ -386,12 +386,12 @@ MONTE CARLO RESULTS (N = [X] iterations):
 ## Cross-References
 
 - Protocol 422: Game Taxonomy — Phase 0 classifier
-- [Protocol 180: Utility Function Analysis](180-utility-function-analysis.md) — Phase 1 utility mapping
-- [Protocol 137: Graph of Thoughts](137-graph-of-thoughts.md) — Phase 2 strategy generation
-- [Protocol 75: Synthetic Parallel Reasoning](75-synthetic-parallel-reasoning.md) — Phase 2 divergence engine
-- [Protocol 121: MCDA / EEV / Pairwise](121-mcda-eev-framework.md) — Phase 3 ranking
-- [Protocol 330: Economic Expected Value (EEV)](330-economic-expected-value.md) — Phase 4 value engine
-- [Protocol 193: Ergodicity Check](193-ergodicity-check.md) — Phase 4 safety gate
+- [Protocol 180: Utility Function Analysis](DEC-180-utility-function-analysis.md) — Phase 1 utility mapping
+- [Protocol 137: Graph of Thoughts](DEC-137-graph-of-thoughts.md) — Phase 2 strategy generation
+- [Protocol 75: Synthetic Parallel Reasoning](DEC-75-synthetic-parallel-reasoning.md) — Phase 2 divergence engine
+- [Protocol 121: MCDA / EEV / Pairwise](DEC-121-mcda-eev-framework.md) — Phase 3 ranking
+- [Protocol 330: Economic Expected Value (EEV)](DEC-330-economic-expected-value.md) — Phase 4 value engine
+- [Protocol 193: Ergodicity Check](DEC-193-ergodicity-check.md) — Phase 4 safety gate
 - Monte Carlo Sim Skill — Phase 5 validation
 
 ## Tags

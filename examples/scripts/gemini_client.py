@@ -9,7 +9,8 @@ import re
 import time
 from pathlib import Path
 
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -33,24 +34,23 @@ class GeminiClient:
         if not api_key:
             raise ValueError("GOOGLE_API_KEY not found in environment")
 
-        genai.configure(api_key=api_key)
+        self.client = genai.Client(api_key=api_key)
 
         self.model_name = model
         self.system_prompt = system_prompt or ""
         self.history = []
 
-        # Configure model with system instruction and thinking budget
-        self.model = genai.GenerativeModel(
-            model_name=model,
+        # Configure generation config with system instruction and thinking budget
+        self.config = types.GenerateContentConfig(
             system_instruction=self.system_prompt if self.system_prompt else None,
-            generation_config=genai.GenerationConfig(
-                temperature=1.0,  # Enable creative thinking
-                max_output_tokens=8192,  # Allow longer responses
-            ),
+            temperature=1.0,  # Enable creative thinking
+            max_output_tokens=8192,  # Allow longer responses
         )
-        self.chat_session = self.model.start_chat(history=[])
+        self.chat_session = self.client.chats.create(
+            model=self.model_name, config=self.config
+        )
 
-    def _generate_with_fallback(self, func, *args, **kwargs):
+    def _generate_with_fallback(self, mode, *args, **kwargs):
         """Execute a generation function with model fallback cascade + retry."""
         # Expanded cascade: Strictly Gemini 3 Flash (User Decree 2026-02-01)
         cascade_models = [
@@ -71,26 +71,27 @@ class GeminiClient:
                     f"✨ Athena thinking with {model_name}... (attempt {attempt + 1})"
                 )
                 try:
-                    temp_model = genai.GenerativeModel(
-                        model_name=model_name,
-                        system_instruction=self.system_prompt
-                        if self.system_prompt
-                        else None,
-                        generation_config=genai.GenerationConfig(
-                            temperature=1.0,
-                            max_output_tokens=8192,
-                        ),
-                    )
-
-                    if func.__name__ == "send_message":
-                        history = self.chat_session.history
-                        temp_session = temp_model.start_chat(history=history)
-                        response = temp_session.send_message(*args, **kwargs)
-                        self.model = temp_model
-                        self.chat_session = temp_session
+                    if mode == "chat":
+                        # Rebuild chat session with the cascade model
+                        config = kwargs.get("generation_config", self.config)
+                        temp_chat = self.client.chats.create(
+                            model=model_name,
+                            config=config,
+                            history=self.chat_session._curated_history
+                            if hasattr(self.chat_session, "_curated_history")
+                            else [],
+                        )
+                        response = temp_chat.send_message(args[0])
+                        self.model_name = model_name
+                        self.chat_session = temp_chat
                         return response.text
                     else:
-                        response = temp_model.generate_content(*args, **kwargs)
+                        # One-shot generation
+                        response = self.client.models.generate_content(
+                            model=model_name,
+                            contents=args[0],
+                            config=self.config,
+                        )
                         return response.text
 
                 except Exception as e:
@@ -128,18 +129,19 @@ class GeminiClient:
 
     def generate(self, prompt: str) -> str:
         """One-shot generation (no history)."""
-        return self._generate_with_fallback(self.model.generate_content, prompt)
+        return self._generate_with_fallback("generate", prompt)
 
     def chat(self, message: str) -> str:
         """Conversational generation (maintains history)."""
-        return self._generate_with_fallback(self.chat_session.send_message, message)
+        return self._generate_with_fallback("chat", message)
 
     def chat_structured(self, message: str, schema: dict) -> dict:
         """Conversational generation enforcing a JSON schema (Protocol 110)."""
         import json
 
         # Update generation config for JSON output
-        config = genai.GenerationConfig(
+        config = types.GenerateContentConfig(
+            system_instruction=self.system_prompt if self.system_prompt else None,
             temperature=1.0,
             max_output_tokens=8192,
             response_mime_type="application/json",
@@ -147,7 +149,7 @@ class GeminiClient:
         )
 
         response_text = self._generate_with_fallback(
-            self.chat_session.send_message, message, generation_config=config
+            "chat", message, generation_config=config
         )
 
         try:
@@ -161,7 +163,9 @@ class GeminiClient:
 
     def clear_history(self):
         """Reset conversation history."""
-        self.chat_session = self.model.start_chat(history=[])
+        self.chat_session = self.client.chats.create(
+            model=self.model_name, config=self.config
+        )
         self.history = []
 
 

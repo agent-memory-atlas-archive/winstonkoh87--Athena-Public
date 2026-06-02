@@ -8,7 +8,7 @@ for comprehensive semantic retrieval.
 Auto-selects the Python 3.12 venv in .agent/graphrag_env for compatibility.
 
 Usage:
-    python3 .agent/scripts/query_graphrag.py "What patterns connect [PRIVATE] and business?"
+    python3 .agent/scripts/query_graphrag.py "What patterns connect [PRIVATE_TERM] and business?"
     python3 .agent/scripts/query_graphrag.py "structural trap" --local-only
     python3 .agent/scripts/query_graphrag.py "cross-domain patterns" --deep
     python3 .agent/scripts/query_graphrag.py "query" --json  (Machine readable)
@@ -301,9 +301,9 @@ def synthesize_drift_results(query: str, drift_results: dict) -> str:
     Use Gemini to synthesize DRIFT results.
     """
     try:
-        import google.generativeai as genai
+        from google import genai
     except ImportError:
-        return "⚠️ Synthesis unavailable (google-generativeai not found)"
+        return "⚠️ Synthesis unavailable (google-genai not found)"
 
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key or "your_gemini_api_key_here" in api_key:
@@ -311,7 +311,7 @@ def synthesize_drift_results(query: str, drift_results: dict) -> str:
     if not api_key:
         return "⚠️ Synthesis unavailable (missing API key)"
 
-    genai.configure(api_key=api_key)
+    client = genai.Client(api_key=api_key)
 
     context_parts = []
     for comm in drift_results.get("primer", []):
@@ -338,8 +338,10 @@ TASK: Synthesize these results into 2-3 paragraphs that answer the query and ide
 Keep it concise but insightful."""
 
     try:
-        model = genai.GenerativeModel("gemini-3-flash-preview")
-        response = model.generate_content(synthesis_prompt)
+        response = client.models.generate_content(
+            model="gemini-3-flash-preview",
+            contents=synthesis_prompt,
+        )
         return response.text.strip()
     except Exception as e:
         return f"⚠️ Synthesis failed: {e}"

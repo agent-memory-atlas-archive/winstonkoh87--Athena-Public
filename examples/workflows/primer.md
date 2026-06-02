@@ -63,7 +63,7 @@ Load the following files (in order):
 Generate `docs/audit/SYSTEM_PRIMER_FULL.md`.
 - **Content**: EVERYTHING listed above (Sections 1-9).
 - **Header**: `> CLASSIFICATION: L3 SYSTEM EYES ONLY`
-- **Psychology**: Include raw "[NAME]" profiles, L5 schema details, [PRIVATE].
+- **Psychology**: Include raw "[NAME]" profiles, L5 schema details, [PRIVATE_CONCEPT].
 - **Risk**: Include specific R00X triggers and financial thresholds.
 
 #### Track B: External Audit Brief (Redacted)

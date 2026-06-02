@@ -24,13 +24,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Try to import google.generativeai
+# Try to import google.genai
 try:
-    import google.generativeai as genai
+    from google import genai
+    from google.genai import types
 
     GEMINI_AVAILABLE = True
 except ImportError:
     GEMINI_AVAILABLE = False
+
+# Module-level client (set in main_async)
+_genai_client = None
 
 # === Configuration ===
 # === Configuration ===
@@ -176,11 +180,13 @@ async def extract_chunk_async(chunk: str) -> Dict[str, Any]:
     model_name = MODEL_ROSTER[0]  # Single model policy
 
     try:
-        model = genai.GenerativeModel(model_name)
         prompt = EXTRACTION_PROMPT.replace("{content}", chunk)
 
-        # ASYNC CALL
-        response = await model.generate_content_async(prompt)
+        # ASYNC CALL — uses module-level _genai_client set in main_async
+        response = await _genai_client.aio.models.generate_content(
+            model=model_name,
+            contents=prompt,
+        )
 
         cleaned_json = clean_json_response(response.text)
         if not cleaned_json:
@@ -318,7 +324,8 @@ async def main_async():
     if not api_key:
         print("❌ No API Key found.")
         return
-    genai.configure(api_key=api_key)
+    global _genai_client
+    _genai_client = genai.Client(api_key=api_key)
 
     # Scan Files
     print("🔍 Scanning directories...")
