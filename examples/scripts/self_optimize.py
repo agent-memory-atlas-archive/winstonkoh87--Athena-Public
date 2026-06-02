@@ -170,7 +170,7 @@ def detect_topic_clusters(sessions: list[dict]) -> dict:
     domain_keywords = {
         "trading": ["trade", "eurusd", "forex", "risk", "position", "pip", "chart"],
         "coding": ["script", "function", "bug", "deploy", "git", "code", "api"],
-        "psychology": ["pattern", "schema", "attachment", "attachment", "boundary"],
+        "psychology": ["pattern", "schema", "attachment", "[PRIVATE]", "boundary"],
         "strategy": ["protocol", "framework", "architecture", "roadmap", "plan"],
         "content": ["reddit", "post", "viral", "seo", "marketing", "audience"],
     }

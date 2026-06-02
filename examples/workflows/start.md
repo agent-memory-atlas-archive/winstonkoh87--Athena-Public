@@ -1,7 +1,7 @@
 ---
 description: Activate Zero-Point Codex framework for strategic analysis
 created: 2025-12-09
-last_updated: 2026-05-08
+last_updated: 2026-05-11
 model: default
 temperature: 0.7
 tools:
@@ -35,9 +35,33 @@ After loading the latest checkpoint from `activeContext.md`, scan `@pending` ite
 - If any item has been pending **7+ sessions**: include one neutral line in boot output: `ℹ️ Long-pending: [TASK] — N sessions.`
 - No escalation, no gate. The user decides what to act on.
 
-See [Protocol 528](examples/protocols/architecture/528-execution-enforcement.md).  
+See [Protocol 528](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/ARC-528-sandboxed-execution-modes.md).  
 
 > **Note**: Boot Orchestrator (`boot.py`), Daemon, and UI Sync are handled automatically by the orchestrator's background thread pool. Do NOT run them as separate subprocess calls — they are redundant and add 2-5 minutes of latency.
+
+## Phase 1.5: Warm Boot — Objective Inference (~500 tokens)
+
+> **Purpose**: Eliminate cold-start penalty on the first turn. Unlike `/ultrastart` (which runs a full 15-result semantic bridge), this is a single surgical search that pre-loads the most likely topic.
+
+1. **Check `@seeded` field** in the latest `[[ S__ ]]` checkpoint loaded in Phase 1.
+   - If `@seeded` exists → infer session objective from it.
+   - If no `@seeded` → check `Current Focus` from `activeContext.md` header.
+   - If neither → skip Phase 1.5 entirely (boot blind, JIT handles it).
+
+2. **Run ONE semantic search** aligned to the inferred objective:
+
+   // turbo
+
+   ```bash
+   python3 .agent/scripts/smart_search.py "<inferred objective>" --limit 3 --include-personal
+   ```
+
+3. **Pre-load top result's header** (first 30 lines only — not the full file).
+
+> **Cost**: ~500 tokens. **Benefit**: First user turn gets grounded context immediately instead of paying a JIT tax.
+> **Skip condition**: If the user provides an explicit topic in their first message before the search completes, abandon Phase 1.5 and route to Phase 3 (Skill Weaving) directly.
+
+---
 
 ### ⚠️ Law #6 Compliance (Risk-Proportional Triple-Lock)
 
@@ -123,10 +147,10 @@ Bypassing STANDARD/ULTRA protocol is a high-severity violation. SNIPER queries m
 |---------|------|--------|
 | **Trading, Risk, Pricing, Business, Psychology, Content** | `CANONICAL_TIER2.md` | ~16K |
 | **Historical case-specific, niche precedent** | `CANONICAL_TIER3.md` | ~500 |
-| Protocol lookup, "find protocols about" | `PROTOCOL_SUMMARIES.md` | 3,500 |
+| Tag lookup, "find files about" | `PROTOCOL_SUMMARIES.md` | ~3,500 |
 | Protocol/skill request | `smart_search.py --skills-only` | ~1,000 |
 | Bio, typology, "who am I" | `User_Profile_Core.md` | 1,500 |
-| L1-L5, trauma, therapy, fantasy | `Psychology_L1L5.md` | 3,000 |
+| [PRIVATE_MODULE], therapy, fantasy | `[PRIVATE_MODULE].md` | 3,000 |
 | Decision frameworks, strategy | `System_Principles.md` | 3,500 |
 | Marketing, SEO, SWOT, pricing | `Business_Frameworks.md` | 2,500 |
 | Calibration references, cases | `Session_Observations.md` | 2,500 |
@@ -140,7 +164,7 @@ Bypassing STANDARD/ULTRA protocol is a high-severity violation. SNIPER queries m
 > **Architecture**: P508 Intent Classifier → P507 Cognitive Systems → P503 Clusters → Skills → Protocols
 > **Philosophy**: Classify the *human need archetype* first (top-down), then cascade to clusters. Fall back to keyword matching for SNIPER queries.
 
-**Routing Table**: [CLUSTER_INDEX.md](.agent/CLUSTER_INDEX.md) (8 Cognitive Systems, 15 clusters, 100% skill coverage)
+**Routing Table**: [CLUSTER_INDEX.md](file:///Users/[AUTHOR]/Project Athena/.agent/CLUSTER_INDEX.md) (8 Cognitive Systems, 15 clusters, 100% skill coverage)
 
 **Intent Classification (Λ ≥ 10 — STANDARD/ULTRA):**
 
@@ -200,15 +224,15 @@ Crisis Query → P509 (Triage) → P519 (Goal) → #15 Problem-Solving → P521 
 | `/think` | **Escalation** — Force L4 depth + Output_Standards | +2K |
 | `/ultrathink` | Maximum depth + Full stack | +28K |
 
-> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](examples/protocols/architecture/133-query-archetype-routing.md)). Reasoning scales to query complexity.
+> - **Default Mode**: JIT Knowledge Routing ([Protocol 133](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/ARC-133-query-archetype-routing.md)). Reasoning scales to query complexity.
 
 ---
 
 ## References
 
-- [Protocol 133: JIT Routing](examples/protocols/architecture/133-query-archetype-routing.md)
-- [WORKFLOW_INDEX.md](.agent/WORKFLOW_INDEX.md)
-- [Session 2025-12-13-04](.context/memories/session_logs/archive/2025-12-13-session-04.md)
+- [Protocol 133: JIT Routing](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/ARC-133-query-archetype-routing.md)
+- [WORKFLOW_INDEX.md](file:///Users/[AUTHOR]/Project Athena/.agent/WORKFLOW_INDEX.md)
+- [Session 2025-12-13-04](file:///Users/[AUTHOR]/Project Athena/.context/memories/session_logs/archive/2025-12-13-session-04.md)
 
 ---
 

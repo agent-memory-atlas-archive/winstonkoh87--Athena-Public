@@ -7,24 +7,16 @@ Filters out sensitive entity names before generating the HTML.
 import json
 from pathlib import Path
 
-# Sensitive keywords to filter out (loaded from blocklist to avoid
-# embedding sensitive terms in source code)
-# See .github/privacy_blocklist.txt for the canonical list
-
-def _load_nsfw_keywords():
-    """Load NSFW filter terms from blocklist or use hashed defaults."""
-    blocklist = Path(__file__).resolve().parent.parent.parent / ".github" / "privacy_blocklist.txt"
-    if blocklist.exists():
-        keywords = []
-        for line in blocklist.read_text().splitlines():
-            line = line.strip()
-            if line and not line.startswith('#'):
-                keywords.append(line.lower().replace('\\b', '').replace('\\', ''))
-        return keywords
-    # Fallback: minimal safe list
-    return ['shadow-hotel', 'locker-room', 'dating-app', 'hookup']
-
-NSFW_KEYWORDS = _load_nsfw_keywords()
+# Sensitive keywords to filter out
+NSFW_KEYWORDS = [
+    '[PRIVATE]', '[PRIVATE]', '[PRIVATE]', '[PRIVATE]', 'sexual', 'sex', 
+    'bdsm', 'erotic', 'fetish', 'porn', 'nude', 'naked',
+    'shadow-hotel', 'locker-room', 'dating-app', 'hookup',
+    'abuse', 'trauma', 'cptsd', '[PRIVATE]', 'predator',
+    'yap-weng-wah', 'mermaid-girl',
+    # Personal identifiers
+    'winston', 'jun-kai', 'jj',
+]
 
 # SFW categories to keep
 SFW_CATEGORIES = [
@@ -44,27 +36,31 @@ OUTPUT_FILE = WORKSPACE / ".agent/graphrag/knowledge_graph_sfw.html"
 def is_sfw(name: str) -> bool:
     """Check if entity name is safe for work."""
     name_lower = name.lower()
-
+    
     # Reject if contains NSFW keyword
-    return all(kw not in name_lower for kw in NSFW_KEYWORDS)
+    for kw in NSFW_KEYWORDS:
+        if kw in name_lower:
+            return False
+    
+    return True
 
 def generate_sfw_graph():
     """Generate a filtered SFW graph visualization."""
-
+    
     # Load entities
     data = json.loads(ENTITIES_FILE.read_text())
-
+    
     # Filter entities
     sfw_entities = [e for e in data['entities'] if is_sfw(e['name'])]
     sfw_names = {e['name'] for e in sfw_entities}
-
+    
     # Filter relationships (both ends must be SFW)
-    sfw_rels = [r for r in data['relationships']
+    sfw_rels = [r for r in data['relationships'] 
                 if r['source'] in sfw_names and r['target'] in sfw_names]
-
+    
     print(f"Original: {len(data['entities'])} entities, {len(data['relationships'])} relationships")
     print(f"Filtered: {len(sfw_entities)} entities, {len(sfw_rels)} relationships")
-
+    
     # Generate simple HTML with vis.js
     html = """<!DOCTYPE html>
 <html>
@@ -74,7 +70,7 @@ def generate_sfw_graph():
     <style>
         body { margin: 0; padding: 0; background: #1a1a2e; font-family: 'Segoe UI', sans-serif; }
         #graph { width: 100vw; height: 100vh; }
-        #info { position: fixed; top: 20px; left: 20px; color: #eee; background: rgba(0,0,0,0.7);
+        #info { position: fixed; top: 20px; left: 20px; color: #eee; background: rgba(0,0,0,0.7); 
                 padding: 15px; border-radius: 8px; max-width: 300px; }
         h2 { margin: 0 0 10px 0; color: #4ecdc4; }
         p { margin: 5px 0; font-size: 14px; }
@@ -95,7 +91,7 @@ def generate_sfw_graph():
     <script>
         const nodes = new vis.DataSet(NODES_DATA);
         const edges = new vis.DataSet(EDGES_DATA);
-
+        
         const container = document.getElementById('graph');
         const data = { nodes: nodes, edges: edges };
         const options = {
@@ -128,24 +124,24 @@ def generate_sfw_graph():
                 tooltipDelay: 200
             }
         };
-
+        
         const network = new vis.Network(container, data, options);
     </script>
 </body>
 </html>"""
-
+    
     # Build nodes (limit to top 200 for performance)
     # Sort by connection count
     entity_connections = {}
     for r in sfw_rels:
         entity_connections[r['source']] = entity_connections.get(r['source'], 0) + 1
         entity_connections[r['target']] = entity_connections.get(r['target'], 0) + 1
-
-    top_entities = sorted(sfw_entities,
-                          key=lambda e: entity_connections.get(e['name'], 0),
+    
+    top_entities = sorted(sfw_entities, 
+                          key=lambda e: entity_connections.get(e['name'], 0), 
                           reverse=True)[:200]
     top_names = {e['name'] for e in top_entities}
-
+    
     # Color by type
     type_colors = {
         'concept': '#4ecdc4',
@@ -154,7 +150,7 @@ def generate_sfw_graph():
         'framework': '#95e1d3',
         'default': '#a8a8a8'
     }
-
+    
     nodes_data = []
     for e in top_entities:
         etype = e.get('type', 'default').lower()
@@ -167,7 +163,7 @@ def generate_sfw_graph():
             'color': color,
             'size': size
         })
-
+    
     # Build edges (only between top entities)
     edges_data = []
     for r in sfw_rels:
@@ -176,13 +172,13 @@ def generate_sfw_graph():
                 'from': r['source'],
                 'to': r['target']
             })
-
+    
     # Inject data
     html = html.replace('ENTITY_COUNT', str(len(top_entities)))
     html = html.replace('REL_COUNT', str(len(edges_data)))
     html = html.replace('NODES_DATA', json.dumps(nodes_data))
     html = html.replace('EDGES_DATA', json.dumps(edges_data))
-
+    
     OUTPUT_FILE.write_text(html)
     print(f"\n✅ Generated: {OUTPUT_FILE}")
     print(f"   Nodes: {len(nodes_data)}, Edges: {len(edges_data)}")

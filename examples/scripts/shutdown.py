@@ -65,6 +65,7 @@ from athena.intelligence.sentinel import check_shutdown_sentinel
 
 # --- Compliance imports (top-level, not runtime) ---
 SCRIPTS_DIR = PROJECT_ROOT / ".agent" / "scripts"
+SYNC_SCRIPT = SCRIPTS_DIR / "sync_agents_md.py"
 sys.path.insert(0, str(SCRIPTS_DIR))
 try:
     from protocol_compliance import generate_report as compliance_generate_report
@@ -718,6 +719,44 @@ def auto_hygiene_background():
 
 
 # ============================================================
+# MEMORY RECONCILIATION (Phase 4c — background)
+# ============================================================
+
+
+def reconcile_memory_background():
+    """Fire-and-forget memory reconciliation."""
+    try:
+        subprocess.Popen(
+            ["python3", str(SCRIPTS_DIR / "reconcile_memory.py")],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            cwd=str(PROJECT_ROOT),
+            start_new_session=True,
+        )
+    except Exception:
+        pass
+
+
+# ============================================================
+# RETRIEVAL EVALUATION (Phase 4d — background)
+# ============================================================
+
+
+def evaluator_background():
+    """Fire-and-forget retrieval evaluation."""
+    try:
+        subprocess.Popen(
+            ["python3", str(SCRIPTS_DIR / "evaluator.py")],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            cwd=str(PROJECT_ROOT),
+            start_new_session=True,
+        )
+    except Exception:
+        pass
+
+
+# ============================================================
 # EMERGENCY HATCH
 # ============================================================
 
@@ -783,6 +822,24 @@ def main():
         # Phase 1: Harvest check (background)
         harvest_check_background()
 
+        # Phase 1.5: CAPS→AGENTS.md sync (TD-028)
+        try:
+            if SYNC_SCRIPT.exists():
+                result = subprocess.run(
+                    ["python3", str(SYNC_SCRIPT)],
+                    capture_output=True,
+                    text=True,
+                    cwd=str(PROJECT_ROOT),
+                    timeout=5,
+                )
+                if result.returncode == 0:
+                    # Only print if patches were applied (not "already in sync")
+                    for line in result.stdout.strip().split("\n"):
+                        if "[PATCH]" in line or "patched" in line:
+                            print(f"{GREEN}{line.strip()}{RESET}")
+        except Exception as e:
+            print(f"{DIM}⚠️ CAPS sync skipped: {e}{RESET}")
+
         # Phase 2: Git commit + background push
         if not git_commit():
             print(f"{YELLOW}⚠️ Git commit had issues{RESET}")
@@ -796,6 +853,12 @@ def main():
 
         # Phase 4b: Auto-Hygiene (background)
         auto_hygiene_background()
+
+        # Phase 4c: Memory Reconciliation (background)
+        reconcile_memory_background()
+
+        # Phase 4d: Retrieval Evaluation (background)
+        evaluator_background()
 
         # Summary
         print(f"\n{BOLD}{'─' * 60}{RESET}")

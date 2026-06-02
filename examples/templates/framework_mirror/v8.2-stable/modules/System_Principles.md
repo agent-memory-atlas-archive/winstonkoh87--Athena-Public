@@ -15,7 +15,7 @@ graphrag_extracted: true
 
 ## 0. The Agentic Trinity (Prime Directive)
 >
-> **Origin**: Session 08 (User Mandate) -> [Protocol 010](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/workflow/010-agentic-success-trinity.md)
+> **Origin**: Session 08 (User Mandate) -> [Protocol 010](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/workflow/WFL-010-agentic-success-trinity.md)
 
 **Axiom**: "If your documentation is fucked up, nothing else really matters."
 **The Trinity**:

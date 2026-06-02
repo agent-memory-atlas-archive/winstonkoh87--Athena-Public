@@ -97,7 +97,7 @@ Static interfaces feel dead. Use **Micro-Interactions**.
 | **[Variant AI](https://variant.ai)** | Creative Director | Early-stage visual exploration, component mood boarding, design system generation |
 | **Coding AI** (Claude/Gemini) | Engineer | Code execution from locked design system |
 
-**Workflow**: See [`/web-build`](file:///Users/[AUTHOR]/Project%20Athena/.agent/workflows/web-build.md) for the full 4-step pipeline.
+**Workflow**: See [`/web-build`](file:///Users/[AUTHOR]/Project%20Athena/.agent/workflows/_domain/web-build.md) for the full 4-step pipeline.
 **Source**: [CS-540](file:///Users/[AUTHOR]/Project%20Athena/.context/memories/case_studies/CS-540-anti-slop-website-pipeline-steal.md)
 
 ---

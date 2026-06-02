@@ -1,10 +1,82 @@
 # Athena Changelog
 
-> **Last Updated**: 30 May 2026
+> **Last Updated**: 2 Jun 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.9.1 Search Engine Hardening (2 Jun 2026)
+
+**Infrastructure Scripts, Privacy Remediation & Retrieval Quality**
+
+### Key Changes
+
+#### Search Engine Improvements
+- **Embedding starvation fix**: Bulk sync added +1,510 new embeddings across 10 Supabase tables. Coverage moved from sparse to 38% total — the primary bottleneck for MRR@5 (baseline: 0.200). Tables at 0% (playbooks, references, user_profile) identified for priority backfill.
+- **Lock contention fix**: `vectors.py` — JSON serialization moved outside thread lock. Eliminates serialized bottleneck during concurrent embed operations.
+- **Adaptive routing**: `search.py` rewritten (357 lines changed, 307 insertions, 176 deletions). Improved RRF fusion, source weighting, and fallback logic.
+- **Config hardening**: `config.py` — 19 lines changed (environment variable handling).
+
+#### New Infrastructure Scripts (4)
+- **`evaluator.py`** — Golden query evaluation harness (65 queries, MRR@5 + Hit@5 metrics). Wired into `shutdown.py` Phase 4d for automated regression detection.
+- **`lint_governance.py`** — 3-way governance linter (CAPS.json ↔ AGENTS.md ↔ filesystem). Mechanical enforcement of count alignment.
+- **`reconcile_memory.py`** — LLM-validated contradiction detection across memory surfaces. Regex scanning produces too many false positives; LLM filtering achieves 5/5 FP rejection rate.
+- **`sync_agents_md.py`** — Automated CAPS.json → AGENTS.md count synchronization. Patches 6 surfaces in one pass. Resolves TD-028.
+
+#### Workflow Updates
+- **`do.md`** — Added subagent delegation heuristic (decision matrix + prompt rules + anti-patterns).
+- **`_shared.md`** — Updated shared conventions.
+- **`end.md` / `ultraend.md`** — Evaluator harness integration, session observation updates.
+- **`ultrastart.md`** — Karpathy CLAUDE.md rules integrated (Ask-Don't-Assume, Flag-Uncertainty, Codebase-Documentation-Sync).
+- **`foresight.md`** (NEW) — SOTA predictive positioning domain workflow.
+
+#### Framework Module Updates
+- **`System_Principles_JIT.md`** — Karpathy CLAUDE.md integration (3 new rules from r/ClaudeCode steal).
+- **`Core_Identity.md`**, **`Output_Standards.md`**, **`System_Principles.md`** — Minor updates.
+
+#### Privacy Remediation
+- **44 privacy violations** remediated across the public repo (blocklist matches from pre-existing synced files).
+- **2 false-positive email patterns** fixed (example/placeholder emails redacted).
+- **Privacy gate**: 0 violations on final scan (26-term blocklist, all text files).
+
+### Architecture Doc Refresh
+- **`docs/ARCHITECTURE.md`**: Replaced massively stale content (Feb 2026, waterfall model, `vv9.9.0` typo) with current Perception Model architecture (May 30 version). 416 → 337 lines.
+- **Root `ARCHITECTURE.md`**: Metrics table updated (protocols 387→396, skills 31→37, tests 13→34, date May→Jun).
+- **README typo fix**: `vv9.9.0` → `v9.9.0` in metrics table.
+
+### Metrics Update
+- Skills: 35 → **38** (3 skills from TD-027 PII review completed: social-physics-filter, structural-trading-gate, therapeutic-ifs)
+- Supabase Embedded Docs: 851+ → **2,326** (bulk sync)
+- MRR@5 baseline established: **0.200** (65 golden queries)
+
+### Version Sync
+- All public surfaces synced to 2 Jun 2026
+- System version: v9.9.1
+
+### Files Changed
+
+- `docs/ARCHITECTURE.md` — REPLACED (stale Feb 2026 → current Perception Model)
+- `README.md` — Version badge v9.9.1, date, SDK version, changelog, counts
+- `AGENTS.md` — Version sync
+- `docs/CHANGELOG.md` — This entry
+- `examples/scripts/lint_governance.py` — NEW
+- `examples/scripts/sync_agents_md.py` — NEW
+- `examples/scripts/evaluator.py` — Updated
+- `examples/scripts/reconcile_memory.py` — Updated
+- `examples/scripts/shutdown.py` — Updated (evaluator integration)
+- `examples/scripts/supabase_sync.py` — Updated (metadata enrichment)
+- `examples/workflows/_domain/foresight.md` — NEW
+- `examples/workflows/do.md` — Updated (delegation heuristic)
+- `examples/workflows/ultrastart.md` — Updated (Karpathy rules)
+- `src/athena/tools/search.py` — REWRITTEN (357 lines, adaptive routing)
+- `src/athena/memory/vectors.py` — Updated (lock contention fix)
+- `src/athena/memory/sync.py` — Updated (metadata enrichment)
+- `src/athena/core/config.py` — Updated
+- 21 files privacy-remediated (PII/blocklist terms)
+- 2 files email-placeholder redacted
 
 ---
 

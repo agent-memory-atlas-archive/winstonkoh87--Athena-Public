@@ -1,7 +1,7 @@
 ---
 description: Close session and update System Prompt files with new insights (lightweight)
 created: 2025-12-09
-last_updated: 2026-03-10
+last_updated: 2026-05-08
 model: default
 temperature: 0.5
 tools:
@@ -61,7 +61,7 @@ Before any synthesis, classify the session:
 // turbo
 
 ```bash
-.venv/bin/python3 .agent/scripts/shutdown.py --micro
+python3 .agent/scripts/shutdown.py --micro
 ```
 
 **Done.** No further steps.
@@ -149,6 +149,16 @@ Create `.context/memories/session_logs/[DATE]-session-[N].md` with:
 
 > **Propagation**: `shutdown.py` extracts `[V]` markers and appends to `Session_Observations.md § Validated Patterns`.
 
+## Files Accessed (Retrieval Telemetry)
+
+> Instrument which workspace files were read during this session.
+> Over 50+ sessions, frequency distribution reveals Tier 1 (hot) vs Tier 2 (cold) entries.
+> Format: one file path per line. Only list `.context/` and `.agent/` files — skip IDE/tool artifacts.
+
+- [file path 1]
+- [file path 2]
+- [file path N]
+
 ## Session Closed
 
 **Status**: ✅ Closed
@@ -202,7 +212,7 @@ Append **only** the summary block and checkpoint — not the full session log:
 **Gate**: Did `@decided` in this session involve architecture changes, new protocols, new axioms, or constraint modifications?
 
 - **If NO**: Skip entirely. Most sessions don't touch canonical rules.
-- **If YES**: Load `.context/CANONICAL.md`. Ask: "Does any session learning contradict a fact here?" If yes → update immediately.
+- **If YES**: Load `.context/CANONICAL.md`. Ask: "Does any session learning contradict a fact here?" If yes → update immediately. **Provenance Rule**: Every new or modified entry MUST include a provenance tag in the format `(Session S[NNN], [YYYY-MM-DD])`. Entries without provenance tags will be rejected during `/audit-canonical`.
 
 ### 4. Decision Log Gate
 
@@ -223,7 +233,7 @@ Before writing the `@pending` line in the checkpoint block:
 3. If any item has been pending **7+ sessions**: quietly promote it to `@seeded` for next session's Phase 4
 
 > This step is **advisory only** — it never blocks session close.
-> See [Protocol 528](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/528-execution-enforcement.md).
+> See [Protocol 528](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/ARC-528-sandboxed-execution-modes.md).
 
 ---
 
@@ -251,15 +261,33 @@ Before writing the `@pending` line in the checkpoint block:
 4. **Add** any new pending items from this session
 5. Write the reconciled list — never blindly copy-paste from the previous checkpoint
 
+### 5.5. Codebase Documentation Sync (MANDATORY)
+
+Before finalizing the session:
+1. **Identify** all files modified during this session.
+2. **Check** if these modifications invalidate any project documentation (`README.md`, `design.md`, `SPEC.md`, or markdown guides).
+3. **Update** the affected documentation to match the new implementation state.
+4. **Ensure** no documentation is left in a stale or drift-prone state.
+
 ### 6. Context Hygiene Gate
 
-**Gate**: Is `activeContext.md` > 1000 lines?
+**Constraint**: `activeContext.md` attention budget is **15K tokens / ~60KB**. This is the real constraint — not a line count.
 
-- **If NO**: Skip.
-- **If YES**: Move all fully-closed session blocks (from `## Session` to `!checkpoint ]]`) older than the most recent 5 sessions into a one-liner summary in the `## Compacted Archive` section. Delete the full blocks.
+**Compaction Rule (Recency-Based)**:
 
-> Format: `- **[Date] – [Topic]**: [One-line summary of decisions/learnings].`
-> Rationale: Keeps `activeContext.md` under the boot-weight ceiling. `/start` surgical load stays fast.
+1. **Keep the last 3 sessions expanded** (full blocks with `@decided`, `@pending`, learnings)
+2. **Compact all older sessions** into one-liner summaries in the `## Compacted Archive` section
+3. **Compacted archive can grow unbounded** — it's append-only, costs nothing at boot (agents jump to the last `[[ S__ |` block)
+4. **Quarterly prune**: Move compacted entries older than 3 months to `sessionArchive.md`
+
+**Gate**: Is `activeContext.md` > 60KB?
+
+- **If NO**: Only compact sessions beyond the most recent 3. Skip if already done.
+- **If YES**: Compact aggressively (keep only 2 sessions expanded) AND prune archive entries older than 3 months to `sessionArchive.md`.
+
+> Format: `- **[Date] ([Session ID])**: [One-line summary of decisions/learnings].`
+> Rationale: Line count is the wrong constraint — boot-load token cost is what matters. `/start` reads only the header + last checkpoint block. Compacted one-liners are skipped during boot.
+
 
 ---
 
@@ -268,7 +296,7 @@ Before writing the `@pending` line in the checkpoint block:
 // turbo
 
 ```bash
-.venv/bin/python3 .agent/scripts/shutdown.py
+python3 .agent/scripts/shutdown.py
 ```
 
 **What it does** (single call, no subprocesses):
@@ -308,8 +336,8 @@ Before writing the `@pending` line in the checkpoint block:
 
 ## References
 
-- [/save](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
-- [/ultraend](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/ultraend.md) — Deep close (System-2 counterpart)
+- [/save](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
+- [/ultraend](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/ultraend.md) — Deep close (System-2 counterpart)
 
 ---
 

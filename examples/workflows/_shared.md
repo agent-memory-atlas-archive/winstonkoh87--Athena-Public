@@ -100,6 +100,22 @@ Canonical counts (protocols, skills, workflows, scripts) live in `.agent/config/
 
 > **Rule**: Failing to search the Exocortex when the data exists is equivalent to ignoring the user's own history. The cost of a redundant search is ~$0. The cost of a hallucinated answer when real data exists is trust erosion.
 
+### Telemetry (Invocation Logging)
+
+> **MANDATORY**: When a workflow is invoked, log the invocation using `log_invocation.py` **during** workflow execution (after boot, before main work):
+>
+> ```bash
+> python3 .agent/scripts/log_invocation.py --type workflow --name "<workflow_name>" --trigger "user command"
+> ```
+>
+> For skill invocations triggered by context matching:
+> ```bash
+> python3 .agent/scripts/log_invocation.py --type skill --name "<skill_name>" --trigger "auto: context match"
+> ```
+>
+> **Output**: Appends to `.athena/invocations.jsonl`. This data enables future data-driven pruning (which workflows are actually used vs. dead weight).
+> **Cost**: ~50ms per invocation. No user-visible overhead.
+
 ### Anti-Patterns (Global)
 
 - ❌ Generating code based solely on training data
@@ -112,6 +128,32 @@ Canonical counts (protocols, skills, workflows, scripts) live in `.agent/config/
 - ❌ **Using negative instructions to constrain generation quality** ("don't add X", "avoid Y"). Use a separate De-Sloppify cleanup pass instead (QUA-541). Two focused agents > one constrained agent.
 - ❌ **Editing a file without checking its importers first** (ENG-542 GateGuard). Before the first edit to any file: Who imports it? What schemas does it touch? What did the user actually instruct?
 - ❌ **Weakening linter/formatter configs to suppress warnings** instead of fixing the underlying code (ENG-542 Config Protection corollary).
+- ❌ **Silent guessing on requirements or architecture**: Ask, don't assume. If unclear, ask before writing code.
+- ❌ **Leaving documentation behind**: Auto-sync local project docs/READMEs on session close.
+
+### Checkpoint Pause Pattern (Stolen: Anthropic Small-Business Plugin, 2026-05-24)
+
+> High-stakes workflows should **pause before taking action**, requiring user approval at each checkpoint. This prevents irreversible actions from executing without consent.
+
+Workflows/skills with `requires_approval: true` in frontmatter MUST:
+1. Present the proposed action clearly before executing
+2. Wait for explicit user approval (not just absence of objection)
+3. Never batch multiple approvals — one checkpoint per irreversible action
+4. Tag checkpoints with `[CHECKPOINT]` in output
+
+**Applies to**: Financial transactions, file deletions, external API calls with side effects, deployments, data migrations. Does NOT apply to read-only operations or internal analysis.
+
+### `argument_hint` Frontmatter Convention (Stolen: Anthropic, 2026-05-24)
+
+Skills MAY include an `argument_hint:` field in YAML frontmatter showing the expected input format when invoked. The `/do` router and skill suggestions display this to help users provide the right context.
+
+```yaml
+argument_hint: "<description> [data source]"
+```
+
+### Connector References (Stolen: Anthropic, 2026-05-24)
+
+Skills SHOULD use `~~category` placeholders (e.g., `~~search`, `~~database`) instead of hardcoding specific MCP server names. See `.agent/CONNECTORS.md` for the mapping table.
 
 ### Risk Classification (Law #6)
 

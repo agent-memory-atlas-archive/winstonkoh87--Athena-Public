@@ -12,13 +12,13 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.9.0-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.9.1-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 30 May 2026*
+*Last updated: 2 Jun 2026*
 
 </div>
 
@@ -494,7 +494,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:------|:----------|
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.7 (Thinking) / GPT-5.5 (High) |
-| **SDK** | `athena` Python package (v9.9.0) |
+| **SDK** | `athena` Python package (v9.9.1) |
 | **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (768-dim) |
 | **Memory** | Supabase + pgvector / local ChromaDB |
@@ -517,8 +517,8 @@ Athena-Public/
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
 │   ├── protocols/           # 155+ starter frameworks (16 categories)
-│   ├── scripts/             # 163 reference scripts
-│   ├── skills/              # 35 domain-specialised skills (6 categories)
+│   ├── scripts/             # 165 reference scripts
+│   ├── skills/              # 38 domain-specialised skills (6 categories)
 │   └── templates/           # Starter templates (framework, memory bank)
 ├── docs/                    # Architecture, benchmarks, security, guides
 └── pyproject.toml           # Modern packaging
@@ -529,9 +529,9 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.9.1** (Jun 2 2026): **Search Engine Hardening** — Embedding starvation fix (+1,510 embeddings), lock contention fix in vectors.py, adaptive routing in search.py (357 lines rewritten). 4 new infrastructure scripts (evaluator, governance linter, memory reconciliation, count sync). Karpathy CLAUDE.md rules integrated. 44 privacy violations remediated.
 - **v9.9.0** (May 30 2026): **Architecture Model Sync** — Replaced waterfall routing with Perception Model. Added 8 Uber-Skills to public repo. Privacy remediation (18 files scrubbed, post-sync gate). Skills 27→35.
-- **v9.8.8** (May 12 2026): Model Version Sync — Claude Opus 4.6→4.7 (released Apr 16), GPT-5.4→5.5 (released Apr 23) across all public surfaces. Provenance Standard added to CANONICAL.md.
-- **v9.8.7** (May 11 2026): Hermes Agent Steal — `skill-compiler` (automated solved-to-skill compiler from NousResearch), curator lifecycle model (3-state: active→stale→archived), umbrella consolidation rule.
+- **v9.8.8** (May 12 2026): Model Version Sync — Claude Opus 4.6→4.7 (released Apr 16), GPT-5.4→5.5 (released Apr 23) across all public surfaces.
 
 [→ Full changelog](docs/CHANGELOG.md)
 

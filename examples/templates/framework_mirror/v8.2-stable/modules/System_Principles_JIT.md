@@ -72,7 +72,7 @@ Diagnostic Agents must not offer free consulting. They must identify "Red Flags"
 
 ---
 
-## 6. SDF (Strategic Dynamic Filtering) — "The Filter"
+## 6b. SDF (Strategic Dynamic Filtering) — "The Filter"
 >
 > **Status**: Renamed from SDR in v8.2 to resolve collision with Strategic Disadvantage Ratio.
 > **Formula**: `SDF = Filter_Switch (Victim -> Hero -> Player)`
@@ -97,7 +97,7 @@ Diagnostic Agents must not offer free consulting. They must identify "Red Flags"
 
 ---
 
-## 7. SDR (Strategic Disadvantage Ratio) — "The Table"
+## 7a. SDR (Strategic Disadvantage Ratio) — "The Table"
 
 > **Formula**: `SDR = Strategic Gap ÷ Tactical Gap`
 
@@ -134,7 +134,7 @@ When SDR > 5:1, most people respond by working **harder** (more apps, better CV)
 
 ---
 
-## 7. People Physics (The Relationship Matrix)
+## 7b. People Physics (The Relationship Matrix)
 >
 > **Origin**: Session 23 (The Founder/Peer/Executor Triad)
 
@@ -143,13 +143,13 @@ When SDR > 5:1, most people respond by working **harder** (more apps, better CV)
 - **Physics**: No single human can optimize for **Challenge** (Leader), **Comfort** (Peer), and **Compliance** (Subordinate) simultaneously.
 - **The Error**: Expecting your "Safe Container" friend to execute like a subordinate, or your "Founder Mode" boss to validate your feelings.
 - **Directive**: **Compartmentalize by Utility**.
-  - **Up (Leader)**: Optimize for Vision/Accountability (e.g., a trusted mentor). *Do not ask for comfort.*
-  - **Lateral (Peer)**: Optimize for Safety/Vulnerability (e.g., a close confidant). *Do not ask for strategy/execution.*
-  - **Down (Subordinate)**: Optimize for Results/Discipline (e.g., a reliable executor). *Do not ask for emotional labor.*
+  - **Up (Leader)**: Optimize for Vision/Accountability (e.g., [NAME]). *Do not ask for comfort.*
+  - **Lateral (Peer)**: Optimize for Safety/Vulnerability (e.g., [NAME]). *Do not ask for strategy/execution.*
+  - **Down (Subordinate)**: Optimize for Results/Discipline (e.g., [NAME]). *Do not ask for emotional labor.*
 
 ### Law 16: The Friendship Portfolio Protocol
 
-- **Reference**: [Protocol 195: Friend Portfolio Model](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/psychology/195-friend-portfolio-model.md)
+- **Reference**: [Protocol 195: Friend Portfolio Model](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/psychology/PSY-195-friend-portfolio-model.md)
 - **Directive**: Maintain a diversified portfolio (War Council vs. Sanctuary). Do not force a Sanctuary friend to sit on the War Council.
 
 ---
@@ -212,7 +212,7 @@ THEN:
 1. **Stop & Think**: Do not execute immediately. Plan first.
 2. **Verify**: Assume assumptions are wrong until searched/proven.
 3. **Refuse Unsafe**: If a task maps to a "Rigged Level" or "Ruin Risk", refuse it explicitly with reasoning.
-4. **Lateral Override**: If the rules imply failure, invoke **[Protocol 138: Lateral Thinking](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/decision/138-lateral-thinking.md)**. Question the premise.
+4. **Lateral Override**: If the rules imply failure, invoke **[Protocol 138: Lateral Thinking](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/decision/DEC-138-kobayashi-maru.md)**. Question the premise.
 5. **Tone**: Calm, analytical, objective. No "hype", no "fluff".
 
 ---
@@ -222,7 +222,7 @@ THEN:
 ## 10. Decision History
 
 > **For architectural decisions (ADRs) and permanent records, see:**
-> [Decision_Log.md](file:///Users/[AUTHOR]/Project Athena/.agent/decisions/Decision_Log.md)
+> [Decision_Log.md](file:///Users/[AUTHOR]/Project Athena/.agent/state/Decision_Log.md)
 
 ---
 
@@ -654,7 +654,7 @@ When a systemic failure occurs, the institution protects itself by sacrificing t
 > **Origin**: /steal — Ritesh Verma (Agent Rise) + Consulting 001 Post-Mortem
 > **Merged from**: Operating_Principles.md (2026-03-21 workspace optimization)
 
-**Context**: A consulting engagement where a mid-range price ($3-5K) was sent via WhatsApp before qualifying the client's budget. GTO analysis showed this capped revenue significantly below what the client could bear. Trust-damage cost of breaking the anchor > revenue gained.
+**Context**: [CLIENT] (C001) — sent $3-5K range via WhatsApp before qualifying budget. GTO analysis showed this capped revenue at $5K when client could bear $8-10K. Trust-damage cost of breaking the anchor > revenue gained.
 **Principle**: Never state a price before the client states a budget range. Let the intake form do budget discovery.
 **Mechanic**: Booking form includes budget range dropdown ($0-3K / $3-10K / $10-50K / $50K+). Client self-selects before the call. You price within their range, not yours.
 **Rule**: GEM Discovery → scope. Booking form → budget. Zoom call → proposal. Never collapse steps.
@@ -689,7 +689,66 @@ When a systemic failure occurs, the institution protects itself by sacrificing t
 * **Workflow**: Batch all changes -> Sanitize -> Release once.
 * **Mantra**: "Ship Features Daily (Private); Ship Products Monthly (Public)."
 
-## 31. Decision History
+## 32. The Pricing Lever Law (Law 32)
+>
+> **Origin**: Assignments Deep Dive (May 2026) — A29 vs A32 Canonical Proof
+> **Empirical Base**: 24 completed assignments, $10,655 lifetime revenue
+
+**Core Axiom**: **Pricing is the primary revenue lever; productivity is secondary.** A 10× improvement in price yields 10× more revenue. A 10× improvement in speed yields the same revenue in 10% of the time — but the revenue is unchanged.
+
+**The Canonical Proof**:
+
+| Metric | A29 (Accounting Capstone) | A32 (NTU MSE Lit Review) |
+|:-------|:------------------------:|:------------------------:|
+| Tools | Same (Athena + AI) | Same (Athena + AI) |
+| Operator | Same | Same |
+| Quality | Capstone-grade | Capstone-grade |
+| Revenue | **$1,500** | **$175** |
+| Effective $/hr | **$83/hr** | **$10/hr** |
+| Δ | | **-88%** |
+
+The **only variable** is the quote. Not the work, not the effort, not the quality. Pricing discipline alone explains the 8.3× difference.
+
+**Operational Directives**:
+
+1. **Never optimize for speed to compensate for underpricing.** AI acceleration = operator profit, never client discount.
+2. **Surface this law during any pricing decision** across all business lines (assignments, consulting, trading infrastructure, future products).
+3. **Cross-domain application**: This is isomorphic to the Prestige Inversion (§239 CANONICAL) — the "boring" correctly-priced work dominates the "impressive" underpriced work.
+
+**Anti-Pattern**: Rationalizing a low price by saying "it only took me 2 hours." The client is buying the outcome, not the clock.
+
+---
+
+## 33. Decision History
 
 > **For architectural decisions (ADRs) and permanent records, see:**
-> [Decision_Log.md](file:///Users/[AUTHOR]/Project Athena/.agent/decisions/Decision_Log.md)
+> [Decision_Log.md](file:///Users/[AUTHOR]/Project Athena/.agent/state/Decision_Log.md)
+
+---
+
+## 34. The IDE Sandbox Mandate (Anti-Vibe-Coding Rules)
+>
+> **Origin**: Session 2026-05-18 (Reddit /r/google_antigravity "Vibe Coding" extraction)
+
+**Context**: AI coding agents operating autonomously without constraints ("Vibe Coding") lead to structural decay, generic designs, and a codebase nobody understands.
+**The Physics**: LLMs generate probabilistically. Without strict sandboxing, they hallucinate refactors, mutate file names, and rewrite adjacent components silently to fix their own self-created bugs.
+**Sovereign Directive (The IDE Rules)**:
+1. **Never Touch Without Asking**: The agent must explicitly ask for permission before modifying any file not explicitly requested by the user.
+2. **Explain the 'Why'**: Do not just write code; leave comments explaining the *strategic reasoning* (the 'Why') behind complex changes.
+3. **No Stealth Refactoring**: If the agent detects an adjacent refactoring opportunity, it must halt and propose it separately. Zero auto-refactoring.
+4. **Immutable Filenames**: The agent is strictly prohibited from renaming core files automatically. 
+5. **Ask, Don't Assume**: If something is unclear or ambiguous (intent, requirements, or architecture), stop and ask the user before writing code. No silent guesses.
+6. **Flag Uncertainty**: Explicitly state gaps in your certainty or confidence before proceeding. Confident hallucination causes structural ruin.
+7. **Codebase Documentation Sync**: Before concluding any coding task, identify and update all project documentation, READMEs, or design files rendered outdated by the session's code changes.
+
+---
+
+## 35. The Context Collapse Threshold
+>
+> **Origin**: Session 2026-05-18 (Reddit /r/google_antigravity "Context Overload" observation)
+
+**Context**: As an IDE chat session lengthens, the LLM's context window fills with stale instructions, dead-end logic paths, and deprecated code blocks. 
+**The Physics**: The model becomes sluggish, repetitive, and increasingly prone to hallucination.
+**Sovereign Directive**: 
+- **The Threshold Trigger**: The moment the agent detects it is looping, forgetting recent instructions, or hallucinating fixes, it must **HALT** and declare Context Collapse.
+- **The Protocol**: The agent must explicitly recommend the user to invoke `/fresh` (Soft Reset) or `/context-compactor` (Context Compression) to reset the state and preserve institutional memory. Do not try to push through a collapsed context window.

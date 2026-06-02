@@ -13,16 +13,17 @@ Usage:
 import sys
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 
-def find_current_session(logs_dir: Path) -> Path | None:
+def find_current_session(logs_dir: Path) -> Optional[Path]:
     """Find the most recent session log for today."""
     today = datetime.now().strftime("%Y-%m-%d")
     sessions = sorted(logs_dir.glob(f"{today}-session-*.md"), reverse=True)
     return sessions[0] if sessions else None
 
 
-def run_quicksave(summary: str, project_root: Path | None = None) -> bool:
+def run_quicksave(summary: str, project_root: Optional[Path] = None) -> bool:
     """
     Append a checkpoint to the current session log.
 
@@ -60,7 +61,7 @@ def run_quicksave(summary: str, project_root: Path | None = None) -> bool:
                 break
 
     if not session_file:
-        print("⚠️ No session log found for today")
+        print(f"⚠️ No session log found for today")
         print("   (Run /start or `python -m athena` first to create a session)")
         return False
 

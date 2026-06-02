@@ -84,7 +84,7 @@ When `/ultrathink` is active, apply these three layers:
 
 ### 3.2 Logic (Graph of Thoughts / GoT)
 
-- **Topology**: Replace linear chain with Networked Reasoning ([Protocol 137](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/137-graph-of-thoughts.md)).
+- **Topology**: Replace linear chain with Networked Reasoning ([Protocol 137](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/DEC-137-graph-of-thoughts.md)).
 - **Flow**: `Generate (3 branches) -> Score (Survivability) -> Convergence`.
 - **Self-Correction**: "Wait, is this true? Let me verify X."
 
@@ -286,7 +286,7 @@ Every external case study, market report, or statistical claim MUST include a di
 
 ## 11. Workflow Architecture
 >
-> **Protocol**: See [Protocol 099](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/099-session-output-architecture.md).
+> **Protocol**: See [Protocol 099](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/ARC-099-session-output-architecture.md).
 > **Mandate**: Search -> Quicksave -> Output.
 
 ---

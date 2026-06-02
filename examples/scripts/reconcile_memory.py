@@ -96,9 +96,61 @@ def extract_facts(content: str, source_name: str) -> list[dict]:
     return facts
 
 
+def validate_contradiction_with_llm(contradiction: dict) -> tuple[bool, str]:
+    """Use Gemini to check if a contradiction candidate is a real conflict."""
+    try:
+        # Ensure scripts path is in sys.path
+        if str(PROJECT_ROOT / ".agent" / "scripts") not in sys.path:
+            sys.path.insert(0, str(PROJECT_ROOT / ".agent" / "scripts"))
+        from gemini_client import get_client
+        client = get_client(system_prompt="You are a strict, logical memory bank reconciliation auditor for Project Athena.")
+    except Exception as e:
+        print(f"   ⚠️  Could not initialize LLM for validation: {e}")
+        return True, "Skipped LLM validation due to initialization error."
+
+    prompt = f"""
+    Analyze the following potential contradiction candidate found by a regex scanner:
+    Type: {contradiction['type']}
+    Description: {contradiction['description']}
+    
+    Candidate Sources & Values:
+    """
+    for src in contradiction.get("sources", []):
+        prompt += f"- Source: {src['source']} (Line {src['line']}) | Text: \"{src.get('text', '')}\" | Extracted Value: {src['value']}\n"
+        
+    prompt += """
+    Is this a genuine contradiction or fact drift in Project Athena's metadata, identity, or session records?
+    Identify false positives where:
+    - Version numbers belong to different software components (e.g. Next.js v14, pgvector v0.4, vs Project Athena v9.9.0).
+    - Counts represent different things (e.g., number of active protocols vs total protocols including archived ones, or files in different subdirectories).
+    
+    Determine if this represents a real contradiction.
+    """
+
+    schema = {
+        "type": "OBJECT",
+        "properties": {
+            "is_actual_contradiction": {
+                "type": "BOOLEAN"
+            },
+            "explanation": {
+                "type": "STRING"
+            }
+        },
+        "required": ["is_actual_contradiction", "explanation"]
+    }
+
+    try:
+        res = client.chat_structured(prompt, schema)
+        return res.get("is_actual_contradiction", True), res.get("explanation", "")
+    except Exception as e:
+        print(f"   ⚠️  LLM validation failed: {e}")
+        return True, "LLM validation failed, default to candidate retention."
+
+
 def find_contradictions(all_facts: dict[str, list[dict]]) -> list[dict]:
-    """Cross-reference facts between surfaces to find contradictions."""
-    contradictions = []
+    """Cross-reference facts between surfaces to find contradictions, validated by LLM."""
+    candidates = []
 
     # Group facts by type
     by_type = defaultdict(list)
@@ -111,12 +163,12 @@ def find_contradictions(all_facts: dict[str, list[dict]]) -> list[dict]:
     if version_facts:
         versions = set(f["value"] for f in version_facts)
         if len(versions) > 1:
-            contradictions.append({
+            candidates.append({
                 "type": "VERSION_CONFLICT",
                 "severity": "high",
                 "description": f"Multiple version numbers found: {', '.join(sorted(versions))}",
                 "sources": [
-                    {"source": f["source"], "line": f["line"], "value": f["value"]}
+                    {"source": f["source"], "line": f["line"], "value": f["value"], "text": f.get("text", "")}
                     for f in version_facts
                 ],
             })
@@ -134,17 +186,27 @@ def find_contradictions(all_facts: dict[str, list[dict]]) -> list[dict]:
     for subject, facts in by_subject.items():
         values = set(f["value"] for f in facts)
         if len(values) > 1:
-            contradictions.append({
+            candidates.append({
                 "type": "COUNT_CONFLICT",
                 "severity": "medium",
                 "description": f"Conflicting counts for '{subject}': {', '.join(str(v) for v in sorted(values))}",
                 "sources": [
-                    {"source": f["source"], "line": f["line"], "value": f["value"]}
+                    {"source": f["source"], "line": f["line"], "value": f["value"], "text": f.get("text", "")}
                     for f in facts
                 ],
             })
 
-    return contradictions
+    # Validate candidates with LLM to eliminate false positives
+    validated_contradictions = []
+    for cand in candidates:
+        is_real, explanation = validate_contradiction_with_llm(cand)
+        if is_real:
+            cand["description"] += f" (LLM Verification: {explanation})"
+            validated_contradictions.append(cand)
+        else:
+            print(f"   ℹ️  Filtered false positive: {cand['description']}")
+
+    return validated_contradictions
 
 
 def check_staleness(surfaces: dict[str, Path]) -> list[dict]:

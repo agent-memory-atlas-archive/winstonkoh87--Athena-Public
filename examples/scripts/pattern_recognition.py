@@ -26,28 +26,27 @@ load_dotenv()
 
 SESSION_LOGS_DIR = Path(".context/memories/session_logs")
 
-# Content detection keywords — loaded dynamically to avoid
-# embedding sensitive terms in public source code.
-# These are generic psychological analysis terms.
 TRAUMA_KEYWORDS = [
-    r"distress",
+    r"[PRIVATE]",
     r"assault",
     r"scared",
     r"hurt",
     r"cry",
     r"sad",
     r"depress",
-    r"crisis",
-    r"harm",
+    r"suicid",
+    r"kill",
 ]
 SEX_KEYWORDS = [
-    # Redacted — loaded at runtime from private config
-    # Only generic relationship terms remain
-    r"intimate",
-    r"relationship",
-    r"boundary",
-    r"attraction",
-    r"dynamic",
+    r"sex",
+    r"fuck",
+    r"suck",
+    r"horny",
+    r"cum",
+    r"dick",
+    r"top",
+    r"bottom",
+    r"hard",
 ]
 PSYCH_KEYWORDS = [
     r"fix",

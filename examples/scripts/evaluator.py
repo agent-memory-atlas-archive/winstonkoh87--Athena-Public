@@ -52,19 +52,21 @@ def load_golden_queries(category: Optional[str] = None) -> list[dict]:
     return queries
 
 
-def run_single_query(query: str, limit: int = 5) -> list[dict]:
-    """Run a single search query and return structured results."""
+def run_single_query(query: str, limit: int = 5, rerank: bool = False) -> tuple[list[dict], float]:
+    """Run a single search query and return structured results and elapsed time."""
     from athena.tools.search import run_search
 
     import io
+    import time
 
     old_stdout = sys.stdout
     old_stderr = sys.stderr
     sys.stdout = buffer = io.StringIO()
     sys.stderr = io.StringIO()  # Suppress stderr warnings too
 
+    start = time.time()
     try:
-        run_search(query=query, limit=limit, json_output=True)
+        run_search(query=query, limit=limit, rerank=rerank, json_output=True)
         output = buffer.getvalue()
     except Exception:
         # TimeoutError, connection errors, etc. — return empty results
@@ -73,16 +75,18 @@ def run_single_query(query: str, limit: int = 5) -> list[dict]:
         sys.stdout = old_stdout
         sys.stderr = old_stderr
 
+    elapsed = time.time() - start
+
     try:
         parsed = json.loads(output) if output.strip() else {}
         # run_search returns {"results": [...], "suppressed": ...}
         if isinstance(parsed, dict):
-            return parsed.get("results", [])
+            return parsed.get("results", []), elapsed
         elif isinstance(parsed, list):
-            return parsed
-        return []
+            return parsed, elapsed
+        return [], elapsed
     except json.JSONDecodeError:
-        return []
+        return [], elapsed
 
 
 def _extract_source_identifiers(result: dict) -> set[str]:
@@ -192,6 +196,7 @@ def run_evaluation(
     category: Optional[str] = None,
     verbose: bool = False,
     k: int = 5,
+    rerank: bool = False,
 ) -> dict:
     """Run full evaluation and return metrics."""
     queries = load_golden_queries(category)
@@ -206,6 +211,8 @@ def run_evaluation(
     if category:
         print(f"   Category: {category}")
     print(f"   K: {k}")
+    if rerank:
+        print(f"   Reranking: Enabled")
     print(f"{'─' * 50}\n")
 
     rr_scores = []
@@ -214,14 +221,21 @@ def run_evaluation(
     per_query = []
     total_time = 0
 
-    for i, gq in enumerate(queries):
+    from concurrent.futures import ThreadPoolExecutor
+
+    results_futures = []
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        for gq in queries:
+            results_futures.append(
+                (gq, executor.submit(run_single_query, gq["query"], limit=k, rerank=rerank))
+            )
+
+    for i, (gq, future) in enumerate(results_futures):
         qid = gq["id"]
         query = gq["query"]
         expected = gq["expected_sources"]
 
-        start = time.time()
-        results = run_single_query(query, limit=k)
-        elapsed = time.time() - start
+        results, elapsed = future.result()
         total_time += elapsed
 
         rr = compute_reciprocal_rank(results, expected, k)
@@ -397,12 +411,16 @@ def main():
     parser.add_argument(
         "--k", type=int, default=5, help="Top-K for evaluation (default 5)"
     )
+    parser.add_argument(
+        "--rerank", action="store_true", help="Enable Cross-Encoder Reranker"
+    )
     args = parser.parse_args()
 
     metrics = run_evaluation(
         category=args.category,
         verbose=args.verbose,
         k=args.k,
+        rerank=args.rerank,
     )
 
     if not metrics:

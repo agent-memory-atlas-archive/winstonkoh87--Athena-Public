@@ -1,19 +1,20 @@
-import hashlib
+import sys
 import json
 import re
-
+import hashlib
+from pathlib import Path
 from athena.boot.constants import (
-    BOLD,
-    CORE_IDENTITY,
-    CYAN,
-    DIM,
-    EXPECTED_CORE_HASH,
-    GREEN,
     PROJECT_ROOT,
+    CORE_IDENTITY,
     PROTOCOLS_JSON,
+    EXPECTED_CORE_HASH,
     RED,
-    RESET,
+    GREEN,
     YELLOW,
+    CYAN,
+    BOLD,
+    DIM,
+    RESET,
 )
 
 
@@ -128,7 +129,7 @@ class IdentityLoader:
                 pass
 
         try:
-            with open(PROTOCOLS_JSON) as f:
+            with open(PROTOCOLS_JSON, "r") as f:
                 data = json.load(f)
             protocols = data.get("protocols", {})
             active_context = context_clues.lower().split()

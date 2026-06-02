@@ -202,6 +202,16 @@ last_updated: 2026-02-08
 
 | Document | Purpose |
 | :--- | :--- |
-| [DECISION_OUTCOMES.md](file:///Users/[AUTHOR]/Project Athena/.context/memories/DECISION_OUTCOMES.md) | Ledger for tracking high-stakes decision validation |
-| [FX_Data_Analysis_2026-02-09.md](file:///Users/[AUTHOR]/Project Athena/.context/Industry_Trends_2026.md) | Case study analysis of FX trading performance |
+| [DECISION_OUTCOMES.md](file:///Users/[AUTHOR]/Project Athena/.context/memories/archive/DECISION_OUTCOMES.md) | Ledger for tracking high-stakes decision validation |
+| [FX_Data_Analysis_2026-02-09.md](file:///Users/[AUTHOR]/Project Athena/.context/research/Industry_Trends_2026.md) | Case study analysis of FX trading performance |
 | [CS-375-beads-architecture-audit.md](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-375-ict239-vendor-failure-audit.md) | Beads Architecture Audit |
+
+---
+
+### Observation 10: The Accumulation Drift Vulnerability (2026-05-13)
+
+- **Context**: Diagnosed two structurally similar problems across different domains: N different python scripts writing to the same Excel columns causing data corruption (Script Collision Risk, S330), and user buying multiple redundant gadgets causing capital drift (Optimization Stacking, S336).
+- **Insight (S) — Optimization Stacking**: In unconstrained environments, the psychological need for robustness manifests as buying multiple cheap, redundant tools instead of one definitive solution. This diffuses capital silently. One definitive tool > three overlapping backups. 
+- **Insight (S) — Accumulation Drift**: Unconstrained piecemeal additions—whether they are Python scripts or $13 gadgets—cause silent systemic drift (data overwrite or capital leak) without a centralized architecture.
+- **Connects to**: S330 (Script Collision Risk).
+- **Confidence**: 🟢 0.7 — Pattern observed across technical and financial domains.

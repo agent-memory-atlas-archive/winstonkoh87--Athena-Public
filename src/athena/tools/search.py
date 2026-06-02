@@ -11,20 +11,19 @@ import contextlib
 import json
 import subprocess
 import sys
-from collections import defaultdict
-from concurrent.futures import ALL_COMPLETED, ThreadPoolExecutor, wait
 from pathlib import Path
+from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED
 
-from athena.core.cache import get_search_cache
 from athena.core.config import (
-    CANONICAL_PATH,
     PROJECT_ROOT,
+    TAG_INDEX_PATH,
     TAG_INDEX_AM_PATH,
     TAG_INDEX_NZ_PATH,
-    TAG_INDEX_PATH,
+    CANONICAL_PATH,
 )
 from athena.core.models import SearchResult
-
+from athena.core.cache import get_search_cache
 # Lazy imports to speed up CLI startup
 # from athena.memory.vectors import ... (Moved inside functions)
 # from athena.tools.reranker import ... (Moved inside functions)
@@ -194,112 +193,85 @@ def collect_vectors(
     embedding: "list[float] | None" = None,
     exclude_domains: "list[str] | None" = None,
 ) -> "list[SearchResult]":
-    """Collect semantic matches via Supabase"""
+    """Collect semantic matches via Supabase using a unified database search."""
     if exclude_domains is None:
         exclude_domains = ["personal"]  # Default: exclude personal domain
 
     results = []
     try:
-        from athena.memory.vectors import (
-            get_client,
-            get_embedding,
-            search_capabilities,
-            search_case_studies,
-            search_entities,
-            search_frameworks,
-            search_playbooks,
-            search_protocols,
-            search_references,
-            search_sessions,
-            search_system_docs,
-            search_user_profile,
-            search_workflows,
-        )
+        from athena.memory.vectors import get_embedding, get_client
 
         query_embedding = embedding if embedding else get_embedding(query)
 
-        # God Mode Limits
-        high_limit = 10
-        mid_limit = 5 if not GOD_MODE else 3
-        low_limit = 5 if not GOD_MODE else 3
+        # Call the unified database search function
+        client = get_client()
+        
+        # Determine match threshold and limits
+        threshold = 0.3
+        match_count = limit * 2  # Fetch slightly more to account for filtering
+        
+        rpc_result = client.rpc(
+            "search_all_vectors",
+            {
+                "query_embedding": query_embedding,
+                "match_threshold": threshold,
+                "match_count": match_count,
+            }
+        ).execute()
 
-        # Parallel search using ThreadPoolExecutor
-        search_tasks = [
-            ("protocol", search_protocols, high_limit, 0.3),
-            ("case_study", search_case_studies, high_limit, 0.3),
-            ("session", search_sessions, mid_limit, 0.35),
-            ("capability", search_capabilities, low_limit, 0.3),
-            ("playbook", search_playbooks, low_limit, 0.3),
-            ("workflow", search_workflows, low_limit, 0.3),
-            ("entity", search_entities, low_limit, 0.3),
-            ("reference", search_references, low_limit, 0.3),
-            ("framework", search_frameworks, low_limit, 0.3),
-            ("user_profile", search_user_profile, low_limit, 0.3),
-            ("system_doc", search_system_docs, low_limit, 0.3),
-        ]
+        for item in rpc_result.data or []:
+            type_label = item.get("source_table", "unknown")
+            path = item.get("file_path", "")
+            if "?" in path:
+                path = path.split("?")[0]
 
-        def run_task(task):
-            type_label, func, limit, threshold = task
-            try:
-                # Ensure thread-local client is retrieved within the worker thread
-                worker_client = get_client()
-                return type_label, func(
-                    worker_client, query_embedding, limit=limit, threshold=threshold
+            # Domain filtering: skip items from excluded domains
+            item_domain = item.get("metadata", {}).get("domain", "technical")
+            if item_domain in exclude_domains:
+                continue
+
+            # Dynamic Title/ID construction
+            item_id = (
+                item.get("title")
+                or item.get("metadata", {}).get("name")
+                or item.get("metadata", {}).get("code")
+                or item.get("metadata", {}).get("entity_name")
+                or item.get("metadata", {}).get("filename")
+                or f"{type_label}"
+            )
+            if type_label == "protocol":
+                item_id = f"Protocol {item.get('metadata', {}).get('code')}: {item.get('metadata', {}).get('name')}"
+            elif type_label == "session":
+                item_id = f"Session {item.get('metadata', {}).get('date')}: {item.get('title')}"
+            elif type_label == "case_study":
+                item_id = f"Case Study: {item.get('title')}"
+
+            # Content extraction
+            content = (
+                item.get("content")
+                or item.get("metadata", {}).get("summary")
+                or item.get("metadata", {}).get("description")
+                or ""
+            )
+
+            results.append(
+                SearchResult(
+                    id=item_id,
+                    content=content,
+                    source=type_label,
+                    score=item.get("similarity", 0.0),
+                    metadata={
+                        "path": path,
+                        "type": type_label,
+                        "id": item.get("id"),
+                        "code": item.get("metadata", {}).get("code"),
+                        "tags": item.get("metadata", {}).get("tags") or [],
+                    },
                 )
-            except Exception as e:
-                print(f"   ⚠️ Search failed for {type_label}: {e}", file=sys.stderr)
-                return type_label, []
-
-        with ThreadPoolExecutor(max_workers=len(search_tasks)) as executor:
-            task_results = list(executor.map(run_task, search_tasks))
-
-        for type_label, raw_results in task_results:
-            for item in raw_results or []:
-                path = item.get("file_path", "")
-                if "?" in path:
-                    path = path.split("?")[0]
-
-                # Domain filtering: skip items from excluded domains
-                item_domain = item.get("domain", "technical")
-                if item_domain in exclude_domains:
-                    continue
-
-                # Dynamic Title/ID construction
-                item_id = (
-                    item.get("title")
-                    or item.get("name")
-                    or item.get("code")
-                    or item.get("entity_name")
-                    or item.get("filename")
-                    or f"{type_label}"
-                )
-                if type_label == "protocol":
-                    item_id = f"Protocol {item.get('code')}: {item.get('name')}"
-                elif type_label == "session":
-                    item_id = f"Session {item.get('date')}: {item.get('title')}"
-                elif type_label == "case_study":
-                    item_id = f"Case Study: {item.get('title')}"
-
-                # Path filtering (SKIP_PATHS)
-                if any(sp in path for sp in SKIP_PATHS):
-                    continue
-
-                results.append(
-                    SearchResult(
-                        id=item_id,
-                        content=item.get("content", "")[:200],
-                        source=type_label,  # Use actual type for correct RRF weighting
-                        score=item.get("similarity", 0),
-                        metadata={
-                            "type": type_label,
-                            "path": path,
-                            "domain": item_domain,
-                        },
-                    )
-                )
+            )
 
     except Exception as e:
-        print(f"Vector search warning: {e}", file=sys.stderr)
+        print(f"   ⚠️ Unified vector search failed: {e}", file=sys.stderr)
 
     return results
 
@@ -549,7 +521,6 @@ def collect_framework_docs(query: str) -> list[SearchResult]:
 def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
     """Sovereign Fallback: Search the local SQLite index (athena.db)."""
     import sqlite3
-
     from athena.core.config import INPUTS_DIR
 
     db_path = INPUTS_DIR / "athena.db"
@@ -584,7 +555,7 @@ def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
         # 2. Search by Tags
         cursor.execute(
             """
-            SELECT f.path, t.name
+            SELECT f.path, t.name 
             FROM files f
             JOIN file_tags ft ON f.path = ft.file_path
             JOIN tags t ON ft.tag_id = t.id
@@ -702,6 +673,8 @@ def run_search(
     json_output: bool = False,
     include_personal: bool = False,
 ):
+    import time
+    t0 = time.time()
     # 0. Check cache first
     cache = get_search_cache()
     cache_key = f"{query}|{limit}|{strict}|{rerank}"
@@ -721,9 +694,8 @@ def run_search(
         try:
             # We need the embedding for semantic check
             # This corresponds to "Step 2: Fetch embedding" in the plan
-            import signal
-
             from athena.memory.vectors import get_embedding
+            import signal
 
             # Timeout wrapper for get_embedding (Supabase cold start issues)
             def handler(signum, frame):
@@ -800,42 +772,19 @@ def run_search(
 
             lists = {}
             with ThreadPoolExecutor(max_workers=len(collection_tasks)) as executor:
+                # 1. Start all non-vector tasks in parallel
                 future_to_source = {
                     executor.submit(safe_exec, source, func): source
                     for source, func in collection_tasks.items()
-                    if source != "vector"  # Defer vector launch
+                    if source != "vector"
                 }
 
-                # Adaptive Latency: Entropy Check
-                # If query is short (< 5 words) and generic, skip vectors
-                word_count = len(query.split())
-                is_low_entropy = word_count < 5 and not any(
-                    x in query.lower()
-                    for x in ["protocol", "session", "case study", "cs-"]
-                )
-
-                if is_low_entropy and not include_personal:
-                    if not json_output:
-                        print(
-                            "   ⚡ Low Entropy Query: Skipping deep retrieval (Vectors bypassed)"
-                        )
-                else:
-                    # Launch vector search
-                    future_to_source[
-                        executor.submit(safe_exec, "vector", collection_tasks["vector"])
-                    ] = "vector"
-
-                # God Mode Timeout
-                # Vector search needs ~5-6s (embedding + 11 Supabase RPCs)
-                # Cold starts can push this to ~8s. 10s gives headroom.
-                timeout = 12 if not GOD_MODE else 10
-
-                # Wait for ALL to finish (or timeout)
+                # 2. Wait for non-vector tasks to complete (local processes are very fast)
                 done, not_done = wait(
-                    future_to_source.keys(), timeout=timeout, return_when=ALL_COMPLETED
+                    future_to_source.keys(), timeout=3, return_when=ALL_COMPLETED
                 )
 
-                # Collect finished results
+                # Collect non-vector results
                 for future in done:
                     source = future_to_source[future]
                     try:
@@ -843,16 +792,43 @@ def run_search(
                     except Exception:
                         lists[source] = []
 
-                # Report timeouts
+                # Report timeouts for non-vector tasks
                 for future in not_done:
                     source = future_to_source[future]
                     if not json_output:
-                        print(
-                            f"   ⚠️ {source} timed out (Tier 2 limit)", file=sys.stderr
-                        )
-                    # We simply don't add it to lists, effectively skipping it
-                    # Ensure we cancel if possible (though Python threads can't be killed)
-                    future.cancel()
+                        print(f"   ⚠️ {source} timed out (Tier 1 limit)", file=sys.stderr)
+
+                # 3. Adaptive Router: Determine if we can bypass vectors
+                word_count = len(query.split())
+                is_low_entropy = word_count < 5 and not any(
+                    x in query.lower()
+                    for x in ["protocol", "session", "case study", "cs-"]
+                )
+
+                # Check if we have high-confidence local hits (score >= 0.8)
+                has_local_hits = False
+                for source in ["canonical", "tags", "sqlite", "filename", "framework_docs"]:
+                    if any(doc.score >= 0.8 for doc in lists.get(source, [])):
+                        has_local_hits = True
+                        break
+
+                needs_vector = True
+                if is_low_entropy and has_local_hits:
+                    needs_vector = False
+                    if not json_output:
+                        print("   ⚡ Low Entropy Query with Local Hits: Skipping deep vector retrieval")
+
+                if needs_vector:
+                    # Launch vector search
+                    future_vector = executor.submit(safe_exec, "vector", collection_tasks["vector"])
+                    try:
+                        # Vector search timeout: 10s God Mode, 12s standard
+                        timeout = 10 if GOD_MODE else 12
+                        lists["vector"] = future_vector.result(timeout=timeout)
+                    except Exception as e:
+                        if not json_output:
+                            print(f"   ⚠️ vector search timed out or failed: {e}", file=sys.stderr)
+                        lists["vector"] = []
 
             # 2. Fuse
             # Split vector results by their type-specific source for correct
@@ -945,52 +921,92 @@ def run_search(
 
         print("-" * 60)
         print("</athena_grounding>\n")
-
-        # Retrieval Telemetry — A7 Instrumentation (MCDA Rank #1)
-        # Logs every search invocation to enable data-driven pruning.
-        with contextlib.suppress(Exception):
-            import datetime
-            telemetry_dir = Path(__file__).parent.parent.parent.parent / ".agent" / "telemetry"
-            telemetry_dir.mkdir(parents=True, exist_ok=True)
-            log_path = telemetry_dir / "retrieval_log.jsonl"
-
-            top_results = fused_results[:limit]
-            high_count = sum(1 for r in top_results if r.rrf_score >= CONFIDENCE_HIGH)
-            med_count = sum(1 for r in top_results if CONFIDENCE_LOW <= r.rrf_score < CONFIDENCE_HIGH)
-            low_count = sum(1 for r in top_results if r.rrf_score < CONFIDENCE_LOW)
-
-            # Classify retrieval quality
-            if high_count >= 3:
-                quality = "hit"
-            elif high_count >= 1 or med_count >= 3:
-                quality = "partial"
-            else:
-                quality = "miss"
-
-            # Source distribution — which retrieval channels contributed
-            source_counts = defaultdict(int)
-            for r in top_results:
-                source_counts[r.source] += 1
-
-            entry = {
-                "ts": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                "query": query,
-                "limit": limit,
-                "strict": strict,
-                "rerank": rerank,
-                "total_results": len(fused_results),
-                "quality": quality,
-                "confidence": {"high": high_count, "med": med_count, "low": low_count},
-                "sources": dict(source_counts),
-                "top_rrf": round(top_results[0].rrf_score, 5) if top_results else 0,
-            }
-
-            with open(log_path, "a", encoding="utf-8") as f:
-                f.write(json.dumps(entry) + "\n")
     else:
         # JSON output logic
         output = [doc.to_dict() for doc in fused_results[:limit]]
         print(json.dumps({"results": output, "suppressed": suppressed_count}))
+
+    # Retrieval Telemetry — A7 Instrumentation (MCDA Rank #1)
+    # Logs every search invocation to enable data-driven pruning.
+    with contextlib.suppress(Exception):
+        import datetime
+        from athena.core.config import PROJECT_ROOT
+
+        telemetry_dir = PROJECT_ROOT / ".agent" / "telemetry"
+        telemetry_dir.mkdir(parents=True, exist_ok=True)
+        log_path = telemetry_dir / "retrieval_log.jsonl"
+
+        top_results = fused_results[:limit]
+        high_count = sum(1 for r in top_results if r.rrf_score >= CONFIDENCE_HIGH)
+        med_count = sum(1 for r in top_results if CONFIDENCE_LOW <= r.rrf_score < CONFIDENCE_HIGH)
+        low_count = sum(1 for r in top_results if r.rrf_score < CONFIDENCE_LOW)
+
+        # Classify retrieval quality
+        if high_count >= 3:
+            quality = "hit"
+        elif high_count >= 1 or med_count >= 3:
+            quality = "partial"
+        else:
+            quality = "miss"
+
+        # Source distribution — which retrieval channels contributed
+        source_counts = defaultdict(int)
+        for r in top_results:
+            source_counts[r.source] += 1
+
+        # Estimate tokens
+        tokens = len(query.split())
+        try:
+            import tiktoken
+            encoding = tiktoken.get_encoding("cl100k_base")
+            tokens = len(encoding.encode(query))
+        except Exception:
+            pass
+
+        latency_ms = int((time.time() - t0) * 1000)
+
+        entry = {
+            "ts": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "query": query,
+            "limit": limit,
+            "strict": strict,
+            "rerank": rerank,
+            "total_results": len(fused_results),
+            "quality": quality,
+            "confidence": {"high": high_count, "med": med_count, "low": low_count},
+            "sources": dict(source_counts),
+            "top_rrf": round(top_results[0].rrf_score, 5) if top_results else 0,
+            "latency_ms": latency_ms,
+            "tokens": tokens,
+        }
+
+        with open(log_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry) + "\n")
+
+        # Also log to invocations.jsonl
+        invocations_path = PROJECT_ROOT / ".athena" / "invocations.jsonl"
+        invocations_path.parent.mkdir(parents=True, exist_ok=True)
+
+        session_id = ""
+        with contextlib.suppress(Exception):
+            from athena.sessions import get_current_session_log
+            log_file = get_current_session_log()
+            if log_file:
+                session_id = log_file.stem
+
+        inv_entry = {
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "type": "skill",
+            "name": "smart_search",
+            "trigger": "search tool call",
+            "session_id": session_id,
+            "tokens_in": tokens,
+            "tokens_out": 0,
+            "latency_ms": latency_ms,
+            "user_reaction": "",
+        }
+        with open(invocations_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(inv_entry, separators=(",", ":")) + "\n")
 
 
 if __name__ == "__main__":

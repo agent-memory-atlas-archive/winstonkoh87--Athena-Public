@@ -1,7 +1,7 @@
 # Athena Spec Sheet
 
-> **Version**: v9.9.0
-> **Date**: 30 May 2026
+> **Version**: v9.9.1
+> **Date**: 2 Jun 2026
 > **Architect**: Winston Koh
 > **Status**: Production (1,800+ sessions)
 
@@ -103,7 +103,7 @@ tags: [memory, search, mcp]
 ```text
 Protocol-driven discovery via PROTOCOL_SUMMARIES.md
 Protocol usage frequency via PROTOCOL_HEATMAP.md
-Active protocols: 389 | Archived: 32 | Total: 421
+Active protocols: 396 | Archived: 32 | Total: 428
 ```
 
 > **Note**: `TAG_INDEX.md` is deprecated. Use `PROTOCOL_SUMMARIES.md` for protocol discovery.

@@ -15,6 +15,9 @@ last_updated: 2026-03-21
 > **NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST.**
 > Fixing symptoms creates whack-a-mole debugging. Every fix that doesn't address root cause makes the next bug harder to find. Find the root cause, then fix it.
 
+> [!TIP]
+> **Backend/DB issues?** Run [Protocol 540: Forward Trace Gate](file:///Users/[AUTHOR]/Project%20Athena/.agent/skills/protocols/engineering/ENG-540-forward-trace-gate.md) BEFORE Phase 7. Trace data *forward* (DB → query → component → render) to find the gap. Never propose schema changes until you've proven L0 can't solve it.
+
 ---
 
 ## Phase 0: Dependency Check (~5s)

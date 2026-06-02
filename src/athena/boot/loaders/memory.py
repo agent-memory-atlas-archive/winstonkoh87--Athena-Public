@@ -1,18 +1,17 @@
-import contextlib
-import subprocess
 import sys
+import subprocess
 from datetime import datetime
-
+from pathlib import Path
 from athena.boot.constants import (
+    PROJECT_ROOT,
+    LOGS_DIR,
+    SUPABASE_SEARCH_SCRIPT,
+    GREEN,
+    YELLOW,
+    RED,
     BOLD,
     DIM,
-    GREEN,
-    LOGS_DIR,
-    PROJECT_ROOT,
-    RED,
     RESET,
-    SUPABASE_SEARCH_SCRIPT,
-    YELLOW,
 )
 
 
@@ -123,8 +122,10 @@ class MemoryLoader:
 
             hot_queries = ["protocol", "session", "user profile"]
             for query in hot_queries:
-                with contextlib.suppress(Exception):
+                try:
                     run_search(query, limit=5, json_output=True)
+                except Exception:
+                    pass  # Best effort
             print(
                 f"{GREEN}🔥 Search cache pre-warmed ({len(hot_queries)} queries){RESET}"
             )

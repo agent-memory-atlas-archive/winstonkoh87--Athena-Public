@@ -36,7 +36,7 @@ Load the following files (in order):
 3. **User Context (FULL DISCLOSURE)**
    - `Winston/profile/User_Profile_Core.md` (Identity, Bio, Typology)
    - `Winston/profile/System_Principles.md` (Decision frameworks, values)
-   - `[AUTHOR]/profile/Psychology_Layers.md` (Psychological layers, schema history)
+   - `Winston/profile/[PRIVATE_MODULE].md` ([PRIVATE_MODULE], history)
    - `Winston/profile/Business_Frameworks.md` (Mental models, strategies)
    - `Winston/profile/Session_Observations.md` (Calibration patterns, cases)
 
@@ -47,7 +47,7 @@ Load the following files (in order):
    - List protocols in `.agent/skills/protocols/` (count + categories)
 
 5. **Memory & Skill Index**
-   - `.context/TAG_INDEX.md` (Entity/topic coverage)
+   - `.context/PROTOCOL_SUMMARIES.md` (Protocol/topic discovery)
    - `.context/SKILL_INDEX.md` (Capability registry)
 
 6. **Metrics**
@@ -63,7 +63,7 @@ Load the following files (in order):
 Generate `docs/audit/SYSTEM_PRIMER_FULL.md`.
 - **Content**: EVERYTHING listed above (Sections 1-9).
 - **Header**: `> CLASSIFICATION: L3 SYSTEM EYES ONLY`
-- **Psychology**: Include raw shadow persona profiles, deep schema details, behavioral economics.
+- **Psychology**: Include raw "[NAME]" profiles, L5 schema details, [PRIVATE].
 - **Risk**: Include specific R00X triggers and financial thresholds.
 
 #### Track B: External Audit Brief (Redacted)
@@ -73,7 +73,7 @@ Generate `docs/audit/SYSTEM_PRIMER_REDACTED.md`.
 - **Header**: `> CLASSIFICATION: PUBLIC / AUDITABLE`
 - **Redactions**:
   - Replace specific net worth/financials with "Threshold defined".
-  - Replace "Shadow Persona" and raw L5 trauma details with "Shadow Persona" and "Core Wound".
+  - Replace "[NAME]" and raw L5 trauma details with "Shadow Persona" and "Core Wound".
   - Remove any mention of specific individuals or private legal cases.
   - Summarize R00X triggers abstractly (e.g. "Impulse Control Event").
 - **Focus**: Prove *Controls* exist, without exposing *Vulnerabilities*.

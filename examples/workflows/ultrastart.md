@@ -1,7 +1,7 @@
 ---
 description: Deep boot for cognitive/computationally intensive work. System-2 counterpart to /start.
 created: 2026-03-10
-last_updated: 2026-05-08
+last_updated: 2026-05-11
 model: default
 temperature: 0.7
 tools:
@@ -11,7 +11,7 @@ tools:
   search: true
 ---
 
-# /ultrastart — Deep Context Boot (System-2) v3.0
+# /ultrastart — Deep Context Boot (System-2) v3.1
 
 > **Latency Profile**: HIGH (~20-30s boot)
 > **Philosophy**: Maximum Compute. Depth is the priority. Load everything. Reason deeply.
@@ -25,17 +25,22 @@ tools:
 > `/ultrastart` trades speed for epistemic depth. Only invoke when the session
 > demands maximum context alignment before reasoning begins.
 >
-> **v3.0 Maximum Compute Doctrine** (2026-03-15):
+> **v3.1 Subscription-Aware Maximum Compute Doctrine** (2026-05-11):
 >
-> On a flat-rate AI subscription (Google AI Ultra $250/month), every unused token
-> is wasted value. The marginal cost of deeper thinking is **$0**. Therefore:
+> The MaxMax doctrine adapts to subscription economics:
 >
-> **Cost of under-thinking >> Cost of over-thinking.**
+> | Subscription Type | Mode | Behavior |
+> |:------------------|:-----|:---------|
+> | **Flat-rate unlimited** (e.g., Google AI Ultra $250/mo) | **MaxMax** | Load everything. Tokens are free. No budget caps. |
+> | **Quota-limited** (e.g., Gemini Pro, Claude Opus via Antigravity) | **MaxMax-Lite** | Load Tiers 1–2 + 1 semantic bridge search (--limit 8). Skip Tier 3 + cross-domain sweep. ~35K boot. |
 >
-> v1.0 budgeted 20K. v2.0 budgeted 25K. Both were efficiency-biased — optimizing
-> the wrong variable. v3.0 removes all budget caps. The optimization function is:
+> The optimization function remains `maximize(output quality)` in both modes.
+> The difference: MaxMax-Lite preserves quota headroom for deep-work turns
+> instead of spending it on speculative boot loads.
 >
-> **Maximize output quality. Tokens are free. Load everything relevant.**
+> **Detection**: Infer subscription type from the model/platform in use.
+> If uncertain, default to **MaxMax-Lite** (conservative). The user can
+> override with `--full` to force MaxMax.
 >
 > **AGoT Routing** (v9.5.0):
 >
@@ -43,7 +48,7 @@ tools:
 > - Λ 21-40: AGoT-Lite (2 layers, no recursion)
 > - Λ 41-60: AGoT-Full (3 layers, 1 recursive depth)
 > - Λ > 60: AGoT + 4-Track Personas (full dynamic graph)
-> See: `scripts/core/reasoning/agot_orchestrator.py`
+> See: `.agent/scripts/parallel_orchestrator.py`
 
 ---
 
@@ -374,16 +379,15 @@ From Core_Identity §0.4 — run before output:
 After all 4 boot phases complete, output:
 
 ```
-🧠 Deep Boot Complete (v3.0 Maximum Compute).
+🧠 Deep Boot Complete (v3.1 Maximum Compute).
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[Phase 1] Full Framework Identity  ✅  (11 modules loaded)
+[Phase 1] Full Framework Identity  ✅  (N modules loaded)
 [Phase 2] Canonical + Projects     ✅  (decisions + pipeline)
 [Phase 3] Full State               ✅  (N checkpoints loaded)
 [Phase 4] Deep Semantic Bridge     ✅  (N results injected)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Boot: ~XXK tokens
-Session Mode: Maximum Compute (no budget caps)
-Subscription: Flat-rate (marginal cost = $0)
+Boot: ~XXK / 200K ECL (XX% utilized — target <80%)
+Session Mode: MaxMax | MaxMax-Lite (subscription-aware)
 Objective: "<resolved objective>"
 Loaded: <N> modules, <N> protocols, <N> case studies, <N> session insights
 
@@ -393,6 +397,11 @@ Loaded: <N> modules, <N> protocols, <N> case studies, <N> session insights
 ⚡ Adversarial checking ON (all responses).
 ⚡ Post-Generation Self-Audit ON (Λ > 60).
 ```
+
+> **Context Utilization Alerts** (P517 supplement):
+> - **70% (140K)**: Soft alert — suggest denser output or proactive `context-compactor`.
+> - **80% (160K)**: P517 Homeostatic Pressure activates — all queries treated as SNIPER.
+> - **90% (180K)**: Mandatory `context-compactor` before responding.
 
 ---
 
@@ -417,7 +426,7 @@ After `/ultrastart` boot, the session operates at **maximum available compute de
 
 | Dimension | Standard (`/start`) | Maximum Compute (`/ultrastart` v3.0) |
 |:----------|:-------------------|:-------------------------------------|
-| **Module loading** | Core_Identity only | **All 11 framework modules** |
+| **Module loading** | Core_Identity only | **All 10 framework modules** |
 | **State loading** | Header + 1 checkpoint | **Header + ALL checkpoints** |
 | **Semantic bridge** | 5 results, summaries only | **15 results, full file loads** |
 | **Λ routing** | Route to minimum sufficient depth | **Route to maximum available depth** |
@@ -497,6 +506,24 @@ preference — it's an architectural constraint:
 
 > **Rule**: One session = one objective. When the objective is complete, `/ultraend` and start fresh.
 
+### Topic-Drift Detection (v3.1)
+
+If a user query diverges **>2 clusters** from the boot objective (as resolved in Phase 4):
+
+> ⚠️ "Topic drift detected (boot: [**original domain**], current: [**new domain**]).
+> Continue here (cross-reference quality may degrade), or `/ultraend` → `/ultrastart [new topic]`?"
+
+**Detection heuristic**: Compare the domain classification of the current query against the boot objective's cluster. If the current query would route to a different Cognitive System (per `/start` Phase 3 routing table), that's a drift signal.
+
+**Do NOT fire on**:
+- Naturally adjacent domains (Trading → Psychology, Consulting → Pricing)
+- Sub-topics of the boot objective
+- Meta-questions about the session itself
+
+**Do fire on**:
+- Complete domain switches (e.g., boot = Trading, current = Academic Delivery)
+- Sustained topic change (2+ consecutive queries in the new domain)
+
 ---
 
 ## Stability Controls
@@ -518,14 +545,15 @@ preference — it's an architectural constraint:
 | v1.0 | 2026-03-10 | Initial 20K static boot (4 phases, budget-capped). |
 | v2.0 | 2026-03-15 | 25K lean boot + JIT primary + max reasoning depth. Still efficiency-biased. |
 | v3.0 | 2026-03-15 | **Maximum Compute rewrite.** Removed all budget caps. Load ALL 11 framework modules. Full state extraction. Expanded semantic bridge (15 results, full loads). JIT as supplement not replacement. Philosophy: flat-rate subscription = tokens are free = optimize quality, not efficiency. |
+| v3.1 | 2026-05-11 | **Subscription-awareness gate.** Auto-detects flat-rate vs quota-limited plans → MaxMax or MaxMax-Lite. Added context utilization metric to boot confirmation (target <80%). Added topic-drift detection for One-Session-One-Feature enforcement. |
 
 ---
 
 ## References
 
-- [/ultraend](ultraend.md) — Symmetric deep close counterpart
-- [/start](start.md) — Lightweight boot
-- [/end](end.md) — Lightweight close
+- [/ultraend](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/ultraend.md) — Symmetric deep close counterpart
+- [/start](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/start.md) — Lightweight boot
+- [/end](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/end.md) — Lightweight close
 
 ---
 

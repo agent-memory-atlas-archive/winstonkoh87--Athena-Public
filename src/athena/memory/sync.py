@@ -74,6 +74,7 @@ def sync_file_to_supabase(
     extra_metadata: "dict | None" = None,
     manifest: "DeltaManifest | None" = None,
     max_retries: int = 3,
+    force: bool = False,
 ):
     """
     Sync a single file with Exponential Backoff Retries.
@@ -84,7 +85,7 @@ def sync_file_to_supabase(
     if not abs_file.exists():
         return False
 
-    if manifest and not manifest.should_sync(abs_file):
+    if not force and manifest and not manifest.should_sync(abs_file):
         return True
 
     content = abs_file.read_text(encoding="utf-8")
@@ -162,6 +163,11 @@ def _enrich_data_by_table(data: dict, file_path: Path, table_name: str, meta: di
     elif table_name == "memory_bank":
         data["filename"] = file_path.name
         data["doc_type"] = "memory_bank"
+    elif table_name in ["frameworks", "playbooks", "references"]:
+        data["name"] = file_path.stem
+    elif table_name == "user_profile":
+        data["filename"] = file_path.name
+        data["category"] = meta.get("category", "general")
 
 
 def delete_file_from_vector(file_path_str: str):

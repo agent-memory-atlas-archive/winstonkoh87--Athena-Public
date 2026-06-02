@@ -16,7 +16,7 @@ last_updated: 2026-01-03
    - Write closing timestamp.
 
    ```bash
-   .venv/bin/python3 .agent/scripts/shutdown.py
+   python3 .agent/scripts/shutdown.py
    ```
 
 // turbo

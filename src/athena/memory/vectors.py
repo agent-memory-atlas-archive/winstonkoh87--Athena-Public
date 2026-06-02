@@ -6,13 +6,15 @@ Optimizations:
     - Atomic Cache: PersistentEmbeddingCache now uses Locks and Atomic Writes.
 """
 
+import os
+import sys
 import hashlib
 import json
-import os
 import random
-import tempfile
 import threading
-from typing import Any
+import tempfile
+from pathlib import Path
+from typing import List, Dict, Any, Optional
 
 # Global cache instance
 _embedding_cache = None
@@ -37,9 +39,8 @@ _thread_local = threading.local()
 def get_client() -> Any:
     """Returns a thread-safe Supabase client instance."""
     if not hasattr(_thread_local, "client"):
-        from dotenv import load_dotenv
-
         from supabase import create_client
+        from dotenv import load_dotenv
 
         load_dotenv()
 
@@ -60,7 +61,7 @@ class PersistentEmbeddingCache:
 
         self.cache_file = AGENT_DIR / "state" / filename
         self.lock = threading.Lock()
-        self._cache: dict[str, list[float]] = {}
+        self._cache: Dict[str, List[float]] = {}
         self._dirty = False
         self._load()
 
@@ -94,8 +95,11 @@ class PersistentEmbeddingCache:
             with self.lock:
                 if not self._dirty:
                     return
-                content = json.dumps(self._cache)
+                cache_copy = dict(self._cache)
                 self._dirty = False
+
+            # Serialize outside the lock to prevent thread lock starvation
+            content = json.dumps(cache_copy)
 
             # Offload IO to a daemon thread to avoid blocking caller
             threading.Thread(
@@ -104,11 +108,11 @@ class PersistentEmbeddingCache:
         except Exception:
             pass
 
-    def get(self, text_hash: str) -> list[float] | None:
+    def get(self, text_hash: str) -> Optional[List[float]]:
         with self.lock:
             return self._cache.get(text_hash)
 
-    def set(self, text_hash: str, embedding: list[float]):
+    def set(self, text_hash: str, embedding: List[float]):
         with self.lock:
             self._cache[text_hash] = embedding
             self._dirty = True
@@ -119,7 +123,7 @@ def _hash_text(text: str) -> str:
     return hashlib.md5(text.encode()).hexdigest()
 
 
-def get_embedding(text: str, max_retries: int = 7) -> list[float]:
+def get_embedding(text: str, max_retries: int = 7) -> List[float]:
     """Generate embedding with persistent disk caching and exponential backoff.
 
     Uses gemini-embedding-001 (3072 dimensions).
@@ -190,9 +194,103 @@ def get_embedding(text: str, max_retries: int = 7) -> list[float]:
     raise RuntimeError(f"get_embedding failed after {max_retries} retries: {last_error}")
 
 
+def get_embeddings_batch(
+    texts: List[str], batch_size: int = 25, max_retries: int = 7
+) -> List[Optional[List[float]]]:
+    """Embed many texts via Gemini :batchEmbedContents, warming the persistent cache.
+
+    Why this exists: get_embedding() is Semaphore(1)-serialized with a 1s floor delay
+    per call, so embedding N files costs ~1.5-2s EACH, serially (the real reason a sync
+    takes 20+ min). batchEmbedContents collapses N cache-misses into ceil(N/batch_size)
+    requests. Cache hits are skipped entirely (no API). On ANY batch failure it falls
+    back to the proven per-item get_embedding(), so correctness/latency is never WORSE
+    than the single-call path — only better.
+
+    Returns embeddings aligned to `texts` (None for any that ultimately failed).
+    Side effect: populates the on-disk embedding cache, so a subsequent per-file
+    get_embedding(text) for the same text is an instant cache hit.
+    """
+    import time
+
+    cache = get_embedding_cache()
+    results: List[Optional[List[float]]] = [None] * len(texts)
+    misses = []  # list of (index, text, hash)
+    for i, t in enumerate(texts):
+        h = _hash_text(t)
+        cached = cache.get(h)
+        if cached is not None:
+            results[i] = cached
+        else:
+            misses.append((i, t, h))
+
+    if not misses:
+        return results
+
+    import requests
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if not api_key:
+        raise ValueError("GOOGLE_API_KEY missing.")
+
+    url = (
+        "https://generativelanguage.googleapis.com/v1beta/models/"
+        f"gemini-embedding-001:batchEmbedContents?key={api_key}"
+    )
+
+    for start in range(0, len(misses), batch_size):
+        group = misses[start : start + batch_size]
+        payload = {
+            "requests": [
+                {"model": "models/gemini-embedding-001", "content": {"parts": [{"text": t}]}}
+                for _, t, _ in group
+            ]
+        }
+        got: Optional[List[List[float]]] = None
+        for attempt in range(max_retries):
+            with _embedding_semaphore:
+                try:
+                    resp = requests.post(url, json=payload, timeout=120)
+                    if resp.status_code == 429 or resp.status_code >= 500:
+                        retry_after = resp.headers.get("Retry-After")
+                        wait = (
+                            min(float(retry_after), 60)
+                            if retry_after
+                            else min((2 ** attempt) + random.uniform(0, 1), 60)
+                        )
+                        if attempt < max_retries - 1:
+                            time.sleep(wait)
+                            continue
+                        resp.raise_for_status()
+                    resp.raise_for_status()
+                    got = [e["values"] for e in resp.json()["embeddings"]]
+                    time.sleep(1)  # free-tier courtesy: ONE delay per batch, not per text
+                    break
+                except Exception:
+                    if attempt < max_retries - 1:
+                        time.sleep((2 ** attempt) + random.uniform(0, 1))
+                    else:
+                        got = None
+
+        if got is not None and len(got) == len(group):
+            for (i, t, h), emb in zip(group, got):
+                results[i] = emb
+                cache.set(h, emb)
+        else:
+            # Safe degrade: per-item via the proven single-call path.
+            for i, t, h in group:
+                try:
+                    results[i] = get_embedding(t)
+                except Exception:
+                    results[i] = None
+
+    return results
+
+
 def search_rpc(
-    rpc_name: str, query_embedding: list[float], limit: int = 5, threshold: float = 0.3
-) -> list[dict]:
+    rpc_name: str, query_embedding: List[float], limit: int = 5, threshold: float = 0.3
+) -> List[Dict]:
     client = get_client()
     result = client.rpc(
         rpc_name,

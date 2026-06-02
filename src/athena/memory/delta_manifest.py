@@ -10,10 +10,11 @@ Optimizations:
 import hashlib
 import json
 import os
-import tempfile
 import threading
-from datetime import datetime, timezone
+import tempfile
 from pathlib import Path
+from typing import Dict, Optional, List, Tuple
+from datetime import datetime, timezone
 
 # Constants
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
@@ -25,7 +26,7 @@ class DeltaManifest:
     def __init__(self, manifest_path: Path = MANIFEST_PATH):
         self.manifest_path = manifest_path
         self.lock = threading.Lock()
-        self.data: dict = {"version": MANIFEST_VERSION, "files": {}}
+        self.data: Dict = {"version": MANIFEST_VERSION, "files": {}}
         self._load()
 
     def _load(self):
@@ -34,9 +35,9 @@ class DeltaManifest:
             return
 
         try:
-            with open(self.manifest_path, encoding="utf-8") as f:
+            with open(self.manifest_path, "r", encoding="utf-8") as f:
                 self.data = json.load(f)
-        except (json.JSONDecodeError, OSError):
+        except (json.JSONDecodeError, OSError) as e:
             # print(f"⚠️ Corrupt manifest detected: {e}. Starting fresh.")
             self.data = {"version": MANIFEST_VERSION, "files": {}}
 
@@ -68,12 +69,12 @@ class DeltaManifest:
         """Normalize content for hashing."""
         return content.strip().replace("\r\n", "\n").encode("utf-8")
 
-    def _get_file_stats(self, path: Path) -> tuple[int, float]:
+    def _get_file_stats(self, path: Path) -> Tuple[int, float]:
         """Return (size, mtime)."""
         stats = path.stat()
         return stats.st_size, stats.st_mtime
 
-    def calculate_hash(self, file_path: Path) -> str | None:
+    def calculate_hash(self, file_path: Path) -> Optional[str]:
         """Calculate SHA-256 hash of normalized file content."""
         if not file_path.exists():
             return None
@@ -118,7 +119,7 @@ class DeltaManifest:
 
         return curr_hash != stored.get("hash")
 
-    def update_entry(self, file_path: Path, remote_id: str | None = None):
+    def update_entry(self, file_path: Path, remote_id: Optional[str] = None):
         """Update manifest entry after successful sync."""
         if not file_path.exists():
             return
@@ -146,9 +147,9 @@ class DeltaManifest:
             if rel_path in self.data["files"]:
                 del self.data["files"][rel_path]
 
-    def get_stale_files(self, current_files: list[Path]) -> list[str]:
+    def get_stale_files(self, current_files: List[Path]) -> List[str]:
         """Identify files in manifest that no longer exist on disk."""
-        current_rel_paths = {self._get_rel_path(p) for p in current_files}
+        current_rel_paths = set(self._get_rel_path(p) for p in current_files)
         with self.lock:
             manifest_files = set(self.data["files"].keys())
             return list(manifest_files - current_rel_paths)

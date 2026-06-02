@@ -9,11 +9,11 @@ Usage:
     python3 generate_session_tldrs.py
 """
 
-import hashlib
 import json
 import re
-from datetime import datetime
+import hashlib
 from pathlib import Path
+from datetime import datetime
 
 # Configuration
 WORKSPACE = Path(__file__).resolve().parent.parent.parent

@@ -44,7 +44,7 @@ AUTO_TAG_RULES = {
         "schema",
         "pattern",
         "attachment",
-        "compulsion",
+        "[PRIVATE]",
         "trauma",
         "boundary",
     ],

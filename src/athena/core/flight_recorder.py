@@ -6,10 +6,10 @@ Records every high-stakes tool call (Write, Delete, Git) for forensic audit.
 """
 
 import json
-import os
 import time
+import os
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 LOG_FILE = PROJECT_ROOT / ".athena" / "flight_recorder.jsonl"
@@ -17,7 +17,7 @@ LOG_FILE = PROJECT_ROOT / ".athena" / "flight_recorder.jsonl"
 
 def record_action(
     tool_name: str,
-    params: dict[str, Any],
+    params: Dict[str, Any],
     status: str = "initiated",
     rationale: str = "",
 ):

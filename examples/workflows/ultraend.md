@@ -63,9 +63,13 @@ Execute **all steps from `/end` Phase 1B** first:
 
 ## Phase 1: Cross-Session Pattern Scan (~60s)
 
-**What**: Scan the last 5 session logs (from `.context/memories/session_logs/`, NOT compacted `activeContext.md` entries) for recurring themes, unresolved threads, and behavioral patterns.
+**What**: Scan the last 5 session logs for recurring themes, unresolved threads, and behavioral patterns.
 
-### Step 1: Load Recent Sessions
+### Step 1: Load Recent Session Log Files
+
+> **Source**: Always read from `.context/memories/session_logs/` (full session log files),
+> NOT from compacted one-liner entries in `activeContext.md`. The log files contain
+> the full `@decided`, `@pending`, `@learned` blocks needed for pattern detection.
 
 // turbo
 
@@ -270,7 +274,7 @@ This gives `/start` or `/ultrastart` a head start on context loading.
 // turbo
 
 ```bash
-.venv/bin/python3 .agent/scripts/shutdown.py
+python3 .agent/scripts/shutdown.py
 ```
 
 Same as `/end` — session compilation, git commit, compliance report.
@@ -320,9 +324,9 @@ Seed Accuracy (prev session): [Match/Partial/Miss]
 
 ## References
 
-- [/end](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/end.md) — Standard close (Phase 0 source)
-- [/ultrastart](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/ultrastart.md) — Symmetric deep boot counterpart
-- [/save](file:///Users/[AUTHOR]/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
+- [/end](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/end.md) — Standard close (Phase 0 source)
+- [/ultrastart](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/ultrastart.md) — Symmetric deep boot counterpart
+- [/save](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
 
 ---
 

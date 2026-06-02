@@ -7,6 +7,7 @@ Purpose:
     Only EXCLUDE explicitly sensitive categories.
     - Maps internal folders to public `examples/` structure.
     - Sanitizes PII and Secrets.
+    - Enforces privacy_blocklist.txt as a post-sync gate.
     - Rewrites internal absolute links to relative public links.
     - NO PURGE: Only adds/updates files, never deletes.
 """
@@ -87,11 +88,62 @@ PATTERNS = [
 ]
 
 
-def sanitize_content(content):
-    """Redact secrets and PII."""
+# --- Privacy Blocklist ---
+
+def load_blocklist():
+    """Load privacy_blocklist.txt from the destination repo."""
+    blocklist_path = os.path.join(DEST_ROOT, ".github", "privacy_blocklist.txt")
+    terms = []
+    if os.path.exists(blocklist_path):
+        with open(blocklist_path, "r") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#"):
+                    terms.append(line)
+    return terms
+
+
+def sanitize_content(content, blocklist_terms=None):
+    """Redact secrets, PII, and blocklisted terms."""
     for pattern, replacement in PATTERNS:
         content = re.sub(pattern, replacement, content)
     return content
+
+
+def verify_no_blocklist_violations(dest_root, blocklist_terms):
+    """Post-sync gate: scan all text files for blocklist violations."""
+    SCANNABLE = {".md", ".py", ".js", ".ts", ".json", ".yaml", ".yml",
+                 ".toml", ".sh", ".css", ".html", ".txt", ".csv"}
+    SKIP_DIRS = {".git", "node_modules", "__pycache__", ".venv", "dist"}
+    SKIP_FILES = {"privacy_blocklist.txt"}
+
+    violations = []
+    for root, dirs, files in os.walk(dest_root):
+        dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
+        for fname in files:
+            if fname in SKIP_FILES:
+                continue
+            ext = os.path.splitext(fname)[1].lower()
+            if ext not in SCANNABLE:
+                continue
+            fpath = os.path.join(root, fname)
+            try:
+                with open(fpath, "r", encoding="utf-8", errors="ignore") as f:
+                    content = f.read()
+                for term in blocklist_terms:
+                    # Use the term as a regex pattern (blocklist uses regex)
+                    try:
+                        if re.search(term, content, re.IGNORECASE):
+                            rel = os.path.relpath(fpath, dest_root)
+                            violations.append((rel, term))
+                    except re.error:
+                        # If term is not valid regex, do literal search
+                        if term.lower() in content.lower():
+                            rel = os.path.relpath(fpath, dest_root)
+                            violations.append((rel, term))
+            except Exception:
+                pass
+    return violations
 
 
 def fix_links(content, source_file_path, dest_file_path):
@@ -169,7 +221,15 @@ def is_allowed(rel_path, src_base_dir):
 
 def main():
     print("🚀 Starting BLACKLIST Sync (Rich Examples Mode)...")
-    print("   Only explicitly sensitive content will be excluded.\n")
+    print("   Only explicitly sensitive content will be excluded.")
+
+    # Load blocklist for post-sync verification
+    blocklist_terms = load_blocklist()
+    if blocklist_terms:
+        print(f"   🔒 Loaded {len(blocklist_terms)} blocklist terms for post-sync gate.")
+    else:
+        print("   ⚠️  No blocklist found — proceeding without privacy gate.")
+    print()
 
     files_synced = 0
     files_skipped = 0
@@ -220,7 +280,7 @@ def main():
                                 src_file_abs, "r", encoding="utf-8", errors="ignore"
                             ) as f:
                                 content = f.read()
-                            content = sanitize_content(content)
+                            content = sanitize_content(content, blocklist_terms)
                             content = fix_links(content, src_file_abs, dest_file_abs)
                             with open(dest_file_abs, "w", encoding="utf-8") as f:
                                 f.write(content)
@@ -230,11 +290,31 @@ def main():
                 else:
                     files_skipped += 1
 
+    print(f"\n📦 Sync phase complete: {files_synced} synced, {files_skipped} skipped.")
+
+    # --- POST-SYNC PRIVACY GATE ---
+    if blocklist_terms:
+        print("\n🔒 Running post-sync privacy verification...")
+        violations = verify_no_blocklist_violations(DEST_ROOT, blocklist_terms)
+        if violations:
+            print(f"\n❌ PRIVACY GATE FAILED — {len(violations)} violation(s) found:")
+            for fpath, term in violations[:20]:
+                print(f"   🚨 {fpath} → matched: {term}")
+            if len(violations) > 20:
+                print(f"   ... and {len(violations) - 20} more.")
+            print("\n⛔ DO NOT PUSH. Fix violations before committing.")
+            return 1
+        else:
+            print("   ✅ All clear — no blocklist violations detected.")
+    else:
+        print("\n⚠️  Skipping privacy gate (no blocklist loaded).")
+
     print(f"\n✅ Sync Complete!")
     print(f"   📦 Files synced: {files_synced}")
     print(f"   🚫 Files skipped (blacklisted): {files_skipped}")
     print(f"\n💡 Note: No purge performed. Existing files preserved.")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    exit(main())

@@ -203,7 +203,7 @@ graph TD
 | [P500](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/500-gto-problem-solver.md) | GTO Problem Solver | 6-phase: Classify → Map → Generate → Rank → EEV → Monte Carlo |
 | [P506](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/reasoning/506-gto-execution-plan.md) | GTO Execution Plan | DAG sequencing with reversibility and kill criteria |
 | [P121](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/121-mcda-eev-framework.md) | MCDA / Pairwise | Multi-criteria ranking for GTO-Lite |
-| [P422](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/decision/422-game-taxonomy.md) | Game Taxonomy | Game classification (Phase 0 of P500) |
+| [P422](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/decision/DEC-422-game-taxonomy.md) | Game Taxonomy | Game classification (Phase 0 of P500) |
 | [P330](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/330-economic-expected-value.md) | EEV Calculator | MEV + E(U) - E(O) = Economic Expected Value |
 | [P193](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/193-ergodicity-check.md) | Ergodicity Check | Safety gate: non-ergodic dimensions |
 | [P180](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/decision/180-utility-function-analysis.md) | Utility Function Analysis | Stakeholder mapping (Phase 1 of P500) |

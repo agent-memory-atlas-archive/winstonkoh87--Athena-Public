@@ -5,11 +5,13 @@ athena.core.config
 Centralized configuration and path discovery.
 """
 
-import os
 from pathlib import Path
+from typing import Optional
+import os
+
 
 # Global Cache for PROJECT_ROOT
-_PROJECT_ROOT_CACHE: Path | None = None
+_PROJECT_ROOT_CACHE: Optional[Path] = None
 
 
 def get_project_root() -> Path:
@@ -87,7 +89,7 @@ def get_active_memory_paths():
     """Returns a deduplicated list of all active memory directory Paths."""
     paths = [p for p in CORE_DIRS.values() if p.exists()]
     paths.extend([p for p, _ in EXTENDED_DIRS if p.exists()])
-    return sorted(set(paths))
+    return sorted(list(set(paths)))
 
 
 # Key Files (Sharded for token efficiency)
@@ -99,23 +101,32 @@ TAG_INDEX_NZ_PATH = CONTEXT_DIR / "TAG_INDEX_N-Z.md"
 CANONICAL_PATH = CONTEXT_DIR / "CANONICAL.md"
 
 
-def get_current_session_log() -> Path | None:
+def get_current_session_log() -> Optional[Path]:
     """
-    Find the most recent session log file (pattern: YYYY-MM-DD-session-XX.md).
+    Find the most recent session log file.
+    Matches both legacy (YYYY-MM-DD-session-XX.md) and new (SXXX_YYYYMMDD_desc.md) formats.
     """
     if not SESSIONS_DIR.exists():
         return None
 
     import re
 
-    pattern = re.compile(r"(\d{4}-\d{2}-\d{2})-session-(\d{2,3})\.md")
+    pattern_legacy = re.compile(r"^(\d{4}-\d{2}-\d{2})-session-(\d{2,3})\.md$")
+    pattern_new = re.compile(r"^S(\d{3})_(\d{8})_.*\.md$")
     session_files = []
 
     for f in SESSIONS_DIR.glob("*.md"):
-        match = pattern.match(f.name)
-        if match:
-            date_str, session_num = match.groups()
+        match_leg = pattern_legacy.match(f.name)
+        if match_leg:
+            date_str, session_num = match_leg.groups()
             session_files.append((date_str, int(session_num), f))
+            continue
+
+        match_new = pattern_new.match(f.name)
+        if match_new:
+            session_num_str, date_raw = match_new.groups()
+            date_str = f"{date_raw[:4]}-{date_raw[4:6]}-{date_raw[6:]}"
+            session_files.append((date_str, int(session_num_str), f))
 
     if not session_files:
         return None

@@ -71,7 +71,7 @@ For each thing worth remembering:
 
 - Keep `activeContext.md` checkpoint history manageable (compact sessions older than last 5)
 - Keep `CANONICAL.md` entries tight — remove stale pointers, resolve contradictions
-- Keep `TAG_INDEX.md` accurate — remove dead links, add new tags
+- Keep `PROTOCOL_SUMMARIES.md` accurate — remove dead links, add new entries
 - Resolve contradictions — if two files disagree, fix the wrong one
 
 ---
@@ -124,7 +124,7 @@ Return a brief summary of what was consolidated, updated, or pruned:
 - Consolidated 3 session logs into existing memory files
 - Updated CANONICAL.md: removed stale entry for Protocol 319 (archived)
 - Resolved contradiction: activeContext.md said Project E9 was "paused" but session log 2026-03-31 shows active work
-- Pruned TAG_INDEX.md: removed 2 dead links
+- Pruned PROTOCOL_SUMMARIES.md: removed 2 dead links
 - No action needed on 12 other memory files (already tight)
 ```
 
@@ -137,7 +137,7 @@ If nothing changed: "🌙 Dream pass: memories are already tight. No changes."
 - [/end](file:///Users/[AUTHOR]/Project Athena/.agent/workflows/end.md) — Session close (writes raw signal)
 - [/daemon](file:///Users/[AUTHOR]/Project Athena/.agent/workflows/daemon.md) — Daemon management
 - [daemon-loop](file:///Users/[AUTHOR]/Project Athena/.agent/skills/daemon-loop/SKILL.md) — Background loop infrastructure
-- [Protocol 215 — Canonical Memory](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/215-canonical-memory.md)
+- [Protocol 215 — Canonical Memory](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/ARC-215-canonical-memory.md)
 
 ---
 

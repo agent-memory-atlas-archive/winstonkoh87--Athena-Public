@@ -43,6 +43,35 @@ def extract_frontmatter(filepath: Path) -> dict:
     if heading_match:
         fm.setdefault("heading", heading_match.group(1).strip())
 
+    # Extract first substantive paragraph as fallback description
+    # Strip frontmatter and headings, find the first paragraph with real content
+    body = re.sub(r"^---.*?^---\s*\n", "", content, flags=re.MULTILINE | re.DOTALL)
+    body = body.strip()
+    for para in re.split(r"\n\s*\n", body):
+        para = para.strip()
+        # Skip headings, blockquotes with just labels, empty lines, tag lines, HR
+        if not para:
+            continue
+        if re.match(r"^#{1,6}\s", para):
+            continue
+        if re.match(r"^---\s*$", para):
+            continue
+        if re.match(r"^#", para) and len(para) < 80:
+            continue
+        # Strip leading blockquote markers for extraction
+        clean = re.sub(r"^>\s*", "", para, flags=re.MULTILINE).strip()
+        # Skip if it's just a label like "Source: ..." or "Domain: ..."
+        if re.match(r"^\*\*(Source|Domain|Priority|Tags|Protocol|Definition)\*\*", clean):
+            continue
+        if re.match(r"^(Source|Domain|Priority|Tags):", clean):
+            continue
+        # Must have at least 20 chars of real content
+        if len(clean) >= 20:
+            # Take first sentence or first 150 chars
+            first_sentence = re.split(r"(?<=[.!?])\s", clean, maxsplit=1)[0]
+            fm.setdefault("body_summary", first_sentence[:150])
+            break
+
     return fm
 
 
@@ -72,13 +101,13 @@ def build_summary(filepath: Path, category: str) -> dict:
     filename = filepath.name
     number = extract_protocol_number(filename)
     name = extract_protocol_name(filename, fm)
+
+    # Priority chain: frontmatter description > body paragraph > empty
+    # NEVER fall back to heading/title — that causes the title-echo bug (F6)
     description = fm.get("description", "")
 
-    # If no description in frontmatter, try to extract from heading context
-    if not description and "heading" in fm:
-        # Use the heading minus any "Protocol NNN:" prefix
-        desc = re.sub(r"^Protocol\s+\d+:\s*", "", fm["heading"])
-        description = desc
+    if not description:
+        description = fm.get("body_summary", "")
 
     return {
         "number": number,
@@ -150,8 +179,11 @@ def main():
             # Truncate description to first sentence for table readability
             desc = p["description"]
             if not desc:
-                desc = name_clean
-            # Limit to ~80 chars for table
+                desc = "(No description — needs frontmatter backfill)"
+            # LINT GUARD: Never allow summary == title (the F6 bug)
+            if desc.strip().lower() == name_clean.strip().lower():
+                desc = "(Title-echo detected — needs frontmatter backfill)"
+            # Limit to ~100 chars for table
             if len(desc) > 100:
                 desc = desc[:97] + "..."
             label = f"{num} {name_clean}" if num else name_clean
