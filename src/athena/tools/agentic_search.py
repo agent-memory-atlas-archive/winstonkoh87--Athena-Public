@@ -249,7 +249,6 @@ def _run_subquery_search(subquery: str, limit: int = 10) -> Tuple[str, List[Dict
         collect_canonical,
         collect_tags,
         collect_vectors,
-        collect_graphrag,
         collect_filenames,
         collect_sqlite,
         weighted_rrf,
@@ -263,7 +262,7 @@ def _run_subquery_search(subquery: str, limit: int = 10) -> Tuple[str, List[Dict
         collection_tasks = {
             "canonical": lambda: collect_canonical(subquery),
             "tags": lambda: collect_tags(subquery),
-            "graphrag": lambda: collect_graphrag(subquery),
+
             "vector": lambda: collect_vectors(subquery, embedding=query_embedding),
             "sqlite": lambda: collect_sqlite(subquery),
             "filename": lambda: collect_filenames(subquery),

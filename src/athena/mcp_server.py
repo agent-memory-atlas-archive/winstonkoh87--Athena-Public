@@ -67,7 +67,7 @@ def smart_search(
 ) -> dict:
     """
     Search Athena's knowledge base using hybrid RAG (Canonical + Tags +
-    Vectors + GraphRAG + SQLite + Filenames) with RRF fusion.
+    Vectors + SQLite + Filenames + Framework + Exocortex) with RRF fusion.
 
     Args:
         query: The search query string.

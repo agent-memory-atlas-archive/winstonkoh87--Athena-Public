@@ -1,6 +1,6 @@
 # Frequently Asked Questions (FAQ)
 
-> **Last Updated**: 20 May 2026
+> **Last Updated**: 6 Jun 2026
 
 ---
 
@@ -52,7 +52,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 ```
 
-For full power features (vector search, GraphRAG), budget 30-60 minutes.
+For full power features (vector search, Supabase sync), budget 30-60 minutes.
 
 ### Do I need API keys?
 
@@ -103,7 +103,7 @@ When the engagement ends, archive the generalized learnings back into Athena (st
 | **Embeddings** (Google API) | ~$0.001 per 1K tokens |
 | **Claude API** (direct calls) | Depends on usage |
 | **Supabase** (vector DB) | Free tier available |
-| **GraphRAG** (knowledge graph) | ⚠️ ~$50 one-time API cost |
+
 
 Most users spend **< $5/month** on API calls.
 

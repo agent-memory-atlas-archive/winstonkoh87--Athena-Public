@@ -1,7 +1,7 @@
 # Athena — Architecture Reference
 
-> **Last Updated**: 2 Jun 2026
-> **Version**: v9.9.1
+> **Last Updated**: 6 Jun 2026
+> **Version**: v9.9.1-gto
 > **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
 > **Bionic Unit Spec**: [BIONIC_UNIT_SPEC.md](./.context/specs/BIONIC_UNIT_SPEC.md) — the definitive human-AI augmentation mapping
 
@@ -17,19 +17,18 @@ Athena/
 │   │       └── archive/           #     15 deprecated protocols (read-only, see README)
 │   ├── workflows/                 #   51 root + 18 _domain = 69 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
-│   ├── scripts/                   #   246 automation scripts
+│   ├── scripts/                   #   247 automation scripts
 │   ├── telemetry/                 #   Retrieval instrumentation logs + tier maps
 │   ├── config/                    #   Agent manifests + CAPS.json (canonical counts)
 │   ├── CLUSTER_INDEX.md           #   15 cognitive clusters (routing map)
 │   ├── WORKFLOW_INDEX.md          #   Workflow registry
-│   ├── graphrag/                  #   Knowledge graph (stale as of 2026-02-25, regen pending)
 │   ├── swarms/                    #   Multi-agent swarm definitions
 │   └── archive_skills/            #   16 sunset skills (read-only, see README)
 │
 ├── .context/                      # Personal knowledge base
-│   ├── memories/                  #   3,640 memory files (session logs + case studies + profile)
+│   ├── memories/                  #   3,657 memory files (session logs + case studies + profile)
 │   │   ├── session_logs/          #     Dated session records
-│   │   ├── case_studies/          #     491 documented patterns (15 domains, 7 archived)
+│   │   ├── case_studies/          #     492 documented patterns (15 domains, 7 archived)
 │   │   ├── profile/               #     Core profile, psychology, voice DNA
 │   │   └── observations/          #     Session insights
 │   ├── memory_bank/               #   10 boot files (activeContext, userContext,
@@ -50,7 +49,7 @@ Athena/
 ├── .projects/                     # Isolated project workspaces
 │
 ├── src/                           # Athena SDK source (72 Python files)
-├── tests/                         # Test suite (34 files)
+├── tests/                         # Test suite (11 files, 86 passing)
 ├── supabase/                      # Cloud vector store migrations
 │
 ├── Athena-Public/                 # Public mirror (sibling repo)
@@ -66,7 +65,7 @@ Athena/
 
 ---
 
-## Cognitive Stack — Perception Model (v9.8.1)
+## Cognitive Stack — Perception Model (v9.9.1)
 
 > Modeled after human sensory processing: **Parallel Activation → Attention Gate → Executive Function → Response**.
 > The brain doesn't classify-then-route; it activates-then-filters. Athena's runtime works the same way.
@@ -78,7 +77,7 @@ Athena/
                     │  ├── Episodic Memory    (Session Logs)  │
                     │  ├── Procedural Memory  (Skills/Protos) │
                     │  └── Contextual Memory  (activeContext) │
-                    │  8 channels fire simultaneously via RRF │
+                    │  7 channels fire simultaneously via RRF │
                     └──────────────┬──────────────────────────┘
                                    │ raw activations
                                    ▼
@@ -107,7 +106,7 @@ Athena/
 
 | Stage | Human Analog | Athena Implementation |
 |:------|:-------------|:----------------------|
-| **① Transduction** | Sensory receptors (eyes, ears, skin) fire simultaneously | `search.py` fires 8 parallel channels: Canonical, Vectors, GraphRAG, SQLite, Tags, Filenames, Framework, Exocortex |
+| **① Transduction** | Sensory receptors (eyes, ears, skin) fire simultaneously | `search.py` fires 7 parallel channels: Canonical, Vectors, SQLite, Tags, Filenames, Framework Docs, Exocortex |
 | **② Attention Gate** | Thalamus filters — only relevant signals reach cortex | Weighted RRF fusion (k=60) + confidence threshold + progressive disclosure tiers |
 | **③ Executive Function** | Prefrontal cortex — plan, inhibit, decide | Λ score calibrates depth; Law #1 gates ruin; Circuit Breaker inhibits; Red Team reviews |
 | **Response** | Motor cortex — act | Agent generates output, files checkpoints, updates context |
@@ -204,17 +203,17 @@ Full cluster details: [CLUSTER_INDEX.md](./.agent/CLUSTER_INDEX.md)
 ## Retrieval Stack
 
 ```
-src/athena/tools/search.py (12s God Mode timeout + grep fallback)
+src/athena/tools/search.py (10s God Mode timeout + grep fallback)
 ├── Full SDK search (parallel hybrid RRF + semantic cache)
 │   ├── Canonical search (CANONICAL.md keyword matching, min 2-hit)
 │   ├── Tag search (grep against TAG_INDEX shards)
-│   ├── Vector search (Supabase pgvector, 11 parallel RPCs, threshold ≥0.3)
-│   ├── GraphRAG search (entity + community matching, --global-only)
+│   ├── Vector search (Supabase pgvector, unified search_all_vectors RPC, threshold ≥0.3)
 │   ├── Filename search (find across project root, keyword OR logic)
-│   ├── Framework docs search (keyword matching in .framework/ + memory_bank/)
+│   ├── Framework docs search (keyword matching in .framework/ + memory_bank/ + .context/)
 │   ├── SQLite search (local athena.db — files + tags)
 │   └── Exocortex search (Wikipedia FTS5)
 ├── Fusion: Weighted RRF (k=60, per-type weights, dynamic score modifiers)
+├── Adaptive Router: skips vector search when local hits suffice (low-entropy optimization)
 ├── Telemetry: retrieval_log.jsonl (quality: hit/partial/miss, source distribution)
 └── Grep fallback (runs if full search times out)
     ├── CANONICAL.md
@@ -316,7 +315,7 @@ src/athena/mcp_server.py (FastMCP v3.x, stdio transport)
 
 ---
 
-## Metrics (2 Jun 2026)
+## Metrics (6 Jun 2026)
 
 | Metric | Count |
 |:-------|------:|
@@ -326,12 +325,12 @@ src/athena/mcp_server.py (FastMCP v3.x, stdio transport)
 | Cognitive Clusters | 15 |
 | Cognitive Systems | 8 |
 | Workflows | 69 (51 root + 18 _domain/) |
-| Automation Scripts | 246 |
-| Case Studies | 491 (15 domains, 7 archived) |
-| Session Logs | 1,871 |
-| Total Memory Files | 3,640 |
+| Automation Scripts | 247 |
+| Case Studies | 492 (15 domains, 7 archived) |
+| Session Logs | 1,900+ |
+| Total Memory Files | 3,657 |
 | Source Files (SDK) | 72 |
-| Test Files | 34 |
+| Test Files | 11 |
 | Documentation Files | 76 |
 | Active Indexes | 4 (63KB) |
 | CANONICAL Entries | ~400 (29 Tier 1, 140 Tier 2, 3 Tier 3) |

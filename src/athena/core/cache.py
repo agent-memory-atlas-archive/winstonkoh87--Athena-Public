@@ -82,7 +82,10 @@ class QueryCache:
             pass
 
     def _save_to_disk(self):
-        """Persist cache to disk (atomic write)."""
+        """Persist cache to disk (atomic write via temp + rename)."""
+        import os
+        import tempfile
+
         try:
             self._cache_file.parent.mkdir(parents=True, exist_ok=True)
             data = {
@@ -94,7 +97,21 @@ class QueryCache:
                 }
                 for k, e in self._cache.items()
             }
-            self._cache_file.write_text(json.dumps(data))
+            # Write to temp file first, then atomic rename
+            fd, tmp_path = tempfile.mkstemp(
+                dir=str(self._cache_file.parent), suffix=".tmp"
+            )
+            try:
+                with os.fdopen(fd, "w", encoding="utf-8") as f:
+                    json.dump(data, f)
+                os.replace(tmp_path, str(self._cache_file))
+            except BaseException:
+                # Clean up temp file on any failure
+                try:
+                    os.unlink(tmp_path)
+                except OSError:
+                    pass
+                raise
         except Exception:
             pass
 

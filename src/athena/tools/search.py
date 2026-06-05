@@ -48,7 +48,7 @@ WEIGHTS = {
     "case_study": 3.0,
     "session": 3.0,
     "protocol": 2.8,
-    "graphrag": 2.5,
+
     "user_profile": 2.5,
     "framework_docs": 2.5,
     "framework": 2.3,
@@ -78,10 +78,7 @@ SKIP_PATHS = [
     "README.md",
 ]
 
-# GraphRAG paths
-GRAPHRAG_DIR = PROJECT_ROOT / ".agent" / "graphrag"
-COMMUNITIES_FILE = GRAPHRAG_DIR / "communities.json"
-GRAPH_FILE = GRAPHRAG_DIR / "knowledge_graph.gpickle"
+# GraphRAG paths — REMOVED (GTO fix 2026-06-06: stale since Feb 2025, dead channel)
 # CHROMA_DIR removed — chroma_db never existed on disk (GTO fix 2026-03-26)
 
 # --- Collection Functions ---
@@ -276,81 +273,9 @@ def collect_vectors(
     return results
 
 
-def collect_graphrag(query: str, limit: int = 5) -> list[SearchResult]:
-    """Collect entity and community matches via query_graphrag.py subprocess."""
-    results = []
-
-    # Path to query script
-    script_path = PROJECT_ROOT / ".agent" / "scripts" / "query_graphrag.py"
-    if not script_path.exists():
-        return []
-
-    try:
-        # Run query_graphrag.py with --json flag
-        # Optimization: Use --global-only to skip slow model loading
-        cmd = ["python3", str(script_path), query, "--json", "--global-only"]
-
-        # Add strict timeout
-        result = subprocess.run(
-            cmd, capture_output=True, text=True, check=False, timeout=5
-        )
-
-        if result.returncode != 0:
-            return []
-
-        data = json.loads(result.stdout)
-
-        for item in data:
-            # Skip vectors (handled by collect_vectors via Supabase/Chroma)
-            if item.get("type") == "vector":
-                continue
-
-            # Handle Communities
-            if item.get("type") == "community":
-                comm_id = item.get("community_id", "?")
-                size = item.get("size", 0)
-                summary = item.get("summary", "")
-                members = item.get("members", [])
-
-                content = f"Community {comm_id} ({size} members): {summary[:200]}..."
-                if members:
-                    content += f"\nMembers: {', '.join(str(m) for m in members[:5])}..."
-
-                results.append(
-                    SearchResult(
-                        id=f"Graph:Community:{comm_id}",
-                        content=content,
-                        source="graphrag",
-                        score=item.get("score", 0) / 10.0,  # Normalize rough score
-                        metadata={"type": "community", "id": comm_id},
-                    )
-                )
-
-            # Handle Entities
-            elif item.get("type") == "entity":
-                name = item.get("name", "Unknown")
-                desc = item.get("description", "")
-                neighbors = item.get("neighbors", [])
-
-                content = f"Entity: {name} ({item.get('entity_type', 'Entity')})\n{desc[:200]}"
-                if neighbors:
-                    neighbor_names = [n["name"] for n in neighbors[:3]]
-                    content += f"\nConnected to: {', '.join(neighbor_names)}"
-
-                results.append(
-                    SearchResult(
-                        id=f"Graph:Entity:{name}",
-                        content=content,
-                        source="graphrag",
-                        score=min(item.get("score", 0), 1.0),
-                        metadata={"type": "entity", "name": name},
-                    )
-                )
-
-    except Exception as e:
-        print(f"GraphRAG search warning: {e}", file=sys.stderr)
-
-    return results[:limit]
+# collect_graphrag REMOVED (GTO fix 2026-06-06)
+# Rationale: GraphRAG stale since Feb 2025 (16 months). Dead channel carrying
+# weight in the search pipeline. User explicitly requested removal.
 
 
 def collect_filenames(query: str) -> list[SearchResult]:
@@ -731,7 +656,7 @@ def run_search(
                         file=sys.stderr,
                     )
                     print(
-                        f"   {DIM}Primary: TAG_INDEX & GraphRAG active.{RESET}\n",
+                        f"   {DIM}Primary: TAG_INDEX & local channels active.{RESET}\n",
                         file=sys.stderr,
                     )
                 query_embedding = None  # Proceed without vectors
@@ -760,7 +685,7 @@ def run_search(
             collection_tasks = {
                 "canonical": lambda: collect_canonical(query),
                 "tags": lambda: collect_tags(query),
-                "graphrag": lambda: collect_graphrag(query),
+
                 "vector": lambda: collect_vectors(
                     query, embedding=query_embedding, exclude_domains=exclude_domains
                 ),

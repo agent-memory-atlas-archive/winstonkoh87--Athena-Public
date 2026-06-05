@@ -17,7 +17,7 @@
 
 - Realized AI was the biggest leverage opportunity of my lifetime
 - Spent 2 years going from "user" to "builder"
-- 1,800+ sessions building Athena — my production-grade personal knowledge system
+- 1,900+ sessions building Athena — my production-grade personal knowledge system
 - Key insight: **Co-development with AI > Using AI**
 
 ### Chapter 3: Now (2024+)
@@ -32,9 +32,9 @@
 | Capability | Evidence |
 |------------|----------|
 | **Systems Architecture** | Designed a 400+-protocol knowledge framework ([Architecture](ARCHITECTURE.md)) |
-| **AI Engineering** | Built RAG pipelines ([GraphRAG](GRAPHRAG.md) + [Semantic Search](SEMANTIC_SEARCH.md)) |
-| **Technical Writing** | 1,800+ session logs, 443+ case studies, zero fluff |
-| **Automation** | 220+ Python scripts for [Capabilities](CAPABILITIES.md) optimization |
+| **AI Engineering** | Built RAG pipelines ([Semantic Search](SEMANTIC_SEARCH.md), Supabase pgvector) |
+| **Technical Writing** | 1,900+ session logs, 492+ case studies, zero fluff |
+| **Automation** | 247+ Python scripts for [Capabilities](CAPABILITIES.md) optimization |
 | **Strategic Thinking** | Spent 10 years navigating institutional politics and incentive structures |
 
 ---
@@ -54,7 +54,7 @@
    I document my reasoning. I version-control my decisions. I can show you *why* I made every major choice in this system.
 
 5. **Data Compounding**  
-   1,800+ sessions of empirical data — decisions, outcomes, patterns, blind spots — all structured and searchable. This isn't chat history; it's a calibrated knowledge base that makes every future session sharper. The algorithm is open-source. The data is the IP.
+   1,900+ sessions of empirical data — decisions, outcomes, patterns, blind spots — all structured and searchable. This isn't chat history; it's a calibrated knowledge base that makes every future session sharper. The algorithm is open-source. The data is the IP.
 
 ---
 

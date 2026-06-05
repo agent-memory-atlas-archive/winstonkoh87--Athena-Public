@@ -68,9 +68,9 @@ Here's what I actually did. No shortcuts.
 ### What the Schlep Looked Like
 
 ```
-├── 1,100+ sessions logged (human + AI collaboration)
-├── 135+ protocols extracted
-├── 530+ automation scripts written
+├── 1,900+ sessions logged (human + AI collaboration)
+├── 396+ protocols extracted
+├── 247+ automation scripts written
 ├── 3 major refactors (monolith → SDK)
 ├── 2 external red-team audits
 └── Countless errors, dead ends, and "why isn't this working" nights
@@ -86,7 +86,7 @@ Here's what I actually did. No shortcuts.
 |--------|--------|-------|
 | **Context injection** | ~50k tokens (manual paste) | **~12.5K tokens** (core boot) |
 | **Boot time** | ~2 minutes | **~1–2 minutes** |
-| **Sessions logged** | — | **1,100+** |
+| **Sessions logged** | — | **1,900+** |
 
 ### Qualitative (What It Means)
 
@@ -94,7 +94,7 @@ Here's what I actually did. No shortcuts.
 |--------|---------|
 | **Agency** | I stopped *recreating* context and started *compounding* it. Every session builds on the last. |
 | **Portability** | My memory isn't trapped in ChatGPT or Claude. It's mine. I can take it anywhere. |
-| **Learning** | 135+ protocols extracted from my own decisions — patterns I can reuse and refine. |
+| **Learning** | 396+ protocols extracted from my own decisions — patterns I can reuse and refine. |
 
 ### Proof It Works
 

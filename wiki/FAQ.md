@@ -1,6 +1,6 @@
 # ❓ Frequently Asked Questions
 
-*Last Updated: 2026-06-02 · v9.9.1*
+*Last Updated: 2026-06-06 · v9.9.1-gto*
 
 ---
 
@@ -55,7 +55,7 @@ Athena is model-agnostic by design. It's optimized for **Gemini 3 Pro** and **Cl
 
 ### 📉 Does it hallucinate?
 
-All LLMs hallucinate. Athena minimizes this via **Hybrid RAG** — forcing the model to read *your own notes* before answering. Agentic Search adds cosine validation to filter low-confidence results. Five retrieval sources (Canonical, Semantic, BM25, GraphRAG, Tags) are fused via RRF for robust recall.
+All LLMs hallucinate. Athena minimizes this via **Hybrid RAG** — forcing the model to read *your own notes* before answering. Agentic Search adds cosine validation to filter low-confidence results. Seven retrieval channels (Canonical, Tags, Vector, SQLite, Filenames, Framework Docs, Exocortex) are fused via RRF for robust recall.
 
 ### ❓ Won't this eat my subscription tokens?
 

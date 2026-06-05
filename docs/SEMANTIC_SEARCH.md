@@ -1,13 +1,13 @@
 # Semantic Search: Triple-Path Retrieval Architecture
 
-> **Last Updated**: 20 May 2026  
-> **Purpose**: How Athena finds and retrieves relevant context using 8-channel hybrid search with RRF fusion
+> **Last Updated**: 6 Jun 2026  
+> **Purpose**: How Athena finds and retrieves relevant context using 7-channel hybrid search with RRF fusion
 
 ---
 
 ## Executive Summary
 
-Athena employs **8-Channel Hybrid Search** with **Reciprocal Rank Fusion (RRF)** to ensure no relevant context is missed. Each channel catches what the others miss, and RRF merges their results into a single ranked list.
+Athena employs **7-Channel Hybrid Search** with **Reciprocal Rank Fusion (RRF)** to ensure no relevant context is missed. Each channel catches what the others miss, and RRF merges their results into a single ranked list.
 
 ```text
                               USER QUERY
@@ -105,28 +105,28 @@ grep -i "<entity>" .context/PROTOCOL_SUMMARIES.md
 
 ## RRF Fusion & Cross-Encoder Reranking
 
-As of v9.8.1, `smart_search.py` implements an **8-channel hybrid search** pipeline:
+As of v9.9.1, `smart_search.py` implements a **7-channel hybrid search** pipeline:
 
 ```text
  Query
    │
-   ├── Channel 1: Vector (Supabase pgvector, cosine similarity)
-   ├── Channel 2: Keyword (ripgrep exact match)
-   ├── Channel 3: Filename (fuzzy filename match)
-   ├── Channel 4: Tag (frontmatter tag extraction)
-   ├── Channel 5: Semantic Cache (LRU cache of recent queries)
-   ├── Channel 6: Protocol Summary (PROTOCOL_SUMMARIES.md lookup)
-   ├── Channel 7: Session Log (recent session log grep)
-   ├── Channel 8: Case Study (case study index lookup)
+   ├── Channel 1: Canonical (CANONICAL.md keyword matching, min 2-hit)
+   ├── Channel 2: Tags (grep against TAG_INDEX shards)
+   ├── Channel 3: Vector (Supabase pgvector, unified RPC, cosine similarity)
+   ├── Channel 4: SQLite (local athena.db — files + tags)
+   ├── Channel 5: Filename (find across project root, keyword OR logic)
+   ├── Channel 6: Framework Docs (.framework/ + memory_bank/ + .context/)
+   ├── Channel 7: Exocortex (Wikipedia FTS5)
    │
    ▼
- RRF Fusion (k=60, score-modulated weights)
+ Adaptive Router (skips vector search when local hits suffice)
+   │
+   ▼
+ RRF Fusion (k=60, per-type weights, dynamic score modifiers)
    │
    ▼
  Cross-Encoder Reranker (optional: --rerank flag)
-   Model: ms-marco-MiniLM-L6-v2
-   Enabled by default in /ultrastart (15 candidates)
-   Disabled in /start (3 candidates — too few to benefit)
+   Model: FlashRank (ms-marco-MiniLM-L6-v2)
    │
    ▼
  Ranked Results
@@ -200,10 +200,10 @@ Per Core Identity, **every query** triggers semantic context retrieval:
 # Reference: python3 scripts/generate_tag_index.py
 ```
 
-**Current Stats** (May 2026):
+**Current Stats** (Jun 2026):
 
-- **389 active protocols** summarized
-- **8 channels** in search pipeline
+- **396 active protocols** summarized
+- **7 channels** in search pipeline (GraphRAG removed v9.9.1-gto)
 - **Extraction methods**: YAML frontmatter + body paragraph extraction + tag inference
 
 ---

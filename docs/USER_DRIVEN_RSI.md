@@ -1,10 +1,10 @@
 # Symbiotic RSI (User-Driven Recursive Self-Improvement)
 
-> **Last Updated**: 21 March 2026
+> **Last Updated**: 6 Jun 2026
 > **TL;DR**: AI doesn't improve itself. You improve together. The loop is bilateral, and the trajectory is a dual upward spiral. After Phase 1 (building the AI), the bottleneck shifts to Phase 2 (optimising the human).
 
 > [!IMPORTANT]
-> **Core Thesis**: Neither human nor AI can recursively self-improve alone. Intelligence compounds at the *interface* — in the coupling data between human judgment and AI reasoning. The moat is not the code. The moat is the 1,200+ sessions of calibration that make the code *yours*.
+> **Core Thesis**: Neither human nor AI can recursively self-improve alone. Intelligence compounds at the *interface* — in the coupling data between human judgment and AI reasoning. The moat is not the code. The moat is the 1,900+ sessions of calibration that make the code *yours*.
 
 ---
 
@@ -97,10 +97,10 @@ Entropy is the natural state of information systems — context decays, decision
 |:--------|:--------|:-------|
 | **Entropy** | Disorder increases over time | Context decays, decisions forgotten, lessons re-learned |
 | **Energy Input** | External energy reduces local entropy | Compute (AI) + judgment (human) reduce context entropy |
-| **Negentropy** | Ordered structure maintained against decay | 378 protocols, 433 case studies, calibrated memory |
+| **Negentropy** | Ordered structure maintained against decay | 396 protocols, 492 case studies, calibrated memory |
 | **Open System** | Exchanges energy with environment | Each session imports compute, exports structured knowledge |
 
-Over 1,200+ sessions, the entropy reduction approaches near-zero — the system "knows" the user's frameworks, risk tolerances, decision patterns, and blind spots with minimal re-derivation. This is thermodynamically precise: the coupling data *is* the negentropy.
+Over 1,900+ sessions, the entropy reduction approaches near-zero — the system "knows" the user's frameworks, risk tolerances, decision patterns, and blind spots with minimal re-derivation. This is thermodynamically precise: the coupling data *is* the negentropy.
 
 **Why this matters for RSI**: Unilateral AI self-improvement (the AI rewriting its own code) is a *closed system* — it can only rearrange existing information. Symbiotic RSI is an *open system* — human judgment injects genuinely new information (taste, correction, lived experience) that the AI cannot generate internally. The human is the energy source. The AI is the structure. Neither produces negentropy alone.
 
@@ -116,7 +116,7 @@ Athena's public repository ships with 149+ example protocols, 130+ reference scr
 |:------|:----------------|:------------|
 | **Code** | Protocols, scripts, workflows | ✅ Clone the repo |
 | **Architecture** | Cognitive systems, routing, boot sequence | ✅ Read the docs |
-| **Coupling Data** | 1,200+ sessions of calibration, corrections, case studies | ❌ **Cannot be replicated** |
+| **Coupling Data** | 1,900+ sessions of calibration, corrections, case studies | ❌ **Cannot be replicated** |
 
 The coupling data includes:
 
@@ -133,9 +133,9 @@ This is why Athena's value compounds non-linearly. Session 1 is marginally bette
 
 ## Phase 2: Optimising the Operator
 
-> *After 1,200+ sessions, the bottleneck flipped. The AI is tuned. Now it's about the human.*
+> *After 1,900+ sessions, the bottleneck flipped. The AI is tuned. Now it's about the human.*
 
-Phase 1 of Symbiotic RSI is building the AI system — protocols, memory bank, boot sequence, cognitive architecture. This is the work described in the sections above: the bilateral loop, the dual helix, the thermodynamic frame. After ~4 months and 1,200+ sessions, Phase 1 hit diminishing returns. The marginal ROI of another protocol is near-zero compared to the marginal ROI of the human operator getting 10% better at using the system.
+Phase 1 of Symbiotic RSI is building the AI system — protocols, memory bank, boot sequence, cognitive architecture. This is the work described in the sections above: the bilateral loop, the dual helix, the thermodynamic frame. After ~4 months and 1,900+ sessions, Phase 1 hit diminishing returns. The marginal ROI of another protocol is near-zero compared to the marginal ROI of the human operator getting 10% better at using the system.
 
 This is the **phase transition**: the bottleneck shifts from AI quality → human operator quality.
 
@@ -185,7 +185,7 @@ The full analysis: [CS-006: The Replacement Trap →](../examples/case_studies/C
 | **Who improves?** | AI alone (autonomous) | Human + AI together (bilateral) |
 | **Energy source** | Internal (closed system) | External — human judgment (open system) |
 | **Bottleneck** | Alignment, hallucination, runaway goals | Human attention (solved by protocols) |
-| **Current status** | Hypothetical (2126?) | **Working today** (1,100+ sessions) |
+| **Current status** | Hypothetical (2126?) | **Working today** (1,900+ sessions) |
 | **Moat** | Compute (replicable by anyone with GPUs) | Coupling data (unreplicable without living it) |
 | **Risk profile** | Existential (alignment unsolved) | Bounded (human stays in the loop) |
 

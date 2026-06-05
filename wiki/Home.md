@@ -3,7 +3,7 @@
 > **The Linux OS for AI Agents**
 > Open Source · Sovereign · Model-Agnostic
 
-*Last Updated: 2026-06-02 · v9.9.1*
+*Last Updated: 2026-06-06 · v9.9.1-gto*
 
 Athena is not an AI Agent. It is the **Operating System** they run on.
 
@@ -73,5 +73,5 @@ Or use [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) fo
 ## 📊 Community
 
 - **1M+** Reddit Views · **#1 All-Time** on r/ChatGPT · **#2 All-Time** on r/GeminiAI
-- **144+** Protocols · **580+** Scripts · **50+** Slash Workflows
+- **155+** Protocols · **247+** Scripts · **69+** Slash Workflows
 - **MIT Licensed** · [Main Repository](https://github.com/winstonkoh87/Athena-Public)

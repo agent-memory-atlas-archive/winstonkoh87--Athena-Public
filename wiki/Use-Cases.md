@@ -2,7 +2,7 @@
 
 Athena is domain-agnostic — it adapts to whatever *you* do. Most users converge on six core workflows.
 
-*Last Updated: 2026-06-02 · v9.9.1*
+*Last Updated: 2026-06-06 · v9.9.1-gto*
 
 ---
 
@@ -50,7 +50,7 @@ This is the **core product.** Every session auto-saves into structured memory: s
 
 Because your memory lives as **portable Markdown files**, Athena is inherently **platform-agnostic and model-agnostic**. Switch from Claude to Gemini tomorrow — your memory comes with you. **Your knowledge is never held hostage.**
 
-**Key features**: Memory Architecture · Semantic Search · GraphRAG
+**Key features**: Memory Architecture · Semantic Search · Vector Search (Supabase pgvector)
 
 ---
 

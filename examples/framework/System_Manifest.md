@@ -1,4 +1,5 @@
 ---
+last_updated: 2026-06-06
 ---
 
 # System Manifest (Athena v8.2-stable)
@@ -65,6 +66,6 @@
 ## 5. Metadata
 
 - **Version**: v8.2-Stable
-- **Stack**: Python 3.12+, Supabase (pgvector), Gemini 2.0+ / Claude 3.5+
-- **Local RAG**: FAISS + BGE-M3 (Sovereign Cortex)
+- **Stack**: Python 3.12+, Supabase (pgvector), Gemini 3.1 Pro / Claude Opus 4.7
+- **Search**: 7-channel hybrid search — Supabase pgvector + Gemini gemini-embedding-001 (768-dim) + RRF fusion
 - **Author**: The Operator / Athena
