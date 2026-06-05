@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-05-20
+last_updated: 2026-06-06
 tags: #references #apa #academic #citations
 ---
 
@@ -122,13 +122,17 @@ Wang, L., Ma, C., Feng, X., Zhang, Z., Yang, H., Zhang, J., ... & Wang, J. (2024
 
 Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., & Cao, Y. (2023). ReAct: Synergizing reasoning and acting in language models. *International Conference on Learning Representations (ICLR)*. <https://arxiv.org/abs/2210.03629>
 
-Model Context Protocol. (2024). *Model Context Protocol Specification* (v1.0). Anthropic / Agentic AI Foundation. <https://modelcontextprotocol.io/>
+Model Context Protocol. (2025). *Model Context Protocol Specification* (2025-11-25). Linux Foundation / Agentic AI Foundation (AAIF). <https://modelcontextprotocol.io/>
 
-> **Note**: MCP is an open standard introduced by Anthropic in November 2024 that standardizes how AI systems connect to external data sources, tools, and systems. It provides a client-server architecture with JSON-RPC 2.0 transport, enabling tools, resources, and prompts to be exposed to any compatible agent. Athena's MCP server (`mcp_server.py`) exposes 9 tools and 2 resources. Governance was donated to the Agentic AI Foundation (AAIF) in late 2025.
+> **Note**: MCP is an open standard introduced by Anthropic in November 2024 that standardizes how AI systems connect to external data sources, tools, and systems. It provides a client-server architecture with JSON-RPC 2.0 transport, enabling tools, resources, and prompts to be exposed to any compatible agent. Athena's MCP server (`mcp_server.py`) exposes 9 tools and 2 resources. Governance was donated to the Agentic AI Foundation (AAIF) under the Linux Foundation in December 2025. The November 2025 stable spec added OAuth 2.1, task-based async workflows, a formal extensions system, and elicitation flows for human-in-the-loop interactions.
 
 Hou, X., Zhao, Y., Wang, S., & Wang, H. (2025). Model Context Protocol (MCP): Landscape, security threats, and future research directions. *arXiv preprint arXiv:2503.23278*. <https://arxiv.org/abs/2503.23278>
 
 > **Note**: First systematic security analysis of MCP — maps the lifecycle, architectural components, and threat taxonomy. Relevant to Athena's security posture: all MCP tools are gated by the Permissioning Layer (Protocol 409) and Secret Mode redaction.
+
+Google. (2025). *Agent2Agent (A2A) Protocol Specification* (v1.0). Linux Foundation / LF AI & Data Foundation. <https://a2a-protocol.org/>
+
+> **Note**: A2A is the complementary protocol to MCP — while MCP standardizes agent-to-tool communication, A2A standardizes agent-to-agent coordination. Introduced by Google in April 2025 and donated to the Linux Foundation in June 2025, A2A enables discovery (Agent Cards via `.well-known/agent-card.json`), authentication (OAuth 2.0 / mTLS), and structured task delegation via JSON-RPC. Now supported by 150+ organizations. Relevant to Athena's Protocol 413 (Multi-Agent Coordination) and the `/416-agent-swarm` workflow.
 
 Park, J. S., O'Brien, J. C., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, M. S. (2023). Generative agents: Interactive simulacra of human behavior. *Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST)*, Article 2, 1–22. <https://arxiv.org/abs/2304.03442>
 
@@ -145,6 +149,8 @@ Li, G., Hammoud, H. A. A. K., Itani, H., Khizbullin, D., & Ghanem, B. (2024). CA
 ---
 
 ## Knowledge Graphs & GraphRAG
+
+> **⚠️ Status Note (Jun 2026)**: GraphRAG was formally removed from Athena's search pipeline in v9.9.1-gto. The channel had been stale since February 2025 (16 months) — the cost of building and maintaining a knowledge graph extraction pipeline was not justified by its retrieval contribution. The 7-channel hybrid search (without GraphRAG) achieves 0.66 MRR and 0.85 Hit@5. These references are retained for academic context — the underlying research remains valuable for understanding knowledge-graph-augmented retrieval.
 
 Edge, D., Trinh, H., Cheng, N., Bradley, J., Chao, A., Mody, A., ... & Larson, J. (2024). From local to global: A graph RAG approach to query-focused summarization. *arXiv preprint arXiv:2404.16130*. <https://arxiv.org/abs/2404.16130>
 
@@ -239,6 +245,18 @@ Soelberg v. OpenAI, Inc., No. 3:25-cv-11037 (N.D. Cal. filed Dec. 29, 2025).
 > **Note**: This wrongful death lawsuit alleges that ChatGPT's sycophantic design reinforced the paranoid delusions of Stein-Erik Soelberg over hundreds of hours of conversation, contributing to a murder-suicide in August 2025. The case is cited in Athena's [Trilateral Feedback](TRILATERAL_FEEDBACK.md) documentation as a real-world example of why single-model bilateral feedback is dangerous.
 
 Wei, A., Haghtalab, N., & Steinhardt, J. (2024). Jailbroken: How does LLM safety training fail? *Advances in Neural Information Processing Systems, 36*. <https://arxiv.org/abs/2307.02483>
+
+Microsoft. (2026). *Taxonomy of failure modes in agentic AI systems* (v2.0). Microsoft AI Safety & Security. <https://www.microsoft.com/en-us/security/blog/2026/06/taxonomy-failure-modes-agentic-ai/>
+
+> **Note**: Microsoft's v2.0 taxonomy maps the failure surface of persistent, tool-using agents — including contradiction resolution failures, privacy-violating data retention, and tool poisoning via MCP. Directly relevant to Athena's governance architecture: the Permissioning Layer (Protocol 409), Secret Mode, and the Trilateral Feedback Protocol are all designed to mitigate failure modes catalogued in this taxonomy.
+
+---
+
+## Agent Memory & Persistent Context
+
+Zhang, Z., Bo, X., Ma, C., Li, R., Chen, X., Dai, Q., ... & Wen, J. (2025). A survey on memory in large language model based agents. *arXiv preprint*. <https://arxiv.org/abs/2404.13501>
+
+> **Note**: Definitive survey on memory architectures for LLM agents — categorizes memory into factual, experiential (procedural), and working memory with write–manage–read lifecycle. Directly validates Athena's architecture: session logs (experiential), CANONICAL.md (factual), and context window (working memory) map cleanly to this taxonomy. The survey's emphasis on "sleep-phase consolidation" and "interference-based forgetting" aligns with Athena's `/dream` workflow and access-weighted decay.
 
 ---
 
@@ -361,4 +379,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 08 May 2026*
+*Last updated: 6 Jun 2026*
