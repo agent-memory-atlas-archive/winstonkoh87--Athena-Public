@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-03-04
+last_updated: 2026-06-06
 tags: #references #apa #academic #citations
 ---
 
@@ -266,4 +266,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 04 March 2026*
+*Last updated: 06 June 2026 (Fact-Check Audit, Session S437)*
