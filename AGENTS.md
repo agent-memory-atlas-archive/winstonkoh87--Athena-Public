@@ -15,9 +15,9 @@ This file provides persistent context to any AI coding agent working in this wor
 |IMPORTANT: Always consult authoritative files before relying on training data.
 |.framework/v8.2-stable/modules:{Core_Identity.md,Output_Standards.md,System_Principles.md,Operating_Principles.md,Design_DNA.md}
 |.agent/workflows (22):{start.md,end.md,do.md,plan.md,research.md,ultrathink.md,diagnose.md,...}
-|examples/workflows (70):{ultrastart.md,ultraend.md,audit.md,battleplan.md,minmax.md,project.md,dream.md,...}
-|examples/protocols (155+ across 16 categories):{architecture/,decision/,engineering/,quality/,trading/,safety/,...}
-|examples/skills (38):{coding/spec-driven-dev,research/deep-research-loop,quality/red-team-review,...}
+|examples/workflows (47):{ultrastart.md,ultraend.md,audit.md,battleplan.md,minmax.md,project.md,dream.md,...}
+|examples/protocols (431 across 23 categories):{architecture/,decision/,engineering/,quality/,trading/,safety/,...}
+|examples/skills (40):{coding/spec-driven-dev,research/deep-research-loop,quality/red-team-review,...}
 |.context:{CANONICAL.md,PROTOCOL_SUMMARIES.md,PROTOCOL_HEATMAP.md}
 |docs:{ARCHITECTURE.md,SEMANTIC_SEARCH.md,GETTING_STARTED.md,YOUR_FIRST_SESSION.md,FAQ.md}
 ```
@@ -83,7 +83,7 @@ This file provides persistent context to any AI coding agent working in this wor
 
 ### Uber-Skills (Umbrella Consolidations)
 
-> **NEW (2026-05-11)**: 6 Uber-Skills retroactively compiled from 1800+ sessions. These are dense umbrella consolidations that absorb multiple existing skills/protocols. They auto-trigger on broad domain keywords.
+> **NEW (2026-05-11)**: 6 Uber-Skills retroactively compiled from 1,900+ sessions. These are dense umbrella consolidations that absorb multiple existing skills/protocols. They auto-trigger on broad domain keywords.
 
 | Skill | Activates On | Absorbs |
 |:----- |:------------ |:------- |
@@ -125,7 +125,7 @@ When working on any task in this workspace:
 
 > **MANDATORY (ALL sessions)**: Every non-trivial response MUST invoke at least ONE external tool before generating output. "External" = anything outside the model's weights (Exocortex, web search, file reads, MCP, grep, commands).
 >
-> The Exocortex indexes **1800+ sessions** of lived experience. Web search provides real-time facts. Responding without consulting these when they could enrich or verify the answer is equivalent to ignoring the user's own history and the current state of the world.
+> The Exocortex indexes **1,900+ sessions** of lived experience. Web search provides real-time facts. Responding without consulting these when they could enrich or verify the answer is equivalent to ignoring the user's own history and the current state of the world.
 >
 > **Minimum tool calls by complexity**:
 > - Simple lookups (Λ < 10): Exempt

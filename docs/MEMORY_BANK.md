@@ -1,7 +1,7 @@
 # Memory Bank Pattern
 
 > **Purpose**: Give your AI agent persistent, structured memory across sessions.
-> **Status**: Production (Used in 1,079+ sessions)
+> **Status**: Production (Used in 1,900+ sessions)
 
 ## Overview
 
@@ -163,7 +163,7 @@ The Memory Bank is **not** a replacement for semantic search. Use both:
 
 ## Token Efficiency
 
-The Memory Bank is designed for **O(1) boot cost** — loading a constant token payload whether it's Session 1 or Session 10,000. Boot cost ranges from ~2K (Lightweight) to ~10K (`/start`) to ~57K (`/ultrastart` v3.0 Maximum Compute).
+The Memory Bank is designed for **O(1) boot cost** — loading the same ~10K tokens whether it's Session 1 or Session 10,000.
 
 ### The 15K Hard Cap
 
@@ -182,16 +182,13 @@ When the total exceeds 15K tokens, `activeContext.md` auto-compacts — merging 
 
 ### Why This Matters
 
-Assuming 200K effective context length (the empirical sweet spot where SOTA models in 2026 maintain reliable cross-referencing between beginning and end of context):
+Assuming 200K effective context length (the industry standard for SOTA models in 2026):
 
-| Mode | Boot Cost | Workspace Left | Design |
-|------|-----------|---------------|--------|
-| `/start` (default) | ~10K | **190K** (95% free) | Core identity + session recall |
-| `/think` | ~15K | **185K** | + Output standards + deeper context |
-| `/ultrathink` | ~40K | **160K** | Single-query maximum depth |
-| `/ultrastart` v3.0 | ~57K | **128K** (64% free) | All 11 framework modules + CANONICAL + full state + 15 semantic results |
-
-> **Pre-Paid Compute Doctrine**: On flat-rate AI subscriptions ($250/mo), tokens are pre-paid — not "free." Every unused token is wasted value already paid for. The optimization function is **maximize output quality**, not minimize token usage. `/ultrastart` v3.0 loads all available context because efficiency optimization is a category error when cost is fixed.
+| Mode | Boot Cost | Workspace Left |
+|------|-----------|---------------|
+| `/start` (default) | ~10K | **190K** (95% free) |
+| `/think` | ~15K | **185K** |
+| `/ultrathink` | ~40K | **160K** |
 
 Most "memory" solutions dump growing chat history into context. Athena keeps boot cost flat through **progressive distillation**:
 
@@ -205,14 +202,14 @@ Live conversation (100% fidelity)
 ### The Operating Band
 
 ```
-0K ████████████████████████████████ 57K
-   ↑ ~10K /start   ↑ ~15K /think    ↑ ~57K /ultrastart v3.0
+0K ██████████░░░░░ 15K
+   ↑ ~10K target    ↑ hard cap (auto-compact triggers here)
 ```
 
-The `/start` and `/think` modes stay lean (~10-15K) for routine work. `/ultrastart` loads the full 57K boot for maximum-compute sessions — still only 28% of the 200K ECL. The remaining 128K workspace supports ~16 deep turns of multi-track reasoning.
+The system oscillates between ~10K and ~15K naturally as sessions accumulate and then get compacted. The user never needs to manage this — it's automatic.
 
 ## Further Reading
 
-- [Architecture](ARCHITECTURE.md) — How Memory Bank fits into the full system
-- [Getting Started](GETTING_STARTED.md) — Setup guide
-- [Semantic Search](SEMANTIC_SEARCH.md) — Vector search companion
+- [Architecture](docs/ARCHITECTURE.md) — How Memory Bank fits into the full system
+- [Getting Started](docs/GETTING_STARTED.md) — Setup guide
+- [Semantic Search](docs/SEMANTIC_SEARCH.md) — Vector search companion

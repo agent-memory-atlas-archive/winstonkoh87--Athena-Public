@@ -3,7 +3,7 @@
 > **Last Updated**: 6 Jun 2026
 > **Version**: v9.9.1-gto
 > **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
-> **Bionic Unit Spec**: [BIONIC_UNIT_SPEC.md](./.context/specs/BIONIC_UNIT_SPEC.md) — the definitive human-AI augmentation mapping
+> **Bionic Unit Spec**: [BIONIC_UNIT_SPEC.md](.context/specs/BIONIC_UNIT_SPEC.md) — the definitive human-AI augmentation mapping
 
 ---
 
@@ -12,8 +12,8 @@
 ```
 Athena/
 ├── .agent/                        # Agent configuration
-│   ├── skills/                    #   37 active skills (37 with context_trigger)
-│   │   └── protocols/             #   396 active + 32 archived = 428 total, 34 categories
+│   ├── skills/                    #   40 active skills (40 with context_trigger)
+│   │   └── protocols/             #   399 active + 32 archived = 431 total, 23 categories
 │   │       └── archive/           #     15 deprecated protocols (read-only, see README)
 │   ├── workflows/                 #   51 root + 18 _domain = 69 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
@@ -22,11 +22,12 @@ Athena/
 │   ├── config/                    #   Agent manifests + CAPS.json (canonical counts)
 │   ├── CLUSTER_INDEX.md           #   15 cognitive clusters (routing map)
 │   ├── WORKFLOW_INDEX.md          #   Workflow registry
+│   ├── graphrag/                  #   [REMOVED 2026-06-06] Knowledge graph formally retired
 │   ├── swarms/                    #   Multi-agent swarm definitions
 │   └── archive_skills/            #   16 sunset skills (read-only, see README)
 │
 ├── .context/                      # Personal knowledge base
-│   ├── memories/                  #   3,657 memory files (session logs + case studies + profile)
+│   ├── memories/                  #   3,658 memory files (session logs + case studies + profile)
 │   │   ├── session_logs/          #     Dated session records
 │   │   ├── case_studies/          #     492 documented patterns (15 domains, 7 archived)
 │   │   ├── profile/               #     Core profile, psychology, voice DNA
@@ -49,7 +50,7 @@ Athena/
 ├── .projects/                     # Isolated project workspaces
 │
 ├── src/                           # Athena SDK source (72 Python files)
-├── tests/                         # Test suite (11 files, 86 passing)
+├── tests/                         # Test suite (11 files, 86 tests)
 ├── supabase/                      # Cloud vector store migrations
 │
 ├── Athena-Public/                 # Public mirror (sibling repo)
@@ -65,7 +66,7 @@ Athena/
 
 ---
 
-## Cognitive Stack — Perception Model (v9.9.1)
+## Cognitive Stack — Perception Model (v9.8.1)
 
 > Modeled after human sensory processing: **Parallel Activation → Attention Gate → Executive Function → Response**.
 > The brain doesn't classify-then-route; it activates-then-filters. Athena's runtime works the same way.
@@ -77,7 +78,7 @@ Athena/
                     │  ├── Episodic Memory    (Session Logs)  │
                     │  ├── Procedural Memory  (Skills/Protos) │
                     │  └── Contextual Memory  (activeContext) │
-                    │  7 channels fire simultaneously via RRF │
+                    │  7 channels fire simultaneously via RRF  │
                     └──────────────┬──────────────────────────┘
                                    │ raw activations
                                    ▼
@@ -106,7 +107,7 @@ Athena/
 
 | Stage | Human Analog | Athena Implementation |
 |:------|:-------------|:----------------------|
-| **① Transduction** | Sensory receptors (eyes, ears, skin) fire simultaneously | `search.py` fires 7 parallel channels: Canonical, Vectors, SQLite, Tags, Filenames, Framework Docs, Exocortex |
+| **① Transduction** | Sensory receptors (eyes, ears, skin) fire simultaneously | `search.py` fires 7 parallel channels: Canonical, Vectors, SQLite, Tags, Filenames, Framework, Exocortex |
 | **② Attention Gate** | Thalamus filters — only relevant signals reach cortex | Weighted RRF fusion (k=60) + confidence threshold + progressive disclosure tiers |
 | **③ Executive Function** | Prefrontal cortex — plan, inhibit, decide | Λ score calibrates depth; Law #1 gates ruin; Circuit Breaker inhibits; Red Team reviews |
 | **Response** | Motor cortex — act | Agent generates output, files checkpoints, updates context |
@@ -160,7 +161,7 @@ Clusters represent bundles of procedural knowledge that co-activate. When the at
 | 14 | Sovereign Safety | `circuit-breaker` + `context-compactor` | Safety |
 | 15 | Problem-Solving Engine | P504 + P115 + P505 + P506 + `red-team-review` | Reasoning |
 
-Full cluster details: [CLUSTER_INDEX.md](./.agent/CLUSTER_INDEX.md)
+Full cluster details: [CLUSTER_INDEX.md](.agent/CLUSTER_INDEX.md)
 
 ### Inventory
 
@@ -168,9 +169,61 @@ Full cluster details: [CLUSTER_INDEX.md](./.agent/CLUSTER_INDEX.md)
 |:------|------:|:------------|
 | Cognitive Domains | 8 | Memory activation targets (priority-ordered for tie-breaking) |
 | Cognitive Clusters | 15 | Co-activating procedural memory bundles |
-| Skills | 37 active (16 archived) |
-| Protocols | 396 active (32 archived; 428 total) |
+| Skills | 40 active (17 archived) |
+| Protocols | 399 active (32 archived; 431 total) |
 | Workflows | 69 (51 root + 18 _domain/) |
+
+---
+
+## Proactive Cognition Layer (Grace Harper Model)
+
+> The Perception Model is **reactive** — it requires a stimulus. But the bionic unit also needs a **proactive** layer that fires without a prompt. This is the conscience: it reminds, enforces, and blocks based on time, behavioral patterns, and the absence of action.
+
+```
+                              ┌──────────────────────────────┐
+                              │  ④ PROACTIVE LAYER (Daemon)  │
+                              │  ├── Temporal triggers       │
+  Time / Behavior ──────────▶ │  ├── Behavioral pattern scan │
+  (No user prompt)            │  ├── Absence detection       │
+                              │  └── Accountability nudge    │
+                              └──────────────┬───────────────┘
+                                             │
+                                             ▼
+                              ┌──────────────────────────────┐
+                              │  Enforcement Actions         │
+                              │  ├── Remind  (BEH-601 sat)   │
+                              │  ├── Enforce (BEH-600 acct)  │
+                              │  └── Block   (Circuit Break) │
+                              └──────────────────────────────┘
+```
+
+### Trigger Types
+
+| Trigger | Example | Fires When |
+|:--------|:--------|:-----------|
+| **Temporal** | BEH-601 Saturday gym | `/start` detects Saturday AM |
+| **Behavioral pattern** | BEH-602 schema trigger log | `/end` detects 3+ schema-driven decisions in session |
+| **Absence of action** | Solo gym streak = 0 | Weekly accountability audit finds no logged execution |
+| **Ruin proximity** | Circuit breaker | Cumulative red flags exceed threshold |
+
+### Relationship to Perception Model
+
+The two layers are **complementary, not nested**:
+
+- **Reactive** (Perception Model): User asks → parallel activation → attention gate → executive function → response
+- **Proactive** (Grace Harper): Time/behavior fires → BEH protocol activation → nudge/enforce/block
+
+The proactive layer can **inject context** into the reactive layer — e.g., when `/start` surfaces "BEH-601: 0 solo sessions in 20 weeks," that context enters the Attention Gate's top-down priming for the rest of the session.
+
+### Implementation (Operational, Not Coded)
+
+| Touchpoint | How It Works |
+|:-----------|:-------------|
+| `/start` | Behavioral Accountability Surface — surfaces active BEH protocols, day-aware prompts |
+| `/end` | Behavioral Accountability Close — BEH-602 trigger log gate, weekly execution audit |
+| `/ultrastart` | Deep BEH context load, schema trigger pre-load |
+| `daemon-loop` skill | Autonomous recurring background checks |
+| `circuit-breaker` skill | Ruin-proximity inhibition |
 
 ---
 
@@ -203,17 +256,17 @@ Full cluster details: [CLUSTER_INDEX.md](./.agent/CLUSTER_INDEX.md)
 ## Retrieval Stack
 
 ```
-src/athena/tools/search.py (10s God Mode timeout + grep fallback)
+src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 ├── Full SDK search (parallel hybrid RRF + semantic cache)
 │   ├── Canonical search (CANONICAL.md keyword matching, min 2-hit)
 │   ├── Tag search (grep against TAG_INDEX shards)
-│   ├── Vector search (Supabase pgvector, unified search_all_vectors RPC, threshold ≥0.3)
+│   ├── Vector search (Supabase pgvector, 11 parallel RPCs, threshold ≥0.3)
+│   ├── ~~GraphRAG search~~ (REMOVED 2026-06-06 — stale 16 months, user directive)
 │   ├── Filename search (find across project root, keyword OR logic)
-│   ├── Framework docs search (keyword matching in .framework/ + memory_bank/ + .context/)
+│   ├── Framework docs search (keyword matching in .framework/ + memory_bank/)
 │   ├── SQLite search (local athena.db — files + tags)
 │   └── Exocortex search (Wikipedia FTS5)
 ├── Fusion: Weighted RRF (k=60, per-type weights, dynamic score modifiers)
-├── Adaptive Router: skips vector search when local hits suffice (low-entropy optimization)
 ├── Telemetry: retrieval_log.jsonl (quality: hit/partial/miss, source distribution)
 └── Grep fallback (runs if full search times out)
     ├── CANONICAL.md
@@ -319,18 +372,18 @@ src/athena/mcp_server.py (FastMCP v3.x, stdio transport)
 
 | Metric | Count |
 |:-------|------:|
-| Protocols (active) | 396 |
+| Protocols (active) | 399 |
 | Protocols (archived) | 32 |
-| Skills (active) | 37 (37 conditional) |
+| Skills (active) | 40 (40 conditional) |
 | Cognitive Clusters | 15 |
 | Cognitive Systems | 8 |
 | Workflows | 69 (51 root + 18 _domain/) |
 | Automation Scripts | 247 |
 | Case Studies | 492 (15 domains, 7 archived) |
-| Session Logs | 1,900+ |
-| Total Memory Files | 3,657 |
+| Session Logs | 1,888 |
+| Total Memory Files | 3,658 |
 | Source Files (SDK) | 72 |
-| Test Files | 11 |
+| Test Files | 13 |
 | Documentation Files | 76 |
 | Active Indexes | 4 (63KB) |
 | CANONICAL Entries | ~400 (29 Tier 1, 140 Tier 2, 3 Tier 3) |

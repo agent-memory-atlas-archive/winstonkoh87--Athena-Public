@@ -1,7 +1,7 @@
 # VectorRAG: Semantic Memory Architecture
 
-> **Last Updated**: 13 March 2026  
-> **Purpose**: Technical documentation for Athena's semantic memory system
+> **Last Updated**: 6 June 2026  
+> **Purpose**: Technical documentation for Athena's semantic memory system (sole semantic search layer)
 
 ---
 
@@ -12,13 +12,16 @@
 | Component | Technology | Purpose |
 |:----------|:-----------|:--------|
 | **Vector Database** | Supabase + pgvector | Cloud-native, persistent storage |
-| **Embeddings** | Google `gemini-embedding-001` (default) / Ollama (local) | 3072-dim (Gemini) or 768-dim (Ollama) semantic vectors |
+| **Embeddings** | Google `text-embedding-004` | 3072-dimension semantic vectors |
 | **Similarity** | Cosine Distance (`<=>`) | Meaning-based matching |
 | **Sync** | Python Scripts | Automated indexing pipeline |
 
 ---
 
 ## Why VectorRAG vs. GraphRAG?
+
+> [!IMPORTANT]
+> **Update (6 June 2026)**: GraphRAG was formally **removed** from Athena's architecture in Session 435. VectorRAG is now the **sole semantic search layer**. The comparison below is preserved for historical context and to explain the architectural rationale.
 
 > [!NOTE]
 > Athena chose VectorRAG over Microsoft's GraphRAG after evaluating both approaches.
@@ -31,7 +34,7 @@
 | **Best For** | Semantic recall | Entity relationships |
 | **Maintenance** | Low | High (graph updates) |
 
-**Verdict**: For a personal knowledge base where *finding relevant context fast* is the goal, VectorRAG wins. GraphRAG excels at *entity relationship mapping* but adds complexity we don't need.
+**Verdict**: For a personal knowledge base where *finding relevant context fast* is the goal, VectorRAG wins. GraphRAG excels at *entity relationship mapping* but adds complexity we don't need. This assessment was validated over 1,900+ sessions, leading to GraphRAG's formal removal.
 
 ---
 
@@ -41,9 +44,9 @@
 flowchart TB
     subgraph LOCAL["📁 Local Workspace"]
         direction TB
-        SESSIONS["Session Logs<br/>(1,100+ files)"]
-        CASES["Case Studies<br/>(417+ files)"]
-        PROTOCOLS["Protocols<br/>(144+ files)"]
+        SESSIONS["Session Logs<br/>(300+ files)"]
+        CASES["Case Studies<br/>(40+ files)"]
+        PROTOCOLS["Protocols<br/>(170+ files)"]
         PROFILE["User Profile<br/>(Preferences, Settings)"]
         ENTITIES["Entity Data<br/>(External Imports)"]
     end
@@ -51,7 +54,7 @@ flowchart TB
     subgraph SYNC["⚙️ Sync Pipeline"]
         direction TB
         PARSE["Parse Markdown"]
-        EMBED["Generate Embeddings<br/>(gemini-embedding-001 or Ollama)"]
+        EMBED["Generate Embeddings<br/>(text-embedding-004)"]
         UPLOAD["Upsert to Supabase"]
     end
     
@@ -95,7 +98,7 @@ flowchart TB
 sequenceDiagram
     participant U as 👤 User
     participant A as 🏛️ Athena
-    participant G as 🔮 Embedding Provider
+    participant G as 🔮 Gemini API
     participant S as ☁️ Supabase
     
     U->>A: "What did we discuss about project architecture?"
@@ -224,19 +227,19 @@ sessions  case_studies entities  protocols capabilities playbooks frameworks ref
 
 | Domain | Table | Count | Description |
 |:-------|:------|:------|:------------|
-| **Sessions** | `sessions` | ~1,100+ | Daily interaction logs |
-| **Case Studies** | `case_studies` | ~417+ | Pattern analysis documents |
+| **Sessions** | `sessions` | ~468 | Daily interaction logs |
+| **Case Studies** | `case_studies` | ~75 | Pattern analysis documents |
 | **Entities** | `entities` | ~100 chunks | External data imports |
-| **Protocols** | `protocols` | ~144+ | Reusable thinking patterns |
+| **Protocols** | `protocols` | ~226 | Reusable thinking patterns |
 | **Capabilities** | `capabilities` | ~10 | Tool/skill definitions |
 | **Playbooks** | `playbooks` | ~5 | Strategic guides |
 | **Frameworks** | `frameworks` | ~5 | Core Identity modules |
 | **References** | `references` | ~10 | External citations |
-| **Workflows** | `workflows` | ~59 | Automation scripts |
+| **Workflows** | `workflows` | ~20 | Automation scripts |
 | **User Profile** | `user_profile` | ~10 | Preferences, settings |
 | **System Docs** | `system_docs` | ~10 | TAG_INDEX, manifests |
 
-**Total Indexed Documents**: ~1,900+
+**Total Indexed Documents**: ~850+
 
 ---
 
@@ -260,7 +263,7 @@ flowchart LR
     subgraph PROCESS["⚙️ Processing"]
         P1["Read Markdown"]
         P2["Extract Metadata"]
-        P3["Generate Embedding<br/>(Gemini or Ollama)"]
+        P3["Generate Embedding<br/>(Gemini API)"]
         P4["Check Exists"]
     end
     
@@ -276,33 +279,21 @@ flowchart LR
 
 ### Embedding Generation
 
-The embedding provider is configurable via `EMBEDDING_PROVIDER` env var:
-
-```env
-# .env — choose your provider
-EMBEDDING_PROVIDER=gemini          # default (3072 dims, requires GOOGLE_API_KEY)
-# EMBEDDING_PROVIDER=ollama        # local, zero-cost (768 dims default)
-# OLLAMA_BASE_URL=http://localhost:11434
-# OLLAMA_EMBED_MODEL=nomic-embed-text
-```
-
 ```python
-# Gemini provider (default)
-def _get_embedding_gemini(text: str) -> list[float]:
-    """3072-dim embedding via Google Gemini API."""
-    url = f".../models/gemini-embedding-001:embedContent?key={api_key}"
-    payload = {"model": "models/gemini-embedding-001", "content": {"parts": [{"text": text}]}}
-    return requests.post(url, json=payload).json()["embedding"]["values"]
-
-# Ollama provider (local, offline)
-def _get_embedding_ollama(text: str) -> list[float]:
-    """768-dim embedding via local Ollama instance."""
-    response = requests.post(f"{base_url}/api/embed", json={"model": model, "input": text})
-    return response.json()["embeddings"][0]
+def get_embedding(text: str) -> list[float]:
+    """Generate 3072-dim embedding using Google Gemini."""
+    text = text[:32000]  # Token limit
+    
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key={GOOGLE_API_KEY}"
+    
+    payload = {
+        "model": "models/text-embedding-004",
+        "content": {"parts": [{"text": text}]}
+    }
+    
+    response = requests.post(url, json=payload)
+    return response.json()["embedding"]["values"]
 ```
-
-> [!NOTE]
-> Gemini uses 3072-dim vectors; Ollama models typically use 768-dim. If switching providers on an existing Supabase instance, re-index to match dimensions.
 
 ---
 
@@ -408,11 +399,10 @@ VectorRAG is **not optional**. Per Core Identity §0.7.1:
 |:---------|:----------|:----------|
 | **Supabase** | 500MB DB, 2GB bandwidth | $25/mo for 8GB |
 | **Gemini Embeddings** | 1,500 req/day | N/A (no cost beyond free) |
-| **Ollama (local)** | ∞ (runs on your hardware) | $0 |
 | **Total** | **$0/month** | ~$25/month at scale |
 
 > [!TIP]
-> At ~1,900 documents, we're within free tier limits. Embeddings are generated once per document, so ongoing costs are minimal. For fully offline operation, set `EMBEDDING_PROVIDER=ollama`.
+> At ~730 documents, we're well within free tier limits. Embeddings are generated once per document, so ongoing costs are minimal.
 
 ---
 
@@ -464,7 +454,7 @@ VectorRAG is **not optional**. Per Core Identity §0.7.1:
 
 ## Future Enhancements
 
-* [x] **Hybrid Search**: Combine vector + keyword + TAG_INDEX for precision → See [SEMANTIC_SEARCH.md](SEMANTIC_SEARCH.md)
+* [x] **Hybrid Search**: Combine vector + keyword + TAG_INDEX for precision → See [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md)
 * [ ] **Auto-Reindex**: Trigger sync on file save (via GitHub webhook)
 * [ ] **Cross-Reference**: Link sessions to protocols to case studies
 * [ ] **Chunking Strategy**: Split large documents for finer retrieval
@@ -476,7 +466,6 @@ VectorRAG is **not optional**. Per Core Identity §0.7.1:
 * [Supabase Vector Documentation](https://supabase.com/docs/guides/ai/vector-columns)
 * [pgvector GitHub](https://github.com/pgvector/pgvector)
 * [Google Gemini Embeddings](https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings)
-* [Ollama Embedding API](https://ollama.com/blog/embedding-models)
 
 ---
 

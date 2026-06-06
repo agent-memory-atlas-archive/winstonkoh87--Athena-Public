@@ -31,10 +31,10 @@
 
 | Capability | Evidence |
 |------------|----------|
-| **Systems Architecture** | Designed a 400+-protocol knowledge framework ([Architecture](ARCHITECTURE.md)) |
-| **AI Engineering** | Built RAG pipelines ([Semantic Search](SEMANTIC_SEARCH.md), Supabase pgvector) |
-| **Technical Writing** | 1,900+ session logs, 492+ case studies, zero fluff |
-| **Automation** | 247+ Python scripts for [Capabilities](CAPABILITIES.md) optimization |
+| **Systems Architecture** | Designed a 399-protocol knowledge framework ([Architecture](docs/ARCHITECTURE.md)) |
+| **AI Engineering** | Built RAG pipelines ([VectorRAG](docs/VECTORRAG.md) + [Semantic Search](docs/SEMANTIC_SEARCH.md)) |
+| **Technical Writing** | 1,900+ session logs, 492 case studies, zero fluff |
+| **Automation** | 247 Python scripts for system optimization |
 | **Strategic Thinking** | Spent 10 years navigating institutional politics and incentive structures |
 
 ---
@@ -52,9 +52,6 @@
 
 4. **Epistemic Rigor**  
    I document my reasoning. I version-control my decisions. I can show you *why* I made every major choice in this system.
-
-5. **Data Compounding**  
-   1,900+ sessions of empirical data — decisions, outcomes, patterns, blind spots — all structured and searchable. This isn't chat history; it's a calibrated knowledge base that makes every future session sharper. The algorithm is open-source. The data is the IP.
 
 ---
 
@@ -74,7 +71,7 @@ I'm not looking for:
 
 ### Want to Build Together?
 >
-> See my [Engineering Depth](ENGINEERING_DEPTH.md) or start with [Your First Agent](YOUR_FIRST_AGENT.md).
+> See my [Engineering Depth](docs/ENGINEERING_DEPTH.md) or start with [Your First Agent](docs/YOUR_FIRST_AGENT.md).
 
 ---
 

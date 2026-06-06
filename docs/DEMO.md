@@ -23,7 +23,7 @@ python3 .agent/scripts/boot.py
 **What happens:**
 
 ```
-🚀 ATHENA BOOT SEQUENCE v7.2
+🚀 ATHENA BOOT SEQUENCE v9.9.1
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [1/7] ⏱️  Watchdog activated
 [2/7] 🔄 System sync complete
@@ -73,7 +73,7 @@ python3 .agent/scripts/smart_search.py "decision frameworks risk"
 This searches across:
 
 - Supabase pgvector (dense embeddings)
-- GraphRAG communities (structural context)
+- Keyword/Tag index (exact match)
 - Uses RRF (Reciprocal Rank Fusion) to combine results
 
 ---
@@ -114,7 +114,6 @@ python3 .agent/scripts/end_session.py
 
 - Session log finalized with summary
 - New insights indexed for future retrieval
-- GraphRAG entities updated (if applicable)
 - Auto-commit to git (if configured)
 
 ---
@@ -131,10 +130,10 @@ python3 .agent/scripts/athena_status.py
 🏛️  PROJECT ATHENA | SYSTEM DASHBOARD
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Metrics:               Status:
-  📂 Protocols:  150+    🕒 Last Boot:  2026-01-29 01:07:16
-  📝 Sessions:   861     🕸️  GraphRAG:   Active (44.5 MB)
-  ⚙️  Scripts:    106   📍 Root:       Project Athena/
-  ❤️  Health:     98%    🛡️  Integrity:  100%
+  📂 Protocols:  431     🕒 Last Boot:  2026-06-06 14:06:00
+  📝 Sessions:   1,900+  📍 Root:       Project Athena/
+  ⚙️  Scripts:    247    🛡️  Integrity:  100%
+  ❤️  Health:     98%    📁 Memory:     3,658 files
 
 Recent Sessions:
   • 2026-01-08-session-01.md

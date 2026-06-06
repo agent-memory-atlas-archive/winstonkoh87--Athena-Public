@@ -1,46 +1,28 @@
 # Workflows in Project Athena
 
-> **Last Updated**: 20 May 2026
+> **Last Updated**: 6 June 2026
 
 Workflows are slash commands that trigger predefined sequences of actions. They're the backbone of Athena's session management and deep reasoning capabilities.
+
+> **Total**: 69 workflows (51 root + 18 domain-specific in `.agent/workflows/_domain/`)
 
 ## Quick Reference
 
 | Command | Purpose | Complexity |
 |---------|---------|------------|
-| [`/start`](../examples/workflows/start.md) | Boot session, load identity | Low |
-| [`/end`](../examples/workflows/end.md) | Close session, commit to memory | Low |
-| [`/ultrastart`](../examples/workflows/ultrastart.md) | System-2 deep boot (~20K tokens) | High |
-| [`/ultraend`](../examples/workflows/ultraend.md) | System-2 deep close (synthesis + reconciliation) | High |
-| [`/tutorial`](../examples/workflows/tutorial.md) | Guided first-session walkthrough | Low |
-| [`/save`](../examples/workflows/save.md) | Mid-session checkpoint | Low |
-| [`/think`](../examples/workflows/think.md) | Deep reasoning (all phases) | Medium |
-| [`/ultrathink`](../examples/workflows/ultrathink.md) | Maximum depth (parallel orchestrator) | High |
-| [`/search`](../examples/workflows/search.md) | Web search with citations | Medium |
-| [`/research`](../examples/workflows/research.md) | Exhaustive multi-source investigation | High |
-| [`/plan`](../examples/workflows/plan.md) | Structured planning with pre-mortem | Medium |
-| [`/brief`](../examples/workflows/brief.md) | Pre-prompt clarification protocol | Medium |
-| [`/project`](../examples/workflows/project.md) | Multi-project switchboard (view, add, switch, triage) | Medium |
-| [`/diagnose`](../examples/workflows/diagnose.md) | Read-only workspace health check | Low |
-| [`/needful`](../examples/workflows/needful.md) | Autonomous high-value action (AI judges what's needed) | High |
-| [`/refactor`](../examples/workflows/refactor.md) | Full workspace optimization | High |
-| [`/vibe`](../examples/workflows/vibe.md) | Ship at 70%, iterate fast | Low |
-| [`/deploy`](../examples/workflows/deploy.md) | Sanitized public repo sync | Medium |
-| [`/do`](../.agent/workflows/do.md) | Universal entry point — auto-routes intent | Low |
-| [`/battleplan`](../examples/workflows/battleplan.md) | Pre-execution battle planning (7 phases) | High |
-| [`/dream`](../examples/workflows/dream.md) | Background memory consolidation daemon | Medium |
-| [`/gto`](../examples/workflows/gto.md) | Game-Theory Optimal problem-solving | High |
-| [`/minmax`](../examples/workflows/minmax.md) | Token Economy Mode — maximize quality/token | Medium |
-| [`/fix`](../examples/workflows/fix.md) | Analyze test failures, propose fixes | Medium |
-| [`/steal`](../examples/workflows/steal.md) | Pattern extraction from external repos | Medium |
-| [`/fresh`](../examples/workflows/fresh.md) | Soft reset — close + immediate reboot | Low |
-| [`/416-agent-swarm`](../examples/workflows/416-agent-swarm.md) | Parallel agent orchestration | High |
-| [`/doc`](../examples/workflows/doc.md) | High-stakes documentation (Anthropic Method) | High |
-| [`/dump`](../examples/workflows/dump.md) | Quick thought capture | Low |
-| [`/check`](../examples/workflows/check.md) | Verification loop on current work | Low |
-| [`/audit`](../examples/workflows/audit.md) | Zero-blind-spot workspace audit | High |
-| [`/async-dev`](../examples/workflows/async-dev.md) | Async AI Development (Sleeper Agent) | High |
-| [`/review`](../examples/workflows/review.md) | Weekly integration review | Medium |
+| [`/start`](examples/workflows/start.md) | Boot session, load identity | Low |
+| [`/end`](examples/workflows/end.md) | Close session, commit to memory | Low |
+| [`/tutorial`](examples/workflows/tutorial.md) | Guided first-session walkthrough | Low |
+| [`/save`](examples/workflows/save.md) | Mid-session checkpoint | Low |
+| [`/think`](examples/workflows/think.md) | Deep reasoning (all phases) | Medium |
+| [`/ultrathink`](examples/workflows/ultrathink.md) | Maximum depth (parallel orchestrator) | High |
+| [`/search`](examples/workflows/search.md) | Web search with citations | Medium |
+| [`/research`](examples/workflows/research.md) | Exhaustive multi-source investigation | High |
+| [`/plan`](examples/workflows/plan.md) | Structured planning with pre-mortem | Medium |
+| [`/brief`](examples/workflows/brief.md) | Pre-prompt clarification protocol | Medium |
+| [`/refactor`](examples/workflows/refactor.md) | Full workspace optimization | High |
+| [`/vibe`](examples/workflows/vibe.md) | Ship at 70%, iterate fast | Low |
+| [`/deploy`](examples/workflows/deploy.md) | Sanitized public repo sync | Medium |
 
 ---
 
@@ -52,8 +34,6 @@ Workflows are slash commands that trigger predefined sequences of actions. They'
 |----------|-------------|
 | **`/start`** | Beginning of every session. Loads identity, recalls context from previous sessions. |
 | **`/end`** | End of every session. Commits insights to memory, updates indexes. |
-| **`/ultrastart`** | Deep sessions requiring maximum context. Loads full CANONICAL + semantic bridge (~20K tokens). |
-| **`/ultraend`** | Deep session close. Cross-session pattern scan, CANONICAL reconciliation, reflexion archive, portfolio review. Counterpart to `/ultrastart`. |
 | **`/tutorial`** | Your very first session. Guided walkthrough of all features, includes profile interview. |
 | **`/save`** | Mid-session when you want to checkpoint without closing. Use before risky experiments. |
 
@@ -181,7 +161,7 @@ Step-by-step execution...
 
 ## Best Practices
 
-1. **Default lean, escalate on demand**: Normal mode is optimized for speed. Use `/think` or `/ultrathink` only when stakes justify the token cost. See [Protocol 510: Adaptive Depth](../examples/protocols/architecture/510-adaptive-depth.md).
+1. **Choose the right depth**: Don't `/ultrathink` on simple queries
 2. **Checkpoint often**: Use `/save` before risky experiments
 3. **Brief first**: For complex tasks, `/brief` reduces wasted tokens
 4. **End sessions properly**: `/end` commits insights to long-term memory
@@ -191,6 +171,6 @@ Step-by-step execution...
 
 ## Further Reading
 
-- [ARCHITECTURE.md](ARCHITECTURE.md) — System design
-- [GETTING_STARTED.md](GETTING_STARTED.md) — Setup guide
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md) — System design
+- [GETTING_STARTED.md](docs/GETTING_STARTED.md) — Setup guide
 - [examples/protocols/](../examples/protocols/) — Decision frameworks

@@ -1,9 +1,9 @@
 # Engineering Depth
 
-> **Last Updated**: 22 February 2026
-> **Version**: v8.0-Stable
+> **Last Updated**: 6 June 2026
+> **Version**: v9.9.1
 
-This document demonstrates the technical depth built into Athena over 860+ sessions.
+This document demonstrates the technical depth built into Athena over 1,900+ sessions.
 
 ---
 
@@ -11,15 +11,16 @@ This document demonstrates the technical depth built into Athena over 860+ sessi
 
 ### 1.1 Hybrid Retrieval Pipeline
 
-Athena's search engine fuses 5 retrieval methods using Reciprocal Rank Fusion (RRF):
+Athena's search engine fuses multiple retrieval methods using Reciprocal Rank Fusion (RRF):
 
 | Source | Weight | Purpose |
 | :----- | -----: | :------ |
 | Canonical | 3.0x | Exact filename/path matches |
-| GraphRAG | 2.0x | Community-level semantic clustering |
 | Vector | 2.0x | Embedding similarity (pgvector) |
 | Tag | 1.2x | Hashtag cross-referencing |
 | Filename | 1.0x | Fuzzy name matching |
+
+> **Note**: GraphRAG (community-level semantic clustering) was removed in S435 (6 June 2026) due to cost/complexity exceeding retrieval quality gains.
 
 **Formula**:
 
@@ -49,17 +50,18 @@ score = Σ ( weight * (0.5 + doc_score) * (1 / (k + rank)) )
 
 ---
 
-## 3. Protocol Library (149+)
+## 3. Protocol Library (431 total: 399 active + 32 archived, 23 categories)
 
-Athena's protocols are modular thinking patterns, organized by domain:
+Athena's protocols are modular thinking patterns, organized across 23 domains:
 
 | Category | Count | Examples |
 | :------- | ----: | :------- |
-| Decision | 22 | Einstein Criterion, Premise Audit |
-| Psychology | 22 | Baseline Distortion, Cognitive Inversion |
-| Business | 11 | Flywheel, Value Trinity |
-| Engineering | 14 | Git Worktree Parallelism, State Freezer |
-| Architecture | 10 | Token Hygiene, Latency Levels |
+| Decision | 46 | Einstein Criterion, Premise Audit, SDR Calculator |
+| Psychology | 40 | Baseline Distortion, Cognitive Inversion, Schema Interception |
+| Strategy | 24 | Flywheel, Value Trinity, PMOD Framework |
+| Business | 31 | Unit Economics Physics, Outcome Economy |
+| Engineering | 25 | Git Worktree Parallelism, State Freezer |
+| Architecture | 29 | Token Hygiene, Latency Levels, Scale-Adaptive Intelligence |
 
 ---
 
@@ -104,4 +106,4 @@ Athena has undergone 2 external red-team audits to ensure:
 
 ---
 
-*For the full technical breakdown, see [ARCHITECTURE.md](ARCHITECTURE.md) and [SEMANTIC_SEARCH.md](SEMANTIC_SEARCH.md).*
+*For the full technical breakdown, see [ARCHITECTURE.md](docs/ARCHITECTURE.md) and [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md).*

@@ -1,6 +1,6 @@
 # Frequently Asked Questions (FAQ)
 
-> **Last Updated**: 6 Jun 2026
+> **Last Updated**: 6 June 2026
 
 ---
 
@@ -33,8 +33,8 @@ Athena separates the **IDE** from the **Reasoning Engine**, so you are never loc
 **2. The Reasoning Engine (Who does the thinking):**
 
 - **Gemini 3.1 Pro**
-- **Claude Opus 4.7**
-- **GPT-5.5 (High)**
+- **Claude Opus 4.6**
+- **GPT-5.4**
 - Any LLM that can read your local Markdown files
 
 ---
@@ -52,7 +52,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 ```
 
-For full power features (vector search, Supabase sync), budget 30-60 minutes.
+For full power features (vector search, semantic retrieval), budget 30-60 minutes.
 
 ### Do I need API keys?
 
@@ -61,7 +61,7 @@ For full power features (vector search, Supabase sync), budget 30-60 minutes.
 **Full setup** (recommended):
 
 - `ANTHROPIC_API_KEY` — For Claude reasoning
-- `GOOGLE_API_KEY` — For embeddings (gemini-embedding-001)
+- `GOOGLE_API_KEY` — For embeddings (text-embedding-004)
 - `SUPABASE_URL` + `SUPABASE_ANON_KEY` — For vector database (optional)
 
 ### Does it work with Cursor? Windsurf?
@@ -103,7 +103,7 @@ When the engagement ends, archive the generalized learnings back into Athena (st
 | **Embeddings** (Google API) | ~$0.001 per 1K tokens |
 | **Claude API** (direct calls) | Depends on usage |
 | **Supabase** (vector DB) | Free tier available |
-
+| ~~**GraphRAG** (knowledge graph)~~ | ❌ Removed (S435, 6 June 2026) |
 
 Most users spend **< $5/month** on API calls.
 
@@ -128,7 +128,7 @@ Most users spend **< $5/month** on API calls.
 
 ### Is it safe to use for work?
 
-Yes, if you use **Local Mode**. For enterprise use, see [SECURITY.md](SECURITY.md) for RLS policies and key management.
+Yes, if you use **Local Mode**. For enterprise use, see [SECURITY.md](docs/SECURITY.md) for RLS policies and key management.
 
 ---
 
@@ -174,4 +174,4 @@ Athena auto-retrieves ~2K tokens of context. If you're hitting limits, your sess
 
 ---
 
-**[Back to README](../README.md)**
+**[Back to README](README.md)**

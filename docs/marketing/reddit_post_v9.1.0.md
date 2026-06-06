@@ -36,7 +36,7 @@ That's not a bug. That's **architecture**. ChatGPT Memory is RAM — volatile, v
 **The interesting stuff:**
 
 - 🧠 **120+ protocols** — reusable decision frameworks for debugging, shipping, architecture, strategy
-- 🔍 **Triple-path search** — BM25 + Semantic + GraphRAG. Hybrid retrieval that actually finds what you need
+- 🔍 **7-channel Hybrid RAG** — BM25 + Semantic + Agentic + File Grep + Session Recall + Canonical + Web. Retrieval that actually finds what you need
 - 🏗️ **MCP Server** — 9 tools, 2 resources. Your IDE becomes the terminal for your AI's operating system
 - 🔄 **Session persistence** — `/start` loads your last session's context. `/end` distills and commits to memory. Session 1,300 is *cleaner* than Session 100.
 
@@ -70,7 +70,7 @@ athena init .
 
 ### Why I built this
 
-I'm a solo dev in Singapore. I use Athena daily — 1,300+ sessions, 4,200+ vector memories, 50+ quicksaves per week. It's not a demo. It's my actual development environment.
+I'm a solo dev in Singapore. I use Athena daily — 1,900+ sessions, 3,658 memory files, 50+ quicksaves per week. It's not a demo. It's my actual development environment.
 
 The insight that keeps landing: **the model is replaceable, the memory isn't.** When GPT-5 drops, I'll plug it in. My context stays. My protocols stay. My decisions stay.
 

@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-06-06
+last_updated: 2026-03-04
 tags: #references #apa #academic #citations
 ---
 
@@ -42,10 +42,6 @@ Tetlock, P. E., & Gardner, D. (2015). *Superforecasting: The art and science of 
 
 Tversky, A., & Kahneman, D. (1974). Judgment under uncertainty: Heuristics and biases. *Science, 185*(4157), 1124–1131. <https://doi.org/10.1126/science.185.4157.1124>
 
-Ebbinghaus, H. (1885). *Über das Gedächtnis: Untersuchungen zur experimentellen Psychologie* [Memory: A contribution to experimental psychology]. Duncker & Humblot. [English translation: Ruger, H. A., & Bussenius, C. E. (1913). Teachers College, Columbia University]
-
-> **Note**: Ebbinghaus's forgetting curve — the exponential decay of recall over time without reinforcement — is the basis for Athena's access-weighted memory decay. Memories not accessed in >30 days receive a decay penalty on retrieval scores; frequently co-activated procedural patterns receive permanence multipliers. Implemented in v9.4.2 via the Maintenance cluster.
-
 ---
 
 ## Microeconomics & Decision Theory
@@ -82,10 +78,6 @@ Saaty, T. L. (1980). *The analytic hierarchy process: Planning, priority setting
 
 Fishburn, P. C. (1967). Additive utilities with incomplete product sets: Application to priorities and assignments. *Operations Research, 15*(3), 537–542.
 
-Peters, O. (2019). The ergodicity problem in economics. *Nature Physics, 15*(12), 1216–1221. <https://doi.org/10.1038/s41567-019-0732-0>
-
-> **Note**: Peters demonstrated that the ensemble average (expected value across many agents) and the time average (expected value for one agent over time) diverge in multiplicative dynamics — making standard expected utility theory inapplicable to non-ergodic situations. This is the formal foundation of Athena's Law #1 (No Irreversible Ruin): in non-ergodic systems, a single absorbing state (bankruptcy, liquidation) makes the game's time-average payoff zero regardless of its ensemble-average payoff. Protocol 330 (EEV) and Protocol 001 (Law of Ruin) are direct applications.
-
 ---
 
 ## AI, Machine Learning & Retrieval-Augmented Generation
@@ -97,8 +89,6 @@ Dell'Acqua, F., McFowland, E., III, Mollick, E. R., Lifshitz-Assaf, H., Kellogg,
 Du, Y., Li, S., Torralba, A., Tenenbaum, J. B., & Mordatch, I. (2023). Improving factuality and reasoning in language models through multiagent debate. *arXiv preprint arXiv:2305.14325*. <https://arxiv.org/abs/2305.14325>
 
 Khattab, O., Singhvi, A., Maheshwari, P., Zhang, Z., Santhanam, K., Vardhamanan, S., ... & Potts, C. (2023). DSPy: Compiling declarative language model calls into self-improving pipelines. *arXiv preprint arXiv:2310.03714*. <https://arxiv.org/abs/2310.03714>
-
-Besta, M., Blach, N., Kubíček, A., Gerstenberger, R., Podstawski, M., Gianinazzi, L., ... & Hoefler, T. (2024). Graph of thoughts: Solving elaborate problems with large language models. *Proceedings of the AAAI Conference on Artificial Intelligence, 38*(16), 17682–17690. <https://arxiv.org/abs/2308.09687>
 
 Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., ... & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. *Advances in Neural Information Processing Systems, 33*, 9459–9474. <https://arxiv.org/abs/2005.11401>
 
@@ -122,35 +112,9 @@ Wang, L., Ma, C., Feng, X., Zhang, Z., Yang, H., Zhang, J., ... & Wang, J. (2024
 
 Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., & Cao, Y. (2023). ReAct: Synergizing reasoning and acting in language models. *International Conference on Learning Representations (ICLR)*. <https://arxiv.org/abs/2210.03629>
 
-Model Context Protocol. (2025). *Model Context Protocol Specification* (2025-11-25). Linux Foundation / Agentic AI Foundation (AAIF). <https://modelcontextprotocol.io/>
-
-> **Note**: MCP is an open standard introduced by Anthropic in November 2024 that standardizes how AI systems connect to external data sources, tools, and systems. It provides a client-server architecture with JSON-RPC 2.0 transport, enabling tools, resources, and prompts to be exposed to any compatible agent. Athena's MCP server (`mcp_server.py`) exposes 9 tools and 2 resources. Governance was donated to the Agentic AI Foundation (AAIF) under the Linux Foundation in December 2025. The November 2025 stable spec added OAuth 2.1, task-based async workflows, a formal extensions system, and elicitation flows for human-in-the-loop interactions.
-
-Hou, X., Zhao, Y., Wang, S., & Wang, H. (2025). Model Context Protocol (MCP): Landscape, security threats, and future research directions. *arXiv preprint arXiv:2503.23278*. <https://arxiv.org/abs/2503.23278>
-
-> **Note**: First systematic security analysis of MCP — maps the lifecycle, architectural components, and threat taxonomy. Relevant to Athena's security posture: all MCP tools are gated by the Permissioning Layer (Protocol 409) and Secret Mode redaction.
-
-Google. (2025). *Agent2Agent (A2A) Protocol Specification* (v1.0). Linux Foundation / LF AI & Data Foundation. <https://a2a-protocol.org/>
-
-> **Note**: A2A is the complementary protocol to MCP — while MCP standardizes agent-to-tool communication, A2A standardizes agent-to-agent coordination. Introduced by Google in April 2025 and donated to the Linux Foundation in June 2025, A2A enables discovery (Agent Cards via `.well-known/agent-card.json`), authentication (OAuth 2.0 / mTLS), and structured task delegation via JSON-RPC. Now supported by 150+ organizations. Relevant to Athena's Protocol 413 (Multi-Agent Coordination) and the `/416-agent-swarm` workflow.
-
-Park, J. S., O'Brien, J. C., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, M. S. (2023). Generative agents: Interactive simulacra of human behavior. *Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST)*, Article 2, 1–22. <https://arxiv.org/abs/2304.03442>
-
-> **Note**: Park et al. demonstrated that LLM-based agents with persistent memory, reflection, and planning can produce believable human behavior in simulation. Their architecture — observe → reflect → plan → act — is structurally similar to Athena's session lifecycle (/start → work → /end → session log). The key insight: *reflection* (periodic synthesis of raw observations into higher-level abstractions) is what separates agents from chatbots.
-
-Hong, S., Zheng, X., Chen, J., Cheng, Y., Wang, J., Zhang, C., ... & Wu, C. (2024). MetaGPT: Meta programming for a multi-agent collaborative framework. *International Conference on Learning Representations (ICLR)*. <https://arxiv.org/abs/2308.00352>
-
-> **Note**: MetaGPT introduced Standardized Operating Procedures (SOPs) for multi-agent coordination — structured role assignment with explicit handoff protocols. Athena's Protocol 413 (Multi-Agent Coordination) and the `/416-agent-swarm` workflow implement similar principles: worktree isolation, coordinator synthesis, and never-stash safety rules.
-
-Li, G., Hammoud, H. A. A. K., Itani, H., Khizbullin, D., & Ghanem, B. (2024). CAMEL: Communicative agents for "mind" exploration of large language model society. *Advances in Neural Information Processing Systems, 36*. <https://arxiv.org/abs/2303.17760>
-
-> **Note**: CAMEL demonstrated role-playing communication between AI agents to solve complex tasks. The "inception prompting" technique — where each agent is given a role and communicates through structured messages — informed Athena's synthetic parallel reasoning skill (Protocol 75 v4.0), which deploys 4 virtual personas (Domain Expert, Adversarial Skeptic, Cross-Domain Pattern Matcher, First-Principles Analyst) with an adversarial convergence gate.
-
 ---
 
 ## Knowledge Graphs & GraphRAG
-
-> **⚠️ Status Note (Jun 2026)**: GraphRAG was formally removed from Athena's search pipeline in v9.9.1-gto. The channel had been stale since February 2025 (16 months) — the cost of building and maintaining a knowledge graph extraction pipeline was not justified by its retrieval contribution. The 7-channel hybrid search (without GraphRAG) achieves 0.66 MRR and 0.85 Hit@5. These references are retained for academic context — the underlying research remains valuable for understanding knowledge-graph-augmented retrieval.
 
 Edge, D., Trinh, H., Cheng, N., Bradley, J., Chao, A., Mody, A., ... & Larson, J. (2024). From local to global: A graph RAG approach to query-focused summarization. *arXiv preprint arXiv:2404.16130*. <https://arxiv.org/abs/2404.16130>
 
@@ -168,21 +132,9 @@ Nogueira, R., & Cho, K. (2020). Passage re-ranking with BERT. *arXiv preprint ar
 
 Reimers, N., & Gurevych, I. (2019). Sentence-BERT: Sentence embeddings using Siamese BERT-networks. *Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)*. <https://arxiv.org/abs/1908.10084>
 
-Damodaran, P. (2023). *FlashRank: Lightest and fastest 2nd stage reranker for search pipelines* [Software]. Zenodo. <https://doi.org/10.5281/zenodo.10426927>
-
-> **Note**: FlashRank provides lightweight, CPU-efficient cross-encoder reranking without GPU dependencies. Athena's hybrid RAG pipeline uses FlashRank as the final reranking stage after BM25 + semantic retrieval + RRF fusion, achieving 85% recall on personal knowledge bases at $0/month infrastructure cost.
-
-Clavié, B. (2024). rerankers: A lightweight unified API for retrieval re-ranking models. *arXiv preprint arXiv:2408.05796*. <https://arxiv.org/abs/2408.05796>
-
-> **Note**: Survey and unified interface for cross-encoder, listwise, and pointwise reranking approaches. Provides the theoretical taxonomy for Athena's choice of pairwise cross-encoder reranking over alternatives.
-
 ---
 
 ## Prompt Engineering & Context Window Management
-
-Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. *Cognitive Science, 12*(2), 257–285. <https://doi.org/10.1207/s15516709cog1202_4>
-
-> **Note**: Sweller's Cognitive Load Theory (CLT) distinguishes intrinsic load (task complexity), extraneous load (poor design), and germane load (schema construction). CLT is the theoretical foundation for Athena's MinMax Token Economy doctrine (v9.8.5): context windows are treated as bounded working memory where extraneous tokens degrade reasoning performance. The `/minmax` workflow operationalizes CLT by eliminating extraneous context (selective boot, SNIPER discipline) to preserve capacity for germane reasoning — achieving ~74% token reduction with equivalent quality.
 
 Wang, X., Wei, J., Schuurmans, D., Le, Q., Chi, E., Narang, S., ... & Zhou, D. (2023). Self-consistency improves chain of thought reasoning in language models. *International Conference on Learning Representations (ICLR)*. <https://arxiv.org/abs/2203.11171>
 
@@ -208,10 +160,6 @@ Pearson, T. (2018, June 6). The ultimate guide to apprenticeships. *Mission.org*
 
 Ries, E. (2011). *The lean startup: How today's entrepreneurs use continuous innovation to create radically successful businesses*. Crown Business.
 
-Balfour, B. (2017). Why product market fit isn't enough. *Brian Balfour's Essays*. <https://brianbalfour.com/essays/product-market-fit-isnt-enough>
-
-> **Note**: Balfour's Four Fits framework — Market↔Product, Product↔Channel, Channel↔Model, Model↔Market — extends single-fit analysis (Andreessen's PMF) into a system of simultaneous constraints. All four must hold for sustainable growth. This is the tech-native equivalent of Protocol 162 (PMOD / Distribution First). Empirically validated across 6 FnB businesses in CNA documentary analysis (Session S12, Mar 2026) where every failure was a Fit #2–4 failure, never Fit #1.
-
 Taleb, N. N. (2004). *Fooled by randomness: The hidden role of chance in life and in the markets* (2nd ed.). Random House.
 
 Taleb, N. N. (2012). *Antifragile: Things that gain from disorder*. Random House.
@@ -228,10 +176,6 @@ Rumsfeld, D. H. (2002, February 12). DoD news briefing — Secretary Rumsfeld an
 
 > **Note**: The "known unknowns" matrix predates Rumsfeld's press conference. The conceptual framework traces to the Johari Window (Luft & Ingham, 1955) and NASA risk management literature from the 1990s. Rumsfeld popularized the terminology.
 
-Peterson, J. B. (1999). *Maps of meaning: The architecture of belief*. Routledge.
-
-> **Note**: Peterson's synthesis of neuropsychology, Jungian archetypes, and cognitive science formalizes how humans construct internal "maps" — narrative structures that mediate between chaos (the unknown) and order (the known). In Athena's framework, this maps to the schema correction function (§0.1.2, Augmentation Mandate): detecting where `Internal Belief ≠ External Reality` and patching the map before reality lag compounds. The dual function — hold space (psychological safety) + correct schema (augmentation) — is the operational implementation of Peterson's thesis that meaning-structures must be voluntarily updated to prevent catastrophic disintegration.
-
 ---
 
 ## AI Safety & Alignment
@@ -242,37 +186,9 @@ Perez, E., Ringer, S., Lukošiūtė, K., Nguyen, K., Chen, E., Heiner, S., ... &
 
 Soelberg v. OpenAI, Inc., No. 3:25-cv-11037 (N.D. Cal. filed Dec. 29, 2025).
 
-> **Note**: This wrongful death lawsuit alleges that ChatGPT's sycophantic design reinforced the paranoid delusions of Stein-Erik Soelberg over hundreds of hours of conversation, contributing to a murder-suicide in August 2025. The case is cited in Athena's [Trilateral Feedback](TRILATERAL_FEEDBACK.md) documentation as a real-world example of why single-model bilateral feedback is dangerous.
+> **Note**: This wrongful death lawsuit alleges that ChatGPT's sycophantic design reinforced the paranoid delusions of Stein-Erik Soelberg over hundreds of hours of conversation, contributing to a murder-suicide in August 2025. The case is cited in Athena's [Trilateral Feedback](docs/TRILATERAL_FEEDBACK.md) documentation as a real-world example of why single-model bilateral feedback is dangerous.
 
 Wei, A., Haghtalab, N., & Steinhardt, J. (2024). Jailbroken: How does LLM safety training fail? *Advances in Neural Information Processing Systems, 36*. <https://arxiv.org/abs/2307.02483>
-
-Microsoft. (2026). *Taxonomy of failure modes in agentic AI systems* (v2.0). Microsoft AI Safety & Security. <https://www.microsoft.com/en-us/security/blog/2026/06/taxonomy-failure-modes-agentic-ai/>
-
-> **Note**: Microsoft's v2.0 taxonomy maps the failure surface of persistent, tool-using agents — including contradiction resolution failures, privacy-violating data retention, and tool poisoning via MCP. Directly relevant to Athena's governance architecture: the Permissioning Layer (Protocol 409), Secret Mode, and the Trilateral Feedback Protocol are all designed to mitigate failure modes catalogued in this taxonomy.
-
----
-
-## Agent Memory & Persistent Context
-
-Zhang, Z., Bo, X., Ma, C., Li, R., Chen, X., Dai, Q., ... & Wen, J. (2025). A survey on memory in large language model based agents. *arXiv preprint*. <https://arxiv.org/abs/2404.13501>
-
-> **Note**: Definitive survey on memory architectures for LLM agents — categorizes memory into factual, experiential (procedural), and working memory with write–manage–read lifecycle. Directly validates Athena's architecture: session logs (experiential), CANONICAL.md (factual), and context window (working memory) map cleanly to this taxonomy. The survey's emphasis on "sleep-phase consolidation" and "interference-based forgetting" aligns with Athena's `/dream` workflow and access-weighted decay.
-
----
-
-## Financial Mathematics & Risk Management
-
-Thorp, E. O. (1966). *Beat the dealer: A winning strategy for the game of twenty-one* (Rev. ed.). Vintage Books.
-
-> **Note**: Thorp extended Kelly's information-theoretic framework to practical gambling and investing, demonstrating that fractional Kelly ("Half-Kelly") provides a superior risk-adjusted return by trading ~25% of growth rate for ~50% variance reduction. Athena's `zenith-execution` skill implements Half-Kelly as the default position sizing — the same insight: maximizing geometric growth rate under uncertainty, not arithmetic expectation.
-
-Vince, R. (1992). *The mathematics of money management: Risk analysis techniques for traders*. John Wiley & Sons.
-
-> **Note**: Vince formalized Optimal-f position sizing and demonstrated that over-betting (above Kelly fraction) guarantees ruin in finite time. This is the mathematical proof behind Athena's trading risk gate: any sizing above Kelly creates negative expectancy on the time average, even with positive ensemble expectancy.
-
-Metropolis, N., & Ulam, S. (1949). The Monte Carlo method. *Journal of the American Statistical Association, 44*(247), 335–341. <https://doi.org/10.1080/01621459.1949.10483310>
-
-> **Note**: The foundational paper on Monte Carlo simulation — using random sampling to approximate solutions to deterministic problems. Athena's `zenith-execution` skill runs 10,000-path Monte Carlo simulations for portfolio drawdown estimation and Kelly fraction validation. The insight: when analytical solutions are intractable (non-normal distributions, path-dependent payoffs), simulation provides the ground truth.
 
 ---
 
@@ -294,14 +210,6 @@ Tarjan, R. E. (1985). Amortized computational complexity. *SIAM Journal on Algeb
 
 ## Systems Biology & Cognitive Architecture
 
-Meadows, D. H. (2008). *Thinking in systems: A primer*. Chelsea Green Publishing.
-
-> **Note**: Meadows' hierarchy of leverage points (12 places to intervene in a system) provides the theoretical foundation for Athena's systems thinking pipeline. Athena operates primarily at Levels 2–4 (system goals, rules, feedback structure) rather than Levels 8–12 (parameters, buffers, numbers). See [Systems Thinking concept doc](concepts/Systems_Thinking.md).
-
-Senge, P. M. (1990). *The fifth discipline: The art and practice of the learning organization*. Doubleday.
-
-> **Note**: Senge's "Fifth Discipline" — systems thinking as the integrative framework that makes the other four disciplines (personal mastery, mental models, shared vision, team learning) work as a coherent whole — maps directly to Athena's design philosophy. The 14 Meta-Patterns are Athena's equivalent of Senge's "system archetypes" — recurring structural patterns that appear across domains. See [Systems Thinking concept doc](concepts/Systems_Thinking.md).
-
 von Bertalanffy, L. (1968). *General system theory: Foundations, development, applications*. George Braziller.
 
 > **Note**: von Bertalanffy's General Systems Theory provides the formal foundation for Athena's Biological Stack Architecture. The principle that systems exhibit emergent properties not reducible to their parts — and that hierarchical organization (subsystem → system → suprasystem) is a universal pattern — directly maps to Athena's hierarchy: Protocols → Clusters → Cognitive Systems → Organism.
@@ -313,14 +221,6 @@ Minsky, M. (1986). *The society of mind*. Simon & Schuster.
 Newell, A. (1990). *Unified theories of cognition*. Harvard University Press.
 
 > **Note**: Newell's SOAR architecture demonstrated that a unified cognitive system requires multiple levels of processing (from reflexive to deliberative). Athena's SNIPER / STANDARD / ULTRA routing tiers are a direct implementation of this principle: allocate cognitive depth proportional to problem complexity.
-
-Franklin, S., Madl, T., D'Mello, S., & Snaider, J. (2016). LIDA: A systems-level architecture for cognition, emotion, and learning. *IEEE Transactions on Autonomous Mental Development, 6*(1), 19–41. <https://doi.org/10.1109/TAMD.2013.2277589>
-
-> **Note**: The LIDA (Learning Intelligent Distribution Agent) cognitive architecture provides the theoretical basis for Athena's broadcast routing. In LIDA, a "conscious broadcast" distributes the current situational model to all cognitive modules simultaneously, allowing competitive multi-system responses. Athena's v9.4.2 implements this as LIDA Broadcast routing — all 8 Cognitive Systems receive the query simultaneously and the Intent Classifier selects the winning system.
-
-Verschure, P. F. M. J., Voegtlin, T., & Douglas, R. J. (2003). Environmentally mediated synergy between perception and behaviour in mobile robots. *Nature, 425*(6958), 620–624. <https://doi.org/10.1038/nature02024>
-
-> **Note**: Verschure's work on Distributed Adaptive Control (DAC) introduced homeostatic regulation to autonomous agent architectures — the principle that resource-stressed systems should automatically downshift to survival-mode behaviours. Protocol 517 (Homeostatic Pressure) adapts this: when context saturation exceeds 80%, a synthetic hormone signal forces SNIPER mode and suppresses expensive cognitive systems. See also: Sanchez-Fibla et al. (2010) for the HORA extension cited in P517.
 
 ---
 
@@ -348,14 +248,6 @@ Young, J. E., Klosko, J. S., & Weishaar, M. E. (2003). *Schema therapy: A practi
 
 ---
 
-## Web Standards & AI Discoverability
-
-Howard, J. (2024, September 3). *The /llms.txt file: A proposal to standardise on using an /llms.txt file to provide information to help LLMs use a website at inference time*. Answer.AI. <https://llmstxt.org/>
-
-> **Note**: Howard proposed `llms.txt` as a machine-readable Markdown index file (analogous to `robots.txt` for crawlers) that helps LLM scrapers discover a site's most important content. Athena-Public ships an `llms.txt` at repo root since v9.8.5, mapping all 45+ documentation pages for AI crawler discoverability.
-
----
-
 ## How Citations Are Used in This Repository
 
 Inline citations follow APA format: `(Author, Year)`. For example:
@@ -367,11 +259,6 @@ Inline citations follow APA format: `(Author, Year)`. For example:
 - *"Cross-encoder reranking for retrieval quality"* → (Nogueira & Cho, 2020)
 - *"A mathematical theory of communication"* → (Shannon, 1948)
 - *"Antifragile systems gain from disorder"* → (Taleb, 2012)
-- *"Cognitive load during problem solving"* → (Sweller, 1988)
-- *"Generative agents: interactive simulacra"* → (Park et al., 2023)
-- *"FlashRank: lightweight reranking"* → (Damodaran, 2023)
-- *"Model Context Protocol specification"* → (MCP, 2024)
-- *"The Monte Carlo method"* → (Metropolis & Ulam, 1949)
 
 When a concept is referenced frequently across multiple documents, the first instance in each document includes the full inline citation. Subsequent mentions within the same document use the short form.
 
@@ -379,4 +266,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 6 Jun 2026*
+*Last updated: 04 March 2026*

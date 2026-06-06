@@ -1,8 +1,6 @@
 # The Athena Manifesto
 
-> *"The whole is greater than the sum of its parts."* — Aristotle
->
-> *"I got tired of paying for amnesia."* — Me
+> "I got tired of paying for amnesia."
 
 ## Why This Matters
 
@@ -53,7 +51,7 @@ Here's what I actually did. No shortcuts.
 - Tagged and indexed files for retrieval (`TAG_INDEX.md`)
 - Built `supabase_sync.py` to push Markdown to vector embeddings (or keep local for sensitive data)
 
-### Phase 4: Continuous Iteration (500+ Sessions)
+### Phase 4: Continuous Iteration (1,900+ Sessions)
 
 | Session Range | What Changed |
 |---------------|--------------|
@@ -61,7 +59,9 @@ Here's what I actually did. No shortcuts.
 | 50-150 | Semantic search added, hybrid RAG |
 | 150-300 | Cross-encoder reranking, RRF fusion |
 | 300-400 | SDK refactor (`athena` package), typing, tests |
-| 400-500+ | Trilateral feedback, governance audit, external red-teaming |
+| 400-800 | Trilateral feedback, governance audit, external red-teaming |
+| 800-1200 | Uber-Skills consolidation, conditional activation, Exocortex maturity |
+| 1200-1900+ | Multi-agent coordination, 431 protocols, 69 workflows |
 
 **The pattern**: Every friction became a protocol. Every failure became a case study. The AI helped document its own evolution.
 
@@ -69,8 +69,8 @@ Here's what I actually did. No shortcuts.
 
 ```
 ├── 1,900+ sessions logged (human + AI collaboration)
-├── 396+ protocols extracted
-├── 247+ automation scripts written
+├── 399 active protocols extracted (431 total across 23 categories)
+├── 247 automation scripts written
 ├── 3 major refactors (monolith → SDK)
 ├── 2 external red-team audits
 └── Countless errors, dead ends, and "why isn't this working" nights
@@ -94,7 +94,7 @@ Here's what I actually did. No shortcuts.
 |--------|---------|
 | **Agency** | I stopped *recreating* context and started *compounding* it. Every session builds on the last. |
 | **Portability** | My memory isn't trapped in ChatGPT or Claude. It's mine. I can take it anywhere. |
-| **Learning** | 396+ protocols extracted from my own decisions — patterns I can reuse and refine. |
+| **Learning** | 399 active protocols extracted from my own decisions — patterns I can reuse and refine. |
 
 ### Proof It Works
 
@@ -167,26 +167,16 @@ This pattern ensures:
 
 ---
 
-## Why Open Source
-
-I open-sourced this because hopefully someone down the line doesn't have to spend 3 months of work (8am to 8pm) and tens of thousands of dollars in API credits to figure all this out.
-
-No individual file here is the point. The **system** is what makes it work — the way the parts connect, compound, and reinforce each other. You can read any single workflow or protocol and think "that's nice." But when the `/start` boot loads your identity, which feeds the retrieval layer, which informs the protocols, which get refined by `/end` and fed back into the next session — that's where the value lives.
-
-The parts are copyable. The system isn't. But at least now you have a head start.
-
----
-
 ## Getting Started
 
-Ready to build your own? See [examples/framework/Core_Identity.md](../.framework/v8.2-stable/modules/Core_Identity.md) for the full Laws #0-6 and Committee of Seats framework.
+Ready to build your own? See [examples/framework/Core_Identity.md](.framework/v8.2-stable/modules/Core_Identity.md) for the full Laws #0-6 and Committee of Seats framework.
 
 ---
 
 ## See Also
 
-- **[Glossary](GLOSSARY.md)** — Key terms and definitions
-- **[Your First Agent](YOUR_FIRST_AGENT.md)** — 5-minute quickstart guide
+- **[Glossary](docs/GLOSSARY.md)** — Key terms and definitions
+- **[Your First Agent](docs/YOUR_FIRST_AGENT.md)** — 5-minute quickstart guide
 
 ---
 
@@ -194,4 +184,4 @@ Ready to build your own? See [examples/framework/Core_Identity.md](../.framework
 
 Built by **Winston Koh** — 10+ years in financial services, now building AI systems.
 
-→ **[About Me](ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**
+→ **[About Me](docs/ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**

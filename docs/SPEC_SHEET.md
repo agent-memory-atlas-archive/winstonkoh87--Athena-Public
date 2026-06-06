@@ -1,9 +1,9 @@
 # Athena Spec Sheet
 
 > **Version**: v9.9.1
-> **Date**: 2 Jun 2026
+> **Date**: 6 June 2026
 > **Architect**: Winston Koh
-> **Status**: Production (1,800+ sessions)
+> **Status**: Production (1,900+ sessions)
 
 ---
 
@@ -95,18 +95,17 @@ tags: [memory, search, mcp]
 |--------|------|-------------|
 | `id` | UUID | Primary key |
 | `content` | TEXT | Raw text chunk |
-| `embedding` | VECTOR(768) | gemini-embedding-001 (768d; Matryoshka-capable) |
+| `embedding` | VECTOR(768) | text-embedding-004 |
 | `metadata` | JSONB | Source file, tags, timestamp |
 
-### Protocol Summaries (Markdown)
+### Tag Index (Markdown)
 
 ```text
-Protocol-driven discovery via PROTOCOL_SUMMARIES.md
-Protocol usage frequency via PROTOCOL_HEATMAP.md
-Active protocols: 396 | Archived: 32 | Total: 428
+#memory → 47 files
+#search → 31 files
+#protocol → 122 files
+Total: 8,079 tags
 ```
-
-> **Note**: `TAG_INDEX.md` is deprecated. Use `PROTOCOL_SUMMARIES.md` for protocol discovery.
 
 ---
 
@@ -142,7 +141,7 @@ Query → [Semantic Search (pgvector)] ──┘
 |--------|-------|
 | **Search MRR** | 0.44 (vs 0.21 baseline, +105%) |
 | **Latency** | < 200ms (p95) |
-| **Index Size** | 8,079 tags, 46MB knowledge graph, 78MB vectors |
+| **Index Size** | 8,079 tags, 78MB vectors |
 | **Fusion Method** | Reciprocal Rank Fusion (RRF) with score-modulated weights |
 
 ---
@@ -152,9 +151,9 @@ Query → [Semantic Search (pgvector)] ──┘
 | Layer | Technology |
 |-------|-----------|
 | **Language** | Python 3.13 |
-| **Embeddings** | Google gemini-embedding-001 (768d, Matryoshka-capable) |
+| **Embeddings** | Google text-embedding-004 (768d) |
 | **Vector DB** | Supabase + pgvector (IVFFlat index) |
-| **Graph** | Microsoft GraphRAG pattern (community detection) |
+| **Graph** | ~~Microsoft GraphRAG~~ — REMOVED in S435 (6 June 2026) |
 | **Packaging** | pyproject.toml (PEP 621) |
 | **Version Control** | Git |
 | **CI/CD** | None (single-user local tool) |
@@ -182,11 +181,11 @@ Query → [Semantic Search (pgvector)] ──┘
 |--------|--------|--------|
 | Boot time | < 2 min | **~1m 45s (1–2 min)** |
 | Search latency | < 500ms | **< 200ms** |
-| Context injection | < 20K tokens (10% ECL) | **2K–20K tokens (mode-dependent)** |
+| Context injection | < 20K tokens (10% ECL) | **~10K tokens** |
 | Quicksave overhead | < 500ms | **< 100ms** |
 | Session log write | < 1s | **< 500ms** |
 
-→ Full benchmarks: [BENCHMARKS.md](BENCHMARKS.md)
+→ Full benchmarks: [BENCHMARKS.md](docs/BENCHMARKS.md)
 
 ---
 
@@ -206,9 +205,9 @@ Query → [Semantic Search (pgvector)] ──┘
 
 | Document | Purpose |
 |----------|---------|
-| [REQUIREMENTS.md](REQUIREMENTS.md) | User stories, functional requirements, constraints |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | System design, data flow, hub model |
-| [BENCHMARKS.md](BENCHMARKS.md) | Quantitative performance data |
-| [FEATURES.md](FEATURES.md) | User-facing feature descriptions |
-| [CAPABILITIES.md](CAPABILITIES.md) | Full automation catalog |
-| [GLOSSARY.md](GLOSSARY.md) | Term definitions |
+| [REQUIREMENTS.md](docs/REQUIREMENTS.md) | User stories, functional requirements, constraints |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design, data flow, hub model |
+| [BENCHMARKS.md](docs/BENCHMARKS.md) | Quantitative performance data |
+| [FEATURES.md](docs/FEATURES.md) | User-facing feature descriptions |
+| [CAPABILITIES.md](docs/CAPABILITIES.md) | Full automation catalog |
+| [GLOSSARY.md](docs/GLOSSARY.md) | Term definitions |

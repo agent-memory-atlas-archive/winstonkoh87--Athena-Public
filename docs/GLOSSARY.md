@@ -1,6 +1,6 @@
 # Glossary
 
-> **Last Updated**: 20 May 2026
+> **Last Updated**: 6 June 2026
 
 > **Purpose**: Quick reference for Athena-specific terminology. Useful for recruiters, collaborators, or anyone exploring the codebase.
 
@@ -16,17 +16,9 @@ The name of this personal AI operating system. Named after the Greek goddess of 
 
 The human + AI collaboration model. Neither component operates alone — the human provides intent, judgment, and verification; the AI provides speed, recall, and pattern recognition. Together: a "bionic" cognitive unit.
 
-### Grace Protocol
-
-The philosophical position that Athena **augments** human cognition rather than replacing it. Named after Grace Harper (*Terminator: Dark Fate*) — a human soldier who volunteered for cybernetic enhancement, retained her identity, and accepted the metabolic cost. The counterpart to the "Terminator" archetype (autonomous AI agents). See [Grace Protocol concept doc](concepts/Grace_Protocol.md).
-
 ### COS (Committee Operating System)
 
 A prompt engineering pattern where the AI operates as multiple "seats" with different perspectives (Strategist, Skeptic, Guardian, etc.) rather than a single voice. Encourages diverse reasoning before output.
-
-### Systems Thinking
-
-Athena's default problem-solving methodology. Rather than treating problems as isolated events, every analysis drills through four layers: **Event** (what happened) → **Pattern** (what keeps happening) → **Structure** (why it keeps happening) → **Mental Model** (what belief sustains it). This is operationalized through the 14 Meta-Patterns, cross-domain case study matching, feedback loop identification, and leverage point targeting. See [Systems Thinking concept doc](concepts/Systems_Thinking.md).
 
 ---
 
@@ -57,11 +49,11 @@ The 3-phase operating loop: `/start` (boot) → Execute (conversation) → `/end
 
 ### VectorRAG
 
-Retrieval-Augmented Generation using vector embeddings. Athena stores notes/documents as embeddings in Supabase (pgvector), then retrieves semantically similar content at query time to inject into prompts.
+Retrieval-Augmented Generation using vector embeddings. Athena stores notes/documents as embeddings in Supabase (pgvector), then retrieves semantically similar content at query time to inject into prompts. VectorRAG is now the **sole semantic search layer** — GraphRAG was evaluated and removed in Session 435 (6 June 2026) due to complexity/cost overhead.
 
 ### Protocols
 
-Reusable "thinking patterns" stored as Markdown files. Each protocol codifies a specific reasoning approach (e.g., risk analysis, design critique, negotiation). Currently 382 active protocols in the library (32 archived).
+Reusable "thinking patterns" stored as Markdown files. Each protocol codifies a specific reasoning approach (e.g., risk analysis, design critique, negotiation). Currently 399 active protocols (431 total including 32 archived) across 23 categories.
 
 ### Edge Functions
 
@@ -111,19 +103,22 @@ Inspired by *Bleach* anime power scaling (for flavor):
 
 | Metric | Value |
 |--------|-------|
-| Sessions logged | 1,800+ |
-| Protocols | 382 active (32 archived) |
-| Automation scripts | 220+ |
-| Embedded documents | 2,100+ |
+| Sessions logged | 1,900+ |
+| Protocols | 399 active (431 total, 23 categories) |
+| Skills | 40 active, 17 archived |
+| Workflows | 69 (51 root + 18 _domain) |
+| Automation scripts | 247 |
+| Memory files | 3,658 |
+| Case studies | 492 |
 | Monthly cost | <SGD 30 |
 
 ---
 
 ## References
 
-- [README](../README.md) — Full project overview
-- [ARCHITECTURE.md](ARCHITECTURE.md) — Technical deep dive
-- [VECTORRAG.md](VECTORRAG.md) — Semantic memory system
-- [Core Identity Template](../examples/templates/core_identity_template.md) — How the AI's personality is defined
+- [README](README.md) — Full project overview
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md) — Technical deep dive
+- [VECTORRAG.md](docs/VECTORRAG.md) — Semantic memory system
+- [Core Identity Template](examples/templates/core_identity_template.md) — How the AI's personality is defined
 
 ---

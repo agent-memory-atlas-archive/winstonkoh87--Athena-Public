@@ -1,6 +1,6 @@
 # Features & Capabilities
 
-> **Last Updated**: 19 March 2026
+> **Last Updated**: 6 June 2026
 
 > What Athena can do — with examples
 
@@ -119,25 +119,27 @@ Each session ends with a calibration log:
 
 ### Skill Architecture
 
-Skills are separate files, loaded on-demand:
+Skills are separate files, loaded on-demand via **conditional activation** (`context_trigger` frontmatter):
 
 ```text
 .agent/skills/
-├── protocols/
-│   ├── [examples/protocols/decision/75-synthetic-parallel-reasoning.md](../examples/protocols/decision/DEC-75-synthetic-parallel-reasoning.md)
-│   ├── [77-adaptive-latency-architecture.md](../examples/protocols/architecture/ARC-77-adaptive-latency-architecture.md)
-│   └── [examples/protocols/architecture/96-latency-indicator.md](../examples/protocols/architecture/ARC-96-latency-indicator.md)
-└── capabilities/
-    ├── web-research.md
-    └── code-generation.md
+├── protocols/          # 399 active + 32 archived = 431 total (23 categories)
+│   ├── decision/
+│   ├── safety/
+│   ├── architecture/
+│   └── ...
+├── red-team-review/    # Always-on skills (10)
+├── semantic-search/
+├── data-analysis/
+└── ...                 # 40 active skills total
 ```
 
 ```mermaid
 graph TD
-    A[User Query] --> B{Skill Router}
-    B -->|Protocol| C[protocols/]
-    B -->|Capability| D[capabilities/]
-    B -->|Workflow| E[workflows/]
+    A[User Query] --> B{Conditional Skill Activation}
+    B -->|context_trigger match| C[Activate Skill]
+    B -->|Protocol match| D[protocols/]
+    B -->|Workflow match| E[workflows/]
     C --> F[Load On-Demand]
     D --> F
     E --> F
@@ -146,8 +148,8 @@ graph TD
 
 ### Adding a New Skill
 
-1. Create: `.agent/skills/protocols/XX-new-skill.md`
-2. Register: Add entry to `SKILL_INDEX.md`
+1. Create: `.agent/skills/my-skill/SKILL.md` with 5W1H frontmatter
+2. Add `context_trigger` for automatic activation
 3. Use: AI automatically loads when relevant
 
 **No core changes needed.** The system grows without breaking.
@@ -206,7 +208,7 @@ Athena loads modules **on-demand**:
 
 | Trigger | What Loads |
 |---------|------------|
-| "Find files about X" | `TAG_INDEX.md` |
+| "Find files about X" | `PROTOCOL_SUMMARIES.md` |
 | "Deep research" | Research protocols |
 | "Analyze strategy" | Reasoning frameworks |
 | "Who am I?" | User profile |

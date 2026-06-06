@@ -8,7 +8,7 @@
 | **Local** | Your machine only | Sensitive data, air-gapped environments |
 | **Hybrid** | Local files + cloud embeddings | Best of both (embeddings only leave machine) |
 
-> **Sensitive data?** Keep it local. The `athena` SDK supports local vector stores (ChromaDB, LanceDB) for users who don't want data leaving their machine. Install with `pip install -e ".[full]"` and set `ATHENA_STORAGE=local` in your environment. See [Getting Started](GETTING_STARTED.md) for setup details.
+> **Sensitive data?** Keep it local. The `athena` SDK supports local vector stores (ChromaDB, LanceDB) for users who don't want data leaving their machine. See [LOCAL_MODE.md](docs/LOCAL_MODE.md).
 
 ## What Leaves Your Machine (Cloud Mode)
 
@@ -61,4 +61,4 @@ When active, only PUBLIC tools are accessible and sensitive content is auto-reda
 
 Every permission check is logged with timestamp, action, target, and outcome. State persists to `.agent/state/permissions.json`.
 
-👉 **[Full MCP + Permissions Documentation](MCP_SERVER.md)**
+👉 **[Full MCP + Permissions Documentation](docs/MCP_SERVER.md)**

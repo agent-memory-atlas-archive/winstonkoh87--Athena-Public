@@ -33,7 +33,7 @@ Athena-Public/
 ├── .context/          ← Session logs, memories (The Hard Drive)
 ├── .framework/        ← Core identity, laws (The BIOS)
 ├── src/athena/        ← pip installable SDK
-└── docs/              ← Deep dives (GraphRAG, VectorRAG, etc.)
+└── docs/              ← Deep dives (Hybrid RAG, VectorRAG, Architecture, etc.)
 ```
 
 ---

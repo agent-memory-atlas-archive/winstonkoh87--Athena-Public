@@ -1,6 +1,6 @@
 # ⚡ Performance Benchmarks
 
-> **Last Updated**: 19 March 2026  
+> **Last Updated**: 6 June 2026  
 > **Environment**: MacBook Pro M3, Python 3.13, Supabase (Singapore region)
 
 ---
@@ -23,7 +23,7 @@
 
 - **Persistent Caching**: Embeddings cached to disk, delta sync on changed files
 - **Parallel Phase Execution**: Boot phases run concurrently where possible
-- **Canonical Memory**: Single materialized view replaces querying 1,100+ session logs
+- **Canonical Memory**: Single materialized view replaces querying 1,900+ session logs
 
 ---
 
@@ -38,14 +38,16 @@
 ### Search Pipeline
 
 ```
-Query → Embedding (local) → Parallel Search (Supabase + GraphRAG) → RRF Fusion → Rerank → Top 10
+Query → Embedding (local) → Parallel Search (Supabase + Tags) → RRF Fusion → Rerank → Top 10
 ```
 
 **RRF (Reciprocal Rank Fusion)** combines results from:
 
 1. **Supabase pgvector** — Dense vector similarity
-2. **GraphRAG Communities** — Structural/relational context
-3. **Keyword BM25** — Exact match fallback
+2. **Keyword/Tag Index** — Exact match and hashtag cross-referencing
+3. **Canonical/Filename** — Path and name matching
+
+> **Note**: GraphRAG communities were removed as a search source in S435 (6 June 2026).
 
 ---
 
@@ -53,14 +55,14 @@ Query → Embedding (local) → Parallel Search (Supabase + GraphRAG) → RRF Fu
 
 | Operation | Tokens (Before) | Tokens (After) | Savings |
 |-----------|-----------------|----------------|---------|
-| Cold start context injection | ~50,000 | ~2K–10K (mode-dependent) | **80–96%** |
+| Cold start context injection | ~50,000 | ~10,000 (core boot) | **80%** |
 | Full enriched boot (with profile) | ~50,000 | ~14,500 | **71%** |
 | Session handoff (`/end`) | ~8,000 | ~1,500 | **81%** |
 | Protocol retrieval | ~3,000 | ~800 | **73%** |
 
 ### Boot Payload Breakdown (Measured Feb 2026)
 
-The core boot payload is **~10K tokens** on `/start` and **~20K tokens** on `/ultrastart`. The full enriched payload (with user profile and on-demand files) is **~14.5K tokens**, loaded adaptively. The Canonical Memory alone is ~4.3K tokens — a single materialized view that supersedes searching 1,100+ session logs.
+The core boot payload is **~10K tokens** — always loaded on `/start`. The full enriched payload (with user profile and on-demand files) is **~14.5K tokens**, loaded adaptively. The Canonical Memory alone is ~4.3K tokens — a single materialized view that supersedes searching 1,900+ session logs.
 
 | Component | Source File | Est. Tokens | Load Strategy |
 |-----------|-------------|:-----------:|:-------------:|
@@ -78,7 +80,7 @@ The core boot payload is **~10K tokens** on `/start` and **~20K tokens** on `/ul
 - **Document Sharding**: Large protocols split into retrievable chunks
 - **Summary Caching**: Session summaries pre-computed at `/end`
 - **Selective Context**: Only relevant protocols injected per query
-- **Canonical Memory**: Single materialized view supersedes searching 1,100+ session logs
+- **Canonical Memory**: Single materialized view supersedes searching 1,900+ session logs
 
 ---
 
@@ -86,10 +88,10 @@ The core boot payload is **~10K tokens** on `/start` and **~20K tokens** on `/ul
 
 | Asset | Count | Size |
 |-------|-------|------|
-| Protocols & Workflows | 120+ protocols, 50+ workflows | ~1.5 MB |
-| Case Studies | 417+ | ~2.4 MB |
-| Session Logs | 1,100+ | ~4.2 MB |
-| GraphRAG Entities | 4,200+ | ~46 MB |
+| Protocols & Workflows | 431 protocols (399 active + 32 archived), 69 workflows | ~2.5 MB |
+| Case Studies | 492 (15 domains) | ~4.8 MB |
+| Session Logs | 1,900+ | ~8.5 MB |
+| Memory Files | 3,658 | — |
 | Vector Embeddings | 12,800+ | ~78 MB |
 
 ---

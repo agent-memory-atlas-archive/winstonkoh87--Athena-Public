@@ -32,11 +32,10 @@ These commands are used inside your IDE during an active Athena session:
 | Command | Effect | Tokens |
 |:--------|:-------|:-------|
 | `/start` | Boot session — loads identity + JIT routing | ~10K |
-| `/ultrastart` | Deep boot — full System-2 context stack | ~20K |
 | `/end` | Close session — finalize, sync, commit | — |
 | `/think` | Escalate reasoning depth | +5K |
 | `/ultrathink` | Maximum depth + full context stack | +30K |
 | `/brief interview` | Run the initial profiling interview | — |
 | `/research` | Deep research loop | — |
 
-> 👉 Full list of all 48 slash commands: [WORKFLOWS.md](WORKFLOWS.md)
+> 👉 Full list of all 69 workflows (51 root + 18 domain): [WORKFLOWS.md](docs/WORKFLOWS.md)

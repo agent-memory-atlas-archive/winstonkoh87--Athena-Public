@@ -52,7 +52,7 @@ The insight isn't something you asked for. It's something the **system's accumul
 
 > **Key Insight**: Memory isn't just recall. At scale, it becomes **pattern detection** — the system sees trajectories you can't see from inside a single session.
 
-**Reference**: [SEMANTIC_SEARCH.md](../SEMANTIC_SEARCH.md) — Hybrid RAG implementation details
+**Reference**: [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md) — Hybrid RAG implementation details
 
 ---
 
@@ -60,7 +60,7 @@ The insight isn't something you asked for. It's something the **system's accumul
 
 > **What it does**: Automatically challenges your premises on every non-trivial query — before you see the output.
 
-[Protocol 75 (Synthetic Parallel Reasoning)](../../examples/protocols/decision/75-synthetic-parallel-reasoning.md) runs **four parallel tracks** on every complex query:
+[Protocol 75 (Synthetic Parallel Reasoning)](examples/protocols/decision/75-synthetic-parallel-reasoning.md) runs **four parallel tracks** on every complex query:
 
 | Track | Role | Q4 Function |
 |---|---|---|
@@ -111,7 +111,7 @@ You would never have Googled "casino loyalty churn SaaS" — because you didn't 
 
 > **Key Insight**: Innovation often comes from **importing solutions from adjacent domains**. Athena automates this by maintaining a searchable corpus across all your domains simultaneously.
 
-**Reference**: [Protocol 67: Cross-Pollination](../../examples/protocols/research/67-cross-pollination.md)
+**Reference**: [Protocol 67: Cross-Pollination](examples/protocols/research/67-cross-pollination.md)
 
 ---
 
@@ -121,7 +121,7 @@ You would never have Googled "casino loyalty churn SaaS" — because you didn't 
 
 The most dangerous failure mode isn't when the AI is wrong — it's when **both you and the AI agree on a flawed premise**. This is "Mutual Blindness" — a shared illusion that neither party can detect from inside the loop.
 
-[Protocol 171 (Cross-Model Validation)](../../examples/protocols/verification/171-cross-model-validation.md) breaks this by exporting key decisions to 3+ independent LLMs (trained on different data, with different biases) for adversarial red-team review. This is grounded in multi-agent debate research showing that diverse LLM ensembles improve factuality and reduce shared errors (Du et al., 2023; Liang et al., 2023):
+[Protocol 171 (Cross-Model Validation)](examples/protocols/verification/171-cross-model-validation.md) breaks this by exporting key decisions to 3+ independent LLMs (trained on different data, with different biases) for adversarial red-team review. This is grounded in multi-agent debate research showing that diverse LLM ensembles improve factuality and reduce shared errors (Du et al., 2023; Liang et al., 2023):
 
 ```mermaid
 flowchart LR
@@ -150,7 +150,7 @@ flowchart LR
 
 > **Key Insight**: The fix for "AI blind spots" isn't a better AI — it's **adversarial ensembling**. Multiple independent perspectives break shared illusions.
 
-**Reference**: [TRILATERAL_FEEDBACK.md](../TRILATERAL_FEEDBACK.md) — Full protocol with red-team prompts
+**Reference**: [TRILATERAL_FEEDBACK.md](docs/TRILATERAL_FEEDBACK.md) — Full protocol with red-team prompts
 
 ---
 
@@ -158,7 +158,7 @@ flowchart LR
 
 > **What it does**: Captures intellectual capital from every conversation — even when you don't realize it's valuable.
 
-Most insights are lost because nobody writes them down. Athena's [Auto-Documentation Protocol](../../examples/workflows/end.md) runs **passively** after every exchange:
+Most insights are lost because nobody writes them down. Athena's [Auto-Documentation Protocol](examples/workflows/end.md) runs **passively** after every exchange:
 
 | Trigger | Auto-Action | Destination |
 |---|---|---|
@@ -221,7 +221,7 @@ The five mechanisms above describe how the **system** improves the **user** — 
 
 **The user improves the system.**
 
-This is [User-Driven RSI](../USER_DRIVEN_RSI.md) — Recursive Self-Improvement driven not by the AI autonomously rewriting itself, but by the human operator forcing the system to evolve through real-world demands.
+This is [User-Driven RSI](docs/USER_DRIVEN_RSI.md) — Recursive Self-Improvement driven not by the AI autonomously rewriting itself, but by the human operator forcing the system to evolve through real-world demands.
 
 ```mermaid
 graph TD
@@ -291,18 +291,18 @@ The difference isn't intelligence — it's **infrastructure**. The LLM provides 
 
 | Document | What It Covers |
 |---|---|
-| [TRILATERAL_FEEDBACK.md](../TRILATERAL_FEEDBACK.md) | Full cross-model validation protocol with red-team prompts |
-| [Protocol 75: Synthetic Parallel Reasoning](../../examples/protocols/decision/75-synthetic-parallel-reasoning.md) | The 4-track adversarial reasoning engine |
-| [Protocol 171: Cross-Model Validation](../../examples/protocols/verification/171-cross-model-validation.md) | Multi-model consensus methodology |
-| [SEMANTIC_SEARCH.md](../SEMANTIC_SEARCH.md) | Hybrid RAG implementation powering memory retrieval |
-| [USER_DRIVEN_RSI.md](../USER_DRIVEN_RSI.md) | The bilateral improvement loop |
-| [Cognitive Architecture](Cognitive_Architecture.md) | Psychological principles underlying the bionic model |
+| [TRILATERAL_FEEDBACK.md](docs/TRILATERAL_FEEDBACK.md) | Full cross-model validation protocol with red-team prompts |
+| [Protocol 75: Synthetic Parallel Reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md) | The 4-track adversarial reasoning engine |
+| [Protocol 171: Cross-Model Validation](examples/protocols/verification/171-cross-model-validation.md) | Multi-model consensus methodology |
+| [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md) | Hybrid RAG implementation powering memory retrieval |
+| [USER_DRIVEN_RSI.md](docs/USER_DRIVEN_RSI.md) | The bilateral improvement loop |
+| [Cognitive Architecture](docs/concepts/Cognitive_Architecture.md) | Psychological principles underlying the bionic model |
 
 ---
 
 ## References
 
-For full APA citations, see the [central reference list](../REFERENCES.md).
+For full APA citations, see the [central reference list](docs/REFERENCES.md).
 
 - Covey, S. R. (1989). *The 7 habits of highly effective people*. Free Press.
 - Dell'Acqua, F., et al. (2023). Navigating the jagged technological frontier. *Harvard Business School Working Paper No. 24-013*. <https://doi.org/10.2139/ssrn.4573321>

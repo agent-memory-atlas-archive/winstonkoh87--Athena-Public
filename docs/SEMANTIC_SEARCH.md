@@ -1,13 +1,13 @@
 # Semantic Search: Triple-Path Retrieval Architecture
 
-> **Last Updated**: 6 Jun 2026  
-> **Purpose**: How Athena finds and retrieves relevant context using 7-channel hybrid search with RRF fusion
+> **Last Updated**: 6 June 2026  
+> **Purpose**: How Athena finds and retrieves relevant context using three complementary methods
 
 ---
 
 ## Executive Summary
 
-Athena employs **7-Channel Hybrid Search** with **Reciprocal Rank Fusion (RRF)** to ensure no relevant context is missed. Each channel catches what the others miss, and RRF merges their results into a single ranked list.
+Athena employs **Triple-Path Retrieval** to ensure no relevant context is missed. Each method catches what the others miss.
 
 ```text
                               USER QUERY
@@ -62,7 +62,7 @@ Athena employs **7-Channel Hybrid Search** with **Reciprocal Rank Fusion (RRF)**
 
 ## Path 1: Vector Semantic Search (VectorRAG)
 
-> **Full Documentation**: [VECTORRAG.md](VECTORRAG.md)
+> **Full Documentation**: [VECTORRAG.md](docs/VECTORRAG.md)
 
 ```bash
 # Reference: python3 scripts/supabase_search.py "<query>" --limit 5
@@ -70,27 +70,25 @@ Athena employs **7-Channel Hybrid Search** with **Reciprocal Rank Fusion (RRF)**
 
 **How it works**:
 
-1. Query is converted to a 768-dimension embedding (Gemini `gemini-embedding-001`, Matryoshka-capable)
+1. Query is converted to a 3072-dimension embedding (Gemini API)
 2. Cosine similarity search across 11 Supabase tables
-3. Results fed into RRF fusion pipeline
+3. Returns top matches ranked by semantic similarity
 
 **Strengths**: Finds conceptually related content even with different wording.
 
 ---
 
-## Path 2: Protocol Summaries Lookup
-
-> **Note**: The `TAG_INDEX.md` system has been **deprecated** as of v9.8.1. Protocol discovery now uses `PROTOCOL_SUMMARIES.md` and `PROTOCOL_HEATMAP.md`.
+## Path 2: TAG_INDEX Lookup
 
 ```bash
-grep -i "<entity>" .context/PROTOCOL_SUMMARIES.md
+grep -i "<entity>" .context/TAG_INDEX.md
 ```
 
 **How it works**:
 
-1. `generate_protocol_summaries.py` scans all protocol files
-2. Extracts frontmatter metadata and first substantive body paragraph
-3. Creates lookup: `Protocol ID → Description + Category`
+1. `generate_tag_index.py` scans all workspace files
+2. Extracts inline `#tags` from markdown files
+3. Creates reverse lookup: `#tag → [file1, file2, ...]`
 
 **Example output**:
 
@@ -99,45 +97,7 @@ grep -i "<entity>" .context/PROTOCOL_SUMMARIES.md
 | #archetype  | `user_profile/Archetype_Example.md` |
 ```
 
-**Strengths**: Instant lookup for named protocols, skills, and concepts.
-
----
-
-## RRF Fusion & Cross-Encoder Reranking
-
-As of v9.9.1, `smart_search.py` implements a **7-channel hybrid search** pipeline:
-
-```text
- Query
-   │
-   ├── Channel 1: Canonical (CANONICAL.md keyword matching, min 2-hit)
-   ├── Channel 2: Tags (grep against TAG_INDEX shards)
-   ├── Channel 3: Vector (Supabase pgvector, unified RPC, cosine similarity)
-   ├── Channel 4: SQLite (local athena.db — files + tags)
-   ├── Channel 5: Filename (find across project root, keyword OR logic)
-   ├── Channel 6: Framework Docs (.framework/ + memory_bank/ + .context/)
-   ├── Channel 7: Exocortex (Wikipedia FTS5)
-   │
-   ▼
- Adaptive Router (skips vector search when local hits suffice)
-   │
-   ▼
- RRF Fusion (k=60, per-type weights, dynamic score modifiers)
-   │
-   ▼
- Cross-Encoder Reranker (optional: --rerank flag)
-   Model: FlashRank (ms-marco-MiniLM-L6-v2)
-   │
-   ▼
- Ranked Results
-```
-
-| Metric | Value |
-|--------|-------|
-| **Search MRR** | 0.44 (vs 0.21 baseline, +105%) |
-| **Latency** | < 200ms (p95, without reranker) |
-| **Reranker Latency** | ~50-100ms additional |
-| **Index Size** | 78MB vectors, 3,544 memory files |
+**Strengths**: Instant lookup for named entities (people, protocols, concepts).
 
 ---
 
@@ -200,11 +160,11 @@ Per Core Identity, **every query** triggers semantic context retrieval:
 # Reference: python3 scripts/generate_tag_index.py
 ```
 
-**Current Stats** (Jun 2026):
+**Current Stats** (Dec 2025):
 
-- **396 active protocols** summarized
-- **7 channels** in search pipeline (GraphRAG removed v9.9.1-gto)
-- **Extraction methods**: YAML frontmatter + body paragraph extraction + tag inference
+- **1000+ tags** indexed
+- **4 directories** scanned (`.context/`, `.agent/`, `examples/protocols/`, `user_profile/`)
+- **Extraction methods**: YAML frontmatter + inline `#hashtags`
 
 ---
 
@@ -221,8 +181,8 @@ Per Core Identity, **every query** triggers semantic context retrieval:
 
 ## Related Documentation
 
-- [VECTORRAG.md](VECTORRAG.md) — Deep dive into vector embeddings
-- [ARCHITECTURE.md](ARCHITECTURE.md) — Overall system design
+- [VECTORRAG.md](docs/VECTORRAG.md) — Deep dive into vector embeddings
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md) — Overall system design
 
 ---
 
@@ -234,4 +194,4 @@ Per Core Identity, **every query** triggers semantic context retrieval:
 
 Built by **Winston Koh** — 10+ years in financial services, now building AI systems.
 
-→ **[About Me](ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**
+→ **[About Me](docs/ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**

@@ -1,8 +1,8 @@
 # Athena Requirements Document (Reverse-Engineered)
 
-> **Date**: 13 February 2026
-> **Version**: v8.5.0
-> **Methodology**: Reverse SDLC — requirements derived from 1,079+ sessions of production use, not written upfront.
+> **Date**: 6 June 2026
+> **Version**: v9.9.1
+> **Methodology**: Reverse SDLC — requirements derived from 1,900+ sessions of production use, not written upfront.
 
 > [!NOTE]
 > This document was written **after the software was built**. Traditional SDLC writes requirements before code. Athena inverted this: Build → Observe → Extract Patterns → Document Post-Facto. The result is a requirements doc grounded in real usage, not speculation.
@@ -50,7 +50,7 @@ Derived from 662K+ Reddit views and 1,660+ comments across r/ChatGPT and r/Gemin
 | FR-2.2 | System SHALL support semantic search via vector embeddings | P0 | ✅ Implemented |
 | FR-2.3 | System SHALL support keyword search via tag index | P0 | ✅ Implemented |
 | FR-2.4 | System SHALL combine semantic + keyword search via RRF fusion | P1 | ✅ Implemented |
-| FR-2.5 | System SHALL support knowledge graph queries (GraphRAG) | P2 | ✅ Implemented |
+| FR-2.5 | ~~System SHALL support knowledge graph queries (GraphRAG)~~ | P2 | ❌ REMOVED (S435, 6 June 2026) |
 
 ### FR-3: Autonomy
 
@@ -90,7 +90,7 @@ Derived from 662K+ Reddit views and 1,660+ comments across r/ChatGPT and r/Gemin
 |-----------|-------------|-----------|
 | **C-1: Local-First** | Primary data store MUST be local filesystem | User data ownership; no vendor lock-in |
 | **C-2: Markdown Truth** | Source of truth MUST be human-readable Markdown | Portability; works without any tooling |
-| **C-3: No Monoliths** | 1 Skill = 1 File; no mega-config files | Maintainability at scale (330+ protocols) |
+| **C-3: No Monoliths** | 1 Skill = 1 File; no mega-config files | Maintainability at scale (431 protocols) |
 | **C-4: Kill Switch** | If maintenance > 2 hrs/week for 4 weeks → graceful degradation | Prevent over-engineering (Protocol 106) |
 | **C-5: Python 3.10+** | Runtime requirement | Minimum for modern async + type hints |
 | **C-6: 16GB RAM** | Recommended for vector operations | pgvector + embedding models |
@@ -114,12 +114,12 @@ Derived from 662K+ Reddit views and 1,660+ comments across r/ChatGPT and r/Gemin
 
 | Requirement | Implementing Component | Documentation |
 |-------------|----------------------|---------------|
-| FR-1.x (Session) | `boot.py`, `shutdown.py`, `quicksave.py` | [ARCHITECTURE.md](ARCHITECTURE.md) |
-| FR-2.x (Memory) | `smart_search.py`, `supabase_sync.py`, `tag_index.py` | [SEMANTIC_SEARCH.md](SEMANTIC_SEARCH.md), [VECTORRAG.md](VECTORRAG.md) |
-| FR-3.x (Autonomy) | `heartbeat.py`, `mcp_server.py`, `governance.py` | [MCP_SERVER.md](MCP_SERVER.md) |
-| FR-4.x (Portability) | Markdown filesystem, `.env` config | [GETTING_STARTED.md](GETTING_STARTED.md) |
-| NFR-1–6 | Benchmarked | [BENCHMARKS.md](BENCHMARKS.md) |
+| FR-1.x (Session) | `boot.py`, `shutdown.py`, `quicksave.py` | [ARCHITECTURE.md](docs/ARCHITECTURE.md) |
+| FR-2.x (Memory) | `smart_search.py`, `supabase_sync.py`, `tag_index.py` | [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md), [VECTORRAG.md](docs/VECTORRAG.md) |
+| FR-3.x (Autonomy) | `heartbeat.py`, `mcp_server.py`, `governance.py` | [MCP_SERVER.md](docs/MCP_SERVER.md) |
+| FR-4.x (Portability) | Markdown filesystem, `.env` config | [GETTING_STARTED.md](docs/GETTING_STARTED.md) |
+| NFR-1–6 | Benchmarked | [BENCHMARKS.md](docs/BENCHMARKS.md) |
 
 ---
 
-> *"The spec sheet I wrote after 900 sessions is more accurate than any spec I could have written at session 0."*
+> *"The spec sheet I wrote after 1,900 sessions is more accurate than any spec I could have written at session 0."*

@@ -1,13 +1,16 @@
 # GraphRAG: Knowledge Graph Layer
 
-> **Status**: 📦 **ARCHIVED** (Retained for reference; not actively maintained)  
-> **Last Updated**: 20 May 2026  
-> **Weight**: 2.0x in RRF fusion (when enabled; bypassed by default since v9.8.1)
+> [!CAUTION]
+> **DEPRECATED (6 June 2026)**: GraphRAG was formally removed from Athena in Session S435. The knowledge graph had been stale since February 2025 (16 months) and contributed 0% to retrieval quality. Athena now operates on **7 retrieval channels** without GraphRAG. This document is preserved as historical reference only. See [ARCHITECTURE.md](ARCHITECTURE.md) for the current retrieval stack.
+
+> **Status**: ❌ **REMOVED** (S435, 6 June 2026)
+> **Last Updated**: 6 June 2026
+> **Weight**: N/A — no longer in RRF fusion
 
 ---
 
 > [!CAUTION]
-> **GraphRAG is EXPENSIVE.** Building this knowledge graph cost **~$50 in API fees** (using Gemini 3 Flash). Entity extraction requires calling an LLM for every single document chunk. For most use cases, **VectorRAG is FREE and sufficient**. See [VECTORRAG.md](VECTORRAG.md) for the recommended approach.
+> **GraphRAG is EXPENSIVE.** Building this knowledge graph cost **~$50 in API fees** (using Gemini 3 Flash). Entity extraction requires calling an LLM for every single document chunk. For most use cases, **VectorRAG is FREE and sufficient**. See [VECTORRAG.md](docs/VECTORRAG.md) for the recommended approach.
 
 ---
 
@@ -142,9 +145,9 @@ This regenerates:
 
 ## Related Documentation
 
-- [VECTORRAG.md](VECTORRAG.md) — Semantic vector search layer
-- [ARCHITECTURE.md](ARCHITECTURE.md) — Overall system design
-- [SEMANTIC_SEARCH.md](SEMANTIC_SEARCH.md) — Hybrid RAG implementation
+- [VECTORRAG.md](docs/VECTORRAG.md) — Semantic vector search layer
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md) — Overall system design
+- [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md) — Hybrid RAG implementation
 
 ---
 
@@ -181,7 +184,7 @@ Athena (Orchestrator)  →  Generates Parsing Prompts  →  User
 User  ←  Pastes LLM Response Back  ←  Athena assembles results
 ```
 
-**Result**: SOTA entity extraction (Gemini 3.1 Pro, Claude Opus 4.7) at **$0 cost**.
+**Result**: SOTA entity extraction (Gemini 3.1 Pro, Claude Opus 4.6) at **$0 cost**.
 
 ### Why This Works
 
@@ -236,4 +239,4 @@ The only paid component (LLM inference) is replaced by **human bandwidth** — a
 
 Built by **Winston Koh** — 10+ years in financial services, now building AI systems.
 
-→ **[About Me](ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**
+→ **[About Me](docs/ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**

@@ -4,12 +4,12 @@
 
 ## 1. The Philosophical Divergence
 
-| Feature | Standard AI Agent (The Terminator) | Athena (The Augment — [Grace Protocol](../concepts/Grace_Protocol.md)) |
+| Feature | Standard AI Agent (The Assistant) | Athena (The Bionic Unit) |
 | :--- | :--- | :--- |
 | **Role** | Servitude ("How can I help?") | **Partnership** ("What is the strategy?") |
 | **Relationship** | Transactional (Q&A) | **Symbiotic** (Shared Context/Memory) |
 | **Cognition** | Compliance (Mirrors user intent) | **Orthogonality** (Challenges user premises) |
-| **Memory** | Ephemeral (Session-based) | **Persistent** (Exocortex/GraphRAG) |
+| **Memory** | Ephemeral (Session-based) | **Persistent** (Exocortex + Hybrid RAG) |
 | **Growth** | Static (Updates via Vendor) | **Metabolic** (Self-Optimizing/Evolving) |
 
 ### The "Assistant" Trap
@@ -78,7 +78,7 @@ Athena doesn't just "Google it." She consults a **6.5GB+ local knowledge graph**
 **The Stack**:
 
 1. **Fact Layer (Wiki Data)**: ~6M Articles (Definitions, Dates, Entities). *The Terrain Map.*
-2. **Wisdom Layer (Case Studies)**: 500+ Strategic Protocol Files. *The Navigation System.*
+2. **Wisdom Layer (Case Studies)**: 492 Case Studies + 431 Protocols across 23 categories. *The Navigation System.*
 3. **Synthesis Layer (Kinetic)**: The engine that uses (2) to navigate (1).
 
 **Insight**: Strategy without Facts is hallucination. You cannot apply "Structural Intervention" (Wisdom) if you don't know where the borders are (Facts). Athena *needs* the Wiki Data to ground her strategies in physical reality.

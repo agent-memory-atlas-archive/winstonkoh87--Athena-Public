@@ -1,6 +1,6 @@
 # Getting Started
 
-> **Last Updated**: 19 March 2026
+> **Last Updated**: 6 June 2026
 
 > Build your own AI assistant in 5 minutes
 
@@ -60,7 +60,7 @@ MyAssistant/
 │   └── skills/protocols/
 ├── .framework/modules/   # Core_Identity.md
 └── .context/
-    ├── project_state.md
+    ├── memory_bank/activeContext.md
     └── memories/session_logs/
 ```
 
@@ -88,7 +88,7 @@ flowchart LR
 5. Type `/end` when done
 
 > [!TIP]
-> **First time?** Follow the [Your First Session](YOUR_FIRST_SESSION.md) guide for a hands-on walkthrough.
+> **First time?** Follow the [Your First Session](docs/YOUR_FIRST_SESSION.md) guide for a hands-on walkthrough.
 
 Check `.context/memories/session_logs/` — you should see your session log!
 
@@ -173,10 +173,10 @@ For advanced automation, see the [examples/scripts/](../examples/scripts/) folde
 
 ## See Also
 
-- **[Your First Session](YOUR_FIRST_SESSION.md)** — Guided first-run walkthrough
-- **[Your First Agent](YOUR_FIRST_AGENT.md)** — Build a custom agent in 5 minutes
-- **[Glossary](GLOSSARY.md)** — Key terms and definitions
-- **[Changelog](CHANGELOG.md)** — Version history and updates
+- **[Your First Session](docs/YOUR_FIRST_SESSION.md)** — Guided first-run walkthrough
+- **[Your First Agent](docs/YOUR_FIRST_AGENT.md)** — Build a custom agent in 5 minutes
+- **[Glossary](docs/GLOSSARY.md)** — Key terms and definitions
+- **[Changelog](docs/CHANGELOG.md)** — Version history and updates
 
 ---
 
@@ -184,6 +184,6 @@ For advanced automation, see the [examples/scripts/](../examples/scripts/) folde
 
 *You now have a self-improving AI assistant.*
 
-**[Back to README](../README.md)**
+**[Back to README](README.md)**
 
 </div>

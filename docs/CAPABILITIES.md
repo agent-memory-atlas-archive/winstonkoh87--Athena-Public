@@ -9,15 +9,17 @@
 
 | Metric | Count |
 |--------|-------|
-| **Automation Scripts** | 240+ |
-| **Decision Protocols** | 144+ |
-| **Orchestration Workflows** | 59 |
-| **Case Studies** | 417+ |
-| **Total Sessions** | 1,100+ |
+| **Automation Scripts** | 247 |
+| **Decision Protocols** | 431 (399 active + 32 archived, 23 categories) |
+| **Orchestration Workflows** | 69 (51 root + 18 domain) |
+| **Skills** | 40 active (40 with context_trigger), 17 archived |
+| **Case Studies** | 492 (15 domains) |
+| **Total Sessions** | 1,900+ |
+| **Memory Files** | 3,658 |
 
 ---
 
-## 🔧 Automation Scripts (102)
+## 🔧 Automation Scripts (247)
 
 ### Session Management
 
@@ -37,14 +39,16 @@
 | `smart_search.py` | Weighted RRF orchestration with cross-encoder rerank |
 | `upload_to_supabase.py` | Bulk embedding upload with rate limiting |
 
-### Knowledge Graph
+### Knowledge Graph (DEPRECATED — Removed S435, 6 June 2026)
 
-| Script | Description |
-|--------|-------------|
-| `build_graph.py` | Entity-relationship extraction and graph construction |
-| `query_graphrag.py` | Community-aware graph search (Microsoft GraphRAG pattern) |
-| `index_graphrag.py` | Graph indexing for retrieval |
-| `generate_graph_vis.py` | Interactive HTML graph visualization |
+> GraphRAG was removed due to cost/complexity exceeding retrieval quality gains. Scripts retained in archive for reference.
+
+| Script | Description | Status |
+|--------|-------------|--------|
+| `build_graph.py` | Entity-relationship extraction and graph construction | Archived |
+| `query_graphrag.py` | Community-aware graph search (Microsoft GraphRAG pattern) | Archived |
+| `index_graphrag.py` | Graph indexing for retrieval | Archived |
+| `generate_graph_vis.py` | Interactive HTML graph visualization | Archived |
 
 ### Code Quality & Audit
 
@@ -95,7 +99,7 @@
 
 ---
 
-## 📜 Decision Protocols (269)
+## 📜 Decision Protocols (431 total: 399 active + 32 archived, 23 categories)
 
 ### Architecture (29)
 
@@ -164,7 +168,7 @@
 
 ---
 
-## ⚙️ Orchestration Workflows (31)
+## ⚙️ Orchestration Workflows (69: 51 root + 18 domain)
 
 | Workflow | Description |
 |----------|-------------|
@@ -208,7 +212,7 @@ athena/
 
 ---
 
-## 📖 Case Study Categories (204+)
+## 📖 Case Study Categories (492 across 15 domains)
 
 | Category | Examples |
 |----------|----------|
@@ -226,8 +230,8 @@ athena/
 |-------|------------|
 | **Language** | Python 3.x |
 | **Vector DB** | Supabase (pgvector) |
-| **Embeddings** | Google gemini-embedding-001 |
-| **LLM** | Gemini 3.1 Pro / Claude Opus 4.7 |
+| **Embeddings** | Google text-embedding-004 |
+| **LLM** | Gemini 3.1 Pro / Claude Opus 4.6 |
 | **Hosting** | GitHub Pages / Cloudflare |
 
 ---

@@ -42,7 +42,7 @@ Add to your IDE's MCP settings (e.g., `.agent/mcp_config.json`):
 
 | Tool | Permission | Sensitivity | Description |
 |------|-----------|-------------|-------------|
-| `smart_search` | read | internal | Hybrid RAG search (Canonical + Tags + Vectors + GraphRAG + Filenames) with RRF fusion |
+| `smart_search` | read | internal | Hybrid RAG search (Canonical + Tags + Vectors + Filenames) with RRF fusion |
 | `quicksave` | write | internal | Save timestamped checkpoint to session log |
 | `health_check` | read | public | Audit Vector API + Database subsystems |
 | `recall_session` | read | internal | Retrieve recent session log content |

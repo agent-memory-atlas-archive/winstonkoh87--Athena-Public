@@ -1,24 +1,23 @@
 ---
 created: '2025-12-26'
-last_updated: 2026-02-06
-graphrag_extracted: true
+last_updated: 2026-06-06
 ---
 
 # Tech Debt Tracker
 
 > **Purpose**: Track identified inefficiencies for future cleanup.
-> **Last Updated**: 2026-02-22 (Protocol Min-Max Sprint)
+> **Last Updated**: 6 June 2026
 
 ---
 
-## 🟢 API Status (Feb 2026)
+## 🟢 API Status (June 2026)
 
 > **Status**: ACTIVE (All services operational)
 
 | Service | Endpoint | Cost | Status |
 |---------|----------|------|--------|
 | Gemini Embedding | `generativelanguage.googleapis.com` (AI Studio) | ✅ **FREE** | ACTIVE |
-| GraphRAG Extraction | Protocol 404 (Human Conduit) | ✅ **FREE** | ACTIVE |
+| ~~GraphRAG Extraction~~ | ~~Protocol 404 (Human Conduit)~~ | — | ❌ REMOVED (S435, 6 June 2026) |
 | Supabase | Vector DB storage/queries | ✅ **FREE** (free tier) | ACTIVE |
 
 > **Note**: The Jan 2026 GCP bill ($31.82 SGD) was NOT from embeddings — likely Cloud Run or other services.
@@ -176,7 +175,7 @@ graphrag_extracted: true
 
 **Action Required**:
 
-1. Add explicit CTA to README: "Cloned? Start here: [YOUR_FIRST_AGENT.md](YOUR_FIRST_AGENT.md)"
+1. Add explicit CTA to README: "Cloned? Start here: [YOUR_FIRST_AGENT.md](docs/YOUR_FIRST_AGENT.md)"
 2. Consider Reddit follow-up post (highest quality external traffic source: 40 unique visitors)
 
 **Traffic Sources**:
@@ -195,8 +194,8 @@ graphrag_extracted: true
 | Script | Lines | Status |
 |--------|-------|--------|
 | `supabase_sync.py` | 87 | ✅ Refactored into SDK Shim |
-| `query_graphrag.py` | 516 | Functional |
-| `supabase_search.py` | 527 | Integrated with GraphRAG |
+| `query_graphrag.py` | 516 | Archived (GraphRAG removed S435) |
+| `supabase_search.py` | 527 | Active (GraphRAG integration removed) |
 
 **Note**: `supabase_sync.py` formerly 1248 lines is now a lightweight shim for `athena.memory.sync`.
 
@@ -228,7 +227,7 @@ graphrag_extracted: true
 | 📅 Deferred | **IDE Therapist Article** | Concept: `concept-ide-therapist.md` | "Version Controlling Your Personality" hook. Link `vibe-coding` + `melvin-lim`. |
 | 📅 Deferred | **Gemini Context Caching** | Advanced | Platform-level integration for zero-latency hot-swapping. Wishlist for now. |
 | 📅 Deferred | **Athena Dashboard** | Source: Antigravity Cockpit | Build CLI status script + Portfolio Web Dashboard. Ref: `TECHNICAL_DEBT.md` (Legacy). |
-| 📅 Deferred | **GraphRAG Reindex** | ~167 sessions (Jan '26) | Backlog growing. Trigger: 500+ sessions or Portfolio Demo. |
+| ❌ Cancelled | **~~GraphRAG Reindex~~** | Removed in S435 (6 June 2026) | GraphRAG removed from Athena. Cost/complexity exceeded retrieval quality gains. |
 | 📅 Deferred | **Hybrid Model Strategy** | Cost Optimization | **Plan**: Use Gemini 2.5 Flash-Lite ($0.40) for `extract_entities.py` (Translation) and Gemini 3 Flash ($3.00) for Reasoning. Potential 7x savings. |
 
 ---
