@@ -98,7 +98,7 @@ Classify all relationships into structural tiers:
 
 | Schema | Manifestation | Source | Counter-Protocol |
 |:-------|:-------------|:-------|:----------------|
-| **Boy-Shaped Hole** | Seeking male peer validation | Developmental gap | Recognize the search pattern (§294) |
+| **Peer Validation Gap** | Seeking peer validation | Developmental gap | Recognize the search pattern (§294) |
 | **Good Boy Paradox** | Compliance loop → resentment | Conditional approval | Sovereign boundary enforcement (PSY-122) |
 | **Vending Machine** | "If I give enough, they'll give back" | Transactional intimacy belief | Law #3: actions > words. Stop depositing. |
 | **Hope Override** | Continuing despite negative data | Emotional attachment > rational analysis | CS-012: "Hope > Data" = self-deception |

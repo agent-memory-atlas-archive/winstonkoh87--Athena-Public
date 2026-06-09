@@ -134,7 +134,7 @@ Step 8: Deliver — Final audit against rubric
 
 ### Module 6: Dashboard/Website Architecture
 
-**For financial/trading dashboards** (A39 pattern):
+**For financial/trading dashboards**:
 
 | Principle | Rule |
 |:----------|:-----|

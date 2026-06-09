@@ -21,7 +21,7 @@ context_trigger: "SPSS, statistics, regression, chi-square, correlation, reliabi
 # Statistical Analysis Skill
 
 > **Purpose**: Structured pipeline for statistical analysis deliverables. Prevents assumption violations, missed effect sizes, and uninterpretable output.
-> **Origin**: Created ahead of Assignment 19 (SPSS, legacy_engagement_a, $250, deadline Mar 8). No protocol coverage existed for this domain.
+> **Origin**: Created ahead of a client SPSS assignment. No protocol coverage existed for this domain.
 
 ## The 5-Step Pipeline
 
@@ -103,7 +103,7 @@ Appendix: SPSS Output Tables (screenshots or formatted tables)
 - Include assumption check results in methodology or as footnotes
 - Tables formatted per APA: no vertical lines, horizontal rules at top/bottom/below header only
 
-## Assignment 19 Quick Reference
+## Example Scope Reference
 
 | Component | Count | Details |
 |---|---|---|

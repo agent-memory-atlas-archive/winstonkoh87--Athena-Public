@@ -95,7 +95,7 @@ Canonical counts (protocols, skills, workflows, scripts) live in `.agent/config/
 - **Names/People**: ANY person mentioned → search their name for relationship history, past interactions
 - **Past Decisions**: "Last time...", "What did I decide...", "Didn't we already..." → search the topic
 - **Empirical Data**: Pricing, trade history, assignment outcomes, session patterns → search for records
-- **Projects/Assignments**: A30, A38, A39, any project code → search for project context
+- **Projects/Assignments**: Any project code or assignment identifier → search for project context
 - **Protocols/Case Studies**: Any system pattern reference → search by keyword
 
 > **Rule**: Failing to search the Exocortex when the data exists is equivalent to ignoring the user's own history. The cost of a redundant search is ~$0. The cost of a hallucinated answer when real data exists is trust erosion.

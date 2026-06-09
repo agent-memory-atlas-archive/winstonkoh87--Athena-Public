@@ -171,4 +171,4 @@ Single self-contained HTML file:
 ## References
 
 - [Anthropic build-dashboard](https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/build-dashboard) — Source skill
-- [A30 Tutorial 2 Slide Deck](./.context/memories/case_studies/) — Athena precedent for web-based deliverables
+- Athena precedent: web-based interactive deliverables as single HTML files

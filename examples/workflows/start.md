@@ -97,10 +97,10 @@ Every response Turn MUST be classified by risk level and grounded accordingly:
    > This is the **Exocortex**. It searches 1800+ session logs, case studies, protocols, and personal knowledge. Use this — NOT `grep_search` — for any query requiring contextual recall. Run it BEFORE formulating your response.
 
    **Mandatory Exocortex Search Triggers** — if ANY of these appear in the query, search FIRST:
-   - **Names/People**: User mentions a person (Jeremy, Ryan, Kian Chye, Umaira, any client/friend) → search their name
+   - **Names/People**: User mentions a person (any client, collaborator, friend, or contact) → search their name
    - **Past Decisions**: "Last time we...", "What did I decide about...", "Didn't we already..." → search the topic
    - **Empirical Data**: Pricing, trade history, assignment outcomes, session patterns → search for historical records
-   - **Projects/Assignments**: A30, A38, A39, any project code → search for project context
+   - **Projects/Assignments**: Any project code or assignment identifier → search for project context
    - **Protocols/Case Studies**: Any reference to system patterns → search by keyword
    
    The Exocortex is the user's **extended memory**. 1800+ sessions of lived experience are indexed. Failing to search when the data exists is equivalent to ignoring the user's own history. Also available via MCP: `mcp_athena_smart_search` and `mcp_athena_agentic_search`.

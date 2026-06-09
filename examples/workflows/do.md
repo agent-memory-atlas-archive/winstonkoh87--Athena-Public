@@ -69,7 +69,7 @@ User says `/do` followed by a natural language description of what they want.
 
 > **When**: After routing to a workflow, before executing. Evaluate whether the work should be done inline, parallelized, or delegated.
 > **Why**: Subagents compress wall-clock time for independent tasks and keep the parent's context clean. But they add overhead for dependent work. Wrong delegation = slower, not faster.
-> **Source**: Empirical patterns from S410–S412 (A30 project closure sequence).
+> **Source**: Empirical patterns from multi-session project closure sequences.
 
 ### Decision Matrix
 

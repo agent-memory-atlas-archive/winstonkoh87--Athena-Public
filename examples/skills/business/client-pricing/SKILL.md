@@ -18,7 +18,7 @@ context_trigger: "pricing, quote, proposal, how much should I charge, rate card,
 # Client Pricing Skill
 
 > **Purpose**: Prevent rate collapse. Enforce anchor-first pricing. Automate the quoting decision tree.
-> **Origin**: Assignment 15 rate collapse ($83/hr vs $310/hr benchmark). Assignment 19 floor-as-opening ($250 vs $300+ anchor). Both were preventable.
+> **Origin**: Empirical calibration from real client engagements — rate collapse incidents and floor-as-opening negotiation failures. Both were preventable.
 
 ## Core Principle
 
@@ -65,8 +65,8 @@ CLIENT names their number
 
 | Anti-Pattern | Case Study | Fix |
 |---|---|---|
-| **Opening at floor** | Assignment 19: quoted $250 (floor) instead of $300 anchor | Always open at anchor. Floor is your walk-away, not your opening |
-| **Rate collapse via speed** | Assignment 15: $500/6 hrs = $83/hr because work was fast | Price by deliverable complexity, not hours. Speed is your competitive advantage — don't let it compress price |
+| **Opening at floor** | Quoted at floor instead of anchor — left $50+ on the table | Always open at anchor. Floor is your walk-away, not your opening |
+| **Rate collapse via speed** | Delivered fast, effective rate dropped to $83/hr vs $310/hr benchmark | Price by deliverable complexity, not hours. Speed is your competitive advantage — don't let it compress price |
 | **Negotiating against yourself** | Generic pattern | After stating anchor, SHUT UP. Let the client name their number |
 | **Scope creep without re-quote** | Client adds "just one more thing" | Any addition > 10% of original scope triggers re-quote |
 

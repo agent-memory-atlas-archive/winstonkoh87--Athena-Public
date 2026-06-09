@@ -318,10 +318,10 @@ User query → Extract keywords/entities
 > - **Command Execution**: Scripts, builds, data processing, system operations
 >
 > **Mandatory Exocortex Search Triggers** — if ANY of these appear, search BEFORE responding:
-> - **Names/People**: ANY person mentioned (Jeremy, Ryan, Kian Chye, Umaira, any name) → search their name for relationship history, case studies, past interactions
+> - **Names/People**: ANY person mentioned (any client, collaborator, friend, or contact) → search their name for relationship history, case studies, past interactions
 > - **Past Decisions**: "Last time...", "What did I decide...", "Didn't we already..." → search the topic for empirical precedent
 > - **Empirical Data**: Pricing, trade history, assignment outcomes, session patterns → search for historical records and calibration data
-> - **Projects/Assignments**: A30, A38, A39, any project code → search for full project context
+> - **Projects/Assignments**: Any project code or assignment identifier → search for full project context
 > - **Protocols/Case Studies**: Any reference to system patterns → search by keyword
 >
 > **MaxMax principle**: The cost of a redundant search is ~$0. The cost of a hallucinated fact is trust erosion. The cost of ignoring 1800+ sessions of empirical data is **criminal negligence**. **Always verify. Never guess. Always recall.**

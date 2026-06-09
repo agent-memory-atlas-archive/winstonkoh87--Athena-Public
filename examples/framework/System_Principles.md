@@ -729,7 +729,7 @@ THEN:
 
 ## 24. The Nightmare Filter (Minimum Viable Respect)
 >
-> **Origin**: Session 31 (Assignment 11 Negotiation)
+> **Origin**: Session 31 (Client Negotiation)
 
 **Context**: Low Price ($400) + High Scope (Full Stack) = "Nightmare Scenario".
 **Physics**: Clients who squeeze price below market ($400 vs $950) signal: "I value Output, not Skill."

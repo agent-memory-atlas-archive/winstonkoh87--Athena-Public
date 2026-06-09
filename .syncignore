@@ -1,9 +1,15 @@
 # =============================================================================
-# .syncignore — Files that must NEVER be synced from Root → Athena-Public
+# .syncignore — SUPPLEMENTARY Safety Net for Athena-Public Sync
 # =============================================================================
-# This file documents which paths from the private Project Athena root
-# must never be cherry-picked or copied into the public repository.
-# Used by contributors and sync scripts as a safety check.
+# STATUS: This file is now a BACKUP safety net. The primary gate is:
+#   .agent/config/public_manifest.yaml (ALLOWLIST — only listed files sync)
+#
+# This blocklist catches anything that slips through the allowlist.
+# Both mechanisms must agree before a file reaches the public repo.
+#
+# See: deploy.md v2.0 (Allowlist Model)
+# Last updated: 2026-06-10
+# =============================================================================
 
 # Personal System Prompt (contains personal psychological data)
 .framework/
@@ -27,3 +33,8 @@
 .env
 *.key
 *.pem
+
+# Behavioral Accountability State (added 2026-06-10, R1 implementation)
+**/accountability_status.json
+**/trigger_log.md
+

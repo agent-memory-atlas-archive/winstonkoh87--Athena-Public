@@ -69,7 +69,7 @@ Q5: "If you STOPPED this behavior completely, what feeling would
 ```
 From the 5 answers, extract:
 
-CORE IMPRINT:    [Name — e.g., "The Boy-Shaped Hole", "The Good Boy Paradox"]
+CORE IMPRINT:    [Name — e.g., "The Peer Validation Gap", "The Good Boy Paradox"]
 ORIGIN:          [Developmental period + specific event/pattern]
 MECHANISM:       [How the imprint drives current behavior]
                  e.g., "Rejection interpreted as 'Try Harder' (Anxious-Avoidant Trap)"

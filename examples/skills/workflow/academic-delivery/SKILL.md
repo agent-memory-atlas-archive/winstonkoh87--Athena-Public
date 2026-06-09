@@ -19,7 +19,7 @@ context_trigger: "*.docx, *.pdf, essay, report, assignment, capstone, coursework
 # Academic Delivery Skill
 
 > **Purpose**: Structured pipeline for academic/knowledge deliverables. Prevents the V1-is-weak failure mode by auto-triggering adversarial review.
-> **Origin**: Extracted from real-world execution of Assignments 11–15 (Mar 2026). Every assignment manually reconstructed this pipeline — now it's codified.
+> **Origin**: Extracted from real-world execution of client assignments. Every assignment manually reconstructed this pipeline — now it's codified.
 
 ## The 8-Step Pipeline
 
@@ -57,7 +57,7 @@ context_trigger: "*.docx, *.pdf, essay, report, assignment, capstone, coursework
 ### Step 5: RED-TEAM (Mandatory — Auto-Triggered)
 
 > [!IMPORTANT]
-> This step is **non-negotiable**. It fires automatically after Step 4. The Assignment 13 V1 failure (zero counter-readings, zero formal analysis) is the canonical case study for why.
+> This step is **non-negotiable**. It fires automatically after Step 4. Shipping V1 with zero counter-readings and zero formal analysis is the canonical failure mode.
 
 - Feed V1 through adversarial review (Cluster #8 — `red-team-review`)
 - Evaluate against:
@@ -106,6 +106,6 @@ No deliverable leaves Step 8 without:
 
 ## Reflexion Archive
 
-> [REFLEXION] What failed: Assignment 13 V1 shipped with zero counter-readings and zero formal analysis. Why: Over-optimised for clean thesis confirmation. Lesson: Auto-trigger red-team after V1. 80 words for a counter-reading is non-negotiable.
+> [REFLEXION] What failed: V1 shipped with zero counter-readings and zero formal analysis. Why: Over-optimised for clean thesis confirmation. Lesson: Auto-trigger red-team after V1. 80 words for a counter-reading is non-negotiable.
 
-> [REFLEXION] What failed: Assignment 15 capstone at $500/6hrs = $83/hr (73% rate collapse). Why: No pricing skill fired during intake. Lesson: Step 2 (SCOPE) must trigger pricing evaluation for commercial work.
+> [REFLEXION] What failed: A capstone delivered at $83/hr effective rate (73% rate collapse vs benchmark). Why: No pricing skill fired during intake. Lesson: Step 2 (SCOPE) must trigger pricing evaluation for commercial work.

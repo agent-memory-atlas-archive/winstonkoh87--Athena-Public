@@ -158,7 +158,7 @@ BUSINESS VIABILITY GATE:
 
 - **Pricing Trinity** (Session 2026-03-03-03): `Price = f(Buyer Profile × Revenue Multiplier × Scarcity Premium)`
 - **Assignment Pricing Equilibrium**: Empirical ceiling of $300 SGD for commodity student work
-- **Comparative Analysis**: Assignment 14 (engineering, high scarcity) vs. Assignment 15 (marketing, zero scarcity) vs. APEX Group retainer ($1K–$1.2K/mo)
+- **Comparative Analysis**: Engineering assignments (high scarcity) vs. marketing assignments (zero scarcity) vs. retainer-based consulting ($1K–$1.2K/mo)
 - **Vice Marketplace Analysis**: Demand hierarchy refinement — Pleasure > Revenue > Obligation
 
 ---
