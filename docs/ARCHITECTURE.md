@@ -1,7 +1,7 @@
 # Athena — Architecture Reference
 
-> **Last Updated**: 6 Jun 2026
-> **Version**: v9.9.1-gto
+> **Last Updated**: 10 Jun 2026
+> **Version**: v9.9.2
 > **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
 > **Bionic Unit Spec**: [BIONIC_UNIT_SPEC.md](.context/specs/BIONIC_UNIT_SPEC.md) — the definitive human-AI augmentation mapping
 
@@ -13,11 +13,11 @@
 Athena/
 ├── .agent/                        # Agent configuration
 │   ├── skills/                    #   40 active skills (40 with context_trigger)
-│   │   └── protocols/             #   399 active + 32 archived = 431 total, 23 categories
+│   │   └── protocols/             #   400 active + 32 archived = 432 total, 24 categories
 │   │       └── archive/           #     15 deprecated protocols (read-only, see README)
 │   ├── workflows/                 #   51 root + 18 _domain = 69 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
-│   ├── scripts/                   #   247 automation scripts
+│   ├── scripts/                   #   251 automation scripts
 │   ├── telemetry/                 #   Retrieval instrumentation logs + tier maps
 │   ├── config/                    #   Agent manifests + CAPS.json (canonical counts)
 │   ├── CLUSTER_INDEX.md           #   15 cognitive clusters (routing map)
@@ -27,9 +27,9 @@ Athena/
 │   └── archive_skills/            #   16 sunset skills (read-only, see README)
 │
 ├── .context/                      # Personal knowledge base
-│   ├── memories/                  #   3,658 memory files (session logs + case studies + profile)
+│   ├── memories/                  #   3,729 memory files (session logs + case studies + profile)
 │   │   ├── session_logs/          #     Dated session records
-│   │   ├── case_studies/          #     492 documented patterns (15 domains, 7 archived)
+│   │   ├── case_studies/          #     500 documented patterns (15 domains, 7 archived)
 │   │   ├── profile/               #     Core profile, psychology, voice DNA
 │   │   └── observations/          #     Session insights
 │   ├── memory_bank/               #   10 boot files (activeContext, userContext,
@@ -170,7 +170,7 @@ Full cluster details: [CLUSTER_INDEX.md](.agent/CLUSTER_INDEX.md)
 | Cognitive Domains | 8 | Memory activation targets (priority-ordered for tie-breaking) |
 | Cognitive Clusters | 15 | Co-activating procedural memory bundles |
 | Skills | 40 active (17 archived) |
-| Protocols | 399 active (32 archived; 431 total) |
+| Protocols | 400 active (32 archived; 432 total) |
 | Workflows | 69 (51 root + 18 _domain/) |
 
 ---
@@ -368,20 +368,20 @@ src/athena/mcp_server.py (FastMCP v3.x, stdio transport)
 
 ---
 
-## Metrics (6 Jun 2026)
+## Metrics (10 Jun 2026)
 
 | Metric | Count |
 |:-------|------:|
-| Protocols (active) | 399 |
+| Protocols (active) | 400 |
 | Protocols (archived) | 32 |
 | Skills (active) | 40 (40 conditional) |
 | Cognitive Clusters | 15 |
 | Cognitive Systems | 8 |
 | Workflows | 69 (51 root + 18 _domain/) |
-| Automation Scripts | 247 |
-| Case Studies | 492 (15 domains, 7 archived) |
-| Session Logs | 1,888 |
-| Total Memory Files | 3,658 |
+| Automation Scripts | 251 |
+| Case Studies | 500 (15 domains, 7 archived) |
+| Session Logs | 1,914 |
+| Total Memory Files | 3,729 |
 | Source Files (SDK) | 72 |
 | Test Files | 13 |
 | Documentation Files | 76 |

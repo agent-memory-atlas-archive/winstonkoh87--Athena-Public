@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-06-06
+last_updated: 2026-06-10
 tags: #references #apa #academic #citations
 ---
 
@@ -186,7 +186,7 @@ Perez, E., Ringer, S., Lukošiūtė, K., Nguyen, K., Chen, E., Heiner, S., ... &
 
 Soelberg v. OpenAI, Inc., No. 3:25-cv-11037 (N.D. Cal. filed Dec. 29, 2025).
 
-> **Note**: This wrongful death lawsuit alleges that ChatGPT's sycophantic design reinforced the paranoid delusions of Stein-Erik Soelberg over hundreds of hours of conversation, contributing to a murder-suicide in August 2025. The case is cited in Athena's [Trilateral Feedback](docs/TRILATERAL_FEEDBACK.md) documentation as a real-world example of why single-model bilateral feedback is dangerous.
+> **Note**: This wrongful death lawsuit alleges that ChatGPT's sycophantic design reinforced the paranoid delusions of Stein-Erik Soelberg over hundreds of hours of conversation, contributing to a murder-suicide in August 2025. The case is cited in Athena's [Trilateral Feedback](TRILATERAL_FEEDBACK.md) documentation as a real-world example of why single-model bilateral feedback is dangerous.
 
 Wei, A., Haghtalab, N., & Steinhardt, J. (2024). Jailbroken: How does LLM safety training fail? *Advances in Neural Information Processing Systems, 36*. <https://arxiv.org/abs/2307.02483>
 
@@ -266,4 +266,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 06 June 2026 (Fact-Check Audit, Session S437)*
+*Last updated: 10 June 2026 (link repair; content last fact-checked 06 June 2026, Session S437)*

@@ -10,7 +10,7 @@
 ---
 
 > [!CAUTION]
-> **GraphRAG is EXPENSIVE.** Building this knowledge graph cost **~$50 in API fees** (using Gemini 3 Flash). Entity extraction requires calling an LLM for every single document chunk. For most use cases, **VectorRAG is FREE and sufficient**. See [VECTORRAG.md](docs/VECTORRAG.md) for the recommended approach.
+> **GraphRAG is EXPENSIVE.** Building this knowledge graph cost **~$50 in API fees** (using Gemini 3 Flash). Entity extraction requires calling an LLM for every single document chunk. For most use cases, **VectorRAG is FREE and sufficient**. See [VECTORRAG.md](VECTORRAG.md) for the recommended approach.
 
 ---
 
