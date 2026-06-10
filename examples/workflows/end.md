@@ -1,7 +1,7 @@
 ---
 description: Close session and update System Prompt files with new insights (lightweight)
 created: 2025-12-09
-last_updated: 2026-05-08
+last_updated: 2026-06-10
 model: default
 temperature: 0.5
 tools:
@@ -268,6 +268,39 @@ Before finalizing the session:
 2. **Check** if these modifications invalidate any project documentation (`README.md`, `design.md`, `SPEC.md`, or markdown guides).
 3. **Update** the affected documentation to match the new implementation state.
 4. **Ensure** no documentation is left in a stale or drift-prone state.
+
+### 5.7. Behavioral Accountability Close (Grace Harper Model)
+
+> **Purpose**: Structural accountability on session close. Complements the `/start` surface.
+> **Data source**: `.agent/state/accountability_status.json` — read on boot, updated here.
+
+**5.7a. Trigger Log Gate**:
+
+Scan the session for behavioral signals the user has chosen to track (e.g., recurring decision biases, scope creep, base-rate distortion, high-intensity interpersonal contexts).
+
+If ANY detected:
+1. Surface it: `📝 Trigger detected this session — [brief description].`
+2. Prompt: `Log this in the trigger log? Y/skip`
+3. If confirmed, append to `.agent/state/trigger_log.md` using format: <!-- pds:allow -->
+   `| {date} | {trigger} | {context} | {resolution} | {learning} |`
+
+**5.7b. Weekly Execution Audit** (fires weekly or 7+ days since last audit):
+
+1. Read `.agent/state/accountability_status.json`
+2. Load previous week's `@pending` and `@decided` items from checkpoint blocks
+3. Compare: **Committed vs Actual**
+4. Surface the delta: `📊 Weekly: [N]/[M] committed actions executed. Gap items: [list].`
+5. No judgment. Just data. The data creates the accountability.
+
+**5.7c. Update Accountability State** (every session close):
+
+Write updated values to `.agent/state/accountability_status.json`:
+- `last_updated` → current timestamp
+- Increment counters for any tracked commitment with activity this session
+- On audit day → run weekly audit (5.7b), update `weekly_audit.last_audit_date`, calculate `execution_rate`, reset weekly counters
+
+> **Rationale**: The JSON state creates a persistent, mechanical loop: `/start` reads → surfaces → user sees → `/end` writes → next `/start` reads updated state. This is the minimum viable accountability infrastructure.
+
 
 ### 6. Context Hygiene Gate
 

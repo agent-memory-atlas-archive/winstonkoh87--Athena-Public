@@ -1,0 +1,126 @@
+# =============================================================================
+# public_manifest.yaml — Explicit Allowlist for Athena-Public Deployment
+# =============================================================================
+# ONLY files listed here will be synced to the public repo.
+# Everything not listed is BLOCKED by default. This inverts the previous
+# blocklist model (.syncignore) which failed silently on TD-027.
+#
+# Last reviewed: 2026-06-10
+# Owner: [AUTHOR] / Athena deploy workflow
+# See: deploy.md §1 (Allowlist Manifest)
+# =============================================================================
+
+version: 1
+last_reviewed: "2026-06-10"
+
+# --- Root Files ---
+root_files:
+  - AGENTS.md
+  - CLAUDE.md
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
+  - Dockerfile.sandbox
+  - LICENSE
+  - README.md
+  - SAFETY.md
+  - SECURITY.md
+  - SUPPORT.md
+  - athena.yaml
+  - llms.txt
+  - pyproject.toml
+  - robots.txt
+  - sitemap.xml
+  - .env.example
+  - .gitignore
+  - .nojekyll
+
+# --- Documentation ---
+docs:
+  - docs/ABOUT_ME.md
+  - docs/ARCHITECTURE.md
+  - docs/FAQ.md
+  - docs/GETTING_STARTED.md
+  - docs/MANIFESTO.md
+  - docs/SEMANTIC_SEARCH.md
+  - docs/USER_DRIVEN_RSI.md
+  - docs/YOUR_FIRST_SESSION.md
+  - docs/protocols/   # All public protocol examples
+
+# --- Example Workflows ---
+examples:
+  - examples/skills/   # All public skill examples
+  - examples/workflows/   # All public workflow examples
+
+# --- Scripts (Public-safe only) ---
+scripts:
+  - scripts/athena_status.py
+  - scripts/auto_tagger.py
+  - scripts/boot.py
+  - scripts/bump_version.sh
+  - scripts/code_indexer.py
+  - scripts/context_monitor.py
+  - scripts/core/
+  - scripts/env_keychain.sh
+  - scripts/hooks/pre-commit
+  - scripts/launch_athena.sh
+  - scripts/log_invocation.py
+  - scripts/parallel_orchestrator.py
+  - scripts/quicksave.py
+  - scripts/reconcile_memory.py
+  - scripts/safe_boot.sh
+  - scripts/shutdown.py
+  - scripts/structure_map.py
+
+# --- Source Code ---
+src:
+  - src/athena/   # Full src tree (already sanitized for public)
+
+# --- Supabase ---
+supabase:
+  - supabase/.gitignore
+  - supabase/MASTER_SCHEMA.sql
+  - supabase/config.toml
+  - supabase/functions/
+  - supabase/migrations/
+
+# --- Tests ---
+tests:
+  - tests/test_eval_harness.py
+  - tests/test_great_steal.py
+
+# --- Tools ---
+tools:
+  - tools/README.md
+  - tools/exocortex_search.yaml
+
+# --- Wiki ---
+wiki:
+  - wiki/
+
+# --- Community ---
+community:
+  - community/
+
+# --- Framework (Public subset only) ---
+framework:
+  - .framework/   # Public framework examples only
+
+# --- Context (Public subset only) ---
+context:
+  - .context/   # Public context examples only
+
+# --- Agent Config (Public subset only) ---
+agent:
+  - .agent/   # Public agent examples only
+
+# =============================================================================
+# BLOCKED BY DEFAULT (never listed = never synced)
+# =============================================================================
+# Everything not listed above is implicitly blocked. Typical examples:
+#   - .env (live secrets)
+#   - Personal data directories
+#   - .agent/state/ (behavioral state, trigger logs)
+#   - Raw session logs and private case studies
+#   - Clinical or psychological profile modules
+#   - Any file that hasn't passed pre_deploy_scan.sh
+# =============================================================================

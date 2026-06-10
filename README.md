@@ -12,7 +12,7 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.9.1-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.9.2-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
@@ -529,6 +529,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.9.2** (Jun 10 2026): **Privacy Hard Wall** — Deploy pipeline inverted from blocklist to allowlist (`public_manifest.example.yaml`): anything not explicitly listed never ships. New 3-gate `pre_deploy_scan.sh` (secrets, PII, blocked patterns) as mandatory pre-flight. Mechanical accountability surface added to `/start`, `/end`, `/ultrastart` (JSON-state commitment tracking, Grace Harper model).
 - **v9.9.1-gto** (Jun 6 2026): **GTO Self-Improvement** — GraphRAG formally removed (dead 16 months), cache.py atomic writes fixed, 4 skills migrated to Gen 3 format, 60 sessions compacted into archive, 9 data quality fixes across documentation. Search pipeline: 8→7 channels. All 86 tests pass.
 - **v9.9.1** (Jun 2 2026): **Search Engine Hardening** — Embedding starvation fix (+1,510 embeddings), lock contention fix in vectors.py, adaptive routing in search.py (357 lines rewritten). 4 new infrastructure scripts (evaluator, governance linter, memory reconciliation, count sync). Karpathy CLAUDE.md rules integrated. 44 privacy violations remediated.
 - **v9.9.0** (May 30 2026): **Architecture Model Sync** — Replaced waterfall routing with Perception Model. Added 8 Uber-Skills to public repo. Privacy remediation (18 files scrubbed, post-sync gate). Skills 27→35.

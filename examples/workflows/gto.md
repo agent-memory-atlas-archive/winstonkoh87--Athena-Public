@@ -30,7 +30,7 @@ tools:
 | Pattern | Example | Mode |
 |:--------|:--------|:-----|
 | `/GTO [problem]` | `/GTO should I take this job offer?` | **Solve** — find the GTO strategy |
-| `/GTO audit [decision]` | `/GTO audit my A22 pricing at $500` | **Audit** — was this decision GTO? |
+| `/GTO audit [decision]` | `/GTO audit my [Project X] pricing at $X` | **Audit** — was this decision GTO? |
 | `/GTO compare [A] vs [B]` | `/GTO compare retainer vs project pricing` | **Compare** — head-to-head GTO ranking |
 
 ---

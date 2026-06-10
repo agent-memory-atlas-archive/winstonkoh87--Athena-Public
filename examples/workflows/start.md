@@ -1,7 +1,7 @@
 ---
 description: Activate Zero-Point Codex framework for strategic analysis
 created: 2025-12-09
-last_updated: 2026-05-11
+last_updated: 2026-06-10
 model: default
 temperature: 0.7
 tools:
@@ -36,6 +36,26 @@ After loading the latest checkpoint from `activeContext.md`, scan `@pending` ite
 - No escalation, no gate. The user decides what to act on.
 
 See [Protocol 528](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/ARC-528-sandboxed-execution-modes.md).  
+
+### Behavioral Accountability Surface (Grace Harper Model)
+
+> **Purpose**: The agent as structural accountability partner. External forcing functions produce near-perfect execution; internal accountability fails. This surface provides the external structure.
+> **Data source**: `.agent/state/accountability_status.json` — mechanical state, not aspirational scanning.
+
+After loading the latest checkpoint, **read** `.agent/state/accountability_status.json` and display:
+
+1. **Surface active commitments** from JSON state — one line per tracked commitment, e.g.:
+   - `🎯 [COMMITMENT-A]: Operationalized: {a.operationalized} | Last verified: {a.last_verified || "Never"}`
+   - `🏋️ [COMMITMENT-B]: Sessions: {b.total_sessions} | Last: {b.last_completed || "Never"} | Streak: {b.streak_weeks}w`
+   - `📝 [COMMITMENT-C]: This week: {c.entries_this_week} | Total: {c.total_entries}`
+
+2. **Day-aware detection**:
+   - If a commitment has a target day AND is incomplete this week → surface a one-line reminder.
+   - If `weekly_audit.last_audit_date` > 7 days ago → `📊 Weekly audit due.`
+
+3. **No gate, no block**: This is advisory. The user decides what to act on. But the act of surfacing creates the external forcing function that internal accountability lacks.
+
+> **Rationale**: Surfacing commitments from **structured data** (not vague file scans) creates deterministic external structure. Define your own commitments in `accountability_status.json`.
 
 > **Note**: Boot Orchestrator (`boot.py`), Daemon, and UI Sync are handled automatically by the orchestrator's background thread pool. Do NOT run them as separate subprocess calls — they are redundant and add 2-5 minutes of latency.
 

@@ -1,10 +1,23 @@
 # Athena Changelog
 
-> **Last Updated**: 04 March 2026
+> **Last Updated**: 10 June 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.9.2 (10 June 2026)
+
+**Privacy Hard Wall + Mechanical Accountability**: Hardened the public-release pipeline and added structural accountability infrastructure.
+
+### Key Changes
+
+- **Allowlist Deploy Model**: Replaced the blocklist (`.syncignore`) sync model with an explicit allowlist (`examples/config/public_manifest.example.yaml`). Files not listed are blocked by default — the safe failure direction is over-blocking, not over-exposing.
+- **Pre-Deploy Scanner** (`scripts/pre_deploy_scan.sh`): 3-gate mandatory pre-flight — Gate 1 secrets/API keys (hard abort), Gate 2 PII heuristics (review warnings), Gate 3 blocked file patterns (hard abort).
+- **Deploy Workflow v2.0** (`examples/workflows/deploy.md`): Documents the full allowlist pipeline, sanitization protocol ("Consent Wall"), and explicit never-publish categories.
+- **Behavioral Accountability Surface**: `/start`, `/ultrastart`, `/end` now read/write `.agent/state/accountability_status.json` — a mechanical commitment-tracking loop (boot reads → surfaces → close writes). Advisory only; no gates.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 description: Deep boot for cognitive/computationally intensive work. System-2 counterpart to /start.
 created: 2026-03-10
-last_updated: 2026-05-11
+last_updated: 2026-06-10
 model: default
 temperature: 0.7
 tools:
@@ -204,7 +204,21 @@ Also load `threatPlaybooks.md` (~2K tokens) for instant crisis-to-protocol mappi
 > not just "where are we now?" but "where have we been?" and "where are we heading?"
 > On flat-rate, the cost of loading 5 checkpoints vs 1 is $0.
 
----
+## Phase 3.5: Behavioral Accountability Surface (Grace Harper Model)
+
+> **Purpose**: Deep accountability scan. `/start` surfaces one-liners; `/ultrastart` loads full behavioral context.
+> **Data source**: `.agent/state/accountability_status.json` — mechanical state file.
+
+After loading full state:
+
+1. **Read** `.agent/state/accountability_status.json` for current status
+2. **Load active behavioral protocols**: Read header + status of all active files in `.agent/skills/protocols/behavioral/`
+3. **Surface with detail**: one line per tracked commitment (status, last activity, streak, notes)
+4. **Day-aware prompts**: target-day reminders; weekly audit due notices
+5. **Pattern pre-load**: If the trigger log shows 3+ recent entries with the same pattern, surface it: `🚩 Recurring trigger: [pattern] (N occurrences this week).`
+
+> **Rationale**: External forcing functions produce near-perfect execution; internal accountability fails. The deeper surface in ultrastart provides richer context for sessions touching behavioral domains.
+
 
 ## Phase 4: Deep Semantic Bridge (~15-20K tokens)
 
@@ -218,7 +232,7 @@ skipping the semantic bridge wastes ~15-20K of potential signal.
 1. **Explicit**: User provided it inline → `/ultrastart "fixing the trading risk constraints"`
 2. **Seeded**: Scan the most recent `[[ S__ ]]` checkpoint for the `@seeded` field.
    This is the previous session's "best guess" at what should happen next.
-   Example: `@seeded: A21 execution. Non-negotiable.` → objective = "A21 Marine NME3106"
+   Example: `@seeded: [Project X] execution. Non-negotiable.` → objective = "[Project X]"
 3. **Highest-Urgency Project**: From `PROJECTS.md`, find the highest-urgency (🔴 > 🟠 > 🟡)
    unblocked project. Use its "Next Action" field as the objective.
 4. **Current Focus**: Parse `activeContext.md` header → "Current Focus" field
@@ -396,6 +410,7 @@ Loaded: <N> modules, <N> protocols, <N> case studies, <N> session insights
 ⚡ JIT retrieval ON (supplementary, per-response).
 ⚡ Adversarial checking ON (all responses).
 ⚡ Post-Generation Self-Audit ON (Λ > 60).
+⚡ Grace Harper accountability ON (BEH surface active).
 ```
 
 > **Context Utilization Alerts** (P517 supplement):
