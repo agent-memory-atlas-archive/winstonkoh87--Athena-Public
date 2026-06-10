@@ -12,7 +12,7 @@
 |:-----|:-------------|:-----------|
 | **Free** | Google Antigravity (free tier) | **$0** |
 | **Entry** | Claude Pro · Google AI Pro | ~$20/mo |
-| **Power** | Claude Max 20× · Google AI Ultra | $200–250/mo |
+| **Power** | Claude Max 20× · Google AI Ultra | $200–250/mo | <!-- pds:allow -->
 
 **Start free with Antigravity.** Upgrade to $20/month when you hit daily limits.
 
@@ -64,8 +64,8 @@ All LLMs hallucinate. Athena minimizes this via **Hybrid RAG** — forcing the m
 | User Type | Plan | Sessions/Day | Verdict |
 |:----------|:-----|:-------------|:--------|
 | **Casual** | Pro ($20/mo) | 1–2 | ✅ 95% of context stays free |
-| **Daily Driver** | Max 5× ($100/mo) | 3–5 | ✅ Each session is independent |
-| **Power User** | Max 20× ($200/mo) | 10+ parallel | ✅ Multiple agents, multiple projects |
+| **Daily Driver** | Max 5× ($100/mo) | 3–5 | ✅ Each session is independent | <!-- pds:allow -->
+| **Power User** | Max 20× ($200/mo) | 10+ parallel | ✅ Multiple agents, multiple projects | <!-- pds:allow -->
 
 ### 📁 Should I put my project inside or outside the Athena folder?
 

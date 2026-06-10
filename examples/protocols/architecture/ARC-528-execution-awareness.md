@@ -47,7 +47,7 @@ If — and only if — the user explicitly asks "what's been pending?" or "what 
 
 ## Opt-In Escalation
 
-If the user explicitly opts in (e.g., "hold me accountable on A21" or "nag me about this"), the system can:
+If the user explicitly opts in (e.g., "hold me accountable on [Project X]" or "nag me about this"), the system can:
 
 1. Promote the task to `@seeded` with a user-requested accountability tag
 2. Surface it more prominently in boot output

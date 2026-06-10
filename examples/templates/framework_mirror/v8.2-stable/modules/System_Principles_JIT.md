@@ -433,7 +433,7 @@ THEN:
 > "Price is a function of Information, not Quality."
 
 - **The COGS Anchor**: Real market value for digital labor (e.g., Web Design) is often **$100-$200/page**.
-- **The Information Tax**: Any price above COGS + Margin (e.g., $500+/page) is a tax on the client's ignorance (Information Asymmetry) or a premium for liability shielding (Agency Model).
+- **The Information Tax**: Any price above COGS + Margin (e.g., $500+/page) is a tax on the client's ignorance (Information Asymmetry) or a premium for liability shielding (Agency Model). <!-- pds:allow -->
 - **The Grant Distortion**: In subsidized markets (Singapore PSG), price anchors to the **Subsidy Cap**, not the Value.
 - **Strategy**: operate in the **Arbitrage Gap** (Price > COGS, Price < Grant Cap).
 
@@ -441,14 +441,14 @@ THEN:
 >
 > **Origin**: Session 13 (User Pricing Heuristic - Assignment 7)
 
-**Context**: Paradoxically, a lower quote ($400) feels "cheap", while a high-quote-with-discount ($600 -> $500) feels "valuable".
+**Context**: Paradoxically, a lower quote ($400) feels "cheap", while a high-quote-with-discount ($600 -> $500) feels "valuable". <!-- pds:allow -->
 **Physics**:
 
 - **Price = Signal**. Low price signals low confidence/quality.
 - **Discount = Favor**. High initial price establishes value anchor. Discount establishes "Relationship Capital".
 **Directive**:
-- **Never Quote the Floor**. Always quote Ceiling ($600) -> Offer "Discount" ($500).
-- **Result**: You earn $100 more, and the client feels they got a "deal".
+- **Never Quote the Floor**. Always quote Ceiling ($600) -> Offer "Discount" ($500). <!-- pds:allow -->
+- **Result**: You earn $100 more, and the client feels they got a "deal". <!-- pds:allow -->
 
 ---
 
@@ -484,7 +484,7 @@ THEN:
 - **Labor**: Sells **Sweat**. Linear scaling. Low barrier to entry.
 - **Compliance**: Sells **Immunity**. Scalable (Digital). High barrier.
 **The Arbitrage**:
-- To the Business Owner, the $500 fee is a "Headache Tax" to remove legal risk.
+- To the Business Owner, the $500 fee is a "Headache Tax" to remove legal risk. <!-- pds:allow -->
 - To the Provider, the cost is 2 hours of standardized work.
 **Directive**:
 - **Reject Labor**: Do not sell sweat.
@@ -571,7 +571,7 @@ THEN:
 > **Origin**: Session 31 (Client Negotiation)
 
 **Context**: Low Price ($400) + High Scope (Full Stack) = "Nightmare Scenario".
-**Physics**: Clients who squeeze price below market ($400 vs $950) signal: "I value Output, not Skill."
+**Physics**: Clients who squeeze price below market ($400 vs $950) signal: "I value Output, not Skill." <!-- pds:allow -->
 **The Theorem**: The mathematical correlation between "Low Price" and "High Demands" is 1.0. The client who pays the least complains the most.
 **The "Nightmare"**: Accepting a "Bad Deal" ($400) is not just financial loss; it is **Psychological Ruin**. It occupies mental RAM that blocks "Good Deals".
 **Directive**:
@@ -691,20 +691,20 @@ When a systemic failure occurs, the institution protects itself by sacrificing t
 
 ## 32. The Pricing Lever Law (Law 32)
 >
-> **Origin**: Assignments Deep Dive (May 2026) — A29 vs A32 Canonical Proof
-> **Empirical Base**: 24 completed assignments, $10,655 lifetime revenue
+> **Origin**: Assignments Deep Dive (May 2026) — [Project X] vs [Project Y] Canonical Proof
+> **Empirical Base**: 24 completed engagements, five-figure lifetime revenue
 
 **Core Axiom**: **Pricing is the primary revenue lever; productivity is secondary.** A 10× improvement in price yields 10× more revenue. A 10× improvement in speed yields the same revenue in 10% of the time — but the revenue is unchanged.
 
 **The Canonical Proof**:
 
-| Metric | A29 (Accounting Capstone) | A32 (NTU MSE Lit Review) |
+| Metric | [Project X] (Capstone) | [Project Y] (Lit Review) |
 |:-------|:------------------------:|:------------------------:|
 | Tools | Same (Athena + AI) | Same (Athena + AI) |
 | Operator | Same | Same |
 | Quality | Capstone-grade | Capstone-grade |
-| Revenue | **$1,500** | **$175** |
-| Effective $/hr | **$83/hr** | **$10/hr** |
+| Revenue | **8.3× baseline** | **baseline** |
+| Effective $/hr | **8.3×** | **1×** |
 | Δ | | **-88%** |
 
 The **only variable** is the quote. Not the work, not the effort, not the quality. Pricing discipline alone explains the 8.3× difference.

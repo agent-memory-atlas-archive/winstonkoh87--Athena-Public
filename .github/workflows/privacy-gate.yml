@@ -1,0 +1,41 @@
+name: Privacy & Secrets Gate
+
+# The local pre-commit hook only protects the maintainer's machine.
+# This gate enforces the same boundary for every push and contributor PR.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  privacy:
+    name: Privacy Blocklist Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Full-tree privacy scan
+        run: python3 .github/scripts/privacy_scan.py --all
+
+  secrets:
+    name: Gitleaks Secret Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

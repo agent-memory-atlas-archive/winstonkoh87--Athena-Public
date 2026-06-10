@@ -2,7 +2,7 @@
 
 > The open-source operating system for AI agents. Persistent memory, structured reasoning, and governance for any LLM. Own the state. Rent the intelligence. MIT Licensed.
 
-Athena is a local-first cognitive augmentation framework that gives any AI model (Gemini, Claude, GPT) permanent memory, 380+ reusable decision protocols, and bounded autonomy — all stored as plain Markdown files on the user's machine. Session 1,800 recalls patterns from session 5.
+Athena is a local-first cognitive augmentation framework that gives any AI model (Gemini, Claude, GPT) permanent memory, 400+ reusable decision protocols (151 published as examples), and bounded autonomy — all stored as plain Markdown files on the user's machine. Session 1,800 recalls patterns from session 5.
 
 ## Core Documentation
 

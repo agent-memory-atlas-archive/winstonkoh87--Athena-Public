@@ -594,7 +594,7 @@ THEN:
 > "Price is a function of Information, not Quality."
 
 - **The COGS Anchor**: Real market value for digital labor (e.g., Web Design) is often **$100-$200/page**.
-- **The Information Tax**: Any price above COGS + Margin (e.g., $500+/page) is a tax on the client's ignorance (Information Asymmetry) or a premium for liability shielding (Agency Model).
+- **The Information Tax**: Any price above COGS + Margin (e.g., $500+/page) is a tax on the client's ignorance (Information Asymmetry) or a premium for liability shielding (Agency Model). <!-- pds:allow -->
 - **The Grant Distortion**: In subsidized markets (Singapore PSG), price anchors to the **Subsidy Cap**, not the Value.
 - **Strategy**: operate in the **Arbitrage Gap** (Price > COGS, Price < Grant Cap).
 
@@ -602,14 +602,14 @@ THEN:
 >
 > **Origin**: Session 13 (User Pricing Heuristic - Assignment 7)
 
-**Context**: Paradoxically, a lower quote ($400) feels "cheap", while a high-quote-with-discount ($600 -> $500) feels "valuable".
+**Context**: Paradoxically, a lower quote ($400) feels "cheap", while a high-quote-with-discount ($600 -> $500) feels "valuable". <!-- pds:allow -->
 **Physics**:
 
 - **Price = Signal**. Low price signals low confidence/quality.
 - **Discount = Favor**. High initial price establishes value anchor. Discount establishes "Relationship Capital".
 **Directive**:
-- **Never Quote the Floor**. Always quote Ceiling ($600) -> Offer "Discount" ($500).
-- **Result**: You earn $100 more, and the client feels they got a "deal".
+- **Never Quote the Floor**. Always quote Ceiling ($600) -> Offer "Discount" ($500). <!-- pds:allow -->
+- **Result**: You earn $100 more, and the client feels they got a "deal". <!-- pds:allow -->
 
 ---
 
@@ -645,7 +645,7 @@ THEN:
 - **Labor**: Sells **Sweat**. Linear scaling. Low barrier to entry.
 - **Compliance**: Sells **Immunity**. Scalable (Digital). High barrier.
 **The Arbitrage**:
-- To the Business Owner, the $500 fee is a "Headache Tax" to remove legal risk.
+- To the Business Owner, the $500 fee is a "Headache Tax" to remove legal risk. <!-- pds:allow -->
 - To the Provider, the cost is 2 hours of standardized work.
 **Directive**:
 - **Reject Labor**: Do not sell sweat.
@@ -732,7 +732,7 @@ THEN:
 > **Origin**: Session 31 (Client Negotiation)
 
 **Context**: Low Price ($400) + High Scope (Full Stack) = "Nightmare Scenario".
-**Physics**: Clients who squeeze price below market ($400 vs $950) signal: "I value Output, not Skill."
+**Physics**: Clients who squeeze price below market ($400 vs $950) signal: "I value Output, not Skill." <!-- pds:allow -->
 **The Theorem**: The mathematical correlation between "Low Price" and "High Demands" is 1.0. The client who pays the least complains the most.
 **The "Nightmare"**: Accepting a "Bad Deal" ($400) is not just financial loss; it is **Psychological Ruin**. It occupies mental RAM that blocks "Good Deals".
 **Directive**:

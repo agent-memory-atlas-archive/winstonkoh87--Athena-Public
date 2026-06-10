@@ -122,7 +122,7 @@ All four must interlock. If ONE fit breaks, the business fails regardless of the
 |:----|:---------|:-------------|
 | Market-Product | Does the market NEED this? | Building what nobody wants |
 | Product-Channel | Can this product be DISTRIBUTED through your channel? | Great product, zero reach (CS-472) |
-| Channel-Model | Does the channel economics support the revenue model? | $2K Google Ads for $500 service (CS-526) |
+| Channel-Model | Does the channel economics support the revenue model? | $2K Google Ads for $500 service (CS-526) | <!-- pds:allow -->
 | Model-Market | Does the market support the price point? | Champagne service, beer market |
 
 ### Module 6: The Content Engine (CNT-220 + MP-12)

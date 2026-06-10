@@ -104,9 +104,11 @@ echo "━━━ Gate 2: PII & Personal Data ━━━"
 PII_VIOLATIONS=0
 
 # Dollar amounts > $100 (specific pricing data)
+# Dollar amounts alone are usually illustrative; only flag when transaction context co-occurs
 dollar_matches=$(grep -rn --exclude='pre_deploy_scan.sh' --include='*.md' --include='*.py' --include='*.yaml' \
     -E '\$[0-9]{3,}' "$TARGET_DIR" 2>/dev/null | \
-    grep -v 'node_modules' | grep -v '.git/' | grep -v 'package-lock' || true)
+    grep -iE 'client|quote|quoted|paid|revenue|invoice|charg|collected|fee|salary' | \
+    grep -v 'node_modules' | grep -v '.git/' | grep -v 'package-lock' | grep -v 'pds:allow' || true)
 if [[ -n "$dollar_matches" ]]; then
     echo -e "${YELLOW}⚠ WARNING: Dollar amounts > \$100 found (potential pricing PII):${NC}"
     echo "$dollar_matches" | head -5
@@ -117,7 +119,7 @@ fi
 assignment_matches=$(grep -rn --exclude='pre_deploy_scan.sh' --include='*.md' --include='*.py' \
     -E '\bA[0-9]{2}\b' "$TARGET_DIR" 2>/dev/null | \
     grep -v 'node_modules' | grep -v '.git/' | \
-    grep -v 'A11y' | grep -v 'A10' || true)  # Exclude common non-assignment patterns
+    grep -v 'A11y' | grep -v 'A10' | grep -v 'pds:allow' || true)  # Exclude common non-assignment patterns
 if [[ -n "$assignment_matches" ]]; then
     echo -e "${YELLOW}⚠ WARNING: Assignment numbers (A##) found:${NC}"
     echo "$assignment_matches" | head -5

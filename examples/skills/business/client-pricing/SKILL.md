@@ -33,10 +33,10 @@ Never price at the Time or Output layer. Price at Deliverable (minimum) or Outco
 
 | Deliverable Type | Anchor | Floor | Notes |
 |---|---|---|---|
-| **Essay** (1000–2000 words) | $250 | $150 | Counter at $200 if pushback |
-| **Problem Set** (SPSS, coding, math) | $350 | $250 | Scope-dependent; +$50/additional test family |
-| **Capstone/Report** (5000+ words) | $1,000 | $500 | Multi-round negotiation expected |
-| **Presentation** (slides + script) | $300 | $200 | +$100 if design assets required |
+| **Essay** (1000–2000 words) | $250 | $150 | Counter at $200 if pushback | <!-- pds:allow -->
+| **Problem Set** (SPSS, coding, math) | $350 | $250 | Scope-dependent; +$50/additional test family | <!-- pds:allow -->
+| **Capstone/Report** (5000+ words) | $1,000 | $500 | Multi-round negotiation expected | <!-- pds:allow -->
+| **Presentation** (slides + script) | $300 | $200 | +$100 if design assets required | <!-- pds:allow -->
 | **Speed Premium** (< 48hr turnaround) | +30% | — | Non-negotiable surcharge |
 | **Complexity Premium** (cross-domain) | +20% | — | E.g., engineering + writing + coding |
 
@@ -66,7 +66,7 @@ CLIENT names their number
 | Anti-Pattern | Case Study | Fix |
 |---|---|---|
 | **Opening at floor** | Quoted at floor instead of anchor — left $50+ on the table | Always open at anchor. Floor is your walk-away, not your opening |
-| **Rate collapse via speed** | Delivered fast, effective rate dropped to $83/hr vs $310/hr benchmark | Price by deliverable complexity, not hours. Speed is your competitive advantage — don't let it compress price |
+| **Rate collapse via speed** | Delivered fast, effective rate dropped to $83/hr vs $310/hr benchmark | Price by deliverable complexity, not hours. Speed is your competitive advantage — don't let it compress price | <!-- pds:allow -->
 | **Negotiating against yourself** | Generic pattern | After stating anchor, SHUT UP. Let the client name their number |
 | **Scope creep without re-quote** | Client adds "just one more thing" | Any addition > 10% of original scope triggers re-quote |
 

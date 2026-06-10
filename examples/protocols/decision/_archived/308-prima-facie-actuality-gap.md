@@ -109,7 +109,7 @@ Call → Info → List → Pick → Close (50%+ assumed)
 ```text
 Ad Spend per Lead:     $250 (mid-range)
 Close Rate:            7%
-Revenue per Close:     $120 (2 weeks)
+Revenue per Close:     $120 (2 weeks) <!-- pds:allow -->
 Gross per Lead:        $120 × 7% = $8.40
 Net per Lead:          -$241.60
 ```

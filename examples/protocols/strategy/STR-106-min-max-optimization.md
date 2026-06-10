@@ -150,7 +150,7 @@ $$ U'(c) = \frac{U(c)}{c} $$
 | **UGREEN Studio Max5c** | S$31 | ~80 (ANC, Hi-Res, 75hr battery, 4.9★) | **2.58** | ✅ **Sovereign** |
 | **AirPods Max 2** | S$749 | ~100 (H2 chip ANC, Spatial Audio, Apple ecosystem) | 0.13 | ⚠️ **Luxury Trap** |
 
-**The Math**: The UGREEN delivers ~80% of functional utility at **4% of the price**. The AirPods Max 2 charges S$718 extra for +20 utility points — that's **S$35.90/utility point** vs UGREEN's **S$0.39/utility point**. **92x more efficient.**
+**The Math**: The UGREEN delivers ~80% of functional utility at **4% of the price**. The AirPods Max 2 charges S$718 extra for +20 utility points — that's **S$35.90/utility point** vs UGREEN's **S$0.39/utility point**. **92x more efficient.** <!-- pds:allow -->
 
 > [!TIP]
 > The UGREEN reviews consistently state: "better than midrange JBL" and "can't find a better headphone at this price." This is the Sovereign Zone in action — the knee of the diminishing returns curve sits around S$30–80 for headphones.

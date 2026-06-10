@@ -96,7 +96,7 @@ This user never read the architecture docs. They never used the CLI. They never 
 
 This user came to Athena with a presenting problem: *"I keep sabotaging every relationship that gets close. I don't know why."*
 
-A licensed therapist would charge $200+/hr and typically needs 6-10 sessions just to identify the underlying pattern. This user couldn't afford $2,000+ upfront — but they needed more than a generic "consider therapy" response from ChatGPT.
+A licensed therapist would charge $200+/hr and typically needs 6-10 sessions just to identify the underlying pattern. This user couldn't afford $2,000+ upfront — but they needed more than a generic "consider therapy" response from ChatGPT. <!-- pds:allow -->
 
 ### What Happened
 
@@ -142,7 +142,7 @@ Session 40: "I told someone the real thing instead of the safe thing."
 
 2. **24/7 availability.** The user's worst spirals happened at 2 AM. Their therapist was asleep. Athena was not.
 
-3. **Cost.** 40 sessions × $200/hr = $8,000 with a human therapist. The user paid $20/mo × 3 months = $60 total.
+3. **Cost.** 40 sessions × $200/hr = $8,000 with a human therapist. The user paid $20/mo × 3 months = $60 total. <!-- pds:allow -->
 
 4. **Not a replacement — an augmentation.** Athena explicitly flagged when the user needed professional help (active suicidal ideation, substance dependency, severe dissociation) and provided referral guidance. For the 90% of psychological work that doesn't require a medical license, it closed the gap.
 
@@ -206,7 +206,7 @@ Instead of a generic pros/cons list, Athena produced a decision matrix weighted 
 
 3. **Actionable.** The recommendation wasn't "consider both options." It was a specific action (negotiate overlap period) tied to a specific risk mitigation (spouse's documented adjustment timeline).
 
-4. **Cost:** A business coach would charge $500-$1,000/hr for this level of personalised strategic counsel. The user paid $20/mo.
+4. **Cost:** A business coach would charge $500-$1,000/hr for this level of personalised strategic counsel. The user paid $20/mo. <!-- pds:allow -->
 
 ### Key Takeaway
 
@@ -268,47 +268,6 @@ Where do AI agents fit into this Solo-Capitalist model?
 ### Key Takeaway
 
 > **A mediocre practitioner with elite distribution will mathematically obliterate an elite practitioner with no distribution.** The market does not pay for formal credentials (NIE); it pays for Attention and Outcomes. By mastering Distribution Physics, the Solo-Capitalist commands asymmetric returns, but remains fundamentally bottlenecked by their own biological capacity.
-
----
-
-## Case Study #5: Reverse Engineering an Underground Aggregator
-
-**User Profile:** Strategist analyzing a high-cash-flow illicit business.
-**Industry:** Specialized Escort Services / Dark Economy (Singapore).
-**Core Concept:** Translating taboo operations into structural business mechanics (BMC, Four Fits, 7 Powers).
-
-### The Phenomenon
-
-A Telegram-based specialized escort service ("VDestiny") operates a highly lucrative two-sided marketplace matching foreign supply with local high-income demand in Singapore. By stripping away the taboo, this operation can be reverse-engineered into a ruthlessly efficient digital aggregator.
-
-### The Architecture (Business Model Canvas)
-
-- **Value Proposition:** The explicit product is access. The *implicit* products are:
-  1. *Zero-Friction Intimacy:* Commoditizing a multi-week courtship funnel into a single WhatsApp transaction.
-  2. *Anonymity & Risk Mitigation:* Using private condos ("no registration") to provide plausible deniability for high-status individuals who face existential risk from exposure.
-  3. *Ego-Validation ("GFE"):* Enforcing a standard of psychological performance ("pampered", "attention") to solve for emotional isolation.
-- **Customer Segments:** Tiered male clientele ("New" vs. "Regular") and "Whales" (Overnight blocks).
-- **Channels:** Telegram (zero CAC digital storefront). WhatsApp (CRM and booking terminal).
-
-### The Growth Engine (Brian Balfour's Four Fits)
-
-- **Market-Product Fit:** High-income market + biological imperative + extreme discretion. Solves the friction point of public exposure.
-- **Product-Channel Fit:** Perfect alignment. Telegram allows for uncensored, high-resolution media broadcasting to a large audience wrapped in end-to-end anonymity.
-- **Channel-Model Fit:** The cost of distribution on a Telegram channel is $0. Given the high AOV ($250-$1,000+), margins are extremely sustainable. High-urgency copywriting ("Last 3 days", "Book before she is gone") drives immediate conversions.
-- **Model-Market Fit:** Singapore's high disposable income easily supports a premium price point. A small cohort of recurring "whales" sustains the model indefinitely without needing mass-market scale.
-
-### The Fatal Flaw (Hamilton Helmer's 7 Powers)
-
-Despite highly efficient mechanics, the operation has **zero defensibility (no Moat)**.
-
-- *No Switching Costs:* Buyers can swap channels instantly.
-- *No Network Effects.*
-- *No Cornered Resource:* Talent supply churns rapidly (e.g., "returning to Vietnam").
-- *Negligible Brand Equity:* Relies entirely on immediate availability, not long-term loyalty.
-
-### Key Takeaway
-
-> VDestiny is a high-cash-flow, high-velocity operation relying entirely on **Regulatory Arbitrage**. They lack a structural moat. Their survival depends on a fragile equilibrium: a constant top-of-funnel acquisition to replace churning customers, while simultaneously evading platform bans (Telegram) and regulatory crackdowns. It is a perfect case study of a highly profitable engine with perfect "Four Fits," but lacking the "Power" necessary for long-term survival.
 
 ---
 

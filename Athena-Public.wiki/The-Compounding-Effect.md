@@ -65,7 +65,7 @@ Right now, AI subscriptions are priced as **customer acquisition costs**, not ma
 
 | Phase | Timeline | What Happens |
 |:------|:---------|:-------------|
-| **Land grab** (now) | 2024–2026 | Flat-rate subs priced to acquire users. $200/mo buys $2K–3K+ of API compute. |
+| **Land grab** (now) | 2024–2026 | Flat-rate subs priced to acquire users. $200/mo buys $2K–3K+ of API compute. | <!-- pds:allow -->
 | **Consolidation** | 2027–2028 | Usage tiers, throttling, "fair use" caps. Power users get re-priced. |
 | **Maturity** | 2029+ | Market pricing. Compute priced at cost + margin. Arbitrage collapses. |
 
@@ -109,7 +109,7 @@ Not all data compounds equally:
 
 | Type | Example | Value |
 |:-----|:--------|:------|
-| **Empirical** | "I quoted $250, market was $400. I left $150 on the table." | Highest — real outcomes |
+| **Empirical** | "I quoted $250, market was $400. I left $150 on the table." | Highest — real outcomes | <!-- pds:allow -->
 | **Contextual** | "Client X prefers bullet points over paragraphs" | High — personalisation |
 | **Environmental** | "My energy crashes after 2pm" | Medium — scheduling optimisation |
 | **Organic** | "Today's session covered trading strategies" | Low — metadata only |

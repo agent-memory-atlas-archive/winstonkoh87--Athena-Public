@@ -16,7 +16,7 @@ This file provides persistent context to any AI coding agent working in this wor
 |.framework/v8.2-stable/modules:{Core_Identity.md,Output_Standards.md,System_Principles.md,Operating_Principles.md,Design_DNA.md}
 |.agent/workflows (22):{start.md,end.md,do.md,plan.md,research.md,ultrathink.md,diagnose.md,...}
 |examples/workflows (47):{ultrastart.md,ultraend.md,audit.md,battleplan.md,minmax.md,project.md,dream.md,...}
-|examples/protocols (431 across 23 categories):{architecture/,decision/,engineering/,quality/,trading/,safety/,...}
+|examples/protocols (151 published examples across 23 categories):{architecture/,decision/,engineering/,quality/,trading/,safety/,...}
 |examples/skills (40):{coding/spec-driven-dev,research/deep-research-loop,quality/red-team-review,...}
 |.context:{CANONICAL.md,PROTOCOL_SUMMARIES.md,PROTOCOL_HEATMAP.md}
 |docs:{ARCHITECTURE.md,SEMANTIC_SEARCH.md,GETTING_STARTED.md,YOUR_FIRST_SESSION.md,FAQ.md}

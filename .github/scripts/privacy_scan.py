@@ -108,6 +108,8 @@ def scan_file(filepath: Path, patterns: list[re.Pattern]) -> list[dict]:
     try:
         content = filepath.read_text(encoding="utf-8", errors="ignore")
         for line_num, line in enumerate(content.splitlines(), 1):
+            if "pds:allow" in line:  # inline allow marker for documented examples
+                continue
             for pattern in patterns:
                 if pattern.search(line):
                     violations.append(

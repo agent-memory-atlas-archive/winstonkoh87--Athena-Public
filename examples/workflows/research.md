@@ -144,7 +144,7 @@ When `/research` is invoked, go **maximum depth**. This is NOT a quick lookup �
 ### Pre-Search Checklist
 
 1. **Broad First, Narrow Later**
-   - ❌ "Find A21 LED bulbs with 15,000+ lumens" ← Too specific, misses variants
+   - ❌ "Find A21 LED bulbs with 15,000+ lumens" ← Too specific, misses variants <!-- pds:allow -->
    - ✅ "Survey high-lumen LED bulbs, then filter" ← Catches edge cases
 
 2. **Generate Prompt → Refine → Execute**

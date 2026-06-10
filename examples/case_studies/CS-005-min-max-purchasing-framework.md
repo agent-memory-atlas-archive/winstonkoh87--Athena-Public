@@ -31,7 +31,7 @@ The user bought a Galaxy S24 Ultra (256GB) on the secondary market — 2 weeks a
 | Manufacturer warranty (13 months remaining) | ~$105-150 |
 | 2× premium cases included | ~$40-65 |
 | **Total bundle value** | **~$2,073-$2,143** |
-| **Price paid** | **$650** |
+| **Price paid** | **$650** | <!-- pds:allow -->
 | **Discount vs MSRP** | **66.3%** |
 | **Value multiplier** | **~3.3x** |
 

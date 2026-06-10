@@ -79,7 +79,7 @@ Health, career, relationships, finances, and client work — all governed by one
 
 Life Management is not a feature. It is the **emergent behaviour** of a system that has been given full-spectrum context.
 
-The mechanism: every life domain becomes a row in the same project switchboard, governed by identical triage rules (urgency × expected value × dependency chains). When Athena says *"skip the client call — your sleep debt is a higher-urgency blocker than the $250 deliverable"*, it's not running a wellness algorithm. It's running the **same priority sort** it uses for client work — but with access to data no project management tool has ever been given.
+The mechanism: every life domain becomes a row in the same project switchboard, governed by identical triage rules (urgency × expected value × dependency chains). When Athena says *"skip the client call — your sleep debt is a higher-urgency blocker than the $250 deliverable"*, it's not running a wellness algorithm. It's running the **same priority sort** it uses for client work — but with access to data no project management tool has ever been given. <!-- pds:allow -->
 
 **Why no other system does this:**
 

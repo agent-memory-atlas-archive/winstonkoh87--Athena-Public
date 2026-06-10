@@ -32,8 +32,8 @@ context_trigger:
     - "migration"
     - "schema"
   projects:         # Project codes — skill activates when these projects are active
-    - "E9"
-    - "A29"
+    - "E##"
+    - "A##"
   always_active: false  # Override: if true, always in prompt (default for skills without context_trigger)
 ---
 ```
