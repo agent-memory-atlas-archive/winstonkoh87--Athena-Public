@@ -39,7 +39,7 @@ SECRET_PATTERNS = [
     (r"ghp_[a-zA-Z0-9]{36}", "GitHub Personal Access Token"),
     (r"sk-[a-zA-Z0-9]{48}", "OpenAI/Anthropic Key (Legacy Format)"),
     (r"xox[baprs]-([0-9a-zA-Z]{10,48})?", "Slack Token"),
-    (r"-----BEGIN PRIVATE KEY-----", "RSA Private Key"),
+    (r"-----BEGIN PRIVATE KEY-----", "RSA Private Key"),  # pds:allow — scanner pattern definition
     # OpenClaw-inspired additions (P2 upgrade)
     (r"eyJ[a-zA-Z0-9_-]{20,}\.eyJ[a-zA-Z0-9_-]{20,}", "JWT/Supabase Service Key"),
     (r"AIza[a-zA-Z0-9_-]{35}", "Gemini/Google API Key"),

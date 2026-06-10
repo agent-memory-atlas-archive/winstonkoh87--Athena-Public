@@ -11,7 +11,7 @@ PATTERNS = {
     "Anthropic": r"sk-ant-[a-zA-Z0-9]{80,}",
     "Gemini/Google": r"AIza[0-9A-Za-z-_]{35}",
     "GitHub": r"ghp_[a-zA-Z0-9]{36}",
-    "Generic Private Key": r"-----BEGIN PRIVATE KEY-----",
+    "Generic Private Key": r"-----BEGIN PRIVATE KEY-----",  # pds:allow — scanner pattern definition
 }
 
 # Directories to ignore

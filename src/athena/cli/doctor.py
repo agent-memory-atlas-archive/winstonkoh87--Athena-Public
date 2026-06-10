@@ -399,7 +399,7 @@ def check_08_secret_scan(root: Path, fix: bool = False) -> list[CheckResult]:
         (r"sk-[a-zA-Z0-9]{48}", "OpenAI/Anthropic Key"),
         (r"eyJ[a-zA-Z0-9_-]{20,}\.eyJ[a-zA-Z0-9_-]{20,}", "JWT/Supabase Key"),
         (r"AIza[a-zA-Z0-9_-]{35}", "Gemini/Google API Key"),
-        (r"-----BEGIN PRIVATE KEY-----", "Private Key"),
+        (r"-----BEGIN PRIVATE KEY-----", "Private Key"),  # pds:allow — scanner pattern definition
     ]
 
     # Check staged files

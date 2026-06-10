@@ -47,3 +47,16 @@ sexual economics
 # === PRIVATE DOMAINS ===
 Playbook_Seduction
 escalation_ladder_framework
+
+# === SECRETS / CREDENTIALS ===
+# Value-format patterns — match actual secret material, not documentation
+# that merely names a variable. Added 2026-06-10 after a bypass test
+# (TD-027 item 4) proved a SUPABASE_SERVICE_ROLE_KEY assignment passed
+# the PII-only blocklist. Use pds:allow for documented fake examples.
+eyJ[A-Za-z0-9_\-]{10,}\.[A-Za-z0-9_\-]{4,}
+sk-[A-Za-z0-9_\-]{20,}
+AKIA[0-9A-Z]{16}
+AIza[0-9A-Za-z_\-]{30,}
+ghp_[A-Za-z0-9]{36}
+-----BEGIN [A-Z ]*PRIVATE KEY-----
+(SERVICE_ROLE|API_KEY|SECRET_KEY|ACCESS_TOKEN|SERVICE_KEY)[A-Z_]*\s*[=:]\s*['"]?[A-Za-z0-9_\-\.]{16,}

@@ -92,9 +92,9 @@ SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_ANON_KEY=your-anon-key
 
 # Optional (for multi-model validation)
-ANTHROPIC_API_KEY=your-anthropic-key
-GOOGLE_API_KEY=your-google-api-key
-OPENAI_API_KEY=your-openai-key
+ANTHROPIC_API_KEY=<your-anthropic-key>
+GOOGLE_API_KEY=<your-google-api-key>
+OPENAI_API_KEY=<your-openai-key>
 ```
 
 ```bash
