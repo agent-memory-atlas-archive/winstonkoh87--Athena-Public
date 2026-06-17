@@ -1,10 +1,23 @@
 # Athena Changelog
 
-> **Last Updated**: 10 June 2026
+> **Last Updated**: 17 June 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.9.2-sync (17 June 2026)
+
+**Count Refresh + TOP_10 Rerank**: Synchronized all public documentation to current system state.
+
+### Key Changes
+
+- **TOP_10_PROTOCOLS.md Rewrite**: Re-ranked from theoretical importance to empirically-validated behavioral impact. 5 protocols promoted (PAT-574 Substance Decode, P003 Revealed Preference, MP-15 Preparation Asymmetry, BUS-96 Income Hierarchy, DEC-330 Aoy's Fried Rice), 5 demoted. MCDA criteria updated with new "Empirical Behavioral Impact" dimension (30% weight).
+- **Count Sync**: Protocols 402 active / 34 archived / 436 total (was 400/32/432). Skills 41 active (was 40). Scripts 253 (was 251). Memory files 3,797 (was 3,729). CANONICAL tiers updated (40 T1, 156 T2, 3 T3).
+- **Session Count Normalization**: Standardized to "1,800+" across all docs (was inconsistent between "1,500+", "1,800+", "1,900+").
+- **Date Bump**: All touched docs updated to 17 June 2026.
 
 ---
 

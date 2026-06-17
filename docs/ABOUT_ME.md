@@ -17,7 +17,7 @@
 
 - Realized AI was the biggest leverage opportunity of my lifetime
 - Spent 2 years going from "user" to "builder"
-- 1,900+ sessions building Athena — my production-grade personal knowledge system
+- 1,800+ sessions building Athena — my production-grade personal knowledge system
 - Key insight: **Co-development with AI > Using AI**
 
 ### Chapter 3: Now (2024+)

@@ -1,6 +1,6 @@
 # Features & Capabilities
 
-> **Last Updated**: 6 June 2026
+> **Last Updated**: 17 June 2026
 
 > What Athena can do — with examples
 
@@ -123,7 +123,7 @@ Skills are separate files, loaded on-demand via **conditional activation** (`con
 
 ```text
 .agent/skills/
-├── protocols/          # 399 active + 32 archived = 431 total (23 categories)
+├── protocols/          # 402 active + 34 archived = 436 total (24 categories)
 │   ├── decision/
 │   ├── safety/
 │   ├── architecture/
@@ -131,7 +131,7 @@ Skills are separate files, loaded on-demand via **conditional activation** (`con
 ├── red-team-review/    # Always-on skills (10)
 ├── semantic-search/
 ├── data-analysis/
-└── ...                 # 40 active skills total
+└── ...                 # 41 active skills total
 ```
 
 ```mermaid

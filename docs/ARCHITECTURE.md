@@ -1,6 +1,6 @@
 # Athena — Architecture Reference
 
-> **Last Updated**: 10 Jun 2026
+> **Last Updated**: 17 Jun 2026
 > **Version**: v9.9.2
 > **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
 > **Bionic Unit Spec**: [BIONIC_UNIT_SPEC.md](.context/specs/BIONIC_UNIT_SPEC.md) — the definitive human-AI augmentation mapping
@@ -12,12 +12,12 @@
 ```
 Athena/
 ├── .agent/                        # Agent configuration
-│   ├── skills/                    #   40 active skills (40 with context_trigger)
-│   │   └── protocols/             #   400 active + 32 archived = 432 total, 24 categories
-│   │       └── archive/           #     15 deprecated protocols (read-only, see README)
+│   ├── skills/                    #   41 active skills (41 with context_trigger)
+│   │   └── protocols/             #   402 active + 34 archived = 436 total, 24 categories
+│   │       └── archive/           #     34 deprecated protocols (read-only, see README)
 │   ├── workflows/                 #   51 root + 18 _domain = 69 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
-│   ├── scripts/                   #   251 automation scripts
+│   ├── scripts/                   #   253 automation scripts
 │   ├── telemetry/                 #   Retrieval instrumentation logs + tier maps
 │   ├── config/                    #   Agent manifests + CAPS.json (canonical counts)
 │   ├── CLUSTER_INDEX.md           #   15 cognitive clusters (routing map)
@@ -27,7 +27,7 @@ Athena/
 │   └── archive_skills/            #   16 sunset skills (read-only, see README)
 │
 ├── .context/                      # Personal knowledge base
-│   ├── memories/                  #   3,729 memory files (session logs + case studies + profile)
+│   ├── memories/                  #   3,797 memory files (session logs + case studies + profile)
 │   │   ├── session_logs/          #     Dated session records
 │   │   ├── case_studies/          #     500 documented patterns (15 domains, 7 archived)
 │   │   ├── profile/               #     Core profile, psychology, voice DNA
@@ -169,8 +169,8 @@ Full cluster details: [CLUSTER_INDEX.md](.agent/CLUSTER_INDEX.md)
 |:------|------:|:------------|
 | Cognitive Domains | 8 | Memory activation targets (priority-ordered for tie-breaking) |
 | Cognitive Clusters | 15 | Co-activating procedural memory bundles |
-| Skills | 40 active (17 archived) |
-| Protocols | 400 active (32 archived; 432 total) |
+| Skills | 41 active (17 archived) |
+| Protocols | 402 active (34 archived; 436 total) |
 | Workflows | 69 (51 root + 18 _domain/) |
 
 ---
@@ -292,7 +292,7 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 | Index | Size | Purpose |
 |:------|-----:|:--------|
 | `CLUSTER_INDEX.md` | 18KB | Routing map (15 clusters → 26 skills) |
-| `WORKFLOW_INDEX.md` | 6KB | Workflow registry (66 workflows) |
+| `WORKFLOW_INDEX.md` | 6KB | Workflow registry (69 workflows) |
 | `PROTOCOL_SUMMARIES.md` | 24KB | All-protocol quick-lookup |
 | `KNOWLEDGE_GRAPH.md` | 15KB | Concept relationships |
 
@@ -368,23 +368,23 @@ src/athena/mcp_server.py (FastMCP v3.x, stdio transport)
 
 ---
 
-## Metrics (10 Jun 2026)
+## Metrics (17 Jun 2026)
 
 | Metric | Count |
 |:-------|------:|
-| Protocols (active) | 400 |
-| Protocols (archived) | 32 |
-| Skills (active) | 40 (40 conditional) |
+| Protocols (active) | 402 |
+| Protocols (archived) | 34 |
+| Skills (active) | 41 (41 conditional) |
 | Cognitive Clusters | 15 |
 | Cognitive Systems | 8 |
 | Workflows | 69 (51 root + 18 _domain/) |
-| Automation Scripts | 251 |
+| Automation Scripts | 253 |
 | Case Studies | 500 (15 domains, 7 archived) |
-| Session Logs | 1,914 |
-| Total Memory Files | 3,729 |
+| Session Logs | 1,800+ |
+| Total Memory Files | 3,797 |
 | Source Files (SDK) | 72 |
 | Test Files | 13 |
 | Documentation Files | 76 |
 | Active Indexes | 4 (63KB) |
-| CANONICAL Entries | ~400 (29 Tier 1, 140 Tier 2, 3 Tier 3) |
+| CANONICAL Entries | ~400 (40 Tier 1, 156 Tier 2, 3 Tier 3) |
 | Cap Policy | Uncapped (attention budget constraint via Protocol 530) |

@@ -1,6 +1,6 @@
 # Your First Session with Athena
 
-> **Last Updated**: 27 February 2026
+> **Last Updated**: 17 June 2026
 
 ---
 
@@ -143,8 +143,8 @@ Athena finalizes the session log, extracts key decisions, and commits everything
 ## Next Steps After Your First Session
 
 - **Build your first custom agent**: Follow the [Your First Agent](docs/YOUR_FIRST_AGENT.md) guide (~5 min)
-- **Add more workflows**: Check out the [50+ available workflows](../examples/workflows/) — `/think`, `/research`, `/ultrathink`
-- **Explore protocols**: Browse [200+ decision frameworks](../examples/protocols/) for inspiration — then write your own
+- **Add more workflows**: Check out the [69 available workflows](../examples/workflows/) — `/think`, `/research`, `/ultrathink`
+- **Explore protocols**: Browse [160+ decision frameworks](../examples/protocols/) for inspiration — then write your own
 - **Build your knowledge base**: Drop important documents into `.context/memories/` and they'll be indexed on next `/start`
 - **Customize the identity**: Edit `.context/memory_bank/userContext.md` to tune how Athena understands and responds to you
 

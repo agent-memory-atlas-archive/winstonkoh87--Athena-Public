@@ -18,7 +18,7 @@ Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 10 Jun 2026*
+*Last updated: 17 Jun 2026*
 
 </div>
 
@@ -393,11 +393,11 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
 | 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/ARC-507-cognitive-systems.md) |
 | 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
-| 📋 **155+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 16 categories — [browse](examples/protocols/) |
+| 📋 **160+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 24 categories — [browse](examples/protocols/) |
 | ⚡ **68+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (7 channels, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
-| 🧩 **35 Skills** | Domain-specialised bundles including 6 Uber-Skills (umbrella consolidations from 1800+ sessions) — [browse](examples/skills/) |
+| 🧩 **40 Skills** | Domain-specialised bundles including 6 Uber-Skills (umbrella consolidations from 1,800+ sessions) — [browse](examples/skills/) |
 | 🪝 **Lifecycle Hooks** | Scriptable pre/post gates on every action — block destructive ops, enforce risk checks, log assets |
 | 🛡️ **Safety Rails** | Controls what the AI can and can't do autonomously (4 levels, from read-only to full agency) — [security](docs/SECURITY.md) |
 
@@ -516,7 +516,7 @@ Athena-Public/
 ├── tools/                   # Declarative tool definitions (YAML)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
-│   ├── protocols/           # 155+ starter frameworks (16 categories)
+│   ├── protocols/           # 160+ starter frameworks (24 categories)
 │   ├── scripts/             # 165 reference scripts
 │   ├── skills/              # 38 domain-specialised skills (6 categories)
 │   └── templates/           # Starter templates (framework, memory bank)
