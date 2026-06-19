@@ -170,6 +170,6 @@ CS-367 (High WR Supremacy), CS-461 (Multi-Timeframe Cascade), CS-462 (Mean Rever
 
 ## References
 
-- [META_PATTERNS.md](../../.context/META_PATTERNS.md) — MP-2 (Efficiency-Survival Inversion)
-- [CS-560](../../.context/memories/case_studies/CS-560-the-stochastic-deterministic-engine-map.md) — The Engine Map
-- [bionic-decision-engine](../bionic-decision-engine/SKILL.md) — Parent engine for non-capital decisions
+- META_PATTERNS.md — MP-2 (Efficiency-Survival Inversion)
+- CS-560 — The Engine Map
+- [bionic-decision-engine](../therapeutic-ifs/SKILL.md) — Parent engine for non-capital decisions

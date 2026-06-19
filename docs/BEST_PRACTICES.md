@@ -170,7 +170,7 @@ If you use multiple AI accounts or models:
 
 - **[Tips](docs/TIPS.md)** — Getting the most out of Athena
 - **[Security](docs/SECURITY.md)** — Data residency and permissions
-- **[FAQ](docs/wiki/FAQ.md)** — Common questions
+- **[FAQ](FAQ.md)** — Common questions
 - **[Your First Session](docs/YOUR_FIRST_SESSION.md)** — Guided walkthrough
 
 ---

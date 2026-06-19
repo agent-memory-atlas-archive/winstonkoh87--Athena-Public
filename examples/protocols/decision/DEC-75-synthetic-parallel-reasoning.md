@@ -184,10 +184,10 @@ After synthesis, Track B re-evaluates the combined output:
 ## References
 - **Protocol 124: SDR Diagnosis**
 
-- [Protocol 115: First Principles Deconstruction](115-first-principles-deconstruction.md)
+- [Protocol 115: First Principles Deconstruction](DEC-115-first-principles-deconstruction.md)
 
 - [Core_Identity.md](#) — Laws #1-4
-- [Protocol 67](../research/67-cross-pollination.md) — Cross-Domain Isomorphism
+- [Protocol 67](../research/RSC-67-cross-pollination.md) — Cross-Domain Isomorphism
 - [Protocol 140](_archived/140-base-rate-audit.md) — Zero-Point Inversion
 - [Protocol 40](_archived/40-frame-vs-structural-problem.md) — Frame vs Structural
 

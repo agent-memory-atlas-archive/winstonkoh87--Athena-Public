@@ -183,7 +183,7 @@ Premise Validation Gate (30-60 seconds)
 # protocol #premise-validation #phase-05 #gate #jeffrey-trap #einstein-principle
 
 ## Related Protocols
-- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](../121-mcda-eev-framework.md)
+- [Protocol 121: Decision Frameworks (MCDA / WEU / Pairwise)](../DEC-121-mcda-eev-framework.md)
 
 - **Protocol 114: Limerent Reality Distortion**
 - **Protocol 113: Missing Baseline Model**

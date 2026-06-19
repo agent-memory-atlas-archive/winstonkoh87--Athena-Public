@@ -108,7 +108,7 @@ All factual claims from web search **must** include inline APA-style citations.
 ## Cross-Reference
 
 - [Synthetic Deep Think Protocol](../decision/_archived/38-synthetic-deep-think.md)
-- [Probabilistic Analysis Stack](../pattern-detection/18-probabilistic-analysis-stack.md)
+- [Probabilistic Analysis Stack](../pattern-detection/PAT-18-probabilistic-analysis-stack.md)
 
 ---
 

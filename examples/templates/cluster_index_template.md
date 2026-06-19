@@ -7,7 +7,7 @@ description: Athena routing infrastructure — Intent Classifier (P508) → Cogn
 # Athena Routing Index
 
 > **Architecture**: Protocols → Skills → Clusters → **Cognitive Systems** → Athena
-> **Reference**: [P503: Clusters](../protocols/architecture/503-cognitive-clusters.md) | [P507: Cognitive Systems](../protocols/architecture/507-cognitive-systems.md) | [P508: Intent Classifier](../protocols/architecture/508-intent-classifier.md)
+> **Reference**: [P503: Clusters](../protocols/architecture/ARC-503-cognitive-clusters.md) | [P507: Cognitive Systems](../protocols/architecture/ARC-507-cognitive-systems.md) | [P508: Intent Classifier](../protocols/architecture/ARC-508-intent-classifier.md)
 
 ---
 

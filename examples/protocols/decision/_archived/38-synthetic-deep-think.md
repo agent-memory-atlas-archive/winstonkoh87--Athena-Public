@@ -14,7 +14,7 @@ last_updated: 2026-01-11
 > **Purpose**: Protocol-level approximation of extended reasoning models (e.g., Gemini Deep Think, o1-pro).  
 > **Last Updated**: 10 December 2025  
 > **Trigger**: Complex reasoning tasks, high-stakes decisions, multi-step problem solving  
-> **Related Protocol**: [16-synthetic-parallel-reasoning](../../pattern-detection/16-graph-of-thoughts-theory.md), [17-three-timeline-got](../../pattern-detection/17-three-timeline-got.md), [18-probabilistic-analysis-stack](../../pattern-detection/18-probabilistic-analysis-stack.md)
+> **Related Protocol**: [16-synthetic-parallel-reasoning](../../pattern-detection/PAT-16-graph-of-thoughts-theory.md), [17-three-timeline-got](../../pattern-detection/PAT-17-three-timeline-got.md), [18-probabilistic-analysis-stack](../../pattern-detection/PAT-18-probabilistic-analysis-stack.md)
 
 ---
 
@@ -326,7 +326,7 @@ RSI DEPOSIT FORMAT:
 
 ## References
 
-- [Protocol 52: Deep Research Loop](../../research/52-deep-research-loop.md) — References this protocol
+- [Protocol 52: Deep Research Loop](../../research/RSC-52-deep-research-loop.md) — References this protocol
 - [Agentic Engineering Strategy: Scenario Response](../../../guides/Engineering_Strategy_Framework.md) — References this protocol
 
 ---

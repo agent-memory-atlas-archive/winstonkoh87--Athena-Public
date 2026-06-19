@@ -89,7 +89,7 @@ If the risk violates **Law #1 (No Ruin)**, execute **Hard Veto**.
 ## References
 
 * **Protocol 23: Isomorphism Detection** — The Detector
-* [Protocol 67: Cross-Pollination](../research/67-cross-pollination.md) — The Generator
+* [Protocol 67: Cross-Pollination](../research/RSC-67-cross-pollination.md) — The Generator
 * [System_Principles.md](#) — Origin of Mandate
 
 ---

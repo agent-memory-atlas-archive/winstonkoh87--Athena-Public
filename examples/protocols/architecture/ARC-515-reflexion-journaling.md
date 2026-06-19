@@ -53,5 +53,5 @@ Episodic memory stores events. Reflexion stores **immune responses** — the org
 ## References
 
 - [Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366)
-- [Protocol 502: Context Lifecycle](502-context-lifecycle.md)
+- [Protocol 502: Context Lifecycle](ARC-502-context-lifecycle.md)
 - `/start` workflow (boot sequence)

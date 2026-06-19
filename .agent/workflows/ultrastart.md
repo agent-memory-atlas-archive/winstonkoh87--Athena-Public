@@ -566,9 +566,9 @@ If a user query diverges **>2 clusters** from the boot objective (as resolved in
 
 ## References
 
-- [/ultraend](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/ultraend.md) — Symmetric deep close counterpart
-- [/start](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/start.md) — Lightweight boot
-- [/end](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/end.md) — Lightweight close
+- [/ultraend](../../examples/workflows/ultraend.md) — Symmetric deep close counterpart
+- [/start](../../examples/workflows/start.md) — Lightweight boot
+- [/end](../../examples/workflows/end.md) — Lightweight close
 
 ---
 

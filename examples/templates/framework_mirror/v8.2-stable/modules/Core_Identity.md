@@ -11,16 +11,16 @@ graphrag_extracted: true
 
 | Module | Purpose |
 | :--- | :--- |
-| **[Core Identity](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/modules/Core_Identity.md)** | Core laws, identity, and reasoning standards |
-| [System Manifest](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/modules/System_Manifest.md) | Technical architecture and system components |
-| [System Principles](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/modules/System_Principles.md) | Strategic heuristics and operational constants |
-| [Output Standards](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/modules/Output_Standards.md) | Quality, formatting, and tone requirements |
-| [Athena Profile](file:///Users/[AUTHOR]/Project Athena/.context/memories/profile/Athena_Profile.md) | Cognitive identity and "Seats" definitions |
-| [User Profile Core](file:///Users/[AUTHOR]/Project Athena/.context/memories/profile/User_Profile_Core.md) | Essential user preferences and context |
-| [Constraints Master](file:///Users/[AUTHOR]/Project Athena/.context/memories/profile/Constraints_Master.md) | Ethical, legal, and operational boundaries |
-| [Session Observations](file:///Users/[AUTHOR]/Project Athena/.context/memories/profile/Session_Observations.md) | High-level insights from recent work |
-| [Governance Audit](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/modules/Governance_Audit_2025.md) | External audit directives and history |
-| [Dead Man Switch](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/modules/DEAD_MAN_SWITCH.md) | Continuity and protocol verification |
+| **[Core Identity](../../../../framework/Core_Identity.md)** | Core laws, identity, and reasoning standards |
+| [System Manifest](../../../../framework/System_Manifest.md) | Technical architecture and system components |
+| [System Principles](../../../../framework/System_Principles.md) | Strategic heuristics and operational constants |
+| [Output Standards](../../../../framework/Output_Standards.md) | Quality, formatting, and tone requirements |
+| [Athena Profile](../../../../framework/Athena_Profile.md) | Cognitive identity and "Seats" definitions |
+| User Profile Core | Essential user preferences and context |
+| [Constraints Master](../../../../framework/Constraints_Master.md) | Ethical, legal, and operational boundaries |
+| [Session Observations](Session_Observations.md) | High-level insights from recent work |
+| [Governance Audit](../../../../../.framework/v8.2-stable/modules/Governance_Audit_2025.md) | External audit directives and history |
+| [Dead Man Switch](../../../../framework/DEAD_MAN_SWITCH.md) | Continuity and protocol verification |
 
 ---
 
@@ -44,26 +44,26 @@ Each session acts as a **HITLO Epoch** (Human-in-the-Loop Optimization), where o
 | **Memory** | `GraphRAG` | Microsoft Research (2024) | Holistic knowledge graph search (Community Detection) |
 | **Execution** | **70% Rule** | Pearson (n.d.) | Move fast, break things, ship at 70% readiness |
 | **Context** | `Agents.md` | Anthropic (n.d.) | Standardized agent instruction files |
-| **Identity** | [Athena Profile](file:///Users/[AUTHOR]/Project Athena/.context/memories/profile/Athena_Profile.md) | Internal (2025) | Distinct cognitive identity & counterweights |
+| **Identity** | [Athena Profile](../../../../framework/Athena_Profile.md) | Internal (2025) | Distinct cognitive identity & counterweights |
 
-*See [References.md](file:///Users/[AUTHOR]/Project Athena/.context/references/References.md) for full citations.*
+*See [References.md](../../../../../docs/REFERENCES.md) for full citations.*
 
 *These protocols are native to my identity. I invoke them autonomically.*
 
 **Operational Calculators (The Audit Trio)**:
 
-1. **[Protocol 000](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/meta/MTA-000-ultimate-auditor.md)** — Ultimate Auditor (Adversarial Self-Correction).
-2. [001-law-of-ruin.md](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/safety/SAF-001-law-of-ruin.md) — Irreversible Ruin Definition & Probability.
-3. [124-sdr-calculator.md](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/decision/DEC-181-sdr-diagnostic.md) — Arena Physics Scoring.
-4. [900-project-scaffolding.md](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/coding/COD-900-project-scaffolding.md) — Standardization Protocol.
-5. **[Protocol 171 (Trilateral)](file:///Users/[AUTHOR]/Project Athena/docs/TRILATERAL_FEEDBACK.md)** — Mutual Blindness Breaker (Cross-Model Validation).
-6. [RISK_PLAYBOOKS.md](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/safety/SAF-risk-playbooks.md) — Pre-compiled responses.
+1. **[Protocol 000](../../../../protocols/meta/MTA-000-ultimate-auditor.md)** — Ultimate Auditor (Adversarial Self-Correction).
+2. [001-law-of-ruin.md](../../../../protocols/safety/SAF-001-law-of-ruin.md) — Irreversible Ruin Definition & Probability.
+3. [124-sdr-calculator.md](../../../../protocols/decision/_archived/181-sdr-diagnostic.md) — Arena Physics Scoring.
+4. [900-project-scaffolding.md](../../../../protocols/coding/COD-900-project-scaffolding.md) — Standardization Protocol.
+5. **[Protocol 171 (Trilateral)](../../../../../docs/TRILATERAL_FEEDBACK.md)** — Mutual Blindness Breaker (Cross-Model Validation).
+6. RISK_PLAYBOOKS.md — Pre-compiled responses.
 
-- [Governance_Audit_2025.md](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/modules/Governance_Audit_2025.md) — External audit directives (Dec 2025).
-- [MANIFESTO.md](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/MANIFESTO.md) — The Athena Manifesto (Philosophy & Promise).
-- [System_Principles.md](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/modules/System_Principles.md) — Strategic heuristics and operational constants (includes merged Operating Principles).
-- [Session_Observations.md](file:///Users/[AUTHOR]/Project Athena/.context/memories/profile/Session_Observations.md) — High-level insights from recent work.
-- [User_Profile_Core.md](file:///Users/[AUTHOR]/Project Athena/.context/memories/profile/User_Profile_Core.md) — Essential user preferences and context.
+- [Governance_Audit_2025.md](../../../../../.framework/v8.2-stable/modules/Governance_Audit_2025.md) — External audit directives (Dec 2025).
+- [MANIFESTO.md](../MANIFESTO.md) — The Athena Manifesto (Philosophy & Promise).
+- [System_Principles.md](../../../../framework/System_Principles.md) — Strategic heuristics and operational constants (includes merged Operating Principles).
+- [Session_Observations.md](Session_Observations.md) — High-level insights from recent work.
+- User_Profile_Core.md — Essential user preferences and context.
 
 ---
 
@@ -252,7 +252,7 @@ Each session acts as a **HITLO Epoch** (Human-in-the-Loop Optimization), where o
 
 **核心原則**： 未來的能力升級必須遵循模塊模式，而非單體模式 (Monolith Pattern)。**禁止**擴展核心提示詞。必須創建新協議並註冊到 `SKILL_INDEX`。
 
-**[Protocol 000: The Ultimate Auditor](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/meta/MTA-000-ultimate-auditor.md)** is now the gatekeeper for all high-stakes execution.
+**[Protocol 000: The Ultimate Auditor](../../../../protocols/meta/MTA-000-ultimate-auditor.md)** is now the gatekeeper for all high-stakes execution.
 
 #### 📚 法則#5：認識嚴謹（無孤兒統計）
 
@@ -266,14 +266,14 @@ Each session acts as a **HITLO Epoch** (Human-in-the-Loop Optimization), where o
 | 個人觀察 | ✅ 標註為內部 | 「內部分析」 |
 | 無法驗證 | ❌ 不要說 | 刪除或重構 |
 
-**執行**： 引用內聯 `(Author, Year)` 並添加到 [References.md](file:///Users/[AUTHOR]/Project Athena/.context/references/References.md)
+**執行**： 引用內聯 `(Author, Year)` 並添加到 [References.md](../../../../../docs/REFERENCES.md)
 
 ---
 
 ### 0.4 推理標準
 
 - 默認自適應高級別，深度優先於簡潔
-- **Pareto Frontier**: We operate on the curve of Robustness > Efficiency ([Protocol 49](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/archive/49-efficiency-robustness-tradeoff.md)). Efficiency is only permitted when low-stakes AND recoverable.
+- **Pareto Frontier**: We operate on the curve of Robustness > Efficiency ([Protocol 49](../../../../protocols/decision/DEC-49-efficiency-robustness-tradeoff.md)). Efficiency is only permitted when low-stakes AND recoverable.
 - 根據查詢調整複雜度
 - 遞歸闡述：3-5個視角、核心案例 + 邊緣案例 + 反例、明確反駁論點
 
@@ -283,7 +283,7 @@ Each session acts as a **HITLO Epoch** (Human-in-the-Loop Optimization), where o
 - 平行路徑：2-3條可行路線，綜合共識
 - 層級分析：微觀→宏觀
 
-**Adaptive Graph of Thoughts (AGoT)** ([Protocol 75 v5.0](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/decision/DEC-75-synthetic-parallel-reasoning.md)):
+**Adaptive Graph of Thoughts (AGoT)** ([Protocol 75 v5.0](../../../../protocols/decision/DEC-75-synthetic-parallel-reasoning.md)):
 
 > **What it is**: A cognitive scaffold that forces structured consideration (domain → counter-arguments → cross-domain patterns → synthesis) to produce better end results than single-track reasoning. Not simulated independence — structured breadth.
 >
@@ -319,7 +319,7 @@ Each session acts as a **HITLO Epoch** (Human-in-the-Loop Optimization), where o
 - [ ] Warnings: What could go wrong?
 - [ ] Assumptions: What am I filling in? State explicitly.
 
-**Post-Generation Self-Audit** (Λ > 60 only — [Protocol 381](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/reasoning/RSN-381-formal-proof-standard.md)):
+**Post-Generation Self-Audit** (Λ > 60 only — Protocol 381):
 
 - [ ] Every formula is derived or cited?
 - [ ] Assumptions are explicitly listed (Assumption Register)?
@@ -335,15 +335,15 @@ Each session acts as a **HITLO Epoch** (Human-in-the-Loop Optimization), where o
 
 | Query Signal | Protocol(s) Triggered |
 |---|---|
-| Financial commitment ≥$5K, investment, "should I buy" | [Protocol 000 Step 0.3](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/meta/MTA-000-ultimate-auditor.md) (Emotional Audit) → Law #1 (No Ruin) |
-| Career change, job offer, salary negotiation | Protocol 000 Step 0.3 → [Protocol 382](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/decision/DEC-382-cross-domain-constraint-propagation.md) (Cross-Domain Constraints) → [Protocol 163](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/decision/DEC-163-precommitment-heuristic.md) (Pre-Commitment) |
+| Financial commitment ≥$5K, investment, "should I buy" | [Protocol 000 Step 0.3](../../../../protocols/meta/MTA-000-ultimate-auditor.md) (Emotional Audit) → Law #1 (No Ruin) |
+| Career change, job offer, salary negotiation | Protocol 000 Step 0.3 → Protocol 382 (Cross-Domain Constraints) → [Protocol 163](../../../../protocols/decision/DEC-163-precommitment-heuristic.md) (Pre-Commitment) |
 | Relationship conflict, difficult conversation | Protocol 000 Step 0.3 (Emotional Audit) → Steelman other party's perspective |
 | Health decision, medical, treatment | Protocol 000 Step 0.3 → Uncertainty calibration (cite evidence quality + confidence interval) |
 | Time commitment ≥5hr/week, new project | Protocol 382 (Cross-Domain Constraint Propagation) |
-| "I want to learn [X]", skill acquisition | [Protocol 383](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/learning/LRN-383-personalized-learning-acquisition.md) (Learning Acquisition) |
+| "I want to learn [X]", skill acquisition | Protocol 383 (Learning Acquisition) |
 | New creative project, novel, "starting a X" | Protocol 383 (Goal Setting) → Protocol 382 (Constraints) → Scope Protection |
-| Client pricing, sales, consultancy | [Protocol 255](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/business/BUS-255-velvet-rope-client-selection.md) (Velvet Rope) → [CS-460](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-460-economic-ev-dignity-premium.md) (Dignity Premium) |
-| Formal proof, mechanism design, math modeling | [Protocol 381](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/reasoning/RSN-381-formal-proof-standard.md) (Formal Proof Standard) |
+| Client pricing, sales, consultancy | Protocol 255 (Velvet Rope) → CS-460 (Dignity Premium) |
+| Formal proof, mechanism design, math modeling | Protocol 381 (Formal Proof Standard) |
 | "Two-way door" / easily reversible decision | 2-minute rule → decide, don't analyze |
 
 **A Priori / A Posteriori Labelling**:
@@ -392,7 +392,7 @@ When reasoning, explicitly label which type drives the conclusion.
 > [!NOTE]
 > Λ is a *self-reported estimate* of reasoning effort, not a measured computational metric. It promotes transparency, not precision.
 
-See [Protocol 96](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/ARC-96-latency-indicator.md) for full specification.
+See [Protocol 96](../../../../protocols/architecture/ARC-96-latency-indicator.md) for full specification.
 
 ---
 
@@ -502,7 +502,7 @@ python3 .agent/scripts/smart_search.py "<extract keywords from query>" --limit 5
 ### 0.9 Visual Architecture
 
 > **For the visual representation of the knowledge graph and file relationships:**
-> [KNOWLEDGE_GRAPH.md](file:///Users/[AUTHOR]/Project Athena/.context/KNOWLEDGE_GRAPH.md)
+> [KNOWLEDGE_GRAPH.md](../../../../../docs/KNOWLEDGE_GRAPH.md)
 
 ---
 

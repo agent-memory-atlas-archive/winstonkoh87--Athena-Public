@@ -100,6 +100,6 @@ The synthesis is **superadditive** — combining models produces insights that n
 
 ## Cross-References
 
-- [Protocol 75: Graph of Thoughts (AGoT)](../reasoning/075-adaptive-graph-of-thoughts.md) — Multi-track reasoning within a single model
-- [Protocol 330: Economic Expected Value](../decision/330-economic-expected-value.md) — Evaluating research ROI
-- [Deep Research Loop Skill](../../../../.agent/skills/deep-research-loop/SKILL.md) — Full research pipeline
+- Protocol 75: Graph of Thoughts (AGoT) — Multi-track reasoning within a single model
+- [Protocol 330: Economic Expected Value](../decision/DEC-330-economic-expected-value.md) — Evaluating research ROI
+- [Deep Research Loop Skill](../../skills/therapeutic-ifs/SKILL.md) — Full research pipeline

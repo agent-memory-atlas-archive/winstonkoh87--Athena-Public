@@ -198,6 +198,6 @@ CS-010 (Free Value Trap), CS-040 (Andy Coffee Shop), CS-089 (Grab Economics), CS
 
 ## References
 
-- [META_PATTERNS.md](./.context/META_PATTERNS.md) — MP-1, MP-3, MP-4, MP-6
-- [bionic-decision-engine](./.agent/skills/bionic-decision-engine/SKILL.md) — Parent decision engine
-- [CASE_STUDY_INDEX.md](./.context/CASE_STUDY_INDEX.md) — Full case study lookup
+- META_PATTERNS.md — MP-1, MP-3, MP-4, MP-6
+- [bionic-decision-engine](../../therapeutic-ifs/SKILL.md) — Parent decision engine
+- CASE_STUDY_INDEX.md — Full case study lookup

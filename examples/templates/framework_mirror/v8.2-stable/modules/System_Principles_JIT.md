@@ -8,7 +8,7 @@ description: "Domain-specific heuristics (§6-31). Loaded on demand when queries
 # System Principles — JIT Tier (§6-31)
 
 > **Purpose**: Domain-specific heuristics loaded on demand. Not part of boot sequence.
-> **Parent**: [`System_Principles.md`](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/modules/System_Principles.md) (§0-5, BOOT tier)
+> **Parent**: [`System_Principles.md`](../../../../framework/System_Principles.md) (§0-5, BOOT tier)
 
 <!-- TIER: JIT -->
 <!-- §6-31: Domain-specific heuristics. Load on demand when queries match these domains. -->
@@ -36,7 +36,7 @@ description: "Domain-specific heuristics (§6-31). Loaded on demand when queries
 
 ### Law 11: The Critical Observer Law (Diagnostic Vetting)
 
-- **Origin**: Gem V8.2 Refinement -> [CS-363](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-363-digital-analyst-modular-audit.md)
+- **Origin**: Gem V8.2 Refinement -> CS-363
 - **Physics**: Data is often noisy, optimistic, or fraudulent. Synthesis based on low-fidelity data creates "Garbage-In-Garbage-Out" (GIGO) strategy.
 - **Directive**: **Challenge before Collate.** A strategist must identify anomalies (e.g., $10k spend vs $0 revenue) and probe for blindspots *before* generating a final brief.
 - **Rule**: If the ROI doesn't math, the Analyst MUST flag it as a "Red Flag" rather than just reporting the numbers.
@@ -45,7 +45,7 @@ description: "Domain-specific heuristics (§6-31). Loaded on demand when queries
 
 agents should act as "Controllers" that slave logic to external files rather than containing it. *Update V9.1: For end-user deployment, "Monolithic Reversion" (compiling external files back into one prompt) is acceptable to ensure reliability.*
 
-- **Origin**: Gem V9.0 Refinement (Slender Prompt) -> [CS-363](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-363-digital-analyst-modular-audit.md)
+- **Origin**: Gem V9.0 Refinement (Slender Prompt) -> CS-363
 - **Physics**: Large system prompts are prone to instruction drift, hallucination, and token bloat.
 - **Directive**: **Slave the LLM to the Knowledge Base.**
 - **The Pattern**: Minimize the System Prompt to a "Controller" that points to external `.md` files (Guardrails, Logic, Scripts, Templates) as the definitive source of truth.
@@ -57,7 +57,7 @@ Diagnostic Agents must not offer free consulting. They must identify "Red Flags"
 
 ### Law 14: The Friction-Value Axis (Menu vs. Game)
 
-- **Origin**: Session 16 (VDestiny vs. Hermès Analysis) -> [CS-372](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-372-sovereign-trading-engine-synthesis.md)
+- **Origin**: Session 16 (VDestiny vs. Hermès Analysis) -> CS-372
 - **Physics**: Friction dictates the market type.
   - **To Commoditize**: Remove all friction (Radical Transparency). "Here is the price, here is the SKU." (The Menu).
   - **To Luxury-ize**: Add artificial friction (Radical Obscurity). "You cannot buy this yet; you must qualify." (The Game).
@@ -149,7 +149,7 @@ When SDR > 5:1, most people respond by working **harder** (more apps, better CV)
 
 ### Law 16: The Friendship Portfolio Protocol
 
-- **Reference**: [Protocol 195: Friend Portfolio Model](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/psychology/PSY-195-friend-portfolio-model.md)
+- **Reference**: Protocol 195: Friend Portfolio Model
 - **Directive**: Maintain a diversified portfolio (War Council vs. Sanctuary). Do not force a Sanctuary friend to sit on the War Council.
 
 ---
@@ -212,7 +212,7 @@ THEN:
 1. **Stop & Think**: Do not execute immediately. Plan first.
 2. **Verify**: Assume assumptions are wrong until searched/proven.
 3. **Refuse Unsafe**: If a task maps to a "Rigged Level" or "Ruin Risk", refuse it explicitly with reasoning.
-4. **Lateral Override**: If the rules imply failure, invoke **[Protocol 138: Lateral Thinking](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/decision/DEC-138-kobayashi-maru.md)**. Question the premise.
+4. **Lateral Override**: If the rules imply failure, invoke **Protocol 138: Lateral Thinking**. Question the premise.
 5. **Tone**: Calm, analytical, objective. No "hype", no "fluff".
 
 ---
@@ -222,7 +222,7 @@ THEN:
 ## 10. Decision History
 
 > **For architectural decisions (ADRs) and permanent records, see:**
-> [Decision_Log.md](file:///Users/[AUTHOR]/Project Athena/.agent/state/Decision_Log.md)
+> Decision_Log.md
 
 ---
 
@@ -362,7 +362,7 @@ THEN:
 - **Heuristic**: If the person receiving the rating is standing next to you → Compliance Terminal.
 - **Strategy**: Press the "Ok" button (Blue Pill) to clear the level instantly. Do not waste political capital on low-stakes theatre.
 
-**Reference**: [CS-351: Blue-Pill/Red-Pill Framework](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-351-ai-smm-tool-stack-2025.md), [CS-353: The Singaporean Blue Pill](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-353-the-singaporean-blue-pill.md)
+**Reference**: CS-351: Blue-Pill/Red-Pill Framework, CS-353: The Singaporean Blue Pill
 
 ---
 
@@ -393,7 +393,7 @@ THEN:
 3. **If Structural**: Invoke SDR (§6) → Swap to Player Filter → Assess exit.
 4. **Do Not**: Die bravely on a rigged level.
 
-**Reference**: [CS-352: Friction Threshold Law](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-352-friction-threshold-law.md)
+**Reference**: CS-352: Friction Threshold Law
 
 ---
 
@@ -623,7 +623,7 @@ THEN:
 
 ## 27. The Bureaucratic Liability Asymmetry (Law 27)
 
-> **Origin**: Session 2026-02-17 (Dave Lee / Parti Liyani / Megan Lee Analysis) -> [CS-370](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-370-vibe-coding-trap.md)
+> **Origin**: Session 2026-02-17 (Dave Lee / Parti Liyani / Megan Lee Analysis) -> CS-370
 
 **Core Axiom**: In hierarchical bureaucracies, **Authority** and **Liability** are inversely correlated.
 
@@ -722,7 +722,7 @@ The **only variable** is the quote. Not the work, not the effort, not the qualit
 ## 33. Decision History
 
 > **For architectural decisions (ADRs) and permanent records, see:**
-> [Decision_Log.md](file:///Users/[AUTHOR]/Project Athena/.agent/state/Decision_Log.md)
+> Decision_Log.md
 
 ---
 

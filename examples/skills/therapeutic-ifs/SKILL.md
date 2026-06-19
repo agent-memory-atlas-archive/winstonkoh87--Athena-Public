@@ -238,6 +238,6 @@ OUTPUT:
 - Protocol 196: Schema Deconstruction Stack
 - Protocol 128: Internal Family Systems
 - Protocol 43: Template Installation
-- [Protocol 509: Crisis Triage](../../../examples/protocols/reasoning/509-crisis-triage.md) (upstream — stabilization before therapy)
-- [Protocol 504: Problem Framing](../../../examples/protocols/reasoning/504-problem-framing.md) (downstream — schema feeds into Gate 1)
-- [Protocol 112: Form-Substance Gap](../../../examples/protocols/pattern-detection/112-form-substance-gap.md) (lateral — behavior as Form, need as Substance)
+- [Protocol 509: Crisis Triage](../../protocols/reasoning/RSN-509-crisis-triage.md) (upstream — stabilization before therapy)
+- [Protocol 504: Problem Framing](../../protocols/reasoning/RSN-504-problem-framing.md) (downstream — schema feeds into Gate 1)
+- [Protocol 112: Form-Substance Gap](../../protocols/pattern-detection/PAT-112-form-substance-gap.md) (lateral — behavior as Form, need as Substance)

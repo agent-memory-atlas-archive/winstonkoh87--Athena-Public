@@ -135,10 +135,10 @@ Only commit after confirming the diff is clean.
 
 ## Cross-References
 
-- [public_manifest.yaml](file:///Users/[AUTHOR]/Project%20Athena/.agent/config/public_manifest.yaml) — Allowlist
-- [pre_deploy_scan.sh](file:///Users/[AUTHOR]/Project%20Athena/.agent/scripts/pre_deploy_scan.sh) — Scanner
-- [TD-027](file:///Users/[AUTHOR]/Project%20Athena/.context/TECH_DEBT.md) — The incident that proved blocklists fail
-- [.syncignore](file:///Users/[AUTHOR]/Athena-Public/.syncignore) — Legacy safety net
+- public_manifest.yaml — Allowlist
+- [pre_deploy_scan.sh](../../scripts/pre_deploy_scan.sh) — Scanner
+- [TD-027](../../docs/TECH_DEBT.md) — The incident that proved blocklists fail
+- .syncignore — Legacy safety net
 
 ## Tagging
 

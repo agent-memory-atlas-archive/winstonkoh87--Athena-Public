@@ -17,9 +17,9 @@
 
 | Module | Path | Responsibilities |
 | :--- | :--- | :--- |
-| **Sync Engine** | [src/athena/memory/sync.py](file://src/athena/memory/sync.py) | Supabase/pgvector synchronization. |
-| **Sessions** | [src/athena/sessions.py](file://src/athena/sessions.py) | Session log management and quicksave logic. |
-| **Vectors** | [src/athena/memory/vectors.py](file://src/athena/memory/vectors.py) | Embedding generation and RPC wrappers. |
+| **Sync Engine** | [src/athena/memory/sync.py](../src/athena/memory/sync.py) | Supabase/pgvector synchronization. |
+| **Sessions** | [src/athena/sessions.py](../src/athena/sessions.py) | Session log management and quicksave logic. |
+| **Vectors** | [src/athena/memory/vectors.py](../src/athena/memory/vectors.py) | Embedding generation and RPC wrappers. |
 
 ---
 

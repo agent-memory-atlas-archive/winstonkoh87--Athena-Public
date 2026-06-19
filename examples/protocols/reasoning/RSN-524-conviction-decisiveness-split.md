@@ -135,8 +135,8 @@ Even with high decisiveness, if the setup violates Law #1 (>5% probability of ir
 
 ## Related Protocols
 
-- [Problem Framing (P504)](504-problem-framing.md)
-- [GTO Execution Plan (P506)](506-gto-execution-plan.md)
+- [Problem Framing (P504)](RSN-504-problem-framing.md)
+- [GTO Execution Plan (P506)](RSN-506-gto-execution-plan.md)
 
 ---
 

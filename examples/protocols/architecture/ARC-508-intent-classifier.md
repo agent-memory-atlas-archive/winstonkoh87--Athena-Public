@@ -274,8 +274,8 @@ PROTOCOL:
 
 ## Cross-References
 
-- [Protocol 507: Cognitive Systems Architecture](507-cognitive-systems.md)
-- [Protocol 503: Cognitive Clusters](503-cognitive-clusters.md)
+- [Protocol 507: Cognitive Systems Architecture](ARC-507-cognitive-systems.md)
+- [Protocol 503: Cognitive Clusters](ARC-503-cognitive-clusters.md)
 - CLUSTER_INDEX.md (see your workspace's `.agent/CLUSTER_INDEX.md`)
 
 ---

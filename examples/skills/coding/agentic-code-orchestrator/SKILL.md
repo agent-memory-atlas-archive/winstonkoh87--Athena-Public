@@ -206,5 +206,5 @@ CS-062 (Vibe Coding Gap), CS-100 (Project Vend Agentic Failure), CS-120 (Vibe Co
 
 ## References
 
-- [META_PATTERNS.md](./.context/META_PATTERNS.md) — MP-2 (RETO engine), MP-11 (Iteration Economy)
-- [bionic-decision-engine](./.agent/skills/bionic-decision-engine/SKILL.md) — For build/buy/wait decisions
+- META_PATTERNS.md — MP-2 (RETO engine), MP-11 (Iteration Economy)
+- [bionic-decision-engine](../../therapeutic-ifs/SKILL.md) — For build/buy/wait decisions

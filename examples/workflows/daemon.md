@@ -25,7 +25,7 @@ created: 2026-03-31
 
 ## Implementation
 
-Read the full skill: [daemon-loop/SKILL.md](file:///Users/[AUTHOR]/Project Athena/.agent/skills/daemon-loop/SKILL.md)
+Read the full skill: [daemon-loop/SKILL.md](../skills/therapeutic-ifs/SKILL.md)
 
 ## Steps
 

@@ -107,6 +107,6 @@ The shift from Level 1 to Level 2 is the shift from *optimisation* to *game sele
 ## Cross-References
 
 - [Case Study #4: The Meta-Game](../CASE_STUDIES.md#case-study-4-the-meta-game--why-try-harder-is-the-wrong-answer) — The NTU SDR Analysis
-- [Protocol 330: Economic Expected Value](../../examples/protocols/decision/330-economic-expected-value.md) — EEV framework
-- [Protocol 500: GTO Problem Solver](../../examples/protocols/decision/500-gto-problem-solver.md) — Game Theory Optimal decision-making
+- [Protocol 330: Economic Expected Value](../../examples/protocols/decision/DEC-330-economic-expected-value.md) — EEV framework
+- [Protocol 500: GTO Problem Solver](../../examples/protocols/decision/DEC-500-gto-problem-solver.md) — Game Theory Optimal decision-making
 - [The Grace Protocol](Grace_Protocol.md) — Human augmentation, not replacement

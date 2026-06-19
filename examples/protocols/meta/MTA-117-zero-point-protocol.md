@@ -133,7 +133,7 @@ When facing strategic decision:
 ## Cross-References
 - **Protocol 124: SDR Diagnosis**
 
-- [Protocol 75: Synthetic Parallel Reasoning](../decision/75-synthetic-parallel-reasoning.md)
+- [Protocol 75: Synthetic Parallel Reasoning](../decision/DEC-75-synthetic-parallel-reasoning.md)
 - **Protocol 108: Bionic Operational Physics**
 
 ---

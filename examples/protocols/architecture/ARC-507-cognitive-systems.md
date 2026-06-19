@@ -326,10 +326,10 @@ When ambiguous → Default to **Problem-Solving (#15)** as a standalone cluster.
 
 ## Cross-References
 
-- [Protocol 503: Cognitive Clusters](503-cognitive-clusters.md)
-- [Protocol 508: Intent Classifier](508-intent-classifier.md)
+- [Protocol 503: Cognitive Clusters](ARC-503-cognitive-clusters.md)
+- [Protocol 508: Intent Classifier](ARC-508-intent-classifier.md)
 - CLUSTER_INDEX.md (see your workspace's `.agent/CLUSTER_INDEX.md`)
-- [Protocol 504: Problem Framing](../reasoning/504-problem-framing.md)
+- [Protocol 504: Problem Framing](../reasoning/RSN-504-problem-framing.md)
 
 ---
 

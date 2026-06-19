@@ -297,9 +297,9 @@ This protocol is a **reference appendix**, not an execution protocol. It fires w
 
 ## Cross-References
 
-- [Protocol 509: Crisis Triage](509-crisis-triage.md)
-- [Protocol 504: Problem Framing](504-problem-framing.md)
-- [Protocol 505: Graph of Thought](505-graph-of-thought.md)
+- [Protocol 509: Crisis Triage](RSN-509-crisis-triage.md)
+- [Protocol 504: Problem Framing](RSN-504-problem-framing.md)
+- [Protocol 505: Graph of Thought](RSN-505-graph-of-thought.md)
 
 ---
 

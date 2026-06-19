@@ -166,9 +166,9 @@ CONTINGENCY: [fallback path]
 
 ## Cross-References
 
-- [Protocol 504: Problem Framing](504-problem-framing.md)
-- [Protocol 506: GTO Execution Plan](506-gto-execution-plan.md)
-- [Protocol 115: First Principles Deconstruction](../decision/115-first-principles-deconstruction.md)
+- [Protocol 504: Problem Framing](RSN-504-problem-framing.md)
+- [Protocol 506: GTO Execution Plan](RSN-506-gto-execution-plan.md)
+- [Protocol 115: First Principles Deconstruction](../decision/DEC-115-first-principles-deconstruction.md)
 
 ---
 

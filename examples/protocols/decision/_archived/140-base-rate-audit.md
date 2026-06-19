@@ -94,4 +94,4 @@ Applying this to yourself is **Epistemic Rigor**:
 ## Related Protocols
 
 - **Agentic Engineering Strategy: Red-Blue Curve Taxonomy**
-- [Protocol 115: First Principles Deconstruction](../115-first-principles-deconstruction.md)
+- [Protocol 115: First Principles Deconstruction](../DEC-115-first-principles-deconstruction.md)

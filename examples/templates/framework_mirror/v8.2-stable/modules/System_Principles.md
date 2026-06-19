@@ -15,7 +15,7 @@ graphrag_extracted: true
 
 ## 0. The Agentic Trinity (Prime Directive)
 >
-> **Origin**: Session 08 (User Mandate) -> [Protocol 010](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/workflow/WFL-010-agentic-success-trinity.md)
+> **Origin**: Session 08 (User Mandate) -> Protocol 010
 
 **Axiom**: "If your documentation is fucked up, nothing else really matters."
 **The Trinity**:
@@ -114,15 +114,15 @@ graphrag_extracted: true
 
 ### Law 4: The Manual Scale Paradox (Signal Amplification)
 
-- **Origin**: Session 02 (Reddit r/DigitalMarketing Insight) -> [CS-354](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-354-manual-scale-paradox.md)
+- **Origin**: Session 02 (Reddit r/DigitalMarketing Insight) -> CS-354
 - **Physics**: Automation is a multiplier, not a generator. `Output = Signal * Automation`. If `Signal = 0`, `Output = 0`.
 - **The Trap**: Automating too early amplifies noise, not value. To find the Signal, you must do the "Unscalable Grind" (Manual 1:1s) first.
 - **Directive**: **Nix Automation** until Manual Conversion > 0. Earn the right to scale.
-- **See Also**: [CS-355: Zenith Hypothesis Growth](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-355-zenith-hypothesis-growth.md) (Scientific Marketing = Hypothesis Engineering).
+- **See Also**: CS-355: Zenith Hypothesis Growth (Scientific Marketing = Hypothesis Engineering).
 
 ### Law 5: The Strategist Mandate (Execution Collapse)
 
-- **Origin**: Session 02 (Reddit r/DigitalMarketing) -> [CS-356](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-356-strategist-mandate.md)
+- **Origin**: Session 02 (Reddit r/DigitalMarketing) -> CS-356
 - **Physics**: AI drives the Cost of Execution to $0. Therefore, the Value of Execution approaches $0.
 - **The Shift**: Value migrates entirely to **Strategy** (Diagnosis, Hypothesis, Orchestration).
 - **Directive**: **Never sell simple execution.** Sell the *Architecture*. You are not a "Copywriter" (commodity); you are a "Conversion Architect" (premium).
@@ -130,16 +130,16 @@ graphrag_extracted: true
 
 ### Law 6: The Distribution Flip (Individual Sovereignty)
 
-- **Origin**: Session 02 (Teacher Keith Analysis) -> [CS-357](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-357-distribution-flip.md)
+- **Origin**: Session 02 (Teacher Keith Analysis) -> CS-357
 - **Physics**: Distribution Power has inverted. Institutional Authority (Top-Down) < Individual Signal (Bottom-Up).
 - **The Law**: **He who owns the Audience owns the Margin.**
 - **Directive**: Do not build "Corporate Brands" (faceless logos). Build "Sovereign Personal Monopolies" (Teacher Keith).
 - **The Arb**: Corporations are desperate for distribution. If you have the audience, you dictate the terms.
-- **Proof**: [CS-362: The Passive Signal](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-362-athena-passive-signal.md) (Athena Repo = 853 Clones with $0 ad spend).
+- **Proof**: CS-362: The Passive Signal (Athena Repo = 853 Clones with $0 ad spend).
 
 ### Law 7: The Value Inversion (Outcome > Deliverable)
 
-- **Origin**: Session 02 (User Insight) -> [CS-358](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-358-value-inversion.md)
+- **Origin**: Session 02 (User Insight) -> CS-358
 - **Physics**: Deflation of Inputs (Knowledge/Time) vs. Inflation of Outputs (Results/Systems).
 - **The Shift**: "I pay for your Degree" (Old) → "I pay for my Outcome" (New).
 - **Directive**: Stop charging for "Deliverables" (Code, Copy). Charge for "Systems" (Growth, Conversion).
@@ -147,7 +147,7 @@ graphrag_extracted: true
 
 ### Law 8: The False Ruin Threshold (Shame != Death)
 
-- **Origin**: Session 02 (Reddit r/SingaporeFI Suicide Risk) -> [CS-359](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-359-false-ruin-threshold.md)
+- **Origin**: Session 02 (Reddit r/SingaporeFI Suicide Risk) -> CS-359
 - **Physics**: Humans conflate "Social Ruin" (Shame/Debt) with "Biological Ruin" (Death).
 - **The Test**: Is it **Ergodic**? (Can I recover?)
   - Debt ($20k) is Ergodic.
@@ -157,7 +157,7 @@ graphrag_extracted: true
 
 ### Law 9: The Survival Trap (Linear Wage Checkmate)
 
-- **Origin**: Session 02 (User Critique of F&B Advice) -> [CS-360](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-360-survival-trap.md)
+- **Origin**: Session 02 (User Critique of F&B Advice) -> CS-360
 - **Physics**: Solving "Capital Problems" (Debt) with "Labor Solutions" (Hourly Wage) is mathematically inefficient and strategically suicidal.
 - **The Cost**: The cost of a $12/hr job is not just your time; it is the **Opportunity Cost** of not building a High-Leverage Asset.
 - **Directive**: If Survival (Food/Shelter) is secured, **REJECT** low-leverage labor. Use the pressure to force a High-Leverage Breakthrough (Arbitrage/Sales).
@@ -165,7 +165,7 @@ graphrag_extracted: true
 
 ### Law 10: Dark Arbitrage (The Dignity Spread)
 
-- **Origin**: Session 02 (Reddit "Sugar Work" Suggestion) -> [CS-361](file:///Users/[AUTHOR]/Project Athena/.context/memories/case_studies/CS-361-dark-arbitrage.md)
+- **Origin**: Session 02 (Reddit "Sugar Work" Suggestion) -> CS-361
 - **Physics**: The market pulls efficiently. If you have no Skills (Financial Capital), the market will bid on your Biology (Dark Capital).
 - **The Trap**: Dark Arbitrage offers High Liquidity ($2k/weekend) but destroys the **Psyche** (Self-Respect). It creates a "dependency on degradation."
 - **Directive**: Build **Clean Arbitrage** (Service/Biz) aggressively so you never face the choice between Starvation (Linear) and Degradation (Dark).
@@ -178,7 +178,7 @@ graphrag_extracted: true
 ## JIT Tier (§6-31) — Load On Demand
 
 > **684 lines of domain-specific heuristics extracted to:**
-> [`System_Principles_JIT.md`](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/modules/System_Principles_JIT.md)
+> [`System_Principles_JIT.md`](System_Principles_JIT.md)
 >
 > Covers: Red Team Principles, SDF/SDR, People Physics, Decision Heuristics, Digital Arbitrage,
 > Vampire Regression, System-First Selling, Blue-Pill/Red-Pill, Friction Threshold,

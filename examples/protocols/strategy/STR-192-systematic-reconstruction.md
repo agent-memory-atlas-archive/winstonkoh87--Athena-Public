@@ -73,7 +73,7 @@ When you catch yourself failing repeatedly:
 
 ## Integration
 
-* Use with **[Protocol 112: Form-Substance Gap](../pattern-detection/112-form-substance-gap.md)** (Structure prevents access to Form).
+* Use with **[Protocol 112: Form-Substance Gap](../pattern-detection/PAT-112-form-substance-gap.md)** (Structure prevents access to Form).
 * Use with ****Protocol 161: Sovereign Operating Protocol****.
 
 ---

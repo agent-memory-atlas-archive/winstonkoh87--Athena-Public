@@ -169,10 +169,10 @@ P505 Phase 5: SELECT → Choose (blast radius is a selection criterion)
 
 ## Cross-References
 
-- [Protocol 505: Graph of Thought](505-graph-of-thought.md)
-- [Protocol 500: GTO Problem Solver](../decision/500-gto-problem-solver.md)
-- [Protocol 506: GTO Execution Plan](506-gto-execution-plan.md)
-- [Protocol 504: Problem Framing — Gate 3: Stakeholder Mapping](504-problem-framing.md)
+- [Protocol 505: Graph of Thought](RSN-505-graph-of-thought.md)
+- [Protocol 500: GTO Problem Solver](../decision/DEC-500-gto-problem-solver.md)
+- [Protocol 506: GTO Execution Plan](RSN-506-gto-execution-plan.md)
+- [Protocol 504: Problem Framing — Gate 3: Stakeholder Mapping](RSN-504-problem-framing.md)
 
 ---
 

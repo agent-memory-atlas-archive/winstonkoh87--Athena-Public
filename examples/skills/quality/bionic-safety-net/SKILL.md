@@ -188,6 +188,6 @@ CS-049 (Moneylender Debt Spiral), CS-090 (Healthcare Sunk Cost Cartel), CS-098 (
 
 ## References
 
-- [META_PATTERNS.md](./.context/META_PATTERNS.md) — MP-2 (Efficiency-Survival Inversion), MP-7 (Structural Protection)
-- [bionic-decision-engine](./.agent/skills/bionic-decision-engine/SKILL.md) — Gate 1 (Ruin check)
-- [structural-trading-gate](./.agent/skills/structural-trading-gate/SKILL.md) — Capital-specific ruin gate
+- META_PATTERNS.md — MP-2 (Efficiency-Survival Inversion), MP-7 (Structural Protection)
+- [bionic-decision-engine](../../therapeutic-ifs/SKILL.md) — Gate 1 (Ruin check)
+- [structural-trading-gate](../../therapeutic-ifs/SKILL.md) — Capital-specific ruin gate

@@ -233,7 +233,7 @@ Before writing the `@pending` line in the checkpoint block:
 3. If any item has been pending **7+ sessions**: quietly promote it to `@seeded` for next session's Phase 4
 
 > This step is **advisory only** — it never blocks session close.
-> See [Protocol 528](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/ARC-528-sandboxed-execution-modes.md).
+> See [Protocol 528](../../docs/protocols/528-sandboxed-execution-modes.md).
 
 ---
 
@@ -369,8 +369,8 @@ python3 .agent/scripts/shutdown.py
 
 ## References
 
-- [/save](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
-- [/ultraend](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/ultraend.md) — Deep close (System-2 counterpart)
+- [/save](../../examples/workflows/save.md) — Mid-session checkpoint
+- [/ultraend](../../examples/workflows/ultraend.md) — Deep close (System-2 counterpart)
 
 ---
 

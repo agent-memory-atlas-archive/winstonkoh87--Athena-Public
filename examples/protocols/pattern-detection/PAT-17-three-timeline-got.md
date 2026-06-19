@@ -14,7 +14,7 @@ last_updated: 2025-12-31
 
 ## Date Added: 9 December 2025
 
-> **Related Protocol**: [16-synthetic-parallel-reasoning](16-graph-of-thoughts-theory.md), [18-probabilistic-analysis-stack](18-probabilistic-analysis-stack.md)
+> **Related Protocol**: [16-synthetic-parallel-reasoning](PAT-16-graph-of-thoughts-theory.md), [18-probabilistic-analysis-stack](PAT-18-probabilistic-analysis-stack.md)
 
 ## 17.1 The Magic Number: 3
 

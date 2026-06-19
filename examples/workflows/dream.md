@@ -134,10 +134,10 @@ If nothing changed: "🌙 Dream pass: memories are already tight. No changes."
 
 ## References
 
-- [/end](file:///Users/[AUTHOR]/Project Athena/.agent/workflows/end.md) — Session close (writes raw signal)
-- [/daemon](file:///Users/[AUTHOR]/Project Athena/.agent/workflows/daemon.md) — Daemon management
-- [daemon-loop](file:///Users/[AUTHOR]/Project Athena/.agent/skills/daemon-loop/SKILL.md) — Background loop infrastructure
-- [Protocol 215 — Canonical Memory](file:///Users/[AUTHOR]/Project Athena/.agent/skills/protocols/architecture/ARC-215-canonical-memory.md)
+- [/end](end.md) — Session close (writes raw signal)
+- [/daemon](daemon.md) — Daemon management
+- [daemon-loop](../skills/therapeutic-ifs/SKILL.md) — Background loop infrastructure
+- Protocol 215 — Canonical Memory
 
 ---
 

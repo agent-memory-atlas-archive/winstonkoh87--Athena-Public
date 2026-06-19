@@ -1,7 +1,7 @@
 # CS-005: The Min-Max Purchasing Framework
 
 > **Domain**: Decision Making (Consumer Purchases)
-> **Protocols Used**: [Protocol 500 (GTO Problem Solver)](../protocols/decision/500-gto-problem-solver.md), [Protocol 330 (EEV)](../protocols/decision/330-economic-expected-value.md)
+> **Protocols Used**: [Protocol 500 (GTO Problem Solver)](../protocols/decision/DEC-500-gto-problem-solver.md), [Protocol 330 (EEV)](../protocols/decision/DEC-330-economic-expected-value.md)
 
 ## The Scenario
 
@@ -89,4 +89,4 @@ The utility function is personal. A photographer might genuinely need the S26's 
 
 ---
 
-> **Related**: [Protocol 330 (EEV)](../protocols/decision/330-economic-expected-value.md) · [Protocol 500 (GTO)](../protocols/decision/500-gto-problem-solver.md) · [Use Cases](../../docs/USE_CASES.md)
+> **Related**: [Protocol 330 (EEV)](../protocols/decision/DEC-330-economic-expected-value.md) · [Protocol 500 (GTO)](../protocols/decision/DEC-500-gto-problem-solver.md) · [Use Cases](../../docs/USE_CASES.md)

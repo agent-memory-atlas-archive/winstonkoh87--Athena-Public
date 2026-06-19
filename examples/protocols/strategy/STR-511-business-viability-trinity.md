@@ -165,9 +165,9 @@ BUSINESS VIABILITY GATE:
 
 ## Cross-References
 
-- [Protocol 162: Product-Market-Operations Fit](162-product-market-operations-fit.md) — Complementary; P162 validates operational fit, P511 validates economic viability
-- [Protocol 330: Economic Expected Value (EEV)](../decision/330-economic-expected-value.md) — Use EEV to quantify the margin forecast from P511
-- [Protocol 500: GTO Problem Solver](../decision/500-gto-problem-solver.md) — P511 is the business-specific pre-filter before full GTO analysis
+- [Protocol 162: Product-Market-Operations Fit](STR-162-product-market-operations-fit.md) — Complementary; P162 validates operational fit, P511 validates economic viability
+- [Protocol 330: Economic Expected Value (EEV)](../decision/DEC-330-economic-expected-value.md) — Use EEV to quantify the margin forecast from P511
+- [Protocol 500: GTO Problem Solver](../decision/DEC-500-gto-problem-solver.md) — P511 is the business-specific pre-filter before full GTO analysis
 
 ---
 

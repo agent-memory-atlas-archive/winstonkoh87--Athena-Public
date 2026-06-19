@@ -112,8 +112,8 @@ compiled_from: "[session log path]"
 
 ## References
 
-- [Session log](path/to/session/log)
-- [Related skill](path/to/related/skill)
+- Session log
+- [Related skill](../../therapeutic-ifs/SKILL.md)
 ```
 
 ### Phase 3: Integration

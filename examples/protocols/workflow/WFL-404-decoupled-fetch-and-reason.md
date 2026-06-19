@@ -83,7 +83,7 @@ AG (Athena) --> Human User --> Gemini Pro UI --> Human User --> AG (Athena)
    ```
 
 4. **Handoff**:
-   > "Data acquired. Raw dump saved to [`research_task.md`](file://...).
+   > "Data acquired. Raw dump saved to `research_task.md`.
    >
    > **Options**:
    > 1. [Review Raw Data]

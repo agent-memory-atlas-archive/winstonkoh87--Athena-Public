@@ -324,9 +324,9 @@ Seed Accuracy (prev session): [Match/Partial/Miss]
 
 ## References
 
-- [/end](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/end.md) — Standard close (Phase 0 source)
-- [/ultrastart](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/ultrastart.md) — Symmetric deep boot counterpart
-- [/save](file:///Users/[AUTHOR]/Project%20Athena/Athena-Public/examples/workflows/save.md) — Mid-session checkpoint
+- [/end](end.md) — Standard close (Phase 0 source)
+- [/ultrastart](ultrastart.md) — Symmetric deep boot counterpart
+- [/save](save.md) — Mid-session checkpoint
 
 ---
 

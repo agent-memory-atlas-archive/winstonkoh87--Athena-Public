@@ -171,6 +171,6 @@ CS-004 ([PRIVATE]), CS-007 ([Location A] Solipsism), CS-008 (FA Extraction), CS-
 
 ## References
 
-- [META_PATTERNS.md](../../.context/META_PATTERNS.md) — MP-8 (Wound-Selects-For-Itself)
-- [bionic-decision-engine](../bionic-decision-engine/SKILL.md) — For decisions involving people
-- [CS-565](../../.context/memories/case_studies/CS-565-bionic-ifs-auxiliary-self.md) — Bionic IFS Architecture
+- META_PATTERNS.md — MP-8 (Wound-Selects-For-Itself)
+- [bionic-decision-engine](../therapeutic-ifs/SKILL.md) — For decisions involving people
+- CS-565 — Bionic IFS Architecture

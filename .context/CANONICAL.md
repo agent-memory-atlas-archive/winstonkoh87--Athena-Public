@@ -209,7 +209,7 @@ last_updated: 2026-03-19
 | Document | Purpose | Note |
 | :--- | :--- | :--- |
 | [Core_Identity.md](../.framework/v8.2-stable/modules/Core_Identity.md) | Laws, Identity, RSI | Reference |
-| [memory_bank/](.context/memory_bank/) | Active System Context | Supersedes project_state.md (Session 03) |
+| memory_bank/ | Active System Context | Supersedes project_state.md (Session 03) |
 | **WORKFLOW_INDEX.md** | All 25+ workflows | Reference |
 | **SKILL_INDEX.md** | All 215 protocols | Reference |
 | **TAG_INDEX_*.md** | Sharded File discovery | Reference |

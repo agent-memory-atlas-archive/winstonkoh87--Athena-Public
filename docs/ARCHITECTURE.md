@@ -3,7 +3,7 @@
 > **Last Updated**: 19 Jun 2026
 > **Version**: v9.9.3
 > **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
-> **Bionic Unit Spec**: [BIONIC_UNIT_SPEC.md](.context/specs/BIONIC_UNIT_SPEC.md) — the definitive human-AI augmentation mapping
+> **Bionic Unit Spec**: BIONIC_UNIT_SPEC.md — the definitive human-AI augmentation mapping
 
 ---
 
@@ -161,7 +161,7 @@ Clusters represent bundles of procedural knowledge that co-activate. When the at
 | 14 | Sovereign Safety | `circuit-breaker` + `context-compactor` | Safety |
 | 15 | Problem-Solving Engine | P504 + P115 + P505 + P506 + `red-team-review` | Reasoning |
 
-Full cluster details: [CLUSTER_INDEX.md](.agent/CLUSTER_INDEX.md)
+Full cluster details: CLUSTER_INDEX.md
 
 ### Inventory
 

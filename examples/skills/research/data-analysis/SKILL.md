@@ -157,4 +157,4 @@ python3 .agent/scripts/auto_file_insights.py \
 
 ## Reference
 
-- [CS-552: Tuition Market Data Archaeology](./.context/memories/case_studies/CS-552-tuition-market-data-archaeology.md) — First use case that exposed the need for this skill
+- CS-552: Tuition Market Data Archaeology — First use case that exposed the need for this skill

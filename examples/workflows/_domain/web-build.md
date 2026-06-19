@@ -7,7 +7,7 @@ source: CS-540 (Luke Carter Anti-Slop Pipeline Steal)
 # /web-build — Premium Website Build Pipeline
 
 > **Philosophy**: Separation of concerns. Design AI ≠ Coding AI. Copy drives design, not the reverse.
-> **Source**: [CS-540](file:///Users/[AUTHOR]/Project%20Athena/.context/memories/case_studies/CS-540-anti-slop-website-pipeline-steal.md)
+> **Source**: CS-540
 
 ## Prerequisites
 

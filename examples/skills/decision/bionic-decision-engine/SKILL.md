@@ -165,6 +165,6 @@ ECO-033 (Principal-Agent Problem)
 
 ## References
 
-- [META_PATTERNS.md](./.context/META_PATTERNS.md) — The 14 universal laws
-- [trading-risk-gate](./.agent/skills/trading-risk-gate/SKILL.md) — Capital-specific ruin gate (delegates to this engine for non-trading decisions)
-- [red-team-review](./.agent/skills/red-team-review/SKILL.md) — Adversarial review of decision quality
+- META_PATTERNS.md — The 14 universal laws
+- [trading-risk-gate](../../therapeutic-ifs/SKILL.md) — Capital-specific ruin gate (delegates to this engine for non-trading decisions)
+- [red-team-review](../../therapeutic-ifs/SKILL.md) — Adversarial review of decision quality

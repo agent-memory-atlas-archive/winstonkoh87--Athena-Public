@@ -111,6 +111,6 @@ Track active daemons in `.agent/temp/daemons.json`:
 
 ## References
 
-- [/async-dev](./.agent/workflows/async-dev.md) — Sleeper Agent Protocol
-- [/needful](./.agent/workflows/needful.md) — Autonomous best-judgment action
-- [/reindex](./.agent/workflows/reindex.md) — Supabase memory sync
+- [/async-dev](../../../workflows/async-dev.md) — Sleeper Agent Protocol
+- [/needful](../../../workflows/needful.md) — Autonomous best-judgment action
+- [/reindex](../../../workflows/reindex.md) — Supabase memory sync

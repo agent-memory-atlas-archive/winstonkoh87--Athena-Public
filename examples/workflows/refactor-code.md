@@ -5,7 +5,7 @@ description: Apply the Diagnostic-First Refactoring protocol to a specific file 
 # /refactor-code — Code Hygiene & Optimization
 
 > **Trigger**: `/refactor-code <filename>`
-> **Skill**: [Diagnostic-First Refactoring](file:///Users/[AUTHOR]/Athena-Public/examples/skills/research/synthetic-parallel-reasoning/SKILL.md)
+> **Skill**: [Diagnostic-First Refactoring](../skills/therapeutic-ifs/SKILL.md)
 > **Source**: r/vibecoding pattern.
 
 ## Philosophy

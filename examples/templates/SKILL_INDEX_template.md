@@ -12,10 +12,10 @@
 
 ## Research
 
-- [examples/protocols/research/52-deep-research-loop.md](../protocols/research/52-deep-research-loop.md)
-- [examples/protocols/research/54-cyborg-methodology.md](../protocols/research/54-cyborg-methodology.md)
-- [../research/67-cross-pollination.md](../protocols/research/67-cross-pollination.md)
-- [examples/protocols/research/70-agentic-absorption.md](../protocols/research/70-agentic-absorption.md)
+- [examples/protocols/research/52-deep-research-loop.md](../protocols/research/RSC-52-deep-research-loop.md)
+- [examples/protocols/research/54-cyborg-methodology.md](../protocols/research/RSC-54-cyborg-methodology.md)
+- [../research/67-cross-pollination.md](../protocols/research/RSC-67-cross-pollination.md)
+- [examples/protocols/research/70-agentic-absorption.md](../protocols/research/RSC-70-agentic-absorption.md)
 
 ## Psychology
 
@@ -51,37 +51,37 @@
 
 - **../case-studies/27-sg-healthcare-de-facto.md**
 - **../case-studies/33-chia-boon-teck-case.md**
-- [CS-052-naive-idealism-tax.md](../../.agent/skills/protocols/creation/052-lateral-innovation-engine.md)
+- CS-052-naive-idealism-tax.md
 
 ## Safety
 
-- [../safety/48-circuit-breaker-systemic.md](../protocols/safety/48-circuit-breaker-systemic.md)
-- [../safety/68-anti-karason-protocol.md](../protocols/safety/68-anti-karason-protocol.md)
+- [../safety/48-circuit-breaker-systemic.md](../protocols/safety/SAF-48-circuit-breaker-systemic.md)
+- [../safety/68-anti-karason-protocol.md](../protocols/safety/SAF-68-anti-karason-protocol.md)
 - **../safety/80-citadel-recovery-architecture.md**
 
 ## Architecture
 
 - [examples/protocols/architecture/101-compaction-recovery.md](../protocols/architecture/_archived/101-compaction-recovery.md)
-- [examples/protocols/architecture/102-skills-architecture.md](../protocols/architecture/102-skills-architecture.md)
-- [examples/protocols/architecture/24-modular-architecture.md](../protocols/architecture/24-modular-architecture.md)
-- [77-adaptive-latency-architecture.md](../protocols/architecture/77-adaptive-latency-architecture.md)
+- [examples/protocols/architecture/102-skills-architecture.md](../protocols/architecture/ARC-102-skills-architecture.md)
+- [examples/protocols/architecture/24-modular-architecture.md](../protocols/architecture/ARC-24-modular-architecture.md)
+- [77-adaptive-latency-architecture.md](../protocols/architecture/ARC-77-adaptive-latency-architecture.md)
 - [examples/protocols/architecture/85-token-hygiene.md](../protocols/architecture/_archived/85-token-hygiene.md)
-- [examples/protocols/architecture/87-container-sandboxing.md](../protocols/architecture/87-container-sandboxing.md)
+- [examples/protocols/architecture/87-container-sandboxing.md](../protocols/architecture/ARC-87-container-sandboxing.md)
 - [examples/protocols/architecture/89-hybrid-token-conservation.md](../protocols/architecture/_archived/89-hybrid-token-conservation.md)
 - **examples/protocols/architecture/93-forward-only-architecture.md**
-- [examples/protocols/architecture/96-latency-indicator.md](../protocols/architecture/96-latency-indicator.md)
-- [examples/protocols/architecture/98-depth-vs-width-theory.md](../protocols/architecture/98-depth-vs-width-theory.md)
+- [examples/protocols/architecture/96-latency-indicator.md](../protocols/architecture/ARC-96-latency-indicator.md)
+- [examples/protocols/architecture/98-depth-vs-width-theory.md](../protocols/architecture/ARC-98-depth-vs-width-theory.md)
 
 ## Workflow
 
-- [examples/protocols/workflow/109-promptography.md](../protocols/workflow/109-promptography.md)
+- [examples/protocols/workflow/109-promptography.md](../protocols/workflow/WFL-109-promptography.md)
 - **../workflow/53-adventure-mode.md**
-- [examples/protocols/workflow/62-co-thinking-interface.md](../protocols/workflow/62-co-thinking-interface.md)
-- [examples/protocols/workflow/69-iterative-siege.md](../protocols/workflow/69-iterative-siege.md)
+- [examples/protocols/workflow/62-co-thinking-interface.md](../protocols/workflow/WFL-62-co-thinking-interface.md)
+- [examples/protocols/workflow/69-iterative-siege.md](../protocols/workflow/WFL-69-iterative-siege.md)
 - [examples/protocols/workflow/72-proactive-extrapolation-framework.md](../protocols/workflow/_archived/72-proactive-extrapolation-framework.md)
-- [examples/protocols/workflow/73-contextual-pre-action-check.md](../protocols/workflow/73-contextual-pre-action-check.md)
-- [examples/protocols/workflow/74-iterative-creative-production.md](../protocols/workflow/74-iterative-creative-production.md)
-- [examples/protocols/workflow/81-forge-iteration.md](../protocols/workflow/81-forge-iteration.md)
+- [examples/protocols/workflow/73-contextual-pre-action-check.md](../protocols/workflow/WFL-73-contextual-pre-action-check.md)
+- [examples/protocols/workflow/74-iterative-creative-production.md](../protocols/workflow/WFL-74-iterative-creative-production.md)
+- [examples/protocols/workflow/81-forge-iteration.md](../protocols/workflow/WFL-81-forge-iteration.md)
 
 ## Decision
 
@@ -93,9 +93,9 @@
 - **../decision/14-rsi-integrity.md**
 - [../decision/38-synthetic-deep-think.md](../protocols/decision/_archived/38-synthetic-deep-think.md)
 - [../decision/40-frame-vs-structural-problem.md](../protocols/decision/_archived/40-frame-vs-structural-problem.md)
-- [../decision/49-efficiency-robustness-tradeoff.md](../protocols/decision/49-efficiency-robustness-tradeoff.md)
-- [../decision/64-commitment-device-framework.md](../protocols/decision/64-commitment-device-framework.md)
-- [examples/protocols/decision/75-synthetic-parallel-reasoning.md](../protocols/decision/75-synthetic-parallel-reasoning.md)
+- [../decision/49-efficiency-robustness-tradeoff.md](../protocols/decision/DEC-49-efficiency-robustness-tradeoff.md)
+- [../decision/64-commitment-device-framework.md](../protocols/decision/DEC-64-commitment-device-framework.md)
+- [examples/protocols/decision/75-synthetic-parallel-reasoning.md](../protocols/decision/DEC-75-synthetic-parallel-reasoning.md)
 - [../decision/94-bionic-cognitive-pipeline.md](../protocols/decision/_archived/94-bionic-cognitive-pipeline.md)
 
 ## Communication
@@ -141,15 +141,15 @@
 ## Pattern Detection
 
 - **../pattern-detection/15-divine-call-trap.md**
-- [../pattern-detection/16-graph-of-thoughts-theory.md](../protocols/pattern-detection/16-graph-of-thoughts-theory.md)
-- [../pattern-detection/17-three-timeline-got.md](../protocols/pattern-detection/17-three-timeline-got.md)
-- [../pattern-detection/18-probabilistic-analysis-stack.md](../protocols/pattern-detection/18-probabilistic-analysis-stack.md)
-- [../pattern-detection/21-edge-case-reductio.md](../protocols/pattern-detection/21-edge-case-reductio.md)
+- [../pattern-detection/16-graph-of-thoughts-theory.md](../protocols/pattern-detection/PAT-16-graph-of-thoughts-theory.md)
+- [../pattern-detection/17-three-timeline-got.md](../protocols/pattern-detection/PAT-17-three-timeline-got.md)
+- [../pattern-detection/18-probabilistic-analysis-stack.md](../protocols/pattern-detection/PAT-18-probabilistic-analysis-stack.md)
+- [../pattern-detection/21-edge-case-reductio.md](../protocols/pattern-detection/PAT-21-edge-case-reductio.md)
 - **../pattern-detection/23-isomorphism-detection.md**
 - **../pattern-detection/30-arena-taxonomy.md**
-- [../pattern-detection/34-rigged-game-principle.md](../protocols/pattern-detection/34-rigged-game-principle.md)
-- [../pattern-detection/47-bs-detection.md](../protocols/pattern-detection/47-bs-detection.md)
-- [../pattern-detection/83-depth-principle.md](../protocols/pattern-detection/83-depth-principle.md)
-- [../pattern-detection/95-cynical-baseline.md](../protocols/pattern-detection/95-cynical-baseline.md)
-- [../pattern-detection/97-ai-slop-detection.md](../protocols/pattern-detection/97-ai-slop-detection.md)
-- [../pattern-detection/112-form-substance-gap.md](../protocols/pattern-detection/112-form-substance-gap.md)
+- [../pattern-detection/34-rigged-game-principle.md](../protocols/pattern-detection/PAT-34-rigged-game-principle.md)
+- [../pattern-detection/47-bs-detection.md](../protocols/pattern-detection/PAT-47-bs-detection.md)
+- [../pattern-detection/83-depth-principle.md](../protocols/pattern-detection/PAT-83-depth-principle.md)
+- [../pattern-detection/95-cynical-baseline.md](../protocols/pattern-detection/PAT-95-cynical-baseline.md)
+- [../pattern-detection/97-ai-slop-detection.md](../protocols/pattern-detection/PAT-97-ai-slop-detection.md)
+- [../pattern-detection/112-form-substance-gap.md](../protocols/pattern-detection/PAT-112-form-substance-gap.md)

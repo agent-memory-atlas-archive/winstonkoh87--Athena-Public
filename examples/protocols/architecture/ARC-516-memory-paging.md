@@ -66,5 +66,5 @@ The hippocampus does not passively store everything — it actively consolidates
 ## References
 
 - [MemGPT: Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560)
-- [Protocol 502: Context Lifecycle](502-context-lifecycle.md)
-- [Protocol 517: Homeostatic Pressure](517-homeostatic-pressure.md)
+- [Protocol 502: Context Lifecycle](ARC-502-context-lifecycle.md)
+- [Protocol 517: Homeostatic Pressure](ARC-517-homeostatic-pressure.md)

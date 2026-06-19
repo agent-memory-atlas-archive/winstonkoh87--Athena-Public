@@ -23,6 +23,7 @@ This document provides detailed release notes. For the brief summary, see the RE
 - **Factual Corrections (README + schema)**: Embedding dimension `768` → **`3072`** (matched `MASTER_SCHEMA.sql` `vector(3072)`); reranker label `FlashRank` → **cross-encoder** (matched `reranker.py`/CAPABILITIES); schema vector-model comment `text-embedding-3-large` → **`gemini-embedding-001`**.
 - **Model Version Sync**: Current-state references `Claude Opus 4.7` → **`4.8`** across all public surfaces (historical changelog entries preserved).
 - **Count Reconciliation**: README shipped-count claims aligned to actual `examples/` contents — **152 protocols / 16 categories**, **39 skills**, **163 reference scripts** (were 160+/24, 38–40, 165).
+- **Internal Link Integrity Sweep**: Repaired **473 broken internal links** (~49% of all links) down to **0 real breaks** (remaining flagged links are wiki-relative and resolve on the GitHub wiki). Root causes fixed: (a) protocol-rename drift — old numeric links (`75-…`) remapped to the prefixed scheme (`DEC-75-…`, `VER-171-…`, `WFL-130-…`); (b) **141 leaked `file:///Users/…` absolute paths** converted to relative links or delinked; (c) removed duplicate `wiki/` and `docs/wiki/` trees (canonical wiki is `Athena-Public.wiki/`); (d) fixed a scrub-corrupted portfolio URL in `docs/protocols/content/220`.
 - **Date Bump**: All touched docs updated to 19 June 2026.
 
 ---

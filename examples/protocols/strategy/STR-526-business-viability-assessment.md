@@ -141,9 +141,9 @@ This stack has been applied across:
 
 ## Related Protocols
 
-- [Protocol 162: PMOD](162-product-market-operations-fit.md) — Complementary; P162 validates operational sequence, P526 validates economic viability
-- [Protocol 511: Business Viability Trinity](511-business-viability-trinity.md) — Buyer × Demand × Niche (pre-filter); P526 is the deeper follow-up
-- [Protocol 330: Economic Expected Value](../decision/330-economic-expected-value.md) — Use EEV to weight qualitative factors alongside the Pro Forma
+- [Protocol 162: PMOD](STR-162-product-market-operations-fit.md) — Complementary; P162 validates operational sequence, P526 validates economic viability
+- [Protocol 511: Business Viability Trinity](STR-511-business-viability-trinity.md) — Buyer × Demand × Niche (pre-filter); P526 is the deeper follow-up
+- [Protocol 330: Economic Expected Value](../decision/DEC-330-economic-expected-value.md) — Use EEV to weight qualitative factors alongside the Pro Forma
 
 ---
 

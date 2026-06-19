@@ -138,8 +138,8 @@ OUTPUT:
 
 ## Cross-References
 
-- [Protocol 504: Problem Framing](504-problem-framing.md)
-- [Protocol 519: Terminal Goal Elicitation](519-terminal-goal-elicitation.md)
+- [Protocol 504: Problem Framing](RSN-504-problem-framing.md)
+- [Protocol 519: Terminal Goal Elicitation](RSN-519-terminal-goal-elicitation.md)
 - **Protocol 514: Sovereign Safety Sequence**
 - [Therapeutic IFS Skill](../../skills/research/synthetic-parallel-reasoning/SKILL.md)
 

@@ -97,7 +97,7 @@ Before starting any "optimization" (learning pick-up, tweaking resumes, arguing 
 ## Integration
 
 - Use with **[Protocol 185: Premise Validation](_archived/185-premise-validation-gate.md)** (Gate 0).
-- Use with **[Protocol 188: STPP](188-stpp-timeline-projection.md)** for timeline comparison.
+- Use with **[Protocol 188: STPP](DEC-188-stpp-timeline-projection.md)** for timeline comparison.
 
 ---
 

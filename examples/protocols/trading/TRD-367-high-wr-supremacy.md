@@ -68,7 +68,7 @@ High WR / Low RR is invincible **if and only if** the maximum loss is structural
 
 - **Protocol 46: Trading Constraints**
 - **Protocol 243: The Delulu Gap**
-- [Protocol 193: Ergodicity Check](../decision/193-ergodicity-check.md)
+- [Protocol 193: Ergodicity Check](../decision/DEC-193-ergodicity-check.md)
 
 ## 5. Mathematical Proof: The Variance Collapse
 

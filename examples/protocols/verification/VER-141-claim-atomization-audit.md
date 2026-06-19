@@ -100,7 +100,7 @@ Aggregate verification results:
 |----------|--------------|
 | [Law #5: Epistemic Rigor](#) | This protocol operationalizes Law #5 |
 | [Protocol 140: Base Rate Audit](../decision/_archived/140-base-rate-audit.md) | Verify statistical claims against base rates |
-| [Protocol 75: Synthetic Parallel Reasoning](../decision/75-synthetic-parallel-reasoning.md) | Track B (Adversarial) naturally performs claim verification |
+| [Protocol 75: Synthetic Parallel Reasoning](../decision/DEC-75-synthetic-parallel-reasoning.md) | Track B (Adversarial) naturally performs claim verification |
 
 ---
 

@@ -236,10 +236,10 @@ Cynefin tells you *what domain you're in*. Protocol 525 tells the AI *how to beh
 
 ## Related Protocols
 
-- [Protocol 500: GTO Problem Solver](../decision/500-gto-problem-solver.md) — Final synthesis engine
-- [Protocol 501: Diagnostic Engine](../decision/501-diagnostic-engine.md) — Decomposition step
-- [Protocol 524: Conviction-Decisiveness Split](524-conviction-decisiveness-split.md) — Per-domain solving
-- [Protocol 330: Economic Expected Value](../decision/330-economic-expected-value.md) — EEV weighting
+- [Protocol 500: GTO Problem Solver](../decision/DEC-500-gto-problem-solver.md) — Final synthesis engine
+- [Protocol 501: Diagnostic Engine](../decision/DEC-501-diagnostic-engine.md) — Decomposition step
+- [Protocol 524: Conviction-Decisiveness Split](RSN-524-conviction-decisiveness-split.md) — Per-domain solving
+- [Protocol 330: Economic Expected Value](../decision/DEC-330-economic-expected-value.md) — EEV weighting
 - Core Identity: Law #1 (Ruin Veto) — Override gate
 
 ## References

@@ -119,7 +119,7 @@ If Gate 0 reveals a different upstream problem, Athena redirects — solving THA
 
 **The Stopping Rule**: Root cause analysis has its own failure mode — infinite regression. You can always go one level deeper ("why was the track built?" → "why does the city exist?" → heat death of the universe). The stopping rule: go deep enough that intervention is **actionable by this user, in this time horizon**. Identify the **most actionable root cause**, not the deepest. Surface both: *Root Cause (Long-Term) + Actionable Root (Immediate)*.
 
-> See: [Protocol 504: Problem Framing (6-Gate Framework)](../examples/protocols/reasoning/504-problem-framing.md)
+> See: [Protocol 504: Problem Framing (6-Gate Framework)](../examples/protocols/reasoning/RSN-504-problem-framing.md)
 
 ### How It Works: Pre-Work Convergence
 
@@ -211,13 +211,13 @@ Recommend → Red-Team → Decide → Execute → AAR → Calibrate → Improve
 
 This closed-loop system transforms Athena from a one-shot oracle into a **self-improving recommendation engine** that gets measurably better over time — but only if the user completes the loop. Skipping the AAR breaks the feedback cycle.
 
-> **The AAR is the highest-leverage step most users skip.** It answers: "Was Athena right?" at the systemic level — tracking not individual outcomes (which include luck) but *patterns of bias* across 10+ decisions (which reveal calibration errors). See: [Decision Journal — AAR Calibration Loop](../.agent/skills/decision-journal/SKILL.md).
+> **The AAR is the highest-leverage step most users skip.** It answers: "Was Athena right?" at the systemic level — tracking not individual outcomes (which include luck) but *patterns of bias* across 10+ decisions (which reveal calibration errors). See: [Decision Journal — AAR Calibration Loop](../examples/skills/therapeutic-ifs/SKILL.md).
 
 ### How It Works: The EEV Framework
 
 The methodology is solved. The pipeline:
 
-1. **Decompose** — Break the decision into sub-problems ([Protocol 501](../.agent/skills/protocols/decision/501-diagnostic-engine.md) / [525](../examples/protocols/reasoning/RSN-525-cross-domain-weighting.md))
+1. **Decompose** — Break the decision into sub-problems ([Protocol 501](../examples/protocols/decision/DEC-501-diagnostic-engine.md) / [525](../examples/protocols/reasoning/RSN-525-cross-domain-weighting.md))
 2. **Classify** — Assign each sub-problem to its domain type (deterministic → stochastic)
 3. **Solve** — Apply domain-appropriate reasoning to each sub-problem
 4. **Weight** — Combine sub-solutions using your personal utility function, not generic expected value
@@ -235,7 +235,7 @@ This is **MCDA (Multi-Criteria Decision Analysis) + EEV (Economic Expected Value
 
 Generic AI defaults to Level 1. A good human advisor operates at Level 2 with partial information. Athena operates at Level 2-3 — because the coupling data encodes your actual risk tolerance, regret patterns, and revealed preferences.
 
-> [Protocol 330 (Economic Expected Value) →](../examples/protocols/decision/330-economic-expected-value.md) · [Protocol 524 (Conviction-Decisiveness Split) →](../examples/protocols/reasoning/RSN-524-conviction-decisiveness-split.md)
+> [Protocol 330 (Economic Expected Value) →](../examples/protocols/decision/DEC-330-economic-expected-value.md) · [Protocol 524 (Conviction-Decisiveness Split) →](../examples/protocols/reasoning/RSN-524-conviction-decisiveness-split.md)
 
 ### The Emotional Load Spectrum
 

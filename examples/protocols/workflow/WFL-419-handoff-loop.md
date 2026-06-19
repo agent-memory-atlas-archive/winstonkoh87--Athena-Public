@@ -46,4 +46,4 @@ A dedicated, single-source-of-truth file located at `.context/wake_up.md`.
 ## Usage
 
 Included in `boot.py` sequence.
-See: [boot_handoff.py](../scripts/boot_handoff.py)
+See: [boot_handoff.py](../../scripts/boot_handoff.py)

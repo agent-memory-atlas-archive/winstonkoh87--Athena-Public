@@ -119,9 +119,9 @@ Each third option dissolves the original binary by decomposing "divorce" and "pr
 
 ## Related Protocols
 
-- [Protocol 504: Problem Framing](504-problem-framing.md) — Ensures the right problem is being solved before generating solutions
-- [Protocol 525: Cross-Domain Weighting](525-cross-domain-weighting.md) — Evaluates the expanded option set across all domains
-- [Protocol 330: Economic Expected Value](../decision/330-economic-expected-value.md) — Quantifies the EEV of each option including third choices
+- [Protocol 504: Problem Framing](RSN-504-problem-framing.md) — Ensures the right problem is being solved before generating solutions
+- [Protocol 525: Cross-Domain Weighting](RSN-525-cross-domain-weighting.md) — Evaluates the expanded option set across all domains
+- [Protocol 330: Economic Expected Value](../decision/DEC-330-economic-expected-value.md) — Quantifies the EEV of each option including third choices
 - Core Identity: Law #1 (Ruin Veto) — Override for genuine ruin paths
 
 ---

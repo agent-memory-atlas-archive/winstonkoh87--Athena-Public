@@ -32,7 +32,7 @@ graphrag_extracted: true
 
 ## 3. Project Scaffolding
 
-- **New Projects**: MUST follow **[Protocol 900](file:///Users/[AUTHOR]/Athena-Public/examples/protocols/coding/900-project-scaffolding.md)**.
+- **New Projects**: MUST follow **[Protocol 900](../../../../protocols/coding/COD-900-project-scaffolding.md)**.
 - **Structure**: `src/`, `tests/`, `docs/`, `.agent/`.
 
 ## 4. Hook Enforcement

@@ -60,7 +60,7 @@ The insight isn't something you asked for. It's something the **system's accumul
 
 > **What it does**: Automatically challenges your premises on every non-trivial query — before you see the output.
 
-[Protocol 75 (Synthetic Parallel Reasoning)](examples/protocols/decision/75-synthetic-parallel-reasoning.md) runs **four parallel tracks** on every complex query:
+[Protocol 75 (Synthetic Parallel Reasoning)](../../examples/protocols/decision/DEC-75-synthetic-parallel-reasoning.md) runs **four parallel tracks** on every complex query:
 
 | Track | Role | Q4 Function |
 |---|---|---|
@@ -111,7 +111,7 @@ You would never have Googled "casino loyalty churn SaaS" — because you didn't 
 
 > **Key Insight**: Innovation often comes from **importing solutions from adjacent domains**. Athena automates this by maintaining a searchable corpus across all your domains simultaneously.
 
-**Reference**: [Protocol 67: Cross-Pollination](examples/protocols/research/67-cross-pollination.md)
+**Reference**: [Protocol 67: Cross-Pollination](../../examples/protocols/research/RSC-67-cross-pollination.md)
 
 ---
 
@@ -121,7 +121,7 @@ You would never have Googled "casino loyalty churn SaaS" — because you didn't 
 
 The most dangerous failure mode isn't when the AI is wrong — it's when **both you and the AI agree on a flawed premise**. This is "Mutual Blindness" — a shared illusion that neither party can detect from inside the loop.
 
-[Protocol 171 (Cross-Model Validation)](examples/protocols/verification/171-cross-model-validation.md) breaks this by exporting key decisions to 3+ independent LLMs (trained on different data, with different biases) for adversarial red-team review. This is grounded in multi-agent debate research showing that diverse LLM ensembles improve factuality and reduce shared errors (Du et al., 2023; Liang et al., 2023):
+[Protocol 171 (Cross-Model Validation)](../../examples/protocols/verification/VER-171-cross-model-validation.md) breaks this by exporting key decisions to 3+ independent LLMs (trained on different data, with different biases) for adversarial red-team review. This is grounded in multi-agent debate research showing that diverse LLM ensembles improve factuality and reduce shared errors (Du et al., 2023; Liang et al., 2023):
 
 ```mermaid
 flowchart LR
@@ -292,8 +292,8 @@ The difference isn't intelligence — it's **infrastructure**. The LLM provides 
 | Document | What It Covers |
 |---|---|
 | [TRILATERAL_FEEDBACK.md](docs/TRILATERAL_FEEDBACK.md) | Full cross-model validation protocol with red-team prompts |
-| [Protocol 75: Synthetic Parallel Reasoning](examples/protocols/decision/75-synthetic-parallel-reasoning.md) | The 4-track adversarial reasoning engine |
-| [Protocol 171: Cross-Model Validation](examples/protocols/verification/171-cross-model-validation.md) | Multi-model consensus methodology |
+| [Protocol 75: Synthetic Parallel Reasoning](../../examples/protocols/decision/DEC-75-synthetic-parallel-reasoning.md) | The 4-track adversarial reasoning engine |
+| [Protocol 171: Cross-Model Validation](../../examples/protocols/verification/VER-171-cross-model-validation.md) | Multi-model consensus methodology |
 | [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md) | Hybrid RAG implementation powering memory retrieval |
 | [USER_DRIVEN_RSI.md](docs/USER_DRIVEN_RSI.md) | The bilateral improvement loop |
 | [Cognitive Architecture](docs/concepts/Cognitive_Architecture.md) | Psychological principles underlying the bionic model |

@@ -15,7 +15,7 @@ superseded_by: "System_Principles.md (§1-3, §5-9 were duplicates; §4, §28-31
 
 > **⚠️ This file is deprecated as of 2026-03-21.**
 >
-> All unique content has been merged into [System_Principles.md](file:///Users/[AUTHOR]/Project Athena/.framework/v8.2-stable/modules/System_Principles.md):
+> All unique content has been merged into [System_Principles.md](../../../../framework/System_Principles.md):
 > - §4 The Anchor Tax → System_Principles §28
 > - §9 Autonomic Workflows → System_Principles §29
 > - §10 Maintenance Diet → System_Principles §30

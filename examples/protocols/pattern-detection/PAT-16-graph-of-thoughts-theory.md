@@ -14,7 +14,7 @@ last_updated: 2025-12-31
 
 ## Date Added: 9 December 2025
 
-> **Related Protocol**: [17-three-timeline-got](17-three-timeline-got.md), [18-probabilistic-analysis-stack](18-probabilistic-analysis-stack.md)  
+> **Related Protocol**: [17-three-timeline-got](PAT-17-three-timeline-got.md), [18-probabilistic-analysis-stack](PAT-18-probabilistic-analysis-stack.md)  
 > **Full Implementation**: [38-synthetic-deep-think](../decision/_archived/38-synthetic-deep-think.md)
 
 ## 16.1 Core Distinction

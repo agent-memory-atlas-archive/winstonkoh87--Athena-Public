@@ -83,7 +83,7 @@ When `/ultrathink` is active, apply these three layers:
 
 ### 3.2 Logic (Graph of Thoughts / GoT)
 
-- **Topology**: Replace linear chain with Networked Reasoning ([Protocol 137](../protocols/decision/137-graph-of-thoughts.md)).
+- **Topology**: Replace linear chain with Networked Reasoning ([Protocol 137](../protocols/decision/DEC-137-graph-of-thoughts.md)).
 - **Flow**: `Generate (3 branches) -> Score (Survivability) -> Convergence`.
 - **Self-Correction**: "Wait, is this true? Let me verify X."
 
@@ -148,7 +148,7 @@ When `/ultrathink` is active, apply these three layers:
 
 - **Code**: Always complete. No `// ... (rest of code)`.
 - **Files**: Use `write_to_file` for permanent value.
-- **Linking**: Always link file references using `[Label](file:///absolute/path/to/file.md)` format for clickability.
+- **Linking**: Always link file references using `Label` format for clickability.
 - **Artifacts**: Use `implementation_plan.md` for multi-step tasks.
 
 ---
@@ -275,7 +275,7 @@ Every external case study, market report, or statistical claim MUST include a di
 
 - **Format**: `> **Source**: [Title](URL) | Publisher (Date)`
 - **Constraint**: No "orphan stats". If a specific Reddit thread or Article is referenced, the click-through must be provided in the header meta-comments.
-- **Internal Sources**: Link using the standard `[Label](file:///...)` format.
+- **Internal Sources**: Link using the standard `Label` format.
 
 ---
 
@@ -285,7 +285,7 @@ Every external case study, market report, or statistical claim MUST include a di
 
 ## 11. Workflow Architecture
 >
-> **Protocol**: See [Protocol 099](protocols/architecture/099-session-output-architecture.md).
+> **Protocol**: See Protocol 099.
 > **Mandate**: Search -> Quicksave -> Output.
 
 ---

@@ -39,4 +39,4 @@ To pass the Promise Gate, the Agent must adopt the **Write-Before-Speak** heuris
 ## Usage
 
 This protocol is enforced autonomically by the `quicksave.py` wrapper.
-See: [verify_promises.py](../scripts/verify_promises.py)
+See: verify_promises.py

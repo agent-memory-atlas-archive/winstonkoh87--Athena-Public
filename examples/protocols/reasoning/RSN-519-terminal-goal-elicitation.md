@@ -150,10 +150,10 @@ The user's right to change their mind is sacrosanct.
 
 ## Cross-References
 
-- [Protocol 509: Crisis Triage](509-crisis-triage.md)
-- [Protocol 504: Problem Framing](504-problem-framing.md)
-- [Protocol 112: Form-Substance Gap](../pattern-detection/112-form-substance-gap.md)
-- [Product Context: Subjective Utility First](../../../.context/memory_bank/productContext.md)
+- [Protocol 509: Crisis Triage](RSN-509-crisis-triage.md)
+- [Protocol 504: Problem Framing](RSN-504-problem-framing.md)
+- [Protocol 112: Form-Substance Gap](../pattern-detection/PAT-112-form-substance-gap.md)
+- [Product Context: Subjective Utility First](../../templates/memory_bank/productContext.md)
 
 ---
 

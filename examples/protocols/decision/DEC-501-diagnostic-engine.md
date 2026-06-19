@@ -300,10 +300,10 @@ Until tracked outcomes exist (recommendation → action → result → delta), t
 
 ## Cross-References
 
-- [Protocol 500: GTO Problem Solver](500-gto-problem-solver.md) — Downstream solver
-- [Protocol 121: MCDA / EEV / Pairwise](121-mcda-eev-framework.md) — Lightweight solver
-- [Protocol 330: EEV](330-economic-expected-value.md) — Value engine
-- [Protocol 193: Ergodicity Check](193-ergodicity-check.md) — Risk gate
+- [Protocol 500: GTO Problem Solver](DEC-500-gto-problem-solver.md) — Downstream solver
+- [Protocol 121: MCDA / EEV / Pairwise](DEC-121-mcda-eev-framework.md) — Lightweight solver
+- [Protocol 330: EEV](DEC-330-economic-expected-value.md) — Value engine
+- [Protocol 193: Ergodicity Check](DEC-193-ergodicity-check.md) — Risk gate
 
 ## Protocols Absorbed
 

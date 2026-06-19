@@ -328,7 +328,7 @@ Monitor: Any escalation = addiction forming → Initiate FFP ⚠️
 - [Protocol 111: Premise Audit](../decision/_archived/111-premise-audit.md)
 - **Protocol 113: Missing Baseline Model**
 - **Protocol 114: Emotionally biased Reality Distortion**
-- [Protocol 197: The Consigliere Protocol](../decision/197-consiglieri-protocol.md)
+- [Protocol 197: The Consigliere Protocol](../decision/DEC-197-consiglieri-protocol.md)
 - Psychology Profile: Your own L1-L5 schema mapping (private)
 
 ---

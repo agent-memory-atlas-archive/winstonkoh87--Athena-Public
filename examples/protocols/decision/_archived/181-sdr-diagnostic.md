@@ -177,7 +177,7 @@ Calculate SDR
 
 ## Integration
 
-- Use with [Protocol 180: Utility Function Analysis](../180-utility-function-analysis.md) for stakeholder mapping
+- Use with [Protocol 180: Utility Function Analysis](../DEC-180-utility-function-analysis.md) for stakeholder mapping
 - Use with [Protocol 40: Frame vs Structural Problem](40-frame-vs-structural-problem.md) for diagnosis
 - Feeds into table exit decisions per Law #2
 

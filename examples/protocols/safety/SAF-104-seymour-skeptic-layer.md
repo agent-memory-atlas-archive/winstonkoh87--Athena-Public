@@ -70,7 +70,7 @@ Add to `/circuit` ceremony:
 
 - [Case: Project Vend](#)
 - [/circuit](../../workflows/circuit.md)
-- [Protocol 47: BS Detection](../pattern-detection/47-bs-detection.md)
+- [Protocol 47: BS Detection](../pattern-detection/PAT-47-bs-detection.md)
 
 ---
 

@@ -10,9 +10,9 @@ This folder contains runnable demos to help you understand the core concepts.
 
 | # | Demo | What You'll Learn |
 |---|------|-------------------|
-| 1 | [hello_athena.py](./hello_athena.py) | Basic SDK usage — boot, save, end |
-| 2 | [semantic_search.py](./semantic_search.py) | Query your knowledge base |
-| 3 | [workflow_demo.py](./workflow_demo.py) | Using `/start`, `/end` workflows |
+| 1 | hello_athena.py | Basic SDK usage — boot, save, end |
+| 2 | [semantic_search.py](../../docs/SEMANTIC_SEARCH.md) | Query your knowledge base |
+| 3 | workflow_demo.py | Using `/start`, `/end` workflows |
 
 ---
 
