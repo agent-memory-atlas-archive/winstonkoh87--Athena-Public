@@ -6,7 +6,7 @@
 -- STATUS: PRODUCTION (2026-02-12)
 -- ARCHITECTURE:
 --   - Storage: Postgres Tables + JSONB Metadata
---   - Vector:  text-embedding-3-large (3072 dims)
+--   - Vector:  gemini-embedding-001 (3072 dims)
 --   - Index:   NONE (Exact Search) - due to pgvector < 0.5.0 limit (2000 dims)
 --   - Automation: Auto-Tagging Triggers (on Insert/Update)
 --

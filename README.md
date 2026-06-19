@@ -495,8 +495,8 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 | **IDE** | Antigravity |
 | **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.7 (Thinking) / GPT-5.5 (High) |
 | **SDK** | `athena` Python package (v9.9.1) |
-| **Search** | Hybrid RAG — FlashRank reranking + RRF fusion |
-| **Embeddings** | `gemini-embedding-001` (768-dim) |
+| **Search** | Hybrid RAG — chunk-level retrieval + cross-encoder rerank + RRF fusion |
+| **Embeddings** | `gemini-embedding-001` (3072-dim) |
 | **Memory** | Supabase + pgvector |
 | **Routing** | Risk-Proportional Triple-Lock — SNIPER / STANDARD / ULTRA |
 
