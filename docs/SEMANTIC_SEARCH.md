@@ -1,13 +1,16 @@
-# Semantic Search: Triple-Path Retrieval Architecture
+# Semantic Search: Parallel Hybrid Retrieval Architecture
 
-> **Last Updated**: 6 June 2026  
-> **Purpose**: How Athena finds and retrieves relevant context using three complementary methods
+> **Last Updated**: 19 June 2026  
+> **Purpose**: How Athena finds and retrieves relevant context by fusing multiple complementary channels
 
 ---
 
+> [!IMPORTANT]
+> **Update (19 June 2026)**: The "Triple-Path" model below is the conceptual foundation, but the production engine (`smart_search.py`) now fuses **multiple channels in parallel** via **Reciprocal Rank Fusion (RRF, k=60)**, then applies a **CrossEncoder reranker** and optional **live web grounding** (fused at weight 2.8). The three paths described here are three of those channels. See [ARCHITECTURE.md → Retrieval Stack](ARCHITECTURE.md#retrieval-stack), [VECTORRAG.md](VECTORRAG.md), and [RERANKER.md](RERANKER.md).
+
 ## Executive Summary
 
-Athena employs **Triple-Path Retrieval** to ensure no relevant context is missed. Each method catches what the others miss.
+Athena employs **Parallel Hybrid Retrieval** to ensure no relevant context is missed. Each channel catches what the others miss; results are fused by RRF and re-ranked.
 
 ```text
                               USER QUERY
@@ -65,7 +68,7 @@ Athena employs **Triple-Path Retrieval** to ensure no relevant context is missed
 > **Full Documentation**: [VECTORRAG.md](docs/VECTORRAG.md)
 
 ```bash
-# Reference: python3 scripts/supabase_search.py "<query>" --limit 5
+# Reference: python3 scripts/smart_search.py "<query>" --limit 5
 ```
 
 **How it works**:
@@ -142,7 +145,7 @@ Per Core Identity, **every query** triggers semantic context retrieval:
 ```text
 ┌──────────────────────────────────────────────────────────────────────┐
 │  STEP 1: Vector Search                                               │
-│  # Reference: python3 scripts/supabase_search.py "<query>" --limit 5       │
+│  # Reference: python3 scripts/smart_search.py "<query>" --limit 5       │
 ├──────────────────────────────────────────────────────────────────────┤
 │  STEP 2: Entity Lookup (if named entities detected)                  │
 │  grep -i "<entity_name>" .context/TAG_INDEX.md                       │

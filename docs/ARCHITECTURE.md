@@ -1,7 +1,7 @@
 # Athena — Architecture Reference
 
-> **Last Updated**: 17 Jun 2026
-> **Version**: v9.9.2
+> **Last Updated**: 19 Jun 2026
+> **Version**: v9.9.3
 > **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
 > **Bionic Unit Spec**: [BIONIC_UNIT_SPEC.md](.context/specs/BIONIC_UNIT_SPEC.md) — the definitive human-AI augmentation mapping
 
@@ -260,13 +260,15 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 ├── Full SDK search (parallel hybrid RRF + semantic cache)
 │   ├── Canonical search (CANONICAL.md keyword matching, min 2-hit)
 │   ├── Tag search (grep against TAG_INDEX shards)
-│   ├── Vector search (Supabase pgvector, 11 parallel RPCs, threshold ≥0.3)
+│   ├── Vector search (Supabase pgvector, chunk-level, exact scan, threshold ≥0.3)
 │   ├── ~~GraphRAG search~~ (REMOVED 2026-06-06 — stale 16 months, user directive)
 │   ├── Filename search (find across project root, keyword OR logic)
 │   ├── Framework docs search (keyword matching in .framework/ + memory_bank/)
 │   ├── SQLite search (local athena.db — files + tags)
+│   ├── Web grounding (live DDG scrape, opt-in --web, fused at RRF weight 2.8)
 │   └── Exocortex search (Wikipedia FTS5)
 ├── Fusion: Weighted RRF (k=60, per-type weights, dynamic score modifiers)
+├── Rerank: CrossEncoder (sentence-transformers) re-scores fused candidates
 ├── Telemetry: retrieval_log.jsonl (quality: hit/partial/miss, source distribution)
 └── Grep fallback (runs if full search times out)
     ├── CANONICAL.md

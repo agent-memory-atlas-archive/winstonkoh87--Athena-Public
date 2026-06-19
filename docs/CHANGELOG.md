@@ -1,10 +1,26 @@
 # Athena Changelog
 
-> **Last Updated**: 17 June 2026
+> **Last Updated**: 19 June 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.9.3 (19 June 2026)
+
+**Retrieval Stack r2**: Brought the public retrieval docs in line with the live engine — the largest retrieval-architecture update since GraphRAG's removal.
+
+### Key Changes
+
+- **Chunk-Level Embeddings**: Retrieval moved from one-vector-per-file to **chunk-level** embeddings — 4,000-character windows with 400-character overlap, stored in a `document_chunks` table (~5,700 chunks from ~850 source documents). Sharper local recall on large session logs and protocols. See [VECTORRAG.md → Chunk-Level Embeddings](VECTORRAG.md#chunk-level-embeddings).
+- **Embedding Model Migration**: `text-embedding-004` → **`gemini-embedding-001`** (3,072-dim).
+- **CrossEncoder Reranker**: Added a second-stage **CrossEncoder (sentence-transformers)** reranker that re-scores fused `(query, candidate)` pairs jointly after RRF. New doc: [RERANKER.md](RERANKER.md).
+- **Live Web Grounding**: Optional real-time web results (DuckDuckGo scrape) are now **fused into RRF** at weight 2.8, interleaving live facts with local memory rather than living in a separate tool.
+- **pgvector Exact-Scan Documented**: `ivfflat` is capped at 2,000 dims and is unavailable at 3,072 — Athena runs an **exact sequential scan** (sub-ms under ~10k records). Documented in VECTORRAG.md.
+- **Script Hygiene**: Purged stale GraphRAG scripts (`lightrag_wrapper.py`, `query_graphrag.py`) that contradicted the v9.9.1-gto GraphRAG removal. Doc script references corrected to `smart_search.py` / `sync.py`.
+- **Date Bump**: All touched docs updated to 19 June 2026.
 
 ---
 
