@@ -58,22 +58,10 @@ jobs:
           fi
           echo "✅ No private path leaks found."
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
       - name: Check for dead internal links
-        run: |
-          echo "🔍 Scanning for dead internal Markdown links..."
-          FAILED=0
-          # Find all relative .md links in markdown files
-          grep -roh '\[[^]]*\]([^)]*\.md[^)]*)' --include='*.md' . 2>/dev/null | \
-            sed 's/.*(\([^)]*\)).*/\1/' | \
-            grep -v '^http' | \
-            grep -v '^#' | \
-            grep -v '^file://' | \
-            sort -u | while read -r link; do
-              FILE=$(echo "$link" | sed 's/#.*//')
-              [ -z "$FILE" ] && continue
-              if [ ! -f "$FILE" ]; then
-                echo "⚠️  Dead link: $link"
-                FAILED=$((FAILED + 1))
-              fi
-          done
-          echo "✅ Internal link scan complete."
+        run: python3 .github/scripts/check_links.py
