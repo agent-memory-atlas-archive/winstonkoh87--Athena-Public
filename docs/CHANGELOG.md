@@ -20,6 +20,9 @@ This document provides detailed release notes. For the brief summary, see the RE
 - **Live Web Grounding**: Optional real-time web results (DuckDuckGo scrape) are now **fused into RRF** at weight 2.8, interleaving live facts with local memory rather than living in a separate tool.
 - **pgvector Exact-Scan Documented**: `ivfflat` is capped at 2,000 dims and is unavailable at 3,072 — Athena runs an **exact sequential scan** (sub-ms under ~10k records). Documented in VECTORRAG.md.
 - **Script Hygiene**: Purged stale GraphRAG scripts (`lightrag_wrapper.py`, `query_graphrag.py`) that contradicted the v9.9.1-gto GraphRAG removal. Doc script references corrected to `smart_search.py` / `sync.py`.
+- **Factual Corrections (README + schema)**: Embedding dimension `768` → **`3072`** (matched `MASTER_SCHEMA.sql` `vector(3072)`); reranker label `FlashRank` → **cross-encoder** (matched `reranker.py`/CAPABILITIES); schema vector-model comment `text-embedding-3-large` → **`gemini-embedding-001`**.
+- **Model Version Sync**: Current-state references `Claude Opus 4.7` → **`4.8`** across all public surfaces (historical changelog entries preserved).
+- **Count Reconciliation**: README shipped-count claims aligned to actual `examples/` contents — **152 protocols / 16 categories**, **39 skills**, **163 reference scripts** (were 160+/24, 38–40, 165).
 - **Date Bump**: All touched docs updated to 19 June 2026.
 
 ---

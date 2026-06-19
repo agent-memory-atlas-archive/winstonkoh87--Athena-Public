@@ -35,10 +35,10 @@ Reduce single-model blind spots by using multiple SOTA LLMs as adversarial peer 
 
 | Rank | Model | Score | Best For |
 |:---:|:---|:---:|:---|
-| 1 | Claude Opus 4.7 (Thinking) | 1503 | Deep structured reasoning (Athena primary) |
+| 1 | Claude Opus 4.8 (Thinking) | 1503 | Deep structured reasoning (Athena primary) |
 | 2 | Claude Opus 4.6 (Thinking) | 1502 | Extended context analysis |
 | 4 | Gemini 3.1 Pro (Preview) | 1492 | General reasoning, vision, planning |
-| 5 | Claude Opus 4.7 | 1491 | Code quality, architecture |
+| 5 | Claude Opus 4.8 | 1491 | Code quality, architecture |
 | 8 | GPT-5.5 (High) | 1484 | Adversarial peer review, creative tasks |
 | 9 | Grok 4.20 Beta | 1480 | Alternative perspective, fast reasoning |
 | 16 | Gemini 3 Flash | 1474 | Speed + quality balance (cost-optimal) |
@@ -47,7 +47,7 @@ Reduce single-model blind spots by using multiple SOTA LLMs as adversarial peer 
 
 | Model | Score | Blended $/M | License |
 |:------|:------|:------------|:--------|
-| Claude Opus 4.7 (Thinking) | 1503 | $20.00 | Proprietary |
+| Claude Opus 4.8 (Thinking) | 1503 | $20.00 | Proprietary |
 | Gemini 3.1 Pro (Preview) | 1492 | $9.50 | Proprietary |
 | Grok 4.20 (Reasoning) | 1477 | $5.00 | Proprietary |
 | Gemini 3 Flash | 1474 | $2.38 | Proprietary |
@@ -174,7 +174,7 @@ Quality = f(Primary Depth × Adversarial Diversity × Synthesis Discipline)
 
 ### Case Study 1: BCM Due Diligence
 
-**Primary (Opus 4.7)**:
+**Primary (Opus 4.8)**:
 
 - Failure probability: 15%
 - Best case probability: 20%
@@ -190,7 +190,7 @@ Quality = f(Primary Depth × Adversarial Diversity × Synthesis Discipline)
 
 ### Case Study 2: Child Aggression Response (28 Dec 2025)
 
-**Primary (Opus 4.7)**: Rated 9.5/10 response on behavioral psychology.
+**Primary (Opus 4.8)**: Rated 9.5/10 response on behavioral psychology.
 
 **After Cross-Validation (Gemini 3.1 Pro + GPT 5.5)**:
 

@@ -147,7 +147,7 @@ Kind of. But first, it helps to understand what those names actually refer to �
 | Layer | What It Is | Examples |
 |:------|:-----------|:--------|
 | **Platform** | The company that hosts the model and holds your data | OpenAI, Google, Anthropic |
-| **Reasoning Engine** | The AI model that does the thinking | GPT-5.5 (High), Gemini 3.1 Pro, Claude Opus 4.7 |
+| **Reasoning Engine** | The AI model that does the thinking | GPT-5.5 (High), Gemini 3.1 Pro, Claude Opus 4.8 |
 | **IDE / Interface** | The app you type in — connects to models and reads your files | Cursor, Antigravity, VS Code, Claude Code |
 
 When people say "ChatGPT remembers me," they mean the **platform** stores some memory on their cloud. When they say "Claude is smart," they mean the **model** reasons well. When they say "Cursor writes code," they mean the **IDE** connects model + files.
@@ -393,11 +393,11 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
 | 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/ARC-507-cognitive-systems.md) |
 | 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
-| 📋 **160+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 24 categories — [browse](examples/protocols/) |
+| 📋 **150+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, problem-solving) across 16 categories — [browse](examples/protocols/) |
 | ⚡ **68+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (7 channels, auto-ranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
-| 🧩 **40 Skills** | Domain-specialised bundles including 6 Uber-Skills (umbrella consolidations from 1,800+ sessions) — [browse](examples/skills/) |
+| 🧩 **39 Skills** | Domain-specialised bundles including 6 Uber-Skills (umbrella consolidations from 1,800+ sessions) — [browse](examples/skills/) |
 | 🪝 **Lifecycle Hooks** | Scriptable pre/post gates on every action — block destructive ops, enforce risk checks, log assets |
 | 🛡️ **Safety Rails** | Controls what the AI can and can't do autonomously (4 levels, from read-only to full agency) — [security](docs/SECURITY.md) |
 
@@ -465,7 +465,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 > Boot cost is 2K–20K tokens (depending on mode) — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
 
 > [!NOTE]
-> Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Opus 4.7, Gemini 3.1 Pro, GPT-5.5). Start with the free tier to test compatibility with your preferred model.
+> Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Opus 4.8, Gemini 3.1 Pro, GPT-5.5). Start with the free tier to test compatibility with your preferred model.
 
 > [!TIP]
 > **Save money getting started** *(updated May 2026)*. Google still offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers. If someone you know is on a Google AI Pro or Ultra plan, they can add you as a family member — for Ultra subscribers, this means splitting $249/mo across family members. Note that Antigravity quota is now **shared** across the family plan (no longer independent per member), so coordinate usage if multiple members are power users. **The practical cost of running Athena is ~$20/mo** on any Pro-tier plan — this gives you daily access to frontier models with comfortable headroom. Google enforces a **7-day rolling baseline** on Antigravity usage; paid plans (Pro/Ultra) refresh every 5 hours but heavy sprint sessions can trigger the weekly cap. Power users who run 8+ hours/day should budget for $200+/mo (Ultra/Max tier). <!-- pds:allow -->
@@ -493,7 +493,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 | Layer | Technology |
 |:------|:----------|
 | **IDE** | Antigravity |
-| **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.7 (Thinking) / GPT-5.5 (High) |
+| **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.8 (Thinking) / GPT-5.5 (High) |
 | **SDK** | `athena` Python package (v9.9.1) |
 | **Search** | Hybrid RAG — chunk-level retrieval + cross-encoder rerank + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (3072-dim) |
@@ -516,9 +516,9 @@ Athena-Public/
 ├── tools/                   # Declarative tool definitions (YAML)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
-│   ├── protocols/           # 160+ starter frameworks (24 categories)
-│   ├── scripts/             # 165 reference scripts
-│   ├── skills/              # 38 domain-specialised skills (6 categories)
+│   ├── protocols/           # 152 starter frameworks (16 categories)
+│   ├── scripts/             # 163 reference scripts
+│   ├── skills/              # 39 domain-specialised skills (6 categories)
 │   └── templates/           # Starter templates (framework, memory bank)
 ├── docs/                    # Architecture, benchmarks, security, guides
 └── pyproject.toml           # Modern packaging
@@ -529,7 +529,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
-- **v9.9.3** (Jun 19 2026): **Retrieval Stack r2** — Embeddings migrated to `gemini-embedding-001`; retrieval moved from document-level to **chunk-level** (4,000-char windows, 400 overlap, ~5,700 chunks); **CrossEncoder reranker** stage added after RRF fusion ([RERANKER.md](docs/RERANKER.md)); **live web grounding** fused into RRF at weight 2.8. pgvector exact-scan documented (ivfflat unavailable at 3,072 dims). Stale GraphRAG scripts purged.
+- **v9.9.3** (Jun 19 2026): **Retrieval Stack r2 + Fact Pass** — Embeddings migrated to `gemini-embedding-001`; retrieval moved from document-level to **chunk-level** (4,000-char windows, 400 overlap, ~5,700 chunks); **CrossEncoder reranker** stage added after RRF fusion ([RERANKER.md](docs/RERANKER.md)); **live web grounding** fused into RRF at weight 2.8. pgvector exact-scan documented (ivfflat unavailable at 3,072 dims). Stale GraphRAG scripts purged. **Fact corrections:** embedding dim 768→3072, reranker FlashRank→cross-encoder, schema model name fixed; model refs Opus 4.7→4.8; shipped counts reconciled (152 protocols/16 cats, 39 skills, 163 scripts).
 - **v9.9.2** (Jun 10 2026): **Privacy Hard Wall** — Deploy pipeline inverted from blocklist to allowlist (`public_manifest.example.yaml`): anything not explicitly listed never ships. New 3-gate `pre_deploy_scan.sh` (secrets, PII, blocked patterns) as mandatory pre-flight. Mechanical accountability surface added to `/start`, `/end`, `/ultrastart` (JSON-state commitment tracking, Grace Harper model).
 - **v9.9.1-gto** (Jun 6 2026): **GTO Self-Improvement** — GraphRAG formally removed (dead 16 months), cache.py atomic writes fixed, 4 skills migrated to Gen 3 format, 60 sessions compacted into archive, 9 data quality fixes across documentation. Search pipeline: 8→7 channels. All 86 tests pass.
 - **v9.9.1** (Jun 2 2026): **Search Engine Hardening** — Embedding starvation fix (+1,510 embeddings), lock contention fix in vectors.py, adaptive routing in search.py (357 lines rewritten). 4 new infrastructure scripts (evaluator, governance linter, memory reconciliation, count sync). Karpathy CLAUDE.md rules integrated. 44 privacy violations remediated.

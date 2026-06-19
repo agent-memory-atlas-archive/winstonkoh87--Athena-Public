@@ -33,7 +33,7 @@ Athena mitigates hallucination through a multi-layered defense system:
 │   LAYER 2: LMArena (Second Pass — Blind Taste Test)             │
 │   ─────────────────────────────────────────────────             │
 │   Feed v0.1 into rival SoTA models:                             │
-│   • Claude Opus 4.7                                             │
+│   • Claude Opus 4.8                                             │
 │   • Gemini 3.1 Pro                                              │
 │   Prompt: "Verify factual claims. Flag errors."                 │
 │                          ↓                                      │
@@ -67,7 +67,7 @@ The most robust check is **Cross-Model Adjudication**. No single model is infall
 ### The Method
 
 1. Take Athena's output (especially heuristic-based claims, projections, or methodologies)
-2. Feed it into rival frontier models (e.g., **Claude Opus 4.7**, **Gemini 3.1 Pro**)
+2. Feed it into rival frontier models (e.g., **Claude Opus 4.8**, **Gemini 3.1 Pro**)
 3. Use a verification prompt:
 
 ```

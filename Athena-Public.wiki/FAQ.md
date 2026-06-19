@@ -51,7 +51,7 @@ See the [Getting Started](Getting-Started) page for full details.
 
 ### 🧠 Can I use other models (OpenAI, Llama)?
 
-Athena is model-agnostic by design. It's optimized for **Gemini 3 Pro** and **Claude Opus 4.7** because of their large context windows, but the memory layer works with any LLM. That's the point — *own the state, rent the intelligence*.
+Athena is model-agnostic by design. It's optimized for **Gemini 3 Pro** and **Claude Opus 4.8** because of their large context windows, but the memory layer works with any LLM. That's the point — *own the state, rent the intelligence*.
 
 ### 📉 Does it hallucinate?
 
