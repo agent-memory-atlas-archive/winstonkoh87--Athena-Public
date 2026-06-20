@@ -44,26 +44,36 @@ GOD_MODE = True
 # Config
 # NOTE: Vector subtypes (case_study, session, protocol, etc.) each get their own
 # weight so RRF applies them correctly.
+# GTO Weight Calibration (2026-06-03 Opus Audit):
+#   - capability raised 1.8→2.8: skills are authoritative, were drowning under sessions
+#   - filename raised 2.0→2.5: exact filename hits should rank high for tool queries
+#   - session lowered 3.0→2.5: supplementary context, not primary for tool/skill queries
+#   - framework_docs kept 3.0: authoritative system documentation
 WEIGHTS = {
-    "case_study": 3.0,
-    "session": 3.0,
-    "protocol": 2.8,
+    # S527 ranking recalibration: system_doc / framework / framework_docs are
+    # ALREADY boot-loaded into context every session (Core_Identity, Output_Standards,
+    # CANONICAL, activeContext, etc.). Retrieving them is wasted ranking budget and
+    # crowds out the protocols/skills that are NOT already in context. Hard-lowered so
+    # retrieval surfaces the non-boot corpus. Protocol/capability lifted to win.
+    "case_study": 2.8,
+    "session": 2.5,
+    "protocol": 3.2,
+    "system_doc": 1.2,
+    "framework": 1.2,
+    "framework_docs": 1.2,
 
     "user_profile": 2.5,
-    "framework_docs": 2.5,
-    "framework": 2.3,
     "tags": 2.2,
-    "canonical": 2.0,
-    "filename": 2.0,
+    "canonical": 1.2,
+    "filename": 2.5,
     "vector": 1.8,
-    "capability": 1.8,
+    "capability": 3.2,
     "playbook": 1.8,
-    "workflow": 1.8,
+    "workflow": 2.0,
     "entity": 1.8,
     "reference": 1.8,
-    "system_doc": 1.8,
     "sqlite": 1.5,
-    "exocortex": 1.5,
+    "web_search": 2.8,
 }
 RRF_K = 60
 CONFIDENCE_HIGH = 0.03
@@ -79,7 +89,6 @@ SKIP_PATHS = [
 ]
 
 # GraphRAG paths — REMOVED (GTO fix 2026-06-06: stale since Feb 2025, dead channel)
-# CHROMA_DIR removed — chroma_db never existed on disk (GTO fix 2026-03-26)
 
 # --- Collection Functions ---
 
@@ -223,31 +232,36 @@ def collect_vectors(
                 path = path.split("?")[0]
 
             # Domain filtering: skip items from excluded domains
-            item_domain = item.get("metadata", {}).get("domain", "technical")
+            item_domain = item.get("metadata", {}).get("domain", "technical") if item.get("metadata") else "technical"
             if item_domain in exclude_domains:
                 continue
+
+            chunk_idx = item.get("metadata", {}).get("chunk_index") if item.get("metadata") else None
+            chunk_suffix = f" (Chunk {chunk_idx})" if chunk_idx is not None else ""
 
             # Dynamic Title/ID construction
             item_id = (
                 item.get("title")
-                or item.get("metadata", {}).get("name")
-                or item.get("metadata", {}).get("code")
-                or item.get("metadata", {}).get("entity_name")
-                or item.get("metadata", {}).get("filename")
+                or (item.get("metadata", {}).get("name") if item.get("metadata") else None)
+                or (item.get("metadata", {}).get("code") if item.get("metadata") else None)
+                or (item.get("metadata", {}).get("entity_name") if item.get("metadata") else None)
+                or (item.get("metadata", {}).get("filename") if item.get("metadata") else None)
                 or f"{type_label}"
             )
             if type_label == "protocol":
-                item_id = f"Protocol {item.get('metadata', {}).get('code')}: {item.get('metadata', {}).get('name')}"
+                item_id = f"Protocol {item.get('metadata', {}).get('code') if item.get('metadata') else ''}: {item.get('metadata', {}).get('name') if item.get('metadata') else ''}"
             elif type_label == "session":
-                item_id = f"Session {item.get('metadata', {}).get('date')}: {item.get('title')}"
+                item_id = f"Session {item.get('metadata', {}).get('date') if item.get('metadata') else ''}: {item.get('title')}"
             elif type_label == "case_study":
                 item_id = f"Case Study: {item.get('title')}"
+
+            item_id = f"{item_id}{chunk_suffix}"
 
             # Content extraction
             content = (
                 item.get("content")
-                or item.get("metadata", {}).get("summary")
-                or item.get("metadata", {}).get("description")
+                or (item.get("metadata", {}).get("summary") if item.get("metadata") else None)
+                or (item.get("metadata", {}).get("description") if item.get("metadata") else None)
                 or ""
             )
 
@@ -261,8 +275,9 @@ def collect_vectors(
                         "path": path,
                         "type": type_label,
                         "id": item.get("id"),
-                        "code": item.get("metadata", {}).get("code"),
-                        "tags": item.get("metadata", {}).get("tags") or [],
+                        "code": item.get("metadata", {}).get("code") if item.get("metadata") else None,
+                        "tags": (item.get("metadata", {}).get("tags") if item.get("metadata") else None) or [],
+                        "chunk_index": chunk_idx,
                     },
                 )
             )
@@ -335,6 +350,9 @@ def collect_filenames(query: str) -> list[SearchResult]:
                 :20
             ]  # Take a few more candidates, filter later
             for line in lines:
+                # Never surface archived/frozen content (S527 pollution guard).
+                if "/archive" in line.replace("\\", "/"):
+                    continue
                 if line.strip() and line not in seen_paths:
                     seen_paths.add(line)
                     full_path = PROJECT_ROOT / line
@@ -372,6 +390,9 @@ def collect_framework_docs(query: str) -> list[SearchResult]:
     try:
         # Use grep -rl to find files containing any keyword, then score by density
         for md_file in framework_dir.rglob("*.md"):
+            # Never surface archived/frozen content (S527 pollution guard).
+            if "/archive" in str(md_file).replace("\\", "/"):
+                continue
             try:
                 text = md_file.read_text(encoding="utf-8")[:5000]  # First 5k chars
                 text_lower = text.lower()
@@ -425,6 +446,41 @@ def collect_framework_docs(query: str) -> list[SearchResult]:
                         results.append(
                             SearchResult(
                                 id=f"MemoryBank: {md_file.name}",
+                                content=best_line[:200] if best_line else text[:200],
+                                source="framework_docs",
+                                score=min(density, 1.0),
+                                metadata={
+                                    "path": str(md_file.relative_to(PROJECT_ROOT))
+                                },
+                            )
+                        )
+                except Exception:
+                    pass
+
+        # Also search root files directly in .context (non-recursively)
+        context_dir = PROJECT_ROOT / ".context"
+        if context_dir.exists():
+            for md_file in context_dir.glob("*.md"):
+                try:
+                    text = md_file.read_text(encoding="utf-8")[:3000]
+                    text_lower = text.lower()
+                    hits = sum(1 for k in keywords if k.lower() in text_lower)
+                    if hits >= min(2, len(keywords)):
+                        best_line = ""
+                        best_score = 0
+                        for line in text.splitlines():
+                            line_lower = line.lower()
+                            line_hits = sum(
+                                1 for k in keywords if k.lower() in line_lower
+                            )
+                            if line_hits > best_score:
+                                best_score = line_hits
+                                best_line = line.strip()
+
+                        density = hits / len(keywords)
+                        results.append(
+                            SearchResult(
+                                id=f"ContextDoc: {md_file.name}",
                                 content=best_line[:200] if best_line else text[:200],
                                 source="framework_docs",
                                 score=min(density, 1.0),
@@ -509,48 +565,54 @@ def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
     return results
 
 
-def collect_exocortex(query: str, limit: int = 5) -> list[SearchResult]:
-    """Search the Exocortex (Wikipedia Abstracts) via SQLite FTS5."""
-    import sqlite3
-
-    # Hardcoded path to standard location
-    db_path = PROJECT_ROOT / ".context" / "knowledge" / "exocortex.db"
-
-    if not db_path.exists():
-        return []
-
+def collect_web_search(query: str, limit: int = 5) -> list[SearchResult]:
+    """Ground query using live Google/DuckDuckGo Web Search (RRF-fused channel)."""
+    import urllib.parse
+    import html
+    import re
     results = []
     try:
-        conn = sqlite3.connect(str(db_path))
-        conn.row_factory = sqlite3.Row
-        cursor = conn.cursor()
+        import requests
+        url = f"https://html.duckduckgo.com/html/?q={urllib.parse.quote(query)}"
+        headers = {"User-Agent": "Mozilla/5.0"}
+        r = requests.get(url, headers=headers, timeout=6)
+        if r.status_code != 200:
+            return []
 
-        # Sanitize term for FTS5
-        # Tokenize and wrap in quotes to prevent column syntax interpretation (e.g. 1:1)
-        # "trend" "continuation" "1:1"
-        tokens = [f'"{token.replace(chr(34), chr(34)*2)}"' for token in query.split()]
-        clean_query = " ".join(tokens)
-
-        # FTS query syntax
-        sql = "SELECT title, abstract, url FROM abstracts WHERE title MATCH ? OR abstract MATCH ? ORDER BY rank LIMIT ?"
-
-        cursor.execute(sql, (clean_query, clean_query, limit))
-
-        for row in cursor.fetchall():
-            results.append(
-                SearchResult(
-                    id=f"Exocortex:{row['title']}",
-                    content=f"{row['abstract'][:300]}...",
-                    source="exocortex",
-                    score=1.0,  # FTS rank is internal, we normalize flat here
-                    metadata={"url": row["url"]},
+        # Split by the result div tag to handle nested tags robustly
+        blocks = r.text.split('<div class="result results_links results_links_deep web-result')
+        for block in blocks[1:limit+1]:
+            # Extract title
+            title_match = re.search(r'<a[^>]*class="result__a"[^>]*>(.*?)</a>', block, re.DOTALL)
+            # Extract snippet
+            snippet_match = re.search(r'<a[^>]*class="result__snippet"[^>]*>(.*?)</a>', block, re.DOTALL)
+            # Extract URL
+            url_match = re.search(r'class="result__url" href="(.*?)"', block, re.DOTALL)
+            
+            if title_match and snippet_match and url_match:
+                title = re.sub(r'<[^>]+>', '', title_match.group(1)).strip()
+                snippet = re.sub(r'<[^>]+>', '', snippet_match.group(1)).strip()
+                # Clean up HTML entities
+                title = html.unescape(title)
+                snippet = html.unescape(snippet)
+                
+                # Extract target URL from DuckDuckGo redirect
+                raw_url = url_match.group(1)
+                parsed_url = urllib.parse.urlparse(raw_url)
+                queries = urllib.parse.parse_qs(parsed_url.query)
+                target_url = queries.get("uddg", [raw_url])[0]
+                
+                results.append(
+                    SearchResult(
+                        id=f"Web: {title}",
+                        content=snippet,
+                        source="web_search",
+                        score=1.0 - (len(results) * 0.1),
+                        metadata={"path": target_url},
+                    )
                 )
-            )
-
-        conn.close()
-    except Exception as e:
-        print(f"   ⚠️ Exocortex search failed: {e}", file=sys.stderr)
-
+    except Exception:
+        pass
     return results
 
 
@@ -593,10 +655,11 @@ def run_search(
     query: str,
     limit: int = 10,
     strict: bool = False,
-    rerank: bool = False,
+    rerank: bool = True,  # default-on for programmatic/agent callers; crash-safe no-op if sentence_transformers unavailable
     debug: bool = False,
     json_output: bool = False,
     include_personal: bool = False,
+    web: bool = False,
 ):
     import time
     t0 = time.time()
@@ -682,26 +745,28 @@ def run_search(
                     print(f"   ⚠️ {name} task failed: {e}", file=sys.stderr)
                     return []
 
+            # Live channels (2026-06-19): "tags" and "exocortex" retired — both were
+            # dead on disk (TAG_INDEX moved to .context/archive/; exocortex.db absent).
+            # Vector is the ONLY semantic channel; the rest are lexical. See TECH_DEBT.md.
             collection_tasks = {
                 "canonical": lambda: collect_canonical(query),
-                "tags": lambda: collect_tags(query),
-
                 "vector": lambda: collect_vectors(
                     query, embedding=query_embedding, exclude_domains=exclude_domains
                 ),
                 "sqlite": lambda: collect_sqlite(query),
                 "filename": lambda: collect_filenames(query),
                 "framework_docs": lambda: collect_framework_docs(query),
-                "exocortex": lambda: collect_exocortex(query),
             }
+            if web:
+                collection_tasks["web_search"] = lambda: collect_web_search(query, limit=limit)
 
             lists = {}
             with ThreadPoolExecutor(max_workers=len(collection_tasks)) as executor:
-                # 1. Start all non-vector tasks in parallel
+                # 1. Start all non-vector, non-web tasks in parallel
                 future_to_source = {
                     executor.submit(safe_exec, source, func): source
                     for source, func in collection_tasks.items()
-                    if source != "vector"
+                    if source not in ["vector", "web_search"]
                 }
 
                 # 2. Wait for non-vector tasks to complete (local processes are very fast)
@@ -732,7 +797,7 @@ def run_search(
 
                 # Check if we have high-confidence local hits (score >= 0.8)
                 has_local_hits = False
-                for source in ["canonical", "tags", "sqlite", "filename", "framework_docs"]:
+                for source in ["canonical", "sqlite", "filename", "framework_docs"]:
                     if any(doc.score >= 0.8 for doc in lists.get(source, [])):
                         has_local_hits = True
                         break
@@ -743,17 +808,21 @@ def run_search(
                     if not json_output:
                         print("   ⚡ Low Entropy Query with Local Hits: Skipping deep vector retrieval")
 
-                if needs_vector:
-                    # Launch vector search
-                    future_vector = executor.submit(safe_exec, "vector", collection_tasks["vector"])
-                    try:
-                        # Vector search timeout: 10s God Mode, 12s standard
-                        timeout = 10 if GOD_MODE else 12
-                        lists["vector"] = future_vector.result(timeout=timeout)
-                    except Exception as e:
-                        if not json_output:
-                            print(f"   ⚠️ vector search timed out or failed: {e}", file=sys.stderr)
-                        lists["vector"] = []
+                if needs_vector or ("web_search" in collection_tasks):
+                    futures = {}
+                    if needs_vector:
+                        futures["vector"] = executor.submit(safe_exec, "vector", collection_tasks["vector"])
+                    if "web_search" in collection_tasks:
+                        futures["web_search"] = executor.submit(safe_exec, "web_search", collection_tasks["web_search"])
+                    
+                    for source, fut in futures.items():
+                        try:
+                            timeout = 10 if GOD_MODE else 12
+                            lists[source] = fut.result(timeout=timeout)
+                        except Exception as e:
+                            if not json_output:
+                                print(f"   ⚠️ {source} timed out or failed: {e}", file=sys.stderr)
+                            lists[source] = []
 
             # 2. Fuse
             # Split vector results by their type-specific source for correct
@@ -942,6 +1011,15 @@ if __name__ == "__main__":
     parser.add_argument("--rerank", action="store_true")
     parser.add_argument("--debug", action="store_true")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--web", action="store_true", help="Enable live web search grounding channel")
     args = parser.parse_args()
 
-    run_search(args.query, args.limit, args.strict, args.rerank, args.debug, args.json)
+    run_search(
+        args.query,
+        args.limit,
+        args.strict,
+        args.rerank,
+        args.debug,
+        args.json,
+        web=args.web,
+    )

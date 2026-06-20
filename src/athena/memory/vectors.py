@@ -11,6 +11,7 @@ import sys
 import hashlib
 import json
 import random
+import sqlite3
 import threading
 import tempfile
 from pathlib import Path
@@ -53,70 +54,106 @@ def get_client() -> Any:
 
 
 class PersistentEmbeddingCache:
-    """JSON-backed persistent cache with Thread-Safe Atomic Writes and Background Saving."""
+    """SQLite-backed embedding cache (drop-in replacement for the old JSON cache).
 
-    def __init__(self, filename="embedding_cache.json"):
-        # Correct pathing via project discovery
+    The previous design kept every embedding in one JSON file that was loaded into RAM
+    at startup and rewritten wholesale on each save — O(n) per write, O(n^2) under bulk
+    load, growing unbounded (177MB+). SQLite gives O(1) INSERT OR REPLACE, O(1) keyed
+    lookup, WAL crash-safety, and never rewrites the whole store.
+
+    Public API is unchanged: get(hash) / set(hash, emb) / set_many({hash: emb}).
+    On first use it transparently imports the legacy embedding_cache.json (if present)
+    and renames it to *.migrated, so the import runs exactly once and the old file is
+    kept as a backup.
+    """
+
+    def __init__(self, filename: str = "embedding_cache.json"):
         from athena.core.config import AGENT_DIR
 
-        self.cache_file = AGENT_DIR / "state" / filename
+        state_dir = AGENT_DIR / "state"
+        state_dir.mkdir(parents=True, exist_ok=True)
+        self.legacy_json = state_dir / filename
+        self.db_path = state_dir / "embedding_cache.db"
         self.lock = threading.Lock()
-        self._cache: Dict[str, List[float]] = {}
-        self._dirty = False
-        self._load()
+        # check_same_thread=False: the cache is shared across the sync's worker threads;
+        # every access is serialized by self.lock, so single-connection use stays safe.
+        self._conn = sqlite3.connect(str(self.db_path), check_same_thread=False)
+        with self.lock:
+            self._conn.execute("PRAGMA journal_mode=WAL")
+            self._conn.execute("PRAGMA synchronous=NORMAL")
+            self._conn.execute(
+                "CREATE TABLE IF NOT EXISTS embeddings "
+                "(hash TEXT PRIMARY KEY, vec TEXT NOT NULL)"
+            )
+            self._conn.commit()
+        self._migrate_legacy_json()
 
-    def _load(self):
-        if self.cache_file.exists():
-            try:
-                with self.lock:
-                    self._cache = json.loads(self.cache_file.read_text())
-            except Exception:
-                self._cache = {}
-
-    def _save_worker(self, content: str):
-        """Worker thread for atomic disk operations."""
+    def _migrate_legacy_json(self):
+        """One-time idempotent import of the old monolithic JSON cache, then archive it."""
         try:
-            self.cache_file.parent.mkdir(parents=True, exist_ok=True)
-            # Atomic swap pattern
-            fd, temp_path = tempfile.mkstemp(dir=self.cache_file.parent)
-            try:
-                with os.fdopen(fd, "w", encoding="utf-8") as f:
-                    f.write(content)
-                os.replace(temp_path, self.cache_file)
-            except Exception:
-                if os.path.exists(temp_path):
-                    os.remove(temp_path)
-        except Exception:
-            pass
-
-    def _save(self):
-        """Schedules a background atomic save."""
-        try:
+            if not self.legacy_json.exists():
+                return
+            # May be large or mid-write from an old-code process; on any failure we keep
+            # the JSON untouched and retry on a later run (no data loss).
+            data = json.loads(self.legacy_json.read_text(encoding="utf-8"))
+            rows = [
+                (h, json.dumps(v))
+                for h, v in data.items()
+                if isinstance(v, list) and v
+            ]
+            print(
+                f"  ⚙️  Migrating {len(rows)} embeddings: legacy JSON → SQLite "
+                f"({self.db_path.name})...",
+                flush=True,
+            )
             with self.lock:
-                if not self._dirty:
-                    return
-                cache_copy = dict(self._cache)
-                self._dirty = False
+                self._conn.executemany(
+                    "INSERT OR REPLACE INTO embeddings (hash, vec) VALUES (?, ?)", rows
+                )
+                self._conn.commit()
+            self._archive_legacy()
+            print("  ✅ Embedding cache migrated to SQLite.", flush=True)
+        except Exception as e:
+            print(f"  ⚠️  Legacy cache migration deferred ({e}); JSON kept for retry.", flush=True)
 
-            # Serialize outside the lock to prevent thread lock starvation
-            content = json.dumps(cache_copy)
-
-            # Offload IO to a daemon thread to avoid blocking caller
-            threading.Thread(
-                target=self._save_worker, args=(content,), daemon=True
-            ).start()
+    def _archive_legacy(self):
+        try:
+            self.legacy_json.rename(
+                self.legacy_json.parent / (self.legacy_json.name + ".migrated")
+            )
         except Exception:
             pass
 
     def get(self, text_hash: str) -> Optional[List[float]]:
         with self.lock:
-            return self._cache.get(text_hash)
+            row = self._conn.execute(
+                "SELECT vec FROM embeddings WHERE hash = ?", (text_hash,)
+            ).fetchone()
+        if row is None:
+            return None
+        try:
+            return json.loads(row[0])
+        except Exception:
+            return None
 
     def set(self, text_hash: str, embedding: List[float]):
         with self.lock:
-            self._cache[text_hash] = embedding
-            self._dirty = True
-        self._save()
+            self._conn.execute(
+                "INSERT OR REPLACE INTO embeddings (hash, vec) VALUES (?, ?)",
+                (text_hash, json.dumps(embedding)),
+            )
+            self._conn.commit()
+
+    def set_many(self, items: "Dict[str, List[float]]"):
+        """Bulk insert in one transaction — O(1) per row, no full-file rewrite."""
+        if not items:
+            return
+        rows = [(h, json.dumps(v)) for h, v in items.items()]
+        with self.lock:
+            self._conn.executemany(
+                "INSERT OR REPLACE INTO embeddings (hash, vec) VALUES (?, ?)", rows
+            )
+            self._conn.commit()
 
 
 def _hash_text(text: str) -> str:
@@ -159,13 +196,18 @@ def get_embedding(text: str, max_retries: int = 7) -> List[float]:
             try:
                 response = requests.post(url, json=payload, timeout=60)
 
+                # If client error that is not 429, do not retry! It is non-retriable.
+                if response.status_code >= 400 and response.status_code < 500 and response.status_code != 429:
+                    print(f"  ❌ Client error {response.status_code} in get_embedding: {response.text[:200]}")
+                    response.raise_for_status()
+
                 if response.status_code == 429 or response.status_code >= 500:
-                    # Respect Retry-After header if present, else exponential backoff (cap 60s)
                     retry_after = response.headers.get("Retry-After")
                     if retry_after:
                         wait = min(float(retry_after), 60)
                     else:
                         wait = min((2 ** attempt) + random.uniform(0, 1), 60)
+                    print(f"  ⚠️  HTTP {response.status_code} in get_embedding (attempt {attempt+1}/{max_retries}). Retrying in {wait:.2f}s...")
                     last_error = f"HTTP {response.status_code}"
                     if attempt < max_retries - 1:
                         import time
@@ -184,9 +226,17 @@ def get_embedding(text: str, max_retries: int = 7) -> List[float]:
 
             except requests.exceptions.RequestException as e:
                 last_error = e
+                # Check if it is a non-retriable client error raised during request
+                if hasattr(e, 'response') and e.response is not None:
+                    code = e.response.status_code
+                    if code >= 400 and code < 500 and code != 429:
+                        print(f"  ❌ Non-retriable request exception (HTTP {code}): {e}")
+                        raise
+
                 if attempt < max_retries - 1:
                     import time
                     wait = (2 ** attempt) + random.uniform(0, 1)
+                    print(f"  ⚠️  Request exception in get_embedding: {e}. Retrying in {wait:.2f}s...")
                     time.sleep(wait)
                 else:
                     raise
@@ -239,6 +289,14 @@ def get_embeddings_batch(
         f"gemini-embedding-001:batchEmbedContents?key={api_key}"
     )
 
+    total_batches = (len(misses) + batch_size - 1) // batch_size
+    print(
+        f"  ⚡ {len(misses)} embeds needed "
+        f"({len(texts) - len(misses)} cache hits) → {total_batches} batches",
+        flush=True,
+    )
+    new_embeddings: Dict[str, List[float]] = {}
+
     for start in range(0, len(misses), batch_size):
         group = misses[start : start + batch_size]
         payload = {
@@ -252,6 +310,12 @@ def get_embeddings_batch(
             with _embedding_semaphore:
                 try:
                     resp = requests.post(url, json=payload, timeout=120)
+
+                    # Fail immediately on non-retriable client errors
+                    if resp.status_code >= 400 and resp.status_code < 500 and resp.status_code != 429:
+                        print(f"  ❌ Client error {resp.status_code} in batch query: {resp.text[:200]}")
+                        resp.raise_for_status()
+
                     if resp.status_code == 429 or resp.status_code >= 500:
                         retry_after = resp.headers.get("Retry-After")
                         wait = (
@@ -259,32 +323,57 @@ def get_embeddings_batch(
                             if retry_after
                             else min((2 ** attempt) + random.uniform(0, 1), 60)
                         )
+                        print(f"  ⚠️  HTTP {resp.status_code} in batch query (attempt {attempt+1}/{max_retries}). Retrying in {wait:.2f}s...")
                         if attempt < max_retries - 1:
                             time.sleep(wait)
                             continue
                         resp.raise_for_status()
+
                     resp.raise_for_status()
                     got = [e["values"] for e in resp.json()["embeddings"]]
                     time.sleep(1)  # free-tier courtesy: ONE delay per batch, not per text
                     break
-                except Exception:
+                except Exception as e:
+                    # If it's a client error (HTTP 400/413), raise immediately without retry so we fall back
+                    if isinstance(e, requests.exceptions.HTTPError) and e.response is not None:
+                        code = e.response.status_code
+                        if code >= 400 and code < 500 and code != 429:
+                            print(f"  ❌ Non-retriable batch HTTP error {code}: {e}. Falling back to per-item.")
+                            got = None
+                            break
+
                     if attempt < max_retries - 1:
-                        time.sleep((2 ** attempt) + random.uniform(0, 1))
+                        wait = (2 ** attempt) + random.uniform(0, 1)
+                        print(f"  ⚠️  Exception in batch query: {e}. Retrying in {wait:.2f}s...")
+                        time.sleep(wait)
                     else:
+                        print(f"  ❌ Batch query failed after {max_retries} attempts: {e}. Falling back to per-item.")
                         got = None
 
         if got is not None and len(got) == len(group):
             for (i, t, h), emb in zip(group, got):
                 results[i] = emb
-                cache.set(h, emb)
+                new_embeddings[h] = emb  # buffered; flushed in one coalesced save below
         else:
+            print(f"  🔄 Safe degrade: embedding {len(group)} items individually...")
             # Safe degrade: per-item via the proven single-call path.
             for i, t, h in group:
                 try:
                     results[i] = get_embedding(t)
-                except Exception:
+                except Exception as e:
+                    print(f"    ❌ Failed to embed item: {e}")
                     results[i] = None
 
+        print(f"  ⚡ batch {start // batch_size + 1}/{total_batches} done", flush=True)
+
+        # Checkpoint every ~500 new embeds (one coalesced save) for crash safety.
+        if len(new_embeddings) >= 500:
+            cache.set_many(new_embeddings)
+            new_embeddings = {}
+
+    # Final flush of the remainder — one bulk write, never per-item O(n^2).
+    if new_embeddings:
+        cache.set_many(new_embeddings)
     return results
 
 

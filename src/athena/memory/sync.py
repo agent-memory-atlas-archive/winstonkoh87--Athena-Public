@@ -89,6 +89,11 @@ def sync_file_to_supabase(
         return True
 
     content = abs_file.read_text(encoding="utf-8")
+    if not content.strip():
+        if manifest:
+            manifest.update_entry(abs_file)
+        return True
+
     meta = extract_metadata(content, abs_file.name)
     if extra_metadata:
         meta.update(extra_metadata)
@@ -100,27 +105,54 @@ def sync_file_to_supabase(
     except ValueError:
         db_path = str(abs_file)
 
+    # Split content into chunks
+    chunks = chunk_text(content, chunk_size=4000, overlap=400)
+    if not chunks:
+        chunks = [content]
+
     # Retry Loop (now wraps BOTH embedding + upsert)
     for attempt in range(max_retries):
         try:
-            embedding = get_embedding(content[:30000])
+            # 1. Embed ALL chunks FIRST, before any destructive DB op. A transient
+            #    embedding/network failure here must NOT leave the file with its old
+            #    chunks deleted and no replacement (the silent-drop bug: protocols
+            #    vanished when an embed failed mid-loop after the delete). Build the
+            #    full payload list; only mutate the DB once every embed has succeeded.
+            chunk_payloads = []
+            for idx, chunk in enumerate(chunks):
+                chunk_payloads.append({
+                    "file_path": db_path,
+                    "table_name": table_name,
+                    "chunk_index": idx,
+                    "title": meta.get("title", abs_file.name),
+                    "content": chunk,
+                    "embedding": get_embedding(chunk),
+                    "metadata": meta,
+                })
 
-            data = {
+            # 2. Now safe to mutate: delete stale chunks, then upsert the fresh set.
+            client.table("document_chunks").delete().eq("file_path", db_path).execute()
+            for chunk_data in chunk_payloads:
+                client.table("document_chunks").upsert(chunk_data, on_conflict="file_path,chunk_index").execute()
+
+            # 3. Upsert parent metadata (no file-level embedding stored to save DB size)
+            parent_data = {
                 "content": content,
-                "embedding": embedding,
                 "file_path": db_path,
                 "title": meta.get("title", abs_file.name),
             }
-            _enrich_data_by_table(data, abs_file, table_name, meta)
+            _enrich_data_by_table(parent_data, abs_file, table_name, meta)
 
-            client.table(table_name).upsert(data, on_conflict="file_path").execute()
+            conflict_target = "filename" if table_name == "user_profile" else "file_path"
+            client.table(table_name).upsert(parent_data, on_conflict=conflict_target).execute()
+
             if manifest:
                 manifest.update_entry(abs_file)
             return True
         except Exception as e:
             if "code" in str(e).lower() and table_name in ["protocols", "case_studies"]:
                 try:
-                    client.table(table_name).upsert(data, on_conflict="code").execute()
+                    client.table(table_name).upsert(parent_data, on_conflict="code").execute()
                     if manifest:
                         manifest.update_entry(abs_file)
                     return True
@@ -152,7 +184,12 @@ def _enrich_data_by_table(data: dict, file_path: Path, table_name: str, meta: di
         code_match = re.match(r"(CS-\d+)", file_path.name)
         data["code"] = code_match.group(1) if code_match else file_path.stem
     elif table_name == "capabilities":
-        data["name"] = file_path.stem
+        # For SKILL.md files, use parent directory name (e.g., "bionic-safety-net")
+        # For other files, use the file stem
+        if file_path.stem.upper() == "SKILL":
+            data["name"] = file_path.parent.name
+        else:
+            data["name"] = file_path.stem
     elif table_name == "workflows":
         data["name"] = file_path.stem
         if "title" in data:
@@ -179,17 +216,31 @@ def delete_file_from_vector(file_path_str: str):
     except (ValueError, OSError):
         db_path = file_path_str
 
+    # Dynamic mapping to match target configurations
     table_name = "system_docs"
     if "session_logs" in file_path_str:
         table_name = "sessions"
-    elif "case_studies" in file_path_str:
+    elif "case_studies" in file_path_str or "proposals" in file_path_str or "Reflection Essay" in file_path_str:
         table_name = "case_studies"
     elif "protocols" in file_path_str:
         table_name = "protocols"
-    elif "memory_bank" in file_path_str:
-        table_name = "system_docs"  # Map memory_bank to system_docs table
+    elif "capabilities" in file_path_str or "skills" in file_path_str:
+        table_name = "capabilities"
+    elif "workflows" in file_path_str:
+        table_name = "workflows"
+    elif "playbooks" in file_path_str:
+        table_name = "playbooks"
+    elif "references" in file_path_str or "brand_references" in file_path_str:
+        table_name = "references"
+    elif "frameworks" in file_path_str or ".framework" in file_path_str:
+        table_name = "frameworks"
+    elif "user_profile" in file_path_str or "profile" in file_path_str:
+        table_name = "user_profile"
 
     try:
+        # Delete from unified document_chunks table
+        client.table("document_chunks").delete().eq("file_path", db_path).execute()
+        # Delete from parent metadata table
         client.table(table_name).delete().eq("file_path", db_path).execute()
         return True
     except Exception:
