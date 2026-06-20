@@ -150,6 +150,10 @@ def sync_workspace(force: bool = False):
                 # Exclusion logic: do not sync system_docs files as frameworks
                 if table == "frameworks" and "v8.2-stable/modules" in str(f):
                     continue
+                # Archive pollution guard: never index dead/frozen content. Archived
+                # material must not surface in live retrieval.
+                if "/archive" in str(f).replace("\\", "/"):
+                    continue
                 all_tasks.append((f, table))
 
     # scan extended targets (silo elimination)
@@ -157,6 +161,8 @@ def sync_workspace(force: bool = False):
         if folder.exists():
             files = list(folder.glob("**/*.md"))
             for f in files:
+                if "/archive" in str(f).replace("\\", "/"):
+                    continue
                 all_tasks.append((f, table))
 
     # Batch pre-warm embeddings for files that need syncing. This collapses the
