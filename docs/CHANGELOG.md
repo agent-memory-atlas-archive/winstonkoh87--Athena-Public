@@ -1,10 +1,25 @@
 # Athena Changelog
 
-> **Last Updated**: 19 June 2026
+> **Last Updated**: 21 June 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.9.4 (21 June 2026)
+
+**Retrieval Reliability**: Closed the gap between the v9.9.3 retrieval *docs* and the shipped *code*, and fixed a crash in the advertised reranker.
+
+### Key Changes
+
+- **Reranker Backend Fix**: The CrossEncoder reranker forced onto the PyTorch backend (`USE_TF=0`). It was probing for TensorFlow, importing it (~20s), then crashing on Keras 3 (`install tf-keras`) — which made `--rerank` exceed its subprocess timeout and return empty. Reranked candidates are now capped at 12 to bound the call.
+- **Chunk-Level Architecture Landed in Code**: The `document_chunks` table (`vector(3072)`) and the `search_all_vectors` RPC are now shipped as migrations (016, 017) alongside the chunk-level `sync.py` and `gemini-embedding-001` (3,072-dim) embeddings in `vectors.py`. Previously these were described in the docs but the shipped code still ran the older document-level path. Code and schema now ship together so a fresh clone is self-consistent.
+- **Sync Durability**: Chunks are embedded *before* the destructive delete, so a transient embedding/network failure can no longer leave a file with its chunks deleted and no replacement.
+- **Archive Index Guard**: `/archive` paths are excluded from the semantic index so dead/frozen content can't pollute retrieval.
+
+> **Upgrade note**: Existing deployments should re-run a sync to repopulate `document_chunks` at 3,072 dims (per the documented 768→3,072 migration). Fresh clones are consistent out of the box.
 
 ---
 

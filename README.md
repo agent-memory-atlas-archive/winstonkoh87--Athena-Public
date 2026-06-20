@@ -12,13 +12,13 @@ Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.9.3-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.9.4-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 19 Jun 2026*
+*Last updated: 21 Jun 2026*
 
 </div>
 
@@ -529,6 +529,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.9.4** (Jun 21 2026): **Retrieval Reliability** — Cross-encoder reranker forced onto the PyTorch backend; it was probing for TensorFlow, importing it (~20s), then crashing on Keras 3 (`install tf-keras`) — which made `--rerank` time out and return empty. Reranked candidates capped at 12. Chunk-level retrieval landed in code to match the v9.9.3 spec: `document_chunks` table (`vector(3072)`) + `search_all_vectors` RPC (migrations 016/017) and `gemini-embedding-001` (3072d) embeddings, shipped together so a fresh clone's schema is consistent. Archive paths excluded from the semantic index. Sync hardened — chunks are embedded *before* the destructive delete, so a transient failure can no longer wipe a file's content with no replacement.
 - **v9.9.3** (Jun 19 2026): **Retrieval Stack r2 + Fact Pass** — Embeddings migrated to `gemini-embedding-001`; retrieval moved from document-level to **chunk-level** (4,000-char windows, 400 overlap, ~5,700 chunks); **CrossEncoder reranker** stage added after RRF fusion ([RERANKER.md](docs/RERANKER.md)); **live web grounding** fused into RRF at weight 2.8. pgvector exact-scan documented (ivfflat unavailable at 3,072 dims). Stale GraphRAG scripts purged. **Fact corrections:** embedding dim 768→3072, reranker FlashRank→cross-encoder, schema model name fixed; model refs Opus 4.7→4.8; shipped counts reconciled (152 protocols/16 cats, 39 skills, 163 scripts).
 - **v9.9.2** (Jun 10 2026): **Privacy Hard Wall** — Deploy pipeline inverted from blocklist to allowlist (`public_manifest.example.yaml`): anything not explicitly listed never ships. New 3-gate `pre_deploy_scan.sh` (secrets, PII, blocked patterns) as mandatory pre-flight. Mechanical accountability surface added to `/start`, `/end`, `/ultrastart` (JSON-state commitment tracking, Grace Harper model).
 - **v9.9.1-gto** (Jun 6 2026): **GTO Self-Improvement** — GraphRAG formally removed (dead 16 months), cache.py atomic writes fixed, 4 skills migrated to Gen 3 format, 60 sessions compacted into archive, 9 data quality fixes across documentation. Search pipeline: 8→7 channels. All 86 tests pass.
