@@ -184,7 +184,11 @@ def get_embedding(text: str, max_retries: int = 7) -> List[float]:
     if not api_key:
         raise ValueError("GOOGLE_API_KEY missing.")
 
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key={api_key}"
+    # Pass the key via header, NOT the query string. A key in the URL leaks into
+    # every requests exception/response repr (the URL is echoed in error messages),
+    # which is logged below — clear-text secret logging. The header is never logged.
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent"
+    headers = {"x-goog-api-key": api_key}
     payload = {
         "model": "models/gemini-embedding-001",
         "content": {"parts": [{"text": text}]},
@@ -194,7 +198,7 @@ def get_embedding(text: str, max_retries: int = 7) -> List[float]:
     for attempt in range(max_retries):
         with _embedding_semaphore:
             try:
-                response = requests.post(url, json=payload, timeout=60)
+                response = requests.post(url, json=payload, headers=headers, timeout=60)
 
                 # If client error that is not 429, do not retry! It is non-retriable.
                 if response.status_code >= 400 and response.status_code < 500 and response.status_code != 429:
@@ -284,10 +288,13 @@ def get_embeddings_batch(
     if not api_key:
         raise ValueError("GOOGLE_API_KEY missing.")
 
+    # Key goes in a header, never the query string — a key in the URL leaks into
+    # logged requests exceptions/response reprs (clear-text secret logging).
     url = (
         "https://generativelanguage.googleapis.com/v1beta/models/"
-        f"gemini-embedding-001:batchEmbedContents?key={api_key}"
+        "gemini-embedding-001:batchEmbedContents"
     )
+    headers = {"x-goog-api-key": api_key}
 
     total_batches = (len(misses) + batch_size - 1) // batch_size
     print(
@@ -309,7 +316,7 @@ def get_embeddings_batch(
         for attempt in range(max_retries):
             with _embedding_semaphore:
                 try:
-                    resp = requests.post(url, json=payload, timeout=120)
+                    resp = requests.post(url, json=payload, headers=headers, timeout=120)
 
                     # Fail immediately on non-retriable client errors
                     if resp.status_code >= 400 and resp.status_code < 500 and resp.status_code != 429:
