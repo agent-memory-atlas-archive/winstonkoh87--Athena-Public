@@ -2,7 +2,7 @@
 
 > **Last Updated**: 21 Jun 2026
 > **Version**: v9.9.4
-> **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
+> **Canonical Counts**: These figures describe the private reference implementation as of the date above (not this repo's shipped `examples/` subset — see the README metrics table for what's actually included here). `CAPS.json` is the private repo's own inventory file and isn't part of this public mirror.
 > **Bionic Unit Spec**: BIONIC_UNIT_SPEC.md — the definitive human-AI augmentation mapping
 
 ---
@@ -12,12 +12,12 @@
 ```
 Athena/
 ├── .agent/                        # Agent configuration
-│   ├── skills/                    #   41 active skills (41 with context_trigger)
-│   │   └── protocols/             #   402 active + 34 archived = 436 total, 24 categories
+│   ├── skills/                    #   42 active skills (42 with context_trigger)
+│   │   └── protocols/             #   412 active + 34 archived = 446 total, 24 categories
 │   │       └── archive/           #     34 deprecated protocols (read-only, see README)
 │   ├── workflows/                 #   51 root + 18 _domain = 69 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
-│   ├── scripts/                   #   253 automation scripts
+│   ├── scripts/                   #   247 automation scripts
 │   ├── telemetry/                 #   Retrieval instrumentation logs + tier maps
 │   ├── config/                    #   Agent manifests + CAPS.json (canonical counts)
 │   ├── CLUSTER_INDEX.md           #   15 cognitive clusters (routing map)
@@ -169,8 +169,8 @@ Full cluster details: CLUSTER_INDEX.md
 |:------|------:|:------------|
 | Cognitive Domains | 8 | Memory activation targets (priority-ordered for tie-breaking) |
 | Cognitive Clusters | 15 | Co-activating procedural memory bundles |
-| Skills | 41 active (17 archived) |
-| Protocols | 402 active (34 archived; 436 total) |
+| Skills | 42 active (17 archived) |
+| Protocols | 412 active (34 archived; 446 total) |
 | Workflows | 69 (51 root + 18 _domain/) |
 
 ---
