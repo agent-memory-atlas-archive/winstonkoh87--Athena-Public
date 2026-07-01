@@ -2,7 +2,7 @@
 
 Athena is not just code — it is an opinionated system built on **Sovereign Agency** and **Subjective Utility**.
 
-*Last Updated: 2026-06-02 · v9.9.1*
+*Last Updated: 2026-07-01 · v9.9.5*
 
 ---
 

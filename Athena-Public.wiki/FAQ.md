@@ -1,6 +1,6 @@
 # ❓ Frequently Asked Questions
 
-*Last Updated: 2026-06-02 · v9.9.1*
+*Last Updated: 2026-07-01 · v9.9.5*
 
 ---
 
@@ -12,7 +12,7 @@
 |:-----|:-------------|:-----------|
 | **Free** | Google Antigravity (free tier) | **$0** |
 | **Entry** | Claude Pro · Google AI Pro | ~$20/mo |
-| **Power** | Claude Max 20× · Google AI Ultra | $200–250/mo | <!-- pds:allow -->
+| **Power** | Claude Max 20× · Google AI Ultra | $200–250/mo |
 
 **Start free with Antigravity.** Upgrade to $20/month when you hit daily limits.
 
@@ -51,11 +51,11 @@ See the [Getting Started](Getting-Started) page for full details.
 
 ### 🧠 Can I use other models (OpenAI, Llama)?
 
-Athena is model-agnostic by design. It's optimized for **Gemini 3 Pro** and **Claude Opus 4.8** because of their large context windows, but the memory layer works with any LLM. That's the point — *own the state, rent the intelligence*.
+Athena is model-agnostic by design. It's optimized for **Gemini 3 Pro** and **Claude Opus 4.7** because of their large context windows, but the memory layer works with any LLM. That's the point — *own the state, rent the intelligence*.
 
 ### 📉 Does it hallucinate?
 
-All LLMs hallucinate. Athena minimizes this via **Hybrid RAG** — forcing the model to read *your own notes* before answering. Agentic Search adds cosine validation to filter low-confidence results. Five retrieval sources (Canonical, Semantic, BM25, GraphRAG, Tags) are fused via RRF for robust recall.
+All LLMs hallucinate. Athena minimizes this via **Hybrid RAG** — forcing the model to read *your own notes* before answering. Agentic Search adds cosine validation to filter low-confidence results. Five live retrieval channels (Canonical, Vector/semantic, SQLite, Filename, Framework Docs) are fused via RRF, then reranked with a cross-encoder, for robust recall. (A Tags channel and a GraphRAG pass were retired in June 2026 — dead weight, zero functional contribution.)
 
 ### ❓ Won't this eat my subscription tokens?
 
@@ -64,8 +64,8 @@ All LLMs hallucinate. Athena minimizes this via **Hybrid RAG** — forcing the m
 | User Type | Plan | Sessions/Day | Verdict |
 |:----------|:-----|:-------------|:--------|
 | **Casual** | Pro ($20/mo) | 1–2 | ✅ 95% of context stays free |
-| **Daily Driver** | Max 5× ($100/mo) | 3–5 | ✅ Each session is independent | <!-- pds:allow -->
-| **Power User** | Max 20× ($200/mo) | 10+ parallel | ✅ Multiple agents, multiple projects | <!-- pds:allow -->
+| **Daily Driver** | Max 5× ($100/mo) | 3–5 | ✅ Each session is independent |
+| **Power User** | Max 20× ($200/mo) | 10+ parallel | ✅ Multiple agents, multiple projects |
 
 ### 📁 Should I put my project inside or outside the Athena folder?
 

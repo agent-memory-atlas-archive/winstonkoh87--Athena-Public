@@ -2,7 +2,7 @@
 
 Boot your own AI Operating System in 5 minutes.
 
-*Last Updated: 2026-06-02 · v9.9.1*
+*Last Updated: 2026-07-01 · v9.9.5*
 
 ---
 
@@ -77,7 +77,7 @@ athena doctor                 # Full 15-check system diagnostics
 athena doctor --fix           # Auto-repair fixable issues
 athena save "summary"         # Quicksave checkpoint
 athena --end                  # Close session and save
-athena --version              # Show version (v9.9.1)
+athena --version              # Show version (v9.9.5)
 ```
 
 ---
@@ -89,12 +89,12 @@ The quickstart needs **zero configuration**. These are only needed for advanced 
 ```bash
 # Required for cloud features
 SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_ANON_KEY=your-key-here
 
 # Optional (for multi-model validation)
-ANTHROPIC_API_KEY=<your-anthropic-key>
-GOOGLE_API_KEY=<your-google-api-key>
-OPENAI_API_KEY=<your-openai-key>
+ANTHROPIC_API_KEY=your-key-here
+GOOGLE_API_KEY=your-key-here
+OPENAI_API_KEY=your-key-here
 ```
 
 ```bash

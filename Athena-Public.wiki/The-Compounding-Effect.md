@@ -2,7 +2,7 @@
 
 > **Core Thesis:** The moat isn't the code — it's your data. Anyone can fork Athena; nobody can fork your sessions.
 
-*Last Updated: 2026-06-02 · v9.9.1*
+*Last Updated: 2026-07-01 · v9.9.5*
 
 ---
 
@@ -65,7 +65,7 @@ Right now, AI subscriptions are priced as **customer acquisition costs**, not ma
 
 | Phase | Timeline | What Happens |
 |:------|:---------|:-------------|
-| **Land grab** (now) | 2024–2026 | Flat-rate subs priced to acquire users. $200/mo buys $2K–3K+ of API compute. | <!-- pds:allow -->
+| **Land grab** (now) | 2024–2026 | Flat-rate subs priced to acquire users. $200/mo buys $2K–3K+ of API compute. |
 | **Consolidation** | 2027–2028 | Usage tiers, throttling, "fair use" caps. Power users get re-priced. |
 | **Maturity** | 2029+ | Market pricing. Compute priced at cost + margin. Arbitrage collapses. |
 
@@ -109,7 +109,7 @@ Not all data compounds equally:
 
 | Type | Example | Value |
 |:-----|:--------|:------|
-| **Empirical** | "I quoted $250, market was $400. I left $150 on the table." | Highest — real outcomes | <!-- pds:allow -->
+| **Empirical** | "I quoted $250, market was $400. I left $150 on the table." | Highest — real outcomes |
 | **Contextual** | "Client X prefers bullet points over paragraphs" | High — personalisation |
 | **Environmental** | "My energy crashes after 2pm" | Medium — scheduling optimisation |
 | **Organic** | "Today's session covered trading strategies" | Low — metadata only |
