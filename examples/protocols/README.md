@@ -7,7 +7,7 @@
 >
 > See [Creating Your Own Protocols](#creating-new-protocols) to build yours.
 
-**149 active protocols across 15 categories** — battle-tested thinking patterns that standardize how an AI agent reasons. (167 total including 18 archived protocols.)
+**187 active protocols across 21 categories** — battle-tested thinking patterns that standardize how an AI agent reasons. (205 total including 18 archived protocols.)
 
 ## Featured Protocols
 
@@ -118,6 +118,36 @@ High win-rate supremacy, trade structure levers.
 High-performance UX design patterns.
 
 [Browse Content Protocols →](content/)
+
+### 💬 Communication (18 protocols)
+
+Response calibration, status/face dynamics, de-escalation, persona-adaptive tone, distribution strategy.
+
+[Browse Communication Protocols →](communication/)
+
+### 📣 Marketing (8 protocols)
+
+Marketplace listing optimization, SEO channel strategy, positioning frameworks.
+
+[Browse Marketing Protocols →](marketing/)
+
+### 🩺 Diagnostics (2 protocols)
+
+Diagnostic-first refactoring and forensic analysis patterns.
+
+[Browse Diagnostics Protocols →](diagnostics/)
+
+### 🌏 Singapore (4 protocols)
+
+Region-specific social/institutional dynamics — face physics, exam-strategy compression, systemic-failure patterns.
+
+[Browse Singapore Protocols →](singapore/)
+
+### 💡 Creation (4 protocols)
+
+Lateral innovation, generative-design injection, prompt-compression techniques.
+
+[Browse Creation Protocols →](creation/)
 
 ---
 

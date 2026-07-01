@@ -1,10 +1,23 @@
 # Athena Changelog
 
-> **Last Updated**: 21 June 2026
+> **Last Updated**: 1 July 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.9.5 (1 July 2026)
+
+**Sync & Hygiene Pass**: Closed drift between this repo and the private reference implementation, and expanded protocol coverage.
+
+### Key Changes
+
+- **RLS Security Fix**: `supabase/migrations/017_unified_document_chunks.sql` was missing the Row Level Security policy on `document_chunks` that the private repo added on 2026-06-30. A fresh deploy from this repo would have shipped the table readable by `anon`/`authenticated` roles. Added the matching `ENABLE ROW LEVEL SECURITY` + service-role-only policy.
+- **Version Reconciliation**: `pyproject.toml` and `athena.yaml` were stuck at `9.9.1`/`9.5.6` while this CHANGELOG had already moved to v9.9.4 — all three now agree.
+- **ARCHITECTURE.md Count Fix**: The reference-architecture diagram cited stale private-repo counts and pointed at a `CAPS.json` file that isn't part of this repo. Updated to the private repo's current counts and clarified what that file actually is.
+- **5 New Protocol Categories**: Added `diagnostics/`, `communication/`, `creation/`, `marketing/`, and `singapore/` (36 files) — protocols total 152→187, categories 16→21. Every file was individually reviewed; 12 required redacting real names/usernames/dollar amounts/case nicknames before shipping, and 6 files were excluded outright as too personal/clinical to publish even sanitized (see `public_manifest.yaml` for the per-category review note).
 
 ---
 
