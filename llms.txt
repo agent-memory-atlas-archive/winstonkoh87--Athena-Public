@@ -1,6 +1,6 @@
 # Athena
 
-> The open-source operating system for AI agents. Persistent memory, structured reasoning, and governance for any LLM. Own the state. Rent the intelligence. MIT Licensed.
+> The Linux OS for AI Agents. Persistent memory, structured reasoning, and governed autonomy for any LLM. Own the state. Rent the intelligence. MIT Licensed.
 
 Athena is a local-first cognitive augmentation framework that gives any AI model (Gemini, Claude, GPT) permanent memory, 440+ reusable decision protocols (187 published as examples), and bounded autonomy — all stored as plain Markdown files on the user's machine. Session 1,800 recalls patterns from session 5.
 

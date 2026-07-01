@@ -6,7 +6,7 @@
 
 **The Linux OS for AI Agents.**
 
-Persistent memory, autonomy, and time-awareness for any LLM — across ChatGPT, Claude, Gemini, and any model you switch to next.
+Persistent memory, structured reasoning, and governed autonomy for any LLM — across ChatGPT, Claude, Gemini, and any model you switch to next.
 
 Own the state. Rent the intelligence. Platforms forget. Athena doesn't.
 
