@@ -45,7 +45,7 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 >
 > *Or in engineering terms: The LLM is the engine. Athena is the chassis, the memory, and the rules of the road. Swap the engine anytime — the car remembers every road you've driven.*
 >
-> *The design philosophy: [augment the human, not replace them](docs/concepts/Grace_Protocol.md). After 1,800+ sessions, the bottleneck shifted — [optimising the operator is now higher-leverage than optimising the AI](docs/USER_DRIVEN_RSI.md#phase-2-optimising-the-operator).*
+> *The design philosophy: [augment the human, not replace them](docs/concepts/Grace_Protocol.md). After 1,900+ sessions, the bottleneck shifted — [optimising the operator is now higher-leverage than optimising the AI](docs/USER_DRIVEN_RSI.md#phase-2-optimising-the-operator).*
 
 ### The Human Augmentation Thesis
 
@@ -393,11 +393,11 @@ Everything you need to turn a generic AI into **your** AI — pre-configured, no
 | 🧠 **Core Identity** | Your AI's personality, principles, and boundaries — editable, version-controlled — [template](examples/templates/core_identity_template.md) |
 | 🧩 **8 Cognitive Systems** | Top-down intent classification — routes queries to the right cluster sequence based on *human need archetype* (Survival, Life Decision, Trading, Social, Execution, Growth, Learning, Maintenance) — [architecture](examples/protocols/architecture/ARC-507-cognitive-systems.md) |
 | 🔗 **Cognitive Clusters** | Groups related protocols into auto-co-activating bundles — 15 clusters included, build your own as you grow — [template](examples/templates/cluster_index_template.md) |
-| 📋 **187 Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, communication, marketing, problem-solving) across 21 categories — [browse](examples/protocols/) |
+| 📋 **200+ Protocols** | Ready-made decision frameworks (risk analysis, research, strategy, communication, marketing, problem-solving) — 21-category starter kit in [examples/protocols/](examples/protocols/), plus runtime protocols in [docs/protocols/](docs/protocols/) and `.framework/` |
 | ⚡ **89+ Slash Commands** | One-word triggers: `/start`, `/end`, `/think`, `/research` — [full list](docs/WORKFLOWS.md) |
 | 🔍 **Smart Search** | Finds the right memory even if you describe it vaguely (5 live channels, auto-ranked, cross-encoder reranked) — [how it works](docs/SEMANTIC_SEARCH.md) |
 | 🔌 **Tool Integration** | Declarative YAML tool definitions + MCP server — your agent discovers and invokes tools automatically — [tools](tools/) · [MCP docs](docs/MCP_SERVER.md) |
-| 🧩 **38 Skills** | Domain-specialised bundles including 6 Uber-Skills (umbrella consolidations from 1,800+ sessions) — [browse](examples/skills/) |
+| 🧩 **38 Skills** | Domain-specialised bundles including 6 Uber-Skills (umbrella consolidations from 1,900+ sessions) — [browse](examples/skills/) |
 | 🪝 **Lifecycle Hooks** | Scriptable pre/post gates on every action — block destructive ops, enforce risk checks, log assets |
 | 🛡️ **Safety Rails** | Controls what the AI can and can't do autonomously (4 levels, from read-only to full agency) — [security](docs/SECURITY.md) |
 
@@ -516,7 +516,7 @@ Athena-Public/
 ├── tools/                   # Declarative tool definitions (YAML)
 ├── scripts/                 # Operational scripts (boot, shutdown, launch)
 ├── examples/
-│   ├── protocols/           # 187 starter frameworks (21 categories)
+│   ├── protocols/           # Protocol starter kit (21 categories)
 │   ├── scripts/             # 175 reference scripts
 │   ├── skills/              # 38 domain-specialised skills (6 categories)
 │   └── templates/           # Starter templates (framework, memory bank)
@@ -529,6 +529,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **Docs metrics pass** (Jul 2 2026): Reconciled README claims with the portfolio site and actual repo contents — sessions 1,800+→1,900+; protocol count unified to **200+** repo-wide (226 protocol `.md` files across `examples/protocols/` 188, `docs/protocols/` 22, `.framework/` 8, template mirror 8; the old "187" counted only the starter kit incl. its archive). Headline counts now use verifiable floors, not exact numbers that drift.
 - **v9.9.5** (Jul 1 2026): **Sync & Hygiene Pass** — Fixed a missing RLS policy on `document_chunks` (migration 017) that would've shipped the table world-readable to `anon`/`authenticated`. Reconciled version drift across `pyproject.toml`/`athena.yaml`/README (were split across 9.9.1/9.5.6/9.9.4). Fixed stale `athena.yaml` config (`embedding_dimensions: 768`→3072, Opus 4.7→4.8). Added 5 new protocol categories (`diagnostics`, `communication`, `creation`, `marketing`, `singapore` — 36 files, individually reviewed and sanitized): protocols 152→187, categories 16→21.
 - **v9.9.4** (Jun 21 2026): **Retrieval Reliability** — Cross-encoder reranker forced onto the PyTorch backend; it was probing for TensorFlow, importing it (~20s), then crashing on Keras 3 (`install tf-keras`) — which made `--rerank` time out and return empty. Reranked candidates capped at 12. Chunk-level retrieval landed in code to match the v9.9.3 spec: `document_chunks` table (`vector(3072)`) + `search_all_vectors` RPC (migrations 016/017) and `gemini-embedding-001` (3072d) embeddings, shipped together so a fresh clone's schema is consistent. Archive paths excluded from the semantic index. Sync hardened — chunks are embedded *before* the destructive delete, so a transient failure can no longer wipe a file's content with no replacement.
 - **v9.9.3** (Jun 19 2026): **Retrieval Stack r2 + Fact Pass** — Embeddings migrated to `gemini-embedding-001`; retrieval moved from document-level to **chunk-level** (4,000-char windows, 400 overlap, ~5,700 chunks); **CrossEncoder reranker** stage added after RRF fusion ([RERANKER.md](docs/RERANKER.md)); **live web grounding** fused into RRF at weight 2.8. pgvector exact-scan documented (ivfflat unavailable at 3,072 dims). Stale GraphRAG scripts purged. **Fact corrections:** embedding dim 768→3072, reranker FlashRank→cross-encoder, schema model name fixed; model refs Opus 4.7→4.8; shipped counts reconciled (152 protocols/16 cats, 39 skills, 163 scripts).
