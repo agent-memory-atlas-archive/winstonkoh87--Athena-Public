@@ -19,13 +19,16 @@
 
 set -euo pipefail
 
-TARGET_DIR="${1:-$HOME/Athena-Public}"
+# Default to the repo this script lives in, not a hardcoded home path —
+# so the gate scans what you're actually about to push, wherever it's cloned.
+SCRIPT_REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+TARGET_DIR="${1:-$SCRIPT_REPO}"
 DRY_RUN=false
 VIOLATIONS=0
 
 if [[ "${1:-}" == "--dry-run" ]]; then
     DRY_RUN=true
-    TARGET_DIR="${2:-$HOME/Athena-Public}"
+    TARGET_DIR="${2:-$SCRIPT_REPO}"
 fi
 
 # Colors
@@ -137,9 +140,9 @@ if [[ -n "$name_matches" ]]; then
     VIOLATIONS=$((VIOLATIONS + 1))
 fi
 
-# Psychology/therapy patterns
+# Psychology/therapy patterns (customize the pattern with terms from your private domains)
 psych_matches=$(grep -rn --exclude='pre_deploy_scan.sh' --include='*.md' \
-    -E 'cPTSD|trigger_log|REPLACE_PERSONAL_PATTERN'  # Customize: terms from your private domains "$TARGET_DIR" 2>/dev/null | \
+    -E 'cPTSD|trigger_log|REPLACE_PERSONAL_PATTERN' "$TARGET_DIR" 2>/dev/null | \
     grep -v 'node_modules' | grep -v '.git/' | grep -v 'pds:allow' | grep -v '/pre_deploy_scan.sh:' || true)
 if [[ -n "$psych_matches" ]]; then
     echo -e "${RED}✗ VIOLATION: Therapy/psychology PII found:${NC}"
