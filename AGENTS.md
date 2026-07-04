@@ -83,7 +83,7 @@ This file provides persistent context to any AI coding agent working in this wor
 
 ### Uber-Skills (Umbrella Consolidations)
 
-> **NEW (2026-05-11)**: 6 Uber-Skills retroactively compiled from 1,800+ sessions. These are dense umbrella consolidations that absorb multiple existing skills/protocols. They auto-trigger on broad domain keywords.
+> **NEW (2026-05-11)**: 6 Uber-Skills retroactively compiled from 1,900+ sessions. These are dense umbrella consolidations that absorb multiple existing skills/protocols. They auto-trigger on broad domain keywords.
 
 | Skill | Activates On | Absorbs |
 |:----- |:------------ |:------- |
@@ -125,7 +125,7 @@ When working on any task in this workspace:
 
 > **MANDATORY (ALL sessions)**: Every non-trivial response MUST invoke at least ONE external tool before generating output. "External" = anything outside the model's weights (Exocortex, web search, file reads, MCP, grep, commands).
 >
-> The Exocortex indexes **1,800+ sessions** of lived experience. Web search provides real-time facts. Responding without consulting these when they could enrich or verify the answer is equivalent to ignoring the user's own history and the current state of the world.
+> The Exocortex indexes **1,900+ sessions** of lived experience. Web search provides real-time facts. Responding without consulting these when they could enrich or verify the answer is equivalent to ignoring the user's own history and the current state of the world.
 >
 > **Minimum tool calls by complexity**:
 > - Simple lookups (Λ < 10): Exempt
@@ -152,7 +152,7 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 ## Version
 
 - **Framework**: v8.2-stable (frozen as of 2026-02-01 — reference-only, not runtime-loaded)
-- **System**: v9.9.2
-- **Last Updated**: 2026-06-17
+- **System**: v9.9.6 (public release; see .agent/config/CAPS.json)
+- **Last Updated**: 2026-07-05
 - **Canonical Counts**: `.agent/config/CAPS.json` (single source of truth)
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules + Claude Code Source Architecture (2026-03-31) + Hermes Agent Steal (NousResearch/hermes-agent, 2026-05-11: skill-compiler, curator lifecycle model) + Karpathy CLAUDE.md Steal (r/ClaudeCode, 2026-06-01: Ask-Don't-Assume, Flag-Uncertainty, Codebase-Documentation-Sync)

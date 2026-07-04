@@ -5,7 +5,7 @@ vibe: "The nervous system replays what is familiar, not what is healthy."
 context_trigger: "friend, relationship, frustrated, boundary, intimacy, hurt, toxic, schema, IFS, parts, wound, attachment, validation, lonely, rejection, dating, confrontation, ghosted, narcissist, people-pleasing, codependent"
 auto-invoke: true
 model: default
-source: "Retroactively compiled from 1800+ sessions (2025-2026) via skill-compiler"
+source: "Retroactively compiled from 1,900+ sessions (2025-2026) via skill-compiler"
 compiled_from: "protocols/psychology/PSY-*, protocols/social/SOC-*, skills/therapeutic-ifs, skills/consiglieri-protocol"
 absorbs: "therapeutic-ifs, consiglieri-protocol"
 meta_patterns: [MP-5, MP-8, MP-10, MP-14]
@@ -94,7 +94,7 @@ Classify all relationships into structural tiers:
 
 ### Module 5: The Schema Deconstruction Stack (PSY-196)
 
-**Core Schemas Identified** (from 1800+ sessions):
+**Core Schemas Identified** (from 1,900+ sessions):
 
 | Schema | Manifestation | Source | Counter-Protocol |
 |:-------|:-------------|:-------|:----------------|

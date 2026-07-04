@@ -23,7 +23,7 @@ python3 .agent/scripts/boot.py
 **What happens:**
 
 ```
-🚀 ATHENA BOOT SEQUENCE v9.9.1
+🚀 ATHENA BOOT SEQUENCE v9.9.6
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [1/7] ⏱️  Watchdog activated
 [2/7] 🔄 System sync complete

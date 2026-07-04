@@ -5,7 +5,7 @@ vibe: "You don't prevent ruin by being good. You prevent it by building structur
 context_trigger: "health, sick, cough, medicine, supplement, budget, burn rate, runway, savings, insurance, ruin, safety, emergency, circuit breaker, burnout, exhausted, overwhelmed, broke, bankrupt, legal, arrested, scam"
 auto-invoke: true
 model: default
-source: "Retroactively compiled from 1800+ sessions (2025-2026) via skill-compiler"
+source: "Retroactively compiled from 1,900+ sessions (2025-2026) via skill-compiler"
 compiled_from: "protocols/safety/*, protocols/health/*, protocols/finance/*, skills/circuit-breaker"
 absorbs: "circuit-breaker"
 meta_patterns: [MP-2, MP-7, MP-14]

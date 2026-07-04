@@ -12,13 +12,13 @@ Own the state. Rent the intelligence. Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v9.9.5-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v9.9.6-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 3 Jul 2026*
+*Last updated: 5 Jul 2026*
 
 </div>
 
@@ -529,6 +529,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **v9.9.6** (Jul 5 2026): **Private-Instance Parity Pass** — Ported the self-maintenance toolkit from the private instance: `maintenance_ratio.py` (maintenance-vs-output commit advisory), `stale_detector.py`, `orphan_detector.py`, `reflexion_harvester.py` (mines `~/.claude` transcripts for failed→fixed tool-call deltas). New **`meta_awareness_gate.py`** hook — a code-enforced `UserPromptSubmit` trigger for socially-loaded prompts, closing the `auto-invoke: true` fiction (frontmatter is a request, not a mechanism; hooks make it deterministic). Added `.agent/config/CAPS.json` as the single source of truth for inventory counts (`_shared.md` referenced it but it didn't exist). Ported the **Epistemic Status Convention** (`code-enforced` / `agent-discretion` / `aspirational`) into `_shared.md`. Fixed `src/athena/__init__.py` reporting `__version__ = "9.2.0"` while pyproject said 9.9.5. Versions, dates, and session counts unified repo-wide.
 - **Docs metrics pass** (Jul 2 2026): Reconciled README claims with the portfolio site and actual repo contents — sessions 1,800+→1,900+; protocol count unified to **200+** repo-wide (226 protocol `.md` files across `examples/protocols/` 188, `docs/protocols/` 22, `.framework/` 8, template mirror 8; the old "187" counted only the starter kit incl. its archive). Headline counts now use verifiable floors, not exact numbers that drift.
 - **v9.9.5** (Jul 1 2026): **Sync & Hygiene Pass** — Fixed a missing RLS policy on `document_chunks` (migration 017) that would've shipped the table world-readable to `anon`/`authenticated`. Reconciled version drift across `pyproject.toml`/`athena.yaml`/README (were split across 9.9.1/9.5.6/9.9.4). Fixed stale `athena.yaml` config (`embedding_dimensions: 768`→3072, Opus 4.7→4.8). Added 5 new protocol categories (`diagnostics`, `communication`, `creation`, `marketing`, `singapore` — 36 files, individually reviewed and sanitized): protocols 152→187, categories 16→21.
 - **v9.9.4** (Jun 21 2026): **Retrieval Reliability** — Cross-encoder reranker forced onto the PyTorch backend; it was probing for TensorFlow, importing it (~20s), then crashing on Keras 3 (`install tf-keras`) — which made `--rerank` time out and return empty. Reranked candidates capped at 12. Chunk-level retrieval landed in code to match the v9.9.3 spec: `document_chunks` table (`vector(3072)`) + `search_all_vectors` RPC (migrations 016/017) and `gemini-embedding-001` (3072d) embeddings, shipped together so a fresh clone's schema is consistent. Archive paths excluded from the semantic index. Sync hardened — chunks are embedded *before* the destructive delete, so a transient failure can no longer wipe a file's content with no replacement.

@@ -135,7 +135,7 @@ This is why a question about a $0.30 meal in Bangkok produces an analysis spanni
 | **Laws #0–6** | Structural gates that override surface-level optimization |
 | **The RETO Selector** | Engine selection based on structural properties of the problem |
 | **Red Team Review** | Adversarial loop that stress-tests conclusions |
-| **Exocortex / Semantic Search** | Pattern retrieval across 1800+ sessions (lived system memory) |
+| **Exocortex / Semantic Search** | Pattern retrieval across 1,900+ sessions (lived system memory) |
 
 ---
 

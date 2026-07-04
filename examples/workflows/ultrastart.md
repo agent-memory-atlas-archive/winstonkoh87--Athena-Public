@@ -338,7 +338,7 @@ User query → Extract keywords/entities
 > - **Projects/Assignments**: Any project code or assignment identifier → search for full project context
 > - **Protocols/Case Studies**: Any reference to system patterns → search by keyword
 >
-> **MaxMax principle**: The cost of a redundant search is ~$0. The cost of a hallucinated fact is trust erosion. The cost of ignoring 1800+ sessions of empirical data is **criminal negligence**. **Always verify. Never guess. Always recall.**
+> **MaxMax principle**: The cost of a redundant search is ~$0. The cost of a hallucinated fact is trust erosion. The cost of ignoring 1,900+ sessions of empirical data is **criminal negligence**. **Always verify. Never guess. Always recall.**
 
 ---
 

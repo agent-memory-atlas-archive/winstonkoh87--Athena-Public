@@ -5,7 +5,7 @@ vibe: "The math trades. You just execute."
 context_trigger: "trade, poker, sizing, bankroll, drawdown, kelly, stop loss, position size, variance, risk reward, lot size, pips, ruin, MTT, buy-in, commission drag, layering, grid, oil, XBRUSD, EURUSD"
 auto-invoke: true
 model: default
-source: "Retroactively compiled from 1800+ sessions (2025-2026) via skill-compiler"
+source: "Retroactively compiled from 1,900+ sessions (2025-2026) via skill-compiler"
 compiled_from: "protocols/trading/TRD-*, skills/trading-risk-gate, skills/zenith-execution, skills/trade-journal-analyzer"
 absorbs: "trading-risk-gate, zenith-execution, trade-journal-analyzer"
 meta_patterns: [MP-2, MP-4, MP-7, MP-11]

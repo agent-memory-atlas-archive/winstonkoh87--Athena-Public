@@ -123,7 +123,7 @@ Every response Turn MUST be classified by risk level and grounded accordingly:
    - **Projects/Assignments**: Any project code or assignment identifier → search for project context
    - **Protocols/Case Studies**: Any reference to system patterns → search by keyword
    
-   The Exocortex is the user's **extended memory**. 1800+ sessions of lived experience are indexed. Failing to search when the data exists is equivalent to ignoring the user's own history. Also available via MCP: `mcp_athena_smart_search` and `mcp_athena_agentic_search`.
+   The Exocortex is the user's **extended memory**. 1,900+ sessions of lived experience are indexed. Failing to search when the data exists is equivalent to ignoring the user's own history. Also available via MCP: `mcp_athena_smart_search` and `mcp_athena_agentic_search`.
 
 **Web Search** (real-time verification):
 

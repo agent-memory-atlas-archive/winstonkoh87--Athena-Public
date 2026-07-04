@@ -5,7 +5,7 @@ vibe: "Own the arena. Own the asset. Own the exit. Everything else is rent."
 context_trigger: "client, rate, proposal, negotiation, toxic, pricing, agency, freelance, service, business model, distribution, SEO, ads, content, lead, funnel, website, portfolio, brand, niche, market, Carousell, listing"
 auto-invoke: true
 model: default
-source: "Retroactively compiled from 1800+ sessions (2025-2026) via skill-compiler"
+source: "Retroactively compiled from 1,900+ sessions (2025-2026) via skill-compiler"
 compiled_from: "protocols/business/BUS-*, protocols/marketing/MKT-*, protocols/content/CNT-*, protocols/acquisition/ACQ-*"
 absorbs: "client-pricing, distribution-physics, brand-foundations, seo-auditor, marketing-swarm (partial)"
 meta_patterns: [MP-1, MP-3, MP-4, MP-6, MP-9, MP-12, MP-13]

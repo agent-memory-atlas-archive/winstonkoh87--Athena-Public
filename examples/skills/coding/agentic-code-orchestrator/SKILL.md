@@ -5,7 +5,7 @@ vibe: "Ship at 70%, iterate to 95%. Never build what you haven't specced."
 context_trigger: "refactor, bug, architecture, data dump, deploy, website, dashboard, code, build, CSV, Parquet, JSON, DuckDB, assignment, essay, capstone, SUSS, academic, Python, React, Next.js, Supabase, vibe code"
 auto-invoke: true
 model: default
-source: "Retroactively compiled from 1800+ sessions (2025-2026) via skill-compiler"
+source: "Retroactively compiled from 1,900+ sessions (2025-2026) via skill-compiler"
 compiled_from: "protocols/coding/COD-*, skills/data-analysis, skills/academic-delivery, skills/spec-driven-dev"
 absorbs: "data-analysis, academic-delivery, spec-driven-dev, academic-humanizer, statistical-analysis"
 meta_patterns: [MP-2, MP-11]

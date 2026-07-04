@@ -68,7 +68,7 @@ Here's what I actually did. No shortcuts.
 ### What the Schlep Looked Like
 
 ```
-├── 1,800+ sessions logged (human + AI collaboration)
+├── 1,900+ sessions logged (human + AI collaboration)
 ├── 402 active protocols extracted (436 total across 24 categories)
 ├── 247 automation scripts written
 ├── 3 major refactors (monolith → SDK)

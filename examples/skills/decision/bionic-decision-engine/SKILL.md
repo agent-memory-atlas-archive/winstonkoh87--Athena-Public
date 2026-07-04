@@ -5,7 +5,7 @@ vibe: "Every 'Should I?' gets a number, not a feeling."
 context_trigger: "should I, is it worth it, opportunity cost, pricing, decision, compare, which one, tradeoff, invest, allocate, evaluate, choose, horizon, arena"
 auto-invoke: true
 model: default
-source: "Retroactively compiled from 1800+ sessions (2025-2026) via skill-compiler"
+source: "Retroactively compiled from 1,900+ sessions (2025-2026) via skill-compiler"
 compiled_from: "protocols/decision/DEC-*, protocols/strategy/STR-*, protocols/economics/ECO-*"
 absorbs: "decision-journal (partial), power-inversion (partial)"
 meta_patterns: [MP-2, MP-5, MP-9, MP-10, MP-14]

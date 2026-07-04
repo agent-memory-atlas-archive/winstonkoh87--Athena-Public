@@ -10,7 +10,7 @@ last_updated: 2026-06-17
 > **Sessions Analyzed**: 1,800+ (vs ~400 at original ranking)
 > **Key Shift**: Original ranking optimized for *theoretical impact*. This one optimizes for **empirically demonstrated behavioral change**.
 
-These are the 10 most impactful protocols from the Athena framework, re-ranked based on actual usage data and observed behavioral outcomes across 1,800+ sessions.
+These are the 10 most impactful protocols from the Athena framework, re-ranked based on actual usage data and observed behavioral outcomes across 1,900+ sessions.
 
 ---
 
@@ -203,7 +203,7 @@ Current  (Jun 17): Safety → Pattern Detection → Behavioral → Meta-Pattern 
 
 **Translation**: The early ranking was *intellectually focused* — the best protocols were reasoning tools (Synthetic Parallel, First Principles, Claim Atomization). The current ranking is *behaviorally focused* — the best protocols are the ones that actually changed *actions*, not just *thinking*.
 
-The biggest single insight: **P003 (Revealed Preference) being the 3rd most referenced protocol in 1,800+ sessions means the most common failure mode isn't bad reasoning — it's ignoring what actions reveal.** The system doesn't need better thinking tools. It needs better "seeing what's actually happening" tools.
+The biggest single insight: **P003 (Revealed Preference) being the 3rd most referenced protocol in 1,900+ sessions means the most common failure mode isn't bad reasoning — it's ignoring what actions reveal.** The system doesn't need better thinking tools. It needs better "seeing what's actually happening" tools.
 
 ---
 

@@ -1,10 +1,25 @@
 # Athena Changelog
 
-> **Last Updated**: 1 July 2026
+> **Last Updated**: 5 July 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.9.6 (5 July 2026)
+
+**Private-Instance Parity Pass**: Ported the self-maintenance toolkit and honesty conventions that kept the private instance healthy, and closed remaining version/count drift.
+
+### Key Changes
+
+- **Self-Maintenance Toolkit Ported** (`scripts/`): `maintenance_ratio.py` (classifies recent commits as maintenance vs output and prints an advisory when maintenance exceeds 70% — the system telling you it's consuming more attention than it produces), `stale_detector.py` (files untouched past a threshold), `orphan_detector.py` (docs nothing links to), and `reflexion_harvester.py` (mines `~/.claude` transcripts for failed→fixed tool-call deltas so recurring failure patterns become explicit lessons). All four are privacy-clean by design — they read structure, not content.
+- **`meta_awareness_gate.py` Hook** (`examples/hooks/`): A code-enforced Claude Code `UserPromptSubmit` hook that detects socially-loaded prompts (outbound "should I send this?" acts, emotionally-hot inbound reads) and injects a meta-awareness gate before the model responds. This closes the **auto-invoke fiction**: `auto-invoke: true` frontmatter is a request the model can ignore — a hook is a mechanism it can't. `examples/skills/README.md` and `examples/hooks/README.md` now state this distinction explicitly.
+- **`.agent/config/CAPS.json` Added**: Single source of truth for inventory counts with executable `recount_rules`. `_shared.md` already instructed agents to trust CAPS over narrative counts — but the file didn't exist in this repo until now. This ends the count-drift-fix commit treadmill (three of the last ten commits were count reconciliations).
+- **Epistemic Status Convention Ported** (`examples/workflows/_shared.md`): Every claimed mechanism is `code-enforced`, `agent-discretion`, or `aspirational`. If a doc says "automatically" and you can't point to the code, it's not `code-enforced` — relabel it, don't propagate the illusion.
+- **Version Truth**: `src/athena/__init__.py` reported `__version__ = "9.2.0"` while `pyproject.toml` said 9.9.5 — `athena --version` (well, `athena.__version__`) was lying by seven releases. All version strings (pyproject, athena.yaml, `__init__.py`, README badge, wiki mirror, doc headers) now agree on 9.9.6.
+- **Date & Count Unification**: Session-count claims unified to 1,900+ across functional docs (historical narrative in case studies/marketing archives intentionally left at their original values); doc headers that claimed stale "current versions" (v9.9.1–v9.9.4) updated.
 
 ---
 
