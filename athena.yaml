@@ -19,9 +19,11 @@ description: >
 # Model Configuration
 # ---------------------------------------------------------------------------
 model:
+  # gemini-3.1-pro is the GA flagship; bump to gemini-3.5-pro once it exits
+  # enterprise preview (GA slipped to July 2026) — IDs here must resolve today.
   preferred: "gemini:gemini-3.1-pro"
   fallback:
-    - "anthropic:claude-opus-4.8"
+    - "anthropic:claude-fable-5"
     - "openai:gpt-5.5"
   constraints:
     temperature: 0.7

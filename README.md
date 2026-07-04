@@ -16,7 +16,7 @@ Own the state. Rent the intelligence. Platforms forget. Athena doesn't.
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
-[Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
+[Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Validation Status](#-validation-status--whats-proven-vs-whats-proposed) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
 *Last updated: 5 Jul 2026*
 
@@ -147,7 +147,7 @@ Kind of. But first, it helps to understand what those names actually refer to �
 | Layer | What It Is | Examples |
 |:------|:-----------|:--------|
 | **Platform** | The company that hosts the model and holds your data | OpenAI, Google, Anthropic |
-| **Reasoning Engine** | The AI model that does the thinking | GPT-5.5 (High), Gemini 3.1 Pro, Claude Opus 4.8 |
+| **Reasoning Engine** | The AI model that does the thinking | Claude Fable 5, GPT-5.5 (High), Gemini 3.5 Pro |
 | **IDE / Interface** | The app you type in — connects to models and reads your files | Cursor, Antigravity, VS Code, Claude Code |
 
 When people say "ChatGPT remembers me," they mean the **platform** stores some memory on their cloud. When they say "Claude is smart," they mean the **model** reasons well. When they say "Cursor writes code," they mean the **IDE** connects model + files.
@@ -465,10 +465,26 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 > Boot cost is 2K–20K tokens (depending on mode) — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
 
 > [!NOTE]
-> Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Opus 4.8, Gemini 3.1 Pro, GPT-5.5). Start with the free tier to test compatibility with your preferred model.
+> Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Fable 5, Gemini 3.5 Pro, GPT-5.5). Start with the free tier to test compatibility with your preferred model.
 
 > [!TIP]
 > **Save money getting started** *(updated May 2026)*. Google still offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers. If someone you know is on a Google AI Pro or Ultra plan, they can add you as a family member — for Ultra subscribers, this means splitting $249/mo across family members. Note that Antigravity quota is now **shared** across the family plan (no longer independent per member), so coordinate usage if multiple members are power users. **The practical cost of running Athena is ~$20/mo** on any Pro-tier plan — this gives you daily access to frontier models with comfortable headroom. Google enforces a **7-day rolling baseline** on Antigravity usage; paid plans (Pro/Ultra) refresh every 5 hours but heavy sprint sessions can trigger the weekly cap. Power users who run 8+ hours/day should budget for $200+/mo (Ultra/Max tier). <!-- pds:allow -->
+
+---
+
+## 🔬 Validation Status — What's Proven vs. What's Proposed
+
+Most AI-agent READMEs state every claim in the same confident voice. This one doesn't. Athena decomposes into layers with very different evidence levels, and you deserve to know which is which:
+
+| Layer | Claim | Status | Evidence |
+|:------|:------|:-------|:---------|
+| **Storage & Retrieval** | Memories are stored and the right one surfaces when needed | ✅ **Shipped & battle-tested** | Chunk-level hybrid RAG + cross-encoder rerank, hardened through real production failures ([v9.9.4 notes](docs/CHANGELOG.md)) — including a silent retrieval regression *our own monitoring missed*, which is why the reranker is now on by default and archive paths are excluded from the index |
+| **Portability & Ownership** | Your data is markdown on your disk, movable across models | ✅ **Shipped** | Structural — inspect the repo; there's nothing to take on faith |
+| **Compounding Personalization** | Session 500 reasons in your frameworks, not just recalls your name | 🟡 **Credible architecture, N=1 evidence** | 1,900+ sessions of longitudinal use by the author, including logged incidents and post-mortems. No multi-user study, no controlled benchmark yet. The honest claim is *"this worked for one person who built it around his own thinking"* — you are the replication experiment |
+| **Governed Autonomy** | Constitutional laws + capability levels prevent harmful autonomous action | 🟡 **Designed & used, not adversarially tested** | The governance code ships (`src/athena/core/`: ruin_check, permissions, sandbox) and is used daily in cooperative conditions. A public test suite proving the gates hold under adversarial pressure is the roadmap's top item |
+| **"The right answer for *you*"** | Personalized advice beats generic advice for life decisions | 🔴 **Partially unfalsifiable — by nature** | You can't A/B test your own life; there's no counterfactual. Athena's success metric is deliberately **process quality, not outcome superiority**: calibration (were your 80% calls right ~80% of the time?), ruin avoidance (did the left tail stay closed?), and full-information choice. That's also why Law #1 is a *process* guarantee |
+
+> **Why publish this table?** Because the failure mode of this product category is self-mythologizing — describing aspirations in the present tense until the author believes them. Athena's own convention ([Epistemic Status](examples/workflows/_shared.md#epistemic-status-convention-anti-self-mythologizing)) requires labeling every mechanism as `code-enforced`, `agent-discretion`, or `aspirational`. This table is that convention applied to the README itself. The feedback loop exists (incident logs, decision journal, reflexion harvesting) — what doesn't exist yet is *published, systematized* validation. If a claim above ever moves a tier, the change lands in the [changelog](docs/CHANGELOG.md), not silently in the marketing copy.
 
 ---
 
@@ -493,12 +509,14 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 | Layer | Technology |
 |:------|:----------|
 | **IDE** | Antigravity |
-| **Reasoning Engine** | Gemini 3.1 Pro (High) / Claude Opus 4.8 (Thinking) / GPT-5.5 (High) |
-| **SDK** | `athena` Python package (v9.9.4) |
+| **Reasoning Engine** | Gemini 3.5 Pro (High)¹ / Claude Fable 5 (High) / GPT-5.5 (High) |
+| **SDK** | `athena` Python package (v9.9.6) |
 | **Search** | Hybrid RAG — chunk-level retrieval + cross-encoder rerank + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (3072-dim) |
 | **Memory** | Supabase + pgvector |
 | **Routing** | Risk-Proportional Triple-Lock — SNIPER / STANDARD / ULTRA |
+
+> ¹ Gemini 3.5 Pro is rolling out through July 2026 (enterprise preview at time of writing) — Gemini 3.1 Pro remains the GA fallback until then. Athena is model-agnostic by design; this row is just the current daily-driver lineup.
 
 <details>
 <summary><strong>📂 Repository Structure</strong></summary>
@@ -559,6 +577,8 @@ Athena-Public/
 </a>
 
 **MIT License** · [Contributing](CONTRIBUTING.md) · [Safety](SAFETY.md) · [Security](docs/SECURITY.md) · [Code of Conduct](CODE_OF_CONDUCT.md)
+
+Built and battle-tested solo across 1,900+ sessions by [Winston Koh](https://winstonkoh87.com) — systems thinker, meta-game strategist. [The story behind Athena →](docs/ABOUT_ME.md)
 
 *Clone it. Boot it. Make it yours.*
 

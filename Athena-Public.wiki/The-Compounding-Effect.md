@@ -109,7 +109,7 @@ Not all data compounds equally:
 
 | Type | Example | Value |
 |:-----|:--------|:------|
-| **Empirical** | "I quoted $250, market was $400. I left $150 on the table." | Highest — real outcomes |
+| **Empirical** | "I quoted $250, market was $400. I left $150 on the table." | Highest — real outcomes | <!-- pds:allow illustrative example, not real pricing -->
 | **Contextual** | "Client X prefers bullet points over paragraphs" | High — personalisation |
 | **Environmental** | "My energy crashes after 2pm" | Medium — scheduling optimisation |
 | **Organic** | "Today's session covered trading strategies" | Low — metadata only |
