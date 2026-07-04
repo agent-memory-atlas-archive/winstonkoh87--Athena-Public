@@ -94,4 +94,7 @@ Set `auto-invoke: true` for skills that should activate automatically when the c
 - **Analysis tools** (kelly-mandate, base-rate-audit) — auto-invoke enriches responses transparently
 - **User-invoked only** (marketing-swarm, git-worktree-swarm) — heavyweight workflows that should only run on explicit command
 
+> [!IMPORTANT]
+> **`auto-invoke: true` is a request, not a mechanism.** Frontmatter is prose — the model *chooses* whether to honor it, and in practice it fails most often on exactly the prompts that matter (emotionally-loaded or high-stakes contexts). If a skill genuinely must fire deterministically, wire a **hook**: see [`examples/hooks/meta_awareness_gate.py`](../hooks/meta_awareness_gate.py) for a code-enforced `UserPromptSubmit` trigger that injects the skill's gate into context regardless of model discretion. Epistemic statuses: `code-enforced` (a hook/script runs it) vs `agent-discretion` (the model must remember). Label your skills honestly — a safety gate that is only `agent-discretion` is not a gate.
+
 See [CONTRIBUTING.md](../../CONTRIBUTING.md) for guidelines on adding new skills.

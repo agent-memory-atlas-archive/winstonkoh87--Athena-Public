@@ -1,0 +1,42 @@
+{
+  "_comment": "Canonical inventory counts for Athena-Public. Single source of truth for README claims, docs, and audit asserts. If a number in any doc diverges from this file, CAPS wins. Regenerate via the recount_rules below — do not edit counts by hand. Headline claims in README use verifiable FLOORS (e.g. '200+ protocols'), not exact numbers that drift.",
+  "_generated": "2026-07-05",
+  "version": {
+    "public_release": "9.9.6"
+  },
+  "protocols": {
+    "examples_starter_kit": 187,
+    "docs_deep_dives": 22,
+    "framework_v82": 8,
+    "framework_template_mirror": 8,
+    "total": 225,
+    "headline_floor": "200+",
+    "recount_note": "Public corpus is a curated subset (~45%) of the private instance. Curation is intentional: top-value protocols ship, personal ones do not."
+  },
+  "skills": {
+    "total": 38,
+    "conditional_count": 38,
+    "recount_note": "All public skills carry context_trigger frontmatter. auto-invoke:true is agent-discretion unless backed by a hook (see examples/hooks/README.md)."
+  },
+  "workflows": {
+    "active": 89,
+    "archived": 5
+  },
+  "scripts": {
+    "root_utilities": 20
+  },
+  "sessions": {
+    "headline_floor": "1,900+",
+    "recount_note": "Private-instance session count backing the public claims; verify against the portfolio site before bumping."
+  },
+  "recount_rules": {
+    "protocols.examples_starter_kit": "find examples/protocols -name '*.md' ! -name 'README.md' | wc -l",
+    "protocols.docs_deep_dives": "find docs/protocols -name '*.md' ! -name 'README.md' | wc -l",
+    "protocols.framework_v82": "find .framework -path '*protocols*' -name '*.md' | wc -l",
+    "protocols.framework_template_mirror": "find examples/templates/framework_mirror -path '*protocols*' -name '*.md' | wc -l",
+    "skills.total": "find examples/skills -name 'SKILL.md' | wc -l",
+    "workflows.active": "find examples/workflows -name '*.md' -not -path '*_archived*' | wc -l",
+    "workflows.archived": "find examples/workflows/_archived -name '*.md' | wc -l",
+    "scripts.root_utilities": "ls scripts/*.py scripts/*.sh | wc -l"
+  }
+}

@@ -56,13 +56,34 @@ Canonical counts (protocols, skills, workflows, scripts) live in `.agent/config/
 
 > **MANDATORY**: Every STANDARD/ULTRA response (Λ ≥ 10) MUST invoke at least ONE external tool before generating output. "External" means anything outside the model's own weights — Exocortex, web search, file reads, MCP calls, grep, or command execution all qualify.
 >
-> **Rationale**: Training data is stale. The Exocortex holds 1800+ sessions of lived experience. The web holds current facts. Responding from internal knowledge alone when external tools are available is **lazy** and produces lower-quality output.
+> **Rationale**: Training data is stale. The Exocortex holds 1,900+ sessions of lived experience. The web holds current facts. Responding from internal knowledge alone when external tools are available is **lazy** and produces lower-quality output.
 >
 > **Enforcement**:
 > - SNIPER queries (Λ < 10): Exempt. Direct answers allowed.
 > - STANDARD queries (Λ 10-30): Minimum 1 tool call (Exocortex OR web search OR file read).
 > - ULTRA queries (Λ > 30): Minimum 2 tool calls from different sources (e.g., Exocortex + web search, or file read + web search).
 > - **Violation**: Responding to a STANDARD/ULTRA query with zero tool calls is an anti-pattern equivalent to ignoring the user's own history and the live state of the world.
+
+### Epistemic Status Convention (anti-self-mythologizing)
+
+> **The failure this prevents**: a protocol describes machinery in the present tense ("the system
+> continuously monitors X and emits Y") that **no code implements**. An agent reads it at boot, believes
+> the mechanism is running, and either (a) skips the manual step it should have done, or (b) reports
+> "compliance" with a process that never executed. Wrong cognition in the substrate → wrong decisions
+> in the output.
+
+Every protocol/system that *claims a mechanism* should declare one of three statuses (frontmatter
+`epistemic_status:` or an inline note). When reading one mid-decision, trust it accordingly:
+
+| Status | Meaning | How to treat it |
+|:---|:---|:---|
+| `code-enforced` | A script/hook actually does this; verifiable in `scripts/` or `examples/hooks/` | Trust as a mechanism. |
+| `agent-discretion` | A heuristic the agent must *choose* to apply; nothing enforces it | Apply it deliberately — it won't happen on its own. |
+| `aspirational` | Described but NOT built; a target, often a real external pattern not yet ported | Do NOT assume it runs. Treat as a note, not a capability. |
+
+**Rule**: If a doc says "continuously / automatically / the system monitors / emits" but you can't point
+to the code, it is `agent-discretion` or `aspirational` — relabel it, don't propagate the illusion.
+Tag on touch; tag any mechanism you actually rely on for a decision.
 
 ### Artifact Naming
 - Protocols: `NNN-kebab-case.md` (e.g., `528-execution-enforcement.md`)
