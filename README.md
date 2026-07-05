@@ -171,7 +171,7 @@ There's a difference between *remembering your name* and *thinking in your frame
 
 | Tool | What It Does | How Athena Is Different |
 |:-----|:-------------|:------------------------|
-| **Manus / Managed AI Agents** | Cloud-hosted AI agents with persistent memory, custom skills, and messenger integration. You pay $39–$199/mo for access. | **You don't own the data.** Manus holds your context, memory, and workflows on their servers. Leave the platform = lose everything. Athena stores everything on *your* machine — readable, forkable, portable. Same capabilities, opposite ownership model. Athena is the house; Manus is the hotel. |
+| **Manus / Managed AI Agents** | Cloud-hosted AI agents with persistent memory, custom skills, and messenger integration. Credit-based plans from free to $200/mo. | **You don't own the data.** Manus holds your context, memory, and workflows on their servers. Leave the platform = lose everything. Athena stores everything on *your* machine — readable, forkable, portable. Same capabilities, opposite ownership model. Athena is the house; Manus is the hotel. |
 | **Lindy / AI Operators** | Autonomous AI assistants that run 24/7 in the cloud — scheduling, research, outreach. | Always-on cloud is convenient, but you rent the brain. Athena runs locally through your IDE — no monthly fee, no platform risk, no lock-in. Trade convenience for sovereignty. |
 | **ChatGPT Projects** | Uploads files per-project, but resets every new chat. Locked to OpenAI. | Athena persists across *all* chats, *all* models, with full version history. |
 | **OpenClaw** | Prompt distribution — share and discover prompts. | Athena is **personalisation** — your compounding memory system, not a prompt marketplace. Different layer, different problem. |
@@ -454,7 +454,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:-----|:-----|:-------------|
 | **Google Antigravity (free tier)** | **$0** | **Try Athena first** — included with any Google account (Pro available at reduced quota) |
 | Claude Pro / Google AI Pro | ~$20/mo | Daily users — the sweet spot for most people |
-| Claude Max / Google AI Ultra | $200+/mo | Power users managing multiple domains (8+ hrs/day) |
+| Claude Max / Google AI Ultra | $100–$250/mo | Power users managing multiple domains (8+ hrs/day) — Max 5x $100, Max 20x $200, Ultra ~$250 |
 
 > **Try before you buy.** Athena works with Google Antigravity's free tier — clone the repo, type `/start`, and see if it clicks. No credit card, no trial period, no catch. The free tier includes Pro models at reduced quota — enough to evaluate whether Athena works for you. Upgrade when you need higher throughput.
 
@@ -484,6 +484,8 @@ Most AI-agent READMEs state every claim in the same confident voice. This one do
 | **Governed Autonomy** | Constitutional laws + capability levels prevent harmful autonomous action | 🟡 **Designed & used, not adversarially tested** | The governance code ships (`src/athena/core/`: ruin_check, permissions, sandbox) and is used daily in cooperative conditions. A public test suite proving the gates hold under adversarial pressure is the roadmap's top item |
 | **"The right answer for *you*"** | Personalized advice beats generic advice for life decisions | 🔴 **Partially unfalsifiable — by nature** | You can't A/B test your own life; there's no counterfactual. Athena's success metric is deliberately **process quality, not outcome superiority**: calibration (were your 80% calls right ~80% of the time?), ruin avoidance (did the left tail stay closed?), and full-information choice. That's also why Law #1 is a *process* guarantee |
 
+> **Academic grounding**: the concepts Athena operationalizes — Kelly sizing, ergodicity economics, prospect theory, IFS, memory-stream/reflection agent architectures (MemGPT, Generative Agents, CoALA) — are cited in full APA format, every DOI Crossref-verified, in [docs/REFERENCES.md](docs/REFERENCES.md).
+>
 > **Why publish this table?** Because the failure mode of this product category is self-mythologizing — describing aspirations in the present tense until the author believes them. Athena's own convention ([Epistemic Status](examples/workflows/_shared.md#epistemic-status-convention-anti-self-mythologizing)) requires labeling every mechanism as `code-enforced`, `agent-discretion`, or `aspirational`. This table is that convention applied to the README itself. The feedback loop exists (incident logs, decision journal, reflexion harvesting) — what doesn't exist yet is *published, systematized* validation. If a claim above ever moves a tier, the change lands in the [changelog](docs/CHANGELOG.md), not silently in the marketing copy.
 
 ---
@@ -500,7 +502,7 @@ Most AI-agent READMEs state every claim in the same confident voice. This one do
 | 🧠 [Manifesto](.framework/v8.2-stable/MANIFESTO.md) | 📈 [Changelog](docs/CHANGELOG.md) | 🔀 [Multi-Model Strategy](docs/MULTI_MODEL_STRATEGY.md) |
 | ✅ [Best Practices](docs/BEST_PRACTICES.md) | 🤖 [Your First Agent](docs/YOUR_FIRST_AGENT.md) | 🧩 [What Is an AI Agent?](docs/WHAT_IS_AN_AI_AGENT.md) |
 | 🎯 [Use Cases Deep Dive](docs/USE_CASES.md) | 📋 [Case Studies](docs/CASE_STUDIES.md) | 🛡️ [Safety](SAFETY.md) |
-| 📈 [The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect.md) | | |
+| 📈 [The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect.md) | 🎓 [Academic References (APA)](docs/REFERENCES.md) | |
 
 ---
 

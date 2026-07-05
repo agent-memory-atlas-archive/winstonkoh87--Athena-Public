@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-06-10
+last_updated: 2026-07-05
 tags: #references #apa #academic #citations
 ---
 
@@ -9,6 +9,8 @@ tags: #references #apa #academic #citations
 > **Purpose**: Central academic reference list for the Athena framework. All citations follow APA 7th edition format. Documents within this repository use inline citations (Author, Year) that link back to this page.
 >
 > **Why this exists**: Athena synthesizes concepts from cognitive psychology, microeconomics, AI/ML research, and decision science. This reference list ensures every claim is traceable to its source — not opinion.
+>
+> **Verification policy**: AI-assembled citations are a known fabrication risk. Every DOI in this file was programmatically verified against the Crossref API (title, journal, volume, pages) and every arXiv ID against the arXiv API on **5 July 2026** — 17/17 DOIs and all arXiv entries resolved to the cited works. New citations are not added without passing the same check.
 
 ---
 
@@ -55,6 +57,10 @@ Friedman, M., & Savage, L. J. (1948). The utility analysis of choices involving 
 > **Note**: Friedman & Savage proposed a double-inflection utility function — concave at low and high wealth, convex in between — to explain why people simultaneously buy insurance (risk-averse) and lottery tickets (risk-seeking). This is the theoretical foundation of Protocol 330's Economic Expected Value (EEV) framework.
 
 Kelly, J. L., Jr. (1956). A new interpretation of information rate. *Bell System Technical Journal, 35*(4), 917–926. <https://doi.org/10.1002/j.1538-7305.1956.tb03809.x>
+
+Peters, O. (2019). The ergodicity problem in economics. *Nature Physics, 15*(12), 1216–1221. <https://doi.org/10.1038/s41567-019-0732-0>
+
+> **Note**: Peters formalized why time-average growth and ensemble-average (expected value) diverge for multiplicative processes — the mathematical reason a positive-EV bet can still be a guaranteed path to ruin for an individual who must live through the sequence. This grounds Law #1 (No Irreversible Ruin) and the trading-risk protocols: Athena evaluates decisions on the *time-average* (your one life, played sequentially), not the ensemble average (a million parallel yous). Together with Kelly (1956), this is the quantitative backbone of the ruin-check gate.
 
 Mas-Colell, A., Whinston, M. D., & Green, J. R. (1995). *Microeconomic theory*. Oxford University Press.
 
@@ -111,6 +117,28 @@ Shinn, N., Cassano, F., Gopinath, A., Narasimhan, K., & Yao, S. (2024). Reflexio
 Wang, L., Ma, C., Feng, X., Zhang, Z., Yang, H., Zhang, J., ... & Wang, J. (2024). A survey on large language model based autonomous agents. *Frontiers of Computer Science, 18*(6), 186345. <https://arxiv.org/abs/2308.11432>
 
 Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., & Cao, Y. (2023). ReAct: Synergizing reasoning and acting in language models. *International Conference on Learning Representations (ICLR)*. <https://arxiv.org/abs/2210.03629>
+
+---
+
+## Agent Memory & Long-Term Personalization
+
+> This section grounds Athena's core thesis — that persistent, structured, externally-owned memory changes what an LLM agent can do — in the peer-reviewed and preprint literature. These are the papers a skeptic should read before dismissing "compounding memory" as marketing.
+
+Packer, C., Wooders, S., Lin, K., Fang, V., Patil, S. G., Stoica, I., & Gonzalez, J. E. (2023). MemGPT: Towards LLMs as operating systems. *arXiv preprint arXiv:2310.08560*. <https://arxiv.org/abs/2310.08560>
+
+> **Note**: MemGPT introduced OS-style virtual memory management for LLMs — a fixed context window treated as RAM, with paging to external storage. Athena's JIT boot (2K–20K tokens loaded from a much larger disk-resident memory) is the same architectural insight, implemented as files + retrieval rather than a runtime. The "Linux OS for AI Agents" framing has a direct academic analogue here.
+
+Park, J. S., O'Brien, J. C., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, M. S. (2023). Generative agents: Interactive simulacra of human behavior. *Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST '23)*, 1–22. <https://doi.org/10.1145/3586183.3606763>
+
+> **Note**: The Stanford "Smallville" paper demonstrated that a memory stream + retrieval + periodic reflection loop produces qualitatively richer agent behavior than context alone. Athena's session logs (memory stream), Exocortex search (retrieval), and `/end` insight-filing (reflection) implement the same three-component architecture for a single real user instead of simulated townspeople.
+
+Sumers, T. R., Yao, S., Narasimhan, K., & Griffiths, T. L. (2024). Cognitive architectures for language agents. *Transactions on Machine Learning Research*. <https://arxiv.org/abs/2309.02427>
+
+> **Note**: CoALA provides the formal taxonomy Athena instantiates: working memory (context window), episodic memory (session logs), semantic memory (CANONICAL / protocols), and procedural memory (skills / workflows), with decision procedures governing retrieval and action. Athena was built independently but maps cleanly onto this framework — useful as the academic vocabulary for the architecture.
+
+Wu, D., Wang, H., Yu, W., Zhang, Y., Chang, K.-W., & Yu, D. (2024). LongMemEval: Benchmarking chat assistants on long-term interactive memory. *arXiv preprint arXiv:2410.10813*. <https://arxiv.org/abs/2410.10813>
+
+> **Note**: LongMemEval showed that commercial assistants' long-term memory degrades sharply on multi-session tasks (information extraction, temporal reasoning, knowledge updates across sessions) — the empirical case for Athena's central complaint about platform memory. It is also the closest existing template for the benchmark Athena's own [Validation Status](../README.md#-validation-status--whats-proven-vs-whats-proposed) table says is still missing: decision-quality-vs-session-count, not just recall accuracy.
 
 ---
 
@@ -266,4 +294,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 10 June 2026 (link repair; content last fact-checked 06 June 2026, Session S437)*
+*Last updated: 5 July 2026 (added Agent Memory & Long-Term Personalization section + ergodicity economics; all 17 DOIs Crossref-verified and all arXiv IDs API-verified this date. Previous fact-check: 06 June 2026, Session S437.)*
