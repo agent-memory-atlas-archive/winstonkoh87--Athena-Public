@@ -10,7 +10,7 @@ tags: #references #apa #academic #citations
 >
 > **Why this exists**: Athena synthesizes concepts from cognitive psychology, microeconomics, AI/ML research, and decision science. This reference list ensures every claim is traceable to its source — not opinion.
 >
-> **Verification policy**: AI-assembled citations are a known fabrication risk. Every DOI in this file was programmatically verified against the Crossref API (title, journal, volume, pages) and every arXiv ID against the arXiv API on **5 July 2026** — 17/17 DOIs and all arXiv entries resolved to the cited works. New citations are not added without passing the same check.
+> **Verification policy**: AI-assembled citations are a known fabrication risk. Every DOI in this file was programmatically verified against the Crossref API (title, journal, volume, pages) and every arXiv ID against the arXiv API on **5 July 2026** — 18/18 DOIs and all arXiv entries resolved to the cited works. New citations are not added without passing the same check.
 
 ---
 
@@ -63,6 +63,10 @@ Peters, O. (2019). The ergodicity problem in economics. *Nature Physics, 15*(12)
 > **Note**: Peters formalized why time-average growth and ensemble-average (expected value) diverge for multiplicative processes — the mathematical reason a positive-EV bet can still be a guaranteed path to ruin for an individual who must live through the sequence. This grounds Law #1 (No Irreversible Ruin) and the trading-risk protocols: Athena evaluates decisions on the *time-average* (your one life, played sequentially), not the ensemble average (a million parallel yous). Together with Kelly (1956), this is the quantitative backbone of the ruin-check gate.
 
 Mas-Colell, A., Whinston, M. D., & Green, J. R. (1995). *Microeconomic theory*. Oxford University Press.
+
+Nelson, P. (1970). Information and consumer behavior. *Journal of Political Economy, 78*(2), 311–329. <https://doi.org/10.1086/259630>
+
+> **Note**: Nelson's distinction between *search goods* (quality assessable before purchase) and *experience goods* (quality assessable only through use) explains why Athena's [Validation Status](../README.md#-validation-status--whats-proven-vs-whats-proposed) prescribes a personal trial rather than claiming spec-sheet superiority: compounding personalization is an experience good by construction — its value is a function of *your* accumulated context, which cannot exist before you use it.
 
 von Neumann, J., & Morgenstern, O. (1944). *Theory of games and economic behavior*. Princeton University Press.
 

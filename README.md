@@ -486,6 +486,8 @@ Most AI-agent READMEs state every claim in the same confident voice. This one do
 
 > **Academic grounding**: the concepts Athena operationalizes — Kelly sizing, ergodicity economics, prospect theory, IFS, memory-stream/reflection agent architectures (MemGPT, Generative Agents, CoALA) — are cited in full APA format, every DOI Crossref-verified, in [docs/REFERENCES.md](docs/REFERENCES.md).
 >
+> **The honest test is the one you run yourself.** Athena is an *experience good* (Nelson, 1970) — its value can only be assessed by use, not from the spec sheet. That's a property of the category (so is therapy, so is GTD), not an excuse: the trial is cheap (free tier, ~20-min tutorial), reverting is free (delete the folder, you're back to your IDE's plain system prompt), and the one real risk is worth naming — a *stale or wrong* memory retrieved with confidence is worse than no memory, which is exactly why the verification machinery above exists. Clone it, run 20 sessions, compare against your baseline. That's the experiment.
+>
 > **Why publish this table?** Because the failure mode of this product category is self-mythologizing — describing aspirations in the present tense until the author believes them. Athena's own convention ([Epistemic Status](examples/workflows/_shared.md#epistemic-status-convention-anti-self-mythologizing)) requires labeling every mechanism as `code-enforced`, `agent-discretion`, or `aspirational`. This table is that convention applied to the README itself. The feedback loop exists (incident logs, decision journal, reflexion harvesting) — what doesn't exist yet is *published, systematized* validation. If a claim above ever moves a tier, the change lands in the [changelog](docs/CHANGELOG.md), not silently in the marketing copy.
 
 ---
