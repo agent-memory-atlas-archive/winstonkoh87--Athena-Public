@@ -454,7 +454,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 |:-----|:-----|:-------------|
 | **Google Antigravity (free tier)** | **$0** | **Try Athena first** — included with any Google account (Pro available at reduced quota) |
 | Claude Pro / Google AI Pro | ~$20/mo | Daily users — the sweet spot for most people |
-| Claude Max / Google AI Ultra | $100–$250/mo | Power users managing multiple domains (8+ hrs/day) — Max 5x $100, Max 20x $200, Ultra ~$250 |
+| Claude Max / Google AI Ultra | $100–$200/mo | Power users managing multiple domains (8+ hrs/day) — Max 5x $100, Max 20x $200, Ultra $100/$200 tiers |
 
 > **Try before you buy.** Athena works with Google Antigravity's free tier — clone the repo, type `/start`, and see if it clicks. No credit card, no trial period, no catch. The free tier includes Pro models at reduced quota — enough to evaluate whether Athena works for you. Upgrade when you need higher throughput.
 
@@ -468,7 +468,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 > Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Fable 5, Gemini 3.5 Pro, GPT-5.5). Start with the free tier to test compatibility with your preferred model.
 
 > [!TIP]
-> **Save money getting started** *(updated May 2026)*. Google still offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers. If someone you know is on a Google AI Pro or Ultra plan, they can add you as a family member — for Ultra subscribers, this means splitting $249/mo across family members. Note that Antigravity quota is now **shared** across the family plan (no longer independent per member), so coordinate usage if multiple members are power users. **The practical cost of running Athena is ~$20/mo** on any Pro-tier plan — this gives you daily access to frontier models with comfortable headroom. Google enforces a **7-day rolling baseline** on Antigravity usage; paid plans (Pro/Ultra) refresh every 5 hours but heavy sprint sessions can trigger the weekly cap. Power users who run 8+ hours/day should budget for $200+/mo (Ultra/Max tier). <!-- pds:allow -->
+> **Save money getting started** *(updated Jul 2026)*. Google still offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers, and AI Pro family sharing lets one subscriber extend AI benefits to up to 5 family members at no extra cost. Ultra pricing improved in May 2026: the top tier dropped from $249.99 to **$200/mo**, and a new **$100/mo Ultra tier** was added for lighter-but-regular development loads. Antigravity quotas were also raised roughly **9x** from their April 2026 low point, so the old weekly-cap anxiety is mostly obsolete — though weekly limits still exist for sustained heavy use, and how Antigravity quota interacts with family sharing is not clearly documented (coordinate if multiple members are power users). **The practical cost of running Athena is ~$20/mo** on any Pro-tier plan — daily access to frontier models with comfortable headroom. Power users who run 8+ hours/day should budget $100–$200/mo (Ultra/Max tier). <!-- pds:allow -->
 
 ---
 
