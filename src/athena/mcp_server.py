@@ -303,7 +303,7 @@ def recall_session(lines: int = 50) -> dict:
     tail_text = "\n".join(tail)
 
     # Redact if in secret mode
-    if perms.secret_mode:
+    if perms.demo_mode:
         tail_text = perms.redact(tail_text)
 
     return {
@@ -426,7 +426,7 @@ def canonical_memory_resource() -> str:
 
     # Redact in secret mode
     perms = get_permissions()
-    if perms.secret_mode:
+    if perms.demo_mode:
         content = perms.redact(content)
 
     return content

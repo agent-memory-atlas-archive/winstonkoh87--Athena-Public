@@ -314,15 +314,17 @@ class PermissionEngine:
     """
     Central permissioning engine.
 
-    Manages caller capability level, secret mode state,
+    Manages caller capability level, demo (secret) mode state,
     granular glob-based rules, and audit logging of all permission checks.
     """
 
     # Current caller's maximum permission level
     caller_level: Permission = Permission.WRITE
 
-    # Secret mode — when True, blocks access to INTERNAL and SECRET data
-    secret_mode: bool = False
+    # Demo mode (aka "Secret Mode" in the public API) — when True, blocks
+    # access to INTERNAL and SECRET data. The flag itself is a non-sensitive
+    # UI toggle, so it is named (and persisted) as demo_mode.
+    demo_mode: bool = False
 
     # Audit log
     audit_log: list[dict] = field(default_factory=list)
@@ -346,25 +348,39 @@ class PermissionEngine:
         if self._state_path and self._state_path.exists():
             try:
                 data = json.loads(self._state_path.read_text())
-                self.secret_mode = data.get("secret_mode", False)
+                # "secret_mode" is the legacy key from pre-rename state files
+                self.demo_mode = data.get(
+                    "demo_mode", data.get("secret_mode", False)
+                )
                 self.caller_level = Permission(data.get("caller_level", "write"))
             except Exception:
                 pass
 
     def _save_state(self):
-        """Persist state to disk."""
+        """Persist state to disk (mode toggles only — never secret values)."""
         if self._state_path:
             self._state_path.parent.mkdir(parents=True, exist_ok=True)
             self._state_path.write_text(
                 json.dumps(
                     {
-                        "secret_mode": self.secret_mode,
+                        "demo_mode": self.demo_mode,
                         "caller_level": self.caller_level.value,
                         "last_updated": datetime.now().isoformat(),
                     },
                     indent=2,
                 )
             )
+
+    # --- Back-compat alias ---
+
+    @property
+    def secret_mode(self) -> bool:
+        """Alias for demo_mode (public API name)."""
+        return self.demo_mode
+
+    @secret_mode.setter
+    def secret_mode(self, enabled: bool) -> None:
+        self.demo_mode = enabled
 
     # --- Core API ---
 
@@ -404,7 +420,7 @@ class PermissionEngine:
         In secret_mode, only PUBLIC tools are allowed.
         Raises SecretModeViolation if blocked.
         """
-        if not self.secret_mode:
+        if not self.demo_mode:
             return True
 
         tool_def = TOOL_REGISTRY.get(tool_name)
@@ -419,7 +435,7 @@ class PermissionEngine:
                 tool_name,
                 {
                     "sensitivity": sensitivity.value,
-                    "secret_mode": True,
+                    "demo_mode": True,
                 },
             )
             raise SecretModeViolation(tool_name, sensitivity)
@@ -470,9 +486,9 @@ class PermissionEngine:
     def redact(self, content: str) -> str:
         """
         Redact secret patterns from content.
-        Used when secret_mode is active but data must still flow.
+        Used when demo_mode is active but data must still flow.
         """
-        if not self.secret_mode:
+        if not self.demo_mode:
             return content
 
         for pattern in SECRET_PATTERNS:
@@ -485,8 +501,8 @@ class PermissionEngine:
 
     def set_secret_mode(self, enabled: bool) -> dict:
         """Toggle secret/demo mode."""
-        old = self.secret_mode
-        self.secret_mode = enabled
+        old = self.demo_mode
+        self.demo_mode = enabled
         self._save_state()
 
         self._audit(
@@ -542,7 +558,7 @@ class PermissionEngine:
         """Return current permission state."""
         return {
             "caller_level": self.caller_level.value,
-            "secret_mode": self.secret_mode,
+            "secret_mode": self.demo_mode,
             "registered_tools": len(TOOL_REGISTRY),
             "accessible_tools": [
                 name
