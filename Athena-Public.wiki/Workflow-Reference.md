@@ -2,7 +2,7 @@
 
 Athena uses a "Slash Command" interface to trigger complex agentic behaviors. These commands are defined in `.agent/workflows/`. There are **90+ workflows** available.
 
-*Last Updated: 2026-07-05 · v9.9.6*
+*Last Updated: 2026-07-05 · v9.9.7*
 
 ---
 
@@ -20,7 +20,7 @@ athena doctor --fix           # Auto-repair fixable issues
 athena doctor --json          # Machine-readable output
 athena save "summary"         # Quicksave checkpoint
 athena --end                  # Close session and save
-athena --version              # Show version (v9.9.6)
+athena --version              # Show version (v9.9.7)
 ```
 
 ---

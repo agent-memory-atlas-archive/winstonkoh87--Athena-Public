@@ -2,7 +2,7 @@
 
 Athena is the **Operating System for AI Agents** — a Hybrid RAG system that keeps your data locally (Markdown) and optionally syncs to the cloud (Supabase) for fast semantic retrieval.
 
-*Last Updated: 2026-07-05 · v9.9.6*
+*Last Updated: 2026-07-15 · v9.9.7*
 
 ---
 
@@ -120,7 +120,7 @@ graph TD
 
 ---
 
-## 🔌 MCP Server (v9.9.6)
+## 🔌 MCP Server (v9.9.7)
 
 9 tools + 2 resources via [Model Context Protocol](https://modelcontextprotocol.io/). Dual transport (stdio + SSE).
 
@@ -160,7 +160,7 @@ Results are reranked using a **CrossEncoder** (`cross-encoder/ms-marco-MiniLM-L6
 
 | Layer | Technology | Purpose |
 |:------|:----------|:--------|
-| **SDK** | `athena` Python package (v9.9.6) | Core search, reranking, memory |
+| **SDK** | `athena` Python package (v9.9.7) | Core search, reranking, memory |
 | **Reasoning** | Gemini 3.1 Pro (High) / Claude Opus 4.8 (Thinking) / GPT-5.5 (High) | Multi-model reasoning |
 | **Reranking** | Cross-Encoder (`cross-encoder/ms-marco-MiniLM-L6-v2`) | Second-stage reranking after RRF fusion |
 | **IDE / Agent** | Antigravity, Cursor, Claude Code, Gemini CLI, VS Code | Agentic development environment |

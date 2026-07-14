@@ -1,10 +1,25 @@
 # Athena Changelog
 
-> **Last Updated**: 5 July 2026
+> **Last Updated**: 15 July 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.9.7 (15 July 2026)
+
+**Meta-Awareness Gate v3 — Domain Generalization**: The `UserPromptSubmit` hook graduates from social-domain keywords to structural act classification, so one gate covers every life domain without per-domain regex growth.
+
+### Key Changes
+
+- **`meta_awareness_gate.py` v3** (`examples/hooks/`): v2 matched relational keywords only, and each new failure class needed a new regex group — per-case whack-a-mole. v3 classifies by **act structure** instead: `T1 INBOUND-NARRATIVE` (received story/act with stakes), `T2 OUTBOUND-COMMIT` (audience-facing act, including past-tense retro decodes), `T3 THIRD-PARTY-VERDICT` (judging someone else's act), `T4 RESOURCE-COMMIT` (novel money/time/reputation deployment), `T5 FELT-EVIDENCE` (a feeling offered as evidence about the world). New domains now extend skill content (arena/base-rate tables); the hook mechanism never changes.
+- **Question-framed kernel reminder**: The injected gate is now a 7-step interpreter kernel phrased as questions (arena → prior → discriminators → sign check → receiver frame → felt≠real → payoff). Research-grounded: question framing measurably outperforms prohibition framing at suppressing agreement bias ([arXiv:2602.23971](https://arxiv.org/abs/2602.23971)).
+- **Receiver-Frame step (perspective-first)**: Before any outbound act, list what the receiver *observes* with sender intent stripped, then generate their worst plausible *self-referential* decode ("what does this act say about ME?"). Ordering follows the SimToM result ([ACL 2024](https://aclanthology.org/2024.acl-long.451/)): perspective-taking first, judgment second. Intent ≠ received frame — the outbound twin of felt ≠ real.
+- **Sign symmetry**: The gate checks both misread directions — inflating (self-flattering: convenience→affection, hot streak→edge, promo→bargain) and deflating (self-degrading: invite→table-filler, drawdown→broken system, cheap→inferior). Same base-rate error, opposite signs; the kernel corrects both with equal rigor, and a **cynicism-overcorrection guard** keeps the sincere read in the payoff table until discriminators remove it.
+- **Negative guard + fire-rate telemetry**: Routine-ops prompts (reconciliation, test runs, doc chores) suppress a resource-class-only fire. Optional telemetry appends fired class names (never prompt content) to `.athena/invocations.jsonl` when present.
+- **Test suite** (`tests/test_meta_awareness_gate.py`, 46 cases): per-class positives across 6+ domains, 12 cross-domain golden cases, negative controls, and the never-block contract. The suite exists because a word-order bug class ("how it will land" vs "how will it land") recurred across versions — permanent tests end that.
 
 ---
 
