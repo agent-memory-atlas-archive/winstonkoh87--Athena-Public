@@ -231,7 +231,7 @@ athena/
 | **Language** | Python 3.x |
 | **Vector DB** | Supabase (pgvector) |
 | **Embeddings** | Google text-embedding-004 |
-| **LLM** | Gemini 3.1 Pro / Claude Opus 4.6 |
+| **LLM** | Gemini 3.5 Pro (preview) / Claude Fable 5 |
 | **Hosting** | GitHub Pages / Cloudflare |
 
 ---

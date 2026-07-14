@@ -147,7 +147,7 @@ Kind of. But first, it helps to understand what those names actually refer to �
 | Layer | What It Is | Examples |
 |:------|:-----------|:--------|
 | **Platform** | The company that hosts the model and holds your data | OpenAI, Google, Anthropic |
-| **Reasoning Engine** | The AI model that does the thinking | Claude Fable 5, GPT-5.5 (High), Gemini 3.5 Pro |
+| **Reasoning Engine** | The AI model that does the thinking | Claude Fable 5, GPT-5.6 Sol (Max), Gemini 3.5 Pro |
 | **IDE / Interface** | The app you type in — connects to models and reads your files | Cursor, Antigravity, VS Code, Claude Code |
 
 When people say "ChatGPT remembers me," they mean the **platform** stores some memory on their cloud. When they say "Claude is smart," they mean the **model** reasons well. When they say "Cursor writes code," they mean the **IDE** connects model + files.
@@ -465,7 +465,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 > Boot cost is 2K–20K tokens (depending on mode) — constant whether it's session 1 or session 10,000. [Details →](docs/BENCHMARKS.md)
 
 > [!NOTE]
-> Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Fable 5, Gemini 3.5 Pro, GPT-5.5). Start with the free tier to test compatibility with your preferred model.
+> Athena works with any model, but governance protocols and multi-step reasoning perform best with frontier models (e.g. Claude Fable 5, Gemini 3.5 Pro, GPT-5.6 Sol). Start with the free tier to test compatibility with your preferred model.
 
 > [!TIP]
 > **Save money getting started** *(updated Jul 2026)*. Google still offers a [1-month free trial on AI Pro](https://one.google.com/ai) for new subscribers, and AI Pro family sharing lets one subscriber extend AI benefits to up to 5 family members at no extra cost. Ultra pricing improved in May 2026: the top tier dropped from $249.99 to **$200/mo**, and a new **$100/mo Ultra tier** was added for lighter-but-regular development loads. Antigravity quotas were also raised roughly **9x** from their April 2026 low point, so the old weekly-cap anxiety is mostly obsolete — though weekly limits still exist for sustained heavy use, and how Antigravity quota interacts with family sharing is not clearly documented (coordinate if multiple members are power users). **The practical cost of running Athena is ~$20/mo** on any Pro-tier plan — daily access to frontier models with comfortable headroom. Power users who run 8+ hours/day should budget $100–$200/mo (Ultra/Max tier). <!-- pds:allow -->
@@ -513,14 +513,14 @@ Most AI-agent READMEs state every claim in the same confident voice. This one do
 | Layer | Technology |
 |:------|:----------|
 | **IDE** | Antigravity |
-| **Reasoning Engine** | Gemini 3.5 Pro (High)¹ / Claude Fable 5 (High) / GPT-5.5 (High) |
+| **Reasoning Engine** | Gemini 3.5 Pro (High)¹ / Claude Fable 5 (High) / GPT-5.6 Sol (Max) |
 | **SDK** | `athena` Python package (v9.9.7) |
 | **Search** | Hybrid RAG — chunk-level retrieval + cross-encoder rerank + RRF fusion |
 | **Embeddings** | `gemini-embedding-001` (3072-dim) |
 | **Memory** | Supabase + pgvector |
 | **Routing** | Risk-Proportional Triple-Lock — SNIPER / STANDARD / ULTRA |
 
-> ¹ Gemini 3.5 Pro is rolling out through July 2026 (enterprise preview at time of writing) — Gemini 3.1 Pro remains the GA fallback until then. Athena is model-agnostic by design; this row is just the current daily-driver lineup.
+> ¹ Gemini 3.5 Pro is still in limited preview as of mid-July 2026 (reported GA target: 17 Jul, unconfirmed) — Gemini 3.1 Pro remains the GA fallback until then. Athena is model-agnostic by design; this row is just the current daily-driver lineup.
 
 <details>
 <summary><strong>📂 Repository Structure</strong></summary>

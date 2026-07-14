@@ -106,8 +106,8 @@ graph TD
     end
 
     subgraph Intelligence ["AI Models (Any)"]
-        Gemini["Gemini 3.1 Pro"]
-        Claude["Claude Opus 4.8"]
+        Gemini["Gemini 3.5 Pro"]
+        Claude["Claude Fable 5"]
     end
 
     Agent -->|Reads| Framework
@@ -161,7 +161,7 @@ Results are reranked using a **CrossEncoder** (`cross-encoder/ms-marco-MiniLM-L6
 | Layer | Technology | Purpose |
 |:------|:----------|:--------|
 | **SDK** | `athena` Python package (v9.9.7) | Core search, reranking, memory |
-| **Reasoning** | Gemini 3.1 Pro (High) / Claude Opus 4.8 (Thinking) / GPT-5.5 (High) | Multi-model reasoning |
+| **Reasoning** | Gemini 3.5 Pro (High) / Claude Fable 5 (High) / GPT-5.6 Sol (Max) | Multi-model reasoning |
 | **Reranking** | Cross-Encoder (`cross-encoder/ms-marco-MiniLM-L6-v2`) | Second-stage reranking after RRF fusion |
 | **IDE / Agent** | Antigravity, Cursor, Claude Code, Gemini CLI, VS Code | Agentic development environment |
 | **Embeddings** | `gemini-embedding-001` (3072-dim) | Google embedding model |
