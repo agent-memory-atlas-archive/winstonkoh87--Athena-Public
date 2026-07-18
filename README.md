@@ -4,7 +4,7 @@
 
 # Project Athena
 
-**The Linux OS for AI Agents.**
+**A local-first memory, reasoning, and governance layer for AI agents.**
 
 Persistent memory, structured reasoning, and governed autonomy for any LLM — across ChatGPT, Claude, Gemini, and any model you switch to next.
 
@@ -18,7 +18,7 @@ Own the state. Rent the intelligence. Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Validation Status](#-validation-status--whats-proven-vs-whats-proposed) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 15 Jul 2026*
+*Last updated: 18 Jul 2026*
 
 </div>
 
@@ -36,7 +36,7 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 
 - **🧠 Your Memory, Your Machine** — Files on your disk, not in OpenAI's cloud. Read them, edit them, git-version them.
 - **🔌 Switch Models Freely** — Claude today, Gemini tomorrow, GPT next week. The memory stays. The model is just whoever's on shift.
-- **📈 It Compounds** — Session 500 recalls patterns from session 5. Platform memory decays; Athena's doesn't. The moat isn't the code — it's your data. Anyone can fork Athena; nobody can fork your sessions. [→ The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect.md)
+- **📈 It Compounds** — Session 500 recalls patterns from session 5. The durable asset isn't the code — it's your data: anyone can fork Athena; nobody can fork your sessions. That's a personal continuity advantage, not vendor lock-in — the files move with you. Honest caveat: compounding needs curation. Keep the `/end` loop running; unpruned memory decays like any archive. [→ The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect.md)
 - **⚡ 2K–20K Token Boot** — Scales to the task. Lightweight chat (~2K) → `/start` (~10K) → `/ultrastart` (~20K). 80–98% of your context window stays free, even after 10,000 sessions.
 - **🔬 Meta-Game Reasoning** — Generic LLMs optimise *within* the game you're playing. Athena asks whether you should be playing that game at all. [→ Meta-Game Thesis](docs/concepts/Meta_Game_Thesis.md)
 - **🛡️ Governed Autonomy** — 6 constitutional laws, 4 capability levels, bounded agency.
@@ -350,7 +350,7 @@ flowchart LR
 | **50–200** | Pattern recognition — anticipates your style and blind spots |
 | **200+** | Deep sync — thinks in your frameworks before you state them |
 
-> **Why this happens**: The AI model doesn't improve — *your data* does. Each `/end` extracts decisions, patterns, and learnings into your memory bank. The next `/start` loads that accumulated intelligence. Same algorithm, better data, better output. [→ The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect.md)
+> **Why this happens**: The AI model doesn't improve — *your data* does. Each `/end` extracts decisions, patterns, and learnings into your memory bank. The next `/start` loads that accumulated intelligence. Same algorithm, better data, better output. The progression above is the author's N=1 longitudinal experience, not a benchmarked guarantee — see [Validation Status](#-validation-status--whats-proven-vs-whats-proposed). It also assumes the discipline: the value comes from actually running the `/start`–`/end` loop, not from the files existing. [→ The Compounding Effect](Athena-Public.wiki/The-Compounding-Effect.md)
 
 ### The Biological Analogy
 
@@ -371,6 +371,8 @@ Athena is modelled after the human body — but the topology is a **mesh**, not 
 > [→ Full Architecture with Perception Model](docs/ARCHITECTURE.md#cognitive-stack--perception-model-v990)
 
 ### The Linux Analogy
+
+> An orientation aid, not an equivalence claim — Athena is a workspace convention plus scripts, not an operating system. The mapping shows *which job each part does*.
 
 | Concept | Linux | Athena |
 |:--------|:------|:-------|
@@ -428,7 +430,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 | | Use Case | What It Looks Like |
 |:-|:---------|:-------------------|
-| 🏠 | **Life Management** | The superset. Health, career, relationships, finances, client work — all managed as projects in one unified switchboard. By day 3, Athena remembers your schedule. By month 3, it anticipates your patterns. Athena doesn't have a separate project manager and life tracker — it has one board where your gym routine and your client deadline are rows governed by the same triage rules. That's how it can tell you *"skip the client call — your sleep debt is a higher-urgency blocker than the $250 deliverable."* No other system crosses the work/life boundary. — [case study →](docs/CASE_STUDIES.md#case-study-1-from-routine-app-to-life-engine-in-72-hours) | <!-- pds:allow -->
+| 🏠 | **Life Management** | The superset. Health, career, relationships, finances, client work — all managed as projects in one unified switchboard. By day 3, Athena remembers your schedule. By month 3, it anticipates your patterns. Athena doesn't have a separate project manager and life tracker — it has one board where your gym routine and your client deadline are rows governed by the same triage rules. That's how it can tell you *"skip the client call — your sleep debt is a higher-urgency blocker than the $250 deliverable."* Few tools cross the work/life boundary like this. — [case study →](docs/CASE_STUDIES.md#case-study-1-from-routine-app-to-life-engine-in-72-hours) | <!-- pds:allow -->
 | 🧠 | **Problem Solving** | *"I can't afford $200/hr therapy but I need to understand why I keep self-sabotaging."* — Athena runs a structured schema interview, maps your internal protective parts (IFS methodology), and connects the pattern to your documented history. Session 40 recalls the wound identified in session 3. A therapist charges $200+/hr and sees you once a week. Athena is available 24/7 for the cost of your AI subscription. — [case study →](docs/CASE_STUDIES.md#case-study-2-the-200hr-therapist-alternative) | <!-- pds:allow -->
 | 🎯 | **Decision Making** | *"Should I take this job? Sign this contract? Confront this person?"* — Athena cross-references your risk profile, financial runway, career decision history, and the regret patterns from your last 3 similar decisions to produce a recommendation no generic LLM could give. A business coach charges $500+/hr. Athena does it in under an hour. — [case study →](docs/CASE_STUDIES.md#case-study-3-the-multi-stakeholder-career-decision) | <!-- pds:allow -->
 | 💼 | **Work & Projects** | A subset of Life Management. Juggle 5+ projects without dropping context. `/project` gives you a visual switchboard — phase-gated progress, urgency/EV ranking, and instant context-switching. Internal projects (health, career) and external projects (clients, revenue) tracked separately with cross-project dependency awareness. — [workflow →](examples/workflows/project.md) |
@@ -438,7 +440,7 @@ Athena works through **AI-enabled code editors** — apps that connect to AI mod
 
 > 📖 **Deep Dive**: [How Athena Solves — The Three Core Use Cases](docs/USE_CASES.md) — covers the vulnerability prerequisite, pre-work convergence, domain reclassification, the EEV decision framework, privacy architecture, and honest limitations.
 
-> **The asymmetry.** A licensed therapist costs $200+/hr. A business coach costs $500+/hr. A negotiation consultant costs $1,000+/hr. Athena gives you structured, context-aware guidance across *all* of these domains — 24/7, for the cost of your existing AI subscription. It doesn't replace professionals for clinical emergencies, but for the 90% of life decisions and psychological patterns that don't require a medical license, it closes the gap between *having access to wisdom* and *not being able to afford it*.
+> **The asymmetry.** A licensed therapist costs $200+/hr. A business coach costs $500+/hr. A negotiation consultant costs $1,000+/hr. Athena gives you structured, context-aware guidance across *all* of these domains — 24/7, for the cost of your existing AI subscription. It doesn't replace professionals for clinical emergencies, but for the many life decisions and psychological patterns that don't require a medical license, it narrows the gap between *having access to structured thinking* and *not being able to afford it*.
 >
 > ⚠️ **Important**: Athena is an experimental AI tool, not a licensed professional service. It cannot diagnose, treat, or manage any medical or psychiatric condition. See [SAFETY.md](SAFETY.md) for crisis contacts and responsible use guidelines.
 
@@ -551,6 +553,7 @@ Athena-Public/
 <details>
 <summary><strong>📋 Recent Changelog</strong></summary>
 
+- **Docs: Positioning honesty pass** (Jul 18 2026): Tagline converged from "The Linux OS for AI Agents" to "A local-first memory, reasoning, and governance layer for AI agents" (README, llms.txt, athena.yaml, wiki); "the data is the moat" reframed as a personal continuity asset, not vendor lock-in; compounding claims bounded (curation-dependent, N=1 evidence flagged); unverifiable absolutes softened. The Epistemic Status convention, applied to the marketing copy itself. No functional changes.
 - **v9.9.7** (Jul 15 2026): **Meta-Awareness Gate v3 — Domain Generalization** — The `meta_awareness_gate.py` hook graduates from social-domain keywords to **structural act classification** (T1 inbound-narrative, T2 outbound-commit, T3 third-party-verdict, T4 resource-commitment, T5 felt-evidence): one gate now covers relational, financial, consumer, institutional, and broadcast prompts, and new domains extend skill content instead of the hook. Injected kernel is question-framed (ask-don't-tell beats prohibitions for agreement bias, arXiv:2602.23971) with a perspective-first **receiver-frame** step (SimToM, ACL 2024) and **sign-symmetric** misread checks (inflating AND deflating reads are the same base-rate error). New 46-case test suite (`tests/test_meta_awareness_gate.py`).
 - **v9.9.7** (Jul 5 2026): **Private-Instance Parity Pass** — Ported the self-maintenance toolkit from the private instance: `maintenance_ratio.py` (maintenance-vs-output commit advisory), `stale_detector.py`, `orphan_detector.py`, `reflexion_harvester.py` (mines `~/.claude` transcripts for failed→fixed tool-call deltas). New **`meta_awareness_gate.py`** hook — a code-enforced `UserPromptSubmit` trigger for socially-loaded prompts, closing the `auto-invoke: true` fiction (frontmatter is a request, not a mechanism; hooks make it deterministic). Added `.agent/config/CAPS.json` as the single source of truth for inventory counts (`_shared.md` referenced it but it didn't exist). Ported the **Epistemic Status Convention** (`code-enforced` / `agent-discretion` / `aspirational`) into `_shared.md`. Fixed `src/athena/__init__.py` reporting `__version__ = "9.2.0"` while pyproject said 9.9.5. Versions, dates, and session counts unified repo-wide.
 - **Docs metrics pass** (Jul 2 2026): Reconciled README claims with the portfolio site and actual repo contents — sessions 1,800+→1,900+; protocol count unified to **200+** repo-wide (226 protocol `.md` files across `examples/protocols/` 188, `docs/protocols/` 22, `.framework/` 8, template mirror 8; the old "187" counted only the starter kit incl. its archive). Headline counts now use verifiable floors, not exact numbers that drift.

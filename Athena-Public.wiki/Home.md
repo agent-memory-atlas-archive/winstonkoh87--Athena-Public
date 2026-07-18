@@ -1,13 +1,13 @@
 # 🏛️ Welcome to Project Athena
 
-> **The Linux OS for AI Agents**
+> **A local-first memory, reasoning, and governance layer for AI agents**
 > Open Source · Sovereign · Model-Agnostic
 
-*Last Updated: 2026-07-05 · v9.9.7*
+*Last Updated: 2026-07-18 · v9.9.7*
 
-Athena is not an AI Agent. It is the **Operating System** they run on.
+Athena is not an AI Agent. It is the **persistent layer** they run on.
 
-Just as Linux provides the kernel, file system, and permissions for applications to run, Athena provides **persistent memory, scheduling, governance, and self-optimization** for AI models (Claude, Gemini, GPT, Llama) to operate as continuous agents.
+By loose analogy with an operating system — Linux provides the kernel, file system, and permissions for applications — Athena provides **persistent memory, scheduling, governance, and self-optimization** for AI models (Claude, Gemini, GPT, Llama) to operate as continuous agents. It is a workspace convention plus scripts, not literally an OS — the analogy describes which job each part does.
 
 | OS Layer | Linux | Athena |
 |----------|-------|--------|

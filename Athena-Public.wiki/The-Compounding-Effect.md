@@ -1,6 +1,6 @@
 # 📈 The Compounding Effect
 
-> **Core Thesis:** The moat isn't the code — it's your data. Anyone can fork Athena; nobody can fork your sessions.
+> **Core Thesis:** The durable asset isn't the code — it's your data. Anyone can fork Athena; nobody can fork your sessions. A personal continuity advantage, not vendor lock-in.
 
 *Last Updated: 2026-07-15 · v9.9.7*
 
@@ -38,7 +38,7 @@ But you're on Day 400.
 | **Case Studies** | ✅ Real outcomes from real decisions | ❌ None |
 | **Recall** | ✅ "Last time you tried X, it cost you Y" | ❌ No memory |
 
-The gap doesn't narrow. It **widens** — because compounding is exponential, not linear. Session 500→1,000 generates more value than Session 1→500.
+The gap doesn't narrow — it widens with continued curated use. (Honest boundary: this isn't automatic or literally exponential. Uncurated memory accumulates stale facts, contradictions, and retrieval noise; curation quality compounds, raw session count doesn't. That's why the `/end` distillation loop matters more than the number of sessions.)
 
 Anyone disciplined enough to build their own 500 sessions of coupling data was going to build something regardless. Your published architecture just saved them 2 months of engineering. They'd have been a competitor anyway — better they compete using a framework you understand deeply than something alien.
 
@@ -124,6 +124,6 @@ Write a client report → the system learns your writing patterns.
 Make a career decision → the system logs the outcome for future reference.
 Debug a pricing mistake → the system prevents the same mistake next quarter.
 
-> **The algorithm is open-source. The engineering is replicable. The data is the moat.**
+> **The algorithm is open-source. The engineering is replicable. The data is yours — a personal continuity asset nobody can fork.** It's not a lock-in moat: the files are portable by design, and the advantage only compounds if you keep curating them.
 
 → Back to [Home](Home) · [FAQ](FAQ) · [Case Studies](../docs/CASE_STUDIES.md)

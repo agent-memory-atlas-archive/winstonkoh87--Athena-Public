@@ -8,7 +8,7 @@ If you're using AI for anything beyond one-off questions, you've probably hit th
 
 Yes, ChatGPT has memory now. So does Claude. But their memory is **platform-locked**. If you switch models, you lose everything. If the platform changes their memory policy, you lose everything.
 
-Athena is different: **portable, platform-agnostic memory**. Your context lives in Markdown files you own. You can take it to any model, any platform, any time. That's the moat.
+Athena is different: **portable, platform-agnostic memory**. Your context lives in Markdown files you own. You can take it to any model, any platform, any time. That's the point — a continuity asset you own, not a moat that locks you in.
 
 ---
 

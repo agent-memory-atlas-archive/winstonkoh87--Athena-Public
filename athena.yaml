@@ -12,8 +12,9 @@ spec_version: "1.0.0"
 name: athena
 version: 9.9.7
 description: >
-  The Linux OS for AI Agents — persistent memory, structured reasoning,
-  and governed autonomy for any LLM. Own the state. Rent the intelligence.
+  A local-first memory, reasoning, and governance layer for AI agents —
+  persistent memory, structured reasoning, and governed autonomy for any LLM.
+  Own the state. Rent the intelligence.
 
 # ---------------------------------------------------------------------------
 # Model Configuration

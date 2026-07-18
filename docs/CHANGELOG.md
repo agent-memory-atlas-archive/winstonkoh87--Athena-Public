@@ -1,10 +1,23 @@
 # Athena Changelog
 
-> **Last Updated**: 15 July 2026
+> **Last Updated**: 18 July 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## Docs: Positioning Honesty Pass (18 July 2026)
+
+Converged public claims to the project's validated identity (per the Epistemic Status convention — this is that convention applied to the marketing copy):
+
+- **Tagline**: "The Linux OS for AI Agents" → "A local-first memory, reasoning, and governance layer for AI agents" (README, `llms.txt`, `athena.yaml`, wiki Home). The Linux *analogy* stays — explicitly labeled as an orientation aid, not an equivalence claim.
+- **"The data is the moat"** → reframed as a **personal continuity asset, not vendor lock-in** (README, MANIFESTO, The-Compounding-Effect): the files are portable by design, so nothing locks you in — the advantage is that nobody can fork *your* sessions.
+- **Compounding claims bounded**: compounding requires curation (the `/end` loop); uncurated memory accumulates stale facts and retrieval noise. Dropped "exponential"; the sessions-progression table now points at Validation Status (N=1 longitudinal evidence).
+- Softened unverifiable absolutes ("No other system…" → "Few tools…"; "90% of life decisions" → "many life decisions").
+
+No functional changes.
 
 ---
 
