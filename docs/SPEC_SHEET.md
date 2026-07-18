@@ -132,17 +132,28 @@ Total: 8,079 tags
 ## 6. Search Architecture
 
 ```text
-Query → [Keyword Search (Tag Index)] ──┐
-                                        ├── RRF Fusion → Reranker → Results
-Query → [Semantic Search (pgvector)] ──┘
+ Query
+   │
+   ├── Canonical      (materialized-view keyword match)   · lexical
+   ├── Vector         (Supabase pgvector, cosine)         · semantic
+   ├── SQLite         (local file + tag index)            · lexical
+   ├── Filename       (path/name keyword match)           · lexical
+   ├── Framework Docs (docs + memory-bank grep)           · lexical
+   │
+   ▼
+ Adaptive Router → RRF Fusion (k=60) → Cross-Encoder Reranker → Results
 ```
+
+Reranking runs default-on via a local quantized ONNX cross-encoder (~0.4s cold load) with a `sentence_transformers` fallback; it degrades to raw RRF order only if both are unavailable.
 
 | Metric | Value |
 |--------|-------|
-| **Search MRR** | 0.44 (vs 0.21 baseline, +105%) |
-| **Latency** | < 200ms (p95) |
-| **Index Size** | 8,079 tags, 78MB vectors |
-| **Fusion Method** | Reciprocal Rank Fusion (RRF) with score-modulated weights |
+| **MRR@5** | 0.796 |
+| **Hit@5** | 0.908 |
+| **Coverage** | 0.639 |
+| **Fusion Method** | Reciprocal Rank Fusion (RRF, k=60) with score-modulated weights |
+
+> Retrieval metrics measured 18 Jul 2026 on the reference deployment (operator corpus: 4,000+ memory files, 2,000+ session logs) against a 65-query gold set. Your numbers will vary with corpus size and quality.
 
 ---
 

@@ -1,6 +1,6 @@
 # ⚡ Performance Benchmarks
 
-> **Last Updated**: 6 June 2026  
+> **Last Updated**: 18 July 2026  
 > **Environment**: MacBook Pro M3, Python 3.13, Supabase (Singapore region)
 
 ---
@@ -38,14 +38,18 @@
 ### Search Pipeline
 
 ```
-Query → Embedding (local) → Parallel Search (Supabase + Tags) → RRF Fusion → Rerank → Top 10
+Query → Adaptive Router → 5 parallel channels → RRF Fusion (k=60) → Cross-Encoder Rerank (ONNX) → Top 10
 ```
 
-**RRF (Reciprocal Rank Fusion)** combines results from:
+**RRF (Reciprocal Rank Fusion)** combines results from five channels:
 
-1. **Supabase pgvector** — Dense vector similarity
-2. **Keyword/Tag Index** — Exact match and hashtag cross-referencing
-3. **Canonical/Filename** — Path and name matching
+1. **Canonical** — materialized-view keyword match (lexical)
+2. **Supabase pgvector** — dense vector similarity (the only semantic channel)
+3. **SQLite** — local file + tag index (lexical)
+4. **Filename** — path and name matching (lexical)
+5. **Framework Docs** — docs + memory-bank grep (lexical)
+
+**Retrieval quality (65-query gold set, 18 Jul 2026)**: MRR@5 **0.796** · Hit@5 **0.908** · Coverage **0.639** — measured end-to-end on the reference deployment with reranking on.
 
 > **Note**: GraphRAG communities were removed as a search source in S435 (6 June 2026).
 
