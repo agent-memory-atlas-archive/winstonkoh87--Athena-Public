@@ -4,9 +4,9 @@
 
 # Project Athena
 
-**A local-first memory, reasoning, and governance layer for AI agents.**
+**AI-native personal knowledge management for your AI agents.**
 
-Persistent memory, structured reasoning, and governed autonomy for any LLM — across ChatGPT, Claude, Gemini, and any model you switch to next.
+Capture what you learn, retrieve it when relevant, and carry your context between models — a local-first memory, reasoning, and governance layer for any LLM, across ChatGPT, Claude, Gemini, and whatever you switch to next.
 
 Own the state. Rent the intelligence. Platforms forget. Athena doesn't.
 

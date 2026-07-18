@@ -1,7 +1,7 @@
 # 🏛️ Welcome to Project Athena
 
-> **A local-first memory, reasoning, and governance layer for AI agents**
-> Open Source · Sovereign · Model-Agnostic
+> **AI-native personal knowledge management for your AI agents**
+> A local-first memory, reasoning, and governance layer · Open Source · Sovereign · Model-Agnostic
 
 *Last Updated: 2026-07-18 · v9.9.7*
 

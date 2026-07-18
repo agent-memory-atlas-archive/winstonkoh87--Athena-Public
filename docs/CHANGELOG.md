@@ -16,6 +16,7 @@ Converged public claims to the project's validated identity (per the Epistemic S
 - **"The data is the moat"** → reframed as a **personal continuity asset, not vendor lock-in** (README, MANIFESTO, The-Compounding-Effect): the files are portable by design, so nothing locks you in — the advantage is that nobody can fork *your* sessions.
 - **Compounding claims bounded**: compounding requires curation (the `/end` loop); uncurated memory accumulates stale facts and retrieval noise. Dropped "exponential"; the sessions-progression table now points at Validation Status (N=1 longitudinal evidence).
 - Softened unverifiable absolutes ("No other system…" → "Few tools…"; "90% of life decisions" → "many life decisions").
+- **Addendum (same day)**: named the user-facing category above the mechanism — headline is now "AI-native personal knowledge management for your AI agents"; "local-first memory, reasoning, and governance layer" remains as the technical description underneath (README, llms.txt, wiki Home). Category → mechanism → outcome, in that order.
 
 No functional changes.
 
