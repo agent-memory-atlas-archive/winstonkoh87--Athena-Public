@@ -1,7 +1,7 @@
 # Session Log Template
 
 > **Purpose**: Standardized session log format. Copy to `.context/memories/session_logs/YYYY-MM-DD-session-XX.md`.
-> **Last Updated**: 2025-12-25 (Coherence Repair v7.1)
+> **Last Updated**: 2026-07-22 (Coherence Repair v7.1)
 
 ---
 

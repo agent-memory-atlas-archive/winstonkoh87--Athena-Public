@@ -1,7 +1,7 @@
 ---
 description: Async AI Development Workflow (The Sleeper Agent Protocol)
 created: 2026-01-03
-last_updated: 2026-01-03
+last_updated: 2026-07-22
 ---
 # /async-dev — Async AI Development
 

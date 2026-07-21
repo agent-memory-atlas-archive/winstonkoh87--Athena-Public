@@ -1,7 +1,7 @@
 ---
 description: Output specification from /brief interview - ready for implementation
 created: 2026-01-07
-last_updated: 2026-01-07
+last_updated: 2026-07-22
 ---
 # /spec — Specification Template (v3.1)
 

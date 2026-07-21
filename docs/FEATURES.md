@@ -1,6 +1,6 @@
 # Features & Capabilities
 
-> **Last Updated**: 17 June 2026
+> **Last Updated**: 22 July 2026
 
 > What Athena can do — with examples
 

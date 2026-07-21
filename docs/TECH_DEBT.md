@@ -1,12 +1,12 @@
 ---
 created: '2025-12-26'
-last_updated: 2026-06-06
+last_updated: 2026-07-22
 ---
 
 # Tech Debt Tracker
 
 > **Purpose**: Track identified inefficiencies for future cleanup.
-> **Last Updated**: 6 June 2026
+> **Last Updated**: 22 July 2026
 
 ---
 

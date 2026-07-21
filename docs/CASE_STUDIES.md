@@ -1,6 +1,6 @@
 ---
 created: 2026-02-25
-last_updated: 2026-02-25
+last_updated: 2026-07-22
 tags: #case-study #life-management #non-technical
 ---
 

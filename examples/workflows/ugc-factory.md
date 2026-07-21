@@ -1,10 +1,10 @@
 ---created: 2026-01-02
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 ---
 
 ---description: UGC Factory Workflow (Volume Strategy)
 created: 2026-01-02
-last_updated: 2026-01-02
+last_updated: 2026-07-22
 ---
 
 # UGC Factory Workflow (Angle Testing)

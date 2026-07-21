@@ -1,7 +1,7 @@
 ---
 description: Maximum depth mode — v4.0 (Mandatory Parallel Orchestrator)
 created: 2025-12-12
-last_updated: 2026-03-01
+last_updated: 2026-07-22
 ---
 # /ultrathink — Execution Script (v4.0)
 

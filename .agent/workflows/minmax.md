@@ -1,7 +1,7 @@
 ---
 description: Token Economy Mode — maximize output quality while minimizing token expenditure
 created: 2026-03-28
-last_updated: 2026-03-28
+last_updated: 2026-07-22
 model: default
 temperature: 0.5
 tools:

@@ -1,7 +1,7 @@
 ---
 description: The "Agency Killer" workflow. Replicates a $10k Branding Package in ~20 minutes using AI.
 created: 2025-12-31
-last_updated: 2026-01-05
+last_updated: 2026-07-22
 ---
 # Brand Generator Workflow (Agency Arbitrage)
 

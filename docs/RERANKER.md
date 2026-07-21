@@ -1,6 +1,6 @@
 # Reranker: Cross-Encoder Re-Scoring
 
-> **Last Updated**: 19 June 2026
+> **Last Updated**: 22 July 2026
 > **Purpose**: How Athena re-scores fused retrieval candidates for precision
 
 ---

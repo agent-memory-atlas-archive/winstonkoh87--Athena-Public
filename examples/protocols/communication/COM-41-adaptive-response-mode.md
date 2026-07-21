@@ -1,12 +1,12 @@
 ---
 created: 2025-12-11
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---description: Calibrate AI role/depth to user intent. Three tracks (Execution/Strategy/Analysis) + 7 Expert Personas (Director, Counsel, Risk Officer, Architect, Analyst, Case Officer, Fixer).
 created: 2025-12-11
-last_updated: 2026-01-13
+last_updated: 2026-07-22
 ---
 
 # Protocol 41: Adaptive Response Mode (Chief of Staff)

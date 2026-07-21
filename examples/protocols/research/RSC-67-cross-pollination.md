@@ -1,13 +1,13 @@
 ---
 created: 2025-12-14
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---description: Cross-domain pattern harvesting at session end. Auto-detects structural isomorphisms across persuasion, marketing, dev/trading, psychology.
 tags: [#protocol, #isomorphism, #cross-domain, #synthesis, #meta]
 created: 2025-12-14
-last_updated: 2025-12-31
+last_updated: 2026-07-22
 ---
 
 # Protocol 67: Cross-Pollination Protocol

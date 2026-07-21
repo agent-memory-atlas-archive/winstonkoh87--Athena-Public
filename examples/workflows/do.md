@@ -1,7 +1,7 @@
 ---
 description: Universal entry point — auto-detects intent and routes to the right workflow
 created: 2026-04-12
-last_updated: 2026-05-31
+last_updated: 2026-07-22
 ---
 # /do — Intent Router
 

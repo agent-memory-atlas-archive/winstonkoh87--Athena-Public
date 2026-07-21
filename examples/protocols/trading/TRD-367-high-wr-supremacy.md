@@ -1,6 +1,6 @@
 ---
 created: 2026-02-23
-last_updated: 2026-02-23
+last_updated: 2026-07-22
 graphrag_extracted: true
 tags: ["protocol", "trading", "mathematics", "psychology", "variance-drag", "expected-value"]
 ---

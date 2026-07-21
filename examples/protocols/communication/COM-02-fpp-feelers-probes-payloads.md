@@ -1,13 +1,13 @@
 ---
 created: 2025-12-10
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---name: fpp-feelers-probes-payloads
 description: Three-tier investment protocol to prevent over-investment in low-interest targets. Use when about to send high-investment content without verifying recipient interest first.
 created: 2025-12-10
-last_updated: 2025-12-18
+last_updated: 2026-07-22
 ---
 
 # F-P-P Protocol (Feelers–Probes–Payloads)

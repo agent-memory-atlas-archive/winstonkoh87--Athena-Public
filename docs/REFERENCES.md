@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-07-05
+last_updated: 2026-07-22
 tags: #references #apa #academic #citations
 ---
 
@@ -316,4 +316,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 21 July 2026 — added the "Sycophancy & the Personalization Tension" section (arXiv:2502.08177, 2509.12517, 2603.00024); corrected the Soelberg/OpenAI entry (incident and filing independently reported — N.D. Cal., filed 29 Dec 2025; SF Standard; Hagens Berman — caption/docket hedged pending PACER confirmation); SycEval author list completed against the arXiv record. **Full re-verification sweep this date: 20/20 DOIs (Crossref API) + 28/28 arXiv IDs (arXiv export API), 0 failures** — superseding the stale "18/18" count from the 5 July pass. Previous fact-checks: 5 July 2026; 6 June 2026 (S437).*
+*Last updated: 22 July 2026 — added the "Sycophancy & the Personalization Tension" section (arXiv:2502.08177, 2509.12517, 2603.00024); corrected the Soelberg/OpenAI entry (incident and filing independently reported — N.D. Cal., filed 29 Dec 2025; SF Standard; Hagens Berman — caption/docket hedged pending PACER confirmation); SycEval author list completed against the arXiv record. **Full re-verification sweep this date: 20/20 DOIs (Crossref API) + 28/28 arXiv IDs (arXiv export API), 0 failures** — superseding the stale "18/18" count from the 5 July pass. Previous fact-checks: 5 July 2026; 6 June 2026 (S437).*

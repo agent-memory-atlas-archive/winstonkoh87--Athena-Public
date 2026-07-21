@@ -1,7 +1,7 @@
 ---
 description: Pre-prompt fact-finding and scope clarification before executing complex tasks
 created: 2025-12-19
-last_updated: 2026-01-11
+last_updated: 2026-07-22
 ---
 # /brief v2.1 — Pre-Prompt Clarification Protocol
 

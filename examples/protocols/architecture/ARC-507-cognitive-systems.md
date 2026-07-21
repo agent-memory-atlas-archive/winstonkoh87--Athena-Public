@@ -1,6 +1,6 @@
 ---
 created: 2026-03-04
-last_updated: 2026-03-04
+last_updated: 2026-07-22
 ---
 
 # Protocol 507: Cognitive Systems Architecture (The Biological Stack)

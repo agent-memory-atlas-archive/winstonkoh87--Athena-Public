@@ -1,6 +1,6 @@
 ---
 created: 2025-12-12
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
@@ -8,7 +8,7 @@ graphrag_extracted: true
 description: Iterative research methodology with causal chains, gap identification, exhaustiveness checks, and APA-style citations.
 tags: [protocol, framework, process, 52-deep-research-loop]
 created: 2025-12-12
-last_updated: 2025-12-31
+last_updated: 2026-07-22
 ---
 
 # Protocol 52: Deep Research Loop

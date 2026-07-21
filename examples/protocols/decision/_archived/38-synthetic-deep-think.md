@@ -1,12 +1,12 @@
 ---
 created: 2025-12-10
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---description: Protocol-level approximation of extended reasoning models. Four phases: Hypothesis Generation, Parallel Evaluation, Convergence, Self-Verification.
 created: 2025-12-10
-last_updated: 2026-01-11
+last_updated: 2026-07-22
 ---
 
 # Synthetic Deep Think Protocol (SDTP)

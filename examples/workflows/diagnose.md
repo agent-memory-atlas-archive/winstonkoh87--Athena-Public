@@ -1,7 +1,7 @@
 ---
 description: Read-only workspace diagnostics + structured debugging protocol
 created: 2025-12-18
-last_updated: 2026-03-21
+last_updated: 2026-07-22
 ---
 # /diagnose v2.0 — Workspace Diagnostics & Debugging
 

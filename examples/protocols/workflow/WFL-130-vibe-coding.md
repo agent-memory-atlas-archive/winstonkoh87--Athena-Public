@@ -1,12 +1,12 @@
 ---
 
 created: 2025-12-20
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---created: 2025-12-20
-last_updated: 2025-12-24
+last_updated: 2026-07-22
 ---
 
 # Protocol 130: The Vibe Coding System (System-Assisted Building)

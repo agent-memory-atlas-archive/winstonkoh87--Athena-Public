@@ -1,12 +1,12 @@
 ---
 created: 2025-12-11
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---description: Diagnose failure category - Frame (narrative clash, fix via optics) vs Structural (trust dependency, fix via system redesign). Never mix fixes.
 created: 2025-12-11
-last_updated: 2026-01-11
+last_updated: 2026-07-22
 ---
 
 # Protocol 40: Frame Problem vs Structural Problem Taxonomy

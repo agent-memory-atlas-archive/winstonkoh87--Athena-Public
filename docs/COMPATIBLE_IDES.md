@@ -1,6 +1,6 @@
 # Compatible IDEs
 
-> **Last Updated**: 25 February 2026
+> **Last Updated**: 22 July 2026
 
 Athena works with **any agent that reads Markdown**. For agents that support project-level config, `athena init` generates the native configuration file automatically.
 

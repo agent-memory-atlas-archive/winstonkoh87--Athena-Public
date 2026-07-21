@@ -1,7 +1,7 @@
 ---
 description: Generate comprehensive AI system briefing for external audit
 created: 2025-12-18
-last_updated: 2026-01-11
+last_updated: 2026-07-22
 ---
 # /primer — External Audit Briefing (Hardened)
 

@@ -1,12 +1,12 @@
 ---
 
 created: 2025-12-24
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---created: 2025-12-24
-last_updated: 2026-01-06
+last_updated: 2026-07-22
 ---
 
 # Protocol 162: PMOD Framework

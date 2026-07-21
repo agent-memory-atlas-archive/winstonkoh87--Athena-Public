@@ -1,6 +1,6 @@
 ---
 created: 2025-12-27
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
@@ -8,7 +8,7 @@ graphrag_extracted: true
 description: Protocol for building high-conversion, premium aesthetic websites. Focuses on visual hierarchy, navigation conventions, and readability physics.
 tags: [protocol, web-design, ux, ui, conversion, 2026-standards]
 created: 2025-12-27
-last_updated: 2025-12-27
+last_updated: 2026-07-22
 ---
 
 # Protocol 221: High-Performance UX & Design

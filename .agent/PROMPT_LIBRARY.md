@@ -2,7 +2,7 @@
 
 > **Purpose**: Curated, reusable system prompts for steering AI behavior.  
 > **Format**: Stealable meta-prompts (per `Core_Identity.md` standard).  
-> **Last Updated**: 2026-01-11
+> **Last Updated**: 2026-07-22
 
 ---
 

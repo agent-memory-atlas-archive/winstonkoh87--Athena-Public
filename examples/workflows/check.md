@@ -1,7 +1,7 @@
 ---
 description: Run verification loop on current work (Protocol 270)
 created: 2026-01-04
-last_updated: 2026-01-04
+last_updated: 2026-07-22
 ---
 # /check — Verification Loop
 

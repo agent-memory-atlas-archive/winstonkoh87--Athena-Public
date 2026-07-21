@@ -1,7 +1,7 @@
 ---
 description: Unified Test Runner with Self-Healing capabilities. Detects test command, runs suite, and triggers deeper debugging on failure.
 created: 2026-02-13
-last_updated: 2026-02-23
+last_updated: 2026-07-22
 tags: [workflow, testing, qa, automation]
 model: default
 temperature: 0.3

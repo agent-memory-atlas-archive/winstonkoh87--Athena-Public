@@ -1,7 +1,7 @@
 ---
 description: Supabase-only reindex — sync memory to cloud without full refactor
 created: 2025-12-15
-last_updated: 2025-12-21
+last_updated: 2026-07-22
 ---
 # /reindex — Supabase Memory Sync
 

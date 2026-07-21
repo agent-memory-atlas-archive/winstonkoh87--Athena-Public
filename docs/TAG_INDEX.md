@@ -1,6 +1,6 @@
 # 🏷️ TAG_INDEX — Concept Reference
 
-> **Last Updated**: 19 June 2026
+> **Last Updated**: 22 July 2026
 > **Status**: Concept reference (the live index is generated, not hand-maintained)
 
 ---

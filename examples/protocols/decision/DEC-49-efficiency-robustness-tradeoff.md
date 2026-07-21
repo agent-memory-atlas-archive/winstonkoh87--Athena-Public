@@ -1,13 +1,13 @@
 ---
 created: 2025-12-12
-last_updated: 2026-02-28
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---name: efficiency-robustness-tradeoff
 description: Explicit framework for choosing between efficiency (optimised for best case) and robustness (survivable in worst case). Forces conscious choice rather than magical thinking.
 created: 2025-12-12
-last_updated: 2026-02-28
+last_updated: 2026-07-22
 ---
 
 # Protocol 49: Efficiency vs Robustness Trade-off

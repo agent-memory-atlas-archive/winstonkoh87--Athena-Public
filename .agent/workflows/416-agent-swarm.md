@@ -1,7 +1,7 @@
 ---
 description: Orchestrate parallel agent swarms using worktrees
 created: 2026-02-03
-last_updated: 2026-02-03
+last_updated: 2026-07-22
 ---
 
 # /swarm — Parallel Agent Orchestration

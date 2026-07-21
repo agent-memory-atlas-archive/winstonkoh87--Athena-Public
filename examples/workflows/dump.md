@@ -1,7 +1,7 @@
 ---
 description: Quick thought capture — dump ideas without formatting
 created: 2025-12-16
-last_updated: 2025-12-21
+last_updated: 2026-07-22
 ---
 # /dump — Quick Thought Capture
 

@@ -1,6 +1,6 @@
 ---
 created: 2025-12-15
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
@@ -8,7 +8,7 @@ graphrag_extracted: true
 description: Pre-action mental checklist to assess context before speaking or acting
 tags: [#communication, #context, #decision-making, #de-escalation, #strategic]
 created: 2025-12-15
-last_updated: 2025-12-18
+last_updated: 2026-07-22
 ---
 
 # Protocol 73: Contextual Pre-Action Check

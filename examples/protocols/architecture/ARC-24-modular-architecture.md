@@ -1,13 +1,13 @@
 ---
 created: 2025-12-10
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---name: modular-architecture
 description: Separate USER-SPECIFIC data from GENERIC frameworks at structural level. Frameworks shareable, user data isolated. Modular > Monolithic.
 created: 2025-12-10
-last_updated: 2025-12-31
+last_updated: 2026-07-22
 ---
 
 # Principle: Modular Architecture for Shareable Knowledge Systems

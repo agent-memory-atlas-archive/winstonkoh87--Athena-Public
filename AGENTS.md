@@ -153,6 +153,6 @@ The rules above are the essential subset of Protocol 413 (Multi-Agent Coordinati
 
 - **Framework**: v8.2-stable (frozen as of 2026-02-01 — reference-only, not runtime-loaded)
 - **System**: v9.9.8 (public release; see .agent/config/CAPS.json)
-- **Last Updated**: 2026-07-05
+- **Last Updated**: 2026-07-22
 - **Canonical Counts**: `.agent/config/CAPS.json` (single source of truth)
 - **Pattern Source**: Vercel "AGENTS.md vs Skills" Research + OpenClaw Multi-Agent Safety Rules + Claude Code Source Architecture (2026-03-31) + Hermes Agent Steal (NousResearch/hermes-agent, 2026-05-11: skill-compiler, curator lifecycle model) + Karpathy CLAUDE.md Steal (r/ClaudeCode, 2026-06-01: Ask-Don't-Assume, Flag-Uncertainty, Codebase-Documentation-Sync)

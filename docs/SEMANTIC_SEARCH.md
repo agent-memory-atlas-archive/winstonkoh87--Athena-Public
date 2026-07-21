@@ -1,6 +1,6 @@
 # Semantic Search: Parallel Hybrid Retrieval Architecture
 
-> **Last Updated**: 19 June 2026  
+> **Last Updated**: 22 July 2026  
 > **Purpose**: How Athena finds and retrieves relevant context by fusing multiple complementary channels
 
 ---

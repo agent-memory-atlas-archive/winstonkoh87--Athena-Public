@@ -1,13 +1,13 @@
 ---
 {created: '2025-12-27', last_updated: '2026-03-19'}
-last_updated: 2026-03-19
+last_updated: 2026-07-22
 ---
 
 # Canonical Memory (Materialized View)
 
 > **Protocol**: **Protocol 215**  
 > **Purpose**: Single Source of Truth for active facts. Supersedes conflicting info in Session Logs.  
-> **Last Updated**: 19 March 2026 (v9.5.6)
+> **Last Updated**: 22 July 2026 (v9.5.6)
 
 ---
 

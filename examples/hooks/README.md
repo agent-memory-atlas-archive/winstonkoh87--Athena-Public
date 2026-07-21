@@ -1,6 +1,6 @@
 # Hooks
 
-> **Last Updated**: 15 July 2026
+> **Last Updated**: 22 July 2026
 
 Deterministic scripts that run **outside** the agentic loop on specific events. Zero LLM overhead, guaranteed execution.
 

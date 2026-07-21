@@ -1,6 +1,6 @@
 ---
 created: 2026-03-11
-last_updated: 2026-03-11
+last_updated: 2026-07-22
 ---
 
 # Protocol 75: Synthetic Parallel Reasoning (v5.0 — AGoT)

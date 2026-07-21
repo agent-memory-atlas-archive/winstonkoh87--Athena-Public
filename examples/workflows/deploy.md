@@ -1,7 +1,7 @@
 ---
 description: Public Repo Synchronization & Sanitization (Allowlist Model)
 created: 2025-12-25
-last_updated: 2026-06-10
+last_updated: 2026-07-22
 ---
 
 # /deploy — Public Repo Synchronization (Allowlist v2.0)

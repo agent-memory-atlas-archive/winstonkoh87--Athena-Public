@@ -1,7 +1,7 @@
 ---
 description: High-Stakes Documentation Workflow (The Anthropic Method)
 created: 2026-01-02
-last_updated: 2026-01-02
+last_updated: 2026-07-22
 ---
 # Document Co-Authoring Workflow
 

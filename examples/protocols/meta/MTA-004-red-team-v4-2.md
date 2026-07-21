@@ -1,12 +1,12 @@
 ---
 
 created: 2026-01-14
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---created: 2026-01-14
-last_updated: 2026-01-15
+last_updated: 2026-07-22
 ---
 
 # RED-TEAM REVIEW — v4.2 (Strategic Matrix)

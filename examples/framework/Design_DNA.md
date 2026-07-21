@@ -1,6 +1,6 @@
 ---
 created: 2026-02-03
-last_updated: 2026-02-03
+last_updated: 2026-07-22
 ---
 
 # Design DNA (The Aesthetic Constitution)

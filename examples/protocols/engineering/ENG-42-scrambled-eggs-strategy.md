@@ -1,12 +1,12 @@
 ---
 created: 2025-12-12
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---description: Category creation via signature differentiation. Add element that doesn't belong to escape competitive parity. A Hot Hideout, FinanceApp examples.
 created: 2025-12-12
-last_updated: 2026-01-13
+last_updated: 2026-07-22
 ---
 
 # 42-Scrambled-Eggs-Strategy

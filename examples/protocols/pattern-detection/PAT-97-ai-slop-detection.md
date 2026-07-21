@@ -1,6 +1,6 @@
 ---
 created: 2025-12-17
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
@@ -8,7 +8,7 @@ graphrag_extracted: true
 description: Checklist for identifying low-value AI-generated content. Detects formulaic structure, inflated authority, recycled advice, and engagement-bait patterns.
 tags: [protocol, content, quality, detection, anti-slop]
 created: 2025-12-17
-last_updated: 2026-01-11
+last_updated: 2026-07-22
 ---
 
 # Protocol 97: AI Slop Detection

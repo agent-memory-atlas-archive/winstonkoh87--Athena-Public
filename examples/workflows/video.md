@@ -1,7 +1,7 @@
 ---
 description: Generate an upload-ready YouTube Short/Reel from a single topic prompt
 created: 2026-02-25
-last_updated: 2026-02-25
+last_updated: 2026-07-22
 model: default
 temperature: 0.7
 tools:

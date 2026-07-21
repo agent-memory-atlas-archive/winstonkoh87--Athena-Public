@@ -1,7 +1,7 @@
 ---
 description: Analyze external content for patterns worth integrating into Athena
 created: 2025-12-22
-last_updated: 2026-01-11
+last_updated: 2026-07-22
 ---
 # /steal — Pattern Extraction & Integration
 

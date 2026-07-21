@@ -3,7 +3,7 @@ protocol: 515
 name: Reflexion Journaling
 domain: architecture
 created: 2026-03-05
-last_updated: 2026-03-05
+last_updated: 2026-07-22
 status: active
 ---
 

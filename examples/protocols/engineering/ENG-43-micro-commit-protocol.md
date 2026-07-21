@@ -1,12 +1,12 @@
 ---
 created: 2025-12-12
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---description: Anti-feature-stacking discipline. Ship small, validate, commit. One feature per session. Commit gates between features.
 created: 2025-12-12
-last_updated: 2025-12-18
+last_updated: 2026-07-22
 ---
 
 # Protocol 43: Micro-Commit Protocol

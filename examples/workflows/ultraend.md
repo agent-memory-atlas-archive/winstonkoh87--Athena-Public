@@ -1,7 +1,7 @@
 ---
 description: Deep close for cognitive/computationally intensive sessions. System-2 counterpart to /end.
 created: 2026-03-10
-last_updated: 2026-03-15
+last_updated: 2026-07-22
 model: default
 temperature: 0.5
 tools:

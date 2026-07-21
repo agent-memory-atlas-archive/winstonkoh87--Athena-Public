@@ -1,12 +1,12 @@
 ---
 
 created: 2025-12-20
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---created: 2025-12-20
-last_updated: 2026-01-06
+last_updated: 2026-07-22
 ---
 
 # Protocol 115: First Principles Deconstruction (马斯克式解构)

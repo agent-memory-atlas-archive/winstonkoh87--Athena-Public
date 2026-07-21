@@ -1,7 +1,7 @@
 ---
 description: Ruin override ceremony - explicit user acknowledgment before proceeding with high-risk actions
 created: 2025-12-18
-last_updated: 2025-12-19
+last_updated: 2026-07-22
 ---
 # /circuit — Ruin Override Ceremony
 

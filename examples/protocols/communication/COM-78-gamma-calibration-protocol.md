@@ -1,12 +1,12 @@
 ---
 
 created: 2025-12-14
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---created: 2025-12-14
-last_updated: 2025-12-18
+last_updated: 2026-07-22
 ---
 
 # Protocol 78: Gamma Protocol (Generative Calibration)

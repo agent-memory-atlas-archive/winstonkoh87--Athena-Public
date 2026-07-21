@@ -2,7 +2,7 @@
 
 > **Status**: Active
 > **Core Thesis**: Edge determines *if* you make money. Structure determines *how much* and *if you survive making it*.
-> **Last Updated**: 2026-02-27
+> **Last Updated**: 2026-07-22
 
 ## The Paradigm: Structure > Selection
 

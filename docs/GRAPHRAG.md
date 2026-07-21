@@ -4,7 +4,7 @@
 > **DEPRECATED (6 June 2026)**: GraphRAG was formally removed from Athena in Session S435. The knowledge graph had been stale since February 2025 (16 months) and contributed 0% to retrieval quality. Athena now operates on **7 retrieval channels** without GraphRAG. This document is preserved as historical reference only. See [ARCHITECTURE.md](ARCHITECTURE.md) for the current retrieval stack.
 
 > **Status**: ❌ **REMOVED** (S435, 6 June 2026)
-> **Last Updated**: 6 June 2026
+> **Last Updated**: 22 July 2026
 > **Weight**: N/A — no longer in RRF fusion
 
 ---

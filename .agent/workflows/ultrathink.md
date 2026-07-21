@@ -1,10 +1,10 @@
 ---created: 2025-12-12
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 ---
 
 ---description: Maximum depth mode — v3.0 (Parallel Orchestrator)
 created: 2025-12-12
-last_updated: 2026-01-13
+last_updated: 2026-07-22
 ---
 
 # /ultrathink — Execution Script (v3.0)

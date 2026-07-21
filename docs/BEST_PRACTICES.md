@@ -1,6 +1,6 @@
 # Best Practices
 
-> **Last Updated**: 24 February 2026
+> **Last Updated**: 22 July 2026
 
 Operational discipline for running Athena sustainably. These aren't features — they're habits that prevent data loss, reduce friction, and keep your system compounding.
 

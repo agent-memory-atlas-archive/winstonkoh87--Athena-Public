@@ -1,6 +1,6 @@
 # VectorRAG: Semantic Memory Architecture
 
-> **Last Updated**: 19 June 2026  
+> **Last Updated**: 22 July 2026  
 > **Purpose**: Technical documentation for Athena's semantic memory system (sole semantic search layer)
 
 ---

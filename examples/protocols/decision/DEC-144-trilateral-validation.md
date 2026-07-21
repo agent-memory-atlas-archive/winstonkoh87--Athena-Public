@@ -1,12 +1,12 @@
 ---
 
 created: 2026-01-01
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---created: 2026-01-01
-last_updated: 2026-01-01
+last_updated: 2026-07-22
 ---
 
 # Protocol 144: Trilateral Validation (Anti-Echo Chamber)

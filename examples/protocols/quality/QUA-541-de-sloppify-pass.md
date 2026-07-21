@@ -1,6 +1,6 @@
 ---
 created: 2026-05-11
-last_updated: 2026-05-11
+last_updated: 2026-07-22
 steal_source: "affaan-m/everything-claude-code (178K ⭐), autonomous-loops skill, De-Sloppify Pattern"
 context_trigger: "TDD, test generation, code cleanup, refactor, implementation with tests, multi-step coding task"
 ---

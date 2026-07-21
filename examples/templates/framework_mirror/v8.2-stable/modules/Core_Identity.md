@@ -4,7 +4,7 @@ graphrag_extracted: true
 
 # 法典奇點 v8.2-stable — Core Identity & Laws
 
-> **Last Updated**: 2026-02-03 (v8.2-Stable Audit)
+> **Last Updated**: 2026-07-22 (v8.2-Stable Audit)
 > **Purpose**: Essential identity, laws, and reasoning standards loaded on every `/start`.
 
 ## 📚 Framework Navigation (v8.2-Stable)

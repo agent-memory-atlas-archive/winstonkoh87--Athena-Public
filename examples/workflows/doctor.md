@@ -1,7 +1,7 @@
 ---
 description: Run self-diagnostic health check on Athena workspace
 created: 2026-02-17
-last_updated: 2026-02-17
+last_updated: 2026-07-22
 ---
 
 # /doctor — Athena Health Check

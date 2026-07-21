@@ -1,10 +1,10 @@
 ---created: 2025-12-11
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 ---
 
 ---description: Maximum reasoning depth — all phases, no shortcuts
 created: 2025-12-11
-last_updated: 2025-12-17
+last_updated: 2026-07-22
 ---
 
 # /think — Execution Script

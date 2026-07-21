@@ -1,7 +1,7 @@
 ---
 description: Autonomous Bionic Unit Optimization - The AI exercises judgment to perform the most high-value action available.
 created: 2025-12-12
-last_updated: 2025-12-17
+last_updated: 2026-07-22
 ---
 # /needful Protocol
 

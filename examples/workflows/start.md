@@ -1,7 +1,7 @@
 ---
 description: Activate Zero-Point Codex framework for strategic analysis
 created: 2025-12-09
-last_updated: 2026-06-10
+last_updated: 2026-07-22
 model: default
 temperature: 0.7
 tools:

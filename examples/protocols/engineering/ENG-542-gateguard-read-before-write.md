@@ -1,6 +1,6 @@
 ---
 created: 2026-05-11
-last_updated: 2026-05-11
+last_updated: 2026-07-22
 steal_source: "affaan-m/everything-claude-code (178K ⭐), GateGuard Fact-Forcing hook"
 context_trigger: "file edit, code modification, schema change, refactor, multi-file change"
 ---

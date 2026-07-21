@@ -4,7 +4,7 @@ id: 900
 title: Project Scaffolding Standards (Claude Code V4)
 created: 2026-01-30
 tags: [coding, standards, setup]
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 description: Structured data analysis pipeline — ingest → profile → query → file insights
 created: 2026-04-09
-last_updated: 2026-04-09
+last_updated: 2026-07-22
 model: default
 temperature: 0.5
 tools:

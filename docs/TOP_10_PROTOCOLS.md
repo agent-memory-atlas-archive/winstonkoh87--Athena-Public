@@ -1,6 +1,6 @@
 ---
 date: 2026-06-17
-last_updated: 2026-06-17
+last_updated: 2026-07-22
 ---
 
 # Top 10 Protocols — Re-Ranked (June 2026)

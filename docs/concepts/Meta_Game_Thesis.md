@@ -1,6 +1,6 @@
 # The Meta-Game Thesis
 
-> **Last Updated**: 21 March 2026
+> **Last Updated**: 22 July 2026
 > **TL;DR**: Generic LLMs optimise *within* the game you're playing. Athena asks whether you should be playing that game at all. The most expensive mistake isn't losing — it's playing the wrong game.
 
 ---

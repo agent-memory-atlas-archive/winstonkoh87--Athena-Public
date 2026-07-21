@@ -1,7 +1,7 @@
 ---
 description: Background memory consolidation — the "Dream" pass. Stolen from Claude Code autoDream system (2026-04-01).
 created: 2026-04-01
-last_updated: 2026-04-01
+last_updated: 2026-07-22
 ---
 
 # /dream — Memory Consolidation Daemon

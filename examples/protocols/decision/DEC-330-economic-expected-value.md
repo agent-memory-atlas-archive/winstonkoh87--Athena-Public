@@ -1,6 +1,6 @@
 ---
 created: 2026-02-02
-last_updated: 2026-03-14
+last_updated: 2026-07-22
 version: 4.0
 origin: "Session 05 (Blackjack Probability Analysis), Session 32 (GTO EEV Formalization), Session 33 (Friedman-Savage Red Team), Session S34 (Multi-Agent EEV Extension)"
 dependencies: ["Law #0", "Law #1", "Protocol 193 (Ergodicity Check)", "Protocol 180 (Utility Function Analysis)", "Protocol 525 (Cross-Domain Weighting)"]

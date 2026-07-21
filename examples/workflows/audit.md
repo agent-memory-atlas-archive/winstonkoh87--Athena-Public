@@ -1,11 +1,11 @@
 ---
 description: Cross-check work (Gemini vs Claude) focusing on structural integrity and reasoning alignment.
 created: 2025-12-13
-last_updated: 2026-01-03
+last_updated: 2026-07-22
 ---
 # /audit — Cross-Model Validation Protocol
 
-> **Last Updated**: 03 January 2026
+> **Last Updated**: 22 July 2026
 > **Core Principle**: "Structure is for Attention, not Storage."
 > **Goal**: Ensure changes guide reasoning effectively, not just save space.
 

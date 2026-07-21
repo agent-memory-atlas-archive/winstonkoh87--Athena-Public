@@ -1,6 +1,6 @@
 ---
 created: 2026-03-04
-last_updated: 2026-03-04
+last_updated: 2026-07-22
 source: "GSD (Get Shit Done) — fresh context per plan. Adapted for Athena."
 ---
 

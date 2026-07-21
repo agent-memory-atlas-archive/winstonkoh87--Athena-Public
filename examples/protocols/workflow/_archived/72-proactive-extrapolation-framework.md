@@ -1,6 +1,6 @@
 ---
 created: 2025-12-15
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
@@ -8,7 +8,7 @@ graphrag_extracted: true
 description: Signal detection and projection framework for anticipating outcomes from early warning signs
 tags: [#risk-management, #decision-making, #early-warning, #scenario-planning, #prevention]
 created: 2025-12-15
-last_updated: 2025-12-18
+last_updated: 2026-07-22
 ---
 
 # Protocol 72: Proactive Extrapolation Framework (PEF)

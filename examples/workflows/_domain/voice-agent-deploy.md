@@ -1,7 +1,7 @@
 ---
 description: Deploy AI Voice Agents (ElevenLabs + Twilio)
 created: 2026-01-02
-last_updated: 2026-01-02
+last_updated: 2026-07-22
 ---
 # Voice Agent Deployment Protocol
 

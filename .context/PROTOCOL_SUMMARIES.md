@@ -1,6 +1,6 @@
 # Protocol Summaries
 
-> **Last Updated**: 2026-03-16
+> **Last Updated**: 2026-07-22
 > **Total**: 405 protocols across 35 categories
 > **Purpose**: Quick-lookup summaries for rapid protocol discovery.
 > **Path**: `.agent/skills/protocols/<category>/<filename>.md`

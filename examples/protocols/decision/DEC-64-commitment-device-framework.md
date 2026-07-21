@@ -1,13 +1,13 @@
 ---
 created: 2025-12-14
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---description: Pre-Transaction Commitment Devices - Secure leverage before releasing valuable information
 tags: [#business, #negotiation, #protection, #framework]
 created: 2025-12-14
-last_updated: 2025-12-18
+last_updated: 2026-07-22
 ---
 
 # Protocol 64: Commitment Device Framework

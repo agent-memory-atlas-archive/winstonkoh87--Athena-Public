@@ -1,10 +1,10 @@
 ---created: 2025-12-25
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 ---
 
 ---description: Retroactive audit of coding sessions to fine-tune AI skills and prevent regression
 created: 2025-12-25
-last_updated: 2025-12-25
+last_updated: 2026-07-22
 ---
 
 # /audit-code — The "Scrubber" Protocol

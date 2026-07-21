@@ -1,12 +1,12 @@
 ---
 
 created: 2025-12-30
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---created: 2025-12-30
-last_updated: 2026-01-16
+last_updated: 2026-07-22
 ---
 
 # Protocol 243: Prima Facie vs Actuality Gap (Reality Check Framework)

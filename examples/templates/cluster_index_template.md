@@ -1,6 +1,6 @@
 ---
 created: 2026-03-01
-last_updated: 2026-03-14
+last_updated: 2026-07-22
 description: Athena routing infrastructure — Intent Classifier (P508) → Cognitive Systems (P507) → Cognitive Clusters (P503)
 ---
 

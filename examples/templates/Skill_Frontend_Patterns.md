@@ -1,7 +1,7 @@
 # Skill: Frontend Patterns (Stolen from Claude Insider)
 
 > **Source**: [Claude Insider CLAUDE.md](../../CLAUDE.md)  
-> **Last Updated**: 2026-01-11
+> **Last Updated**: 2026-07-22
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 description: Deep boot for cognitive/computationally intensive work. System-2 counterpart to /start.
 created: 2026-03-10
-last_updated: 2026-06-10
+last_updated: 2026-07-22
 model: default
 temperature: 0.7
 tools:

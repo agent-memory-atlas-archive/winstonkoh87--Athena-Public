@@ -1,7 +1,7 @@
 ---
 description: Research Arbitrage Workflow (NotebookLM Method)
 created: 2026-01-02
-last_updated: 2026-03-17
+last_updated: 2026-07-22
 ---
 # Research Arbitrage Workflow
 

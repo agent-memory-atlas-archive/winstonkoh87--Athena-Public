@@ -1,7 +1,7 @@
 ---
 description: Blank slate mode - raw model access without Athena context
 created: 2025-12-18
-last_updated: 2026-01-04
+last_updated: 2026-07-22
 ---
 # /blank — Blank Slate Mode
 

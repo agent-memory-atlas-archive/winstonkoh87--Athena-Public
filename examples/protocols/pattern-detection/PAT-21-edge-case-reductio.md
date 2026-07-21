@@ -1,13 +1,13 @@
 ---
 created: 2025-12-10
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---name: edge-case-reductio
 description: Don't dismiss impossible-sounding claims. Explore edge cases until absurdity reveals itself. Includes arbitrage killer argument and compound absurdity test.
 created: 2025-12-10
-last_updated: 2025-12-31
+last_updated: 2026-07-22
 ---
 
 # Protocol: Edge Case Exploration / Reductio Methodology

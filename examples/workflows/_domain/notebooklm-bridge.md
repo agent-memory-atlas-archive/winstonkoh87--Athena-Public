@@ -1,7 +1,7 @@
 ---
 description: Integrate NotebookLM as a dynamic research backend for Athena
 created: 2026-02-27
-last_updated: 2026-02-27
+last_updated: 2026-07-22
 ---
 
 # /notebooklm-bridge — Dynamic Context Injection

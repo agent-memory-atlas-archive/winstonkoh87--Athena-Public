@@ -1,7 +1,7 @@
 ---
 description: Deep web research mode — multi-source search with citation
 created: 2025-12-11
-last_updated: 2025-12-17
+last_updated: 2026-07-22
 ---
 # /search — Execution Script
 

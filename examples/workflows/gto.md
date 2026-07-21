@@ -1,7 +1,7 @@
 ---
 description: Game-Theory Optimal problem-solving mode — find the unexploitable strategy
 created: 2026-03-15
-last_updated: 2026-03-15
+last_updated: 2026-07-22
 model: default
 temperature: 0.5
 tools:

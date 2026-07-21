@@ -1,13 +1,13 @@
 ---
 created: 2025-12-14
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---description: Wizard of Oz Architecture - Outcome > Elegance. Building widely admired systems with "boring" or "duct-tape" technologies.
 tags: [#architecture, #MVP, #strategy, #engineering]
 created: 2025-12-14
-last_updated: 2026-01-13
+last_updated: 2026-07-22
 ---
 
 # Protocol 66: Wizard of Oz Architecture

@@ -1,7 +1,7 @@
 ---
 description: Structured planning protocol for tasks (Plan -> Pre-Mortem -> Verification)
 created: 2026-01-06
-last_updated: 2026-03-21
+last_updated: 2026-07-22
 ---
 # Protocol: Structured Task Planning
 

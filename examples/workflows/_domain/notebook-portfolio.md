@@ -1,7 +1,7 @@
 ---
 description: End-to-end pipeline for generating a highly personalized, non-generic portfolio site using NotebookLM data and external visual assets.
 created: 2026-02-27
-last_updated: 2026-02-27
+last_updated: 2026-07-22
 ---
 
 # /notebook-portfolio — The Zero-to-Agency Pipeline

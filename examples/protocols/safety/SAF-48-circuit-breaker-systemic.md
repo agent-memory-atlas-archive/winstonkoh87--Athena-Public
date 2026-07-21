@@ -1,13 +1,13 @@
 ---
 created: 2025-12-12
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---name: circuit-breaker-systemic
 description: Mandatory pause when cumulative red flags exceed threshold. Extends 3-Second Override to systemic level for compulsivity management across all domains.
 created: 2025-12-12
-last_updated: 2026-01-11
+last_updated: 2026-07-22
 ---
 
 # Protocol 48: Circuit Breaker (Systemic Pause)

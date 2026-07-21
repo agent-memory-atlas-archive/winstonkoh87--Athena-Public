@@ -1,7 +1,7 @@
 ---
 description: Soft Reset — Close current session and start a fresh one immediately.
 created: 2026-01-03
-last_updated: 2026-01-03
+last_updated: 2026-07-22
 ---
 # /fresh — Session Hot Swap
 

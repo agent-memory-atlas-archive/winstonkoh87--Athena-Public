@@ -1,7 +1,7 @@
 ---
 description: Multi-project switchboard — view, add, switch, close, and triage active projects
 created: 2026-03-09
-last_updated: 2026-03-09
+last_updated: 2026-07-22
 model: default
 temperature: 0.5
 tools:

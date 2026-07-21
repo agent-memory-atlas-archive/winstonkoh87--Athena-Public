@@ -1,10 +1,10 @@
 ---created: 2026-01-02
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 ---
 
 ---description: The "333" Diagnostic Method for Lead Generation
 created: 2026-01-02
-last_updated: 2026-01-02
+last_updated: 2026-07-22
 ---
 
 # 333 Diagnostic Method (OfferFixer)

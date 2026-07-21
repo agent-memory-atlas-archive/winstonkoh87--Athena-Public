@@ -1,13 +1,13 @@
 ---
 created: 2025-12-25
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---description: Pre-Commitment Heuristic - Shift investment burden to filter serious actors before exposure
 tags: [#decision, #negotiation, #frame, #risk-management]
 created: 2025-12-25
-last_updated: 2025-12-31
+last_updated: 2026-07-22
 ---
 
 # Protocol 163: Pre-Commitment Heuristic

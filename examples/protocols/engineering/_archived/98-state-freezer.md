@@ -1,12 +1,12 @@
 ---
 
 created: 2025-12-18
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---created: 2025-12-18
-last_updated: 2026-01-02
+last_updated: 2026-07-22
 ---
 
 # Protocol 98: State Freezer (Anti-Compaction)

@@ -1,6 +1,6 @@
 # Multi-Model Strategy Guide
 
-> **Last Updated**: 5 July 2026
+> **Last Updated**: 22 July 2026
 
 Athena is model-agnostic — your memory, protocols, and governance persist across any LLM. This means you can use **different models for different tasks** and get the best of each.
 

@@ -1,13 +1,13 @@
 ---
 created: 2025-12-14
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---description: CISO Framework - Context Intent Subtext Optics analysis for decoding communication
 tags: [#communication, #psychology, #framework, #analysis]
 created: 2025-12-14
-last_updated: 2025-12-18
+last_updated: 2026-07-22
 ---
 
 # Protocol 63: CISO Communication Framework

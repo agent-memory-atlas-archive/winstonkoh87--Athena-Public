@@ -1,6 +1,6 @@
 # Athena — Architecture Reference
 
-> **Last Updated**: 5 Jul 2026
+> **Last Updated**: 22 July 2026
 > **Version**: v9.9.7
 > **Canonical Counts**: These figures describe the private reference implementation as of the date above (not this repo's shipped `examples/` subset — see the README metrics table for what's actually included here). This repo now ships its own `.agent/config/CAPS.json` — the single source of truth for the public subset's counts, regenerated via its `recount_rules`. If a number in any doc diverges from CAPS, CAPS wins.
 > **Bionic Unit Spec**: BIONIC_UNIT_SPEC.md — the definitive human-AI augmentation mapping

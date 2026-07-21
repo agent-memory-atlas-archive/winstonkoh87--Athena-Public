@@ -1,6 +1,6 @@
 ---
 created: 2025-12-27
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
@@ -8,7 +8,7 @@ graphrag_extracted: true
 title: Recovery Patterns
 category: architecture
 created: 2025-12-27
-last_updated: 2025-12-27
+last_updated: 2026-07-22
 ---
 
 # Protocol 202: Recovery Patterns

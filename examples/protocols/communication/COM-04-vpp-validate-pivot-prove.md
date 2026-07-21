@@ -1,13 +1,13 @@
 ---
 created: 2025-12-10
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---name: vpp-validate-pivot-prove
 description: Communication protocol for addressing emotional concerns with technical answers. Validates emotion first, then pivots to system, then proves with simple language.
 created: 2025-12-10
-last_updated: 2026-01-13
+last_updated: 2026-07-22
 ---
 
 # V-P-P Protocol (Validate–Pivot–Prove)

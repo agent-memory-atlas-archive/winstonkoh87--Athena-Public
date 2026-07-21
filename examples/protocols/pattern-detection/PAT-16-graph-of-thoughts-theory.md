@@ -1,13 +1,13 @@
 ---
 created: 2025-12-10
-last_updated: 2026-01-30
+last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
 ---name: synthetic-parallel-reasoning
 description: Using Graph of Thoughts to simulate multi-path reasoning. Synthetic parallel via structured prompting - for life strategy decisions, functionally equivalent to true parallel compute.
 created: 2025-12-10
-last_updated: 2025-12-31
+last_updated: 2026-07-22
 ---
 
 # Protocol: Synthetic Parallel Reasoning via Graph of Thoughts
