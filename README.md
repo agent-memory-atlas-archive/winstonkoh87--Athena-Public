@@ -10,6 +10,8 @@ Capture what you learn, retrieve it when relevant, and carry your context betwee
 
 Own the state. Rent the intelligence. Platforms forget. Athena doesn't.
 
+*Most assistants remember you so they can agree with you faster. Athena remembers you so it can tell you when you're wrong.*
+
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Version](https://img.shields.io/badge/v9.9.7-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
@@ -51,7 +53,16 @@ Athena moves the memory layer to **your machine**. Plain Markdown files that you
 
 Athena's centralised design principle: **augment human cognition, not replace it.** The more context you give Athena, the sharper its answers become — not by remembering your preferences, but by **reasoning differently because of what it knows about you.**
 
-A generic LLM gives the internet's statistically average answer — correct *on average, across all humans*. Athena gives answers calibrated to *your specific situation*, because statistical correctness and personal correctness are completely different things:
+But personalization is only half the design — and on its own, it's the dangerous half. An AI tuned purely to *fit you* is a mirror: it hands your own blind spots back to you, faster and more fluently than you'd rationalise them yourself. The moat was never that Athena agrees with you more precisely. It's that Athena knows you well enough to tell you when **you** are the problem — and has the standing (Law #1, the Committee of Seats) to refuse a premise a generic assistant would obligingly help you execute.
+
+So the USP has two legs, not one:
+
+- **It knows you** — owned, portable, compounding context. The substrate nobody else has.
+- **It will disagree with you** — grounded in *your* documented patterns, not generic hedging. The leg that makes the first one safe to stand on.
+
+Personalization is what makes the disagreement credible (it's aimed at your actual situation, not a textbook). The disagreement is what keeps the personalization from becoming a well-decorated echo chamber. Neither leg is the USP alone; the product is the pair.
+
+A generic LLM gives the internet's statistically average answer — correct *on average, across all humans*. Athena gives answers calibrated to *your specific situation* — including the situations where the honest answer is the one you were hoping it wouldn't say:
 
 <table>
 <tr>
@@ -106,7 +117,7 @@ Depends: children involved? Financial entanglement? Your documented attachment p
 </tr>
 </table>
 
-> **Generic LLMs solve the question. Athena solves the person.** The same question, asked by different people with different lives, demands fundamentally different answers. A generic LLM can’t differentiate because it has no context. Athena can’t give the same answer twice — because the context files are different. The memory **is** the product.
+> **Generic LLMs solve the question. Athena solves the person.** The same question, asked by different people with different lives, demands fundamentally different answers. A generic LLM can’t differentiate because it has no context. Athena can’t give the same answer twice — because the context files are different. The memory **is** the product — and what the memory buys is the *right to push back*. Solving the person isn’t flattering the person: the same context that personalises the answer is what licenses Athena to hand you the one you were hoping to avoid.
 
 ### What Athena Actually Does With Your Problem
 
@@ -485,12 +496,15 @@ Most AI-agent READMEs state every claim in the same confident voice. This one do
 | **Compounding Personalization** | Session 500 reasons in your frameworks, not just recalls your name | 🟡 **Credible architecture, N=1 evidence** | 1,900+ sessions of longitudinal use by the author, including logged incidents and post-mortems. No multi-user study, no controlled benchmark yet. The honest claim is *"this worked for one person who built it around his own thinking"* — you are the replication experiment |
 | **Governed Autonomy** | Constitutional laws + capability levels prevent harmful autonomous action | 🟡 **Designed & used, not adversarially tested** | The governance code ships (`src/athena/core/`: ruin_check, permissions, sandbox) and is used daily in cooperative conditions. A public test suite proving the gates hold under adversarial pressure is the roadmap's top item |
 | **"The right answer for *you*"** | Personalized advice beats generic advice for life decisions | 🔴 **Partially unfalsifiable — by nature** | You can't A/B test your own life; there's no counterfactual. Athena's success metric is deliberately **process quality, not outcome superiority**: calibration (were your 80% calls right ~80% of the time?), ruin avoidance (did the left tail stay closed?), and full-information choice. That's also why Law #1 is a *process* guarantee |
+| **Independent vantage under personalization** | The context that personalizes you doesn't quietly make the model agree with you *more* | 🟡 **Real tension, partial + conditional mitigation** | The uncomfortable claim, and the reason this section stays honest. Personalization is the SOTA's single largest sycophancy amplifier — user-memory profiles raise agreement sycophancy **+45%** on Gemini 2.5 Pro ([Jain et al. 2025](docs/REFERENCES.md#sycophancy--the-personalization-tension)), atop a **~58%** baseline ([SycEval 2025](https://arxiv.org/abs/2502.08177)). Athena is *built on* that mechanism. Its defense is two-part: (1) a code-enforced meta-awareness gate that injects an anti-mirror interpreter kernel on loaded prompts, and (2) an explicitly **advisory** frame — the one condition shown to *strengthen* epistemic independence under personalization rather than erode it ([Kelley & Riedl 2026](https://arxiv.org/abs/2603.00024)). Honest limits: the gate is **Claude-Code-only and opt-in** (ships as an example hook, not wired by default), and "advisory frame" is enforced by the model's disposition + the gate's nudge, not proven under adversarial pressure |
 
 > **Academic grounding**: the concepts Athena operationalizes — Kelly sizing, ergodicity economics, prospect theory, IFS, memory-stream/reflection agent architectures (MemGPT, Generative Agents, CoALA) — are cited in full APA format, every DOI Crossref-verified, in [docs/REFERENCES.md](docs/REFERENCES.md).
 >
 > **The honest test is the one you run yourself.** Athena is an *experience good* (Nelson, 1970) — its value can only be assessed by use, not from the spec sheet. That's a property of the category (so is therapy, so is GTD), not an excuse: the trial is cheap (free tier, ~20-min tutorial), reverting is free (delete the folder, you're back to your IDE's plain system prompt), and the one real risk is worth naming — a *stale or wrong* memory retrieved with confidence is worse than no memory, which is exactly why the verification machinery above exists. Clone it, run 20 sessions, compare against your baseline. That's the experiment.
 >
 > **Why publish this table?** Because the failure mode of this product category is self-mythologizing — describing aspirations in the present tense until the author believes them. Athena's own convention ([Epistemic Status](examples/workflows/_shared.md#epistemic-status-convention-anti-self-mythologizing)) requires labeling every mechanism as `code-enforced`, `agent-discretion`, or `aspirational`. This table is that convention applied to the README itself. The feedback loop exists (incident logs, decision journal, reflexion harvesting) — what doesn't exist yet is *published, systematized* validation. If a claim above ever moves a tier, the change lands in the [changelog](docs/CHANGELOG.md), not silently in the marketing copy.
+>
+> **Scope caveat on "governed" and "independent."** The one *code-enforced* behavioral safeguard — the meta-awareness gate that fires an anti-sycophancy interpreter kernel on loaded prompts — is a **Claude Code hook**, and in a fresh clone it ships as an **example** (`examples/hooks/`), unwired, not on by default. On Antigravity, Cursor, Gemini CLI, and anywhere the hook isn't installed, "independent vantage" degrades from a code-enforced injection to **agent-discretion** — the model's own disposition plus the prose laws. Portability of *memory* is structural and travels everywhere; portability of *governance* does not yet. Closing that gap — a cross-IDE gate, and code that actually checks "am I ranking by the user's weights or my own?" — is roadmap, not shipped.
 
 ---
 

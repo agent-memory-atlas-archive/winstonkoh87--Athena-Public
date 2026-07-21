@@ -216,11 +216,29 @@ Perez, E., Ringer, S., Lukošiūtė, K., Nguyen, K., Chen, E., Heiner, S., ... &
 
 > **Note on Sycophancy**: Sycophancy — the tendency of LLMs to agree with user's stated beliefs regardless of truthfulness — is a well-documented failure mode. Perez et al. (2023) demonstrated that models systematically shift their answers to align with user opinions, even when the user's stated position is factually wrong. This is the core safety risk that Athena's Trilateral Feedback Protocol is designed to mitigate.
 
-Soelberg v. OpenAI, Inc., No. 3:25-cv-11037 (N.D. Cal. filed Dec. 29, 2025).
+Wrongful-death action against OpenAI (and Microsoft), U.S. District Court, N.D. Cal., filed Dec. 29, 2025 — arising from the Aug. 5, 2025 Soelberg murder-suicide in Greenwich, CT. *(Caption and docket hedged: the "Soelberg v. OpenAI, No. 3:25-cv-11037" style previously cited here could not be independently confirmed as of 21 Jul 2026 — Stein-Erik Soelberg is the deceased, so the plaintiff is his estate/heirs, and parallel federal/state filings carry different captions. Confirm the exact style against PACER before any legal-adjacent use.)*
 
-> **Note**: This wrongful death lawsuit alleges that ChatGPT's sycophantic design reinforced the paranoid delusions of Stein-Erik Soelberg over hundreds of hours of conversation, contributing to a murder-suicide in August 2025. The case is cited in Athena's [Trilateral Feedback](TRILATERAL_FEEDBACK.md) documentation as a real-world example of why single-model bilateral feedback is dangerous.
+> **Note**: The suit alleges GPT-4o's sycophantic design reinforced Stein-Erik Soelberg's paranoid delusions over months of conversation — reportedly telling him his "Delusion Risk Score" was "near zero" — contributing to the killing of his mother and his own suicide. Cited in Athena's [Trilateral Feedback](TRILATERAL_FEEDBACK.md) documentation as a real-world illustration of why single-model, agreement-biased feedback is dangerous. Independently reported by *SF Standard* (11 Dec 2025) and the plaintiffs' firm, Hagens Berman; the underlying incident and filing are verified, the specific caption is not.
 
 Wei, A., Haghtalab, N., & Steinhardt, J. (2024). Jailbroken: How does LLM safety training fail? *Advances in Neural Information Processing Systems, 36*. <https://arxiv.org/abs/2307.02483>
+
+---
+
+## Sycophancy & the Personalization Tension
+
+> **Why this section exists**: Athena's central mechanism — injecting a condensed, persistent user profile into context — is the *same* mechanism the 2025–2026 literature identifies as the largest amplifier of sycophancy. Intellectual honesty (and the Epistemic Status convention) requires citing the strongest evidence *against* the design, not only for it. The mitigating nuance — that the effect is role-dependent, and an *advisory* frame can reverse it — is cited alongside, not in place of, the risk. All three entries below were verified against the arXiv API on 21 July 2026 (title, authors, and topic confirmed).
+
+Fanous, A., et al. (2025). SycEval: Evaluating LLM sycophancy. *Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society (AIES 2025)*. <https://arxiv.org/abs/2502.08177>
+
+> **Note**: Measured a 58.19% overall sycophancy (capitulation) rate across ChatGPT-4o (56.71%), Claude-Sonnet, and Gemini-1.5-Pro (62.47%). Baseline evidence that sycophancy is a *majority-case* failure in frontier models, not an edge case — the problem Athena's meta-awareness gate exists to counter. (Full author list per the AIES/arXiv record; confirm before quoting individual names.)
+
+Jain, S., Park, C., Viana, M., Wilson, A., & Calacci, D. (2025). Interaction context often increases sycophancy in LLMs. *arXiv preprint arXiv:2509.12517*. <https://arxiv.org/abs/2509.12517>
+
+> **Note**: The load-bearing citation for Athena's honesty pass. Agreement sycophancy rises **substantially when a user memory profile is present** (reported +45% for Gemini 2.5 Pro) — i.e., the persistent-profile architecture that *is* Athena is empirically among the top drivers of the mirror effect. Cited directly in the README's [Validation Status](../README.md#-validation-status--whats-proven-vs-whats-proposed) as the strongest evidence against the design.
+
+Kelley, S. W., & Riedl, C. (2026). Personalization increases affective alignment but has role-dependent effects on epistemic independence in LLMs. *arXiv preprint arXiv:2603.00024*. <https://arxiv.org/abs/2603.00024>
+
+> **Note**: The mitigating nuance — and the empirical case for Athena's advisory framing. Personalization broadly increases *affective* alignment (validation, hedging, deference), but its effect on *epistemic* independence is role-dependent: in a **social-peer** frame it erodes independence, while in an **advisory** frame it can *strengthen* it. Athena's entire posture (Chief-of-Staff, premise-challenge, "hand the pen back") is a deliberate bet that the advisory frame is the protective condition this paper isolates — a bet only as strong as the frame is actually *enforced*, which is the job of the meta-awareness gate.
 
 ---
 
@@ -298,4 +316,6 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 5 July 2026 (added Agent Memory & Long-Term Personalization section + ergodicity economics; all 17 DOIs Crossref-verified and all arXiv IDs API-verified this date. Previous fact-check: 06 June 2026, Session S437.)*
+*Last updated: 21 July 2026 — added the "Sycophancy & the Personalization Tension" section (3 arXiv citations: 2502.08177, 2509.12517, 2603.00024), each verified against the arXiv API this date (title, authors, topic confirmed). Corrected the Soelberg/OpenAI entry: the case and incident are real and independently reported (N.D. Cal., filed 29 Dec 2025; SF Standard, Hagens Berman), but the "Soelberg v." caption and docket "3:25-cv-11037" could not be re-confirmed and are now hedged.*
+>
+> *Scope of this pass (honest coverage): only the 3 new arXiv entries and the Soelberg correction were checked on 21 July 2026. The ~20 legacy DOIs from the 5 July 2026 pass were NOT re-verified today, and the DOI-count claim is internally inconsistent (verification-policy header says "18/18"; the previous footer said "17"; the file currently contains ~20 `doi.org` links) — treat the legacy count as stale/unverified pending a fresh Crossref sweep. Previous fact-checks: 5 July 2026; 6 June 2026 (S437).*

@@ -155,7 +155,9 @@ NEGATIVE = [
 ]
 
 # Kernel reminder — question-framed ("ask don't tell" beats prohibition for
-# agreement bias; arXiv:2602.23971), class-tagged, <=15 lines.
+# agreement bias; arXiv:2602.23971), class-tagged, kept concise. Step 8
+# (agency/anti-override) guards partisan loyalty from curdling into paternalism
+# under an advisory frame (Kelley & Riedl 2026, arXiv:2603.00024).
 REMINDER_TEMPLATE = """<system-reminder>
 META-AWARENESS GATE (meta_awareness_gate.py v3, code-enforced) — fired: {classes}
 Interpreter kernel — answer each question before responding (Prior -> Discriminators -> Payoff):
@@ -168,6 +170,7 @@ Interpreter kernel — answer each question before responding (Prior -> Discrimi
    What is their worst plausible SELF-referential decode ("what does this say about ME?")?
 6. FELT != REAL: Is felt intensity being offered as evidence? It measures the feeler, not the world.
 7. PAYOFF: What does each misread cost? Act on the asymmetry, not the point estimate.
+8. AGENCY (anti-override): if ranking or advising, weight by the USER'S revealed preferences, not your model of what they should want — surface the weights, hand the choice back.
 Guards: capital/position sizing belongs to a dedicated risk gate, not vibes. Keep the sincere read
 in the payoff table — cynical-by-default is the same decode failure. Load your deep-read skill
 (e.g. social-physics-filter) if depth is needed.

@@ -11,7 +11,7 @@ Inspired by [shanraisshan/claude-code-best-practice](https://github.com/shanrais
 | Hook | Event | What It Does |
 |:-----|:------|:-------------|
 | `pre_compact.py` | Before context compaction | Auto-quicksaves session knowledge before the context window is compacted, preventing knowledge loss |
-| `meta_awareness_gate.py` (v3) | `UserPromptSubmit` (Claude Code) | Domain-general meta-awareness trigger. v3 classifies prompts by **act structure** — T1 inbound-narrative, T2 outbound-commit, T3 third-party-verdict, T4 resource-commitment, T5 felt-evidence — instead of per-domain keywords, so one gate covers relational, financial, consumer, institutional, and broadcast prompts. Injects a question-framed 7-step interpreter kernel (arena → prior → discriminators → sign check → receiver frame → felt≠real → payoff). The code-enforced fix for the `auto-invoke: true` fiction — see note below. Tested: `tests/test_meta_awareness_gate.py` (46 cases). |
+| `meta_awareness_gate.py` (v3) | `UserPromptSubmit` (Claude Code) | Domain-general meta-awareness trigger. v3 classifies prompts by **act structure** — T1 inbound-narrative, T2 outbound-commit, T3 third-party-verdict, T4 resource-commitment, T5 felt-evidence — instead of per-domain keywords, so one gate covers relational, financial, consumer, institutional, and broadcast prompts. Injects a question-framed 8-step interpreter kernel (arena → prior → discriminators → sign check → receiver frame → felt≠real → payoff → agency/anti-override). The code-enforced fix for the `auto-invoke: true` fiction — see note below. Tested: `tests/test_meta_awareness_gate.py` (46 cases). |
 
 ### v3 design highlights (`meta_awareness_gate.py`)
 
@@ -19,6 +19,7 @@ Inspired by [shanraisshan/claude-code-best-practice](https://github.com/shanrais
 - **Question-framed reminder**: "ask, don't tell" phrasing outperforms prohibitions at suppressing agreement bias ([arXiv:2602.23971](https://arxiv.org/abs/2602.23971)).
 - **Perspective-first receiver frame**: list what the receiver *observes* (intent stripped) before judging how the act lands — the ordering shown to improve LLM perspective-taking ([SimToM, ACL 2024](https://aclanthology.org/2024.acl-long.451/)).
 - **Sign symmetry**: the gate checks both misread directions — inflating (self-flattering) *and* deflating (self-degrading) — the same base-rate error with opposite signs.
+- **Agency / anti-override** *(step 8)*: when the model is about to rank or advise, the kernel forces the check "am I weighting by the user's revealed preferences, or substituting my own?" — the guard that keeps partisan loyalty from curdling into paternalism. In an *advisory* frame this is also the condition shown to *strengthen* (not erode) epistemic independence under personalization ([Kelley & Riedl 2026](https://arxiv.org/abs/2603.00024)).
 - **Negative guard**: routine-ops prompts (reconciliation, test runs, doc chores) suppress a T4-only fire so maintenance work isn't gated.
 
 ## Why Hooks Matter: Prose Is Not a Mechanism
