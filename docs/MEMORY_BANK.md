@@ -23,6 +23,19 @@ You need both. The Memory Bank handles state; the vector DB handles recall.
 | `productContext.md` | Product philosophy, goals, positioning | When strategy changes |
 | `systemPatterns.md` | Architecture decisions, patterns, tech debt | When architecture evolves |
 
+## Extending Across Domains: Report-Up Digests
+
+The Memory Bank above is single-workspace. But a life or business runs across **several** repos — finance, health, a travel/ops folder, a project journal — each its own source of truth. Loading every one into context by hand doesn't scale, and their state goes stale the moment you stop looking.
+
+The **report-up digest** pattern bridges them. A small generator reads each external domain repo's state files and writes a compact, **freshness-stamped** digest into the hub's indexed memory (`.context/domains/<name>/`). The vector layer embeds those digests, so a cross-cutting question — *"can I afford this?"* — retrieves current finance state without ever loading that folder by hand.
+
+Two failure modes it closes:
+
+- **Staleness** — every digest stamps its source files' modification dates, so a retrieved answer shows its own age.
+- **Evaporation** — state lands in the hub by *running the generator* (wire it into session close), not by remembering to.
+
+It scales to the ~5–7 canonical life areas (Work, Health, Finance, Relationships, Growth) — one registry entry per domain. Reference implementation: `scripts/sync_domain_digest.py`.
+
 ## Setup
 
 Create a `memory_bank/` directory in your `.context/` folder:

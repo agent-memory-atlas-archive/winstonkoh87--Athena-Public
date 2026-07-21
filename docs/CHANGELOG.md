@@ -8,6 +8,17 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## v9.9.8 (21 July 2026)
+
+**Effective Command**: Two mechanisms for running a multi-domain agent as a coherent HQ — a current picture that reports itself up, and a discipline gate that stops the system grooming itself.
+
+### Key Changes
+
+- **Output-over-Maintenance Gate** (`DISCIPLINE.md` Rule 6): the `maintenance_ratio.py` advisory shipped in v9.9.7 becomes *enforced*. `maintenance_ratio.py --gate` + a new `scripts/hooks/commit-msg` block maintenance-class commits (`chore`/`docs`/`refactor`/…) while the trailing-14-day ratio exceeds 70%. Output (`feat`/`fix`) and the session-logging heartbeat (`chore(session)`) are exempt; `ATHENA_GATE_OVERRIDE=1` is a conscious, logged bypass. Advisory-first was ignored at **83% maintenance** in the private workspace — the same lesson `DISCIPLINE.md` already records for the version/cap rules: *a readout you can skip is not a control*.
+- **Report-Up Domain Digests** (`MEMORY_BANK.md`, `scripts/sync_domain_digest.py`): a generator reads external domain repos and writes freshness-stamped digests into the hub's indexed memory (`.context/domains/`), so cross-domain state is retrievable without manually loading each folder. Closes **staleness** (digests stamp source dates) and **evaporation** (state lands by running the generator at session close, not by remembering). Scales to the ~5–7 canonical life areas via a one-line registry.
+
+---
+
 ## Docs: Positioning Honesty Pass v2 — The Sycophancy Tension (21 July 2026)
 
 The Jul 18 pass converged the tagline; this pass names the structural tension the architecture sits on, cites the evidence against it, and moves one guard from prose to code. Audited same-day by a second model (cross-model review + live web verification).

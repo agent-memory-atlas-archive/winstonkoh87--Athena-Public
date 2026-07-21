@@ -21,6 +21,11 @@ Total active protocols should stay under **500**. Beyond this, discovery degrade
 ### Rule 5: Single Source of Truth
 Every fact should exist in exactly **one** canonical location. If a fact appears in multiple files, designate one as truth and make the others reference it. Count discrepancies between files are a code smell.
 
+### Rule 6: Output Over Maintenance
+Track the ratio of **output** commits (`feat`/`fix` — things the system now does for the user) to **maintenance** commits (`chore`/`docs`/`refactor`/`style`/…). When maintenance exceeds **70%** of a rolling two-week window, the system is grooming its own map room instead of shipping. The next commit must be output or a deletion — not another reorganization.
+
+> The failure mode this catches: a system that *feels* productive (commits every day) while producing nothing the user can use. Inventory is not leverage.
+
 ---
 
 ## Enforcement
@@ -42,6 +47,19 @@ A reference implementation is at `scripts/hooks/pre-commit` (see below). The eva
 # Install the pre-commit hook
 cp scripts/hooks/pre-commit .git/hooks/pre-commit
 chmod +x .git/hooks/pre-commit
+```
+
+### The Output-Over-Maintenance Gate (Rule 6, commit-msg)
+
+Rule 6 shipped advisory first — `scripts/maintenance_ratio.py` printed the ratio every session. It was ignored: in the private workspace the ratio sat at **83% maintenance** while the number was dutifully generated and changed nothing. Same lesson as the version and cap rules above — **a readout you can skip is not a control.**
+
+It is now a `commit-msg` hook that **blocks a maintenance-class commit when the trailing-14-day ratio already exceeds 70%.** Output work (`feat`/`fix`) and the session-logging heartbeat (`chore(session)`) are never gated, and a conscious `ATHENA_GATE_OVERRIDE=1` keeps it a *choice*, not a wall (see Override Protocol below). Reference implementation: `scripts/maintenance_ratio.py --gate` + `scripts/hooks/commit-msg`.
+
+```bash
+# Measure
+python3 scripts/maintenance_ratio.py --days 14
+# Enforce
+cp scripts/hooks/commit-msg .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg
 ```
 
 ---

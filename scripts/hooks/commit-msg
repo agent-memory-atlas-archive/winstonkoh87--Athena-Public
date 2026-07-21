@@ -1,0 +1,74 @@
+#!/bin/bash
+# =============================================================================
+# commit-msg — Output-over-Maintenance Gate (DISCIPLINE.md Rule 6, enforced)
+# =============================================================================
+# Turns the maintenance-ratio advisory into a gate that bites at commit time.
+# Blocks a *maintenance-class* commit when the trailing 14 days are already
+# >70% self-maintenance — i.e. stop grooming the map room; ship output or delete.
+#
+# The failure this fixes: telemetry that gets generated and ignored. A number you
+# can skip changes nothing; a gate at the moment of the maintenance commit forces
+# the choice.
+#
+# ALWAYS allowed (this gate must never wedge you):
+#   - feat / fix            → output work (never gated)
+#   - scope (session)       → the session-logging heartbeat: chore(session): …
+#   - Merge / Revert
+#   - ATHENA_GATE_OVERRIDE=1 → conscious override. The point is a *choice*, not a
+#                              wall (see DISCIPLINE.md Override Protocol).
+#   - no conventional prefix → fail-open (don't gate unlabeled commits)
+#   - any internal error     → fail-open (a gate bug must never block a commit)
+#
+# Install:
+#   cp scripts/hooks/commit-msg .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg
+# =============================================================================
+set -u
+
+MSG_FILE="${1:-}"
+[ -z "$MSG_FILE" ] && exit 0
+SUBJECT="$(head -n1 "$MSG_FILE" 2>/dev/null)"
+
+if [ "${ATHENA_GATE_OVERRIDE:-0}" = "1" ]; then
+  echo "⚠️  maintenance-gate overridden (ATHENA_GATE_OVERRIDE=1)" >&2
+  exit 0
+fi
+case "$SUBJECT" in
+  Merge*|Revert*|revert*) exit 0 ;;
+esac
+
+# parse conventional prefix + optional scope:  type(scope)!: subject
+PREFIX="$(printf '%s' "$SUBJECT" | sed -nE 's/^([a-z]+)(\([a-z0-9_.-]+\))?!?:.*/\1/p')"
+SCOPE="$(printf '%s'  "$SUBJECT" | sed -nE 's/^[a-z]+\(([a-z0-9_.-]+)\)!?:.*/\1/p')"
+
+case "$PREFIX" in
+  feat|fix) exit 0 ;;      # output work — exempt
+esac
+[ "$SCOPE" = "session" ] && exit 0    # logging heartbeat — exempt
+[ -z "$PREFIX" ] && exit 0            # unlabeled — fail-open
+
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+GATE="$ROOT/scripts/maintenance_ratio.py"
+[ -f "$GATE" ] || exit 0             # script missing — fail-open
+
+# Capture python's exit code DIRECTLY — never via $? after an `if` (a false
+# if-without-else returns 0, which would silently fail-open every commit).
+python3 "$GATE" --gate --quiet --days 14 >/dev/null 2>&1
+RC=$?
+[ "$RC" -eq 0 ] && exit 0            # under threshold — allow
+[ "$RC" -ne 1 ] && exit 0            # error (not the gate's own "1") — fail-open
+
+cat >&2 <<'EOF'
+
+🚧  OUTPUT-OVER-MAINTENANCE GATE — commit blocked
+    Trailing 14 days are >70% self-maintenance (the treadmill).
+    This commit is maintenance-class (chore / docs / refactor / style / …).
+
+    Do ONE of:
+      • It's actually output?  → reframe as  feat(...)  /  fix(...)
+      • Ship an output commit first (user-facing capability)
+      • Choose to override      → ATHENA_GATE_OVERRIDE=1 git commit ...
+
+    Why: when the map room eats the command, the command has stopped fighting.
+    (DISCIPLINE.md Rule 6)
+EOF
+exit 1
