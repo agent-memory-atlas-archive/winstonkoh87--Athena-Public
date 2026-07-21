@@ -1,46 +1,43 @@
 ---
-
 created: 2025-12-22
 last_updated: 2026-07-22
+version: 3.0
+origin: "ETH Zurich SPCL GoT (2023) + AGoT Framework (Pandey et al., Feb 2025 - arXiv:2502.05078)"
 graphrag_extracted: true
 ---
 
----created: 2025-12-22
-last_updated: 2026-07-22
----
-
-# Protocol 137: Graph of Thoughts (GoT) Logic
+# Protocol 137: Graph of Thoughts (GoT) Decision Application
 
 > **Source**: Adapted from ETH Zurich SPCL Graph-of-Thoughts ([arXiv:2308.09687](https://arxiv.org/abs/2308.09687), 2023)
-> **Domain**: Decision / High-Lakes Reasoning
-> **Priority**: ⭐⭐⭐ Critical (L4 Engine)
+> **Domain**: Decision / High-Stakes Strategy
+> **Canonical Method**: See [Protocol 505: Graph of Thought](../reasoning/RSN-505-graph-of-thought.md) for the core GoT mechanics (Branch, Prune, Merge, Backtrack).
+> **Priority**: ⭐⭐⭐ Critical (L4 Decision Gate)
 > **Related**: [Protocol 123 (Einstein)](DEC-123-einstein-protocol.md), [Protocol 75 (Synthetic Parallel Reasoning)](DEC-75-synthetic-parallel-reasoning.md)
 
 ---
 
-## Core Principle
+## Core Application
 
 > **"Reasoning is not a Line. It is a Network."**
 
-Standard LLM reasoning (Chain of Thought; Wei et al., 2022) is linear: `A -> B -> C`.
-**Graph of Thoughts (GoT)** is topological: `A -> (B1, B2, B3) -> Score -> Convergence -> C`.
+Standard decision-making evaluates options in isolation. **Protocol 137** applies Graph of Thoughts specifically to decision strategy when evaluating complex trade-offs (e.g. Einstein Protocol Phase 2).
 
-It models human "brainstorming" where multiple possibilities are explored, critiqued, and synthesized before a final conclusion is reached.
+For core method definitions (divergence, scoring, convergence, backtracking), consult the canonical source: **[Protocol 505: Graph of Thought](../reasoning/RSN-505-graph-of-thought.md)**.
 
 ---
 
-## The GoT Topology
+## Decision Topology (Einstein Protocol Phase 2)
 
-When executing **Phase 2 (Solution)** of the [Einstein Protocol](DEC-123-einstein-protocol.md), use this flow:
+When executing **Phase 2 (Solution)** of the [Einstein Protocol](DEC-123-einstein-protocol.md), structure decision candidates as a network:
 
 ```mermaid
 graph TD
     Node1(Problem State) --> Gen{Generate Operations}
     
     subgraph Divergence
-        Gen --> PathA(Path A: Aggressive/High Risk)
-        Gen --> PathB(Path B: Safe/Low Yield)
-        Gen --> PathC(Path C: Lateral/Asymmetric)
+        Gen --> PathA(Path A: Aggressive/High Yield)
+        Gen --> PathB(Path B: Safe/Low Risk)
+        Gen --> PathC(Path C: Asymmetric/Lateral)
     end
     
     subgraph Evaluation
@@ -58,59 +55,38 @@ graph TD
 
 ---
 
-## Operations Manual
+## 3. Operations Manual (AGoT Core Functions)
 
-### 1. `Generate` (Divergence)
+### A. `AdaptCompute(Lambda)` (Dynamic Router)
+* **Rule**: Assess prompt complexity ($\Lambda$).
+* If $\Lambda \le 30$: Execute single-pass linear reasoning (CoT).
+* If $\Lambda > 30$: Spawn AGoT Dynamic DAG sub-graph.
 
-**Command**: "Generate 3 distinct approaches to this problem. Do not evaluate yet. Just generate."
+### B. `Decompose(Node)` (Recursive Expansion)
+* Split a complex sub-problem into 2–3 divergent hypothesis nodes.
+* **Track Modes**:
+  1. *Direct Track*: Formal logic & baseline mechanics.
+  2. *Flanking Track*: Social dynamics, incentives, & game-theoretic moves.
+  3. *Inversion Track*: Premise destruction & zero-action baseline.
 
-* **Mode 1**: Direct Attack (Logic)
-* **Mode 2**: Flanking Maneuver (Social/Psychological)
-* **Mode 3**: Inversion (What if we do nothing?)
+### C. `EarlyPrune(Node)` (Immediate Ruin Filter)
+* Before generating downstream steps, evaluate node against **Law #1 (No Ruin)** and the **Fuck-Unfuck Gate**.
+* If `Risk of Ruin > 5%` or `Reversibility == False`, label node as `[PRUNED: Ruin]` and terminate branch immediately.
 
-### 2. `Score` (Critique)
-
-**Command**: "Critique each path. Assign a 0-10 score based on [Survivability] and [Upside]."
-
-* Apply **The Right of Way Fallacy**: Does this path rely on being "Right" or being "Alive"?
-* Apply **Law #1**: Does this path risk Ruin? (If yes, Score = 0).
-
-### 3. `Aggregate` (Convergence)
-
-**Command**: "Synthesize the best elements of the top paths. Discard the weak elements."
-
-* Don't just pick one. **Merge them**.
-* *Example*: "Take the Aggression of Path A but buffer it with the Safety Protocols of Path B."
+### D. `DynamicAggregate(Nodes)` (Cross-Branch Synthesis)
+* Synthesize surviving non-pruned branches.
+* Do not simply select one branch; extract the asymmetric upside of Branch B and buffer it with the structural safety of Branch A.
 
 ---
 
-## Integration with Athena
+## 4. System Integration Note
 
-This protocol is the **Engine** for:
-
-1. **`/ultrathink`**: Automatically activates GoT topology.
-2. **Complex Social Dynamics**: Used to map "Move vs Counter-Move" (Game Theory).
-3. **Code Architecture**: Used to evaluate "Quick Fix" vs "Refactor".
-
----
-
-## Visualization Mandate (New v2.0)
-
-> **Rule**: If GoT is invoked (Λ > 30), the topology MUST be visualized.
-
-**Tool**: `.agent/scripts/visualize_got.py`
-**Output**: Mermaid.js block at the start or end of the response.
-
-**Format**:
-
-```mermaid
-graph TD
-    Node1(Problem) --> Gen{Generate}
-    ...
-```
+* **Single-Context Decision Aid**: Protocol 137 / GoT is a single-context-window decision structure.
+* **`/ultrathink` Distinction**: `/ultrathink` executes multi-channel parallel sub-agent reasoning (`parallel_orchestrator.py`) and does **not** invoke single-context GoT. Use DEC-137 during interactive single-session strategic decision framing.
 
 ---
 
 ## Tags
 
-# protocol #decision #got #reasoning #topology #graph-of-thoughts
+#protocol #decision #got #reasoning #topology #graph-of-thoughts
+

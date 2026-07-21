@@ -1,11 +1,12 @@
 ---
 created: 2026-03-04
-last_updated: 2026-07-22
+last_updated: 2026-03-04
 cluster: 15
 ---
 
 # Protocol 505: Graph of Thought (Non-Linear Solution Exploration)
 
+> **CANONICAL**: This is the single source of truth for the Graph-of-Thoughts method. Decision-domain application lives in DEC-137; synthetic-parallel theory in PAT-16.
 > **Status**: ACTIVE  
 > **Priority**: ⭐⭐⭐  
 > **Principle**: Real problem-solving is not linear (A→B→C). It's a directed acyclic graph with branching, pruning, and merging.

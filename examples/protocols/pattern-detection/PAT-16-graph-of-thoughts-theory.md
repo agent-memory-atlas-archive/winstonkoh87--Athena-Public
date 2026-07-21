@@ -4,17 +4,12 @@ last_updated: 2026-07-22
 graphrag_extracted: true
 ---
 
----name: synthetic-parallel-reasoning
-description: Using Graph of Thoughts to simulate multi-path reasoning. Synthetic parallel via structured prompting - for life strategy decisions, functionally equivalent to true parallel compute.
-created: 2025-12-10
-last_updated: 2026-07-22
----
-
 # Protocol: Synthetic Parallel Reasoning via Graph of Thoughts
 
 ## Date Added: 9 December 2025
 
-> **Related Protocol**: [17-three-timeline-got](PAT-17-three-timeline-got.md), [18-probabilistic-analysis-stack](PAT-18-probabilistic-analysis-stack.md)  
+> **Canonical Method**: See [Protocol 505: Graph of Thought](../reasoning/RSN-505-graph-of-thought.md) for the core GoT mechanics (Branch, Prune, Merge, Backtrack).
+> **Related Protocols**: [17-three-timeline-got](PAT-17-three-timeline-got.md), [18-probabilistic-analysis-stack](PAT-18-probabilistic-analysis-stack.md)  
 > **Full Implementation**: [38-synthetic-deep-think](../decision/_archived/38-synthetic-deep-think.md)
 
 ## 16.1 Core Distinction
