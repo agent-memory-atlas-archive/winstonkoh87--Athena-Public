@@ -22,9 +22,9 @@ Inspired by [shanraisshan/claude-code-best-practice](https://github.com/shanrais
 - **Agency / anti-override** *(step 8)*: when the model is about to rank or advise, the kernel forces the check "am I weighting by the user's revealed preferences, or substituting my own?" — the guard that keeps partisan loyalty from curdling into paternalism. In an *advisory* frame this is also the condition shown to *strengthen* (not erode) epistemic independence under personalization ([Kelley & Riedl 2026](https://arxiv.org/abs/2603.00024)).
 - **Negative guard**: routine-ops prompts (reconciliation, test runs, doc chores) suppress a T4-only fire so maintenance work isn't gated.
 
-### Enabling the gate (it ships opt-in)
+### The gate (wired by default in Claude Code)
 
-The hook is an **example — not wired by default**. To enable it in a Claude Code workspace, create `.claude/settings.json` at the repo root:
+The repo ships a committed root `.claude/settings.json` that wires this hook by default — **Claude Code asks you to approve it on first open** (project hooks stay untrusted until you say yes). That file contains:
 
 ```json
 {
