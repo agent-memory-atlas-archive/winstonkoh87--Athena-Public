@@ -1,8 +1,6 @@
 ---
 created: 2025-12-22
 last_updated: 2026-07-22
-version: 3.0
-origin: "ETH Zurich SPCL GoT (2023) + AGoT Framework (Pandey et al., Feb 2025 - arXiv:2502.05078)"
 graphrag_extracted: true
 ---
 
@@ -55,27 +53,25 @@ graph TD
 
 ---
 
-## 3. Operations Manual (AGoT Core Functions)
+## Operations Manual (Applying GoT to a Decision)
 
-### A. `AdaptCompute(Lambda)` (Dynamic Router)
-* **Rule**: Assess prompt complexity ($\Lambda$).
-* If $\Lambda \le 30$: Execute single-pass linear reasoning (CoT).
-* If $\Lambda > 30$: Spawn AGoT Dynamic DAG sub-graph.
+> These are heuristics **you** apply while framing a decision — not functions the system executes. The canonical method (branch / prune / merge / backtrack) lives in [RSN-505](../reasoning/RSN-505-graph-of-thought.md); this section is its decision-domain application.
 
-### B. `Decompose(Node)` (Recursive Expansion)
-* Split a complex sub-problem into 2–3 divergent hypothesis nodes.
-* **Track Modes**:
-  1. *Direct Track*: Formal logic & baseline mechanics.
-  2. *Flanking Track*: Social dynamics, incentives, & game-theoretic moves.
-  3. *Inversion Track*: Premise destruction & zero-action baseline.
+### A. Scale depth to stakes
+* Low-stakes / reversible → answer directly (linear CoT). Don't build a graph for a coin-flip.
+* High-stakes or high-complexity (Λ high) → structure the decision as a GoT network, per the steps below.
 
-### C. `EarlyPrune(Node)` (Immediate Ruin Filter)
-* Before generating downstream steps, evaluate node against **Law #1 (No Ruin)** and the **Fuck-Unfuck Gate**.
-* If `Risk of Ruin > 5%` or `Reversibility == False`, label node as `[PRUNED: Ruin]` and terminate branch immediately.
+### B. Diverge — 2–3 candidate tracks
+1. *Direct*: formal logic & baseline mechanics.
+2. *Flanking*: social dynamics, incentives, & game-theoretic moves.
+3. *Inversion*: premise destruction & the zero-action baseline.
 
-### D. `DynamicAggregate(Nodes)` (Cross-Branch Synthesis)
-* Synthesize surviving non-pruned branches.
-* Do not simply select one branch; extract the asymmetric upside of Branch B and buffer it with the structural safety of Branch A.
+### C. Ruin-prune (Law #1) — DEC-137's decision-specific filter
+* Score each track against **Law #1 (No Ruin)** and the **Fuck-Unfuck Gate**.
+* If a track carries non-trivial risk-of-ruin or is irreversible, kill it before developing it further. (This is a scoring criterion you apply; the `trading-risk-gate` skill owns any capital / position-sizing verdict.)
+
+### D. Synthesize — don't just pick one
+* Merge the survivors: take the asymmetric upside of one track and buffer it with the structural safety of another.
 
 ---
 

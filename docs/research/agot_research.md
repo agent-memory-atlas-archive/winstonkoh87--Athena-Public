@@ -3,6 +3,7 @@
 > **Source**: Gemini Deep Research output (2026-03-11)
 > **Primary Paper**: Pandey et al. (2025), arXiv:2502.05078
 > **Purpose**: Reference for Protocol 75 v5.0 implementation
+> **STATUS**: Research archive — NOT implemented. Athena's GoT is a reasoning heuristic (canonical method: RSN-505), not a code-level AGoT engine. Any benchmark figures below are from the source research, not measured in Athena.
 
 ---
 
