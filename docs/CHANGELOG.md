@@ -1,10 +1,23 @@
 # Athena Changelog
 
-> **Last Updated**: 18 July 2026
+> **Last Updated**: 21 July 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## Docs: Positioning Honesty Pass v2 — The Sycophancy Tension (21 July 2026)
+
+The Jul 18 pass converged the tagline; this pass names the structural tension the architecture sits on, cites the evidence against it, and moves one guard from prose to code. Audited same-day by a second model (cross-model review + live web verification).
+
+- **Two-legged USP** (README): personalization ("it knows you") is only half the claim — and alone, the dangerous half. The second leg is orthogonality ("it will disagree with you"). The README now states the dependency both ways: context makes the disagreement credible; the disagreement keeps the context from becoming an echo chamber.
+- **New Validation Status row — "Independent vantage under personalization"**: cites the strongest published evidence against Athena's own mechanism — persistent user profiles are the single largest amplifier of agreement sycophancy (+45% on Gemini 2.5 Pro; Jain, Park, Viana, Wilson & Calacci 2025, arXiv:2509.12517) atop a ~58% frontier baseline (SycEval; Fanous et al., AIES 2025, arXiv:2502.08177). Mitigation: the meta-awareness gate + an explicitly advisory (not peer) frame — the condition under which personalization *strengthens* epistemic independence (Kelley & Riedl 2026, arXiv:2603.00024). Limits stated plainly: the gate is Claude-Code-only and ships opt-in.
+- **Governance-portability caveat** (README): memory portability is structural; governance portability is not — outside Claude Code the kernel degrades to agent-discretion. Cross-IDE enforcement is roadmap, not shipped.
+- **Kernel step 8 — AGENCY / anti-override** (`examples/hooks/meta_awareness_gate.py`): *"if ranking or advising, weight by the USER'S revealed preferences, not your model of what they should want — surface the weights, hand the choice back."* The anti-paternalism guard moved onto the code-enforced injection surface, within the 18-line injection-fatigue bound. 46/46 tests pass.
+- **REFERENCES**: new "Sycophancy & the Personalization Tension" section (3 arXiv-verified citations); SycEval author list completed (Fanous, Goldberg, Agarwal, Lin, Zhou, Daneshjou, Koyejo — Stanford); Soelberg/OpenAI entry corrected — the incident and filing are independently reported, the previously-cited caption/docket could not be re-confirmed and is now hedged. **Full citation sweep: 20/20 DOIs (Crossref API) + 28/28 arXiv IDs (arXiv export API), plus arXiv:2602.23971 in the hooks doc — 0 failures (21 Jul 2026).** The header's stale "18/18" count reconciled to the real numbers.
+- **Hooks doc**: exact `.claude/settings.json` wiring block added — the gate is opt-in, and enabling it is now one copy-paste.
 
 ---
 

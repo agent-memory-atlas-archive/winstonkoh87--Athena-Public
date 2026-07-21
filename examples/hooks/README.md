@@ -22,6 +22,24 @@ Inspired by [shanraisshan/claude-code-best-practice](https://github.com/shanrais
 - **Agency / anti-override** *(step 8)*: when the model is about to rank or advise, the kernel forces the check "am I weighting by the user's revealed preferences, or substituting my own?" — the guard that keeps partisan loyalty from curdling into paternalism. In an *advisory* frame this is also the condition shown to *strengthen* (not erode) epistemic independence under personalization ([Kelley & Riedl 2026](https://arxiv.org/abs/2603.00024)).
 - **Negative guard**: routine-ops prompts (reconciliation, test runs, doc chores) suppress a T4-only fire so maintenance work isn't gated.
 
+### Enabling the gate (it ships opt-in)
+
+The hook is an **example — not wired by default**. To enable it in a Claude Code workspace, create `.claude/settings.json` at the repo root:
+
+```json
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      { "hooks": [ { "type": "command",
+                     "command": "python3 \"$CLAUDE_PROJECT_DIR/examples/hooks/meta_awareness_gate.py\"",
+                     "timeout": 5 } ] }
+    ]
+  }
+}
+```
+
+Other IDEs (Antigravity, Cursor, Gemini CLI) have no `UserPromptSubmit` hook — there the kernel is **agent-discretion**, exactly as the README's [Validation Status](../../README.md#-validation-status--whats-proven-vs-whats-proposed) states.
+
 ## Why Hooks Matter: Prose Is Not a Mechanism
 
 A skill's `auto-invoke: true` frontmatter is a *request* to the model, not a guarantee — the model can and does skip it, most often on exactly the prompts where the skill matters. If a doc says "automatically activates" and no code fires it, that claim is **agent-discretion dressed as a mechanism**. Hooks are how you convert the claim into a fact: the harness runs them on every event, regardless of model discretion.
