@@ -18,7 +18,7 @@ Together these are the **indexing + read path**: **chunk → embed → store →
 
 These five files are the **core of the retrieval pipeline** — the best place to start. The **full package** (every module these import — boot, governance, sessions, auditors, CLI, …) is published under [`src/athena/`](../../src/athena); this folder just collects the parts that matter most for semantic search, with notes.
 
-- **Where they live:** each file mirrors its real path under `src/athena/` (see the table above).
+- **Versions:** these excerpts are the engine's **current tip** (23 Jul 2026) and are the authoritative reference. The copies under `src/athena/` are the packaged release snapshot and can lag — e.g. `src/athena/tools/reranker.py` there predates the ONNX fast path documented here. Where they differ, trust this folder.
 - **`config.py` and `sync.py` are lightly sanitized** (here and in `src/`) — a few private workspace directory names are genericized (e.g. `notes/`, `journal/`); everything else is verbatim.
 - **No secrets are present.** Every credential (Gemini API key, Supabase URL + service-role key) is loaded from environment variables — see [`.env.example`](../../.env.example).
 

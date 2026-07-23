@@ -1,10 +1,22 @@
 # Athena Changelog
 
-> **Last Updated**: 22 July 2026
+> **Last Updated**: 23 July 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## Docs & Engine Transparency Pass (23 July 2026)
+
+Cross-model audit session: retrieval docs corrected to match the production engine, the engine itself published for review, and a repo-wide privacy sweep run against the blocklist.
+
+- **`docs/SEMANTIC_SEARCH.md` rewritten to the shipped engine**: the obsolete "Triple-Path (Vector/TAG/Grep)" model replaced with the real pipeline — five always-on channels + opt-in web grounding, RRF fusion (k=60, per-type weights), CrossEncoder rerank over the top-50; the retired TAG_INDEX/exocortex channels flagged as such; personal-domain privacy gating and goal-directed ("when to search") retrieval documented. New **"How This Maps to 2026 Retrieval SOTA"** section with external citations.
+- **`docs/VECTORRAG.md`**: query-flow diagram updated to the unified `search_all_vectors` RPC the engine actually calls (per-table SQL kept as the underlying cosine pattern); stale TAG_INDEX reference and broken sibling links fixed.
+- **`docs/REFERENCES.md`**: SycEval upgraded from preprint to its formal AIES 2025 record (DOI 10.1609/aies.v8i1.36598, pp. 893–900); the 2025–2026 sycophancy cluster independently re-verified against live arXiv/AAAI/ACM records.
+- **`examples/engine/` (new)**: read-only excerpts of the production retrieval engine — `search.py` (hybrid RRF orchestrator), `vectors.py` (Gemini 3072-dim embeddings + pgvector client), `reranker.py` (quantized-ONNX cross-encoder), plus lightly-sanitized `config.py`/`sync.py` — with a curated reading guide. `docs/SEMANTIC_SEARCH.md` now links directly to the code. Excerpts reflect the current private tip; the `src/athena/` snapshot can lag behind them.
+- **OpSec sweep**: full-tree scan against `.github/privacy_blocklist.txt` (895 files, 36 patterns); residual third-party name variants, private workspace folder names, and one trading-artifact path genericized across 20 files. Blocklist extended so the Privacy & Secrets Gate blocks these patterns from re-entering. All CI gates green (Privacy & Secrets, Quality, Link Integrity, CodeQL).
 
 ---
 
