@@ -106,7 +106,7 @@ plt.xticks(
 
 # Save directly to target folder
 output_path = (
-    "/Users/[AUTHOR]/Desktop/FX Trading/Feb 2026/euraud_distribution_analytic.png"
+    "/Users/[AUTHOR]/data/instrument_distribution.png"
 )
 plt.savefig(output_path, dpi=300, bbox_inches="tight", facecolor="black")
 print(f"Distribution curve generated at: {output_path}")

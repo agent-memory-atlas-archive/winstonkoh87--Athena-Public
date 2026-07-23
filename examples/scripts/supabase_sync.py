@@ -47,12 +47,12 @@ EXTENDED_TARGETS = [
     (PROJECT_ROOT / "analysis", "insights"),
     (PROJECT_ROOT / "Marketing", "system_docs"),
     (PROJECT_ROOT / "proposals", "case_studies"),
-    (PROJECT_ROOT / "Winston", "system_docs"),
+    (PROJECT_ROOT / "notes", "system_docs"),
     (PROJECT_ROOT / "docs" / "audit", "system_docs"),
-    (PROJECT_ROOT / "gem_knowledge_base", "system_docs"),
+    (PROJECT_ROOT / "knowledge_base", "system_docs"),
     (PROJECT_ROOT / ".athena", "system_docs"),
     (PROJECT_ROOT / ".projects", "system_docs"),
-    (PROJECT_ROOT / "Reflection Essay", "case_studies"),
+    (PROJECT_ROOT / "journal", "case_studies"),
     (PROJECT_ROOT / ".context" / "brand_references", "references"),
 ]
 

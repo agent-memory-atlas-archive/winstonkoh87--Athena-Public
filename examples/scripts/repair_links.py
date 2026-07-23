@@ -76,17 +76,17 @@ def fix_links_in_file(filepath: Path, protocol_map: dict) -> int:
     pattern2 = r'\./agent/skills/protocols/([0-9]+-[a-z0-9-]+\.md)'
     content = re.sub(pattern2, fix_relative_link, content)
     
-    # Fix .context/profile/ -> Winston/profile/ path migration
+    # Fix .context/profile/ -> notes/profile/ path migration
     old_profile_path = '.context/profile/'
-    new_profile_path = 'Winston/profile/'
+    new_profile_path = 'notes/profile/'
     if old_profile_path in content:
         count = content.count(old_profile_path)
         content = content.replace(old_profile_path, new_profile_path)
         fixes += count
     
-    # Fix .context/psychology/ -> Winston/psychology/ path migration
+    # Fix .context/psychology/ -> notes/psychology/ path migration
     old_psych_path = '.context/psychology/'
-    new_psych_path = 'Winston/psychology/'
+    new_psych_path = 'notes/psychology/'
     if old_psych_path in content:
         count = content.count(old_psych_path)
         content = content.replace(old_psych_path, new_psych_path)

@@ -183,7 +183,7 @@ def get_mobile_system_prompt() -> str:
     core_identity_path = (
         workspace / ".framework" / "v7.0" / "modules" / "Core_Identity.md"
     )
-    user_profile_path = workspace / "Winston" / "profile" / "User_Profile.md"
+    user_profile_path = workspace / "notes" / "profile" / "User_Profile.md"
 
     identity_snippet = ""
     user_snippet = ""

@@ -22,7 +22,7 @@ description: Monthly Release Protocol for Athena-Public
   - Do NOT just copy the entire directory.
   - Copy *stable* modules from `.framework/`
   - Copy *proven* tools from `.agent/scripts/`
-  - **Exclude**: `.context/memories/`, `.context/journal/`, `Winston/`
+  - **Exclude**: `.context/memories/`, `.context/journal/`, `notes/`
 - [ ] **Commit**: Use a "Squash" philosophy. One big commit: "feat: February 2026 Update (v8.X)"
 
 ## Phase 3: The Release

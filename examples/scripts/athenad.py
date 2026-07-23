@@ -42,7 +42,7 @@ WATCH_DIRS = [
 ]
 
 EXCLUDED_PATTERNS = [
-    "/Winston/",
+    "/notes/",
     "/archive/",
     "/history/",
     "/.venv/",

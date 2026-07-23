@@ -14,12 +14,12 @@
 
 Together these are the **indexing + read path**: **chunk → embed → store → retrieve → fuse → rerank**.
 
-## What's included vs. omitted
+## A curated reading guide
 
-This is a curated excerpt, not the whole package. The internal modules these files import — session lifecycle and the governance/safety gates — are **intentionally not published**. Athena operates over private personal data (financial records, journals), so the open/closed boundary is drawn on purpose. Consequently:
+These five files are the **core of the retrieval pipeline** — the best place to start. The **full package** (every module these import — boot, governance, sessions, auditors, CLI, …) is published under [`src/athena/`](../../src/athena); this folder just collects the parts that matter most for semantic search, with notes.
 
-- These files **reference** internal modules (`athena.core.governance`, `athena.sessions`, …) that aren't included here — so they are for **reading, not running**.
-- **`config.py` and `sync.py` are lightly sanitized** — a few private workspace directory names are genericized (e.g. `notes/`, `journal/`); everything else is verbatim. `search.py`, `vectors.py`, and `reranker.py` are fully verbatim.
+- **Where they live:** each file mirrors its real path under `src/athena/` (see the table above).
+- **`config.py` and `sync.py` are lightly sanitized** (here and in `src/`) — a few private workspace directory names are genericized (e.g. `notes/`, `journal/`); everything else is verbatim.
 - **No secrets are present.** Every credential (Gemini API key, Supabase URL + service-role key) is loaded from environment variables — see [`.env.example`](../../.env.example).
 
 ## Design notes worth a look

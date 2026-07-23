@@ -26,7 +26,7 @@ When `/primer` is invoked:
 Load the following files (in order):
 
 1. **Governance & Risk**
-   - `Winston/profile/Constraints_Master.md` (Risk Tiers, Ethics, Boundaries)
+   - `notes/profile/Constraints_Master.md` (Risk Tiers, Ethics, Boundaries)
    - `docs/audit/RISK_REGISTER.md` (Threat Model)
    - `docs/audit/DATA_GOVERNANCE.md` (Policy)
 
@@ -34,11 +34,11 @@ Load the following files (in order):
    - `.framework/v7.0/modules/Core_Identity.md` (Laws #0-5, ICR/HITLO Model, COS)
 
 3. **User Context (FULL DISCLOSURE)**
-   - `Winston/profile/User_Profile_Core.md` (Identity, Bio, Typology)
-   - `Winston/profile/System_Principles.md` (Decision frameworks, values)
-   - `Winston/profile/[PRIVATE_MODULE].md` ([PRIVATE_MODULE], history)
-   - `Winston/profile/Business_Frameworks.md` (Mental models, strategies)
-   - `Winston/profile/Session_Observations.md` (Calibration patterns, cases)
+   - `notes/profile/User_Profile_Core.md` (Identity, Bio, Typology)
+   - `notes/profile/System_Principles.md` (Decision frameworks, values)
+   - `notes/profile/[PRIVATE_MODULE].md` ([PRIVATE_MODULE], history)
+   - `notes/profile/Business_Frameworks.md` (Mental models, strategies)
+   - `notes/profile/Session_Observations.md` (Calibration patterns, cases)
 
 4. **Architecture**
    - `.context/manifests/System_Manifest.md`

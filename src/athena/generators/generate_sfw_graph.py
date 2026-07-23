@@ -15,7 +15,7 @@ NSFW_KEYWORDS = [
     'abuse', 'trauma', 'cptsd', '[PRIVATE_TERM]', 'predator',
     'yap-weng-wah', 'mermaid-girl',
     # Personal identifiers
-    'winston', 'jun-kai', 'jj',
+    'winston', 'person-a', 'person-b',
 ]
 
 # SFW categories to keep

@@ -51,7 +51,7 @@ last_updated: 2026-07-22
 | Status | Item | Notes |
 |--------|------|-------|
 | ✅ Done | **The Great Archival** | Moved 20+ Orphaned Scripts & Legacy SQL to `archive/consolidated_2026_01/` |
-| ✅ Done | Sidecar exclusion patterns | Prevents indexing of `Winston/`, `Athena-Public/`, `archive/`, `history/` |
+| ✅ Done | Sidecar exclusion patterns | Prevents indexing of `notes/`, `Athena-Public/`, `archive/`, `history/` |
 | ✅ Done | Master Schema consolidation | `supabase/MASTER_SCHEMA.sql` — single source of truth (8 tables, 8 functions) |
 | ✅ Done | Context history folder | Created `.context/history/implementation_plans_2025/` for RAG noise reduction |
 | ✅ Done | Public repo blind spots | Fixed 12 issues in `Athena-Public` (see commit a22016d) |
