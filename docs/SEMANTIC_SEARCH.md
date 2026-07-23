@@ -141,6 +141,7 @@ The difference from a generic model isn't eloquence — it's that the answer is 
 
 ## Related Documentation
 
+- [`examples/engine/`](../examples/engine/) — **the real production code** behind this doc (read-only excerpts: search, vectors, reranker, config, sync)
 - [VECTORRAG.md](VECTORRAG.md) — chunk-level embeddings, pgvector schema, sync pipeline
 - [RERANKER.md](RERANKER.md) — the cross-encoder second stage
 - [ARCHITECTURE.md](ARCHITECTURE.md) — overall system design & retrieval stack

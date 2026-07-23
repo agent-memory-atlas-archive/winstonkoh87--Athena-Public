@@ -1,0 +1,137 @@
+"""
+athena.core.config
+==================
+
+Centralized configuration and path discovery.
+"""
+
+import os
+from pathlib import Path
+
+# Global Cache for PROJECT_ROOT
+_PROJECT_ROOT_CACHE: Path | None = None
+
+
+def get_project_root() -> Path:
+    """
+    Discover project root by looking for 'pyproject.toml'.
+    Caches the result after the first call.
+    """
+    global _PROJECT_ROOT_CACHE
+    if _PROJECT_ROOT_CACHE:
+        return _PROJECT_ROOT_CACHE
+
+    # Start from this file
+    current = Path(__file__).resolve()
+    for parent in current.parents:
+        if (parent / "pyproject.toml").exists():
+            _PROJECT_ROOT_CACHE = parent
+            return parent
+
+    # Fallback to current environment variable or CWD
+    root = os.getenv("ATHENA_ROOT")
+    if root:
+        _PROJECT_ROOT_CACHE = Path(root)
+        return _PROJECT_ROOT_CACHE
+
+    _PROJECT_ROOT_CACHE = Path.cwd()
+    return _PROJECT_ROOT_CACHE
+
+
+PROJECT_ROOT = get_project_root()
+
+# Key Directories
+AGENT_DIR = PROJECT_ROOT / ".agent"
+CONTEXT_DIR = PROJECT_ROOT / ".context"
+FRAMEWORK_DIR = PROJECT_ROOT / ".framework"
+PUBLIC_DIR = PROJECT_ROOT / "Athena-Public"
+SCRIPTS_DIR = AGENT_DIR / "scripts"
+MEMORIES_DIR = CONTEXT_DIR / "memories"
+SESSIONS_DIR = MEMORIES_DIR / "session_logs"
+MEMORY_DIR = PROJECT_ROOT / ".athena" / "memory"
+STATE_DIR = AGENT_DIR / "state"
+MANIFEST_PATH = STATE_DIR / "sync_manifest.json"
+SYSTEM_LEARNINGS_FILE = MEMORY_DIR / "SYSTEM_LEARNINGS.md"
+USER_PROFILE_FILE = MEMORY_DIR / "USER_PROFILE.yaml"
+INPUTS_DIR = CONTEXT_DIR / "inputs"
+
+# === UNIFIED MEMORY CONFIGURATION ===
+# These directories are the "Active Memory" for VectorRAG and local search.
+
+CORE_DIRS = {
+    "sessions": SESSIONS_DIR,
+    "case_studies": MEMORIES_DIR / "case_studies",
+    "protocols": AGENT_DIR / "skills" / "protocols",
+    "capabilities": AGENT_DIR / "skills" / "capabilities",
+    "workflows": AGENT_DIR / "workflows",
+    "system_docs": FRAMEWORK_DIR / "v8.2-stable" / "modules",
+}
+
+# Extended Memory (silos mapped to logical tables).
+# NOTE: a few workspace directory names are genericized in this PUBLIC excerpt.
+EXTENDED_DIRS = [
+    (PROJECT_ROOT / "analysis", "case_studies"),
+    (PROJECT_ROOT / "Marketing", "system_docs"),
+    (PROJECT_ROOT / "proposals", "case_studies"),
+    (PROJECT_ROOT / "notes", "system_docs"),
+    (PROJECT_ROOT / "docs" / "audit", "system_docs"),
+    (PROJECT_ROOT / "knowledge_base", "system_docs"),
+    (PROJECT_ROOT / ".athena", "system_docs"),
+    (PROJECT_ROOT / ".projects", "system_docs"),
+    (PROJECT_ROOT / "journal", "case_studies"),
+    (CONTEXT_DIR / "research", "case_studies"),
+    (CONTEXT_DIR / "specs", "system_docs"),
+]
+
+
+def get_active_memory_paths():
+    """Returns a deduplicated list of all active memory directory Paths."""
+    paths = [p for p in CORE_DIRS.values() if p.exists()]
+    paths.extend([p for p, _ in EXTENDED_DIRS if p.exists()])
+    return sorted(set(paths))
+
+
+# Key Files (Sharded for token efficiency)
+TAG_INDEX_PATH = (
+    CONTEXT_DIR / "TAG_INDEX.md"
+)  # Legacy monolithic (for backwards compat)
+TAG_INDEX_AM_PATH = CONTEXT_DIR / "TAG_INDEX_A-M.md"
+TAG_INDEX_NZ_PATH = CONTEXT_DIR / "TAG_INDEX_N-Z.md"
+CANONICAL_PATH = CONTEXT_DIR / "CANONICAL.md"
+
+
+def get_current_session_log() -> Path | None:
+    """
+    Find the most recent session log file.
+    Matches both legacy (YYYY-MM-DD-session-XX.md and YYYY-MM-DD-session-SXX.md) and new (SXXX_YYYYMMDD_desc.md) formats.
+    """
+    if not SESSIONS_DIR.exists():
+        return None
+
+    import re
+
+    pattern_legacy = re.compile(r"^(\d{4}-\d{2}-\d{2})-session-(S?\d{2,4})\.md$")
+    pattern_new = re.compile(r"^S(\d{3})_(\d{8})_.*\.md$")
+    session_files = []
+
+    for f in SESSIONS_DIR.glob("*.md"):
+        match_leg = pattern_legacy.match(f.name)
+        if match_leg:
+            date_str, session_num_str = match_leg.groups()
+            # Strip potential 'S' prefix before converting to integer
+            session_num = int(session_num_str.lstrip('S'))
+            session_files.append((date_str, session_num, f))
+            continue
+
+        match_new = pattern_new.match(f.name)
+        if match_new:
+            session_num_str, date_raw = match_new.groups()
+            date_str = f"{date_raw[:4]}-{date_raw[4:6]}-{date_raw[6:]}"
+            session_files.append((date_str, int(session_num_str), f))
+
+    if not session_files:
+        return None
+
+    # Sort by date then session number descending
+    session_files.sort(key=lambda x: (x[0], x[1]), reverse=True)
+    return session_files[0][2]

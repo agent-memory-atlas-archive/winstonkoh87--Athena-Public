@@ -9,14 +9,17 @@
 | [`search.py`](search.py) | `src/athena/tools/search.py` | The hybrid retrieval orchestrator — fuses five lexical/semantic channels via **Reciprocal Rank Fusion (k=60)**, then cross-encoder reranks. Includes the adaptive router, per-type RRF weighting, parallel channel execution, semantic caching, and retrieval telemetry. |
 | [`vectors.py`](vectors.py) | `src/athena/memory/vectors.py` | The embedding + vector layer — Gemini `gemini-embedding-001` (3072-dim) and Supabase pgvector access. Exponential backoff with jitter, semaphore-gated rate limiting, batch embedding with per-item safe-degrade, and a WAL-mode SQLite embedding cache. |
 | [`reranker.py`](reranker.py) | `src/athena/tools/reranker.py` | The cross-encoder second stage — quantized **ONNX fast path** (~0.4s cold load) with a `sentence-transformers` fallback. |
+| [`config.py`](config.py) | `src/athena/core/config.py` | Memory layout — the directory→table map that defines what gets indexed. |
+| [`sync.py`](sync.py) | `src/athena/memory/sync.py` | The indexing pipeline — chunk (4k/400) → embed → upsert to pgvector, with crash-safe ordering (embed *before* the destructive delete). |
 
-Together these are the **read path** of the pipeline: **retrieve → fuse → rerank**.
+Together these are the **indexing + read path**: **chunk → embed → store → retrieve → fuse → rerank**.
 
-## What's deliberately omitted
+## What's included vs. omitted
 
-This is a curated excerpt, not the whole package. The internal modules these files import — session lifecycle, governance/safety gates, workspace configuration, and the indexing/sync pipeline — are **intentionally not published**. Athena operates over private personal data (financial records, journals), so the open/closed boundary is drawn on purpose. Consequently:
+This is a curated excerpt, not the whole package. The internal modules these files import — session lifecycle and the governance/safety gates — are **intentionally not published**. Athena operates over private personal data (financial records, journals), so the open/closed boundary is drawn on purpose. Consequently:
 
-- These files **reference** internal modules (`athena.core.config`, `athena.core.governance`, `athena.sessions`, …) that aren't included here — so they are for **reading, not running**.
+- These files **reference** internal modules (`athena.core.governance`, `athena.sessions`, …) that aren't included here — so they are for **reading, not running**.
+- **`config.py` and `sync.py` are lightly sanitized** — a few private workspace directory names are genericized (e.g. `notes/`, `journal/`); everything else is verbatim. `search.py`, `vectors.py`, and `reranker.py` are fully verbatim.
 - **No secrets are present.** Every credential (Gemini API key, Supabase URL + service-role key) is loaded from environment variables — see [`.env.example`](../../.env.example).
 
 ## Design notes worth a look
