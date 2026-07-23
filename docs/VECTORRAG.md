@@ -1,6 +1,6 @@
 # VectorRAG: Semantic Memory Architecture
 
-> **Last Updated**: 22 July 2026  
+> **Last Updated**: 23 July 2026  
 > **Purpose**: Technical documentation for Athena's semantic memory system (sole semantic search layer)
 
 ---
@@ -130,15 +130,10 @@ sequenceDiagram
     A->>G: Embed query text
     G-->>A: Return 3072-dim vector
     
-    A->>S: search_sessions(embedding, threshold=0.3)
-    S-->>A: Top 5 matches with similarity scores
+    A->>S: search_all_vectors(embedding, threshold=0.3)
+    S-->>A: Fused matches across all 11 domains (sessions, cases, protocols, ...)
     
-    A->>S: search_case_studies(embedding)
-    S-->>A: Related case studies
-    
-    A->>S: search_protocols(embedding)
-    S-->>A: Relevant protocols
-    
+    Note over A: RRF fusion (k=60) + CrossEncoder rerank
     Note over A: Synthesize context
     
     A->>U: "In Session 15, we designed the API structure..."
@@ -185,6 +180,9 @@ CREATE TABLE IF NOT EXISTS sessions (
 ```
 
 ### Search Functions (RPC)
+
+> [!NOTE]
+> The production engine calls a single **unified** `search_all_vectors(query_embedding, match_threshold, match_count)` RPC that scans all 11 domain tables and returns one fused, source-tagged result set. The per-table function below shows the underlying cosine pattern each domain follows.
 
 ```sql
 CREATE OR REPLACE FUNCTION search_sessions(
@@ -475,7 +473,7 @@ VectorRAG is **not optional**. Per Core Identity §0.7.1:
 
 ## Future Enhancements
 
-* [x] **Hybrid Search**: Combine vector + keyword + TAG_INDEX for precision → See [SEMANTIC_SEARCH.md](docs/SEMANTIC_SEARCH.md)
+* [x] **Hybrid Search**: Combine vector + lexical channels (canonical, filename, sqlite) for precision → See [SEMANTIC_SEARCH.md](SEMANTIC_SEARCH.md)
 * [x] **Chunking Strategy**: Split large documents (4,000-char windows, 400 overlap) for finer retrieval → [Chunk-Level Embeddings](#chunk-level-embeddings)
 * [x] **Reranking**: CrossEncoder re-scores fused candidates → [RERANKER.md](RERANKER.md)
 * [x] **Live Web Grounding**: Fuse real-time web results into RRF (weight 2.8)
