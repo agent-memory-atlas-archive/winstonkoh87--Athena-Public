@@ -24,6 +24,7 @@ from __future__ import annotations
 import fnmatch
 import json
 import logging
+import re
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
@@ -155,6 +156,27 @@ INTERNAL_PATTERNS = [
     "user_profile",
     "userContext",
 ]
+
+
+# High-signal secret VALUE formats — redacted wherever they appear, so the
+# actual credential (not just its label) is masked. Compiled once.
+_TOKEN_VALUE_PATTERNS = [
+    re.compile(r"sk-[A-Za-z0-9_-]{16,}"),  # OpenAI / Anthropic API keys
+    re.compile(
+        r"eyJ[A-Za-z0-9_-]{6,}\.[A-Za-z0-9_-]{6,}\.[A-Za-z0-9_-]{6,}"
+    ),  # JWT (e.g. Supabase service keys)
+    re.compile(r"(?i)\bbearer\s+[A-Za-z0-9._~+/-]{16,}=*"),  # Bearer tokens
+    re.compile(r"\b[0-9a-fA-F]{32,}\b"),  # long hex secrets / hashes
+]
+
+# key = value / key: value where the KEY names a secret → redact the VALUE,
+# keeping the key visible for context. Catches .env-style leaks such as
+# ``ANTHROPIC_API_KEY=sk-ant-...`` that the label-only pass used to miss.
+_KV_SECRET_PATTERN = re.compile(
+    r"(?i)\b([A-Za-z0-9_.\-]*"
+    r"(?:api[_-]?key|secret|passwd|password|token|bearer|private[_-]?key|access[_-]?token)"
+    r"[A-Za-z0-9_.\-]*)\s*([=:])\s*[^\s,;'\"]+"
+)
 
 
 # ---------------------------------------------------------------------------
@@ -485,15 +507,33 @@ class PermissionEngine:
 
     def redact(self, content: str) -> str:
         """
-        Redact secret patterns from content.
-        Used when demo_mode is active but data must still flow.
+        Redact secrets from content when demo_mode is active.
+
+        Redacts the secret VALUE, not merely its label: a naive
+        ``replace("API_KEY", "[REDACTED]")`` leaves ``API_KEY=sk-...`` as
+        ``[REDACTED]=sk-...`` — the actual key in cleartext. The passes below
+        mask the value itself:
+
+        1. ``key = value`` / ``key: value`` pairs where the key names a secret.
+        2. Standalone high-entropy token formats (sk-..., JWTs, bearer, long hex).
+        3. Fallback: mask any remaining bare secret-pattern keywords.
         """
         if not self.demo_mode:
             return content
 
+        # 1. Redact the VALUE in secret key/value pairs (keep the key label).
+        content = _KV_SECRET_PATTERN.sub(r"\1\2 [REDACTED]", content)
+
+        # 2. Redact standalone credential-shaped tokens anywhere they appear.
+        for pat in _TOKEN_VALUE_PATTERNS:
+            content = pat.sub("[REDACTED]", content)
+
+        # 3. Fallback: mask any remaining bare secret keyword (case-insensitive).
         for pattern in SECRET_PATTERNS:
             if pattern.lower() in content.lower():
-                content = content.replace(pattern, "[REDACTED]")
+                content = re.sub(
+                    re.escape(pattern), "[REDACTED]", content, flags=re.IGNORECASE
+                )
 
         return content
 

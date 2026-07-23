@@ -48,16 +48,16 @@ def main():
     SystemLoader.verify_environment()
     SystemLoader.enforce_daemon()
 
-    # Phase 1.1: Security Patch (CVE-2025-69872)
+    # Phase 1.1: Security hardening (CVE-2025-69872 — diskcache pickle RCE)
     try:
-        from athena.core.security import patch_dspy_cache_security
+        from athena.core.security import apply_diskcache_hardening
 
-        patch_dspy_cache_security()
-        print(f"   🛡️  Security: DiskCache mitigation active.")
-    except ImportError:
-        pass
+        summary = apply_diskcache_hardening()
+        n = len(summary["dirs_hardened"])
+        if n:
+            print(f"   🛡️  Security: {n} cache dir(s) hardened to 0700 (CVE-2025-69872).")
     except Exception as e:
-        print(f"   ⚠️  Security Patch Failed: {e}")
+        print(f"   ⚠️  Security hardening skipped: {e}")
 
     StateLoader.check_prior_crashes()
     StateLoader.check_canary_overdue()

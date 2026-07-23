@@ -170,9 +170,11 @@ def collect_tags(query: str) -> list[SearchResult]:
             continue
 
         try:
-            # Use grep for speed — argument list prevents shell injection
+            # Use grep for speed — argument list prevents shell injection.
+            # `--` stops flag parsing so a query beginning with `-` (e.g. "-v")
+            # is treated as a pattern, not a grep option.
             process = subprocess.run(
-                ["grep", "-i", "-m", "10", query, str(path)],
+                ["grep", "-i", "-m", "10", "--", query, str(path)],
                 capture_output=True,
                 text=True,
                 timeout=5,

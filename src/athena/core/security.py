@@ -1,85 +1,131 @@
 """
-athena.core.security — Security patches and hardening.
-======================================================
+athena.core.security — Runtime security hardening.
+==================================================
+
+Mitigates CVE-2025-69872 (CVSS 7.3, published 2026-02-11): the ``diskcache``
+library (through 5.6.3) deserializes cache entries with ``pickle`` by default.
+An attacker who can WRITE to a cache directory can plant a malicious pickle that
+executes arbitrary code when the cache is next read. In Athena, ``diskcache``
+is only ever a *transitive* dependency (via fastmcp / flashrank) — the package's
+own query cache (``athena.core.cache``) is JSON and unaffected.
+
+Threat model (local-first, single-user): an attacker who can write to your
+cache directory already has local code execution, so the practical risk is low.
+This module applies the advisory's *own* recommended remediation as
+defense-in-depth for the shared-volume / container / multi-user case:
+
+    1. Restrict cache/state directory permissions to 0700 (owner-only) so other
+       local users cannot plant a malicious pickle.
+    2. If ``dspy`` happens to be loaded in-process, swap its ``FanoutCache`` to
+       the pickle-free JSON disk backend. Best-effort only; this module NEVER
+       imports ``dspy`` itself (it is not an Athena dependency).
+
+Everything here is best-effort and must never raise into the boot sequence.
+
+Epistemic status: code-enforced. ``apply_diskcache_hardening()`` runs at boot
+(see ``athena.boot.orchestrator``) and the directory chmod is verifiable.
 """
 
+from __future__ import annotations
+
 import logging
-import diskcache
-import dspy
-from athena.core.config import PROJECT_ROOT
+import stat
+import sys
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
+# Owner-only: rwx------ (0o700)
+_SECURE_DIR_MODE = stat.S_IRWXU
 
-def patch_dspy_cache_security():
+
+def _harden_dir(path: Path) -> bool:
+    """chmod a directory to 0700 if it exists. Returns True if it was hardened."""
+    try:
+        if path.is_dir():
+            path.chmod(_SECURE_DIR_MODE)
+            return True
+    except OSError as e:
+        logger.debug("Could not harden %s: %s", path, e)
+    return False
+
+
+def harden_cache_directories() -> list[str]:
     """
-    HOT PATCH: Enforce JSON serialization for dspy's DiskCache.
+    Restrict permissions on the cache/state directories Athena controls to
+    0700, mitigating CVE-2025-69872 (diskcache pickle RCE) on shared
+    filesystems. Returns the list of directories that were hardened.
+    """
+    hardened: list[str] = []
+    try:
+        from athena.core.config import AGENT_DIR, PROJECT_ROOT
+    except Exception:
+        return hardened
 
-    Mitigates CVE-2025-69872 where default pickle serialization in diskcache
-    allows arbitrary code execution from malicious cache files.
+    # Deterministic, in-scope set only — no recursive project walk on boot.
+    candidates = [
+        AGENT_DIR / "state",
+        PROJECT_ROOT / ".athena",
+        PROJECT_ROOT / ".context" / "cache",
+    ]
 
-    This function:
-    1. Checks if dspy.cache.disk_cache is active.
-    2. Swaps the underlying 'disk' storage from Pickle (default) to JSON.
-    3. Clears the cache to prevent loading old pickled data.
+    for path in candidates:
+        if _harden_dir(path):
+            hardened.append(str(path))
+    return hardened
+
+
+def _patch_dspy_if_loaded() -> bool:
+    """
+    If ``dspy`` is ALREADY imported in this process, swap its FanoutCache to the
+    pickle-free JSONDisk backend. Never imports ``dspy`` itself (not an Athena
+    dependency). Returns True if a patch was applied.
+    """
+    dspy = sys.modules.get("dspy")
+    if dspy is None:
+        return False
+    try:
+        import diskcache
+
+        cache = getattr(dspy, "cache", None)
+        disk_cache = getattr(cache, "disk_cache", None)
+        if not isinstance(disk_cache, diskcache.FanoutCache):
+            return False
+        if not getattr(cache, "enable_disk_cache", False):
+            return False
+
+        directory = disk_cache.directory
+        size_limit = disk_cache.size_limit
+        disk_cache.close()
+        cache.disk_cache = diskcache.FanoutCache(
+            directory=directory,
+            size_limit=size_limit,
+            disk=diskcache.JSONDisk,  # pickle-free serialization
+        )
+        logger.info("Security: dspy disk cache swapped to JSONDisk (pickle-free).")
+        return True
+    except Exception as e:  # best-effort; never break boot
+        logger.debug("dspy cache patch skipped: %s", e)
+        return False
+
+
+def apply_diskcache_hardening() -> dict:
+    """
+    Boot entry point. Applies CVE-2025-69872 mitigations and returns a summary.
+    Never raises.
     """
     try:
-        # Check if dspy has a disk cache initialized
-        if hasattr(dspy, "cache") and hasattr(dspy.cache, "disk_cache"):
-            cache_obj = dspy.cache.disk_cache
+        hardened = harden_cache_directories()
+    except Exception as e:  # pragma: no cover - defensive
+        logger.debug("Cache-dir hardening failed: %s", e)
+        hardened = []
 
-            # FanoutCache uses ._shards which are Cache objects
-            # We need to patch the underlying Cache objects or the specific disk instance
+    dspy_patched = _patch_dspy_if_loaded()
+    return {"dirs_hardened": hardened, "dspy_patched": dspy_patched}
 
-            # If it's a FanoutCache (dspy default)
-            if isinstance(cache_obj, diskcache.FanoutCache):
-                logger.info(
-                    "🛡️  Security: Patching dspy FanoutCache to use JSON serialization..."
-                )
 
-                # Patch directory target if needed, but mainly the serialization
-                # FanoutCache doesn't expose a simple 'disk' attr to swap for all shards easily
-                # without iterating or reinitalizing.
-                # EASIER STRATEGY: Re-initialize the disk_cache with secure settings within dspy.settings?
-                # No, dspy.settings.configure might overwrite.
-
-                # Let's try to monkeypatch the disk class on the class itself? No, too broad.
-                # Let's re-create the cache object on dspy.
-
-                current_dir = cache_obj.directory
-                current_size = cache_obj.size_limit
-
-                # Re-initialize safely
-                # dspy.cache.disk_cache = diskcache.FanoutCache(
-                #     directory=current_dir,
-                #     size_limit=current_size,
-                #     disk=diskcache.JSONDisk  # <--- SECURE
-                # )
-
-                # Wait, dspy.cache is a custom Cache class wrapper, not just the raw diskcache object.
-                # cache.py: self.disk_cache = FanoutCache(...)
-
-                # Access the wrapper
-                wrapper = dspy.cache
-                if wrapper.enable_disk_cache:
-                    # Close old cache
-                    wrapper.disk_cache.close()
-
-                    # Re-open with JSONDisk
-                    wrapper.disk_cache = diskcache.FanoutCache(
-                        directory=current_dir,
-                        size_limit=current_size,
-                        disk=diskcache.JSONDisk,  # Force JSON
-                        shards=16,  # Default
-                    )
-                    logger.info("✅ Security: dspy disk cache patched (JSONDisk).")
-
-            else:
-                logger.warning(
-                    "⚠️  Security: dspy cache is not FanoutCache. Skipping patch."
-                )
-
-    except Exception as e:
-        logger.error(f"❌ Security Patch Failed: {e}")
-        # Fail open? or Fail closed?
-        # For security, we should probably warn aggressively but continue.
+# Backwards-compatible alias — older callers imported this name.
+def patch_dspy_cache_security() -> dict:
+    """Deprecated name, retained for import compatibility. See
+    :func:`apply_diskcache_hardening`."""
+    return apply_diskcache_hardening()
