@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-07-22
+last_updated: 2026-07-23
 tags: #references #apa #academic #citations
 ---
 
@@ -228,7 +228,7 @@ Wei, A., Haghtalab, N., & Steinhardt, J. (2024). Jailbroken: How does LLM safety
 
 > **Why this section exists**: Athena's central mechanism — injecting a condensed, persistent user profile into context — is the *same* mechanism the 2025–2026 literature identifies as the largest amplifier of sycophancy. Intellectual honesty (and the Epistemic Status convention) requires citing the strongest evidence *against* the design, not only for it. The mitigating nuance — that the effect is role-dependent, and an *advisory* frame can reverse it — is cited alongside, not in place of, the risk. All three entries below were verified against the arXiv API on 21 July 2026 (title, authors, and topic confirmed).
 
-Fanous, A., Goldberg, J., Agarwal, A. A., Lin, J., Zhou, A., Daneshjou, R., & Koyejo, S. (2025). SycEval: Evaluating LLM sycophancy. *Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society (AIES 2025)*. <https://arxiv.org/abs/2502.08177>
+Fanous, A., Goldberg, J., Agarwal, A. A., Lin, J., Zhou, A., Daneshjou, R., & Koyejo, S. (2025). SycEval: Evaluating LLM sycophancy. *Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society, 8*(1), 893–900. <https://doi.org/10.1609/aies.v8i1.36598> (arXiv:2502.08177)
 
 > **Note**: Measured a 58.19% overall sycophancy (capitulation) rate across ChatGPT-4o (56.71%), Claude-Sonnet, and Gemini-1.5-Pro (62.47%). Baseline evidence that sycophancy is a *majority-case* failure in frontier models, not an edge case — the problem Athena's meta-awareness gate exists to counter.
 
@@ -316,4 +316,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last updated: 22 July 2026 — added the "Sycophancy & the Personalization Tension" section (arXiv:2502.08177, 2509.12517, 2603.00024); corrected the Soelberg/OpenAI entry (incident and filing independently reported — N.D. Cal., filed 29 Dec 2025; SF Standard; Hagens Berman — caption/docket hedged pending PACER confirmation); SycEval author list completed against the arXiv record. **Full re-verification sweep this date: 20/20 DOIs (Crossref API) + 28/28 arXiv IDs (arXiv export API), 0 failures** — superseding the stale "18/18" count from the 5 July pass. Previous fact-checks: 5 July 2026; 6 June 2026 (S437).*
+*Last updated: 22 July 2026 — added the "Sycophancy & the Personalization Tension" section (arXiv:2502.08177, 2509.12517, 2603.00024); corrected the Soelberg/OpenAI entry (incident and filing independently reported — N.D. Cal., filed 29 Dec 2025; SF Standard; Hagens Berman — caption/docket hedged pending PACER confirmation); SycEval author list completed against the arXiv record. **Full re-verification sweep this date: 20/20 DOIs (Crossref API) + 28/28 arXiv IDs (arXiv export API), 0 failures** — superseding the stale "18/18" count from the 5 July pass. Re-verified 23 July 2026: independently reconfirmed the 2025–2026 sycophancy cluster against live sources — Jain et al. (arXiv:2509.12517; now published at CHI '26), SycEval/Fanous et al. (arXiv:2502.08177; AIES 2025), and Kelley & Riedl (arXiv:2603.00024) — and upgraded SycEval to its formal AIES 2025 DOI (10.1609/aies.v8i1.36598, pp. 893–900). Previous fact-checks: 5 July 2026; 6 June 2026 (S437).*
