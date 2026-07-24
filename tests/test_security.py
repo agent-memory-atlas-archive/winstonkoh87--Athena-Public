@@ -53,7 +53,7 @@ class TestRedaction:
         from athena.core.permissions import PermissionEngine
 
         engine = PermissionEngine.__new__(PermissionEngine)
-        engine.demo_mode = True
+        engine.secret_mode = True
         engine.audit_log = []
         engine._state_path = None
         engine._granular = None
@@ -77,6 +77,6 @@ class TestRedaction:
 
     def test_redact_noop_when_mode_off(self):
         engine = self._engine()
-        engine.demo_mode = False
+        engine.secret_mode = False
         content = "ANTHROPIC_API_KEY=" + ("sk-" + "test" + "1234" * 4)
         assert engine.redact(content) == content

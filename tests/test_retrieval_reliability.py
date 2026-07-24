@@ -14,7 +14,7 @@ def test_safe_cross_encoder_empty():
 
 def test_safe_cross_encoder_fallback():
     encoder = SafeCrossEncoder()
-    dummy_doc = SearchResult(id="1", content="Sample content", title="Title", file_path="sample.md")
+    dummy_doc = SearchResult(id="1", content="Sample content", source="sample.md")
     res, fallback = encoder.rerank("test query", [dummy_doc], top_k=5)
     assert len(res) == 1
 

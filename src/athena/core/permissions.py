@@ -491,11 +491,7 @@ class PermissionEngine:
 
     def redact(self, content: str) -> str:
         """
-<<<<<<< HEAD
-        Redact secrets from content when demo_mode is active.
-=======
-        Redact secrets from content when secret_mode is active.
->>>>>>> 791a646 (feat(core): ship universal AgentGate, structured ruin check, retrieval resilience, and version sync (v9.9.5))
+        Redact secrets from content when secret_mode (or demo_mode) is active.
 
         Redacts the secret VALUE, not merely its label: a naive
         ``replace("API_KEY", "[REDACTED]")`` leaves ``API_KEY=sk-...`` as

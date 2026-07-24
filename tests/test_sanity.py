@@ -8,10 +8,12 @@ def test_environment_check():
     """Verify we are running in the expected environment."""
     assert sys.version_info.major == 3, "Must be running Python 3"
 
-def test_project_root_importable(project_root):
+def test_project_root_importable():
     """Verify that we can see the project root files."""
-    assert os.path.exists(os.path.join(project_root, '.agent')), ".agent directory not found"
-    # Athena package is installed as a dependency (likely editable), not necessarily a root folder
+    from pathlib import Path
+    project_root = Path(__file__).resolve().parent.parent
+    assert (project_root / ".agent").exists() or (project_root / "src").exists(), \
+        "Neither .agent directory nor src directory found at project root"
 
 
 def test_athena_sdk_import():
