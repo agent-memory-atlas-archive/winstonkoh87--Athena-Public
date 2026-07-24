@@ -63,7 +63,7 @@ def run_check():
             print(f"   ⚠️  {var}: Not set (optional for cloud features)")
 
     print("\n" + "=" * 60)
-    print("📚 Docs: https://github.com/[AUTHOR]87/Athena-Public")
+    print("📚 Docs: https://github.com/winstonkoh87/Athena-Public")
     return True
 
 

@@ -1,0 +1,7 @@
+{
+  "agent": "athena",
+  "workspace_root": ".",
+  "mcp_server": "python3 src/athena/mcp_server.py",
+  "pre_action_hook": "python3 -c 'from athena.core.gate import AgentGate; AgentGate(\".\").intercept_tool(...)'",
+  "post_action_hook": null
+}

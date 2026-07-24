@@ -5,10 +5,11 @@ Uses Gemini 3 Flash Preview to generate durable value assets.
 Budget: 19 API calls total.
 """
 
-import os
 import json
-from pathlib import Path
+import os
 from datetime import datetime
+from pathlib import Path
+
 from dotenv import load_dotenv
 from google import genai
 
@@ -213,7 +214,7 @@ def generate_stealable_prompts():
             response = client.models.generate_content(
                 model="gemini-3-flash-preview",
                 contents=f"""
-Convert this workflow into a "stealable prompt" — a standalone system instruction that could be copy-pasted into any AI to replicate this behavior. 
+Convert this workflow into a "stealable prompt" — a standalone system instruction that could be copy-pasted into any AI to replicate this behavior.
 
 Requirements:
 1. Self-contained (no external file references)
@@ -238,8 +239,8 @@ Workflow:
 if __name__ == "__main__":
     print("=" * 60)
     print("⚡ COMPOUND ASSET GENERATOR")
-    print(f"   Model: gemini-3-flash-preview")
-    print(f"   Budget: 19 API calls")
+    print("   Model: gemini-3-flash-preview")
+    print("   Budget: 19 API calls")
     print(f"   Time: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print("=" * 60)
 

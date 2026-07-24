@@ -5,13 +5,11 @@ athena.core.config
 Centralized configuration and path discovery.
 """
 
-from pathlib import Path
-from typing import Optional
 import os
-
+from pathlib import Path
 
 # Global Cache for PROJECT_ROOT
-_PROJECT_ROOT_CACHE: Optional[Path] = None
+_PROJECT_ROOT_CACHE: Path | None = None
 
 
 def get_project_root() -> Path:
@@ -89,7 +87,7 @@ def get_active_memory_paths():
     """Returns a deduplicated list of all active memory directory Paths."""
     paths = [p for p in CORE_DIRS.values() if p.exists()]
     paths.extend([p for p, _ in EXTENDED_DIRS if p.exists()])
-    return sorted(list(set(paths)))
+    return sorted(set(paths))
 
 
 # Key Files (Sharded for token efficiency)
@@ -101,25 +99,27 @@ TAG_INDEX_NZ_PATH = CONTEXT_DIR / "TAG_INDEX_N-Z.md"
 CANONICAL_PATH = CONTEXT_DIR / "CANONICAL.md"
 
 
-def get_current_session_log() -> Optional[Path]:
+def get_current_session_log() -> Path | None:
     """
     Find the most recent session log file.
-    Matches both legacy (YYYY-MM-DD-session-XX.md) and new (SXXX_YYYYMMDD_desc.md) formats.
+    Matches both legacy (YYYY-MM-DD-session-XX.md and YYYY-MM-DD-session-SXX.md) and new (SXXX_YYYYMMDD_desc.md) formats.
     """
     if not SESSIONS_DIR.exists():
         return None
 
     import re
 
-    pattern_legacy = re.compile(r"^(\d{4}-\d{2}-\d{2})-session-(\d{2,3})\.md$")
+    pattern_legacy = re.compile(r"^(\d{4}-\d{2}-\d{2})-session-(S?\d{2,4})\.md$")
     pattern_new = re.compile(r"^S(\d{3})_(\d{8})_.*\.md$")
     session_files = []
 
     for f in SESSIONS_DIR.glob("*.md"):
         match_leg = pattern_legacy.match(f.name)
         if match_leg:
-            date_str, session_num = match_leg.groups()
-            session_files.append((date_str, int(session_num), f))
+            date_str, session_num_str = match_leg.groups()
+            # Strip potential 'S' prefix before converting to integer
+            session_num = int(session_num_str.lstrip('S'))
+            session_files.append((date_str, session_num, f))
             continue
 
         match_new = pattern_new.match(f.name)

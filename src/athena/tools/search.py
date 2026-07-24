@@ -9,21 +9,23 @@ Integrates Canonical, Tags, Vectors, and Filesystem.
 import argparse
 import contextlib
 import json
+import re
 import subprocess
 import sys
-from pathlib import Path
 from collections import defaultdict
-from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED
+from concurrent.futures import ALL_COMPLETED, ThreadPoolExecutor, wait
+from pathlib import Path
 
+from athena.core.cache import get_search_cache
 from athena.core.config import (
+    CANONICAL_PATH,
     PROJECT_ROOT,
-    TAG_INDEX_PATH,
     TAG_INDEX_AM_PATH,
     TAG_INDEX_NZ_PATH,
-    CANONICAL_PATH,
+    TAG_INDEX_PATH,
 )
 from athena.core.models import SearchResult
-from athena.core.cache import get_search_cache
+
 # Lazy imports to speed up CLI startup
 # from athena.memory.vectors import ... (Moved inside functions)
 # from athena.tools.reranker import ... (Moved inside functions)
@@ -207,17 +209,17 @@ def collect_vectors(
 
     results = []
     try:
-        from athena.memory.vectors import get_embedding, get_client
+        from athena.memory.vectors import get_client, get_embedding
 
         query_embedding = embedding if embedding else get_embedding(query)
 
         # Call the unified database search function
         client = get_client()
-        
+
         # Determine match threshold and limits
         threshold = 0.3
         match_count = limit * 2  # Fetch slightly more to account for filtering
-        
+
         rpc_result = client.rpc(
             "search_all_vectors",
             {
@@ -227,8 +229,30 @@ def collect_vectors(
             }
         ).execute()
 
+        # The RPC returns source_table = document_chunks.table_name, which uses the
+        # PLURAL Supabase table names ("sessions", "case_studies", ...). WEIGHTS keys
+        # are singular type labels. Without this normalization every vector result
+        # fell through to the default weight 1.0 and the per-type RRF calibration
+        # (protocol 3.2, boot-doc demotion 1.2, ...) was silently inert.
+        TABLE_TO_TYPE = {
+            "sessions": "session",
+            "protocols": "protocol",
+            "case_studies": "case_study",
+            "capabilities": "capability",
+            "workflows": "workflow",
+            "system_docs": "system_doc",
+            "frameworks": "framework",
+            "playbooks": "playbook",
+            "references": "reference",
+            "user_profile": "user_profile",
+            "memory_bank": "system_doc",
+            "insights": "case_study",
+            "entities": "entity",
+        }
+
         for item in rpc_result.data or []:
-            type_label = item.get("source_table", "unknown")
+            raw_label = item.get("source_table", "unknown")
+            type_label = TABLE_TO_TYPE.get(raw_label, raw_label)
             path = item.get("file_path", "")
             if "?" in path:
                 path = path.split("?")[0]
@@ -250,12 +274,22 @@ def collect_vectors(
                 or (item.get("metadata", {}).get("filename") if item.get("metadata") else None)
                 or f"{type_label}"
             )
+            # Chunk metadata often lacks code/name/date (enrichment lives on the
+            # parent tables) — fall back to the file path so results never render
+            # as "Protocol None: None" / "Session None:".
+            path_stem = Path(path).stem if path else ""
             if type_label == "protocol":
-                item_id = f"Protocol {item.get('metadata', {}).get('code') if item.get('metadata') else ''}: {item.get('metadata', {}).get('name') if item.get('metadata') else ''}"
+                meta_d = item.get("metadata") or {}
+                code = meta_d.get("code") or ""
+                name = meta_d.get("name") or item.get("title") or path_stem
+                item_id = f"Protocol {code}: {name}" if code else f"Protocol: {name}"
             elif type_label == "session":
-                item_id = f"Session {item.get('metadata', {}).get('date') if item.get('metadata') else ''}: {item.get('title')}"
+                meta_d = item.get("metadata") or {}
+                date_match = re.search(r"\d{4}-\d{2}-\d{2}", path_stem)
+                date = meta_d.get("date") or (date_match.group(0) if date_match else "")
+                item_id = f"Session {date}: {item.get('title') or path_stem}"
             elif type_label == "case_study":
-                item_id = f"Case Study: {item.get('title')}"
+                item_id = f"Case Study: {item.get('title') or path_stem}"
 
             item_id = f"{item_id}{chunk_suffix}"
 
@@ -504,6 +538,7 @@ def collect_framework_docs(query: str) -> list[SearchResult]:
 def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
     """Sovereign Fallback: Search the local SQLite index (athena.db)."""
     import sqlite3
+
     from athena.core.config import INPUTS_DIR
 
     db_path = INPUTS_DIR / "athena.db"
@@ -538,7 +573,7 @@ def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
         # 2. Search by Tags
         cursor.execute(
             """
-            SELECT f.path, t.name 
+            SELECT f.path, t.name
             FROM files f
             JOIN file_tags ft ON f.path = ft.file_path
             JOIN tags t ON ft.tag_id = t.id
@@ -569,9 +604,9 @@ def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
 
 def collect_web_search(query: str, limit: int = 5) -> list[SearchResult]:
     """Ground query using live Google/DuckDuckGo Web Search (RRF-fused channel)."""
-    import urllib.parse
     import html
     import re
+    import urllib.parse
     results = []
     try:
         import requests
@@ -590,20 +625,20 @@ def collect_web_search(query: str, limit: int = 5) -> list[SearchResult]:
             snippet_match = re.search(r'<a[^>]*class="result__snippet"[^>]*>(.*?)</a>', block, re.DOTALL)
             # Extract URL
             url_match = re.search(r'class="result__url" href="(.*?)"', block, re.DOTALL)
-            
+
             if title_match and snippet_match and url_match:
                 title = re.sub(r'<[^>]+>', '', title_match.group(1)).strip()
                 snippet = re.sub(r'<[^>]+>', '', snippet_match.group(1)).strip()
                 # Clean up HTML entities
                 title = html.unescape(title)
                 snippet = html.unescape(snippet)
-                
+
                 # Extract target URL from DuckDuckGo redirect
                 raw_url = url_match.group(1)
                 parsed_url = urllib.parse.urlparse(raw_url)
                 queries = urllib.parse.parse_qs(parsed_url.query)
                 target_url = queries.get("uddg", [raw_url])[0]
-                
+
                 results.append(
                     SearchResult(
                         id=f"Web: {title}",
@@ -684,8 +719,9 @@ def run_search(
         try:
             # We need the embedding for semantic check
             # This corresponds to "Step 2: Fetch embedding" in the plan
-            from athena.memory.vectors import get_embedding
             import signal
+
+            from athena.memory.vectors import get_embedding
 
             # Timeout wrapper for get_embedding (Supabase cold start issues)
             def handler(signum, frame):
@@ -816,7 +852,7 @@ def run_search(
                         futures["vector"] = executor.submit(safe_exec, "vector", collection_tasks["vector"])
                     if "web_search" in collection_tasks:
                         futures["web_search"] = executor.submit(safe_exec, "web_search", collection_tasks["web_search"])
-                    
+
                     for source, fut in futures.items():
                         try:
                             timeout = 10 if GOD_MODE else 12
@@ -840,7 +876,9 @@ def run_search(
 
         # 3. Rerank
         if rerank and fused_results:
-            candidates = fused_results[:25]
+            # 50-candidate pool (was 25): the reranker can't rescue what fusion
+            # buried below the cutoff; 50→top-k is the 2025-consensus shape.
+            candidates = fused_results[:50]
             if not json_output:
                 print(f"   ⚡ Reranking top {len(candidates)} candidates...")
             from athena.tools.reranker import rerank_results
@@ -926,6 +964,7 @@ def run_search(
     # Logs every search invocation to enable data-driven pruning.
     with contextlib.suppress(Exception):
         import datetime
+
         from athena.core.config import PROJECT_ROOT
 
         telemetry_dir = PROJECT_ROOT / ".agent" / "telemetry"
@@ -1010,7 +1049,9 @@ if __name__ == "__main__":
     parser.add_argument("query", help="Search query")
     parser.add_argument("--limit", type=int, default=10)
     parser.add_argument("--strict", action="store_true")
-    parser.add_argument("--rerank", action="store_true")
+    parser.add_argument("--rerank", dest="rerank", action="store_true", default=True,
+                        help="Use Cross-Encoder reranking (default: on)")
+    parser.add_argument("--no-rerank", dest="rerank", action="store_false")
     parser.add_argument("--debug", action="store_true")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--web", action="store_true", help="Enable live web search grounding channel")

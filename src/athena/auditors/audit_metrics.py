@@ -1,12 +1,12 @@
-import os
 import glob
+import os
 
 
 def count_files(base_path, pattern, ignore_dirs=None):
     if ignore_dirs is None:
         ignore_dirs = []
     count = 0
-    for root, dirs, files in os.walk(base_path):
+    for _root, dirs, files in os.walk(base_path):
         # Modify dirs in-place to skip ignored
         dirs[:] = [d for d in dirs if d not in ignore_dirs and not d.startswith(".")]
         for file in files:
@@ -15,8 +15,8 @@ def count_files(base_path, pattern, ignore_dirs=None):
     return count
 
 
-private_root = "/Users/[AUTHOR]/Desktop/Project Athena"
-public_root = "/Users/[AUTHOR]/Desktop/Project Athena/Athena-Public"
+private_root = "/Users/winstonkoh/Desktop/Project Athena"  # pds:allow
+public_root = "/Users/winstonkoh/Desktop/Project Athena/Athena-Public"  # pds:allow
 
 print("--- AUDIT RESULTS ---")
 

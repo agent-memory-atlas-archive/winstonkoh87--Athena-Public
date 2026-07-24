@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "athena-agent"
-version = "9.9.8"
-description = "The Linux OS for AI Agents — Persistent memory, structured reasoning, and governed autonomy for any LLM. Own the state. Rent the intelligence."
+version = "9.9.5"
+description = "Athena Bionic OS — The Linux Distro for AI Agents. Model-agnostic, local-first, sovereign."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
@@ -29,11 +29,18 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
-    "python-dotenv>=1.2.2",
-    "requests>=2.34.2",
-    "pydantic>=2.13.4",
+    "python-dotenv>=1.0.0",
+    "google-genai>=1.0.0",
+    "supabase>=2.0.0",
+    "requests>=2.31.0",
+    "pydantic>=2.0.0",
+    "anthropic>=0.40.0",
+
+    "flashrank>=0.2.9",
+    "sentence-transformers>=2.2.0",
+    "torch>=2.0.0",
     "diskcache>=5.6.3",
-    "rich>=15.0.0",
+    "fastmcp>=2.0.0"
 ]
 
 [project.scripts]
@@ -43,33 +50,18 @@ athena = "athena.__main__:main"
 Homepage = "https://winstonkoh87.com/athena/"
 Repository = "https://github.com/winstonkoh87/Athena-Public"
 Documentation = "https://github.com/winstonkoh87/Athena-Public#readme"
-Changelog = "https://github.com/winstonkoh87/Athena-Public/blob/main/docs/CHANGELOG.md"
+Changelog = "https://github.com/winstonkoh87/Athena-Public/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
-search = [
-    "google-genai>=2.12.1",
-    "sentence-transformers>=5.6.0",
-    "flashrank>=0.2.10",
-    "torch>=2.13.0",
-]
-cloud = [
-    "supabase>=2.31.0",
-]
-full = [
-    "athena-agent[search,cloud]",
-    "google-genai>=2.12.1",
-    "supabase>=2.31.0",
-    "anthropic>=0.117.0",
-    "flashrank>=0.2.10",
-    "sentence-transformers>=5.6.0",
-    "torch>=2.13.0",
-]
 dev = [
     "pytest",
     "black",
     "ruff",
-    "mypy",
-    "pip-audit",
+    "pipreqs",
+    "pydeps"
+]
+mcp = [
+    "fastmcp>=2.0.0"
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -81,7 +73,15 @@ target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "W", "F", "I", "B", "C4", "UP", "SIM"]
-ignore = ["E501", "B008", "E402", "E701", "E722", "B023", "B007", "SIM108"]
+# Real-bug rules (all of F: unused/undefined/redefined, plus I, C4, UP, most E/W/B/SIM)
+# stay fully enforced. The codes below are intentional, consistent patterns in this
+# solo codebase, not defects:
+#   E402 — lazy/conditional imports (CLI startup speed; env-before-import in reranker)
+#   E701 — one-liner guard clauses (`if x: return`)
+#   E722 — defensive best-effort `except:` in non-critical paths
+#   B007 — intentionally unused loop vars
+#   SIM105/108 — style preference (explicit try/except and if/else over sugar)
+ignore = ["E501", "B008", "E402", "E701", "E722", "B007", "SIM105", "SIM108"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["athena"]

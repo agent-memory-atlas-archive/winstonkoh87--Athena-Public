@@ -1,0 +1,26 @@
+{
+  "version": "10.0.0",
+  "universal_gate_enabled": true,
+  "meta_awareness_structural_classes": [
+    "T1-INBOUND",
+    "T2-OUTBOUND",
+    "T3-VERDICT",
+    "T4-RESOURCE",
+    "T5-FELT"
+  ],
+  "anti_sycophancy_kernel": true,
+  "ruin_check_mode": "structured",
+  "ide_specific_hooks": {
+    "claude_code": {
+      "enabled": true,
+      "hook_path": ".claude/settings.json",
+      "hook_command": "python3 \"$CLAUDE_PROJECT_DIR/.agent/scripts/hook_meta_awareness_gate.py\""
+    },
+    "antigravity": {
+      "enabled": true,
+      "middleware_config_path": "~/.gemini/antigravity/mcp_config.json",
+      "mcp_integration": true,
+      "agent_manifest_override": true
+    }
+  }
+}

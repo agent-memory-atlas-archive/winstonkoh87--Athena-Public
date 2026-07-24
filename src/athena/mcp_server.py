@@ -18,6 +18,23 @@ Usage:
 
 from __future__ import annotations
 
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Load environment variables from .env if present
+current = Path(__file__).resolve()
+project_root = None
+for parent in current.parents:
+    if (parent / "pyproject.toml").exists():
+        project_root = parent
+        break
+
+if project_root:
+    load_dotenv(project_root / ".env")
+else:
+    load_dotenv()
+
 import json
 import logging
 import sys
@@ -27,10 +44,6 @@ from fastmcp import FastMCP
 
 from athena.core.permissions import (
     get_permissions,
-    PermissionDenied,
-    SecretModeViolation,
-    Permission,
-    Sensitivity,
 )
 
 # ---------------------------------------------------------------------------
@@ -63,23 +76,25 @@ def smart_search(
     query: str,
     limit: int = 10,
     strict: bool = False,
-    rerank: bool = False,
+    rerank: bool = True,  # default-on; Cross-Encoder rerank is crash-safe (no-op if sentence_transformers unavailable)
+    web: bool = False,
 ) -> dict:
     """
     Search Athena's knowledge base using hybrid RAG (Canonical + Tags +
-    Vectors + SQLite + Filenames + Framework + Exocortex) with RRF fusion.
+    Vectors + GraphRAG + SQLite + Filenames) with RRF fusion.
 
     Args:
         query: The search query string.
         limit: Maximum number of results to return (default 10).
         strict: If True, filter out low-confidence results.
         rerank: If True, apply LLM-based reranking to top candidates.
+        web: If True, enable live web search grounding.
 
     Returns:
         dict with 'results' (list of matches) and 'meta' (query info).
     """
-    from athena.tools.search import run_search
     from athena.core.governance import get_governance
+    from athena.tools.search import run_search
 
     # Permission gate
     perms = get_permissions()
@@ -101,6 +116,7 @@ def smart_search(
             strict=strict,
             rerank=rerank,
             json_output=True,
+            web=web,
         )
         output = buffer.getvalue()
     finally:
@@ -119,6 +135,7 @@ def smart_search(
             "limit": limit,
             "strict": strict,
             "rerank": rerank,
+            "web": web,
             "timestamp": datetime.now().isoformat(),
         },
     }
@@ -136,6 +153,7 @@ def agentic_search(
     query: str,
     limit: int = 10,
     validate: bool = True,
+    web: bool = False,
 ) -> dict:
     """
     Agentic RAG v2 — Multi-step query decomposition with parallel search
@@ -147,6 +165,7 @@ def agentic_search(
         query: Complex search query (e.g. "trading risk protocols and case studies").
         limit: Maximum number of results to return (default 10).
         validate: If True, validate results via cosine similarity against original query.
+        web: If True, enable live web search grounding.
 
     Returns:
         dict with 'results', 'sub_queries', 'decomposed', and 'meta'.
@@ -157,7 +176,7 @@ def agentic_search(
     perms = get_permissions()
     perms.gate("agentic_search")
 
-    result = _agentic_search(query=query, limit=limit, validate=validate)
+    result = _agentic_search(query=query, limit=limit, validate=validate, web=web)
 
     return {
         "results": [r.to_dict() for r in result["results"]],
@@ -165,6 +184,7 @@ def agentic_search(
         "decomposed": result["decomposed"],
         "meta": {
             **result["meta"],
+            "web": web,
             "timestamp": datetime.now().isoformat(),
         },
     }
@@ -193,8 +213,8 @@ def quicksave(
     Returns:
         dict with 'status', 'log_file', and 'timestamp'.
     """
-    from athena.sessions import append_checkpoint
     from athena.core.governance import get_governance
+    from athena.sessions import append_checkpoint
 
     # Permission gate
     perms = get_permissions()
@@ -303,7 +323,7 @@ def recall_session(lines: int = 50) -> dict:
     tail_text = "\n".join(tail)
 
     # Redact if in secret mode
-    if perms.demo_mode:
+    if perms.secret_mode:
         tail_text = perms.redact(tail_text)
 
     return {
@@ -386,6 +406,55 @@ def list_memory_paths() -> dict:
 
 
 # ---------------------------------------------------------------------------
+# TOOL: meta_awareness_check
+# ---------------------------------------------------------------------------
+
+
+@mcp.tool(
+    tags={"read", "governance", "check"},
+)
+def meta_awareness_check(prompt: str) -> dict:
+    """
+    Code-enforced meta-awareness classification. Call on user prompts to
+    determine if meta-awareness / interpreter kernel injection is required.
+
+    Args:
+        prompt: The user prompt to classify.
+
+    Returns:
+        dict with 'fired' (list of fired class tags), 'injection' (system reminder or None), and 'telemetry_path'.
+    """
+    import importlib.util
+
+    get_permissions().gate("meta_awareness_check")
+
+    if project_root:
+        hook_path = project_root / ".agent" / "scripts" / "hook_meta_awareness_gate.py"
+    else:
+        hook_path = Path(".agent/scripts/hook_meta_awareness_gate.py")
+
+    if not hook_path.exists():
+        return {"fired": [], "injection": None, "error": f"Hook script not found at {hook_path}"}
+
+    spec = importlib.util.spec_from_file_location("hook_meta_gate", hook_path)
+    gate = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(gate)
+
+    fired = gate.classify(prompt)
+    if not fired:
+        return {"fired": [], "injection": None, "telemetry_path": ".athena/invocations.jsonl"}
+
+    injection = gate.REMINDER_TEMPLATE.format(classes=", ".join(fired))
+    gate.log_fire(fired)
+
+    return {
+        "fired": fired,
+        "injection": injection,
+        "telemetry_path": ".athena/invocations.jsonl",
+    }
+
+
+# ---------------------------------------------------------------------------
 # RESOURCE: session_log (current)
 # ---------------------------------------------------------------------------
 
@@ -426,7 +495,7 @@ def canonical_memory_resource() -> str:
 
     # Redact in secret mode
     perms = get_permissions()
-    if perms.demo_mode:
+    if perms.secret_mode:
         content = perms.redact(content)
 
     return content
@@ -456,8 +525,40 @@ def set_secret_mode(enabled: bool) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# TOOL: meta_awareness_check
+# ---------------------------------------------------------------------------
+
+
+@mcp.tool(
+    tags={"read", "system", "governance"},
+)
+def meta_awareness_check(prompt: str) -> dict:
+    """
+    Code-enforced meta-awareness classification. Call on user prompt.
+
+    Args:
+        prompt: User prompt string to evaluate.
+
+    Returns:
+        dict with fired classes and optional system-reminder injection.
+    """
+    from athena.core.gate_meta import classify, REMINDER_TEMPLATE
+
+    fired = classify(prompt)
+    if not fired:
+        return {"fired": [], "injection": None}
+
+    return {
+        "fired": fired,
+        "injection": REMINDER_TEMPLATE.format(classes=", ".join(fired)),
+        "telemetry_path": ".athena/invocations.jsonl",
+    }
+
+
+# ---------------------------------------------------------------------------
 # TOOL: permission_status
 # ---------------------------------------------------------------------------
+
 
 
 @mcp.tool(

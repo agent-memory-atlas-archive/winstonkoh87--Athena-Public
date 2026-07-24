@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS sessions (
     session_number INTEGER NOT NULL,
     title TEXT,
     content TEXT NOT NULL,
-    embedding VECTOR(768),
+    embedding VECTOR(3072),
     file_path TEXT UNIQUE NOT NULL,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS case_studies (
     case_id TEXT UNIQUE NOT NULL,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
-    embedding VECTOR(768),
+    embedding VECTOR(3072),
     file_path TEXT UNIQUE NOT NULL,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -45,22 +45,33 @@ CREATE TABLE IF NOT EXISTS protocols (
     protocol_id TEXT UNIQUE,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
-    embedding VECTOR(768),
+    embedding VECTOR(3072),
     file_path TEXT UNIQUE NOT NULL,
     created_at TIMESTAMPTZ DEFAULT NOW()
+);
+-- Document Chunks: Segment-level text embeddings
+CREATE TABLE IF NOT EXISTS document_chunks (
+    id SERIAL PRIMARY KEY,
+    file_path TEXT NOT NULL,
+    table_name TEXT NOT NULL,
+    chunk_index INTEGER NOT NULL,
+    title TEXT,
+    content TEXT NOT NULL,
+    embedding VECTOR(3072),
+    metadata JSONB DEFAULT '{}'::jsonb,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    UNIQUE(file_path, chunk_index)
 );
 -- ============================================================================
 -- INDEXES (IVFFlat for fast similarity search)
 -- ============================================================================
-CREATE INDEX IF NOT EXISTS sessions_embedding_idx ON sessions USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
-CREATE INDEX IF NOT EXISTS case_studies_embedding_idx ON case_studies USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
-CREATE INDEX IF NOT EXISTS protocols_embedding_idx ON protocols USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
+-- Note: ivfflat index is omitted on document_chunks, sessions, case_studies, and protocols because pgvector limits ivfflat to 2000 dimensions, and we use 3072-dimensional Gemini embeddings. Exact sequential scan is used for query matching.
 -- ============================================================================
 -- SEARCH FUNCTIONS (RPC)
 -- ============================================================================
 -- Search sessions by semantic similarity
 CREATE OR REPLACE FUNCTION search_sessions(
-        query_embedding VECTOR(768),
+        query_embedding VECTOR(3072),
         match_threshold FLOAT DEFAULT 0.3,
         match_count INT DEFAULT 5
     ) RETURNS TABLE (
@@ -83,7 +94,7 @@ END;
 $$;
 -- Search case studies by semantic similarity
 CREATE OR REPLACE FUNCTION search_case_studies(
-        query_embedding VECTOR(768),
+        query_embedding VECTOR(3072),
         match_threshold FLOAT DEFAULT 0.3,
         match_count INT DEFAULT 5
     ) RETURNS TABLE (
@@ -106,7 +117,7 @@ END;
 $$;
 -- Search protocols by semantic similarity
 CREATE OR REPLACE FUNCTION search_protocols(
-        query_embedding VECTOR(768),
+        query_embedding VECTOR(3072),
         match_threshold FLOAT DEFAULT 0.3,
         match_count INT DEFAULT 5
     ) RETURNS TABLE (

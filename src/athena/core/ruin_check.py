@@ -2,14 +2,13 @@
 athena.core.ruin_check
 ======================
 Mechanical Kill-Switch (Law #1: No Irreversible Ruin).
-Scans for destructive patterns before execution.
+Scans for destructive patterns before execution using StructuredRuinCheck + regex fallback.
 """
 
-import sys
 import re
-from pathlib import Path
+import sys
+from athena.core.ruin_structured import StructuredRuinCheck
 
-# Destructive patterns that trigger a Hard Veto
 RUINOUS_PATTERNS = [
     r"rm -rf \.context",
     r"rm -rf \.agent",
@@ -19,15 +18,20 @@ RUINOUS_PATTERNS = [
     r"overwrite_file.*\.context.*empty=True",
 ]
 
-
 def check_command(command: str) -> bool:
     """
     Returns True if safe, False if Ruinous.
+    Combines legacy regex checks with StructuredRuinCheck.
     """
+    # 1. Regex check
     for pattern in RUINOUS_PATTERNS:
         if re.search(pattern, command, re.IGNORECASE):
             return False
-    return True
+
+    # 2. Structured check
+    checker = StructuredRuinCheck()
+    allowed, _ = checker.check_command(command)
+    return allowed
 
 
 def main():

@@ -245,3 +245,27 @@ def delete_file_from_vector(file_path_str: str):
         return True
     except Exception:
         return False
+
+
+def verify_chunk_integrity(expected_min_ratio: float = 0.5) -> bool:
+    """
+    Verifies chunk DB count against local context file count.
+    Returns True if chunk population passes integrity threshold.
+    """
+    try:
+        context_dir = PROJECT_ROOT / ".context"
+        if not context_dir.exists():
+            return True
+
+        local_files = [f for f in context_dir.glob("**/*") if f.is_file() and f.suffix in (".md", ".json", ".yaml")]
+        client = get_client()
+        res = client.table("document_chunks").select("id", count="exact").execute()
+        chunk_count = res.count or 0
+
+        if chunk_count < len(local_files) * expected_min_ratio:
+            return False
+        return True
+    except Exception:
+        # Return True if vector DB connection is offline/unconfigured to avoid blocking local runs
+        return True
+

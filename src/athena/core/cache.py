@@ -25,6 +25,7 @@ Usage:
     cache.set("what is caching?", results, embedding=query_embedding)
 """
 
+import contextlib
 import hashlib
 import json
 import math
@@ -32,7 +33,8 @@ import time
 from collections import OrderedDict
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, List, Optional
+from typing import Any
+
 from athena.core.config import AGENT_DIR
 
 
@@ -43,7 +45,7 @@ class CacheEntry:
     value: Any
     timestamp: float
     hits: int = 0
-    embedding: Optional[List[float]] = field(default=None)
+    embedding: list[float] | None = field(default=None)
 
 
 class QueryCache:
@@ -107,10 +109,8 @@ class QueryCache:
                 os.replace(tmp_path, str(self._cache_file))
             except BaseException:
                 # Clean up temp file on any failure
-                try:
+                with contextlib.suppress(OSError):
                     os.unlink(tmp_path)
-                except OSError:
-                    pass
                 raise
         except Exception:
             pass
@@ -119,7 +119,7 @@ class QueryCache:
     # Exact Matching
     # -------------------------------------------------------------------------
 
-    def get(self, query: str) -> Optional[Any]:
+    def get(self, query: str) -> Any | None:
         """Get cached result if exists and not expired (exact match)."""
         key = self._hash_key(query)
 
@@ -144,7 +144,7 @@ class QueryCache:
     # -------------------------------------------------------------------------
 
     @staticmethod
-    def _cosine_similarity(vec_a: List[float], vec_b: List[float]) -> float:
+    def _cosine_similarity(vec_a: list[float], vec_b: list[float]) -> float:
         """Calculate cosine similarity between two embedding vectors."""
         if not vec_a or not vec_b or len(vec_a) != len(vec_b):
             return 0.0
@@ -158,7 +158,7 @@ class QueryCache:
 
         return dot_product / (norm_a * norm_b)
 
-    def get_semantic(self, target_embedding: List[float], threshold: float = 0.90) -> Optional[Any]:
+    def get_semantic(self, target_embedding: list[float], threshold: float = 0.90) -> Any | None:
         """
         Get cached result if a semantically similar query exists.
 
@@ -196,7 +196,7 @@ class QueryCache:
     # Cache Management
     # -------------------------------------------------------------------------
 
-    def set(self, query: str, value: Any, embedding: Optional[List[float]] = None) -> None:
+    def set(self, query: str, value: Any, embedding: list[float] | None = None) -> None:
         """Cache a result with optional embedding for semantic retrieval."""
         key = self._hash_key(query)
 
@@ -231,7 +231,7 @@ class QueryCache:
 
 
 # Singleton Instance
-_search_cache: Optional[QueryCache] = None
+_search_cache: QueryCache | None = None
 
 
 def get_search_cache() -> QueryCache:

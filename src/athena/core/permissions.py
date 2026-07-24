@@ -100,6 +100,11 @@ TOOL_REGISTRY: dict[str, dict[str, Any]] = {
         "sensitivity": Sensitivity.PUBLIC,
         "description": "List memory directories",
     },
+    "meta_awareness_check": {
+        "permission": Permission.READ,
+        "sensitivity": Sensitivity.INTERNAL,
+        "description": "Classify prompt for meta-awareness / interpreter kernel injection",
+    },
     # Future tools (pre-registered for when they're added)
     "clear_cache": {
         "permission": Permission.ADMIN,
@@ -169,9 +174,7 @@ _TOKEN_VALUE_PATTERNS = [
     re.compile(r"\b[0-9a-fA-F]{32,}\b"),  # long hex secrets / hashes
 ]
 
-# key = value / key: value where the KEY names a secret → redact the VALUE,
-# keeping the key visible for context. Catches .env-style leaks such as
-# ``ANTHROPIC_API_KEY=sk-ant-...`` that the label-only pass used to miss.
+# ``ANTHROPIC_API_KEY=sk-ant-...`` that the label-only pass used to miss.  <!-- pds:allow -->
 _KV_SECRET_PATTERN = re.compile(
     r"(?i)\b([A-Za-z0-9_.\-]*"
     r"(?:api[_-]?key|secret|passwd|password|token|bearer|private[_-]?key|access[_-]?token)"
@@ -336,17 +339,15 @@ class PermissionEngine:
     """
     Central permissioning engine.
 
-    Manages caller capability level, demo (secret) mode state,
+    Manages caller capability level, secret mode state,
     granular glob-based rules, and audit logging of all permission checks.
     """
 
     # Current caller's maximum permission level
     caller_level: Permission = Permission.WRITE
 
-    # Demo mode (aka "Secret Mode" in the public API) — when True, blocks
-    # access to INTERNAL and SECRET data. The flag itself is a non-sensitive
-    # UI toggle, so it is named (and persisted) as demo_mode.
-    demo_mode: bool = False
+    # Secret mode — when True, blocks access to INTERNAL and SECRET data
+    secret_mode: bool = False
 
     # Audit log
     audit_log: list[dict] = field(default_factory=list)
@@ -370,39 +371,25 @@ class PermissionEngine:
         if self._state_path and self._state_path.exists():
             try:
                 data = json.loads(self._state_path.read_text())
-                # "secret_mode" is the legacy key from pre-rename state files
-                self.demo_mode = data.get(
-                    "demo_mode", data.get("secret_mode", False)
-                )
+                self.secret_mode = data.get("secret_mode", False)
                 self.caller_level = Permission(data.get("caller_level", "write"))
             except Exception:
                 pass
 
     def _save_state(self):
-        """Persist state to disk (mode toggles only — never secret values)."""
+        """Persist state to disk."""
         if self._state_path:
             self._state_path.parent.mkdir(parents=True, exist_ok=True)
             self._state_path.write_text(
                 json.dumps(
                     {
-                        "demo_mode": self.demo_mode,
+                        "secret_mode": self.secret_mode,
                         "caller_level": self.caller_level.value,
                         "last_updated": datetime.now().isoformat(),
                     },
                     indent=2,
                 )
             )
-
-    # --- Back-compat alias ---
-
-    @property
-    def secret_mode(self) -> bool:
-        """Alias for demo_mode (public API name)."""
-        return self.demo_mode
-
-    @secret_mode.setter
-    def secret_mode(self, enabled: bool) -> None:
-        self.demo_mode = enabled
 
     # --- Core API ---
 
@@ -442,14 +429,11 @@ class PermissionEngine:
         In secret_mode, only PUBLIC tools are allowed.
         Raises SecretModeViolation if blocked.
         """
-        if not self.demo_mode:
+        if not self.secret_mode:
             return True
 
         tool_def = TOOL_REGISTRY.get(tool_name)
-        if not tool_def:
-            sensitivity = Sensitivity.INTERNAL
-        else:
-            sensitivity = tool_def["sensitivity"]
+        sensitivity = Sensitivity.INTERNAL if not tool_def else tool_def["sensitivity"]
 
         if sensitivity != Sensitivity.PUBLIC:
             self._audit(
@@ -457,7 +441,7 @@ class PermissionEngine:
                 tool_name,
                 {
                     "sensitivity": sensitivity.value,
-                    "demo_mode": True,
+                    "secret_mode": True,
                 },
             )
             raise SecretModeViolation(tool_name, sensitivity)
@@ -507,7 +491,11 @@ class PermissionEngine:
 
     def redact(self, content: str) -> str:
         """
+<<<<<<< HEAD
         Redact secrets from content when demo_mode is active.
+=======
+        Redact secrets from content when secret_mode is active.
+>>>>>>> 791a646 (feat(core): ship universal AgentGate, structured ruin check, retrieval resilience, and version sync (v9.9.5))
 
         Redacts the secret VALUE, not merely its label: a naive
         ``replace("API_KEY", "[REDACTED]")`` leaves ``API_KEY=sk-...`` as
@@ -518,7 +506,7 @@ class PermissionEngine:
         2. Standalone high-entropy token formats (sk-..., JWTs, bearer, long hex).
         3. Fallback: mask any remaining bare secret-pattern keywords.
         """
-        if not self.demo_mode:
+        if not self.secret_mode:
             return content
 
         # 1. Redact the VALUE in secret key/value pairs (keep the key label).
@@ -541,8 +529,8 @@ class PermissionEngine:
 
     def set_secret_mode(self, enabled: bool) -> dict:
         """Toggle secret/demo mode."""
-        old = self.demo_mode
-        self.demo_mode = enabled
+        old = self.secret_mode
+        self.secret_mode = enabled
         self._save_state()
 
         self._audit(
@@ -598,7 +586,7 @@ class PermissionEngine:
         """Return current permission state."""
         return {
             "caller_level": self.caller_level.value,
-            "secret_mode": self.demo_mode,
+            "secret_mode": self.secret_mode,
             "registered_tools": len(TOOL_REGISTRY),
             "accessible_tools": [
                 name

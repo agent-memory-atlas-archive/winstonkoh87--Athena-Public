@@ -1,9 +1,9 @@
 # Athena — Architecture Reference
 
 > **Last Updated**: 22 July 2026
-> **Version**: v9.9.7
-> **Canonical Counts**: These figures describe the private reference implementation as of the date above (not this repo's shipped `examples/` subset — see the README metrics table for what's actually included here). This repo now ships its own `.agent/config/CAPS.json` — the single source of truth for the public subset's counts, regenerated via its `recount_rules`. If a number in any doc diverges from CAPS, CAPS wins.
-> **Bionic Unit Spec**: BIONIC_UNIT_SPEC.md — the definitive human-AI augmentation mapping
+> **Version**: v9.9.1-gto
+> **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
+> **Bionic Unit Spec**: [BIONIC_UNIT_SPEC.md](../specs/BIONIC_UNIT_SPEC.md) <!-- pds:allow --> — the definitive human-AI augmentation mapping
 
 ---
 
@@ -12,9 +12,9 @@
 ```
 Athena/
 ├── .agent/                        # Agent configuration
-│   ├── skills/                    #   42 active skills (42 with context_trigger)
-│   │   └── protocols/             #   412 active + 34 archived = 446 total, 24 categories
-│   │       └── archive/           #     34 deprecated protocols (read-only, see README)
+│   ├── skills/                    #   40 active skills (40 with context_trigger)
+│   │   └── protocols/             #   399 active + 32 archived = 431 total, 23 categories
+│   │       └── archive/           #     15 deprecated protocols (read-only, see README)
 │   ├── workflows/                 #   51 root + 18 _domain = 69 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
 │   ├── scripts/                   #   247 automation scripts
@@ -27,9 +27,9 @@ Athena/
 │   └── archive_skills/            #   16 sunset skills (read-only, see README)
 │
 ├── .context/                      # Personal knowledge base
-│   ├── memories/                  #   3,797 memory files (session logs + case studies + profile)
+│   ├── memories/                  #   3,658 memory files (session logs + case studies + profile)
 │   │   ├── session_logs/          #     Dated session records
-│   │   ├── case_studies/          #     500 documented patterns (15 domains, 7 archived)
+│   │   ├── case_studies/          #     492 documented patterns (15 domains, 7 archived)
 │   │   ├── profile/               #     Core profile, psychology, voice DNA
 │   │   └── observations/          #     Session insights
 │   ├── memory_bank/               #   10 boot files (activeContext, userContext,
@@ -161,7 +161,7 @@ Clusters represent bundles of procedural knowledge that co-activate. When the at
 | 14 | Sovereign Safety | `circuit-breaker` + `context-compactor` | Safety |
 | 15 | Problem-Solving Engine | P504 + P115 + P505 + P506 + `red-team-review` | Reasoning |
 
-Full cluster details: CLUSTER_INDEX.md
+Full cluster details: [CLUSTER_INDEX.md](../CLUSTER_INDEX.md) <!-- pds:allow -->
 
 ### Inventory
 
@@ -169,8 +169,8 @@ Full cluster details: CLUSTER_INDEX.md
 |:------|------:|:------------|
 | Cognitive Domains | 8 | Memory activation targets (priority-ordered for tie-breaking) |
 | Cognitive Clusters | 15 | Co-activating procedural memory bundles |
-| Skills | 42 active (17 archived) |
-| Protocols | 412 active (34 archived; 446 total) |
+| Skills | 40 active (17 archived) |
+| Protocols | 399 active (32 archived; 431 total) |
 | Workflows | 69 (51 root + 18 _domain/) |
 
 ---
@@ -192,7 +192,7 @@ Full cluster details: CLUSTER_INDEX.md
                               ┌──────────────────────────────┐
                               │  Enforcement Actions         │
                               │  ├── Remind  (BEH-601 sat)   │
-                              │  ├── Enforce (BEH-600 acct)  │
+                              │  ├── Nudge   (BEH-603 rev)   │
                               │  └── Block   (Circuit Break) │
                               └──────────────────────────────┘
 ```
@@ -260,15 +260,13 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 ├── Full SDK search (parallel hybrid RRF + semantic cache)
 │   ├── Canonical search (CANONICAL.md keyword matching, min 2-hit)
 │   ├── Tag search (grep against TAG_INDEX shards)
-│   ├── Vector search (Supabase pgvector, chunk-level, exact scan, threshold ≥0.3)
+│   ├── Vector search (Supabase pgvector, 11 parallel RPCs, threshold ≥0.3)
 │   ├── ~~GraphRAG search~~ (REMOVED 2026-06-06 — stale 16 months, user directive)
 │   ├── Filename search (find across project root, keyword OR logic)
 │   ├── Framework docs search (keyword matching in .framework/ + memory_bank/)
 │   ├── SQLite search (local athena.db — files + tags)
-│   ├── Web grounding (live DDG scrape, opt-in --web, fused at RRF weight 2.8)
 │   └── Exocortex search (Wikipedia FTS5)
 ├── Fusion: Weighted RRF (k=60, per-type weights, dynamic score modifiers)
-├── Rerank: CrossEncoder (sentence-transformers) re-scores fused candidates
 ├── Telemetry: retrieval_log.jsonl (quality: hit/partial/miss, source distribution)
 └── Grep fallback (runs if full search times out)
     ├── CANONICAL.md
@@ -294,7 +292,7 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 | Index | Size | Purpose |
 |:------|-----:|:--------|
 | `CLUSTER_INDEX.md` | 18KB | Routing map (15 clusters → 26 skills) |
-| `WORKFLOW_INDEX.md` | 6KB | Workflow registry (69 workflows) |
+| `WORKFLOW_INDEX.md` | 6KB | Workflow registry (66 workflows) |
 | `PROTOCOL_SUMMARIES.md` | 24KB | All-protocol quick-lookup |
 | `KNOWLEDGE_GRAPH.md` | 15KB | Concept relationships |
 
@@ -370,23 +368,23 @@ src/athena/mcp_server.py (FastMCP v3.x, stdio transport)
 
 ---
 
-## Metrics (17 Jun 2026)
+## Metrics (6 Jun 2026)
 
 | Metric | Count |
 |:-------|------:|
-| Protocols (active) | 402 |
-| Protocols (archived) | 34 |
-| Skills (active) | 41 (41 conditional) |
+| Protocols (active) | 399 |
+| Protocols (archived) | 32 |
+| Skills (active) | 40 (40 conditional) |
 | Cognitive Clusters | 15 |
 | Cognitive Systems | 8 |
 | Workflows | 69 (51 root + 18 _domain/) |
-| Automation Scripts | 253 |
-| Case Studies | 500 (15 domains, 7 archived) |
-| Session Logs | 1,800+ |
-| Total Memory Files | 3,797 |
+| Automation Scripts | 247 |
+| Case Studies | 492 (15 domains, 7 archived) |
+| Session Logs | 1,888 |
+| Total Memory Files | 3,658 |
 | Source Files (SDK) | 72 |
 | Test Files | 13 |
 | Documentation Files | 76 |
 | Active Indexes | 4 (63KB) |
-| CANONICAL Entries | ~400 (40 Tier 1, 156 Tier 2, 3 Tier 3) |
+| CANONICAL Entries | ~400 (29 Tier 1, 140 Tier 2, 3 Tier 3) |
 | Cap Policy | Uncapped (attention budget constraint via Protocol 530) |
