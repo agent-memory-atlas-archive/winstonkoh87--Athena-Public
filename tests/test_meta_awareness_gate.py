@@ -87,18 +87,18 @@ def test_t5_felt_fires(prompt):
 
 # ------------------------------------------------- Golden historical cases
 GOLDEN = {
-    "jeremy-ryan":     "felt like we really connected — why hasn't Jeremy texted back?",
-    "coursemate":      "I invited my coursemate to the wedding and he got very angry, he thought he was a table filler",
-    "pip":             "HR put me on a PIP but says it's for my growth — what does it mean?",
-    "nacho-invoice":   "the client's payment came in $20 short, am I missing something or just a mistake?",
-    "research_specimen_alpha":        "should I call out this coach publicly? what he did looks inappropriate",
-    "genting":         "should I book the Genting trip for the poker series?",
-    "bb-grid":         "the gold grid is printing — I feel like this edge is real, should I scale up?",
-    "tcg-bubble":      "are these ETBs worth it at $130? feels like they'll only go up",
-    "air-fryer":       "should I buy the Cornell air fryer at the promo price?",
-    "timothy-heng":    "everyone says the volcano tour is perfectly safe, obviously nothing will happen",
-    "research_specimen_beta":          "research_specimen_beta was harsh with me again — is that okay or is she just being cruel?",
-    "ika-final-round": "it's the final round with Ika — should I tell him how I actually feel?",
+    "relational-inbound":  "felt like we really connected — why hasn't he texted back?",
+    "wedding-invite":      "I invited a coursemate to the wedding and he got very angry, he thought he was a table filler",
+    "employment-pip":      "HR put me on a PIP but says it's for my growth — what does it mean?",
+    "shorted-invoice":     "the client's payment came in $20 short, am I missing something or just a mistake?",
+    "public-callout":      "should I call out this coach publicly? what he did looks inappropriate",
+    "travel-commit":       "should I book the casino trip for the poker series?",
+    "trading-hot-streak":  "the strategy is printing — I feel like this edge is real, should I scale up?",
+    "collectible-fomo":    "are these boxes worth it at $80? feels like they'll only go up",
+    "consumer-promo":      "should I buy the air fryer at the promo price?",
+    "tail-risk-denial":    "everyone says the volcano tour is perfectly safe, obviously nothing will happen",
+    "harsh-feedback":      "the reviewer was harsh with me again — is that okay or is it just cruel?",
+    "confession-timing":   "it's my last week here — should I tell her how I actually feel?",
 }
 
 
