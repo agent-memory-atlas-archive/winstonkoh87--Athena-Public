@@ -80,7 +80,7 @@ T2_OUTBOUND = [
 ]
 
 # T3 — THIRD-PARTY-VERDICT: soliciting/forming a verdict on someone else's
-# act (research_specimen_alpha class) + self-referential archetype checks.
+# act (public-callout class) + self-referential archetype checks.
 T3_VERDICT = [
     r"(is|was|isn'?t|wasn'?t) (this|that|it|he|she) (ok|okay|not okay|inappropriate|acceptable|out of line|creepy|rude|wrong|cruel)",
     r"(inappropriate|unprofessional|unacceptable), right\b",
