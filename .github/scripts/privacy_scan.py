@@ -11,6 +11,7 @@ Usage:
   Specific files:   python3 .github/scripts/privacy_scan.py file1.md file2.py
 """
 
+import os
 import re
 import subprocess
 import sys
@@ -19,6 +20,18 @@ from pathlib import Path
 # === CONFIG ===
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 BLOCKLIST_PATH = REPO_ROOT / ".github" / "privacy_blocklist.txt"
+ENV_PATH = REPO_ROOT / ".env"
+
+# Patterns supplied out-of-band rather than committed. The blocklist file is
+# public, so every name written into it is published by the very gate meant to
+# protect it. These variables (from .env locally, repo secrets in CI) let
+# name patterns live outside the tree. PRIVACY_EXTRA_PATTERNS holds one regex
+# per line.
+ENV_PATTERN_VARS = (
+    "PRIVACY_EMAIL_PATTERN",
+    "PRIVACY_PHONE_PATTERN",
+    "PRIVACY_EXTRA_PATTERNS",
+)
 
 # File extensions to scan (skip binary/image files)
 SCANNABLE_EXTENSIONS = {
@@ -63,6 +76,44 @@ def load_blocklist() -> list[re.Pattern]:
     return patterns
 
 
+def _env_values() -> dict[str, str]:
+    """Environment values, with `.env` at the repo root as a fallback source."""
+    values = {}
+
+    if ENV_PATH.exists():
+        for line in ENV_PATH.read_text(encoding="utf-8", errors="ignore").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, raw = line.partition("=")
+            values[key.strip()] = raw.strip().strip("'\"")
+
+    # A real environment variable always wins over the file.
+    values.update({k: v for k, v in os.environ.items() if k in ENV_PATTERN_VARS})
+    return values
+
+
+def load_private_patterns() -> list[re.Pattern]:
+    """Compile patterns supplied via environment rather than committed to the tree."""
+    values = _env_values()
+    patterns = []
+
+    for var in ENV_PATTERN_VARS:
+        raw = values.get(var, "").strip()
+        if not raw:
+            continue
+        for entry in raw.splitlines():
+            entry = entry.strip()
+            if not entry or entry.startswith("#"):
+                continue
+            try:
+                patterns.append(re.compile(entry, re.IGNORECASE))
+            except re.error as e:
+                print(f"⚠️  Invalid regex in {var}: '{entry}' — {e}")
+
+    return patterns
+
+
 def get_staged_files() -> list[Path]:
     """Get files staged for commit."""
     result = subprocess.run(
@@ -102,34 +153,53 @@ def should_scan(filepath: Path) -> bool:
     return filepath.exists() and filepath.is_file()
 
 
+def _display_path(filepath: Path) -> str:
+    """Repo-relative path where possible, absolute otherwise."""
+    try:
+        return str(filepath.relative_to(REPO_ROOT))
+    except ValueError:
+        return str(filepath)
+
+
 def scan_file(filepath: Path, patterns: list[re.Pattern]) -> list[dict]:
     """Scan a single file for blocklist violations."""
     violations = []
     try:
         content = filepath.read_text(encoding="utf-8", errors="ignore")
-        for line_num, line in enumerate(content.splitlines(), 1):
-            if "pds:allow" in line:  # inline allow marker for documented examples
-                continue
-            for pattern in patterns:
-                if pattern.search(line):
-                    violations.append(
-                        {
-                            "file": str(filepath.relative_to(REPO_ROOT)),
-                            "line": line_num,
-                            "pattern": pattern.pattern,
-                            "content": line.strip()[:120],
-                        }
-                    )
     except Exception as e:
         print(f"⚠️  Could not read {filepath}: {e}")
+        return violations
+
+    # Path resolution and matching stay outside the read guard: when a targeted
+    # file sat outside the repo root, relative_to() raised mid-match, the whole
+    # file was reported as unreadable, and its real violations were dropped —
+    # the scan then exited 0. A privacy gate must never fail open.
+    display = _display_path(filepath)
+
+    for line_num, line in enumerate(content.splitlines(), 1):
+        if "pds:allow" in line:  # inline allow marker for documented examples
+            continue
+        for pattern in patterns:
+            if pattern.search(line):
+                violations.append(
+                    {
+                        "file": display,
+                        "line": line_num,
+                        "pattern": pattern.pattern,
+                        "content": line.strip()[:120],
+                    }
+                )
     return violations
 
 
 def main():
-    patterns = load_blocklist()
+    file_patterns = load_blocklist()
+    private_patterns = load_private_patterns()
+    patterns = file_patterns + private_patterns
+
     if not patterns:
-        print("✅ No blocklist patterns loaded. Exiting.")
-        sys.exit(0)
+        print("🚨 No blocklist patterns loaded — the gate cannot protect anything.")
+        sys.exit(1)
 
     # Determine which files to scan
     if "--staged" in sys.argv:
@@ -146,8 +216,14 @@ def main():
     scannable = [f for f in files if should_scan(f)]
 
     print(
-        f"🔍 Privacy Scan ({mode}): {len(scannable)} files against {len(patterns)} patterns"
+        f"🔍 Privacy Scan ({mode}): {len(scannable)} files against {len(patterns)} patterns "
+        f"({len(file_patterns)} from blocklist, {len(private_patterns)} from environment)"
     )
+    if not private_patterns:
+        print(
+            "ℹ️  No environment patterns set — only the committed blocklist is enforced. "
+            f"Set {'/'.join(ENV_PATTERN_VARS)} to match names without publishing them."
+        )
     print("─" * 60)
 
     all_violations = []

@@ -25,6 +25,13 @@ jobs:
           python-version: '3.12'
 
       - name: Full-tree privacy scan
+        # Name patterns come from repo secrets so the public blocklist file
+        # never has to publish them. Unset secrets resolve to empty and the
+        # scan reports that only the committed blocklist is enforced.
+        env:
+          PRIVACY_EMAIL_PATTERN: ${{ secrets.PRIVACY_EMAIL_PATTERN }}
+          PRIVACY_PHONE_PATTERN: ${{ secrets.PRIVACY_PHONE_PATTERN }}
+          PRIVACY_EXTRA_PATTERNS: ${{ secrets.PRIVACY_EXTRA_PATTERNS }}
         run: python3 .github/scripts/privacy_scan.py --all
 
   secrets:

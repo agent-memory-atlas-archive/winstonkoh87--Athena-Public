@@ -17,9 +17,12 @@ Theng Xuan
 client_project_alpha
 
 # === PERSONAL CONTACT ===
-# Actual email and phone patterns stored in .env (not committed).
-# The privacy_scan.py reads these from environment variables.
-# Format: PRIVACY_EMAIL_PATTERN and PRIVACY_PHONE_PATTERN in .env
+# This file is public: every name written here is published by the gate meant
+# to protect it. Patterns that must not be published belong in the environment
+# instead — privacy_scan.py reads PRIVACY_EMAIL_PATTERN, PRIVACY_PHONE_PATTERN
+# and PRIVACY_EXTRA_PATTERNS (one regex per line) from .env locally and from
+# repo secrets in CI, and reports how many came from each source.
+# The generic patterns below stay here because they name no one.
 [A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}
 \b(\+?65[\s-]?)?[89]\d{3}[\s-]?\d{4}\b
 
