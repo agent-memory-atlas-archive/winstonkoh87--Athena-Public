@@ -98,6 +98,16 @@ EXEMPTIONS: list[tuple[str, str, str]] = [
     ("docs/SPEC_SHEET.md", r"^\s*version:", "example config block"),
 ]
 
+# ── Discovery debt ratchet ───────────────────────────────────────────────────
+# The discovery sweep finds version claims outside every declared surface. In a
+# corpus this size most are historical prose that will never be current, and
+# declaring or exempting all of them in one pass would mean writing exemptions
+# so broad they stop catching anything — the failure this script exists to fix.
+#
+# So the count is ratcheted instead: the check fails when it goes UP. This is a
+# debt figure, not a target. It must only ever move down.
+UNDECLARED_BASELINE = 0
+
 TEXT_SUFFIXES = {".md", ".py", ".toml", ".json", ".yaml", ".yml", ".txt", ".cfg", ".sh"}
 
 
@@ -218,16 +228,28 @@ def sync(check: bool) -> int:
     print(f"Declared surfaces ({len(SURFACES)}):")
     in_sync, drifted = check_surfaces(version, write=not check)
 
-    print(f"\nDiscovery sweep across tracked text files:")
+    print("\nDiscovery sweep across tracked text files:")
     undeclared = discover_undeclared(version)
+    regression = len(undeclared) - UNDECLARED_BASELINE
     if undeclared:
-        print(f"  {len(undeclared)} undeclared version claim(s):")
-        for entry in undeclared:
+        shown = undeclared[:15]
+        print(
+            f"  {len(undeclared)} undeclared version claim(s) "
+            f"(baseline {UNDECLARED_BASELINE}, {regression:+d})"
+        )
+        for entry in shown:
             print(f"    ? {entry}")
+        if len(undeclared) > len(shown):
+            print(f"    ... and {len(undeclared) - len(shown)} more (not truncated silently)")
+        if regression <= 0 and UNDECLARED_BASELINE:
+            print(
+                f"  ratchet holding. Lower UNDECLARED_BASELINE to {len(undeclared)} "
+                "when you commit this."
+            )
     else:
         print("  no undeclared version claims")
 
-    if check and (drifted or undeclared):
+    if check and (drifted or regression > 0):
         print("", file=sys.stderr)
         if drifted:
             print(
@@ -240,20 +262,23 @@ def sync(check: bool) -> int:
                 "Run `python scripts/sync_version.py` and commit the result.",
                 file=sys.stderr,
             )
-        if undeclared:
+        if regression > 0:
             print(
-                f"\n{len(undeclared)} version claim(s) live outside any declared "
-                "surface. Add each to SURFACES so it is kept in sync, or to "
-                "EXEMPTIONS with a reason.",
+                f"\n{regression} NEW version claim(s) live outside any declared "
+                f"surface ({len(undeclared)} total vs baseline {UNDECLARED_BASELINE}). "
+                "Add each to SURFACES so it is kept in sync, or to EXEMPTIONS "
+                "with a reason.",
                 file=sys.stderr,
             )
         return 1
 
     if check:
-        print(
-            f"\nConsistent at v{version}: {len(in_sync)} declared surface(s) checked, "
-            f"no undeclared claims found."
+        tail = (
+            "no undeclared claims found"
+            if not undeclared
+            else f"{len(undeclared)} undeclared claim(s) carried as debt (baseline {UNDECLARED_BASELINE})"
         )
+        print(f"\nConsistent at v{version}: {len(in_sync)} declared surface(s) checked, {tail}.")
     else:
         print(f"\nVersion sync complete at v{version}.")
     return 0
