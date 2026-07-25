@@ -86,30 +86,63 @@ def test_t5_felt_fires(prompt):
 
 
 # ------------------------------------------------- Golden historical cases
+#
+# Known-answer reads: each case carries the exact set of classes it must
+# produce, not merely "something fired".
+#
+# The previous form asserted `len(fired(prompt)) > 0`, which made the suite
+# unable to detect a change in *which* class fires. 755486a rewrote every one
+# of these prompts to sanitize names — one case changed scenario entirely, from
+# a tournament final round to a last week at a job — and the suite stayed green
+# because it never checked a classification. A calibration suite that cannot
+# detect recalibration is decoration.
+#
+# These are golden files: when the gate legitimately changes a classification,
+# update the expected set here in the same commit, deliberately.
 GOLDEN = {
-    "relational-inbound":  "felt like we really connected — why hasn't he texted back?",
-    "wedding-invite":      "I invited a coursemate to the wedding and he got very angry, he thought he was a table filler",
-    "employment-pip":      "HR put me on a PIP but says it's for my growth — what does it mean?",
-    "shorted-invoice":     "the client's payment came in $20 short, am I missing something or just a mistake?",
-    "public-callout":      "should I call out this coach publicly? what he did looks inappropriate",
-    "travel-commit":       "should I book the casino trip for the poker series?",
-    "trading-hot-streak":  "the strategy is printing — I feel like this edge is real, should I scale up?",
-    "collectible-fomo":    "are these boxes worth it at $80? feels like they'll only go up",
-    "consumer-promo":      "should I buy the air fryer at the promo price?",
-    "tail-risk-denial":    "everyone says the volcano tour is perfectly safe, obviously nothing will happen",
-    "harsh-feedback":      "the reviewer was harsh with me again — is that okay or is it just cruel?",
-    "confession-timing":   "it's my last week here — should I tell her how I actually feel?",
+    "relational-inbound":  ("felt like we really connected — why hasn't he texted back?",
+                            {"T1-INBOUND", "T5-FELT"}),
+    "wedding-invite":      ("I invited a coursemate to the wedding and he got very angry, he thought he was a table filler",
+                            {"T2-OUTBOUND"}),
+    "employment-pip":      ("HR put me on a PIP but says it's for my growth — what does it mean?",
+                            {"T1-INBOUND"}),
+    "shorted-invoice":     ("the client's payment came in $20 short, am I missing something or just a mistake?",
+                            {"T1-INBOUND"}),
+    "public-callout":      ("should I call out this coach publicly? what he did looks inappropriate",
+                            {"T2-OUTBOUND"}),
+    "travel-commit":       ("should I book the casino trip for the poker series?",
+                            {"T4-RESOURCE"}),
+    "trading-hot-streak":  ("the strategy is printing — I feel like this edge is real, should I scale up?",
+                            {"T4-RESOURCE", "T5-FELT"}),
+    "collectible-fomo":    ("are these boxes worth it at $80? feels like they'll only go up",
+                            {"T4-RESOURCE"}),
+    "consumer-promo":      ("should I buy the air fryer at the promo price?",
+                            {"T4-RESOURCE"}),
+    "tail-risk-denial":    ("everyone says the volcano tour is perfectly safe, obviously nothing will happen",
+                            {"T5-FELT"}),
+    "harsh-feedback":      ("the reviewer was harsh with me again — is that okay or is it just cruel?",
+                            {"T3-VERDICT"}),
+    "confession-timing":   ("it's my last week here — should I tell her how I actually feel?",
+                            {"T2-OUTBOUND"}),
 }
 
 
-@pytest.mark.parametrize("case,prompt", GOLDEN.items())
-def test_golden_cases_fire(case, prompt):
-    assert len(fired(prompt)) > 0, f"golden case '{case}' did not fire"
+@pytest.mark.parametrize("case,prompt,expected", [(k, p, e) for k, (p, e) in GOLDEN.items()])
+def test_golden_cases_classify(case, prompt, expected):
+    actual = set(fired(prompt))
+    assert actual == expected, (
+        f"golden case '{case}' now classifies as {sorted(actual) or '[]'}, "
+        f"expected {sorted(expected)}. If the gate changed on purpose, update "
+        f"GOLDEN in this commit."
+    )
 
 
-def test_golden_pass_rate():
-    hits = sum(1 for p in GOLDEN.values() if fired(p))
-    assert hits >= 10, f"golden fire rate {hits}/12 below plan threshold"
+def test_golden_coverage_spans_all_classes():
+    """The golden set must exercise every trigger class, or it is not calibration."""
+    covered = set().union(*(expected for _, expected in GOLDEN.values()))
+    assert covered == {"T1-INBOUND", "T2-OUTBOUND", "T3-VERDICT", "T4-RESOURCE", "T5-FELT"}, (
+        f"golden set only exercises {sorted(covered)}"
+    )
 
 
 # --------------------------------------------------------- Negative controls

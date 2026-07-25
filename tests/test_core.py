@@ -27,16 +27,31 @@ class TestConfigModule:
 
         assert AGENT_DIR.exists(), ".agent directory not found"
 
-    def test_sessions_dir_exists(self):
-        """SESSIONS_DIR should exist or be skipped gracefully in public distributions."""
-        import pytest
-        from athena.core.config import SESSIONS_DIR
+    def test_sessions_dir_matches_distribution(self):
+        """Session logs must be present privately and absent publicly.
 
-        if not SESSIONS_DIR.exists():
-            pytest.skip("Session logs directory not present in this distribution")
-        md_files = list(SESSIONS_DIR.glob("*.md"))
-        if not md_files:
-            pytest.skip("No session logs present in this distribution")
+        This was a hard assertion, then became two unconditional pytest.skip
+        calls — which meant it could no longer fail anywhere, including in the
+        private workspace where a broken SESSIONS_DIR is a real defect. Both
+        branches now assert.
+        """
+        from athena.core.config import PROJECT_ROOT, SESSIONS_DIR
+
+        # The privacy blocklist ships only with the public distribution — it
+        # exists to guard the public boundary, so the private workspace has no
+        # copy. That makes it a reliable distribution marker.
+        is_public = (PROJECT_ROOT / ".github" / "privacy_blocklist.txt").exists()
+        md_files = list(SESSIONS_DIR.glob("*.md")) if SESSIONS_DIR.exists() else []
+
+        if is_public:
+            assert not md_files, (
+                f"public distribution is shipping {len(md_files)} session log(s) "
+                f"from {SESSIONS_DIR} — these are private by policy"
+            )
+            return
+
+        assert SESSIONS_DIR.exists(), "Session logs directory not found"
+        assert md_files, "No session logs found"
 
     def test_core_dirs_mapping(self):
         """CORE_DIRS should have valid path mappings."""
