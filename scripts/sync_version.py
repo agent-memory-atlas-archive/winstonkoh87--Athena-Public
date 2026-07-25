@@ -1,30 +1,104 @@
 #!/usr/bin/env python3
 """
 Single source of truth version synchronizer.
-Syncs version from pyproject.toml -> src/athena/__init__.py -> docs/ARCHITECTURE.md.
 
 Two modes:
-  (default)  rewrite the downstream files to match pyproject.toml
+  (default)  rewrite every declared surface to match pyproject.toml
   --check    report drift and exit 1 without writing anything (for CI)
 
-The --check mode exists because running the writer in CI is not a check: it
-rewrote the files inside the runner, discarded them with the workspace, and
-exited 0 whatever the state of the commit. Version drift could never fail the
-build. CI now calls --check.
+--check exists because running the writer in CI is not a check: it rewrote the
+files inside the runner, discarded them with the workspace, and exited 0
+whatever the state of the commit. Version drift could never fail the build.
+
+The narrower failure that replaced it: --check covered three files
+(pyproject.toml, src/athena/__init__.py, docs/ARCHITECTURE.md), printed "All
+version references consistent", and exited 0 — while the same tree carried
+9.9.6 in CAPS.json, 9.9.7 across four docs and eight wiki pages, and 9.9.8 in
+AGENTS.md and README.md. A guard scoped to the files that already agree is a
+guard that cannot fail, wearing a green check.
+
+So this script does two things, and the second is the one that matters:
+
+  1. DECLARED SURFACES — every place the repo states its own version, checked
+     against the SSOT.
+  2. DISCOVERY — a sweep of every tracked text file for version-shaped strings.
+     Anything not covered by a declared surface or an explicit exemption fails
+     the check. A new version claim cannot appear silently; it must be declared
+     as a surface or exempted with a stated reason.
+
+Adding a version stamp somewhere new now costs one line in SURFACES. That is
+the point: the cost of a silent surface is a wrong number shipped to users.
 """
 
 import argparse
+import fnmatch
 import re
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PYPROJECT = ROOT / "pyproject.toml"
-INIT_FILE = ROOT / "src/athena/__init__.py"
 
-# Both copies carry a version heading and both drifted independently of
-# pyproject.toml. Whichever is absent in a given distribution is skipped.
-ARCH_FILES = (ROOT / "docs" / "ARCHITECTURE.md", ROOT / "ARCHITECTURE.md")
+# ── Declared surfaces ────────────────────────────────────────────────────────
+# (relative path, regex with exactly one capture group around the version,
+#  human label). Multiple surfaces may share a path.
+SURFACES: list[tuple[str, str, str]] = [
+    ("src/athena/__init__.py", r'__version__\s*=\s*"([^"]+)"', "SDK package version"),
+    # Both copies carry a version heading and both drifted independently.
+    ("docs/ARCHITECTURE.md", r"(?:\*\*Version\*\*|Version):\s*v([0-9][0-9A-Za-z.\-]*)", "architecture heading"),
+    ("ARCHITECTURE.md", r"(?:\*\*Version\*\*|Version):\s*v([0-9][0-9A-Za-z.\-]*)", "architecture heading (root copy)"),
+    ("docs/ENGINEERING_DEPTH.md", r"\*\*Version\*\*:\s*v([0-9][0-9A-Za-z.\-]*)", "engineering-depth heading"),
+    ("docs/KNOWLEDGE_GRAPH.md", r"\*\*Version\*\*:\s*v([0-9][0-9A-Za-z.\-]*)", "knowledge-graph heading"),
+    ("docs/DEMO.md", r"ATHENA BOOT SEQUENCE v([0-9][0-9A-Za-z.\-]*)", "demo boot banner"),
+    ("docs/REQUIREMENTS.md", r"\*\*Version\*\*:\s*v([0-9][0-9A-Za-z.\-]*)", "requirements heading"),
+    ("docs/SPEC_SHEET.md", r"\*\*Version\*\*:\s*v([0-9][0-9A-Za-z.\-]*)", "spec-sheet heading"),
+    ("AGENTS.md", r"\*\*System\*\*:\s*v([0-9][0-9A-Za-z.\-]*)", "agent-context system version"),
+    ("CLAUDE.md", r"\*\*System\*\*:\s*v([0-9][0-9A-Za-z.\-]*)", "agent-context system version"),
+    ("athena.yaml", r"^version:\s*([0-9][0-9A-Za-z.\-]*)", "runtime config version"),
+    (".agent/config/CAPS.json", r'"public_release":\s*"([^"]+)"', "CAPS public_release"),
+    ("README.md", r"img\.shields\.io/badge/v([0-9][0-9A-Za-z.\-]*)-", "README version badge"),
+    ("README.md", r"\|\s*\*\*SDK\*\*\s*\|[^|]*\(v([0-9][0-9A-Za-z.\-]*)\)", "README SDK row"),
+]
+
+# ── Exemptions ───────────────────────────────────────────────────────────────
+# Version strings that legitimately are NOT the current version. Every entry
+# needs a reason: an exemption without a stated reason is just a narrower guard
+# wearing different clothes.
+EXEMPTIONS: list[tuple[str, str, str]] = [
+    # Release history — every past version by definition.
+    ("docs/CHANGELOG.md", r".", "release history"),
+    ("CHANGELOG.md", r".", "release history"),
+    ("community/CHANGELOG.md", r".", "community release history"),
+    ("README.md", r"^\s*-\s*\*\*v[0-9]", "README release-history entries"),
+    ("README.md", r"\[v[0-9][0-9A-Za-z.\-]*\s+notes\]", "links to past release notes"),
+    ("docs/TECH_DEBT.md", r".", "debt ledger discusses versions, never declares one"),
+    ("docs/marketing/*", r".", "dated marketing artifacts, pinned to their release"),
+
+    # "Landed in version X" markers — pinned to that version on purpose.
+    ("*", r"\(v[0-9][0-9A-Za-z.\-]*\+?\)", "introduced-in markers, pinned by design"),
+    ("*", r"v[0-9][0-9A-Za-z.\-]*\+", "'version X and later' markers"),
+    ("*", r"v[0-9][0-9A-Za-z.\-]*\s*(?:→|->)\s*v?[0-9]", "version-transition prose"),
+
+    # Per-document stamps rather than the system version.
+    ("Athena-Public.wiki/*", r".", "vendored wiki pages carry per-page stamps"),
+    (".context/*", r"Last Updated", "per-document last-updated stamps"),
+
+    # Not this project's version at all.
+    ("examples/*", r".", "sample and scaffold code carrying its own versions"),
+    ("src/athena/cli/init.py", r".", "scaffolding templates written into new projects"),
+    (".github/ISSUE_TEMPLATE/*", r"e\.g\.", "placeholder examples in issue forms"),
+    ("tests/*", r".", "test fixtures and expected-value literals"),
+
+    # Prose that talks *about* version numbers.
+    ("scripts/bump_version.sh", r"e\.g\.", "comment describing the version format"),
+    ("scripts/sync_version.py", r".", "this file's docstring describes the drift it fixes"),
+    ("docs/BEST_PRACTICES.md", r"git tag", "example git tag command"),
+    ("docs/DISCIPLINE.md", r"says v", "illustration of the drift failure mode"),
+    ("docs/SPEC_SHEET.md", r"^\s*version:", "example config block"),
+]
+
+TEXT_SUFFIXES = {".md", ".py", ".toml", ".json", ".yaml", ".yml", ".txt", ".cfg", ".sh"}
 
 
 def read_ssot_version() -> str | None:
@@ -41,28 +115,98 @@ def read_ssot_version() -> str | None:
     return match.group(1)
 
 
-def rendered(path: Path, version: str) -> str | None:
-    """Return `path`'s content with the version applied, or None if absent."""
-    if not path.exists():
-        return None
+def _swap_capture(match: re.Match, version: str) -> str:
+    """Rebuild a match with capture group 1 replaced — works for any surface."""
+    whole, base = match.group(0), match.start(0)
+    return whole[: match.start(1) - base] + version + whole[match.end(1) - base :]
 
-    content = path.read_text(encoding="utf-8")
 
-    if path == INIT_FILE:
-        return re.sub(
-            r'__version__\s*=\s*"[^"]+"', f'__version__ = "{version}"', content
-        )
-    if path in ARCH_FILES:
-        # The heading is `> **Version**: v9.9.1-gto`. The previous pattern was
-        # `Version:\s*v[0-9.]+`, which cannot match across the bold markers, so
-        # this file was never actually synced — while the script still printed
-        # "Updated ...". Match both spellings and absorb any `-suffix`.
-        return re.sub(
-            r"(\*\*Version\*\*|Version):\s*v[0-9][0-9A-Za-z.\-]*",
-            lambda m: f"{m.group(1)}: v{version}",
-            content,
-        )
-    return content
+def _tracked_text_files() -> list[Path]:
+    result = subprocess.run(
+        ["git", "ls-files"], capture_output=True, text=True, cwd=ROOT
+    )
+    return [
+        ROOT / f
+        for f in result.stdout.strip().splitlines()
+        if f and Path(f).suffix.lower() in TEXT_SUFFIXES
+    ]
+
+
+def _is_exempt(rel: str, line: str) -> str | None:
+    """Reason this version string is exempt, or None."""
+    for glob, line_pattern, reason in EXEMPTIONS:
+        if fnmatch.fnmatch(rel, glob) and re.search(line_pattern, line):
+            return reason
+    return None
+
+
+def check_surfaces(version: str, write: bool) -> tuple[list[str], list[str]]:
+    """Verify (or update) every declared surface. Returns (in_sync, drifted)."""
+    in_sync, drifted = [], []
+
+    for rel, pattern, label in SURFACES:
+        path = ROOT / rel
+        if not path.exists():
+            print(f"  skipped (not present): {rel} — {label}")
+            continue
+
+        content = path.read_text(encoding="utf-8")
+        matches = list(re.finditer(pattern, content, re.M))
+        if not matches:
+            drifted.append(f"{rel} ({label}): declared surface matched nothing")
+            print(f"  MISSING: {rel} — {label} pattern matched nothing")
+            continue
+
+        found = {m.group(1) for m in matches}
+        if found == {version}:
+            in_sync.append(f"{rel} ({label})")
+            print(f"  in sync: {rel} — {label}")
+            continue
+
+        drifted.append(f"{rel} ({label}): {', '.join(sorted(found))}")
+        if write:
+            path.write_text(
+                re.sub(pattern, lambda m: _swap_capture(m, version), content, flags=re.M),
+                encoding="utf-8",
+            )
+            print(f"  updated: {rel} — {label} -> v{version}")
+        else:
+            print(f"  DRIFT: {rel} — {label} declares {', '.join(sorted(found))}")
+
+    return in_sync, drifted
+
+
+def discover_undeclared(version: str) -> list[str]:
+    """Find version-shaped strings not covered by a surface or an exemption."""
+    major_minor = ".".join(version.split(".")[:2])
+    # `v` prefixed anything, or a bare version sharing this release's major.minor.
+    version_shape = re.compile(
+        rf"\bv\d+\.\d+\.\d+[A-Za-z0-9.\-]*|\b{re.escape(major_minor)}\.\d+[A-Za-z0-9.\-]*"
+    )
+    surface_patterns: dict[str, list[re.Pattern]] = {}
+    for rel, pattern, _ in SURFACES:
+        surface_patterns.setdefault(rel, []).append(re.compile(pattern, re.M))
+
+    undeclared = []
+    for path in _tracked_text_files():
+        rel = str(path.relative_to(ROOT))
+        try:
+            content = path.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            continue
+
+        for line_num, line in enumerate(content.splitlines(), 1):
+            if not version_shape.search(line):
+                continue
+            if any(p.search(line) for p in surface_patterns.get(rel, [])):
+                continue
+            if rel == "pyproject.toml" and re.search(r'^version\s*=', line):
+                continue
+            if _is_exempt(rel, line):
+                continue
+            undeclared.append(f"{rel}:{line_num}: {line.strip()[:100]}")
+
+    return undeclared
 
 
 def sync(check: bool) -> int:
@@ -70,38 +214,48 @@ def sync(check: bool) -> int:
     if version is None:
         return 1
 
-    print(f"SSOT version from pyproject.toml: {version}")
+    print(f"SSOT version from pyproject.toml: {version}\n")
+    print(f"Declared surfaces ({len(SURFACES)}):")
+    in_sync, drifted = check_surfaces(version, write=not check)
 
-    drifted: list[Path] = []
+    print(f"\nDiscovery sweep across tracked text files:")
+    undeclared = discover_undeclared(version)
+    if undeclared:
+        print(f"  {len(undeclared)} undeclared version claim(s):")
+        for entry in undeclared:
+            print(f"    ? {entry}")
+    else:
+        print("  no undeclared version claims")
 
-    for path in (INIT_FILE, *ARCH_FILES):
-        updated = rendered(path, version)
-        if updated is None:
-            print(f"  skipped (not present): {path.relative_to(ROOT)}")
-            continue
-
-        rel = path.relative_to(ROOT)
-        if updated == path.read_text(encoding="utf-8"):
-            print(f"  in sync: {rel}")
-            continue
-
-        drifted.append(path)
-        if check:
-            print(f"  DRIFT: {rel} does not declare v{version}")
-        else:
-            path.write_text(updated, encoding="utf-8")
-            print(f"  updated: {rel} -> v{version}")
-
-    if check and drifted:
-        names = ", ".join(str(p.relative_to(ROOT)) for p in drifted)
-        print(
-            f"\nVersion drift in {len(drifted)} file(s): {names}\n"
-            f"Run `python scripts/sync_version.py` and commit the result.",
-            file=sys.stderr,
-        )
+    if check and (drifted or undeclared):
+        print("", file=sys.stderr)
+        if drifted:
+            print(
+                f"Version drift in {len(drifted)} declared surface(s):",
+                file=sys.stderr,
+            )
+            for entry in drifted:
+                print(f"  {entry}", file=sys.stderr)
+            print(
+                "Run `python scripts/sync_version.py` and commit the result.",
+                file=sys.stderr,
+            )
+        if undeclared:
+            print(
+                f"\n{len(undeclared)} version claim(s) live outside any declared "
+                "surface. Add each to SURFACES so it is kept in sync, or to "
+                "EXEMPTIONS with a reason.",
+                file=sys.stderr,
+            )
         return 1
 
-    print("\nAll version references consistent." if check else "\nVersion sync complete.")
+    if check:
+        print(
+            f"\nConsistent at v{version}: {len(in_sync)} declared surface(s) checked, "
+            f"no undeclared claims found."
+        )
+    else:
+        print(f"\nVersion sync complete at v{version}.")
     return 0
 
 

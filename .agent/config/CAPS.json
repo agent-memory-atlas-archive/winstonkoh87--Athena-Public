@@ -2,7 +2,7 @@
   "_comment": "Canonical inventory counts for Athena-Public. Single source of truth for README claims, docs, and audit asserts. If a number in any doc diverges from this file, CAPS wins. Regenerate via the recount_rules below — do not edit counts by hand. Headline claims in README use verifiable FLOORS (e.g. '200+ protocols'), not exact numbers that drift.",
   "_generated": "2026-07-05",
   "version": {
-    "public_release": "9.9.6"
+    "public_release": "9.9.8"
   },
   "protocols": {
     "examples_starter_kit": 187,

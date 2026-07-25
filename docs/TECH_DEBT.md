@@ -165,6 +165,28 @@ last_updated: 2026-07-22
 
 ## Open Items (Lower Priority)
 
+### P2: PyPI package trails the repo (NEW — Jul 25, 2026)
+
+**Context**: `scripts/sync_version.py --check` now covers every version surface
+*inside* the repo, and they all read v9.9.8. The published artifact does not.
+
+- PyPI `athena-agent` latest release: **9.2.6**
+- Repo SSOT (`pyproject.toml`): **9.9.8**
+- The PyPI listing's `project_urls` point at this repository, so anyone who
+  finds the package installs something roughly seven minor versions behind
+  what the docs here describe.
+
+Not caught by the version guard by design — it checks the tree, and the tree
+is now self-consistent. This is a *publish* gap, not a drift gap.
+
+**Decision required** (owner-only — needs the PyPI token):
+
+1. Publish 9.9.8 to PyPI, or
+2. Yank/mark the PyPI package as unmaintained and point installs at the repo.
+
+Until one of those happens, do not add `pip install athena-agent` to any
+install instructions — it would hand users the 9.2.6 build.
+
 ### P2: README Post-Clone CTA (NEW — Feb 02, 2026)
 
 **Context**: GitHub Traffic Analysis (14-day window)
