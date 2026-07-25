@@ -1,28 +1,29 @@
 # Privacy Blocklist — Athena-Public
-# Single source of truth for patterns that must NEVER appear in the public repo.
 # Used by: pre-commit hook, privacy_scan.py, bilateral sync
 #
 # Format: one regex pattern per line. Lines starting with # are comments.
 # Case-insensitive matching is applied automatically.
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# THIS FILE IS PUBLIC. Anything written here is published by the gate meant to
+# protect it — and a blocklist is worse than a leak, because it is an *index*
+# of what is being hidden. It tells a reader which names and which topics to go
+# looking for elsewhere.
+#
+# So this file holds STRUCTURAL patterns only: format matchers that describe a
+# shape and name nobody — email, phone, credential formats, local paths.
+#
+# Anything containing a literal word — a person, a client, a private folder, a
+# topic — belongs in PRIVACY_EXTRA_PATTERNS instead: `.env` locally, repo
+# secrets in CI. The source of truth for that list lives in the private
+# workspace at `.agent/config/privacy_patterns.txt` and is pushed to the repo
+# secret by `scripts/sync_privacy_secret.py`.
+#
+# This is enforced, not requested: privacy_scan.py audits this file on every
+# run and exits 1 if a literal word appears here. See audit_committed_blocklist().
+# ─────────────────────────────────────────────────────────────────────────────
 
-# === PERSONAL NAMES ===
-research_entity_gamma
-research_entity_gamma
-Jun Kai
-research_specimen_delta
-Rui Yi
-Theng Xuan
-
-# === CLIENT IDENTIFIERS ===
-client_project_alpha
-
-# === PERSONAL CONTACT ===
-# This file is public: every name written here is published by the gate meant
-# to protect it. Patterns that must not be published belong in the environment
-# instead — privacy_scan.py reads PRIVACY_EMAIL_PATTERN, PRIVACY_PHONE_PATTERN
-# and PRIVACY_EXTRA_PATTERNS (one regex per line) from .env locally and from
-# repo secrets in CI, and reports how many came from each source.
-# The generic patterns below stay here because they name no one.
+# === PERSONAL CONTACT (format matchers — name no one) ===
 [A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}
 \b(\+?65[\s-]?)?[89]\d{3}[\s-]?\d{4}\b
 
@@ -30,26 +31,6 @@ client_project_alpha
 file:///Users/winstonkoh
 /Users/winstonkoh/Desktop
 /Users/winstonkoh/Project Athena
-
-# === PRIVATE PSYCHOLOGY ===
-limerence
-PEF Ruin
-Psychology_L1L5
-L1-L5.*trauma
-reparenting
-
-# === SEXUAL / EXPLICIT ===
-\bseduction\b
-\bvirgin\b
-\bthreesome\b
-\bescort\b
-\brape\b
-\bPimp/Madam\b
-sexual economics
-
-# === PRIVATE DOMAINS ===
-Playbook_Seduction
-escalation_ladder_framework
 
 # === SECRETS / CREDENTIALS ===
 # Value-format patterns — match actual secret material, not documentation
@@ -63,10 +44,3 @@ AIza[0-9A-Za-z_\-]{30,}
 ghp_[A-Za-z0-9]{36}
 -----BEGIN [A-Z ]*PRIVATE KEY-----
 (SERVICE_ROLE|API_KEY|SECRET_KEY|ACCESS_TOKEN|SERVICE_KEY)[A-Z_]*\s*[=:]\s*['"]?[A-Za-z0-9_\-\.]{16,}
-
-# === PERSONAL NAME VARIANTS (added 2026-07-23) ===
-Jun[\s-]?Kai
-
-# === PRIVATE WORKSPACE FOLDERS (added 2026-07-23) ===
-gem_knowledge_base
-Reflection Essay

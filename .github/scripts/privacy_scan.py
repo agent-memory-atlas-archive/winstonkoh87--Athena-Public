@@ -57,6 +57,68 @@ SKIP_DIRS = {".git", "node_modules", "__pycache__", ".venv", "dist"}
 # Files to always skip (e.g., the blocklist itself — it contains the patterns by definition)
 SKIP_FILES = {".github/privacy_blocklist.txt"}
 
+# ── Blocklist publicity audit ────────────────────────────────────────────────
+# The blocklist cannot be pattern-matched against itself (every pattern would
+# match its own definition), so it is in SKIP_FILES. That exclusion is what let
+# six real names, a client identifier, a private-topic list and two private
+# folder names sit in a public file, unscanned, from 2026-06 to 2026-07-25.
+#
+# The fix is not to scan it — it is to constrain what may live in it. A
+# committed pattern is safe to publish only if it describes a *shape*. The
+# moment it contains a literal word, it discloses the thing it protects.
+#
+# So: strip the regex machinery from each committed pattern and look at the
+# literal residue. Any alphabetic run of 3+ characters that is not a known
+# generic technical token is a disclosure — move it to PRIVACY_EXTRA_PATTERNS.
+
+# Literal fragments that legitimately appear inside credential-format matchers
+# and path prefixes. These name no person, client, project, or topic.
+PUBLIC_SAFE_TOKENS = {
+    # credential value prefixes
+    "eyj", "akia", "aiza", "ghp",
+    # PEM armour
+    "begin", "end", "private", "public", "key", "rsa", "openssh", "certificate",
+    # credential variable names (matched as documentation-vs-value discriminators)
+    "service_role", "api_key", "secret_key", "access_token", "service_key",
+    # local path prefixes — the GitHub handle is the repo owner's, published by
+    # the repo itself; the paths carry no third-party information
+    "users", "winstonkoh", "desktop", "project", "athena", "file",
+}
+
+_REGEX_NOISE = (
+    r"\[[^\]]*\]",              # character classes
+    r"\{\d+(?:,\d*)?\}",        # counted quantifiers
+    r"\\[bBdDsSwWAZ]",          # class escapes
+    r"\\.",                      # escaped literals
+)
+
+
+def _literal_residue(pattern: str) -> list[str]:
+    """Alphabetic runs left over once regex machinery is stripped from a pattern."""
+    stripped = pattern
+    for noise in _REGEX_NOISE:
+        stripped = re.sub(noise, " ", stripped)
+    stripped = re.sub(r"[()|?*+^$./\\-]", " ", stripped)
+    # Edge underscores are regex-adjacent punctuation (`ghp_`), not part of the
+    # word; internal ones are (`service_role`).
+    return [w.strip("_") for w in re.findall(r"[A-Za-z_]{3,}", stripped) if w.strip("_")]
+
+
+def audit_committed_blocklist() -> list[dict]:
+    """Flag committed patterns that publish a literal word instead of a shape."""
+    if not BLOCKLIST_PATH.exists():
+        return []
+
+    disclosures = []
+    for line_num, raw in enumerate(BLOCKLIST_PATH.read_text().splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        leaked = [w for w in _literal_residue(line) if w.lower() not in PUBLIC_SAFE_TOKENS]
+        if leaked:
+            disclosures.append({"line": line_num, "pattern": line, "tokens": leaked})
+    return disclosures
+
 
 def load_blocklist() -> list[re.Pattern]:
     """Load regex patterns from the blocklist file."""
@@ -193,6 +255,28 @@ def scan_file(filepath: Path, patterns: list[re.Pattern]) -> list[dict]:
 
 
 def main():
+    # The blocklist is excluded from the scan, so it is audited instead. This
+    # runs before anything else: a gate whose own config leaks has nothing to
+    # say about the rest of the tree.
+    disclosures = audit_committed_blocklist()
+    if disclosures:
+        print(
+            f"\n🚨 BLOCKED — {len(disclosures)} pattern(s) in the committed blocklist "
+            "publish the thing they protect:\n"
+        )
+        for d in disclosures:
+            print(f"  ❌ .github/privacy_blocklist.txt:{d['line']}")
+            print(f"     Pattern: {d['pattern']}")
+            print(f"     Literal: {', '.join(d['tokens'])}")
+            print()
+        print("═" * 60)
+        print("   This file is public. Patterns containing a literal word belong in")
+        print("   PRIVACY_EXTRA_PATTERNS (.env locally, repo secret in CI), sourced")
+        print("   from the private workspace at .agent/config/privacy_patterns.txt.")
+        print("   Only shape-describing matchers may be committed here.")
+        print("═" * 60)
+        sys.exit(1)
+
     file_patterns = load_blocklist()
     private_patterns = load_private_patterns()
     patterns = file_patterns + private_patterns
