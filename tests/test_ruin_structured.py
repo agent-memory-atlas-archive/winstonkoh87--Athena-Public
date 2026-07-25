@@ -3,7 +3,9 @@ Tests for StructuredRuinCheck (src/athena/core/ruin_structured.py).
 """
 
 from pathlib import Path
+
 from athena.core.ruin_structured import StructuredRuinCheck
+
 
 def test_safe_commands():
     checker = StructuredRuinCheck(Path("."))

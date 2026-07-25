@@ -32,8 +32,13 @@ jobs:
           pip install -e ".[dev]"
           pip install mypy pip-audit
 
+      # --exit-zero was removed on 2026-07-25. With it, ruff reported findings
+      # as annotations and then exited 0 whatever it found — 48 errors had
+      # accumulated behind a green check, including a duplicate MCP tool
+      # definition that silently dropped a permission gate. A lint step that
+      # cannot fail is not a lint step.
       - name: Lint (ruff)
-        run: ruff check src/ scripts/ tests/ --output-format=github --exit-zero
+        run: ruff check src/ scripts/ tests/ --output-format=github
 
       - name: Type check (mypy)
         run: mypy src/ --ignore-missing-imports --no-error-summary || true

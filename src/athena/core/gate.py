@@ -5,31 +5,33 @@ Provides unified governance interception across IDEs (Claude Code, AG/Antigravit
 
 import json
 from pathlib import Path
-from typing import Optional, Dict, Any, Tuple, List
-from athena.core.gate_meta import classify, REMINDER_TEMPLATE
+from typing import Any
+
+from athena.core.gate_meta import REMINDER_TEMPLATE, classify
 from athena.core.ruin_structured import StructuredRuinCheck
+
 
 class AgentGate:
     """
     Universal AgentGate.
     Intercepts prompts and tool execution out-of-band or via MCP server.
     """
-    def __init__(self, workspace_root: Optional[Path] = None):
+    def __init__(self, workspace_root: Path | None = None):
         self.workspace_root = (workspace_root or Path.cwd()).resolve()
         self.config_path = self.workspace_root / ".agent/config/gate_config.json"
         self.config = self._load_config()
         self.ruin_checker = StructuredRuinCheck(self.workspace_root)
 
-    def _load_config(self) -> Dict[str, Any]:
+    def _load_config(self) -> dict[str, Any]:
         if self.config_path.exists():
             try:
-                with open(self.config_path, "r", encoding="utf-8") as f:
+                with open(self.config_path, encoding="utf-8") as f:
                     return json.load(f)
             except Exception:
                 pass
         return {"universal_gate_enabled": True}
 
-    def intercept_prompt(self, prompt: str) -> Optional[str]:
+    def intercept_prompt(self, prompt: str) -> str | None:
         """
         Classifies prompt and returns injected system reminder string if triggered, else None.
         Replaces IDE-specific prompt hooks.
@@ -42,7 +44,7 @@ class AgentGate:
             return REMINDER_TEMPLATE.format(classes=", ".join(fired))
         return None
 
-    def intercept_tool(self, tool_name: str, args: Dict[str, Any]) -> Tuple[bool, Optional[str]]:
+    def intercept_tool(self, tool_name: str, args: dict[str, Any]) -> tuple[bool, str | None]:
         """
         Intercepts tool execution calls.
         Returns:

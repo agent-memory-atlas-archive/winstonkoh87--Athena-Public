@@ -16,6 +16,7 @@ def count_files(base_path, pattern, ignore_dirs=None):
 
 
 import os as _os
+
 _this_dir = _os.path.dirname(_os.path.abspath(__file__))
 private_root = _os.path.normpath(_os.path.join(_this_dir, "..", ".."))
 public_root = _os.path.join(private_root, "Athena-Public")

@@ -7,6 +7,7 @@ Scans for destructive patterns before execution using StructuredRuinCheck + rege
 
 import re
 import sys
+
 from athena.core.ruin_structured import StructuredRuinCheck
 
 RUINOUS_PATTERNS = [

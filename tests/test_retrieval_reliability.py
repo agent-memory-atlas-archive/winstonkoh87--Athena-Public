@@ -15,7 +15,6 @@ from athena.memory.sync import verify_chunk_integrity
 from athena.tools import reranker as reranker_module
 from athena.tools.reranker import SafeCrossEncoder
 
-
 # ── chunk integrity ──────────────────────────────────────────────────────────
 
 class _FakeTable:

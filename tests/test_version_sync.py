@@ -4,7 +4,9 @@ Test version consistency across project configuration and Python package.
 
 import re
 from pathlib import Path
+
 import athena
+
 
 def test_version_alignment():
     root = Path(__file__).resolve().parent.parent

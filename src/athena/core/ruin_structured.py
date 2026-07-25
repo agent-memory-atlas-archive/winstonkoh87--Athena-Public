@@ -6,18 +6,18 @@ capability-level filtering, and cumulative red-flag scoring.
 
 import shlex
 from pathlib import Path
-from typing import List, Tuple, Optional
+
 
 class StructuredRuinCheck:
     """
     Structured Ruin Check Engine.
     Evaluates execution safety against workspace root boundaries and capability levels.
     """
-    def __init__(self, workspace_root: Optional[Path] = None, capability_level: int = 2):
+    def __init__(self, workspace_root: Path | None = None, capability_level: int = 2):
         self.workspace_root = (workspace_root or Path.cwd()).resolve()
         self.capability_level = capability_level  # 1=read, 2=write, 3=admin, 4=dangerous
 
-    def check_command(self, command: str) -> Tuple[bool, List[str]]:
+    def check_command(self, command: str) -> tuple[bool, list[str]]:
         """
         Parses command string into tokens and evaluates ruin risk.
         Returns:
@@ -26,7 +26,7 @@ class StructuredRuinCheck:
         if not command or not command.strip():
             return True, []
 
-        red_flags: List[str] = []
+        red_flags: list[str] = []
         try:
             tokens = shlex.split(command)
         except Exception:
@@ -82,7 +82,7 @@ class StructuredRuinCheck:
 
         return (not veto), red_flags
 
-    def _extract_paths(self, tokens: List[str]) -> List[Path]:
+    def _extract_paths(self, tokens: list[str]) -> list[Path]:
         """Helper to extract non-flag tokens as potential file/directory paths."""
         paths = []
         for token in tokens[1:]:

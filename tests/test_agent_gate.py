@@ -3,8 +3,10 @@ Tests for Universal AgentGate (src/athena/core/gate.py & gate_meta.py).
 """
 
 from pathlib import Path
+
 from athena.core.gate import AgentGate
 from athena.core.gate_meta import classify
+
 
 def test_meta_awareness_classification():
     assert "T1-INBOUND" in classify("why did they send this text?")

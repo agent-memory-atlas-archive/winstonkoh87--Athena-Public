@@ -19,9 +19,9 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 AUDIT_LOG_DIR = PROJECT_ROOT / ".agent" / "audit"
 
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-from dotenv import load_dotenv
 
 load_dotenv()
 

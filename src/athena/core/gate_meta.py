@@ -4,9 +4,6 @@ Exposes classify() and REMINDER_TEMPLATE for SDK-wide use.
 """
 
 import re
-import json
-import os
-from datetime import datetime, timezone
 
 T1_INBOUND = [
     r"why (did|would|does|is|are|won'?t|didn'?t|hasn'?t) (he|she|they|it|the|my|this|that|\w+)",

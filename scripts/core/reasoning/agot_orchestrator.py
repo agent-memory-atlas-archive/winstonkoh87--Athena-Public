@@ -37,9 +37,9 @@ from pathlib import Path
 src_path = (Path(__file__).parent.parent.parent.parent / "src").resolve()
 sys.path.insert(0, str(src_path))
 
+from dotenv import load_dotenv  # noqa: E402
 from google import genai
 from google.genai import types  # noqa: E402
-from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv()
 
@@ -584,8 +584,12 @@ class AGoTController:
                 )
                 graph.add_node(node)
 
-                async def resolve_bounded(n=node):
-                    async with semaphore:
+                # Both bound as defaults: `semaphore` is reassigned once per
+                # layer, so a free reference would resolve to whichever one
+                # existed when the coroutine ran. Correct today only because
+                # gather() is awaited inside the same iteration.
+                async def resolve_bounded(n=node, sem=semaphore):
+                    async with sem:
                         await self._resolve_node(n, graph, depth)
 
                 tasks.append(resolve_bounded())

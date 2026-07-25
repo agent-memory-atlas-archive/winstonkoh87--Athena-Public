@@ -26,9 +26,9 @@ from pathlib import Path
 src_path = (Path(__file__).parent.parent.parent / "src").resolve()
 sys.path.insert(0, str(src_path))
 
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-from dotenv import load_dotenv
 
 load_dotenv()
 

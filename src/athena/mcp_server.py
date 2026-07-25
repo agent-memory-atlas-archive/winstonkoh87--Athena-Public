@@ -409,51 +409,6 @@ def list_memory_paths() -> dict:
 # TOOL: meta_awareness_check
 # ---------------------------------------------------------------------------
 
-
-@mcp.tool(
-    tags={"read", "governance", "check"},
-)
-def meta_awareness_check(prompt: str) -> dict:
-    """
-    Code-enforced meta-awareness classification. Call on user prompts to
-    determine if meta-awareness / interpreter kernel injection is required.
-
-    Args:
-        prompt: The user prompt to classify.
-
-    Returns:
-        dict with 'fired' (list of fired class tags), 'injection' (system reminder or None), and 'telemetry_path'.
-    """
-    import importlib.util
-
-    get_permissions().gate("meta_awareness_check")
-
-    if project_root:
-        hook_path = project_root / ".agent" / "scripts" / "hook_meta_awareness_gate.py"
-    else:
-        hook_path = Path(".agent/scripts/hook_meta_awareness_gate.py")
-
-    if not hook_path.exists():
-        return {"fired": [], "injection": None, "error": f"Hook script not found at {hook_path}"}
-
-    spec = importlib.util.spec_from_file_location("hook_meta_gate", hook_path)
-    gate = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(gate)
-
-    fired = gate.classify(prompt)
-    if not fired:
-        return {"fired": [], "injection": None, "telemetry_path": ".athena/invocations.jsonl"}
-
-    injection = gate.REMINDER_TEMPLATE.format(classes=", ".join(fired))
-    gate.log_fire(fired)
-
-    return {
-        "fired": fired,
-        "injection": injection,
-        "telemetry_path": ".athena/invocations.jsonl",
-    }
-
-
 # ---------------------------------------------------------------------------
 # RESOURCE: session_log (current)
 # ---------------------------------------------------------------------------
@@ -542,7 +497,13 @@ def meta_awareness_check(prompt: str) -> dict:
     Returns:
         dict with fired classes and optional system-reminder injection.
     """
-    from athena.core.gate_meta import classify, REMINDER_TEMPLATE
+    from athena.core.gate_meta import REMINDER_TEMPLATE, classify
+
+    # Carried over from the duplicate definition this replaced: that one gated
+    # on permissions, this one did not, and it silently won because it was
+    # defined later in the file. Dropping the gate would have been a governance
+    # regression nobody asked for.
+    get_permissions().gate("meta_awareness_check")
 
     fired = classify(prompt)
     if not fired:

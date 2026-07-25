@@ -30,8 +30,8 @@ hand-curated); it writes only to the dedicated mechanical ledger.
 """
 
 import argparse
-import os
 import json
+import os
 import re
 import sys
 from collections import Counter, defaultdict

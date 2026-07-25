@@ -52,7 +52,7 @@ def pytest_collection_modifyitems(config, items):
         # Check if the test module's source imports any unavailable module
         source_file = str(item.fspath)
         try:
-            with open(source_file, "r", encoding="utf-8") as f:
+            with open(source_file, encoding="utf-8") as f:
                 content = f.read()
         except OSError:
             continue

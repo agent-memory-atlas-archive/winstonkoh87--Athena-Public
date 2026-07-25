@@ -262,9 +262,7 @@ def verify_chunk_integrity(expected_min_ratio: float = 0.5) -> bool:
         res = client.table("document_chunks").select("id", count="exact").execute()
         chunk_count = res.count or 0
 
-        if chunk_count < len(local_files) * expected_min_ratio:
-            return False
-        return True
+        return chunk_count >= len(local_files) * expected_min_ratio
     except Exception:
         # Return True if vector DB connection is offline/unconfigured to avoid blocking local runs
         return True
