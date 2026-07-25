@@ -93,7 +93,7 @@ EXEMPTIONS: list[tuple[str, str, str]] = [
     # Prose that talks *about* version numbers.
     ("scripts/bump_version.sh", r"e\.g\.", "comment describing the version format"),
     ("scripts/sync_version.py", r".", "this file's docstring describes the drift it fixes"),
-    ("docs/BEST_PRACTICES.md", r"git tag", "example git tag command"),
+    ("*", r"git tag v?[0-9]", "example git tag commands in docs and workflow comments"),
     ("docs/DISCIPLINE.md", r"says v", "illustration of the drift failure mode"),
     ("docs/SPEC_SHEET.md", r"^\s*version:", "example config block"),
 ]
@@ -132,8 +132,12 @@ def _swap_capture(match: re.Match, version: str) -> str:
 
 
 def _tracked_text_files() -> list[Path]:
+    # --others --exclude-standard includes files that are new and not yet
+    # committed. Without it a brand-new file is invisible locally and the
+    # check only fails in CI, one commit too late.
     result = subprocess.run(
-        ["git", "ls-files"], capture_output=True, text=True, cwd=ROOT
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard"],
+        capture_output=True, text=True, cwd=ROOT,
     )
     return [
         ROOT / f
