@@ -179,13 +179,31 @@ last_updated: 2026-07-22
 Not caught by the version guard by design — it checks the tree, and the tree
 is now self-consistent. This is a *publish* gap, not a drift gap.
 
-**Decision required** (owner-only — needs the PyPI token):
+There was exactly one release ever (9.2.6, uploaded 2026-02-24) and no
+publish automation — a manual one-off that then drifted for five months.
 
-1. Publish 9.9.8 to PyPI, or
-2. Yank/mark the PyPI package as unmaintained and point installs at the repo.
+**Now unblocked.** `.github/workflows/release.yml` (added 2026-07-25) does the
+whole path on a `v*` tag: refuses to publish if the tag and `pyproject.toml`
+disagree, runs `sync_version.py --check`, builds sdist + wheel, `twine check`s
+them, installs the wheel into a clean venv and asserts `athena.__version__`
+matches the tag, then publishes via PyPI Trusted Publishing (OIDC — no token
+stored in the repo).
 
-Until one of those happens, do not add `pip install athena-agent` to any
-install instructions — it would hand users the 9.2.6 build.
+Verified locally at v9.9.8: both artifacts build, twine check passes, clean
+venv install works, `import athena` reports 9.9.8, console script registers.
+
+**Remaining, owner-only** (needs the PyPI account — cannot be scripted):
+
+1. pypi.org → athena-agent → Manage → Publishing → add a GitHub publisher:
+   owner `winstonkoh87`, repo `Athena-Public`, workflow `release.yml`,
+   environment `pypi`.
+2. GitHub → Settings → Environments → create `pypi`.
+3. `git tag v9.9.8 && git push origin v9.9.8`.
+
+Until step 3 lands, do not add `pip install athena-agent` to any install
+instructions — it would hand users the 9.2.6 build. The workflow is inert
+until then: no tag, no run, and without the publisher it fails closed rather
+than publishing with a stray credential.
 
 ### P2: README Post-Clone CTA (NEW — Feb 02, 2026)
 

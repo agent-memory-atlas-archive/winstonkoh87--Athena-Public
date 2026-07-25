@@ -1,0 +1,99 @@
+name: Release to PyPI
+
+# Fires only on a version tag. Nothing here runs on ordinary pushes, and it
+# stays inert until Trusted Publishing is configured on PyPI (see below) —
+# without that, the publish step has no credential and fails closed.
+#
+# ── One-time setup on PyPI ───────────────────────────────────────────────────
+#   pypi.org → athena-agent → Manage → Publishing → Add a new publisher
+#     Publisher:        GitHub
+#     Owner:            winstonkoh87
+#     Repository:       Athena-Public
+#     Workflow name:    release.yml
+#     Environment:      pypi
+#   Then: Settings → Environments → New environment → "pypi"
+#
+# No API token is stored anywhere. Trusted Publishing mints a short-lived
+# OIDC credential per run.
+#
+# ── Cutting a release ────────────────────────────────────────────────────────
+#   1. Bump pyproject.toml, then: python scripts/sync_version.py
+#   2. Commit. CI must be green.
+#   3. git tag v9.9.9 && git push origin v9.9.9
+#
+# The tag is the trigger, and the tag must match pyproject.toml — see the
+# guard below. Publishing whatever version pyproject happens to hold,
+# regardless of the tag that triggered it, is how a release ends up labelled
+# one thing and containing another.
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Tag must match pyproject version
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PROJ=$(python -c "import tomllib,pathlib; print(tomllib.loads(pathlib.Path('pyproject.toml').read_text())['project']['version'])")
+          echo "tag=$TAG  pyproject=$PROJ"
+          if [ "$TAG" != "$PROJ" ]; then
+            echo "::error::Tag v$TAG does not match pyproject.toml $PROJ. Bump one or the other; do not publish a mismatch."
+            exit 1
+          fi
+
+      - name: Version surfaces must be consistent
+        run: python scripts/sync_version.py --check
+
+      - name: Build sdist and wheel
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build
+
+      - name: Verify the artifacts
+        run: |
+          python -m pip install --upgrade twine
+          twine check dist/*
+          ls -l dist/
+
+      - name: Install the wheel and smoke-test the entry point
+        run: |
+          python -m venv /tmp/smoke
+          /tmp/smoke/bin/pip install --quiet dist/*.whl
+          /tmp/smoke/bin/python -c "import athena; print('import ok, __version__ =', athena.__version__)"
+          /tmp/smoke/bin/python -c "import athena,os,sys; sys.exit(0 if athena.__version__ == os.environ['GITHUB_REF_NAME'][1:] else 1)"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write   # required for Trusted Publishing; no token secret
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@release/v1
