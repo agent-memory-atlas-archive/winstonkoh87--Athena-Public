@@ -3,10 +3,16 @@ name: CI — Athena Quality Gate
 on:
   push:
     branches: [main]
+    # Every path this workflow makes an assertion about must appear here, or
+    # the assertion silently never runs. `examples/**` was missing while the
+    # job checked examples, and `.github/workflows/**` was missing so editing
+    # this file could not re-run the checks it defines.
     paths:
       - 'src/**'
       - 'scripts/**'
       - 'tests/**'
+      - 'examples/**'
+      - '.github/workflows/**'
       - 'pyproject.toml'
   pull_request:
     branches: [main]
