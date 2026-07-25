@@ -77,7 +77,7 @@ def test_auditor_flags_literal_words(scanner, tmp_path, monkeypatch, pattern):
         "AKIA[0-9A-Z]{16}",
         "ghp_[A-Za-z0-9]{36}",
         "-----BEGIN [A-Z ]*PRIVATE KEY-----",
-        "/Users/winstonkoh/Desktop",
+        "/Users/winstonkoh/Desktop",  # pds:allow — fixture quoting a committed path pattern
     ],
 )
 def test_auditor_allows_shape_matchers(scanner, tmp_path, monkeypatch, pattern):
