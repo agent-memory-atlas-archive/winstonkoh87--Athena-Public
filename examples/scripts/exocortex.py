@@ -164,7 +164,10 @@ def search_db(term):
 
     # Sanitize term for FTS5: Wrap in double quotes to treat as a phrase
     # and escape existing double quotes.
-    clean_term = f'"{term.replace('"', '""')}"'
+    # Reusing the outer quote inside an f-string expression is 3.12+; this
+    # file targets >=3.10, where it is a hard SyntaxError.
+    escaped_term = term.replace('"', '""')
+    clean_term = f'"{escaped_term}"'
 
     # FTS query syntax: column matches phrase
     query = "SELECT title, abstract, url FROM abstracts WHERE title MATCH ? OR abstract MATCH ? ORDER BY rank LIMIT 5"

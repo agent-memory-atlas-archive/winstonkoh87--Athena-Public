@@ -40,6 +40,14 @@ jobs:
       - name: Lint (ruff)
         run: ruff check src/ scripts/ tests/ --output-format=github
 
+      # examples/ is published code — the part readers copy. It is not held to
+      # full lint (1,593 findings, nearly all whitespace), but it must at least
+      # RUN. This selects only the classes that mean "this file cannot execute":
+      # undefined names and syntax errors. Three broken examples shipped before
+      # this step existed, one of them for five months.
+      - name: Published examples must be executable
+        run: ruff check examples/ --select F821,F822,F823,E9 --output-format=github
+
       - name: Type check (mypy)
         run: mypy src/ --ignore-missing-imports --no-error-summary || true
 

@@ -12,6 +12,12 @@ from pathlib import Path
 import glob
 from datetime import datetime
 
+# Repo root, two levels up from examples/scripts/. The fallback below needs
+# this defined *before* it runs — it previously referenced PROJECT_ROOT with
+# nothing assigning it, so the recovery path raised NameError in exactly the
+# situation it exists to handle.
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
 try:
     from athena.core.pulse_check import ensure_active, is_daemon_running
 except ImportError:
