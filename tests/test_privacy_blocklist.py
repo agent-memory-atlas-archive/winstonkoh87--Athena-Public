@@ -77,7 +77,11 @@ def test_auditor_flags_literal_words(scanner, tmp_path, monkeypatch, pattern):
         "AKIA[0-9A-Z]{16}",
         "ghp_[A-Za-z0-9]{36}",
         "-----BEGIN [A-Z ]*PRIVATE KEY-----",
-        "/Users/winstonkoh/Desktop",  # pds:allow — fixture quoting a committed path pattern
+        # Redacted username. The link-checker workflow greps home-directory
+        # paths independently of privacy_scan.py and does not honour pds:allow,
+        # so this fixture uses its [AUTHOR] placeholder. The bracket doubles as
+        # a character class to the auditor, which is the shape being asserted.
+        "/Users/[AUTHOR]/Desktop",
     ],
 )
 def test_auditor_allows_shape_matchers(scanner, tmp_path, monkeypatch, pattern):
