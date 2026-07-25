@@ -12,13 +12,15 @@
 
 - [Architecture Overview](Architecture-Overview)
 - [Workflow Reference](Workflow-Reference)
-- [MCP Server](Architecture-Overview#-mcp-server-v995)
+- [MCP Server](Architecture-Overview#-mcp-server)
+- [AgentGate](Architecture-Overview#-agentgate-v998)
 
 ### 📚 Reference
 
 - [FAQ](FAQ)
 - [Protocols](https://github.com/winstonkoh87/Athena-Public/tree/main/examples/protocols)
 - [Changelog](https://github.com/winstonkoh87/Athena-Public/blob/main/docs/CHANGELOG.md)
+- [Releases](https://github.com/winstonkoh87/Athena-Public/releases)
 
 ---
 
