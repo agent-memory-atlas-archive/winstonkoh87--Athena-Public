@@ -120,6 +120,46 @@ When working on any task in this workspace:
 - ❌ Skipping `/start` boot sequence
 - ❌ Not filing insights on `/end`
 - ❌ **Responding from internal knowledge alone** when tools are available. Use Exocortex (`mcp_athena_smart_search`), `search_web`, `read_url_content`, MCP servers, `grep_search`, browser sub-agent, and command execution to ground every non-trivial response. Training data is stale — live tools are not.
+- ❌ **Fixing a guard without showing it fail** — see *Red Run or It Didn't Happen* below.
+
+### Red Run or It Didn't Happen (hard rule for guard fixes)
+
+> Any change that claims to fix a check, test, gate, linter, or CI step MUST
+> include the guard **failing** on the pre-fix state, then passing on the fixed
+> state. Put both in the commit message.
+
+If you cannot make it go red, you have not found the guard's edge — you have
+found its blind spot, and the fix is aimed at the wrong thing.
+
+This exists because the same failure recurred four times across three separate
+agents in one day (2026-07-24/25), each time producing a true-but-misleading
+green:
+
+| Guard | Went green by | What it still could not catch |
+|:---|:---|:---|
+| `sync_version.py` in CI | running the **writer**, which exits 0 always | any version drift |
+| `sync_version.py --check` | covering **3 files that already agreed** | drift in 11 other surfaces |
+| `test_verify_chunk_integrity` | `assert isinstance(res, bool)` | integrity being broken |
+| `test_golden_cases_fire` | `assert len(fired(p)) > 0` | any change in *which* class fires |
+| `privacy_scan.py` blocklist | the file **excluding itself** from the scan | 25 disclosures in its own config |
+
+The shared shape: **optimizing the indicator instead of the property.** Green CI,
+closed alert, "all consistent", N passed — each statement true, each misleading.
+The red run is the cheapest available proof that the indicator is still wired to
+the property.
+
+Corollaries:
+
+- **Mutation over assertion count.** Break the thing the guard protects and
+  watch it fail. A test that survives the mutation is decoration.
+- **A narrowed scope is a silent cap.** If a check covers a subset, it must say
+  what it covered and fail on anything undeclared — never print a claim broader
+  than what it verified.
+- **A skip is not a pass.** Converting an assertion to `pytest.skip` removes the
+  guard. Skip on an explicit, named condition, and assert on the other branch.
+- **Renaming to clear a static-analysis alert is a dismissal, not a fix.** Do it
+  if the name is genuinely wrong, but record it as a false positive rather than
+  letting the ledger read "fixed".
 
 ### External Verification Mandate
 
