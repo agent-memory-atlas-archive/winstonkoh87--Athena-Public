@@ -165,6 +165,36 @@ last_updated: 2026-07-22
 
 ## Open Items (Lower Priority)
 
+### P3: Lint scope gaps and a detector that over-reports (NEW — Jul 25, 2026)
+
+Filed after the v9.9.8 guard-integrity sweep. None are correctness bugs — the
+correctness bugs were fixed. These are deliberately deferred, each with a
+reason that should be re-tested before anyone acts on it.
+
+1. **`examples/` is only gated for executability.** CI runs
+   `ruff check examples/ --select F821,F822,F823,E9` — undefined names and
+   syntax errors, i.e. "this file cannot run". Full lint would be 1,593
+   findings, nearly all blank-line whitespace, and a step demanding that
+   cleanup would simply get skipped. The narrowing is intentional and stated;
+   revisit only alongside a whitespace pass.
+
+2. **Whitespace debt (~1,593 findings in `examples/`).** One command to fix,
+   but a ~2,000-line diff across many files that changes no behaviour. Do it
+   alone, in its own commit, never bundled with a behavioural change.
+
+3. **Privacy gate degrades silently on fork PRs.** `PRIVACY_EXTRA_PATTERNS`
+   is a repo secret, and GitHub does not pass secrets to pull requests from
+   forks. The gate there runs blocklist-only (12 structural patterns instead
+   of 41), prints a notice, and still exits 0. No clean fix exists — recorded
+   so a green fork-PR gate is not mistaken for full coverage. Maintainers
+   should re-run the full scan locally before merging any fork PR.
+
+4. **11 `F401` findings are deliberate.** Imports inside `try:` blocks that
+   feature-detect optional dependencies (formatron, transformers, sklearn,
+   scrapling, google.genai). Removing them breaks the detection they exist to
+   perform. Left visible rather than silenced with `# noqa`, since the file
+   list is short and the intent is documented here.
+
 ### P2: PyPI package trails the repo (NEW — Jul 25, 2026)
 
 **Context**: `scripts/sync_version.py --check` now covers every version surface
