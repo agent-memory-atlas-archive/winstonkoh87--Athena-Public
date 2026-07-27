@@ -4,7 +4,7 @@
 
 # Project Athena
 
-**AI-native personal knowledge management for your AI agents.**
+**A local-first agentic PKM that helps you make better decisions with your own context.**
 
 Capture what you learn, retrieve it when relevant, and carry your context between models — a local-first memory, reasoning, and governance layer for any LLM, across ChatGPT, Claude, Gemini, and whatever you switch to next.
 
@@ -20,7 +20,7 @@ Own the state. Rent the intelligence. Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Validation Status](#-validation-status--whats-proven-vs-whats-proposed) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 24 July 2026*
+*Last updated: 27 July 2026*
 
 </div>
 
