@@ -4,6 +4,30 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+
+    # Without this, pip's strategy defaults to raising the *minimum* version on
+    # every dependency every week. For a library whose constraints are all
+    # unbounded `>=`, that is pure downside, and PR #44 was the proof:
+    #
+    #   pip install "fastmcp>=2.0.0"  -> resolves to 3.4.4
+    #   pip install "fastmcp>=3.4.4"  -> resolves to 3.4.4
+    #
+    # A fresh install already gets the newest compatible release whatever the
+    # floor says. Raising it buys nothing and costs the ability to install
+    # alongside an older pinned stack — #44 would have moved the torch floor to
+    # >=2.13.0 and the fastmcp floor to >=3.4.4 while the environment these
+    # numbers are measured on runs torch 2.9.1 and fastmcp 2.14.0, so the
+    # package would have declared requirements its own author could not satisfy.
+    #
+    # `increase-if-necessary` moves a floor only when the latest release would
+    # otherwise conflict with the declared range. Security updates are
+    # unaffected — reaching a fixed version *is* necessary, so advisories still
+    # open PRs. Raise a floor by hand instead, and only for a reason that
+    # survives being written down: an API the code actually calls, or a CVE
+    # with an ID. At the time #44 was closed, OSV reported zero known
+    # vulnerabilities against every one of the ten floors it wanted to raise.
+    versioning-strategy: "increase-if-necessary"
+
     groups:
       python-deps:
         patterns:
