@@ -1,10 +1,18 @@
 # Athena Changelog
 
-> **Last Updated**: 23 July 2026
+> **Last Updated**: 2 August 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## Static Star History Generator & Site Sync Pass (2 August 2026)
+
+- **Static Star History Generator** (`.github/scripts/generate_star_history.py`): Built a zero-dependency Python script that queries GitHub's API for stargazers and renders a clean, responsive SVG chart (`.github/assets/star-history.svg`) with dark-mode styling, grid lines, and star badges.
+- **Automated Refresh Workflow** (`.github/workflows/star-history.yml`): Created a GitHub Action workflow scheduled daily at 00:00 UTC (with manual `workflow_dispatch`) to automatically refresh and commit the star history SVG, eliminating reliance on third-party live API downtime or GitHub Camo proxy 500 errors.
+- **README & Site Stats Sync**: Updated README image sources, site stats, model taxonomies, and freshness indicators across the public mirror and documentation suite to 2 August 2026 state.
 
 ---
 
