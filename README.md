@@ -594,11 +594,7 @@ Athena-Public/
 ### 🌟 Star History
 
 <a href="https://star-history.com/#winstonkoh87/Athena-Public&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=winstonkoh87/Athena-Public&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=winstonkoh87/Athena-Public&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=winstonkoh87/Athena-Public&type=Date" />
- </picture>
+  <img alt="Star History Chart" src="./.github/assets/star-history.svg" width="100%" />
 </a>
 
 **MIT License** · [Contributing](CONTRIBUTING.md) · [Safety](SAFETY.md) · [Security](docs/SECURITY.md) · [Code of Conduct](CODE_OF_CONDUCT.md)
