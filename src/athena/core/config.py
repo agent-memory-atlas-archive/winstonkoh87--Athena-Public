@@ -74,7 +74,7 @@ EXTENDED_DIRS = [
     (PROJECT_ROOT / "proposals", "case_studies"),
     (PROJECT_ROOT / "personal", "system_docs"),
     (PROJECT_ROOT / "docs" / "audit", "system_docs"),
-    (PROJECT_ROOT / "gem_knowledge_base", "system_docs"),
+    (PROJECT_ROOT / "knowledge_base", "system_docs"),
     (PROJECT_ROOT / ".athena", "system_docs"),
     (PROJECT_ROOT / ".projects", "system_docs"),
     (PROJECT_ROOT / "essays", "case_studies"),
