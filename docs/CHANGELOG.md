@@ -1,10 +1,20 @@
 # Athena Changelog
 
-> **Last Updated**: 2 August 2026
+> **Last Updated**: 4 August 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## v9.9.8 Release & Freshness Pass (4 August 2026)
+
+- **System-2 `/ultrastart` v3.1 Maximum Compute Engine**: Implemented subscription-aware MaxMax and MaxMax-Lite compute doctrines, pre-loading full framework identity, materialized canonical truth, active state checkpoints, and deep semantic bridge.
+- **Adaptive Graph of Thoughts (AGoT v5.0)**: Dynamic multi-track reasoning scaffold (Domain Expert, Counter-Arguments, Cross-Domain Pattern Matcher, Synthesis) with autonomic depth routing based on Lambda scores.
+- **External Verification & Exocortex Recall Mandate**: Enforced live tool calls for standard/ultra queries (Λ ≥ 10) and automatic recall across 1,900+ sessions of lived experience for named people, past decisions, empirical data, and project codes.
+- **Single Source of Truth Version Synchronizer**: Extended `sync_version.py` with discovery sweep and declared surface validation to eliminate silent version drift across workspace files.
+- **Positioning & Documentation Sync**: Updated public mirror (`Athena-Public`), README, architecture docs, and wiki pages with current inventory counts (448 protocols, 43 active skills, 72 workflows, 260 scripts, 4,197 memory files) and governed AI agent positioning.
 
 ---
 

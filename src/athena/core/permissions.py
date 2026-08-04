@@ -174,6 +174,8 @@ _TOKEN_VALUE_PATTERNS = [
     re.compile(r"\b[0-9a-fA-F]{32,}\b"),  # long hex secrets / hashes
 ]
 
+# key = value / key: value where the KEY names a secret → redact the VALUE,
+# keeping the key visible for context. Catches .env-style leaks such as
 # ``ANTHROPIC_API_KEY=sk-ant-...`` that the label-only pass used to miss.  <!-- pds:allow -->
 _KV_SECRET_PATTERN = re.compile(
     r"(?i)\b([A-Za-z0-9_.\-]*"
@@ -510,7 +512,7 @@ class PermissionEngine:
 
     def redact(self, content: str) -> str:
         """
-        Redact secrets from content when secret_mode (or demo_mode) is active.
+        Redact secrets from content when secret_mode is active.
 
         Redacts the secret VALUE, not merely its label: a naive
         ``replace("API_KEY", "[REDACTED]")`` leaves ``API_KEY=sk-...`` as

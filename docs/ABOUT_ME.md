@@ -31,7 +31,7 @@
 
 | Capability | Evidence |
 |------------|----------|
-| **Systems Architecture** | Designed a 399-protocol knowledge framework ([Architecture](docs/ARCHITECTURE.md)) |
+| **Systems Architecture** | Designed a 399-protocol knowledge framework ([Architecture](ARCHITECTURE.md)) |
 | **AI Engineering** | Built RAG pipelines ([VectorRAG](docs/VECTORRAG.md) + [Semantic Search](docs/SEMANTIC_SEARCH.md)) |
 | **Technical Writing** | 1,900+ session logs, 492 case studies, zero fluff |
 | **Automation** | 247 Python scripts for system optimization |

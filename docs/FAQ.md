@@ -32,9 +32,9 @@ Athena separates the **IDE** from the **Reasoning Engine**, so you are never loc
 
 **2. The Reasoning Engine (Who does the thinking):**
 
-- **Gemini 3.5 Pro**
-- **Claude Fable 5**
-- **GPT-5.6 Sol**
+- **Gemini 3.1 Pro**
+- **Claude Opus 4.6**
+- **GPT-5.4**
 - Any LLM that can read your local Markdown files
 
 ---

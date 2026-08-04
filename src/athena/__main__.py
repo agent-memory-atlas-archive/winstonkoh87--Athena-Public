@@ -119,15 +119,7 @@ def main():
     init_parser.add_argument(
         "--ide",
         "-i",
-        choices=[
-            "antigravity",
-            "cursor",
-            "vscode",
-            "gemini",
-            "kilocode",
-            "zoocode",
-            "roocode",
-        ],
+        choices=["antigravity", "cursor", "vscode", "gemini", "kilocode", "roocode"],
         default=None,
         help="Generate IDE-specific configuration files",
     )

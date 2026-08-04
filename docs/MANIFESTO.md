@@ -8,7 +8,7 @@ If you're using AI for anything beyond one-off questions, you've probably hit th
 
 Yes, ChatGPT has memory now. So does Claude. But their memory is **platform-locked**. If you switch models, you lose everything. If the platform changes their memory policy, you lose everything.
 
-Athena is different: **portable, platform-agnostic memory**. Your context lives in Markdown files you own. You can take it to any model, any platform, any time. That's the point — a continuity asset you own, not a moat that locks you in.
+Athena is different: **portable, platform-agnostic memory**. Your context lives in Markdown files you own. You can take it to any model, any platform, any time. That's the moat.
 
 ---
 
@@ -61,7 +61,7 @@ Here's what I actually did. No shortcuts.
 | 300-400 | SDK refactor (`athena` package), typing, tests |
 | 400-800 | Trilateral feedback, governance audit, external red-teaming |
 | 800-1200 | Uber-Skills consolidation, conditional activation, Exocortex maturity |
-| 1200-1800+ | Multi-agent coordination, 436 protocols, 69 workflows |
+| 1200-1900+ | Multi-agent coordination, 431 protocols, 69 workflows |
 
 **The pattern**: Every friction became a protocol. Every failure became a case study. The AI helped document its own evolution.
 
@@ -69,7 +69,7 @@ Here's what I actually did. No shortcuts.
 
 ```
 ├── 1,900+ sessions logged (human + AI collaboration)
-├── 402 active protocols extracted (436 total across 24 categories)
+├── 399 active protocols extracted (431 total across 23 categories)
 ├── 247 automation scripts written
 ├── 3 major refactors (monolith → SDK)
 ├── 2 external red-team audits
@@ -94,7 +94,7 @@ Here's what I actually did. No shortcuts.
 |--------|---------|
 | **Agency** | I stopped *recreating* context and started *compounding* it. Every session builds on the last. |
 | **Portability** | My memory isn't trapped in ChatGPT or Claude. It's mine. I can take it anywhere. |
-| **Learning** | 402 active protocols extracted from my own decisions — patterns I can reuse and refine. |
+| **Learning** | 399 active protocols extracted from my own decisions — patterns I can reuse and refine. |
 
 ### Proof It Works
 

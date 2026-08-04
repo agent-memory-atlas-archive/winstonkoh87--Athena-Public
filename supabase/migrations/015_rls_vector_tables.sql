@@ -13,8 +13,11 @@
 -- and writes go through the Python SDK (which uses service_role).
 --
 -- Date: 2026-04-17
--- Audit Ref: Tier 0 Security — RLS Hardening
+-- Audit Ref: Independent Workspace Audit, Tier 0 Item #2
 -- ============================================================
+
+-- Helper: idempotent enable + policy creation per table
+-- We use DO blocks to gracefully skip tables that don't exist yet.
 
 DO $$
 DECLARE

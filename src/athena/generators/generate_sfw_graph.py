@@ -9,13 +9,13 @@ from pathlib import Path
 
 # Sensitive keywords to filter out
 NSFW_KEYWORDS = [
-    'virgin', 'seduction', 'threesome', 'escort', 'sexual', 'sex',  # pds:allow
+    'virgin', 'seduction', 'threesome', 'escort', 'sexual', 'sex',
     'bdsm', 'erotic', 'fetish', 'porn', 'nude', 'naked',
     'shadow-hotel', 'locker-room', 'dating-app', 'hookup',
-    'abuse', 'trauma', 'cptsd', 'rape', 'predator',  # pds:allow
+    'abuse', 'trauma', 'cptsd', 'rape', 'predator',
     'yap-weng-wah', 'mermaid-girl',
     # Personal identifiers
-    'winston', 'person-a', 'person-b',
+    'winston', 'jun-kai', 'jj',
 ]
 
 # SFW categories to keep

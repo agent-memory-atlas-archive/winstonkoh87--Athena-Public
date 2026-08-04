@@ -34,11 +34,8 @@ PATH_MAP = {
 }
 
 
-# Patterns — built dynamically from PROJECT_ROOT to avoid leaking private paths
-_escaped_root = re.escape(str(PROJECT_ROOT).replace(" ", "%20"))
-LINK_PATTERN = re.compile(
-    r'\[([^\]]+)\]\((file:///' + _escaped_root + r'/([^\)]+))\)'
-)
+# Patterns
+LINK_PATTERN = re.compile(r'\[([^\]]+)\]\((file://~/Project%20Athena/([^\)]+))\)')
 
 class SyncOrchestrator:
     def __init__(self, dry_run=False):

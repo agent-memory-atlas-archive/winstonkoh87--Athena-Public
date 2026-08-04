@@ -1,6 +1,6 @@
 # Getting Started
 
-> **Last Updated**: 2 August 2026
+> **Last Updated**: 22 July 2026
 
 > Build your own AI assistant in 5 minutes
 
@@ -11,7 +11,7 @@
 - **Python 3.10+** installed
 - **Terminal access** (macOS Terminal, Windows PowerShell, or Linux)
 - **Git** installed ([download here](https://git-scm.com/))
-- **An agentic AI IDE** — [Google Antigravity](https://antigravity.google/), [Cursor](https://cursor.sh/), [Kilo Code](https://kilocode.ai/), [Zoo Code](https://github.com/Zoo-Code-Org/Zoo-Code), [OpenCode](https://opencode.ai/), or similar
+- **An agentic AI IDE** — [Google Antigravity](https://antigravity.google/), [Cursor](https://cursor.sh/), [Kilo Code](https://kilocode.ai/), [Roo Code](https://roocode.com/), [OpenCode](https://opencode.ai/), or similar
 
 ---
 
@@ -176,7 +176,7 @@ For advanced automation, see the [examples/scripts/](../examples/scripts/) folde
 - **[Your First Session](docs/YOUR_FIRST_SESSION.md)** — Guided first-run walkthrough
 - **[Your First Agent](docs/YOUR_FIRST_AGENT.md)** — Build a custom agent in 5 minutes
 - **[Glossary](docs/GLOSSARY.md)** — Key terms and definitions
-- **[Changelog](docs/CHANGELOG.md)** — Version history and updates
+- **[Changelog](CHANGELOG.md)** — Version history and updates
 
 ---
 

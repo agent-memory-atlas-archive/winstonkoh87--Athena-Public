@@ -58,8 +58,9 @@ ALTER TABLE public.document_chunks FORCE ROW LEVEL SECURITY;
 
 -- service_role gets full CRUD, anon/authenticated get NOTHING
 DROP POLICY IF EXISTS "service_role_full_access" ON public.document_chunks;
-CREATE POLICY "service_role_full_access" ON public.document_chunks
-FOR ALL
-TO service_role
-USING (true)
+CREATE POLICY "service_role_full_access" ON public.document_chunks 
+FOR ALL 
+TO service_role 
+USING (true) 
 WITH CHECK (true);
+

@@ -145,7 +145,7 @@ def refresh_entity_extraction():
         / ".context/memories/case_studies/CS-346-GEO-Pivot-Content-Agencies.md",
         WORKSPACE
         / ".context/memories/case_studies/CS-347-Digital-Marketing-Principles.md",
-        WORKSPACE / "notes/profile/User_Profile.md",
+        WORKSPACE / "Winston/profile/User_Profile.md",
     ]
 
     all_entities = []
