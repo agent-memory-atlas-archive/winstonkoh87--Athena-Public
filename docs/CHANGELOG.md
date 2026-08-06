@@ -1,10 +1,18 @@
 # Athena Changelog
 
-> **Last Updated**: 5 August 2026
+> **Last Updated**: 7 August 2026
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## Full Synchronized Digital Portfolio & Surface Refresh (7 August 2026)
+
+- **Synchronized Digital Portfolio Update**: Updated date references, canonical metrics (448 protocols, 43 active skills, 72 workflows, 260 scripts, 4,202 memory files), and status across all 4 public surfaces (`Athena-Public`, `winstonkoh87` GitHub profile, `winstonkoh87.com` personal site, `sgassignmenthelp.com` commercial site) and `Athena-Public.wiki`.
+- **Personal Fitness & Retainer Protocol Integration**: Integrated Session S704 GTO repository restructuring, Package #4 Retainer ($550 / 10-pack @ 1x/wk) alignment, and openpyxl generator verification into workspace history.
+- **Automated Verification & Build Checks**: Ran pre-deployment opsec security scans, Astro static site compilation, and verified all GitHub Actions CI gates pass clean across public repos.
 
 ---
 
