@@ -54,11 +54,16 @@ jobs:
       - name: Published examples must be executable
         run: ruff check examples/ --select F821,F822,F823,E9 --output-format=github
 
+      # continue-on-error makes failures visible as warnings (amber ⚠️) instead
+      # of swallowing them behind || true (green ✅). The step still runs, still
+      # reports, but won't block the workflow until we're ready to enforce.
       - name: Type check (mypy)
-        run: mypy src/ --ignore-missing-imports --no-error-summary || true
+        continue-on-error: true
+        run: mypy src/ --ignore-missing-imports --no-error-summary
 
       - name: Security audit (pip-audit)
-        run: pip-audit --desc on --fix --dry-run || true
+        continue-on-error: true
+        run: pip-audit --desc on --fix --dry-run
 
       - name: Detect silent exceptions
         run: |
@@ -68,4 +73,4 @@ jobs:
           fi
 
       - name: Run tests
-        run: pytest tests/ -v --tb=short 2>/dev/null || echo "No tests found or test dependencies missing"
+        run: pytest tests/ -v --tb=short

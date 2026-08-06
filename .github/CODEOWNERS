@@ -1,0 +1,25 @@
+# CODEOWNERS — Athena-Public
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+#
+# These owners are automatically requested for review on pull requests
+# that modify the matched paths.
+
+# Default: repository owner reviews everything
+*                           @winstonkoh87
+
+# Core SDK — any change here affects all downstream users
+/src/                       @winstonkoh87
+
+# CI/CD & release pipeline — gate changes to the gates themselves
+/.github/workflows/         @winstonkoh87
+/.github/scripts/           @winstonkoh87
+
+# Scripts that touch versioning, privacy, or publishing
+/scripts/                   @winstonkoh87
+
+# Package metadata — version bumps, dependency changes
+/pyproject.toml             @winstonkoh87
+
+# Security & safety policies
+/SECURITY.md                @winstonkoh87
+/SAFETY.md                  @winstonkoh87
