@@ -25,7 +25,7 @@ Own the state. Rent the intelligence. Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Scheduled Tasks & Self-RSI](docs/SCHEDULED_TASKS.md) · [llms.txt](https://winstonkoh87.com/llms.txt) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 15 September 2026* <!-- 2026-09-15 -->
+*Last updated: 16 September 2026* <!-- 2026-09-16 -->
 
 </div>
 
@@ -605,6 +605,7 @@ Athena-Public/
 </details>
 
 <details>
+- **Full Synchronized Digital Portfolio Refresh** (2026-09-16): Synchronized portfolio update across all public surfaces. Updated canonical CAPS counts (419 active protocols, 43 skills, 74 workflows, 276 scripts, 4,774 memories).
 - **Full Synchronized Digital Portfolio Refresh + Module Port** (15 September 2026): Synchronized portfolio update across all public surfaces, releases, wiki, and internal docs. Ported 3 new modules (lambda_scorer.py deterministic risk allocator, meta_pattern_matcher.py multi-hop retrieval, stop_governance_gate.py verification gate). Updated canonical CAPS counts (419 active protocols / 453 total across 26 categories, 43 active skills, 74 workflows, 276 scripts, 199 canonical entries, 502 case studies, 4,757 memory files).
 - **Full Synchronized Digital Portfolio Refresh** (14 September 2026): Synchronized portfolio update across all public surfaces, releases, wiki, and internal docs. Updated canonical CAPS counts (419 active protocols / 453 total across 26 categories, 43 active skills, 74 workflows, 275 scripts, 199 canonical entries, 502 case studies, 4,735 memory files).
 - **Full Synchronized Digital Portfolio Refresh** (13 September 2026): Synchronized portfolio update across all public surfaces. Ported Epistemic Grounding Gate (hook_epistemic_gate.py), Reflexion Compiler router (check_reflexion_compile.py), intake authority and end-user capability triggers (T6/T7), and web provider telemetry. Updated canonical CAPS counts (419 active protocols across 26 categories, 43 skills, 74 workflows, 275 scripts, 502 case studies, 4,695 memories).
