@@ -1,10 +1,20 @@
 # Athena Changelog
 
-> **Last Updated**: 14 September 2026 <!-- 2026-09-14 -->
+> **Last Updated**: 15 September 2026 <!-- 2026-09-15 -->
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## [9.9.9] — Synchronized Digital Portfolio Refresh (15 September 2026)
+
+### 2026-09-15 — Full Synchronized Digital Portfolio Refresh
+- Synchronized canonical CAPS metrics across all public surfaces, releases, wiki, and internal docs.
+- Quad-surface metadata and indexing refresh (Athena-Public, winstonkoh87 profile, winstonkoh87.com, sgassignmenthelp.com).
+- Ported Deterministic Lambda Risk Scorer (`lambda_scorer.py`), Latent Meta-Pattern Matcher (`meta_pattern_matcher.py`), and Stop Lifecycle Governance Gate (`stop_governance_gate.py`).
+- Verified zero privacy disclosures and updated canonical counts (419 active protocols / 453 total across 26 categories, 43 active skills, 74 workflows, 276 scripts, 199 canonical entries, 502 case studies, 4,757 memories).
 
 ---
 
