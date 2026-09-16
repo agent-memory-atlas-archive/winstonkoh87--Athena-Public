@@ -13,7 +13,7 @@ This document provides detailed release notes. For the brief summary, see the RE
 ### 2026-09-16 — Full Synchronized Digital Portfolio Refresh
 - Synchronized canonical CAPS metrics across all public surfaces, releases, wiki, and internal docs.
 - Quad-surface metadata and indexing refresh (Athena-Public, winstonkoh87 profile, winstonkoh87.com, sgassignmenthelp.com).
-- Verified zero privacy disclosures and updated canonical counts (419 active protocols / 453 total across 26 categories, 43 active skills, 74 workflows, 276 scripts, 199 canonical entries, 503 case studies, 4,774 memories).
+- Verified zero privacy disclosures and updated canonical counts (419 active protocols / 453 total across 26 categories, 43 active skills, 74 workflows, 276 scripts, 199 canonical entries, 503 case studies, 4,775 memories).
 
 ---
 
