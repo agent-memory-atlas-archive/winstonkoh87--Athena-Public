@@ -13,7 +13,7 @@
 │   └── Committee: {Strategist, Guardian, Operator, Architect, Skeptic}
 │
 ├── Architecture
-│   ├── Memory: {Session Logs, Context Files, Supabase Sync, 4,774 Memory Files}
+│   ├── Memory: {Session Logs, Context Files, Supabase Sync, 4,775 Memory Files}
 │   ├── Retrieval: {Semantic Search, VectorRAG, Tag Index, Canonical Lookup}
 │   └── Execution: {Workflows, Skills, Protocols}
 │
