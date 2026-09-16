@@ -480,7 +480,7 @@ def compute_mcda(
     if isinstance(weights, list):
         if len(weights) != len(criteria):
             raise ValueError(f"weights list length ({len(weights)}) does not match criteria length ({len(criteria)})")
-        weight_dict = {crit: float(w) for crit, w in zip(criteria, weights)}
+        weight_dict = {crit: float(w) for crit, w in zip(criteria, weights, strict=True)}
     elif isinstance(weights, dict):
         for crit in criteria:
             if crit not in weights:
@@ -503,7 +503,7 @@ def compute_mcda(
         if isinstance(cand_scores, list):
             if len(cand_scores) != len(criteria):
                 raise ValueError(f"Score list length for {cand} ({len(cand_scores)}) does not match criteria ({len(criteria)})")
-            score_matrix[cand] = {crit: float(s) for crit, s in zip(criteria, cand_scores)}
+            score_matrix[cand] = {crit: float(s) for crit, s in zip(criteria, cand_scores, strict=True)}
         elif isinstance(cand_scores, dict):
             for crit in criteria:
                 if crit not in cand_scores:
@@ -656,7 +656,7 @@ def main(argv: list[str] | None = None) -> int:
             import os
             data: dict[str, Any]
             if os.path.exists(args.mcda_json):
-                with open(args.mcda_json, "r", encoding="utf-8") as f:
+                with open(args.mcda_json, encoding="utf-8") as f:
                     data = json.load(f)
             else:
                 data = json.loads(args.mcda_json)

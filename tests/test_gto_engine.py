@@ -162,6 +162,7 @@ def test_compute_mcda_unstable_tie():
 
 def test_cli_mcda_json_and_ascii(capsys):
     import json
+
     from athena.intelligence.gto_engine import main
 
     mcda_data = {
