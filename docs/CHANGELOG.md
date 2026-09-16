@@ -8,12 +8,28 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## [9.9.9] — S1027 Tech Sync: Deterministic MCDA Engine, New Scripts & Architecture Modernization (17 September 2026)
+
+### 2026-09-17 — MCDA Engine Port & Architecture Sync
+- **Deterministic MCDA Engine**: Ported `compute_mcda()` / `mcda_score()` to `src/athena/intelligence/gto_engine.py` (470 → 708 lines). Implements normalized criteria weights, automated ±10% weight perturbation sensitivity testing, pairwise dominance checks, and Winner Stability Gates (routes ties or <5% margins to experiment paths). Zero external dependencies (stdlib only). CLI: `--action mcda --mcda-json`.
+- **New: `MCDAResult` dataclass** with `to_ascii_table()` for ASCII-only formatted output of multi-criteria decision bundles.
+- **New: `tests/test_gto_engine.py`** — 11 unit tests covering all 5 GTO computation engines (EEV, Half-Kelly, Ruin, Monte Carlo, MCDA) plus strict ASCII/LaTeX leak validation.
+- **New: `scripts/gto_exec.sh`** — Scoped allowlist executor restricting execution to approved GTO numerical engines and calibration tools. Unapproved actions exit code 2.
+- **New: `scripts/verify_canon_citations.py`** — Citation integrity scanner for `§NNN` references. Validates against CANONICAL.md table entries. Supports `--min-ref` noise filter and `--fix-suggestions` for fingerprint-based replacements.
+- **New: `scripts/decisions_due.py`** — Decision and calibration review scanner. Surfaces overdue predictions from CALIBRATION_LEDGER.md and pending reviews from decisionLog.md. Supports `--json` and `--brief` flags.
+- **Retrieval Stack Modernization**: Updated `docs/ARCHITECTURE.md` — removed obsolete Tag search and GraphRAG entries, added Web search provider layer (Serper/Brave/DDG), ONNX Cross-Encoder reranker, and session log content grep fallback (P3.3).
+- **CAPS Refresh**: Updated canonical counts to 2026-09-17 actuals — 278 scripts (+5), 4,796 memories (+269), 556 case studies (+53). Added `case_studies` block.
+- **`AGENTS.md` Sync**: Updated External Verification Mandate to SNIPER/STANDARD/ULTRA tier names with `context_gate` enforcement.
+- **`__init__.py` Sync**: Exported `MCDAResult`, `compute_mcda`, `mcda_score` from `athena.intelligence`.
+
+---
+
 ## [9.9.9] — Synchronized Digital Portfolio Refresh (17 September 2026)
 
 ### 2026-09-17 — Full Synchronized Digital Portfolio Refresh
 - Synchronized canonical CAPS metrics across all public surfaces, releases, wiki, and internal docs.
 - Quad-surface metadata and indexing refresh (Athena-Public, winstonkoh87 profile, winstonkoh87.com, sgassignmenthelp.com).
-- Verified zero privacy disclosures and updated canonical counts (419 active protocols / 453 total across 26 categories, 43 active skills, 74 workflows, 276 scripts, 199 canonical entries, 503 case studies, 4,789 memories).
+- Verified zero privacy disclosures and updated canonical counts (419 active protocols / 453 total across 26 categories, 43 active skills, 74 workflows, 278 scripts, 199 canonical entries, 556 case studies, 4,796 memories).
 
 ---
 

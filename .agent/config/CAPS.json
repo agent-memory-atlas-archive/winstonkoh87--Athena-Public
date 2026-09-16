@@ -1,6 +1,6 @@
 {
   "_comment": "Canonical inventory counts for Project Athena. Single source of truth for pre-commit caps, audit asserts, and AGENTS.md regeneration. Update via .agent/scripts/sync_agents_md.py (runs automatically: pre-commit Gate 4 + shutdown.py Phase 1.5), not by hand.",
-  "_generated": "2026-09-05",
+  "_generated": "2026-09-17",
   "_generator": "S411 sync_agents_md.py automation (TD-028)",
   "version": {
     "framework": "v8.2-stable",
@@ -51,10 +51,14 @@
     "retrieval_audit_script": ".agent/scripts/retrieval_audit.py",
     "canonical_tier_analysis": ".agent/scripts/canonical_tier_analysis.py"
   },
-  "scripts": 273,
+  "scripts": 278,
   "memories": {
-    "total_files": 4527,
+    "total_files": 4796,
     "path": ".context/memories/"
+  },
+  "case_studies": {
+    "total_files": 556,
+    "note": "556 documented patterns across 15 domains, 7 archived. See CASE_STUDY_INDEX.md."
   },
   "paths": {
     "active_protocols": ".agent/skills/protocols/",

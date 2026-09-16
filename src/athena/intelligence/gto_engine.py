@@ -146,6 +146,66 @@ class MonteCarloResult:
         return "\n".join(lines)
 
 
+@dataclass
+class MCDAResult:
+    candidates: list[str]
+    criteria: list[str]
+    normalized_weights: dict[str, float]
+    composite_scores: dict[str, float]
+    ranked_candidates: list[tuple[str, float]]
+    winner: str
+    runner_up: str
+    margin_abs: float
+    margin_pct: float
+    is_stable: bool
+    stability_verdict: str
+    perturbation_flips: list[str]
+    pairwise_dominance: list[str]
+    verdict: str
+
+    def to_ascii_table(self) -> str:
+        lines = [
+            "============================================================",
+            "       MULTIPLE-CRITERIA DECISION ANALYSIS (MCDA) BUNDLE   ",
+            "============================================================",
+            f"  Top Candidate             : {self.winner} (Score: {self.composite_scores.get(self.winner, 0.0):.3f})",
+            f"  Runner-Up                 : {self.runner_up} (Score: {self.composite_scores.get(self.runner_up, 0.0):.3f})",
+            f"  Winning Margin            : +{self.margin_abs:.3f} (+{self.margin_pct:.1f}%)",
+            f"  Sensitivity (±10% Weights): {self.stability_verdict}",
+            f"  Strategic Verdict         : {self.verdict}",
+            "------------------------------------------------------------",
+            "  RANKED COMPOSITE SCORES:",
+        ]
+        for rank, (cand, score) in enumerate(self.ranked_candidates, 1):
+            lines.append(f"    {rank}. {cand:<30} : {score:.3f}")
+
+        lines.extend([
+            "------------------------------------------------------------",
+            "  NORMALIZED CRITERIA WEIGHTS:",
+        ])
+        for crit, w in self.normalized_weights.items():
+            lines.append(f"    {crit:<25} : {w * 100:.1f}%")
+
+        if self.pairwise_dominance:
+            lines.extend([
+                "------------------------------------------------------------",
+                "  PAIRWISE DOMINANCE OBSERVATIONS:",
+            ])
+            for obs in self.pairwise_dominance:
+                lines.append(f"    - {obs}")
+
+        if self.perturbation_flips:
+            lines.extend([
+                "------------------------------------------------------------",
+                "  PERTURBATION FLIPS (±10% WEIGHT DRIFT):",
+            ])
+            for flip in self.perturbation_flips:
+                lines.append(f"    ! {flip}")
+
+        lines.append("============================================================")
+        return "\n".join(lines)
+
+
 def compute_eev(
     mev: float,
     eu: float,
@@ -394,17 +454,177 @@ def run_monte_carlo_simulation(
     )
 
 
+def compute_mcda(
+    candidates: list[str],
+    criteria: list[str],
+    weights: dict[str, float] | list[float],
+    scores: dict[str, dict[str, float]] | dict[str, list[float]],
+    sensitivity_pct: float = 0.10,
+    margin_threshold_pct: float = 5.0,
+) -> MCDAResult:
+    """Computes Multiple-Criteria Decision Analysis (MCDA) with deterministic sensitivity.
+
+    Performs:
+    1. Base composite scoring using normalized weights (DEC-500 §3C-3D).
+    2. Pairwise dominance inspection (§3F).
+    3. ±10% weight perturbation sensitivity testing across each criterion (§3E).
+    4. Deterministic stability verification and Path D / Path E routing.
+    """
+    if not candidates:
+        raise ValueError("candidates list cannot be empty")
+    if not criteria:
+        raise ValueError("criteria list cannot be empty")
+
+    # Format weights
+    weight_dict: dict[str, float] = {}
+    if isinstance(weights, list):
+        if len(weights) != len(criteria):
+            raise ValueError(f"weights list length ({len(weights)}) does not match criteria length ({len(criteria)})")
+        weight_dict = {crit: float(w) for crit, w in zip(criteria, weights)}
+    elif isinstance(weights, dict):
+        for crit in criteria:
+            if crit not in weights:
+                raise ValueError(f"Missing weight for criterion: {crit}")
+            weight_dict[crit] = float(weights[crit])
+    else:
+        raise TypeError("weights must be a list or dict")
+
+    total_weight = sum(weight_dict.values())
+    if total_weight <= 0:
+        raise ValueError("Total weight must be positive")
+    normalized_weights = {crit: w / total_weight for crit, w in weight_dict.items()}
+
+    # Format scores: map candidate -> dict[crit, score]
+    score_matrix: dict[str, dict[str, float]] = {}
+    for cand in candidates:
+        if cand not in scores:
+            raise ValueError(f"Missing scores for candidate: {cand}")
+        cand_scores = scores[cand]
+        if isinstance(cand_scores, list):
+            if len(cand_scores) != len(criteria):
+                raise ValueError(f"Score list length for {cand} ({len(cand_scores)}) does not match criteria ({len(criteria)})")
+            score_matrix[cand] = {crit: float(s) for crit, s in zip(criteria, cand_scores)}
+        elif isinstance(cand_scores, dict):
+            for crit in criteria:
+                if crit not in cand_scores:
+                    raise ValueError(f"Candidate {cand} missing score for criterion: {crit}")
+            score_matrix[cand] = {crit: float(cand_scores[crit]) for crit in criteria}
+        else:
+            raise TypeError(f"Scores for {cand} must be list or dict")
+
+    def calc_scores(w_map: dict[str, float]) -> dict[str, float]:
+        return {
+            cand: sum(w_map[crit] * score_matrix[cand][crit] for crit in criteria)
+            for cand in candidates
+        }
+
+    # Base composite scores
+    base_scores = calc_scores(normalized_weights)
+    ranked = sorted(base_scores.items(), key=lambda x: x[1], reverse=True)
+
+    winner, winner_score = ranked[0]
+    runner_up, runner_up_score = (ranked[1][0], ranked[1][1]) if len(ranked) > 1 else (winner, winner_score)
+
+    margin_abs = winner_score - runner_up_score
+    margin_pct = (margin_abs / runner_up_score * 100.0) if runner_up_score > 0 else (100.0 if margin_abs > 0 else 0.0)
+
+    # Pairwise dominance checks
+    pairwise_dominance: list[str] = []
+    for i, c1 in enumerate(candidates):
+        for c2 in candidates[i + 1:]:
+            c1_dom = all(score_matrix[c1][crit] >= score_matrix[c2][crit] for crit in criteria) and any(score_matrix[c1][crit] > score_matrix[c2][crit] for crit in criteria)
+            c2_dom = all(score_matrix[c2][crit] >= score_matrix[c1][crit] for crit in criteria) and any(score_matrix[c2][crit] > score_matrix[c1][crit] for crit in criteria)
+            if c1_dom:
+                pairwise_dominance.append(f"'{c1}' strictly dominates '{c2}' across all criteria")
+            elif c2_dom:
+                pairwise_dominance.append(f"'{c2}' strictly dominates '{c1}' across all criteria")
+            elif abs(base_scores[c1] - base_scores[c2]) < 1e-9:
+                pairwise_dominance.append(f"'{c1}' and '{c2}' are in an exact composite tie ({base_scores[c1]:.3f})")
+
+    # Sensitivity testing: ±10% perturbation
+    perturbation_flips: list[str] = []
+    is_stable = True
+
+    if margin_pct < margin_threshold_pct:
+        is_stable = False
+        perturbation_flips.append(
+            f"TIE / LOW MARGIN: Winner margin (+{margin_pct:.2f}%) is below {margin_threshold_pct:.1f}% threshold"
+        )
+
+    for crit in criteria:
+        for delta in [-sensitivity_pct, sensitivity_pct]:
+            pert_w = normalized_weights.copy()
+            orig_w = pert_w[crit]
+            new_w = orig_w * (1.0 + delta)
+            diff = new_w - orig_w
+
+            other_sum = sum(w for c, w in pert_w.items() if c != crit)
+            if other_sum > 0:
+                for c in criteria:
+                    if c == crit:
+                        pert_w[c] = new_w
+                    else:
+                        pert_w[c] -= diff * (pert_w[c] / other_sum)
+            else:
+                pert_w[crit] = 1.0
+
+            p_total = sum(pert_w.values())
+            pert_w = {c: w / p_total for c, w in pert_w.items()}
+
+            p_scores = calc_scores(pert_w)
+            p_ranked = sorted(p_scores.items(), key=lambda x: x[1], reverse=True)
+            p_winner = p_ranked[0][0]
+
+            if p_winner != winner:
+                is_stable = False
+                direction = f"+{sensitivity_pct*100:.0f}%" if delta > 0 else f"-{sensitivity_pct*100:.0f}%"
+                perturbation_flips.append(
+                    f"Weight drift on {crit} ({direction}) flips winner from '{winner}' to '{p_winner}'"
+                )
+
+    if is_stable:
+        stability_verdict = "ROBUST (Stable winner across all ±10% weight perturbations)"
+        verdict = f"DECISION LOCKED -> COMMIT PRIMARY TO '{winner}' WITH LIVE CONTINGENCY TO '{runner_up}'"
+    else:
+        stability_verdict = "UNSTABLE (Rank flips or margin < 5% under perturbation)"
+        verdict = "UNSTABLE / TIE DETECTED -> DO NOT FORCE PICK; ROUTE TO PATH D (EXPERIMENT) OR PATH E (WAIT)"
+
+    return MCDAResult(
+        candidates=candidates,
+        criteria=criteria,
+        normalized_weights=normalized_weights,
+        composite_scores=base_scores,
+        ranked_candidates=ranked,
+        winner=winner,
+        runner_up=runner_up,
+        margin_abs=margin_abs,
+        margin_pct=margin_pct,
+        is_stable=is_stable,
+        stability_verdict=stability_verdict,
+        perturbation_flips=perturbation_flips,
+        pairwise_dominance=pairwise_dominance,
+        verdict=verdict,
+    )
+
+
+# Canonical alias
+mcda_score = compute_mcda
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description="Athena GTO Numerical Computation Engine (ASCII Math Only)"
     )
     parser.add_argument(
         "--action",
-        choices=["eev", "kelly", "ruin", "monte-carlo"],
+        choices=["eev", "kelly", "ruin", "monte-carlo", "mcda"],
         required=True,
         help="Calculation action to execute",
     )
     parser.add_argument("--json", action="store_true", help="Output machine-readable JSON")
+
+    # MCDA parameter
+    parser.add_argument("--mcda-json", type=str, help="JSON string or file path containing MCDA inputs")
 
     # EEV parameters
     parser.add_argument("--mev", type=float, default=1000.0, help="Monetary Expected Value")
@@ -430,7 +650,25 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         res: Any
-        if args.action == "eev":
+        if args.action == "mcda":
+            if not args.mcda_json:
+                raise ValueError("--mcda-json is required when --action is mcda")
+            import os
+            data: dict[str, Any]
+            if os.path.exists(args.mcda_json):
+                with open(args.mcda_json, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+            else:
+                data = json.loads(args.mcda_json)
+            res = compute_mcda(
+                candidates=data["candidates"],
+                criteria=data["criteria"],
+                weights=data["weights"],
+                scores=data["scores"],
+                sensitivity_pct=data.get("sensitivity_pct", 0.10),
+                margin_threshold_pct=data.get("margin_threshold_pct", 5.0),
+            )
+        elif args.action == "eev":
             res = compute_eev(args.mev, args.eu, args.eo, args.discount)
         elif args.action == "kelly":
             res = compute_half_kelly(args.win_rate, args.payoff, args.variance_drag)
