@@ -14,10 +14,10 @@ Athena/
 ├── .agent/                        # Agent configuration
 │   ├── skills/                    #   43 active skills (42 with context_trigger)
 │   │   └── protocols/             #   419 active + 34 archived = 453 total, 26 categories
-│   │       └── archive/           #     34 deprecated protocols (read-only, see README)
+│   │       └── archive/           #     15 deprecated protocols (read-only, see README)
 │   ├── workflows/                 #   55 root + 19 _domain = 74 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
-│   ├── scripts/                   #   276 automation scripts
+│   ├── scripts/                   #   278 automation scripts
 │   ├── telemetry/                 #   Retrieval instrumentation logs + tier maps
 │   ├── config/                    #   Agent manifests + CAPS.json (canonical counts)
 │   ├── CLUSTER_INDEX.md           #   15 cognitive clusters (routing map)
@@ -27,11 +27,13 @@ Athena/
 │   └── archive_skills/            #   17 sunset skills (read-only, see README)
 │
 ├── .context/                      # Personal knowledge base
-│   ├── memories/                  #   4,789 memory files (session logs + case studies + profile)
+│   ├── memories/                  #   4,796 memory files (session logs + case studies + profile)
 │   │   ├── session_logs/          #     Dated session records
-│   │   ├── case_studies/          #     503 documented patterns (15 domains, 7 archived)
+│   │   ├── case_studies/          #     556 documented patterns (15 domains, 7 archived)
 │   │   ├── profile/               #     Core profile, psychology, voice DNA
-│   │   └── observations/          #     Session insights
+│   │   ├── observations/          #     Session insights
+│   │   └── visualizations/        #     Charts, payoff curves, currency telemetry
+│   │       └── currency/          #       FX pair technical snapshots
 │   ├── memory_bank/               #   10 boot files (activeContext, userContext,
 │   │                              #     productContext, threatPlaybooks,
 │   │                              #     sessionArchive, decisionLog, etc.)
@@ -49,8 +51,8 @@ Athena/
 │   └── archive/                   #   v7 / v8.0 / v8.1 codex archive (historical)
 ├── .projects/                     # Isolated project workspaces
 │
-├── src/                           # Athena SDK source (72 Python files)
-├── tests/                         # Test suite (11 files, 86 tests)
+├── src/                           # Athena SDK source (81 Python files)
+├── tests/                         # Test suite (20 files, 239 tests)
 ├── supabase/                      # Cloud vector store migrations
 │
 ├── Athena-Public/                 # Public mirror (sibling repo)
@@ -259,19 +261,20 @@ The proactive layer can **inject context** into the reactive layer — e.g., whe
 src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 ├── Full SDK search (parallel hybrid RRF + semantic cache)
 │   ├── Canonical search (CANONICAL.md keyword matching, min 2-hit)
-│   ├── Tag search (grep against TAG_INDEX shards)
 │   ├── Vector search (Supabase pgvector, 11 parallel RPCs, threshold ≥0.3)
-│   ├── ~~GraphRAG search~~ (REMOVED 2026-06-06 — stale 16 months, user directive)
 │   ├── Filename search (find across project root, keyword OR logic)
 │   ├── Framework docs search (keyword matching in .framework/ + memory_bank/)
 │   ├── SQLite search (local athena.db — files + tags)
-│   └── Exocortex search (Wikipedia FTS5)
-├── Fusion: Weighted RRF (k=60, per-type weights, dynamic score modifiers)
+│   └── Web search [opt-in, auto via needs_web()] (provider layer: Serper/Brave/DDG)
+├── Fusion: Weighted RRF (k=60, per-type weights in search.py::WEIGHTS, dynamic score modifiers)
+│   └── Weights live in search.py::WEIGHTS — do not mirror elsewhere
+├── Reranker: ONNX Cross-Encoder (top-50 → limit, crash-safe no-op if unavailable)
 ├── Telemetry: retrieval_log.jsonl (quality: hit/partial/miss, source distribution)
 └── Grep fallback (runs if full search times out)
-    ├── CANONICAL.md
-    ├── PROTOCOL_SUMMARIES.md
-    ├── Session log filenames
+    ├── CANONICAL.md (keyword content matching)
+    ├── PROTOCOL_SUMMARIES.md (keyword content matching)
+    ├── Session log filenames (find -iname)
+    ├── Session log content (grep last 200 files by mtime — P3.3)
     └── Memory bank files
 ```
 

@@ -188,10 +188,12 @@ Corollaries:
 >
 > The Exocortex indexes **1800+ sessions** of lived experience. Web search provides real-time facts. Responding without consulting these when they could enrich or verify the answer is equivalent to ignoring the user's own history and the current state of the world.
 >
-> **Minimum tool calls by complexity**:
-> - Simple lookups (Λ < 10): Exempt
-> - Standard queries (Λ 10-30): ≥ 1 tool call
-> - Complex queries (Λ > 30): ≥ 2 tool calls from different sources
+> **Minimum retrieval by complexity**:
+> - SNIPER (Λ < 10): Exempt. Direct answer allowed.
+> - STANDARD (Λ 10-30): Call `context_gate(query)` before answering; honour its `directive`; if `missing` is non-empty, satisfy it before answering.
+> - ULTRA (Λ > 30): Call `context_gate(query)` before answering; requires semantic AND (web OR page-read).
+>
+> **Epistemic status**: `code-enforced` (tool surface — `context_gate` exists and computes the bundle; invocation is mechanically enforced in Antigravity via `.agents/hooks.json` Stop lifecycle gate `stop_governance_gate.py` which blocks completion if unverified).
 
 ---
 
