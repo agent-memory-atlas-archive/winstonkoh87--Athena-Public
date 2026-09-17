@@ -16,7 +16,7 @@ import json
 import math
 import random
 import sys
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from typing import Any
 
 
@@ -162,6 +162,8 @@ class MCDAResult:
     perturbation_flips: list[str]
     pairwise_dominance: list[str]
     verdict: str
+    vetoed_candidates: dict[str, list[str]] = field(default_factory=dict)
+    veto_screen_applied: bool = False
 
     def to_ascii_table(self) -> str:
         lines = [
@@ -173,11 +175,24 @@ class MCDAResult:
             f"  Winning Margin            : +{self.margin_abs:.3f} (+{self.margin_pct:.1f}%)",
             f"  Sensitivity (±10% Weights): {self.stability_verdict}",
             f"  Strategic Verdict         : {self.verdict}",
+        ]
+        if not self.veto_screen_applied:
+            lines.append("  ⚠ WARNING                 : NO HARD-CONSTRAINT SCREEN APPLIED (DEC-500 §3A SKIPPED)")
+        lines.extend([
             "------------------------------------------------------------",
             "  RANKED COMPOSITE SCORES:",
-        ]
+        ])
         for rank, (cand, score) in enumerate(self.ranked_candidates, 1):
             lines.append(f"    {rank}. {cand:<30} : {score:.3f}")
+
+        if self.vetoed_candidates:
+            lines.extend([
+                "------------------------------------------------------------",
+                "  VETOED CANDIDATES (DEC-500 §3A HARD-CONSTRAINT VETO):",
+            ])
+            for cand, breaches in self.vetoed_candidates.items():
+                breaches_str = "; ".join(breaches)
+                lines.append(f"    [VETO] {cand:<23} : {breaches_str}")
 
         lines.extend([
             "------------------------------------------------------------",
@@ -461,14 +476,16 @@ def compute_mcda(
     scores: dict[str, dict[str, float]] | dict[str, list[float]],
     sensitivity_pct: float = 0.10,
     margin_threshold_pct: float = 5.0,
+    veto_floors: dict[str, float] | None = None,
 ) -> MCDAResult:
-    """Computes Multiple-Criteria Decision Analysis (MCDA) with deterministic sensitivity.
+    """Computes Multiple-Criteria Decision Analysis (MCDA) with deterministic sensitivity and §3A veto screening.
 
     Performs:
-    1. Base composite scoring using normalized weights (DEC-500 §3C-3D).
-    2. Pairwise dominance inspection (§3F).
-    3. ±10% weight perturbation sensitivity testing across each criterion (§3E).
-    4. Deterministic stability verification and Path D / Path E routing.
+    1. Hard-constraint feasibility screen (DEC-500 §3A VETO).
+    2. Base composite scoring using normalized weights (DEC-500 §3C-3D) on feasible candidates.
+    3. Pairwise dominance inspection (§3F).
+    4. ±10% weight perturbation sensitivity testing across each criterion (§3E).
+    5. Deterministic stability verification and Path D / Path E routing.
     """
     if not candidates:
         raise ValueError("candidates list cannot be empty")
@@ -512,26 +529,72 @@ def compute_mcda(
         else:
             raise TypeError(f"Scores for {cand} must be list or dict")
 
+    # 1. DEC-500 §3A Hard-Constraint VETO Gate
+    veto_screen_applied = veto_floors is not None
+    vetoed_candidates: dict[str, list[str]] = {}
+    feasible_candidates: list[str] = []
+
+    if veto_screen_applied:
+        for cand in candidates:
+            breaches = []
+            for crit, floor in veto_floors.items():
+                if crit in score_matrix[cand]:
+                    actual_score = score_matrix[cand][crit]
+                    if actual_score < floor:
+                        breaches.append(f"Breached {crit} floor ({actual_score:.2f} < {floor:.2f})")
+            if breaches:
+                vetoed_candidates[cand] = breaches
+            else:
+                feasible_candidates.append(cand)
+    else:
+        feasible_candidates = list(candidates)
+
+    # If all candidates are vetoed
+    if not feasible_candidates:
+        return MCDAResult(
+            candidates=candidates,
+            criteria=criteria,
+            normalized_weights=normalized_weights,
+            composite_scores={},
+            ranked_candidates=[],
+            winner="NONE",
+            runner_up="NONE",
+            margin_abs=0.0,
+            margin_pct=0.0,
+            is_stable=False,
+            stability_verdict="INFEASIBLE (All candidates vetoed)",
+            perturbation_flips=["ALL CANDIDATES BREACHED HARD CONSTRAINTS"],
+            pairwise_dominance=[],
+            verdict="NO FEASIBLE PATH — ALL CANDIDATES BREACHED HARD CONSTRAINTS (RETURN TO PHASE 2)",
+            vetoed_candidates=vetoed_candidates,
+            veto_screen_applied=True,
+        )
+
     def calc_scores(w_map: dict[str, float]) -> dict[str, float]:
         return {
             cand: sum(w_map[crit] * score_matrix[cand][crit] for crit in criteria)
-            for cand in candidates
+            for cand in feasible_candidates
         }
 
-    # Base composite scores
+    # Base composite scores on feasible candidates
     base_scores = calc_scores(normalized_weights)
     ranked = sorted(base_scores.items(), key=lambda x: x[1], reverse=True)
 
     winner, winner_score = ranked[0]
-    runner_up, runner_up_score = (ranked[1][0], ranked[1][1]) if len(ranked) > 1 else (winner, winner_score)
+    if len(ranked) > 1:
+        runner_up, runner_up_score = ranked[1][0], ranked[1][1]
+        margin_abs = winner_score - runner_up_score
+        margin_pct = (margin_abs / runner_up_score * 100.0) if runner_up_score > 0 else (100.0 if margin_abs > 0 else 0.0)
+    else:
+        runner_up = "NONE"
+        runner_up_score = 0.0
+        margin_abs = winner_score
+        margin_pct = 100.0
 
-    margin_abs = winner_score - runner_up_score
-    margin_pct = (margin_abs / runner_up_score * 100.0) if runner_up_score > 0 else (100.0 if margin_abs > 0 else 0.0)
-
-    # Pairwise dominance checks
+    # Pairwise dominance checks on feasible candidates
     pairwise_dominance: list[str] = []
-    for i, c1 in enumerate(candidates):
-        for c2 in candidates[i + 1:]:
+    for i, c1 in enumerate(feasible_candidates):
+        for c2 in feasible_candidates[i + 1:]:
             c1_dom = all(score_matrix[c1][crit] >= score_matrix[c2][crit] for crit in criteria) and any(score_matrix[c1][crit] > score_matrix[c2][crit] for crit in criteria)
             c2_dom = all(score_matrix[c2][crit] >= score_matrix[c1][crit] for crit in criteria) and any(score_matrix[c2][crit] > score_matrix[c1][crit] for crit in criteria)
             if c1_dom:
@@ -541,53 +604,82 @@ def compute_mcda(
             elif abs(base_scores[c1] - base_scores[c2]) < 1e-9:
                 pairwise_dominance.append(f"'{c1}' and '{c2}' are in an exact composite tie ({base_scores[c1]:.3f})")
 
+    # Check whether winner strictly dominates all other feasible alternatives
+    is_strictly_dominant_winner = len(feasible_candidates) > 1 and all(
+        (all(score_matrix[winner][crit] >= score_matrix[other][crit] for crit in criteria)
+         and any(score_matrix[winner][crit] > score_matrix[other][crit] for crit in criteria))
+        for other in feasible_candidates if other != winner
+    )
+
     # Sensitivity testing: ±10% perturbation
     perturbation_flips: list[str] = []
     is_stable = True
 
-    if margin_pct < margin_threshold_pct:
-        is_stable = False
-        perturbation_flips.append(
-            f"TIE / LOW MARGIN: Winner margin (+{margin_pct:.2f}%) is below {margin_threshold_pct:.1f}% threshold"
-        )
-
-    for crit in criteria:
-        for delta in [-sensitivity_pct, sensitivity_pct]:
-            pert_w = normalized_weights.copy()
-            orig_w = pert_w[crit]
-            new_w = orig_w * (1.0 + delta)
-            diff = new_w - orig_w
-
-            other_sum = sum(w for c, w in pert_w.items() if c != crit)
-            if other_sum > 0:
-                for c in criteria:
-                    if c == crit:
-                        pert_w[c] = new_w
-                    else:
-                        pert_w[c] -= diff * (pert_w[c] / other_sum)
-            else:
-                pert_w[crit] = 1.0
-
-            p_total = sum(pert_w.values())
-            pert_w = {c: w / p_total for c, w in pert_w.items()}
-
-            p_scores = calc_scores(pert_w)
-            p_ranked = sorted(p_scores.items(), key=lambda x: x[1], reverse=True)
-            p_winner = p_ranked[0][0]
-
-            if p_winner != winner:
-                is_stable = False
-                direction = f"+{sensitivity_pct*100:.0f}%" if delta > 0 else f"-{sensitivity_pct*100:.0f}%"
+    if len(feasible_candidates) == 1:
+        # Sole surviving candidate after feasibility screen: cannot be flipped
+        is_stable = True
+    else:
+        if margin_pct < margin_threshold_pct:
+            if is_strictly_dominant_winner:
                 perturbation_flips.append(
-                    f"Weight drift on {crit} ({direction}) flips winner from '{winner}' to '{p_winner}'"
+                    f"INFORMATIONAL: Winner margin (+{margin_pct:.2f}%) is below {margin_threshold_pct:.1f}% threshold, but '{winner}' strictly dominates all alternatives across all criteria."
+                )
+            else:
+                is_stable = False
+                perturbation_flips.append(
+                    f"TIE / LOW MARGIN: Winner margin (+{margin_pct:.2f}%) is below {margin_threshold_pct:.1f}% threshold"
                 )
 
+        for crit in criteria:
+            for delta in [-sensitivity_pct, sensitivity_pct]:
+                pert_w = normalized_weights.copy()
+                orig_w = pert_w[crit]
+                new_w = orig_w * (1.0 + delta)
+                diff = new_w - orig_w
+
+                other_sum = sum(w for c, w in pert_w.items() if c != crit)
+                if other_sum > 0:
+                    for c in criteria:
+                        if c == crit:
+                            pert_w[c] = new_w
+                        else:
+                            pert_w[c] -= diff * (pert_w[c] / other_sum)
+                else:
+                    pert_w[crit] = 1.0
+
+                p_total = sum(pert_w.values())
+                pert_w = {c: w / p_total for c, w in pert_w.items()}
+
+                p_scores = calc_scores(pert_w)
+                p_ranked = sorted(p_scores.items(), key=lambda x: x[1], reverse=True)
+                p_winner = p_ranked[0][0]
+
+                if p_winner != winner:
+                    is_stable = False
+                    direction = f"+{sensitivity_pct*100:.0f}%" if delta > 0 else f"-{sensitivity_pct*100:.0f}%"
+                    perturbation_flips.append(
+                        f"Weight drift on {crit} ({direction}) flips winner from '{winner}' to '{p_winner}'"
+                    )
+
     if is_stable:
-        stability_verdict = "ROBUST (Stable winner across all ±10% weight perturbations)"
-        verdict = f"DECISION LOCKED -> COMMIT PRIMARY TO '{winner}' WITH LIVE CONTINGENCY TO '{runner_up}'"
+        if len(feasible_candidates) == 1:
+            stability_verdict = "ROBUST (Sole surviving feasible candidate after hard-constraint screen)"
+            if veto_screen_applied:
+                verdict = f"DECISION LOCKED -> COMMIT PRIMARY TO '{winner}' (SOLE FEASIBLE PATH)"
+            else:
+                verdict = f"ADVISORY ONLY (NO VETO SCREEN) -> PRIMARY PREFERENCE IS '{winner}'"
+        else:
+            stability_verdict = "ROBUST (Stable winner across all ±10% weight perturbations)"
+            if veto_screen_applied:
+                verdict = f"DECISION LOCKED -> COMMIT PRIMARY TO '{winner}' WITH LIVE CONTINGENCY TO '{runner_up}'"
+            else:
+                verdict = f"ADVISORY ONLY (NO VETO SCREEN) -> PRIMARY PREFERENCE IS '{winner}' WITH CONTINGENCY TO '{runner_up}'"
     else:
         stability_verdict = "UNSTABLE (Rank flips or margin < 5% under perturbation)"
-        verdict = "UNSTABLE / TIE DETECTED -> DO NOT FORCE PICK; ROUTE TO PATH D (EXPERIMENT) OR PATH E (WAIT)"
+        if veto_screen_applied:
+            verdict = "UNSTABLE / TIE DETECTED -> DO NOT FORCE PICK; ROUTE TO PATH D (EXPERIMENT) OR PATH E (WAIT)"
+        else:
+            verdict = "ADVISORY ONLY (NO VETO SCREEN) -> UNSTABLE / TIE DETECTED; ROUTE TO PATH D OR PATH E"
 
     return MCDAResult(
         candidates=candidates,
@@ -604,6 +696,8 @@ def compute_mcda(
         perturbation_flips=perturbation_flips,
         pairwise_dominance=pairwise_dominance,
         verdict=verdict,
+        vetoed_candidates=vetoed_candidates,
+        veto_screen_applied=veto_screen_applied,
     )
 
 
@@ -667,6 +761,7 @@ def main(argv: list[str] | None = None) -> int:
                 scores=data["scores"],
                 sensitivity_pct=data.get("sensitivity_pct", 0.10),
                 margin_threshold_pct=data.get("margin_threshold_pct", 5.0),
+                veto_floors=data.get("veto_floors"),
             )
         elif args.action == "eev":
             res = compute_eev(args.mev, args.eu, args.eo, args.discount)
