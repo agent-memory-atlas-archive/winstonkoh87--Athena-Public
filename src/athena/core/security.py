@@ -88,6 +88,8 @@ def _patch_dspy_if_loaded() -> bool:
         import diskcache
 
         cache = getattr(dspy, "cache", None)
+        if cache is None:
+            return False
         disk_cache = getattr(cache, "disk_cache", None)
         if not isinstance(disk_cache, diskcache.FanoutCache):
             return False
