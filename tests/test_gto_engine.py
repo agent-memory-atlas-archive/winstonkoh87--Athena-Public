@@ -133,7 +133,8 @@ def test_compute_mcda_stable_winner():
         "Option A": [5, 5, 5],
         "Option B": [1, 2, 1],
     }
-    res = compute_mcda(candidates, criteria, weights, scores)
+    veto_floors = {"Speed": 1.0, "Cost": 1.0, "Quality": 1.0}
+    res = compute_mcda(candidates, criteria, weights, scores, veto_floors=veto_floors)
     assert res.winner == "Option A"
     assert res.is_stable is True
     assert "ROBUST" in res.stability_verdict
@@ -161,10 +162,6 @@ def test_compute_mcda_unstable_tie():
 
 
 def test_cli_mcda_json_and_ascii(capsys):
-    import json
-
-    from athena.intelligence.gto_engine import main
-
     mcda_data = {
         "candidates": ["Option A", "Option B"],
         "criteria": ["Speed", "Cost"],
@@ -189,4 +186,104 @@ def test_cli_mcda_json_and_ascii(capsys):
     captured = capsys.readouterr()
     data = json.loads(captured.out)
     assert data["winner"] == "Option A"
+
+
+def test_mcda_veto_blocks_ruinous_winner():
+    from athena.intelligence.gto_engine import compute_mcda
+
+    candidates = ["ILLEGAL_BUT_LUCRATIVE", "LEGAL_DEFENSIVE"]
+    criteria = ["Profit", "Speed", "MarketShare", "Regulatory"]
+    weights = [0.25, 0.25, 0.25, 0.25]
+    scores = {
+        "ILLEGAL_BUT_LUCRATIVE": [10.0, 10.0, 10.0, 0.0],
+        "LEGAL_DEFENSIVE": [6.0, 6.0, 6.0, 10.0],
+    }
+    veto_floors = {"Regulatory": 1.0}
+
+    res = compute_mcda(candidates, criteria, weights, scores, veto_floors=veto_floors)
+    assert res.winner == "LEGAL_DEFENSIVE"
+    assert "ILLEGAL_BUT_LUCRATIVE" in res.vetoed_candidates
+    assert res.veto_screen_applied is True
+    assert res.is_stable is True
+    assert "SOLE FEASIBLE PATH" in res.verdict
+    assert "Breached Regulatory floor" in res.vetoed_candidates["ILLEGAL_BUT_LUCRATIVE"][0]
+
+
+def test_mcda_all_candidates_vetoed():
+    from athena.intelligence.gto_engine import compute_mcda
+
+    candidates = ["Bad A", "Bad B"]
+    criteria = ["Safety", "Budget"]
+    weights = [0.5, 0.5]
+    scores = {
+        "Bad A": [0.0, 5.0],
+        "Bad B": [5.0, 0.0],
+    }
+    veto_floors = {"Safety": 1.0, "Budget": 1.0}
+
+    res = compute_mcda(candidates, criteria, weights, scores, veto_floors=veto_floors)
+    assert res.winner == "NONE"
+    assert res.is_stable is False
+    assert "INFEASIBLE" in res.stability_verdict
+    assert "NO FEASIBLE PATH" in res.verdict
+    assert len(res.vetoed_candidates) == 2
+
+
+def test_mcda_dominant_winner_is_stable():
+    from athena.intelligence.gto_engine import compute_mcda
+
+    candidates = ["Superior", "Inferior"]
+    criteria = ["C1", "C2", "C3"]
+    weights = [0.34, 0.33, 0.33]
+    scores = {
+        "Superior": [5.0, 5.0, 5.0],
+        "Inferior": [4.9, 4.9, 4.9],  # strictly inferior, margin is ~2.04% < 5%
+    }
+    veto_floors = {"C1": 1.0, "C2": 1.0, "C3": 1.0}
+
+    res = compute_mcda(candidates, criteria, weights, scores, veto_floors=veto_floors)
+    assert res.winner == "Superior"
+    assert res.is_stable is True
+    assert "ROBUST" in res.stability_verdict
+    assert "COMMIT PRIMARY TO 'Superior'" in res.verdict
+    assert any("strictly dominates" in obs for obs in res.pairwise_dominance)
+
+
+def test_mcda_single_criterion_stable():
+    from athena.intelligence.gto_engine import compute_mcda
+
+    candidates = ["Option A", "Option B"]
+    criteria = ["SingleScore"]
+    weights = [1.0]
+    scores = {
+        "Option A": [9.4],
+        "Option B": [9.0],  # 4.44% margin, strictly dominant
+    }
+    veto_floors = {"SingleScore": 1.0}
+
+    res = compute_mcda(candidates, criteria, weights, scores, veto_floors=veto_floors)
+    assert res.winner == "Option A"
+    assert res.is_stable is True
+    assert "ROBUST" in res.stability_verdict
+    assert "COMMIT PRIMARY TO 'Option A'" in res.verdict
+
+
+def test_mcda_no_screen_is_advisory_only():
+    from athena.intelligence.gto_engine import compute_mcda
+
+    candidates = ["Option A", "Option B"]
+    criteria = ["Speed", "Cost"]
+    weights = [0.6, 0.4]
+    scores = {
+        "Option A": [5, 5],
+        "Option B": [2, 2],
+    }
+    # No veto_floors passed
+    res = compute_mcda(candidates, criteria, weights, scores)
+    assert res.winner == "Option A"
+    assert res.is_stable is True
+    assert res.veto_screen_applied is False
+    assert "ADVISORY ONLY (NO VETO SCREEN)" in res.verdict
+    assert "DECISION LOCKED" not in res.verdict
+
 

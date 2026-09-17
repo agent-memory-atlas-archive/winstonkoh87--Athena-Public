@@ -1,10 +1,20 @@
 # Athena Changelog
 
-> **Last Updated**: 17 September 2026 <!-- 2026-09-17 -->
+> **Last Updated**: 18 September 2026 <!-- 2026-09-18 -->
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## [9.9.9] — Feature Port: Crossref DOI Verification Engine & GTO Veto Screening (18 September 2026)
+
+### 2026-09-18 — Verification Engine & Portfolio Refresh
+- **Crossref DOI Verification Engine**: Ported `src/athena/tools/citation_verifier.py`, `scripts/verify_crossref_doi.py`, and `tests/test_citation_verifier.py`. Provides automated verification of academic citations, DOI lookup, and metadata matching directly against the Crossref registry with zero-delimiters ASCII formatting.
+- **GTO Engine Veto Screening & Pareto Stability**: Enhanced `src/athena/intelligence/gto_engine.py` and `tests/test_gto_engine.py` with hard-constraint veto floors, candidate screening, and strictly dominant winner stability validation.
+- **CAPS Refresh**: Updated canonical counts to 2026-09-18 actuals — 420 active protocols (454 total across 26 categories), 43 skills, 74 workflows, 279 scripts, 4,817 memories, 503 case studies.
+- **Synchronized Quad-Surface Refresh**: Synchronized canonical counts and metadata across Athena-Public, GitHub Profile, Personal Site, and Commercial Site.
 
 ---
 
