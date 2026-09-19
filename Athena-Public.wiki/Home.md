@@ -3,7 +3,7 @@
 > **AI-native personal knowledge management for your AI agents**
 > A local-first memory, reasoning, and governance layer · Open Source · Sovereign · Model-Agnostic
 
-*Last Updated: 2026-09-17 · v9.9.9*
+*Last Updated: 2026-09-20 · v9.9.9*
 
 Athena is not an AI Agent. It is the **persistent layer** they run on.
 
@@ -73,5 +73,5 @@ Or use [GitHub Codespaces](https://codespaces.new/winstonkoh87/Athena-Public) fo
 ## 📊 Community
 
 - **1M+** Reddit Views · **#1 All-Time** on r/ChatGPT · **#2 All-Time** on r/GeminiAI
-- **453** Protocols (**419** active) · **276** Scripts · **74** Slash Workflows
+- **454** Protocols (**420** active) · **280** Scripts · **74** Slash Workflows
 - **MIT Licensed** · [Main Repository](https://github.com/winstonkoh87/Athena-Public)

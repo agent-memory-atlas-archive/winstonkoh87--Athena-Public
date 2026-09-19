@@ -2,7 +2,7 @@
 
 Boot your own AI Operating System in 5 minutes.
 
-*Last Updated: 2026-09-17 · v9.9.9*
+*Last Updated: 2026-09-20 · v9.9.9*
 
 ---
 
