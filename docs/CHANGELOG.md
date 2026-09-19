@@ -1,10 +1,21 @@
 # Athena Changelog
 
-> **Last Updated**: 19 September 2026 <!-- 2026-09-19 -->
+> **Last Updated**: 20 September 2026 <!-- 2026-09-20 -->
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## [9.9.9] — Feature Port + Portfolio Refresh (20 September 2026)
+
+### 2026-09-20 — Feature Port & Portfolio Refresh
+- **WCAG Contrast Checker**: Ported `scripts/contrast_check.py` — automated WCAG AA/AAA color contrast ratio calculator and hex pair compliance validator.
+- **Hierarchical AST Contextual Chunker**: Ported `src/athena/memory/contextual_chunker.py` and `tests/test_contextual_chunker.py`. Implements breadcrumb-enriched document chunking preserving Markdown heading hierarchies across chunk boundaries for enhanced vector recall.
+- **Vector Sync Integration**: Updated `src/athena/memory/sync.py` to use `contextual_chunk_text` for hierarchical breadcrumb injection.
+- **CAPS Refresh**: Updated canonical counts to 2026-09-20 actuals — 420 active protocols (454 total across 26 categories), 43 active skills, 74 workflows (55 root, 19 domain), 280 scripts, 4,870 memories, 199 canonical entries.
+- **Synchronized Portfolio Refresh**: Synchronized canonical counts and metadata across public repository, releases, and wiki.
 
 ---
 
