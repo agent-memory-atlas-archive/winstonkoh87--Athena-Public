@@ -1,10 +1,19 @@
 # Athena Changelog
 
-> **Last Updated**: 21 September 2026 <!-- 2026-09-21 -->
+> **Last Updated**: 22 September 2026 <!-- 2026-09-22 -->
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## [9.9.9] — Full Synchronized Digital Portfolio Refresh (22 September 2026)
+
+### 2026-09-22 — Full Synchronized Digital Portfolio Refresh
+- **CAPS Refresh**: Updated canonical counts to 2026-09-22 actuals — 421 active protocols (455 total across 26 categories), 43 active skills, 74 workflows (55 root, 19 domain), 279 scripts, 4,897 memories, 199 canonical entries, 503 case studies.
+- **Synchronized Portfolio Refresh**: Synchronized canonical counts and metadata across public repository, releases, and wiki.
+- **Privacy Verification**: Zero privacy blocklist violations across all public-facing surfaces.
 
 ---
 
