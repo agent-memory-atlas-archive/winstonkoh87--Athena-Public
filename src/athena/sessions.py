@@ -135,7 +135,7 @@ def extract_learnings(content: str) -> tuple[list[str], list[str], list[str], li
 
     # Find Learnings section
     learnings_match = re.search(
-        r"## 2\.5 Learnings.*?(?=\n## [^2]|\Z)", content, re.DOTALL
+        r"## (?:2\.5\s+)?(?:Session\s+)?Learnings.*?(?=\n## |\Z)", content, re.DOTALL
     )
     if not learnings_match:
         return [], [], [], []
@@ -173,17 +173,25 @@ def append_checkpoint(
     )
 
 
-def log_to_decision_ledger(summary: str, rationale: str | None = None):
+def log_to_decision_ledger(summary: str, rationale: str | None = None,
+                           session_id: str | None = None):
     """
-    Log high-stakes decisions to DECISION_LOG.md.
-    """
-    ledger_path = CONTEXT_DIR / "DECISION_LOG.md"
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+    Log high-stakes decisions to the canonical decision ledger.
 
-    entry = f"\n## [{timestamp}] {summary}\n"
+    Target: .context/memory_bank/decisionLog.md (the file that actually exists).
+    Format matches the existing ledger's ### [YYYY-MM-DD] Title (Session SNNN) shape.
+
+    Bug fix (S870): was writing to .context/DECISION_LOG.md which never existed —
+    every quicksave --decision call was silently lost.
+    """
+    ledger_path = CONTEXT_DIR / "memory_bank" / "decisionLog.md"
+    date_str = datetime.now().strftime("%Y-%m-%d")
+
+    session_tag = f" (Session {session_id})" if session_id else ""
+    entry = f"\n### [{date_str}] {summary}{session_tag}\n"
     if rationale:
-        entry += f"**Rationale**: {rationale}\n"
-    entry += "---\n"
+        entry += f"- **Context**: {rationale}\n"
+    entry += "\n"
 
     with open(ledger_path, "a", encoding="utf-8") as f:
         f.write(entry)

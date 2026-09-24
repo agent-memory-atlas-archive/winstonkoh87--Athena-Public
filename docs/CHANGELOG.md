@@ -1,10 +1,28 @@
 # Athena Changelog
 
-> **Last Updated**: 23 September 2026 <!-- 2026-09-23 -->
+> **Last Updated**: 24 September 2026 <!-- 2026-09-24 -->
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## [9.9.9] — Engine Tech Sync + Frame Ledger (24 September 2026)
+
+### 2026-09-24 — Full Technical Parity Sync
+- **Frame Ledger Engine** (NEW): Ported `frame_ledger.py` (1,191 lines) — multi-seat conversational frame accounting with open/validate/resolve/status lifecycle, transition matrices, R1-R10 validation contract, and lock/unlock semantics. 52 new tests in `test_frame_ledger.py`.
+- **Meta-Reasoning Robustness**: Updated `gate_meta.py` with T1d paraphrase-robust patterns (job loss, manager meeting, co-founder), T2c inverted word order, T5c felt-evidence paraphrases, T8 multilingual class (Mandarin/Malay/French), and negative-guard suppressor kill fix.
+- **Lambda Scorer Hardening**: Updated `lambda_scorer.py` with Law #1 Ruin Patch (psychological/existential ruin patterns), multilingual irreversibility detection, and anti-stuffing coherence gate.
+- **MCP Server Expansion**: Added 5 new tools to `mcp_server.py` — `search_web`, `frame_open`, `frame_validate`, `frame_resolve`, `frame_status`. Fixed `local_first` threshold (0.8 → 0.03).
+- **Search Diversity**: Ported Stratified Diversity Pass (T-20260920-01) to `search.py` — caps results per document prefix to prevent monolithic reference docs from crowding out diverse sources in the reranker pipeline.
+- **Bug Fix (S870)**: Fixed `sessions.py` `log_to_decision_ledger` — was writing to `DECISION_LOG.md` (file never existed); now correctly targets `memory_bank/decisionLog.md`.
+- **Session Auto-Vectorisation**: Updated `shutdown.py` with fire-and-forget background vectorisation trigger (PID-lock pattern).
+- **Governance Update**: Ported 3 missing governance sections to `AGENTS.md`: Immutable Test Invariant, Oscillation Circuit Breaker (3-Round Rule), Verification Gap Declaration.
+- **Red Team Meta Probes**: Ported `test_redteam_meta_probes.py` + `.agent/eval/redteam_meta_probe.py` — adversarial probe suite with RATCHET_FLOOR=20.
+- **CAPS Refresh**: Updated canonical counts — 421 active protocols (455 total), 279 scripts, 4,948 memories, 503 case studies.
+- **Documentation Fixes**: Fixed broken skill link in `USE_CASES.md` (line 214), updated ARCHITECTURE.md (96 SDK files, 30 test files, 348 tests), synced memory counts across all surfaces.
+- **Privacy Verification**: Zero privacy blocklist violations across all ported files.
 
 ---
 

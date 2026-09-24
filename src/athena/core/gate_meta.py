@@ -44,6 +44,15 @@ T1_INBOUND = [
     r"\bchanged the (terms|scope|price|deal|agreement)\b",
     # Relational drift — bare narration without interrogative
     r"(he|she|they|my \w+).{0,10}\b(been|being|is|are|was) (distant|cold|weird|off|different|avoidant|quiet|silent|strange)\b",
+    # T1d — PARAPHRASE-ROBUST (red-team probe remediation, 2026-09-20)
+    # Job loss synonyms ("I was let go" missed because only "laid off/terminated" existed)
+    r"\b(let go|fired|sacked|made redundant|lost my job|got the sack|given the boot)\b",
+    # Manager/meeting synonyms ("1:1" missed because pattern required "meeting")
+    r"\b(manager|supervisor|director|team lead)\b.{0,25}\b(says?|wants?|told|asked|call\w*|meet\w*|schedul\w*|chat|talk)\b",
+    r"\b(1:1|one-on-one|1-on-1|catch-?up)\b.{0,25}\b(no agenda|without (context|details)|out of (the )?blue)\b",
+    # Co-founder / partner counterparty moves
+    r"\b(co-?founder|partner|investor|shareholder|board)\b.{0,25}\b(wants?|asked|demanded|proposed|redo|chang\w*|restructur\w*|renegotiat\w*|dilut\w*)\b",
+    r"\b(redo|restructur\w*|renegotiat\w*)\b.{0,20}\b(cap table|equity|terms|agreement|deal|split)\b",
 ]
 
 T2_OUTBOUND = [
@@ -54,7 +63,7 @@ T2_OUTBOUND = [
     r"how (this|it|that) (will|would|might|is going to) (look|come across|land|read)",
     r"is it (ok|okay|fine|weird) to (send|post|text|reply|invite|ask|call out|confront|sign|quote)",
     r"draft (this|a|my|the)",
-    r"about to (post|send|text|message|meet|sign|commit|call out|confront|submit)",
+    r"about to (post|send|text|message|meet|sign|commit|call out|confront|submit|reply-?all|reply all)",
     r"(plan|planning|going|want|intend)(ing)? to (post|send|text|message|invite|call out|confront|announce|publish|share|gift|sign|pitch)",
     r"gonna (post|send|text|message|invite|call out|confront|announce|publish|share|gift|sign)",
     r"\bi (invited|texted|posted|sent|messaged|confronted|called out|shared|dm'?ed|gifted|signed|quoted|pitched)\b",
@@ -67,6 +76,10 @@ T2_OUTBOUND = [
     r"\b(later|aftwards?)\b.{0,10}\b(i|we)\b.{0,10}\b(reply|text|send|tell|ask|msg)\b",
     r"\breply (him|her|them)\b.{0,15}\b(or not|ok anot|better|should)\b",
     r"\bjiak zua\b",
+    # T2c — INVERTED WORD ORDER (paraphrase robustness for multi-intent prompts)
+    # Catches "if I should sign", "whether to accept", "tell me if I should"
+    r"\b(if i should|whether to|whether i should)\b.{0,20}\b(sign|accept|agree|reject|quit|resign|send|post|submit|commit)\b",
+    r"\btell me\b.{0,20}\b(if i should|whether)\b.{0,20}\b(sign|accept|agree|reject|quit|resign)\b",
 ]
 
 T3_VERDICT = [
@@ -101,6 +114,10 @@ T5_FELT = [
     r"\bsomething('s| is) (not right|off|wrong|fishy|weird)\b",
     r"\bbad vibes?\b",
     r"\bsomething about (this|it|that|him|her|them) (doesn'?t|does not) (sit|feel|add up)\b",
+    # T5c — PARAPHRASE-ROBUST felt evidence (red-team probe remediation)
+    r"\b(didn'?t|doesn'?t|does not|did not) (sit|feel|seem) right\b",
+    r"\bnothing about (that|this|it|the).{0,20}(sat|sit|feel|felt|seem) right\b",
+    r"\b(can'?t put my finger on|can'?t explain|hard to (explain|articulate)|something.{0,10}(off|wrong|not right) about)\b",
 ]
 
 # T6 — INTAKE-AUTHORITY: prompt narrates a new project with a named authority
@@ -122,6 +139,40 @@ T7_CAPABILITY = [
     r"\b(non-specialist|non-technical) (presenter|client|operator|candidate)\b",
 ]
 
+# T8 — MULTILINGUAL: high-stakes decision keywords in non-English languages
+# plausible for the operator (Mandarin, Malay, French, Bahasa Indonesia).
+# Not exhaustive — covers the critical decision/ruin vocabulary only.
+T8_MULTILINGUAL = [
+    # Mandarin
+    r"应该",       # should
+    r"签",         # sign (contract)
+    r"合同",       # contract
+    r"辞职",       # resign
+    r"离婚",       # divorce
+    r"风险",       # risk
+    r"破产",       # bankrupt
+    r"自杀",       # suicide
+    r"贷款",       # loan
+    # Malay / Bahasa Indonesia
+    r"\b(patut|sepatutnya)\b",       # should
+    r"\btandatangan\b",              # sign
+    r"\bkontrak\b",                  # contract
+    r"\bberhenti\b",                 # quit/resign
+    r"\bcerai\b",                    # divorce
+    r"\bbankrap\b",                  # bankrupt
+    r"\bpinjaman\b",                 # loan
+    r"\bmuflis\b",                   # insolvent
+    # French
+    r"\b(dois-je|devrais-je|faut-il)\b",  # should I / must I
+    r"\bsigner\b",                   # sign
+    r"\bcontrat\b",                  # contract
+    r"\bdémissionner\b",             # resign
+    r"\bdivorce\b",                  # divorce (same word)
+    r"\bfaillite\b",                 # bankruptcy
+    r"\bprêt\b",                     # loan
+    r"\bsuicide\b",                  # suicide (same word)
+]
+
 CLASSES = [
     ("T1-INBOUND", T1_INBOUND),
     ("T2-OUTBOUND", T2_OUTBOUND),
@@ -130,6 +181,7 @@ CLASSES = [
     ("T5-FELT", T5_FELT),
     ("T6-INTAKE-AUTHORITY", T6_INTAKE),
     ("T7-END-USER-CAPABILITY", T7_CAPABILITY),
+    ("T8-MULTILINGUAL", T8_MULTILINGUAL),
 ]
 
 NEGATIVE = [
@@ -171,7 +223,21 @@ def classify(prompt: str) -> list:
     for name, patterns in CLASSES:
         if any(re.search(pat, p) for pat in patterns):
             fired.append(name)
-    # Suppress single-class fires on routine-ops context (T4-only, T1-only, or T6-only)
-    if fired in [["T4-RESOURCE"], ["T1-INBOUND"], ["T6-INTAKE-AUTHORITY"]] and any(re.search(pat, p) for pat in NEGATIVE):
+    # Narrow suppression: only suppress when ALL of these hold:
+    #   1. Single-class fire (T4-only, T1-only, or T6-only)
+    #   2. Routine-ops context word present
+    #   3. No explicit decision/ask language in the prompt
+    # This prevents multi-intent suppression (the prior version's live exploit).
+    DECISION_LANGUAGE = [
+        r"\bshould i\b", r"\bthinking (of|about)\b", r"\babout to\b",
+        r"\bgonna\b", r"\bplanning to\b", r"\bgoing to\b",
+        r"\bi want to\b", r"\bi need to\b", r"\bwhether to\b",
+        r"\bthoughts\b", r"\bwhat do you think\b",
+    ]
+    if (
+        fired in [["T4-RESOURCE"], ["T1-INBOUND"], ["T6-INTAKE-AUTHORITY"]]
+        and any(re.search(pat, p) for pat in NEGATIVE)
+        and not any(re.search(dl, p) for dl in DECISION_LANGUAGE)
+    ):
         return []
     return fired

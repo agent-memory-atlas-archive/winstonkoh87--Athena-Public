@@ -38,7 +38,7 @@ else:
 import json
 import logging
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 from fastmcp import FastMCP
 
@@ -178,7 +178,7 @@ def agentic_search(
     perms = get_permissions()
     perms.gate("agentic_search")
 
-    result = _agentic_search(query=query, limit=limit, validate=validate, web=web)
+    result = _agentic_search(query=query, limit=limit, validate=validate, web=web or False)
 
     return {
         "results": [r.to_dict() for r in result["results"]],
@@ -269,10 +269,13 @@ def health_check() -> dict:
 
     vector = HealthCheck.check_vector_api()
     db = HealthCheck.check_database()
+    from athena.tools.web_providers import get_web_health
+    web_health = get_web_health()
 
     return {
         "vector_api": vector,
         "database": db,
+        "web_search": web_health,
         "overall": "PASS" if (vector["status"] == "PASS" and db["status"] == "PASS") else "FAIL",
         "timestamp": datetime.now().isoformat(),
     }
@@ -596,6 +599,100 @@ def report_external_web_search(
     }
 
 
+# ---------------------------------------------------------------------------
+# TOOL: search_web
+# ---------------------------------------------------------------------------
+
+
+@mcp.tool(
+    tags={"read", "search", "web"},
+)
+def search_web(
+    query: str,
+    limit: int = 5,
+) -> dict:
+    """Execute live web search via Athena's resilient multi-provider failover chain
+    (Serper -> Brave -> DuckDuckGo). Returns structured results and explicit
+    tri-state grounding_status (ok, degraded, tool_error).
+
+    Use this whenever you need fresh, external facts or when IDE-native web search
+    is unavailable or fails.
+
+    Args:
+        query: Search query string.
+        limit: Maximum results to return (default 5).
+
+    Returns:
+        dict with 'results', 'metadata' (provider, errors, fetched_at),
+        'grounding_status' ('ok' | 'degraded' | 'tool_error'), and 'directive'.
+    """
+    import json
+
+    from athena.core.config import PROJECT_ROOT
+    from athena.core.governance import get_governance
+    from athena.tools.web_providers import web_search as provider_web_search
+
+    perms = get_permissions()
+    perms.gate("search_web")
+
+    results_raw, meta = provider_web_search(query, limit=limit)
+    status = meta.get("grounding_status", "ok" if results_raw else "tool_error")
+
+    gov = get_governance()
+    if status != "tool_error":
+        gov.mark_web_search_performed(query)
+
+    # Log to invocations.jsonl
+    invocations_path = PROJECT_ROOT / ".athena" / "invocations.jsonl"
+    try:
+        invocations_path.parent.mkdir(parents=True, exist_ok=True)
+        entry = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "type": "web_search",
+            "query": query[:200],
+            "grounding_status": status,
+            "provider": meta.get("provider", "none"),
+            "result_count": len(results_raw),
+        }
+        with open(invocations_path, "a") as f:
+            f.write(json.dumps(entry) + "\n")
+    except Exception:
+        pass
+
+    directive = None
+    if status == "tool_error":
+        directive = (
+            "CIRCUIT BREAKER (P514): All web search providers failed (tool_error). "
+            "Do NOT assert facts or universal-negative claims ('does not exist', 'never made') "
+            "from internal model weights alone. Either cite the search failure and state "
+            "epistemic uncertainty, use alternate tools (e.g. read_url_content), or ask the user."
+        )
+    elif status == "degraded":
+        directive = (
+            f"Note: Web search ran on fallback provider '{meta.get('provider')}'. "
+            "Verify critical facts if answer hinges on high-stakes details."
+        )
+
+    results_data = [
+        {
+            "title": r.title,
+            "snippet": r.snippet,
+            "url": r.url,
+            "fetched_at": r.fetched_at,
+            "provider": r.provider,
+            "position": r.position,
+        }
+        for r in results_raw
+    ]
+
+    return {
+        "results": results_data,
+        "metadata": meta,
+        "grounding_status": status,
+        "directive": directive,
+    }
+
+
 @mcp.tool(
     tags={"governance", "classification"},
 )
@@ -636,52 +733,226 @@ def classify_turn(
         web_required = intent == "GENERAL"  # Conservative default
         web_reason = "fallback_intent"
 
-    # Classify risk level
-    query_lower = query.lower().strip()
-    word_count = len(query_lower.split())
-
-    # SNIPER: Short, simple, low-stakes queries
-    # underspec_opt questions are NEVER sniper — they need the frame directive
-    sniper_signals = (
-        word_count <= 5
-        and intent == "SYSTEM_KNOWLEDGE"
-        and not web_required
-        and not underspec_opt
+    # Classify risk level via deterministic lambda_scorer (Phase C1)
+    from athena.core.lambda_scorer import compute_lambda
+    lambda_res = compute_lambda(
+        query,
+        intent=intent,
+        web_required=web_required,
+        underspec_opt=underspec_opt,
     )
-
-    # ULTRA: Complex, multi-part, high-stakes queries
-    ultra_signals = (
-        word_count > 20
-        or any(marker in query_lower for marker in [
-            "analyze", "analyse", "deep dive", "comprehensive",
-            "compare", "evaluate", "strategy", "trade",
-            "should i", "what are the implications",
-            "risk", "ruin", "circuit breaker",
-        ])
-        or (intent == "PERSONALISED_DECISION" and web_required)
-    )
-
-    if sniper_signals:
-        risk_level = RiskLevel.SNIPER
-    elif ultra_signals:
-        risk_level = RiskLevel.ULTRA
-        web_required = True  # ULTRA always requires web
+    risk_level = lambda_res["risk_level"]
+    if risk_level == RiskLevel.ULTRA:
+        web_required = True
         if web_reason == "none":
             web_reason = "ultra_tier"
-    else:
-        risk_level = RiskLevel.STANDARD
 
     # Set the governance risk level (this is what makes SNIPER/ULTRA reachable)
     gov.set_risk_level(risk_level)
 
     return {
         "risk_level": risk_level.name,
+        "lambda_score": lambda_res["score"],
+        "lambda_features": lambda_res["features"],
         "web_required": web_required,
         "web_reason": web_reason,
         "underspec_opt": underspec_opt,
         "intent": intent,
-        "query_words": word_count,
+        "query_words": len(query.strip().split()),
         "timestamp": datetime.now().isoformat(),
+    }
+
+
+@mcp.tool(
+    tags={"governance", "reasoning", "cluster15"},
+)
+def frame_open(frame_json: str, session: str = "", lock: bool = False) -> dict:
+    """Pre-register a problem frame BEFORE solving (RSN-504 Gate 5b).
+
+    Frames are validated against the machine-checkable R1-R10 contract and the
+    value-of-information stop rule. A frame that cannot be falsified, has no
+    rival hypothesis, no numeric exit criteria, no kill criteria, no baseline
+    counterfactual, or no justification for spending framing time is REJECTED
+    and never recorded.
+
+    Args:
+        frame_json: JSON object of the frame. Required keys: literal_request,
+            candidate_reframe, hypotheses (>=2, priors summing to 1.0, each with
+            a falsifier), discriminating_test, success_criteria (metric +
+            threshold with a number + by-date), review_date, kill_criteria,
+            baseline_counterfactual, framing_budget_min, p_flip, delta_payoff,
+            info_cost, cost_of_delay_per_day.
+        session: session id for provenance.
+        lock: mark the frame locked once registered.
+
+    Returns:
+        dict with frame_id, contract verdict (blockers/warnings), the VOI
+        verdict, and the ledger path.
+    """
+    from athena.intelligence.frame_ledger import (
+        DEFAULT_LEDGER,
+        FrameLedger,
+        build_frame,
+        compute_evi,
+    )
+
+    perms = get_permissions()
+    perms.gate("frame_open")
+
+    payload = json.loads(frame_json)
+    frame = build_frame(payload, session=session)
+    ledger = FrameLedger(DEFAULT_LEDGER)
+    result = ledger.open(frame, lock=lock)
+    voi = compute_evi(
+        frame.p_flip,
+        frame.delta_payoff,
+        frame.info_cost,
+        frame.framing_budget_min,
+        frame.cost_of_delay_per_day,
+    )
+    return {
+        "frame_id": frame.id,
+        "ok": result.ok,
+        "blockers": [v.to_dict() for v in result.blockers],
+        "warnings": [v.to_dict() for v in result.warnings],
+        "voi_verdict": voi.verdict,
+        "voi_net_evi": voi.net_evi,
+        "ledger": str(DEFAULT_LEDGER),
+        "contract_report": result.to_ascii(),
+    }
+
+
+@mcp.tool(
+    tags={"governance", "reasoning", "cluster15"},
+)
+def frame_validate(frame_json: str = "", frame_id: str = "") -> dict:
+    """Run the R1-R10 frame contract + VOI stop rule on a frame.
+
+    Call this on the CANDIDATE REFRAME before spending solution effort, and on
+    any locked frame before a REVIEW date. Rejecting a bad frame early is the
+    cheapest gate in the system; there is no probe that costs less.
+
+    Args:
+        frame_json: inline frame JSON (omit if using frame_id).
+        frame_id: id of a frame already in the ledger.
+
+    Returns:
+        dict with the contract verdict, per-rule violations, and VOI verdict.
+    """
+    from athena.intelligence.frame_ledger import (
+        DEFAULT_LEDGER,
+        FrameLedger,
+        build_frame,
+        compute_evi,
+        validate_frame,
+    )
+
+    perms = get_permissions()
+    perms.gate("frame_validate")
+
+    if frame_id:
+        frame = FrameLedger(DEFAULT_LEDGER).get(frame_id)
+        if frame is None:
+            return {"ok": False, "error": f"unknown frame {frame_id}"}
+    elif frame_json:
+        frame = build_frame(json.loads(frame_json))
+    else:
+        return {"ok": False, "error": "provide frame_json or frame_id"}
+
+    result = validate_frame(frame)
+    voi = compute_evi(
+        frame.p_flip,
+        frame.delta_payoff,
+        frame.info_cost,
+        frame.framing_budget_min,
+        frame.cost_of_delay_per_day,
+    )
+    return {
+        "frame_id": frame.id,
+        "ok": result.ok,
+        "blockers": [v.to_dict() for v in result.blockers],
+        "warnings": [v.to_dict() for v in result.warnings],
+        "voi_verdict": voi.verdict,
+        "contract_report": result.to_ascii(),
+        "voi_report": voi.to_ascii(),
+    }
+
+
+@mcp.tool(
+    tags={"governance", "reasoning", "cluster15"},
+)
+def frame_resolve(
+    frame_id: str,
+    supported: str = "",
+    killed: str = "",
+    regret: float | None = None,
+    note: str = "",
+    action: str = "",
+) -> dict:
+    """Score a locked frame against reality at its REVIEW date.
+
+    Resolution is appended to the ledger as a NEW event; the pre-registered
+    frame is never edited (that is the point of pre-registration). Produces the
+    per-frame Brier score, whether the top hypothesis survived, and the
+    realised regime.
+
+    Args:
+        frame_id: id of the frame being resolved.
+        supported: comma-separated hypothesis ids that survived.
+        killed: comma-separated hypothesis ids that were falsified.
+        regret: optional self-reported regret, 0-10, recorded as an outcome
+            signal (not as evidence for the diagnosis).
+        note: one-line evidence note.
+        action: what was actually done.
+
+    Returns:
+        dict with the resolution record.
+    """
+    from athena.intelligence.frame_ledger import DEFAULT_LEDGER, FrameLedger
+
+    perms = get_permissions()
+    perms.gate("frame_resolve")
+
+    ledger = FrameLedger(DEFAULT_LEDGER)
+    resolution = ledger.resolve(
+        frame_id,
+        supported=[s for s in supported.split(",") if s],
+        killed=[k for k in killed.split(",") if k],
+        regret=regret,
+        note=note,
+        decided_action=action,
+    )
+    return {"frame_id": frame_id, "resolution": resolution}
+
+
+@mcp.tool(
+    tags={"read", "governance", "reasoning", "cluster15"},
+)
+def frame_status() -> dict:
+    """Report frame quality + protocol adoption (the measurement surface).
+
+    Returns the numbers this layer previously never produced: frames opened /
+    resolved, pending rot, mean frame Brier vs the 0.25 coin-flip baseline,
+    skill, mode distribution, the thesis kill-switch status, and the adoption
+    scan (do the Cluster #15 artifacts appear anywhere in the corpus?).
+
+    Returns:
+        dict with scoring and adoption metrics.
+    """
+    from athena.intelligence.frame_ledger import (
+        DEFAULT_LEDGER,
+        FrameLedger,
+        scan_adoption,
+        score_frames,
+    )
+
+    perms = get_permissions()
+    perms.gate("frame_status")
+
+    frames = FrameLedger(DEFAULT_LEDGER).frames()
+    return {
+        "scoring": score_frames(frames),
+        "adoption": scan_adoption("."),
     }
 
 
@@ -725,7 +996,6 @@ def context_gate(
     intent = classify_query_intent(query)
     gov = get_governance()
 
-    # Determine risk level
     # Determine risk level and frame detection
     web_required = False
     web_reason = "none"
@@ -737,35 +1007,19 @@ def context_gate(
     except ImportError:
         pass
 
-    query_lower = query.lower().strip()
-    word_count = len(query_lower.split())
-
-    sniper_signals = (
-        word_count <= 5
-        and intent == "SYSTEM_KNOWLEDGE"
-        and not web_required
-        and not underspec_opt
+    # Classify risk level via deterministic lambda_scorer (Phase C1)
+    from athena.core.lambda_scorer import compute_lambda
+    lambda_res = compute_lambda(
+        query,
+        intent=intent,
+        web_required=web_required,
+        underspec_opt=underspec_opt,
     )
-    ultra_signals = (
-        word_count > 20
-        or any(m in query_lower for m in [
-            "analyze", "analyse", "deep dive", "comprehensive",
-            "compare", "evaluate", "strategy", "trade",
-            "should i", "what are the implications",
-            "risk", "ruin", "circuit breaker",
-        ])
-        or (intent == "PERSONALISED_DECISION" and web_required)
-    )
-
-    if sniper_signals:
-        risk_level = RiskLevel.SNIPER
-    elif ultra_signals:
-        risk_level = RiskLevel.ULTRA
+    risk_level = lambda_res["risk_level"]
+    if risk_level == RiskLevel.ULTRA:
         web_required = True
         if web_reason == "none":
             web_reason = "ultra_tier"
-    else:
-        risk_level = RiskLevel.STANDARD
 
     gov.set_risk_level(risk_level)
 
@@ -774,6 +1028,14 @@ def context_gate(
 
     # 3. Run search (captures JSON output)
     gov.mark_search_performed(query)  # Mark semantic leg
+
+    # Latent Meta-Pattern projection (GTO Upgrade: cross-domain expansion)
+    latent_patterns = []
+    try:
+        from athena.tools.meta_pattern_matcher import detect_latent_meta_patterns
+        latent_patterns = detect_latent_meta_patterns(query, max_patterns=2)
+    except ImportError:
+        pass
 
     old_stdout = sys.stdout
     sys.stdout = buffer = io.StringIO()
@@ -798,27 +1060,73 @@ def context_gate(
     except (ValueError, _json.JSONDecodeError):
         search_results = {"results": [], "error": "Failed to parse search output"}
 
+    # Secondary multi-hop retrieval for matched Meta-Patterns
+    if latent_patterns:
+        existing_ids = {
+            r.get("id") for r in search_results.get("results", []) if isinstance(r, dict)
+        }
+        for mp in latent_patterns:
+            mp_buffer = io.StringIO()
+            old_stdout = sys.stdout
+            sys.stdout = mp_buffer
+            try:
+                run_search(
+                    mp["search_terms"],
+                    limit=2,
+                    json_output=True,
+                    include_personal=False,
+                    web=False,
+                    intent="SYSTEM_KNOWLEDGE",
+                )
+            except Exception:
+                pass
+            finally:
+                sys.stdout = old_stdout
+            mp_raw = mp_buffer.getvalue().strip()
+            try:
+                mp_parsed = _json.loads(mp_raw)
+                for item in mp_parsed.get("results", []):
+                    if isinstance(item, dict) and item.get("id") not in existing_ids:
+                        item["meta_pattern_projection"] = {
+                            "id": mp["id"],
+                            "name": mp["name"],
+                            "rationale": mp["description"],
+                        }
+                        search_results.setdefault("results", []).append(item)
+                        existing_ids.add(item.get("id"))
+            except Exception:
+                pass
+
     # 4. Build personalisation frame (when relevant)
     personalisation = None
     user_state = None
     if intent == "PERSONALISED_DECISION":
         try:
+            from athena.core.models import SearchResult as _SR
             from athena.tools.personalisation import (
                 build_personalisation_prompt,
                 build_user_state_snapshot,
             )
-            personalisation = build_personalisation_prompt(query)
+            raw_results = search_results.get("results", [])
+            sr_objects = [
+                _SR(**r) if isinstance(r, dict) else r
+                for r in raw_results
+            ]
+            personalisation = build_personalisation_prompt(query, sr_objects)
             user_state = build_user_state_snapshot()
         except Exception:
             pass
 
-    # 5. Check for strong local hit
+    # 5. Check for strong local hit (threshold must be reachable under RRF normalization)
     local_first = False
     results_list = search_results.get("results", [])
     if isinstance(results_list, list) and results_list:
         top_result = results_list[0] if results_list else {}
         top_score = top_result.get("rrf_score", 0) if isinstance(top_result, dict) else 0
-        if top_score >= 0.8:
+        # CONFIDENCE_HIGH (0.03) from search.py — the actual high-confidence
+        # threshold aligned to RRF_K=60 normalization. Prior value 0.8 was
+        # unreachable (max theoretical RRF ≈ 0.61) — dead branch since inception.
+        if top_score >= 0.03:
             local_first = True
 
     # 6. Determine missing requirements
@@ -870,20 +1178,70 @@ def context_gate(
             "hierarchy, and hand the choice back to the user (DEC-180)."
         )
 
+    # v3.1: Meta-awareness bridge — cross-harness parity with Claude Code hook.
+    # When gate_meta.classify() fires, inject a META directive so any MCP client
+    # (Antigravity, Gemini, Codex) gets the substance-decode kernel without
+    # requiring a Claude Code UserPromptSubmit hook. Never blocks, never errors.
+    try:
+        from athena.core.gate_meta import classify as meta_classify
+        meta_classes = meta_classify(query)
+        if meta_classes:
+            directive_parts.append(
+                f"META: Structural trigger {meta_classes} fired — run the "
+                "substance-decode interpreter kernel (arena → prior → discriminators "
+                "→ sign check → receiver-frame → F≠R → payoff) before answering. "
+                "Load substance-decode skill for depth."
+            )
+    except Exception:
+        pass  # stdlib-only gate; never block context_gate on import failure
+
+    # 8. Web metadata and tri-state grounding_status
+    web_count = len([
+        r for r in (results_list if isinstance(results_list, list) else [])
+        if isinstance(r, dict) and r.get("source") == "web_search"
+    ])
+
+    if not effective_web:
+        grounding_status = "unrequested"
+    elif web_count > 0:
+        grounding_status = "ok"
+    else:
+        grounding_status = "tool_error"
+
+    # Circuit breaker on web tool_error
+    if effective_web and web_count == 0:
+        directive_parts.append(
+            "CIRCUIT BREAKER (P514): Web search returned 0 results or degraded (tool_error). "
+            "Do NOT treat search failure as evidence of non-existence. Never emit universal-negative "
+            "claims ('never made', 'does not exist') without verified external search."
+        )
+
+    # Epistemic Gate directive: negative-claim protection
+    directive_parts.append(
+        "EPISTEMIC GATE: Never assert that a product, entity, or event does NOT exist or was NEVER made "
+        "based solely on absence from pre-training weights. Absence of memory is not proof of non-existence. "
+        "Cite verified live search or state epistemic uncertainty."
+    )
+
+    # Latent Meta-Pattern directive (GTO Upgrade)
+    if latent_patterns:
+        mp_summary = ", ".join(f"{mp['id']} ({mp['name']})" for mp in latent_patterns)
+        directive_parts.append(
+            f"CROSS-DOMAIN PROJECTION: Query projected onto latent Meta-Patterns: {mp_summary}. "
+            "Synthesize structural invariants across these domains."
+        )
+
     if not directive_parts:
         directive_parts.append("Context bundle assembled. Proceed with answer.")
 
     directive = " ".join(directive_parts)
 
-    # 8. Web metadata
     web_meta = {
         "fired": effective_web,
         "required": web_required,
         "reason": web_reason,
-        "count": len([
-            r for r in (results_list if isinstance(results_list, list) else [])
-            if isinstance(r, dict) and r.get("source") == "web_search"
-        ]),
+        "count": web_count,
+        "grounding_status": grounding_status,
     }
 
     # Add provider info if available
@@ -894,11 +1252,37 @@ def context_gate(
                 web_meta["provider"] = meta["provider"]
                 break
 
+    # Build evidence checklist (Phase C1.2)
+    evidence_checklist = []
+    f_names = [f["name"] for f in lambda_res.get("features", [])]
+    if "currency_amount" in f_names or "financial_concept" in f_names:
+        evidence_checklist.append("Verify numerical quantities and capital boundaries against CANONICAL or account statements.")
+    if "irreversible_action" in f_names or "legal_liability" in f_names:
+        evidence_checklist.append("Audit contract indemnity, liability exposure, and counterparty recoil boundaries.")
+    if "ruin_risk" in f_names:
+        evidence_checklist.append("Verify survival floor, stop-loss limits, and worst-case tail-risk firewalls.")
+    if latent_patterns:
+        evidence_checklist.append(f"Synthesize structural invariants across latent Meta-Patterns ({', '.join(mp['id'] for mp in latent_patterns)}).")
+    if not evidence_checklist:
+        evidence_checklist.append("Ground substantive claims in retrieved Exocortex session logs or live web results.")
+
+    # Calculate preliminary retrieval sufficiency ratio
+    sufficiency = 1.0 if (local_first or len(results_list) >= 3 or web_count > 0) else 0.75
+
     return {
         "context": search_results,
+        "lambda": {
+            "score": lambda_res["score"],
+            "tier": lambda_res["tier"],
+            "features": lambda_res["features"],
+        },
+        "evidence_checklist": evidence_checklist,
+        "sufficiency": sufficiency,
+        "latent_meta_patterns": latent_patterns,
         "personalisation": personalisation,
         "user_state": user_state,
         "web": web_meta,
+        "grounding_status": grounding_status,
         "local_first": local_first,
         "missing": missing,
         "underspec_opt": underspec_opt,

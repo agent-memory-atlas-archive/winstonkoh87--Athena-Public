@@ -182,6 +182,28 @@ Corollaries:
   if the name is genuinely wrong, but record it as a false positive rather than
   letting the ledger read "fixed".
 
+### The Immutable Test Invariant (Anti-Goodhart & Seams Protection)
+
+> **HARD RULE**: When a test or verification gate fails, source code must be corrected to satisfy the contract — NEVER loosen test assertions, comment out checks (`skip`), or mock the contract solely to achieve a green exit code.
+
+- **Source Fixes Test**: The implementation must fix the defect; the test defines the invariant. Modifying existing test files to make a failing suite pass requires explicit user authorization.
+- **Test at Seams**: Tests must target public interfaces, API boundaries, and system seams — never volatile private implementation details. Refactoring internal implementation must leave seam tests green and unmodified.
+- **Legacy Test Transition Protocol**: If a refactoring breaks an obsolete test tightly coupled to superseded private implementation details rather than the public contract, test weakening remains prohibited. Present the user with an explicit `[Legacy Test Transition Request]` to elevate the test to an API seam or retire it upon approval.
+
+### Oscillation & Loop Circuit Breaker (The 3-Round Rule)
+
+- **Fix Pass Blast Cap**: Cap modifications per single fix pass to at most ~10% of affected files/symbols. Never attempt wide-sweep rewrites within an unverified repair loop.
+- **Oscillation Detector**: If 3 consecutive iterations yield identical tool calls, repeating error signatures, or code oscillation (flipping edits back and forth between state A and state B), HALT immediately.
+- **Loop-Breaker Action**: Name the detected loop, change exactly ONE underlying assumption or variable, and retry once. If failure persists, halt and present 2–3 concrete trade-off options with a single diagnostic question.
+
+### Verification Gap Declaration (The Gap-Round)
+
+Upon delivery or completion claims (`walkthrough.md` or concluding response), explicitly declare:
+1. **What was computationally verified**: Exact commands and terminal proof (exit code 0).
+2. **What was NOT verified**: Omissions, edge cases, or paths skipped due to environment constraints.
+3. **Critical unverified boundaries**: Any unverified boundary carrying critical risk blocks delivery (`BLOCKED`) pending explicit user review.
+
+
 ### External Verification Mandate
 
 > **MANDATORY (ALL sessions)**: Every non-trivial response MUST invoke at least ONE external tool before generating output. "External" = anything outside the model's weights (Exocortex, web search, file reads, MCP, grep, commands).

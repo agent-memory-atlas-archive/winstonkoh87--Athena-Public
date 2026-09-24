@@ -961,7 +961,49 @@ def weighted_rrf(
         doc.signals = doc_signals[doc_id]
         final_list.append(doc)
 
-    return sorted(final_list, key=lambda x: x.rrf_score, reverse=True)
+    scored = sorted(final_list, key=lambda x: x.rrf_score, reverse=True)
+
+    # --- Stratified Diversity Pass (T-20260920-01) ---
+    # Problem: monolithic reference documents (CANONICAL.md, framework modules)
+    # contribute many chunks that dominate the top-N slots, crowding out skill
+    # files, scripts, and session logs before the reranker ever sees them.
+    # Fix: cap how many results share the same *document prefix* so the candidate
+    # pool sent to the reranker is source-diverse.
+    #
+    # A "document prefix" is the part of doc.id before the first colon or paren:
+    #   "Canonical:L75"        → "Canonical"
+    #   "Framework: Core_Identity.md" → "Framework"
+    #   "ContextDoc: glossary.md"     → "ContextDoc"
+    #   "SKILL.md (Chunk 0)"          → "SKILL.md"
+    #   "Session 2026-09-20: ..."     → "Session 2026-09-20"
+    # This groups chunks from the same logical document together.
+    MAX_PER_DOC_PREFIX = 3  # allow up to 3 chunks from any single prefix
+
+    def _doc_prefix(doc_id: str) -> str:
+        """Extract the document-level prefix from a result ID."""
+        # Colon-separated IDs: "Canonical:L75" → "Canonical"
+        if ":" in doc_id:
+            return doc_id.split(":")[0].strip()
+        # Parenthetical chunk IDs: "SKILL.md (Chunk 0)" → "SKILL.md"
+        if " (" in doc_id:
+            return doc_id.split(" (")[0].strip()
+        return doc_id.strip()
+
+    prefix_counts: dict[str, int] = {}
+    diversified: list[SearchResult] = []
+    overflow: list[SearchResult] = []
+
+    for doc in scored:
+        prefix = _doc_prefix(doc.id)
+        count = prefix_counts.get(prefix, 0)
+        if count < MAX_PER_DOC_PREFIX:
+            diversified.append(doc)
+            prefix_counts[prefix] = count + 1
+        else:
+            overflow.append(doc)
+
+    # Append overflow at the end so nothing is lost — just deprioritized.
+    return diversified + overflow
 
 
 def redact_query_for_web(query: str, intent: str) -> tuple[str, bool]:

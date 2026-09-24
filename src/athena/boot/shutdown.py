@@ -103,12 +103,33 @@ def run_shutdown(project_root: Path | None = None) -> bool:
         except Exception as e:
             print(f"   ⚠️  Observation report skipped: {e}")
 
-        # Optional: Trigger Supabase sync if configured
+        # Auto-vectorise closed session (P3.1: sessions are now indexed at /end)
         supabase_url = os.getenv("SUPABASE_URL")
         if supabase_url:
-            print(
-                "🔄 Supabase sync available (run manually: python -m athena.memory.sync)"
-            )
+            try:
+                import subprocess
+                import sys
+                # Fire-and-forget: delta manifest makes no-op runs near-free
+                # PID-lock pattern prevents concurrent syncs
+                sync_cmd = [
+                    sys.executable, "-m", "athena.memory.sync",
+                    "--only", ".context/memories/session_logs",
+                ]
+                subprocess.Popen(
+                    sync_cmd,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    start_new_session=True,
+                    cwd=str(project_root),
+                )
+                print("🔄 Session auto-vectorisation triggered (background)")
+            except Exception as e:
+                print(f"⚠️  Session sync skipped: {e}")
+                print(
+                    "   Manual fallback: python -m athena.memory.sync"
+                )
+        else:
+            print("ℹ️  Supabase not configured — session not vectorised")
 
         print("━" * 60)
         print("✅ ATHENA SHUTDOWN COMPLETE")
