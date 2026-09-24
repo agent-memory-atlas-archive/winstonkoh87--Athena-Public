@@ -54,10 +54,6 @@ MANIFEST_PATH = STATE_DIR / "sync_manifest.json"
 SYSTEM_LEARNINGS_FILE = MEMORY_DIR / "SYSTEM_LEARNINGS.md"
 USER_PROFILE_FILE = MEMORY_DIR / "USER_PROFILE.yaml"
 INPUTS_DIR = CONTEXT_DIR / "inputs"
-# Unified path for the local SQLite metadata index (written by athenad, read by search).
-# Bug fix (S870): athenad.py wrote to .agent/inputs/athena.db while search.py read from
-# .context/inputs/athena.db (which never existed). Both now use this single constant.
-ATHENA_DB = AGENT_DIR / "inputs" / "athena.db"
 
 # === UNIFIED MEMORY CONFIGURATION ===
 # These directories are the "Active Memory" for VectorRAG and local search.
@@ -76,12 +72,12 @@ EXTENDED_DIRS = [
     (PROJECT_ROOT / "analysis", "case_studies"),
     (PROJECT_ROOT / "Marketing", "system_docs"),
     (PROJECT_ROOT / "proposals", "case_studies"),
-    (PROJECT_ROOT / "Winston", "system_docs"),
+    (PROJECT_ROOT / "personal", "system_docs"),
     (PROJECT_ROOT / "docs" / "audit", "system_docs"),
-    (PROJECT_ROOT / "gem_knowledge_base", "system_docs"),
+    (PROJECT_ROOT / "knowledge_base", "system_docs"),
     (PROJECT_ROOT / ".athena", "system_docs"),
     (PROJECT_ROOT / ".projects", "system_docs"),
-    (PROJECT_ROOT / "Reflection Essay", "case_studies"),
+    (PROJECT_ROOT / "essays", "case_studies"),
     (CONTEXT_DIR / "research", "case_studies"),
     (CONTEXT_DIR / "specs", "system_docs"),
 ]
