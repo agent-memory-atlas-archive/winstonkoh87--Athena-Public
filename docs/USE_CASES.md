@@ -211,7 +211,7 @@ Recommend → Red-Team → Decide → Execute → AAR → Calibrate → Improve
 
 This closed-loop system transforms Athena from a one-shot oracle into a **self-improving recommendation engine** that gets measurably better over time — but only if the user completes the loop. Skipping the AAR breaks the feedback cycle.
 
-> **The AAR is the highest-leverage step most users skip.** It answers: "Was Athena right?" at the systemic level — tracking not individual outcomes (which include luck) but *patterns of bias* across 10+ decisions (which reveal calibration errors). See: [Decision Journal — AAR Calibration Loop](../examples/skills/therapeutic-ifs/SKILL.md).
+> **The AAR is the highest-leverage step most users skip.** It answers: "Was Athena right?" at the systemic level — tracking not individual outcomes (which include luck) but *patterns of bias* across 10+ decisions (which reveal calibration errors). See: [Decision Journal — AAR Calibration Loop](../examples/skills/decision/decision-journal/SKILL.md).
 
 ### How It Works: The EEV Framework
 

@@ -25,7 +25,7 @@ Own the state. Rent the intelligence. Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Scheduled Tasks & Self-RSI](docs/SCHEDULED_TASKS.md) · [llms.txt](https://winstonkoh87.com/llms.txt) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 23 September 2026* <!-- 2026-09-23 -->
+*Last updated: 24 September 2026* <!-- 2026-09-24 -->
 
 </div>
 
@@ -605,7 +605,7 @@ Athena-Public/
 </details>
 
 <details>
-- **Full Synchronized Digital Portfolio Refresh** (2026-09-23): Synchronized portfolio update across all public surfaces. Updated canonical CAPS counts (421 active protocols / 455 total across 26 categories, 43 active skills, 74 workflows, 279 scripts, 199 canonical entries, 503 case studies, 4,914 memories).
+- **Full Synchronized Digital Portfolio Refresh** (2026-09-23): Synchronized portfolio update across all public surfaces. Updated canonical CAPS counts (421 active protocols / 455 total across 26 categories, 43 active skills, 74 workflows, 279 scripts, 199 canonical entries, 503 case studies, 4,948 memories).
 - **Full Synchronized Digital Portfolio Refresh** (2026-09-22): Synchronized portfolio update across all public surfaces. Updated canonical CAPS counts (421 active protocols / 455 total across 26 categories, 43 active skills, 74 workflows, 279 scripts, 199 canonical entries, 503 case studies, 4,897 memories).
 - **Full Synchronized Digital Portfolio Refresh** (2026-09-21): Synchronized portfolio update across all public surfaces. Updated canonical CAPS counts (421 active protocols / 455 total across 26 categories, 43 active skills, 74 workflows, 279 scripts, 199 canonical entries, 503 case studies, 4,887 memories).
 - **v9.9.9 — Feature Port + Portfolio Refresh** (20 September 2026): Ported WCAG contrast checker (scripts/contrast_check.py) and hierarchical AST contextual chunker (src/athena/memory/contextual_chunker.py). Updated canonical CAPS counts (420 active protocols, 43 skills, 74 workflows, 280 scripts).

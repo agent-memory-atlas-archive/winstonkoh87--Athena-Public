@@ -135,6 +135,26 @@ TOOL_REGISTRY: dict[str, dict[str, Any]] = {
         "sensitivity": Sensitivity.PUBLIC,
         "description": "Classify query complexity and risk tier",
     },
+    "frame_open": {
+        "permission": Permission.WRITE,
+        "sensitivity": Sensitivity.INTERNAL,
+        "description": "Pre-register a problem frame (RSN-504 Gate 5b) after R1-R10 validation",
+    },
+    "frame_validate": {
+        "permission": Permission.READ,
+        "sensitivity": Sensitivity.INTERNAL,
+        "description": "Validate a frame against the R1-R10 contract + VOI stop rule",
+    },
+    "frame_resolve": {
+        "permission": Permission.WRITE,
+        "sensitivity": Sensitivity.INTERNAL,
+        "description": "Score a frame against observed outcomes (append-only)",
+    },
+    "frame_status": {
+        "permission": Permission.READ,
+        "sensitivity": Sensitivity.INTERNAL,
+        "description": "Frame quality + protocol adoption telemetry",
+    },
     "report_external_web_search": {
         "permission": Permission.READ,
         "sensitivity": Sensitivity.PUBLIC,
