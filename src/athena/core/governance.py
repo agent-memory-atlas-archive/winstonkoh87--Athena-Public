@@ -171,7 +171,7 @@ class GovernanceEngine:
     Prevents infinite retry loops that burn tokens without progress.
     """
 
-    def __init__(self, state_dir: Path = None):
+    def __init__(self, state_dir: Path | None = None):
         if state_dir is None:
             # Backward compat: try importing AGENT_DIR, fall back to ~/.athena
             try:

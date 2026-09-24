@@ -12,8 +12,27 @@ import json
 import os
 import random
 import sqlite3
+import sys
 import threading
 from typing import Any
+
+# This module's stdout belongs to callers that parse it. run_search(json_output=
+# True) pipes stdout straight into json.loads, so a single diagnostic line here
+# — an API-key error, a retry notice — corrupts the payload, the caller's parse
+# raises, and the query is scored as a retrieval miss rather than the
+# credentials failure it actually was.
+#
+# Every print in this module is a diagnostic; none of them is data. Bind the
+# name once at module scope rather than annotating ~16 call sites and missing
+# the next one somebody adds.
+_stdout_print = print
+
+
+def print(*args, **kwargs):  # noqa: A001 — deliberate module-scoped shadow
+    """Diagnostics go to stderr. See the note above before changing this."""
+    kwargs.setdefault("file", sys.stderr)
+    _stdout_print(*args, **kwargs)
+
 
 # Global cache instance
 _embedding_cache = None
@@ -195,7 +214,7 @@ def get_embedding(text: str, max_retries: int = 7) -> list[float]:
     for attempt in range(max_retries):
         with _embedding_semaphore:
             try:
-                response = requests.post(url, json=payload, headers=headers, timeout=60)
+                response = requests.post(url, json=payload, headers=headers, timeout=60)  # type: ignore[arg-type]
 
                 # If client error that is not 429, do not retry! It is non-retriable.
                 if response.status_code >= 400 and response.status_code < 500 and response.status_code != 429:
@@ -226,7 +245,7 @@ def get_embedding(text: str, max_retries: int = 7) -> list[float]:
                 return embedding
 
             except requests.exceptions.RequestException as e:
-                last_error = e
+                last_error = str(e)
                 # Check if it is a non-retriable client error raised during request
                 if hasattr(e, 'response') and e.response is not None:
                     code = e.response.status_code
@@ -313,7 +332,7 @@ def get_embeddings_batch(
         for attempt in range(max_retries):
             with _embedding_semaphore:
                 try:
-                    resp = requests.post(url, json=payload, headers=headers, timeout=120)
+                    resp = requests.post(url, json=payload, headers=headers, timeout=120)  # type: ignore[arg-type]
 
                     # Fail immediately on non-retriable client errors
                     if resp.status_code >= 400 and resp.status_code < 500 and resp.status_code != 429:

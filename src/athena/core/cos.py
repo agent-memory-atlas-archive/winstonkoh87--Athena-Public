@@ -50,7 +50,7 @@ class COSEngine:
         self.active_seats: list[Seat] = list(Seat)
         self.active_roles: dict[SpecializedRole, Seat] = ROLE_TO_SEAT_MAP
 
-    def get_seat_for_role(self, role: SpecializedRole) -> Seat:
+    def get_seat_for_role(self, role: SpecializedRole) -> Seat | None:
         return self.active_roles.get(role)
 
     def get_roles_for_seat(self, seat: Seat) -> list[SpecializedRole]:

@@ -44,7 +44,7 @@ def main():
                         ship_count += 1
                     elif entry["type"] == "META":
                         meta_count += 1
-            except:
+            except Exception:
                 continue
 
     # Analysis

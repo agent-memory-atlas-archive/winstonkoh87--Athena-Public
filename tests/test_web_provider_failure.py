@@ -29,6 +29,7 @@ class TestProviderFailureRegression(unittest.TestCase):
 
             self.assertEqual(results, [])
             self.assertTrue(meta["degraded"])
+            self.assertEqual(meta["grounding_status"], "tool_error")
             self.assertIn("test failure", str(meta["errors"]))
 
     def test_provider_failure_no_crash(self):

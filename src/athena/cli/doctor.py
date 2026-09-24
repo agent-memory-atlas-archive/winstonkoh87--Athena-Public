@@ -80,7 +80,7 @@ def _find_project_root(start: Path | None = None) -> Path:
     return current
 
 
-def _run(cmd: list[str], cwd: str = None, timeout: int = 10) -> tuple[int, str]:
+def _run(cmd: list[str], cwd: str | None = None, timeout: int = 10) -> tuple[int, str]:
     """Run a command and return (returncode, combined output)."""
     try:
         r = subprocess.run(

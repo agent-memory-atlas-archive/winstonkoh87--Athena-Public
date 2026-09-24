@@ -37,7 +37,7 @@ def _build_breadcrumb(heading_stack: dict[int, str], filename: str) -> str:
     """Render the current heading stack as a breadcrumb string.
 
     Example output:
-        [Doc: ARCHITECTURE.md | # System Overview > ## Memory Layer]
+        [Doc: CS-652-keith-leo.md | # The 6 Pillars > ## Generosity Asymmetry]
     """
     parts = []
     for level in sorted(heading_stack):
@@ -52,7 +52,6 @@ def _build_breadcrumb(heading_stack: dict[int, str], filename: str) -> str:
 # ---------------------------------------------------------------------------
 # Structure-aware chunking
 # ---------------------------------------------------------------------------
-
 
 def _find_paragraph_break(text: str, target: int, window: int = 400) -> int:
     """Find the nearest paragraph break (double newline) near `target`.
@@ -94,7 +93,7 @@ def chunk_markdown_contextual(
     text : str
         Full document content (may include YAML frontmatter).
     filename : str
-        Basename of the source file (e.g. "ARCHITECTURE.md").
+        Basename of the source file (e.g. "CS-652-keith-leo.md").
     chunk_size : int
         Target chunk size in characters (breadcrumb header is excluded from
         the budget so downstream embedding sees full content).
@@ -173,7 +172,6 @@ def chunk_markdown_contextual(
 # ---------------------------------------------------------------------------
 # Convenience wrapper for sync.py integration
 # ---------------------------------------------------------------------------
-
 
 def contextual_chunk_text(
     text: str,

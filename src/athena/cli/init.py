@@ -308,7 +308,7 @@ Run `athena` to boot the session system, or manually read the latest session log
 """
 
 
-def init_workspace(target_dir: Path = None, ide: str = None) -> bool:
+def init_workspace(target_dir: Path | None = None, ide: str | None = None) -> bool:
     """
     Initialize an Athena workspace with the required directory structure.
 

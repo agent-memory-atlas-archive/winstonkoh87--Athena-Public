@@ -242,11 +242,12 @@ def cosine_similarity(vec_a: list[float], vec_b: list[float]) -> float:
 # ── Retriever (Parallel Search) ──────────────────────────────────────────────
 
 
-def _run_subquery_search(subquery: str, limit: int = 10, web: bool = False) -> tuple[str, list[dict]]:
+def _run_subquery_search(subquery: str, limit: int = 10, web: bool = False) -> tuple[str, list[SearchResult]]:
     """Run a single search sub-query and return JSON results."""
     # Import here to avoid circular imports at module level
     from athena.memory.vectors import get_embedding as _get_embedding
     from athena.tools.search import (
+        classify_query_intent,
         collect_canonical,
         collect_filenames,
         collect_framework_docs,
@@ -258,13 +259,14 @@ def _run_subquery_search(subquery: str, limit: int = 10, web: bool = False) -> t
 
     try:
         query_embedding = _get_embedding(subquery)
+        sub_intent = classify_query_intent(subquery)
 
         # Run collectors (parallel within each sub-query)
         # Retired "tags" and "graphrag" (both dead on disk/removed).
         # Added "framework_docs" to align with search.py's 5 live channels.
         collection_tasks = {
             "canonical": lambda: collect_canonical(subquery),
-            "vector": lambda: collect_vectors(subquery, embedding=query_embedding),
+            "vector": lambda: collect_vectors(subquery, embedding=query_embedding, exclude_domains=[]),
             "sqlite": lambda: collect_sqlite(subquery),
             "filename": lambda: collect_filenames(subquery),
             "framework_docs": lambda: collect_framework_docs(subquery),
@@ -292,8 +294,8 @@ def _run_subquery_search(subquery: str, limit: int = 10, web: bool = False) -> t
                 lists[type_key] = []
             lists[type_key].append(item)
 
-        # Fuse
-        fused = weighted_rrf(lists)
+        # Fuse with intent-aware weighting
+        fused = weighted_rrf(lists, intent=sub_intent)
         return subquery, fused[:limit]
 
     except Exception as e:
@@ -431,12 +433,33 @@ def run_agentic_search(
     result = agentic_search(query, limit=limit, validate=validate, debug=debug, web=web)
 
     if json_output:
+        from athena.tools.search import classify_query_intent
+
+        detected_intent = classify_query_intent(query)
         output = {
             "results": [r.to_dict() for r in result["results"]],
             "sub_queries": result["sub_queries"],
             "decomposed": result["decomposed"],
             "meta": result["meta"],
+            "intent": detected_intent,
         }
+
+        # FIX-07: Wire personalisation into agentic search output (was zero-wired)
+        if detected_intent == "PERSONALISED_DECISION":
+            try:
+                from athena.tools.personalisation import (
+                    build_personalisation_prompt,
+                    build_user_state_snapshot,
+                )
+
+                user_state = build_user_state_snapshot()
+                output["personalisation_context"] = build_personalisation_prompt(
+                    query, result["results"], user_state=user_state, intent=detected_intent
+                )
+                output["user_state"] = user_state
+            except Exception:
+                pass  # Graceful degradation
+
         print(json.dumps(output, indent=2))
         return
 

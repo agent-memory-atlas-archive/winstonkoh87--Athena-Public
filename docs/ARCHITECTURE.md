@@ -52,7 +52,7 @@ Athena/
 ├── .projects/                     # Isolated project workspaces
 │
 ├── src/                           # Athena SDK source (96 Python files)
-├── tests/                         # Test suite (30 files, 348 tests)
+├── tests/                         # Test suite (30 files, 368 tests)
 ├── supabase/                      # Cloud vector store migrations
 │
 ├── Athena-Public/                 # Public mirror (sibling repo)

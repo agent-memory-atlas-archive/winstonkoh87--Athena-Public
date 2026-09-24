@@ -23,7 +23,7 @@ def parse_frontmatter(content):
     if match:
         try:
             return yaml.safe_load(match.group(1))
-        except:
+        except Exception:
             return None
     return None
 

@@ -88,20 +88,46 @@ class MemoryLoader:
 
     @staticmethod
     def prime_semantic():
-        """Run semantic search silently."""
+        """Run semantic search and display closest past sessions.
+
+        Previously this ran a fixed query and discarded results (S534 prose-mechanism).
+        Now it displays the top-3 results so boot shows what it actually found.
+        """
         if not SUPABASE_SEARCH_SCRIPT.exists():
             print(f"{YELLOW}⚠️ Semantic search skipped (script not found){RESET}")
             return False
 
         try:
             result = subprocess.run(
-                ["python3", str(SUPABASE_SEARCH_SCRIPT), "recent session context"],
+                ["python3", str(SUPABASE_SEARCH_SCRIPT), "recent session context",
+                 "--limit", "3", "--json"],
                 capture_output=True,
                 text=True,
                 timeout=60,
             )
             if result.returncode == 0:
-                print(f"{GREEN}✅ Semantic memory primed{RESET}")
+                # Parse results and display closest sessions
+                closest = []
+                try:
+                    import json as _json
+                    data = _json.loads(result.stdout)
+                    if isinstance(data, dict) and "results" in data:
+                        for r in data["results"][:3]:
+                            doc_id = r.get("id", "")
+                            # Extract session ID from doc path/id
+                            if doc_id:
+                                # Clean up the ID for display
+                                short_id = doc_id.split("#")[0]  # Remove chunk ref
+                                if len(short_id) > 50:
+                                    short_id = short_id[:47] + "..."
+                                closest.append(short_id)
+                except Exception:
+                    pass  # JSON parse failed — still a successful prime
+
+                if closest:
+                    print(f"{GREEN}🧠 Closest past sessions: {' · '.join(closest)}{RESET}")
+                else:
+                    print(f"{GREEN}✅ Semantic memory primed{RESET}")
                 return True
             else:
                 print(f"{YELLOW}⚠️ Semantic search returned non-zero{RESET}")

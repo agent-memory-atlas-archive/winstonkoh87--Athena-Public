@@ -204,7 +204,7 @@ class IdentityLoader:
         try:
             from athena.core.cos import get_cos_engine
 
-            if not get_cos_engine:
+            if not get_cos_engine():
                 print(f"{YELLOW}⚠️ COS Engine not available{RESET}")
                 return
 

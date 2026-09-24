@@ -85,6 +85,29 @@ def test_t5_felt_fires(prompt):
     assert len(fired(prompt)) > 0  # T5 or co-fired class
 
 
+# ---------------------------------------------------- T6 INTAKE-AUTHORITY
+@pytest.mark.parametrize("prompt", [
+    "taking on a new capstone project for Coventry uni",
+    "the examiner is a veteran logistics director",
+    "what business idea should for this capstone project?",
+    "quoting a new assignment for an engineering professor",
+])
+def test_t6_intake_fires(prompt):
+    assert "T6-INTAKE-AUTHORITY" in fired(prompt)
+
+
+# ------------------------------------------------- T7 END-USER-CAPABILITY
+@pytest.mark.parametrize("prompt", [
+    "the student will present this capstone live next week",
+    "she doesn't know what CAGR means and has no finance background",
+    "client is anxious about the presentation and defense",
+    "please make the speaker notes not so cheem and explain simply",
+    "this deliverable is for a non-technical client",
+])
+def test_t7_capability_fires(prompt):
+    assert "T7-END-USER-CAPABILITY" in fired(prompt)
+
+
 # ------------------------------------------------- Golden historical cases
 #
 # Known-answer reads: each case carries the exact set of classes it must
@@ -124,6 +147,34 @@ GOLDEN = {
                             {"T3-VERDICT"}),
     "confession-timing":   ("it's my last week here — should I tell her how I actually feel?",
                             {"T2-OUTBOUND"}),
+    # v3.1 golden cases — covering bare-narration, open-verb, Singlish, felt-evidence
+    "bare-narration-retrench":  ("received the retrenchment letter today, they say it is not performance",
+                                 {"T1-INBOUND"}),
+    "bare-narration-boss":      ("boss says need to talk later about my role",
+                                 {"T1-INBOUND"}),
+    "bare-narration-landlord":  ("landlord says he needs to renovate the unit next month",
+                                 {"T1-INBOUND"}),
+    "bare-narration-distant":   ("she is being distant lately",
+                                 {"T1-INBOUND"}),
+    "counterparty-short":       ("payment came in 50 short of the quoted amount",
+                                 {"T1-INBOUND"}),
+    "open-verb-raise":          ("thinking about asking for a raise during the review",
+                                 {"T2-OUTBOUND"}),
+    "open-verb-propose":        ("I am going to propose to her at the dinner",
+                                 {"T2-OUTBOUND"}),
+    "singlish-jiak-zua":        ("should i just jiak zua and take the transfer to the SG office",
+                                 {"T2-OUTBOUND"}),
+    "singlish-reply":           ("later i reply him or wait better",
+                                 {"T2-OUTBOUND"}),
+    "felt-off":                 ("this deal feels off somehow",
+                                 {"T5-FELT"}),
+    "counterparty-pushback":    ("the client is pushing back hard on the quote",
+                                 {"T1-INBOUND"}),
+    # v3.2 golden cases — A77 lessons: intake authority over-fitting and end-user capability mismatch
+    "intake-authority-cv":      ("new capstone project intake: the examiner is a veteran SCM director",
+                                 {"T6-INTAKE-AUTHORITY"}),
+    "end-user-anxiety":         ("the student has to present live and she doesn't know what CAGR means",
+                                 {"T7-END-USER-CAPABILITY"}),
 }
 
 
@@ -140,7 +191,7 @@ def test_golden_cases_classify(case, prompt, expected):
 def test_golden_coverage_spans_all_classes():
     """The golden set must exercise every trigger class, or it is not calibration."""
     covered = set().union(*(expected for _, expected in GOLDEN.values()))
-    assert covered == {"T1-INBOUND", "T2-OUTBOUND", "T3-VERDICT", "T4-RESOURCE", "T5-FELT"}, (
+    assert covered == {"T1-INBOUND", "T2-OUTBOUND", "T3-VERDICT", "T4-RESOURCE", "T5-FELT", "T6-INTAKE-AUTHORITY", "T7-END-USER-CAPABILITY"}, (
         f"golden set only exercises {sorted(covered)}"
     )
 
@@ -153,6 +204,12 @@ def test_golden_coverage_spans_all_classes():
     "fix the failing pytest in test_boot.py",
     "update the changelog for v9.9.7",
     "list the files in .agent/skills",
+    # v3.1: routine-ops uses of institutional nouns (must not false-fire)
+    "update the HR policy doc for Q3",
+    "compile the retrenchment stats for the report",
+    "search for HR retrenchment policy templates",
+    "rename the performance review template",
+    "refactor the landlord contract module",
 ])
 def test_negatives_do_not_fire(prompt):
     assert fired(prompt) == []
