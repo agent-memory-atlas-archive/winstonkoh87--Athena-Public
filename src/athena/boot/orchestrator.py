@@ -124,6 +124,23 @@ def main():
         nonlocal context_summaries
         context_summaries = generate_summaries()
 
+    def _verify_index_integrity():
+        """Boot-time vector index integrity check (P3.2)."""
+        try:
+            from athena.memory.sync import verify_chunk_integrity
+            ratio = verify_chunk_integrity()
+            if isinstance(ratio, bool):
+                # Old API returns bool — map to score
+                score = 1.0 if ratio else 0.0
+            else:
+                score = ratio
+            if score >= 0.5:
+                print(f"🧠 Index integrity: {score:.2f} (OK)")
+            else:
+                print(f"⚠️  Index integrity: {score:.2f} — run: python -m athena.memory.sync")
+        except Exception as e:
+            print(f"⚠️  Index integrity check skipped: {e}")
+
     with ThreadPoolExecutor(max_workers=8) as executor:
         # 1. Non-blocking context capture
         executor.submit(MemoryLoader.capture_context)
@@ -142,6 +159,9 @@ def main():
 
         # 7. Tier 0: Context Summary Pre-computation (Min-Latency × Max-Effectiveness)
         executor.submit(run_context_summaries)
+
+        # 8. Index verification (P3.2)
+        executor.submit(_verify_index_integrity)
 
     # Display remaining sync items
     MemoryLoader.display_learnings_snapshot()

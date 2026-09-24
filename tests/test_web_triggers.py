@@ -1,9 +1,6 @@
 import unittest
 
-from athena.tools.web_triggers import (
-    is_underspecified_optimization,
-    needs_web,
-)
+from athena.tools.web_triggers import is_underspecified_optimization, needs_web
 
 
 class TestWebTriggers(unittest.TestCase):

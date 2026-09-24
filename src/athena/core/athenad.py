@@ -18,7 +18,11 @@ from pathlib import Path
 
 # --- CONFIGURATION ---
 PROJECT_ROOT = Path(__file__).resolve().parents[3]  # src/athena/core -> ROOT
-DB_PATH = PROJECT_ROOT / ".agent" / "inputs" / "athena.db"
+# Use the unified constant so the daemon and search.py always agree on the path.
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
+from athena.core.config import ATHENA_DB  # noqa: E402
+
+DB_PATH = ATHENA_DB
 SCHEMA_PATH = Path(__file__).resolve().parent / "schema.sql"
 
 # Watch Configuration (Filter only existing directories)

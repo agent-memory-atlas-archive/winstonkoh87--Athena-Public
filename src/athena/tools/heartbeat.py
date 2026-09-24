@@ -87,7 +87,7 @@ def resolve_table(file_path: Path) -> str | None:
 # ── Debounced Sync Handler ────────────────────────────────────────────────────
 
 
-class DebouncedSyncHandler(FileSystemEventHandler if Observer else object):
+class DebouncedSyncHandler(FileSystemEventHandler if Observer else object):  # type: ignore[misc]
     """
     File event handler with debouncing.
     Batches rapid edits into a single sync operation per file.

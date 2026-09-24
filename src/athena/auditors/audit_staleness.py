@@ -116,7 +116,7 @@ def resolve_protocol_ref(protocol_num: str) -> Path | None:
 
 def scan_file_for_refs(filepath: Path) -> list[tuple[str, Path]]:
     """Extract file references from a markdown file."""
-    refs = []
+    refs: list[tuple[str, Path]] = []
     try:
         content = filepath.read_text(encoding="utf-8")
     except Exception:

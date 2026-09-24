@@ -81,7 +81,7 @@ def _build_bar(total: int, width: int = 15) -> str:
     return f"{bar_filled}{bar_empty}{overflow}"
 
 
-def display_gauge(token_counts: dict = None) -> bool:
+def display_gauge(token_counts: dict | None = None) -> bool:
     """
     Print the token budget gauge.
 
@@ -131,7 +131,7 @@ def display_gauge(token_counts: dict = None) -> bool:
     return over_budget
 
 
-def auto_compact_if_needed(token_counts: dict = None) -> dict:
+def auto_compact_if_needed(token_counts: dict | None = None) -> dict:
     """
     If boot tokens >= HARD_CAP, trigger compaction and re-measure.
 

@@ -75,7 +75,7 @@ def get_start_ref() -> "str | None":
 
 def get_changes_since(start_ref: str) -> dict:
     """Get all file changes between start_ref and current HEAD."""
-    changes = {"added": [], "modified": [], "deleted": [], "renamed": []}
+    changes: dict[str, list[str]] = {"added": [], "modified": [], "deleted": [], "renamed": []}
 
     try:
         result = subprocess.run(
@@ -133,7 +133,7 @@ def get_changes_since(start_ref: str) -> dict:
 
 def classify_changes(changes: dict) -> dict[str, list[str]]:
     """Classify changed files into categories."""
-    classified = {cat: [] for cat in CATEGORIES}
+    classified: dict[str, list[str]] = {cat: [] for cat in CATEGORIES}
     classified["other"] = []
 
     all_files = (

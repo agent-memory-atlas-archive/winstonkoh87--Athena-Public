@@ -30,16 +30,15 @@ class TestConfigModule:
     def test_sessions_dir_matches_distribution(self):
         """Session logs must be present privately and absent publicly.
 
-        This was a hard assertion, then became two unconditional pytest.skip
-        calls — which meant it could no longer fail anywhere, including in the
-        private workspace where a broken SESSIONS_DIR is a real defect. Both
-        branches now assert.
+        The private assertion is the strong one and stays hard. The public
+        distribution briefly turned this into two unconditional pytest.skip
+        calls (e04d34c, public only), which removed the guard everywhere.
+        Both branches assert; neither can silently pass.
         """
         from athena.core.config import PROJECT_ROOT, SESSIONS_DIR
 
         # The privacy blocklist ships only with the public distribution — it
-        # exists to guard the public boundary, so the private workspace has no
-        # copy. That makes it a reliable distribution marker.
+        # exists to guard the public boundary, so this workspace has no copy.
         is_public = (PROJECT_ROOT / ".github" / "privacy_blocklist.txt").exists()
         md_files = list(SESSIONS_DIR.glob("*.md")) if SESSIONS_DIR.exists() else []
 

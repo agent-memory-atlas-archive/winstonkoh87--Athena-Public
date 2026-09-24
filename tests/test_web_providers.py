@@ -48,6 +48,7 @@ class TestWebProviders(unittest.TestCase):
             self.assertEqual(results, mock_results)
             self.assertEqual(metadata["provider"], "brave")
             self.assertTrue(metadata["degraded"])
+            self.assertEqual(metadata["grounding_status"], "degraded")
             self.assertEqual(len(metadata["errors"]), 1)
             self.assertIn("API Error", metadata["errors"][0])
 
@@ -69,6 +70,7 @@ class TestWebProviders(unittest.TestCase):
             self.assertEqual(results, [])
             self.assertEqual(metadata["provider"], "none")
             self.assertTrue(metadata["degraded"])
+            self.assertEqual(metadata["grounding_status"], "tool_error")
             self.assertEqual(len(metadata["errors"]), 1)
             self.assertIn("Timeout", metadata["errors"][0])
 
@@ -86,6 +88,7 @@ class TestWebProviders(unittest.TestCase):
 
             self.assertEqual(len(results), 1)
             self.assertIsInstance(results[0], WebResult)
+            self.assertEqual(metadata["grounding_status"], "ok")
             self.assertTrue(bool(results[0].fetched_at))
             self.assertTrue(bool(metadata["fetched_at"]))
 

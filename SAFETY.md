@@ -25,4 +25,4 @@ This tool is designed for **structured thinking and personal knowledge managemen
 
 ---
 
-*This notice is required by the project's governance policy and is referenced in [README.md](README.md).*
+*This notice is required by the project's governance policy and is referenced in [README.md](./README.md).*

@@ -121,7 +121,7 @@ def scan_directories() -> dict[str, list[str]]:
 
 
 def generate_index(
-    tag_to_files: dict[str, list[str]], shard_name: str = "", shard_range: tuple = None
+    tag_to_files: dict[str, list[str]], shard_name: str = "", shard_range: tuple | None = None
 ) -> str:
     """Generate markdown table for TAG_INDEX.md (supports sharding)."""
 

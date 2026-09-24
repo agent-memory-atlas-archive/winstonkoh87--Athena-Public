@@ -87,7 +87,7 @@ def load_state() -> dict:
         try:
             with open(STATE_FILE) as f:
                 return json.load(f)
-        except:
+        except Exception:
             pass
     return {"current_depth": 0, "session_id": None, "last_run": None}
 
@@ -112,7 +112,7 @@ def increment_depth() -> tuple[int, bool]:
                 # New session, reset depth
                 state["current_depth"] = 0
                 state["session_id"] = str(uuid.uuid4())[:8]
-        except:
+        except Exception:
             pass
 
     state["current_depth"] = state.get("current_depth", 0) + 1
@@ -226,7 +226,7 @@ def get_session_files() -> list[Path]:
                 if full_path.exists():
                     files.append(full_path)
         return files
-    except:
+    except Exception:
         # Fallback: get all recently modified .md files
         import time
         one_hour_ago = time.time() - 3600

@@ -19,7 +19,7 @@ PROTOCOLS_DIR = Path(".agent/skills/protocols")
 
 def get_existing_protocol_ids() -> set:
     """Scan all protocol directories for existing IDs."""
-    ids = set()
+    ids: set[int] = set()
     if not PROTOCOLS_DIR.exists():
         return ids
 
@@ -116,7 +116,7 @@ Rules:
 3. Be specific about commands and file paths
 4. Keep it actionable and concise"""
 
-def generate_protocol(description: str, name: str = None) -> str:
+def generate_protocol(description: str, name: str | None = None) -> str:
     """Generate a protocol from description."""
     client = get_client()
 
