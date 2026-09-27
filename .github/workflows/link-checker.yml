@@ -23,6 +23,8 @@ jobs:
   check-links:
     name: Validate Markdown Links & Paths
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v5

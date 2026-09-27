@@ -25,6 +25,8 @@ jobs:
   quality:
     name: Lint + Type Check + Security + Test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - uses: actions/checkout@v5

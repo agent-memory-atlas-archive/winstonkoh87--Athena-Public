@@ -20,6 +20,11 @@ jobs:
   triage:
     name: AI Triage
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      discussions: write
+      contents: read
     # Skip bot-generated events to prevent loops
     if: >-
       github.actor != 'github-actions[bot]' &&

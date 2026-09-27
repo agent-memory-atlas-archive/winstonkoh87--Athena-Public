@@ -16,6 +16,8 @@ jobs:
   privacy:
     name: Privacy Blocklist Scan
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v5
 
@@ -37,6 +39,8 @@ jobs:
   secrets:
     name: Gitleaks Secret Scan
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v5
         with:
