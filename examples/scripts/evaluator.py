@@ -19,14 +19,22 @@ Usage:
 
 import json
 import sys
-import time
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 # Path setup
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 SDK_PATH = PROJECT_ROOT / "src"
 sys.path.insert(0, str(SDK_PATH))
+
+# Re-exec into a capable interpreter BEFORE measuring anything. An eval run on a
+# degraded stack produces numbers that look like a retrieval regression and are
+# not one — that is precisely how TD-064 accumulated six unexplained runs.
+sys.path.insert(0, str(Path(__file__).parent))
+from _venv_bootstrap import ensure_deps  # noqa: E402
+
+_MISSING_DEPS = ensure_deps(PROJECT_ROOT)
 
 # Load environment
 try:
@@ -34,7 +42,12 @@ try:
 
     load_dotenv(PROJECT_ROOT / ".env")
 except ImportError:
-    pass
+    # Without dotenv the Supabase/Gemini credentials never reach the process and
+    # the vector channel dies silently. Never let this pass unremarked.
+    print(
+        "   ⚠️  python-dotenv missing — .env not loaded; vector retrieval will fail.",
+        file=sys.stderr,
+    )
 
 GOLDEN_QUERIES_PATH = PROJECT_ROOT / ".agent" / "eval" / "golden_queries.json"
 BASELINE_PATH = PROJECT_ROOT / ".agent" / "eval" / "baseline.json"
@@ -53,6 +66,7 @@ def load_golden_queries(category: str | None = None) -> list[dict]:
 def run_single_query(query: str, limit: int = 5, rerank: bool = False) -> tuple[list[dict], float]:
     """Run a single search query and return structured results and elapsed time."""
     import io
+    import time
 
     from athena.tools.search import run_search
 
@@ -88,44 +102,42 @@ def run_single_query(query: str, limit: int = 5, rerank: bool = False) -> tuple[
 
 def _extract_source_identifiers(result: dict) -> set[str]:
     """
-    Extract all possible source identifiers from a search result.
-    Handles formats like:
-      - "Canonical:L28"
-      - "Session 2026-02-09: 2026-02-09-session-01.md"
-      - "Case Study: CS-137-structural-intervention-law.md"
-      - "Protocol 75: 75-synthetic-parallel-reasoning"
-      - file paths
+    Extract exact source identifiers from a search result.
+    Enforces strict matching: filename, stem, and specific artifact names.
+    Prohibits loose substring matching and generic type tokens (e.g. 'session', 'case').
     """
+    import re
+
     identifiers = set()
     result_id = result.get("id", "")
-    source = result.get("source", "") or result.get("path", "")
-    content = result.get("content", "")
-    signals = result.get("signals", {})
+    source = result.get("source", "")
+    path = result.get("path", "")
 
-    # Add raw identifiers
-    for raw in [result_id, source]:
-        if raw:
-            identifiers.add(raw.lower())
+    # Clean chunk suffixes like " (Chunk 1)"
+    if result_id:
+        clean_id = re.sub(r"\s*\(Chunk \d+\)\s*$", "", result_id.strip())
+        identifiers.add(clean_id.lower())
 
-    # Parse structured IDs (e.g., "Session 2026-02-09: filename.md")
-    if ": " in result_id:
-        parts = result_id.split(": ", 1)
-        identifiers.add(parts[0].lower())  # "Session 2026-02-09"
-        identifiers.add(parts[1].lower())  # "filename.md"
-        # Extract just the type prefix
-        type_prefix = parts[0].split(" ")[0].lower()  # "session", "case", "protocol"
-        identifiers.add(type_prefix)
+        if ": " in clean_id:
+            file_part = clean_id.split(": ", 1)[1].strip()
+            identifiers.add(file_part.lower())
+            identifiers.add(Path(file_part).name.lower())
+            identifiers.add(Path(file_part).stem.lower())
+        elif ":" in clean_id:
+            token = clean_id.split(":")[0].strip().lower()
+            if token in ("canonical", "framework", "profile"):
+                identifiers.add(token)
 
-    # Parse "Canonical:L28" → "canonical"
-    if ":" in result_id and ": " not in result_id:
-        identifiers.add(result_id.split(":")[0].lower())
+    if path:
+        p = Path(path)
+        identifiers.add(p.name.lower())
+        identifiers.add(p.stem.lower())
+        # For skill packages named */SKILL.md, register the skill package directory name
+        if p.name.lower() == "skill.md":
+            identifiers.add(p.parent.name.lower())
 
-    # Add signal types (e.g., "canonical", "session", "case_study")
-    for sig_key in signals.keys():
-        identifiers.add(sig_key.lower())
-
-    # Check if content mentions expected filenames
-    identifiers.add(f"__content__{content[:500].lower()}")
+    if source:
+        identifiers.add(source.lower())
 
     return identifiers
 
@@ -136,26 +148,18 @@ def compute_reciprocal_rank(
     """
     Compute Reciprocal Rank: 1/rank of first relevant result.
     Returns 0 if no relevant result in top-K.
+    Enforces strict exact-name / stem matching against expected sources.
     """
     for i, result in enumerate(results[:k]):
         identifiers = _extract_source_identifiers(result)
 
         for expected in expected_sources:
-            expected_lower = expected.lower()
-            expected_stem = Path(
-                expected_lower
-            ).stem  # "Core_Identity" from "Core_Identity.md"
+            expected_lower = expected.lower().strip()
+            expected_stem = Path(expected_lower).stem
 
-            for ident in identifiers:
-                # Direct match or containment
-                if expected_lower in ident or ident in expected_lower:
-                    return 1.0 / (i + 1)
-                # Stem match (e.g., "core_identity" matches in id or content)
-                if expected_stem in ident:
-                    return 1.0 / (i + 1)
-                # Content-based match
-                if ident.startswith("__content__") and expected_lower in ident:
-                    return 1.0 / (i + 1)
+            # Strict exact match: expected filename or stem must exactly equal an extracted identifier
+            if expected_lower in identifiers or expected_stem in identifiers:
+                return 1.0 / (i + 1)
     return 0.0
 
 
@@ -221,7 +225,7 @@ def run_evaluation(
     from concurrent.futures import ThreadPoolExecutor
 
     results_futures = []
-    with ThreadPoolExecutor(max_workers=3) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:
         for gq in queries:
             results_futures.append(
                 (gq, executor.submit(run_single_query, gq["query"], limit=k, rerank=rerank))
@@ -409,7 +413,12 @@ def main():
         "--k", type=int, default=5, help="Top-K for evaluation (default 5)"
     )
     parser.add_argument(
-        "--rerank", action="store_true", help="Enable Cross-Encoder Reranker"
+        "--rerank", dest="rerank", action="store_true", default=True,
+        help="Enable Cross-Encoder Reranker (default: on — measures the production path)"
+    )
+    parser.add_argument(
+        "--no-rerank", dest="rerank", action="store_false",
+        help="Disable reranker (legacy metric comparison)"
     )
     args = parser.parse_args()
 

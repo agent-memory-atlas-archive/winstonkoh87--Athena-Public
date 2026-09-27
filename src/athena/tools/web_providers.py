@@ -141,12 +141,12 @@ class BraveProvider(WebProvider):
         return "brave"
 
     def healthy(self) -> bool:
-        return bool(os.environ.get("BRAVE_API_KEY"))
+        return bool(os.environ.get("BRAVE_API_KEY") or os.environ.get("BRAVE_SEARCH_API_KEY"))
 
     def search(self, query: str, limit: int = 5) -> list[WebResult]:
-        api_key = os.environ.get("BRAVE_API_KEY")
+        api_key = os.environ.get("BRAVE_API_KEY") or os.environ.get("BRAVE_SEARCH_API_KEY")
         if not api_key:
-            raise ProviderFailure(self.name, "BRAVE_API_KEY not set", recoverable=False)
+            raise ProviderFailure(self.name, "BRAVE_API_KEY / BRAVE_SEARCH_API_KEY not set", recoverable=False)
 
         url = f"https://api.search.brave.com/res/v1/web/search?q={urllib.parse.quote(query)}&count={limit}"
         req = urllib.request.Request(

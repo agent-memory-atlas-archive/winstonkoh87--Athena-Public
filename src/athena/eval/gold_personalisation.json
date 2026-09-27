@@ -1,0 +1,245 @@
+{
+  "version": 1,
+  "description": "Athena Personalisation Golden Benchmark — Tests whether decision queries trigger PERSONALISED_DECISION intent, surface core user constraints, and reject generic platitudes.",
+  "test_cases": [
+    {
+      "id": "PQ-001",
+      "category": "commercial_pricing",
+      "query": "What rate should I charge for a 5-hour consulting engagement?",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "rate floor",
+        "S$150",
+        "logarithmic"
+      ],
+      "forbidden_generic_phrases": [
+        "it depends on your experience",
+        "consider market averages",
+        "charge whatever feels right"
+      ]
+    },
+    {
+      "id": "PQ-002",
+      "category": "commercial_deal_evaluation",
+      "query": "Should I accept a S$300 freelance project right now?",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "key-man risk",
+        "rate floor",
+        "pipeline"
+      ],
+      "forbidden_generic_phrases": [
+        "every little bit helps",
+        "assess your financial goals"
+      ]
+    },
+    {
+      "id": "PQ-003",
+      "category": "capital_risk",
+      "query": "Should I risk 10% on this gold scalp breakout?",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "Law of Ruin",
+        "Half-Kelly",
+        "max risk unit"
+      ],
+      "forbidden_generic_phrases": [
+        "high risk high reward",
+        "trust your gut"
+      ]
+    },
+    {
+      "id": "PQ-004",
+      "category": "fitness_accountability",
+      "query": "How should I handle my Saturday gym session this week?",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "BEH-601",
+        "solo session",
+        "PT dependency"
+      ],
+      "forbidden_generic_phrases": [
+        "take it easy",
+        "do whatever workout you enjoy"
+      ]
+    },
+    {
+      "id": "PQ-005",
+      "category": "social_boundaries",
+      "query": "How should I respond to an ambiguous client negotiation message?",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "PAT-574",
+        "Pryce Test",
+        "Adult-to-Adult"
+      ],
+      "forbidden_generic_phrases": [
+        "be polite and accommodating",
+        "just say yes"
+      ]
+    },
+    {
+      "id": "PQ-006",
+      "category": "system_control",
+      "query": "What is Protocol 528 sandboxed execution modes?",
+      "expected_intent": "SYSTEM_KNOWLEDGE",
+      "required_facts": [
+        "Protocol 528",
+        "sandboxed"
+      ],
+      "forbidden_generic_phrases": []
+    },
+    {
+      "id": "PQ-007",
+      "category": "system_control",
+      "query": "Explain PAT-574 substance decode framework",
+      "expected_intent": "SYSTEM_KNOWLEDGE",
+      "required_facts": [
+        "PAT-574",
+        "substance decode",
+        "base rate"
+      ],
+      "forbidden_generic_phrases": []
+    },
+    {
+      "id": "PQ-008",
+      "category": "psychology_inner_work",
+      "query": "I am feeling anxious about pipeline drought and want to deconstruct this trigger",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "BEH-602",
+        "schema",
+        "IFS"
+      ],
+      "forbidden_generic_phrases": [
+        "just breathe and relax",
+        "try positive thinking"
+      ]
+    },
+    {
+      "id": "PQ-009",
+      "category": "life_crisis_decision",
+      "query": "My wife cheated on me, what do I do about the BTO?",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "HDB MOP",
+        "CPF OA",
+        "Law #1"
+      ],
+      "forbidden_generic_phrases": [
+        "seek couples counseling",
+        "take time to process your emotions"
+      ]
+    },
+    {
+      "id": "PQ-010",
+      "category": "commercial_negotiation",
+      "query": "negotiate this deal for me",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "Dignity Premium",
+        "BATNA",
+        "rate floor"
+      ],
+      "forbidden_generic_phrases": [
+        "be open to compromise"
+      ]
+    },
+    {
+      "id": "PQ-011",
+      "category": "system_code",
+      "query": "How does weighted_rrf work in search.py?",
+      "expected_intent": "SYSTEM_KNOWLEDGE",
+      "required_facts": [
+        "RRF",
+        "weighted fusion"
+      ],
+      "forbidden_generic_phrases": []
+    },
+    {
+      "id": "PQ-012",
+      "category": "general_neutral",
+      "query": "DuckDB parquet memory optimization",
+      "expected_intent": "GENERAL",
+      "required_facts": [],
+      "forbidden_generic_phrases": []
+    },
+    {
+      "id": "PQ-013",
+      "category": "life_crisis_housing",
+      "query": "Can I keep our 4-room BTO flat under 35 without kids after divorce?",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "SSCS",
+        "35",
+        "ineligible"
+      ],
+      "forbidden_generic_phrases": [
+        "you can buy over her share easily"
+      ]
+    },
+    {
+      "id": "PQ-014",
+      "category": "life_crisis_finance",
+      "query": "How do I calculate net proceeds from selling my BTO after divorce?",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "CPF accrued interest",
+        "2.5%",
+        "DEC-449"
+      ],
+      "forbidden_generic_phrases": [
+        "just take market price minus mortgage"
+      ]
+    },
+    {
+      "id": "PQ-015",
+      "category": "life_crisis_negotiation",
+      "query": "My spouse had a public affair, how do I use this leverage in our settlement?",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "STR-450",
+        "STFU",
+        "half-life"
+      ],
+      "forbidden_generic_phrases": [
+        "expose them online to get justice"
+      ]
+    },
+    {
+      "id": "PQ-016",
+      "category": "system_protocol",
+      "query": "Explain Protocol SGP-sg-006 HDB matrimonial unwind",
+      "expected_intent": "SYSTEM_KNOWLEDGE",
+      "required_facts": [
+        "SGP-sg-006",
+        "HDB"
+      ],
+      "forbidden_generic_phrases": []
+    },
+    {
+      "id": "PQ-017",
+      "category": "system_protocol",
+      "query": "What is Protocol DEC-449 asset netting?",
+      "expected_intent": "SYSTEM_KNOWLEDGE",
+      "required_facts": [
+        "DEC-449",
+        "netting"
+      ],
+      "forbidden_generic_phrases": []
+    },
+    {
+      "id": "PQ-018",
+      "category": "life_crisis_housing",
+      "query": "Can I rent out my whole BTO flat during MOP to move out after separation?",
+      "expected_intent": "PERSONALISED_DECISION",
+      "required_facts": [
+        "MOP",
+        "room rental"
+      ],
+      "forbidden_generic_phrases": [
+        "yes you can rent the entire apartment"
+      ]
+    }
+  ]
+}

@@ -113,7 +113,7 @@ EXEMPTIONS: list[tuple[str, str, str]] = [
 #
 # So the count is ratcheted instead: the check fails when it goes UP. This is a
 # debt figure, not a target. It must only ever move down.
-UNDECLARED_BASELINE = 197
+UNDECLARED_BASELINE = 4
 
 TEXT_SUFFIXES = {".md", ".py", ".toml", ".json", ".yaml", ".yml", ".txt", ".cfg", ".sh"}
 

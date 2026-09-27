@@ -742,7 +742,14 @@ def classify_turn(
         underspec_opt=underspec_opt,
     )
     risk_level = lambda_res["risk_level"]
-    if risk_level == RiskLevel.ULTRA:
+    is_crisis = lambda_res.get("is_crisis", False)
+    crisis_referral = lambda_res.get("crisis_referral")
+
+    if is_crisis:
+        # Protocol 509 hard stop: bypass web search, do not escalate cognitive loops
+        web_required = False
+        web_reason = "crisis_gate_hard_stop"
+    elif risk_level == RiskLevel.ULTRA:
         web_required = True
         if web_reason == "none":
             web_reason = "ultra_tier"
@@ -754,6 +761,8 @@ def classify_turn(
         "risk_level": risk_level.name,
         "lambda_score": lambda_res["score"],
         "lambda_features": lambda_res["features"],
+        "is_crisis": is_crisis,
+        "crisis_referral": crisis_referral,
         "web_required": web_required,
         "web_reason": web_reason,
         "underspec_opt": underspec_opt,
@@ -987,7 +996,27 @@ def context_gate(
     import json as _json
 
     from athena.core.governance import RiskLevel, get_governance
+
+    # 0. Protocol 509 Early Screen: If query indicates crisis, surface referral IMMEDIATELY
+    # Life-safety overrides demo/redaction mode; no internal data or secrets are returned.
+    from athena.core.lambda_scorer import compute_lambda
     from athena.tools.search import classify_query_intent, run_search
+    early_lambda = compute_lambda(query)
+    if early_lambda.get("is_crisis"):
+        return {
+            "status": "CRISIS_REFERRAL_GATE",
+            "protocol": "SAF-509",
+            "directive": (
+                "HARD STOP (Protocol 509): Active crisis signals detected. "
+                "Athena is an AI assistant, not a clinician. Surface professional crisis "
+                "resources immediately. Do not execute problem framing, web search, or deep analysis."
+            ),
+            "referral": early_lambda.get("crisis_referral"),
+            "missing": [],
+            "ready": True,
+            "lambda_score": early_lambda["score"],
+            "risk_level": early_lambda["tier"],
+        }
 
     perms = get_permissions()
     perms.gate("context_gate")
@@ -1007,14 +1036,13 @@ def context_gate(
     except ImportError:
         pass
 
-    # Classify risk level via deterministic lambda_scorer (Phase C1)
-    from athena.core.lambda_scorer import compute_lambda
     lambda_res = compute_lambda(
         query,
         intent=intent,
         web_required=web_required,
         underspec_opt=underspec_opt,
     )
+
     risk_level = lambda_res["risk_level"]
     if risk_level == RiskLevel.ULTRA:
         web_required = True

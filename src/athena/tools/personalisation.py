@@ -23,7 +23,7 @@ def build_user_state_snapshot() -> dict[str, Any]:
     and active memory files into a compact structured dictionary.
     """
     snapshot: dict[str, Any] = {
-        "rate_floor": "$100/hr (Calibrated minimum floor)",
+        "rate_floor": "S$150/hr",
         "financial_constraints": "Cash buffer & active float discipline, 0 unhedged risk",
         "key_man_risk": "CRITICAL — Single operator dependency",
         "strategic_priorities": [],
@@ -120,7 +120,7 @@ def build_personalisation_prompt(
     lines = [
         f'<personalisation_context intent="{intent}">',
         "=== OPERATOR STATE & CONSTRAINTS ===",
-        f"- Rate Floor & Pricing: {user_state.get('rate_floor', '$100/hr minimum')}",
+        f"- Rate Floor & Pricing: {user_state.get('rate_floor', 'S$150/hr minimum')}",
         f"- Financial & Capital Risk: {user_state.get('financial_constraints', 'Active float discipline')}",
         f"- Key-Man Risk: {user_state.get('key_man_risk', 'CRITICAL')}",
     ]

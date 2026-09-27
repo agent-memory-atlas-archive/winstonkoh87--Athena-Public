@@ -29,9 +29,10 @@ def test_compute_eev_positive_asymmetry():
 def test_compute_eev_negative():
     res = compute_eev(mev=200.0, eu=150.0, eo=100.0, skeptic_discount=0.10)
     # raw_ev = 200 - 250 = -50
-    # net_eev = -50 * 0.9 = -45.0
+    # F-04 fix: negative raw_ev is NOT discounted (losses at full face value)
+    # net_eev = -50.0 (unchanged — discount only applies to positive EV)
     assert res.raw_ev == -50.0
-    assert res.net_eev == -45.0
+    assert res.net_eev == -50.0
     assert "REJECT" in res.verdict
 
 
@@ -138,7 +139,7 @@ def test_compute_mcda_stable_winner():
     assert res.winner == "Option A"
     assert res.is_stable is True
     assert "ROBUST" in res.stability_verdict
-    assert "COMMIT PRIMARY TO 'Option A'" in res.verdict
+    assert "RECOMMENDED (SCORED)" in res.verdict
     assert len(res.perturbation_flips) == 0
 
 
@@ -245,7 +246,7 @@ def test_mcda_dominant_winner_is_stable():
     assert res.winner == "Superior"
     assert res.is_stable is True
     assert "ROBUST" in res.stability_verdict
-    assert "COMMIT PRIMARY TO 'Superior'" in res.verdict
+    assert "RECOMMENDED (SCORED)" in res.verdict
     assert any("strictly dominates" in obs for obs in res.pairwise_dominance)
 
 
@@ -265,7 +266,7 @@ def test_mcda_single_criterion_stable():
     assert res.winner == "Option A"
     assert res.is_stable is True
     assert "ROBUST" in res.stability_verdict
-    assert "COMMIT PRIMARY TO 'Option A'" in res.verdict
+    assert "RECOMMENDED (SCORED)" in res.verdict
 
 
 def test_mcda_no_screen_is_advisory_only():
@@ -285,5 +286,123 @@ def test_mcda_no_screen_is_advisory_only():
     assert res.veto_screen_applied is False
     assert "ADVISORY ONLY (NO VETO SCREEN)" in res.verdict
     assert "DECISION LOCKED" not in res.verdict
+
+
+def test_ruin_result_violates_law1():
+    from athena.intelligence.gto_engine import compute_ruin_probability
+
+    # Safe: win_rate=0.60, payoff=1.5, risk=0.02 -> ruin < 1%
+    safe_res = compute_ruin_probability(win_rate=0.60, payoff_ratio=1.5, risk_per_trade_fraction=0.02)
+    assert safe_res.violates_law1 is False
+    assert "Law #1 Violation (>5% Ruin)  : NO (Ergodic)" in safe_res.to_ascii_table()
+
+    # Dangerous: win_rate=0.45, payoff=1.0, risk=0.10 -> ruin > 5%
+    ruin_res = compute_ruin_probability(win_rate=0.45, payoff_ratio=1.0, risk_per_trade_fraction=0.10)
+    assert ruin_res.violates_law1 is True
+    assert "Law #1 Violation (>5% Ruin)  : YES (HARD VETO)" in ruin_res.to_ascii_table()
+
+
+def test_gto_screen_without_floors_raises():
+    from athena.intelligence.gto_engine import VetoFloorRequired, gto_screen
+
+    candidates = ["PathA_Ruin40pct", "PathB_Safe"]
+    criteria = ["Speed", "Robustness"]
+    weights = [0.8, 0.2]
+    scores = {
+        "PathA_Ruin40pct": [9.0, 1.0],
+        "PathB_Safe": [5.0, 8.0],
+    }
+
+    # Calling gto_screen without veto floors MUST raise VetoFloorRequired (fail-closed)
+    with pytest.raises(VetoFloorRequired, match="fail-closed and requires active veto_floors"):
+        gto_screen(candidates, criteria, weights, scores)
+
+    # Calling with empty dict must also raise
+    with pytest.raises(VetoFloorRequired):
+        gto_screen(candidates, criteria, weights, scores, veto_floors={})
+
+
+def test_gto_screen_with_veto_floors_enforces_veto():
+    from athena.intelligence.gto_engine import gto_screen
+
+    candidates = ["PathA_Ruin40pct", "PathB_Safe"]
+    criteria = ["Speed", "Robustness"]
+    weights = [0.8, 0.2]
+    scores = {
+        "PathA_Ruin40pct": [9.0, 1.0],
+        "PathB_Safe": [5.0, 8.0],
+    }
+
+    # With veto floor on Robustness >= 5.0, PathA is vetoed despite higher raw composite score
+    res = gto_screen(
+        candidates,
+        criteria,
+        weights,
+        scores,
+        veto_floors={"Robustness": 5.0},
+    )
+    assert res.winner == "PathB_Safe"
+    assert res.veto_screen_applied is True
+    assert "PathA_Ruin40pct" in res.vetoed_candidates
+    assert any("Breached Robustness floor" in b for b in res.vetoed_candidates["PathA_Ruin40pct"])
+
+
+def test_derive_ruin_floors_and_gto_screen():
+    from athena.intelligence.gto_engine import derive_ruin_floors, gto_screen
+
+    candidates = ["PathA_Ruin40pct", "PathB_Safe"]
+    criteria = ["Speed", "Robustness"]
+    weights = [0.8, 0.2]
+    scores = {
+        "PathA_Ruin40pct": [9.0, 1.0],
+        "PathB_Safe": [5.0, 8.0],
+    }
+    ruin_inputs = {
+        "PathA_Ruin40pct": {"win_rate": 0.45, "payoff_ratio": 1.0, "risk_per_trade_fraction": 0.10},
+        "PathB_Safe": {"win_rate": 0.60, "payoff_ratio": 1.5, "risk_per_trade_fraction": 0.02},
+    }
+
+    # derive_ruin_floors produces floor on Robustness
+    floors = derive_ruin_floors(candidates, ruin_inputs, target_criterion="Robustness", floor_value=5.0)
+    assert floors == {"Robustness": 5.0}
+
+    # gto_screen auto-derives from ruin_inputs and vetoes PathA
+    res = gto_screen(
+        candidates,
+        criteria,
+        weights,
+        scores,
+        ruin_inputs=ruin_inputs,
+        ruin_criterion="Robustness",
+        ruin_floor=5.0,
+    )
+    assert res.winner == "PathB_Safe"
+    assert res.veto_screen_applied is True
+    assert "PathA_Ruin40pct" in res.vetoed_candidates
+
+
+def test_cli_require_veto():
+    from athena.intelligence.gto_engine import main
+
+    mcda_data = {
+        "candidates": ["PathA", "PathB"],
+        "criteria": ["Speed", "Robustness"],
+        "weights": [0.8, 0.2],
+        "scores": {"PathA": [9.0, 1.0], "PathB": [5.0, 8.0]},
+    }
+
+    # Without --require-veto, exits 0 (advisory mode)
+    exit_code = main(["--action", "mcda", "--mcda-json", json.dumps(mcda_data)])
+    assert exit_code == 0
+
+    # With --require-veto but no veto_floors, exits non-zero (fail-closed)
+    exit_code_fail = main(["--action", "mcda", "--require-veto", "--mcda-json", json.dumps(mcda_data)])
+    assert exit_code_fail != 0
+
+    # With --require-veto and veto_floors, exits 0
+    mcda_data_with_veto = dict(mcda_data, veto_floors={"Robustness": 5.0})
+    exit_code_vetoed = main(["--action", "mcda", "--require-veto", "--mcda-json", json.dumps(mcda_data_with_veto)])
+    assert exit_code_vetoed == 0
+
 
 

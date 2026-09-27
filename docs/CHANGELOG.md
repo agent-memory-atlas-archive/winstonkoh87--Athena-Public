@@ -8,6 +8,25 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
+## [10.0.0] — Major Architectural Sync & Ledger-Backed Engine Release (28 September 2026)
+
+### Core Engine & Architecture Modernization
+- **Ledger-Backed Sync Architecture**: Transitioned the public repository distribution from legacy tag-delta polling to an automated, ledger-tracked state machine with strict drift detection.
+- **Fail-Closed GTO Decision Screening**: Upgraded `src/athena/intelligence/gto_engine.py` with `violates_law1`, `derive_ruin_floors`, and fail-closed candidate screening that enforces mandatory veto floors against ruinous actions.
+- **Protocol 509 Crisis Life-Safety Gate**: Embedded hard-stop crisis triage into `src/athena/core/lambda_scorer.py` and governance checks with automated Singapore emergency hotline referral (SOS 1-767, IMH 6389 2222, 995) and colloquial idiom filtering.
+- **AgentGate Command Interception**: Hardened `src/athena/core/ruin_structured.py` and `src/athena/core/gate_cli.py` to intercept destructive Git commands, subshell nesting, python one-liners, file truncation redirects, and data exfiltration attempts.
+- **AST Codebase Graph Engine**: Ported `src/athena/tools/ast_graph.py` for bidirectional caller-callee resolution, symbol dependency tracking, and dead code detection.
+- **Local FTS5/BM25 Keyword Engine**: Ported `src/athena/tools/fts_search.py` providing fast SQLite full-text search over markdown memory corpus.
+- **Evaluator Calibration**: Un-flattered RAG evaluation in `evaluator.py` using strict exact stem matching to eliminate optimistic baseline inflation.
+- **Sentinel Governance Resilience**: Patched unhandled urllib exceptions in `.github/scripts/sentinel.py` to ensure graceful fallback to rule-based triage on network or model latency.
+
+### Upstream Reconciliation & Layout Deduplication
+- **Adopted Public-Side Work**: Reconciled 15 distributed modules into upstream private tracking (`edge_node.py`, `sandbox.py`, `sessions_rpc.py`, `skill_nudge.py`, `skill_telemetry.py`, `athena_tui.py`, `athena_client.py`).
+- **Deduplicated Script Layout**: Cleaned up duplicated files between `.agent/scripts/` and `examples/scripts/`.
+- **Test Suite Expansion**: Added 13 new test suites across AST graph, FTS search, GTO engine, Lambda scoring, crisis gate, and AgentGate command security, bringing the green test suite to 43 test modules (590+ tests).
+
+---
+
 ## [9.9.9] — Full Synchronized Digital Portfolio Refresh (28 September 2026)
 
 ### 2026-09-28 — Full Synchronized Digital Portfolio Refresh

@@ -76,7 +76,7 @@ WEIGHTS = {
     "workflow": 2.0,
     "entity": 1.8,
     "reference": 1.8,
-    "sqlite": 1.5,
+    "fts_bm25": 1.5,
     "web_search": 2.8,
 }
 
@@ -93,7 +93,7 @@ PERSONALISED_DECISION_WEIGHTS = {
     "capability": 1.5,
     "workflow": 1.5,
     "filename": 1.8,
-    "sqlite": 1.5,
+    "fts_bm25": 1.5,
     "web_search": 2.5,
     "playbook": 1.8,
     "entity": 1.8,
@@ -114,7 +114,7 @@ SYSTEM_KNOWLEDGE_WEIGHTS = {
     "framework": 1.2,
     "framework_docs": 1.2,
     "session": 2.0,
-    "sqlite": 1.5,
+    "fts_bm25": 1.5,
     "web_search": 2.0,
     "playbook": 1.8,
     "entity": 1.8,
@@ -756,71 +756,38 @@ def collect_framework_docs(query: str) -> list[SearchResult]:
     return results[:5]
 
 
-def collect_sqlite(query: str, limit: int = 10) -> list[SearchResult]:
-    """Sovereign Fallback: Search the local SQLite index (athena.db)."""
-    import sqlite3
-
-    from athena.core.config import ATHENA_DB
-
-    db_path = ATHENA_DB
-    if not db_path.exists():
-        return []
-
-    results = []
+def collect_fts_bm25(query: str, limit: int = 20) -> list[SearchResult]:
+    """FTS5/BM25 keyword search over local Exocortex memory."""
     try:
-        conn = sqlite3.connect(str(db_path))
-        conn.row_factory = sqlite3.Row
-        cursor = conn.cursor()
+        from athena.tools.fts_search import ExocortexFTS
 
-        # Keyword search on tags and filenames
-        query_sanitized = f"%{query}%"
+        fts = ExocortexFTS()
 
-        # 1. Search Files by Path/Name
-        cursor.execute(
-            "SELECT path FROM files WHERE path LIKE ? LIMIT ?", (query_sanitized, limit)
-        )
-        for row in cursor.fetchall():
-            filepath = Path(row["path"])
+        # Build index on first use if the DB doesn't exist yet
+        if not fts.db_path.exists():
+            fts.build()
+
+        hits = fts.search(query, limit=limit)
+
+        results: list[SearchResult] = []
+        for hit in hits:
             results.append(
                 SearchResult(
-                    id=f"Local:File:{filepath.name}",
-                    content=f"Local match: {filepath.name}",
-                    source="sqlite",
-                    score=0.8,
-                    metadata={"path": str(filepath)},
+                    id=f"FTS:{hit.get('file_path', '')}",
+                    content=hit.get("snippet", ""),
+                    source="fts_bm25",
+                    score=abs(hit.get("bm25_score", 0.0)),
+                    rrf_score=0.0,
+                    metadata={
+                        "path": hit.get("file_path", ""),
+                        "title": hit.get("title", ""),
+                    },
                 )
             )
-
-        # 2. Search by Tags
-        cursor.execute(
-            """
-            SELECT f.path, t.name
-            FROM files f
-            JOIN file_tags ft ON f.path = ft.file_path
-            JOIN tags t ON ft.tag_id = t.id
-            WHERE t.name LIKE ?
-            LIMIT ?
-        """,
-            (query_sanitized, limit),
-        )
-
-        for row in cursor.fetchall():
-            filepath = Path(row["path"])
-            results.append(
-                SearchResult(
-                    id=f"Local:Tag:{row['name']}:{filepath.name}",
-                    content=f"Tag match: #{row['name']}",
-                    source="sqlite",
-                    score=0.9,
-                    metadata={"path": str(filepath)},
-                )
-            )
-
-        conn.close()
+        return results
     except Exception as e:
-        print(f"   ⚠️ SQLite fallback failed: {e}", file=sys.stderr)
-
-    return results
+        print(f"   ⚠️ FTS/BM25 search failed: {e}", file=sys.stderr)
+        return []
 
 
 def collect_web_search(query: str, limit: int = 5) -> list[SearchResult]:
@@ -1086,6 +1053,18 @@ def run_search(
 
     detected_intent = intent or classify_query_intent(query)
 
+    # P1.5: Compute Lambda score (objective risk tier) — drives retrieval depth
+    lambda_info: dict | None = None
+    try:
+        from athena.core.lambda_scorer import compute_lambda
+        lambda_info = compute_lambda(
+            query,
+            intent=detected_intent,
+            web_required=bool(web),
+        )
+    except Exception:
+        lambda_info = None  # Graceful degradation — proceed without Lambda
+
     # P1.3: Auto-fire web search based on freshness classification
     if web is None:
         try:
@@ -1093,6 +1072,11 @@ def run_search(
             web, _web_reason = needs_web(query, detected_intent)
         except ImportError:
             web = False  # web_triggers not available, default to local-only
+
+    # Lambda-informed web suppression: SNIPER queries (trivial greetings)
+    # never need web search — saves latency and API calls
+    if lambda_info and lambda_info.get("tier") == "SNIPER" and web:
+        web = False
 
     effective_web = web
     effective_personal = False if privacy_mode else include_personal
@@ -1206,7 +1190,7 @@ def run_search(
                 "vector": lambda: collect_vectors(
                     query, embedding=query_embedding, exclude_domains=exclude_domains
                 ),
-                "sqlite": lambda: collect_sqlite(query),
+                "fts_bm25": lambda: collect_fts_bm25(query),
                 "filename": lambda: collect_filenames(query),
                 "framework_docs": lambda: collect_framework_docs(query),
             }
@@ -1383,6 +1367,10 @@ def run_search(
             "suppressed": suppressed_count,
             "intent": detected_intent,
             "degraded_recall": vector_failed,  # FIX-03: Surface vector health to MCP consumers
+            "lambda": {
+                "score": lambda_info["score"],
+                "tier": lambda_info["tier"],
+            } if lambda_info else None,
         }
 
         # Attach active personalisation frame for decision queries
@@ -1465,6 +1453,8 @@ def run_search(
             "latency_ms": latency_ms,
             "tokens": tokens,
             "intent": detected_intent,
+            "lambda_score": lambda_info["score"] if lambda_info else None,
+            "lambda_tier": lambda_info["tier"] if lambda_info else None,
         }
 
         with open(log_path, "a", encoding="utf-8") as f:

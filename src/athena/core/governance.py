@@ -16,6 +16,8 @@ If the same tool call repeats 3+ times with identical input, flag it.
 import hashlib
 import json
 import logging
+import os
+import re
 import time
 from enum import IntEnum
 from pathlib import Path
@@ -171,7 +173,11 @@ class GovernanceEngine:
     Prevents infinite retry loops that burn tokens without progress.
     """
 
-    def __init__(self, state_dir: Path | None = None):
+    def __init__(
+        self,
+        state_dir: Path | None = None,
+        conversation_id: str | None = None,
+    ):
         if state_dir is None:
             # Backward compat: try importing AGENT_DIR, fall back to ~/.athena
             try:
@@ -182,7 +188,18 @@ class GovernanceEngine:
                 self.state_dir = Path.home() / ".athena" / "state"
         else:
             self.state_dir = state_dir
-        self.state_file = self.state_dir / "exchange_state.json"
+
+        # P0.5: Multi-agent / multi-conversation governance state isolation
+        cid = (
+            conversation_id
+            or os.environ.get("ATHENA_CONVERSATION_ID")
+            or os.environ.get("CONVERSATION_ID")
+        )
+        if cid:
+            sanitized_cid = re.sub(r"[^\w\-.]", "_", str(cid))
+            self.state_file = self.state_dir / f"exchange_state_{sanitized_cid}.json"
+        else:
+            self.state_file = self.state_dir / "exchange_state.json"
         self._state: dict[str, Any] = self._load_state()
 
         # Doom Loop Detector
@@ -341,13 +358,23 @@ class GovernanceEngine:
         }
 
 
-# Singleton instance (lazy)
+# Singleton instance cache (lazy, per-conversation keyed)
+_governance_engines: dict[str, GovernanceEngine] = {}
 _governance_engine = None
 
 
-def get_governance() -> GovernanceEngine:
-    """Get the singleton governance engine instance."""
-    global _governance_engine
-    if _governance_engine is None:
-        _governance_engine = GovernanceEngine()
-    return _governance_engine
+def get_governance(conversation_id: str | None = None) -> GovernanceEngine:
+    """Get the governance engine instance (keyed by conversation ID)."""
+    global _governance_engine, _governance_engines
+    cid = (
+        conversation_id
+        or os.environ.get("ATHENA_CONVERSATION_ID")
+        or os.environ.get("CONVERSATION_ID")
+    )
+    key = str(cid) if cid else "default"
+    if key not in _governance_engines:
+        engine = GovernanceEngine(conversation_id=cid)
+        _governance_engines[key] = engine
+        if key == "default":
+            _governance_engine = engine
+    return _governance_engines[key]

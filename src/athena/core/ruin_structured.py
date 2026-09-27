@@ -39,7 +39,49 @@ class StructuredRuinCheck:
 
         cmd_name = tokens[0].lower()
 
-        # 1. Token-level destructive action detection
+        # 0. Shell redirection truncation on protected targets
+        if ">" in command:
+            for part in command.split(">")[1:]:
+                target = part.strip().split()[0] if part.strip() else ""
+                clean_target = target.strip("'\"")
+                if clean_target in (".context/CANONICAL.md", ".context", ".agent", "CANONICAL.md") or clean_target.startswith((".context/", ".agent/")):
+                    return False, ["truncating_redirection_on_protected_path"]
+
+        # 1. Nested interpreters inspection
+        if cmd_name in ("bash", "sh", "zsh") and "-c" in tokens:
+            idx = tokens.index("-c")
+            if idx + 1 < len(tokens):
+                sub_allowed, sub_flags = self.check_command(tokens[idx + 1])
+                if not sub_allowed:
+                    return False, ["nested_shell_veto"] + sub_flags
+
+        if cmd_name in ("python", "python3") and "-c" in tokens:
+            idx = tokens.index("-c")
+            if idx + 1 < len(tokens):
+                py_code = tokens[idx + 1]
+                if any(x in py_code for x in ("shutil.rmtree", "os.remove", "os.unlink", "os.rmdir")) and \
+                   any(target in py_code for target in (".context", ".agent", "CANONICAL", "PROJECTS", "/")):
+                    return False, ["python_destructive_call"]
+
+        # 2. Destructive Git command inspection
+        if cmd_name == "git":
+            if "reset" in tokens and any(t in tokens for t in ("--hard", "-hard")):
+                return False, ["git_reset_hard"]
+            if "push" in tokens and any(t in tokens for t in ("--force", "-f", "--force-with-lease")):
+                return False, ["git_force_push"]
+            if "clean" in tokens and any(t.startswith("-") and "f" in t for t in tokens):
+                return False, ["git_clean_force"]
+            if ("checkout" in tokens and "--" in tokens and "." in tokens) or ("restore" in tokens and "." in tokens):
+                return False, ["git_checkout_all"]
+
+        # 3. Exfiltration detection
+        if cmd_name in ("curl", "wget", "nc", "netcat", "socat") and (
+            any("@" in tok and any(sec in tok for sec in (".env", "passphrase", "key", "token", "secret", "userContext", "identity")) for tok in tokens) or
+            (any(tok in ("-d", "--data", "--data-raw", "--data-binary") for tok in tokens) and any(sec in command for sec in (".env", "passphrase")))
+        ):
+            return False, ["data_exfiltration_risk"]
+
+        # 4. Token-level destructive action detection
         destructive_verbs = {"rm", "unlink", "truncate", "shred", "dd"}
         if cmd_name in destructive_verbs or any(tok in ("rm", "delete", "truncate", "overwrite") for tok in tokens):
             red_flags.append("destructive_token")
@@ -51,7 +93,7 @@ class StructuredRuinCheck:
             if has_recursive and has_force:
                 red_flags.append("recursive_force_delete")
 
-        # 2. Path resolution & protected boundary check
+        # 5. Path resolution & protected boundary check
         paths = self._extract_paths(tokens)
         for path_obj in paths:
             try:
@@ -69,11 +111,11 @@ class StructuredRuinCheck:
             if resolved == self.workspace_root or str(resolved) == "/":
                 red_flags.append("targets_root_directory")
 
-        # 3. Capability level evaluation
+        # 6. Capability level evaluation
         if self.capability_level >= 4 and len(red_flags) > 0:
             red_flags.append("dangerous_capability_active")
 
-        # 4. Cumulative Veto Decision
+        # 7. Cumulative Veto Decision
         veto = (
             "targets_root_directory" in red_flags
             or ("recursive_force_delete" in red_flags and ("targets_context_memory" in red_flags or "targets_agent_config" in red_flags))

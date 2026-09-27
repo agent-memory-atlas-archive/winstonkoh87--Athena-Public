@@ -251,7 +251,7 @@ def _run_subquery_search(subquery: str, limit: int = 10, web: bool = False) -> t
         collect_canonical,
         collect_filenames,
         collect_framework_docs,
-        collect_sqlite,
+        collect_fts_bm25,
         collect_vectors,
         collect_web_search,
         weighted_rrf,
@@ -267,7 +267,7 @@ def _run_subquery_search(subquery: str, limit: int = 10, web: bool = False) -> t
         collection_tasks = {
             "canonical": lambda: collect_canonical(subquery),
             "vector": lambda: collect_vectors(subquery, embedding=query_embedding, exclude_domains=[]),
-            "sqlite": lambda: collect_sqlite(subquery),
+            "fts_bm25": lambda: collect_fts_bm25(subquery),
             "filename": lambda: collect_filenames(subquery),
             "framework_docs": lambda: collect_framework_docs(subquery),
         }

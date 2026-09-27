@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
 """
-Maintenance-vs-Output Commit Ratio
-==================================
-Classifies recent commits by conventional-commit prefix and reports the share
-of self-maintenance work vs user-facing output. A system that spends most of its
-commits grooming itself has quietly stopped shipping — this makes that visible,
-and (with --gate) enforceable via the commit-msg hook.
+Athena Maintenance-vs-Output Commit Ratio (Advisory)
+=====================================================
+Classifies recent commits by conventional-commit prefix + scope and reports the
+share of self-maintenance work vs operator-output work.  Filed as TD-045
+(external audit 2026-06-10, F02).
 
-    OUTPUT      = feat, fix          (changes what the system does for the user)
-    MAINTENANCE = everything else    (chore, docs, refactor, style, test, ci, ...)
+Classification (reconciled with .agent/hooks/commit-msg, 2026-09-12):
+    OUTPUT      = feat, fix          (changes what the system does for the operator)
+    MAINTENANCE = chore, docs, refactor, style, test, ci, … (self-maintenance)
+    BOOKKEEPING = scope(session|checkpoint|ultraend)  (logging heartbeats — neutral)
     UNLABELED   = no conventional prefix detected
 
-Advisory by default; with --gate it exits non-zero when the ratio is breached,
-so scripts/hooks/commit-msg can turn DISCIPLINE.md Rule 6 from advisory into
-enforced. Advisory alone was ignored — a readout you can skip is not a control.
+The maintenance ratio is computed over ACTIVE work only (maintenance + output).
+Bookkeeping commits are excluded from both numerator and denominator so that
+high-frequency session closes do not inflate the maintenance share.
 
 Usage:
     python3 maintenance_ratio.py                # last 30 days
-    python3 maintenance_ratio.py --days 14      # audit window
-    python3 maintenance_ratio.py --gate --quiet # exit 1 if over threshold (hook use)
+    python3 maintenance_ratio.py --days 7       # weekly audit window
     python3 maintenance_ratio.py --verbose      # list the output commits
+    python3 maintenance_ratio.py --gate --quiet # commit-msg hook (exit 1 if >70%)
 """
 
 import argparse
@@ -29,13 +30,17 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
 OUTPUT_PREFIXES = {"feat", "fix"}
-PREFIX_RE = re.compile(r"^([a-z]+)(\(|!|:)")
+# Conventional commit regex extracting prefix and optional scope: type(scope)!: subject
+CONVENTIONAL_RE = re.compile(r"^([a-z]+)(?:\(([a-z0-9_.-]+)\))?!?:\s*(.*)")
+# Scopes that represent logging heartbeats / session receipts rather than self-maintenance.
+# Reconciled with .agent/hooks/commit-msg: case "$SCOPE" in session|checkpoint|ultraend)
+BOOKKEEPING_SCOPES = {"session", "checkpoint", "ultraend"}
 
-# When maintenance share holds above this for two consecutive audit windows, the
-# next commit should be output (feat/fix) or a deletion — not another sweep.
+# Advisory threshold per TD-045: sustained >70% maintenance while I8 is
+# stalled means the next GTO sweep should yield to revenue work.
 ADVISORY_THRESHOLD = 0.70
 
 
@@ -56,10 +61,15 @@ def collect_commits(days: int) -> list[tuple[str, str]]:
 
 
 def classify(subject: str) -> str:
-    match = PREFIX_RE.match(subject)
+    match = CONVENTIONAL_RE.match(subject)
     if not match:
         return "unlabeled"
-    return "output" if match.group(1) in OUTPUT_PREFIXES else "maintenance"
+    prefix, scope, _ = match.groups()
+    if prefix in OUTPUT_PREFIXES:
+        return "output"
+    if scope in BOOKKEEPING_SCOPES:
+        return "bookkeeping"
+    return "maintenance"
 
 
 def main() -> int:
@@ -84,20 +94,27 @@ def main() -> int:
 
     buckets = Counter(classify(subject) for _, subject in commits)
     total = len(commits)
-    maintenance_share = buckets["maintenance"] / total
+    active_total = buckets["maintenance"] + buckets["output"]
+    maintenance_share = buckets["maintenance"] / active_total if active_total > 0 else 0.0
+    output_share = buckets["output"] / active_total if active_total > 0 else 0.0
 
     if not args.quiet:
-        print(f"📊 Commit ratio — last {args.days} days ({total} commits)")
-        print(f"   Maintenance: {buckets['maintenance']:>4}  ({maintenance_share:.0%})")
-        print(f"   Output:      {buckets['output']:>4}  ({buckets['output'] / total:.0%})")
+        classified_total = active_total + buckets["bookkeeping"]
+        unclassified_share = buckets["unlabeled"] / total if total > 0 else 0.0
+        print(f"📊 Commit ratio — last {args.days} days ({total} total commits, {classified_total}/{total} classified)")
+        print(f"   Active Work: {active_total}/{total} commits ({active_total / total:.0%})")
+        print(f"   ├─ Maintenance: {buckets['maintenance']:>4}  ({maintenance_share:.0%} of active, {buckets['maintenance'] / total:.0%} of total)")
+        print(f"   └─ Output:      {buckets['output']:>4}  ({output_share:.0%} of active, {buckets['output'] / total:.0%} of total)")
+        if buckets["bookkeeping"]:
+            print(f"   Bookkeeping:    {buckets['bookkeeping']:>4}  ({buckets['bookkeeping'] / total:.0%} of total) [session closes/checkpoints]")
         if buckets["unlabeled"]:
-            print(f"   Unlabeled:   {buckets['unlabeled']:>4}  ({buckets['unlabeled'] / total:.0%})")
+            print(f"   Unlabeled:      {buckets['unlabeled']:>4}  ({unclassified_share:.0%} of total)")
 
-        if maintenance_share > ADVISORY_THRESHOLD:
+        if maintenance_share > ADVISORY_THRESHOLD and active_total > 0:
             print(
-                f"\nℹ️  Maintenance share above {ADVISORY_THRESHOLD:.0%}: if this holds two "
-                "consecutive audits, the next commit must be output (feat/fix) or a "
-                "deletion — not another reorganization."
+                f"\nℹ️  Maintenance share above {ADVISORY_THRESHOLD:.0%} (TD-045 advisory): "
+                "if this holds 2 consecutive weeks while I8 is stalled, defer the next "
+                "GTO sweep in favor of revenue work."
             )
 
         if args.verbose:
@@ -111,7 +128,7 @@ def main() -> int:
                 print(f"   {sha}  {subject}")
 
     # --gate: non-zero exit so the commit-msg hook can block a maintenance commit.
-    if args.gate and maintenance_share > ADVISORY_THRESHOLD:
+    if args.gate and maintenance_share > ADVISORY_THRESHOLD and active_total > 0:
         return 1
 
     return 0

@@ -78,20 +78,28 @@ def call_gemini(prompt: str) -> str:
     except ImportError:
         # Fallback to REST API
         import urllib.request
+        import urllib.error
 
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
-        body = json.dumps(
-            {
-                "contents": [{"parts": [{"text": prompt}]}],
-                "generationConfig": {"temperature": 0.1, "maxOutputTokens": 1024},
-            }
-        ).encode()
-        req = urllib.request.Request(
-            url, data=body, headers={"Content-Type": "application/json"}
-        )
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            data = json.loads(resp.read())
-        return data["candidates"][0]["content"]["parts"][0]["text"].strip()
+        try:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
+            body = json.dumps(
+                {
+                    "contents": [{"parts": [{"text": prompt}]}],
+                    "generationConfig": {"temperature": 0.1, "maxOutputTokens": 1024},
+                }
+            ).encode()
+            req = urllib.request.Request(
+                url, data=body, headers={"Content-Type": "application/json"}
+            )
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                data = json.loads(resp.read())
+            return data["candidates"][0]["content"]["parts"][0]["text"].strip()
+        except Exception as e:
+            print(f"⚠️  Gemini REST fallback failed: {e}. Falling back to rule-based triage.")
+            return ""
+    except Exception as e:
+        print(f"⚠️  Gemini client failed: {e}. Falling back to rule-based triage.")
+        return ""
 
 
 # ---------------------------------------------------------------------------

@@ -17,6 +17,8 @@ root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, root)
 sys.path.insert(0, os.path.join(root, "src"))
 sys.path.insert(0, os.path.join(root, ".agent", "scripts"))
+sys.path.insert(0, os.path.join(root, "examples", "scripts"))
+sys.path.insert(0, os.path.join(root, "scripts"))
 
 
 def _can_import(module_name: str) -> bool:

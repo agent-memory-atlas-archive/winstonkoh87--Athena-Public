@@ -43,10 +43,14 @@ UNIVERSAL_NEGATIVE_PATTERNS = [
 ]
 
 EXTERNAL_TOOL_NAMES = {
-    "context_gate", "smart_search", "search_web", "quicksave",
-    "view_file", "grep_search", "find_by_name", "list_dir",
-    "run_command", "call_mcp_tool", "read_url_content",
-    "meta_awareness_check", "governance_status", "agentic_search",
+    # Exocortex / MCP semantic retrieval
+    "context_gate", "smart_search", "agentic_search", "call_mcp_tool",
+    # Web / URL retrieval
+    "search_web", "read_url_content",
+    # Governance self-check (counts as external verification of state)
+    "meta_awareness_check", "governance_status",
+    # File inspections
+    "view_file",
 }
 
 
@@ -79,7 +83,7 @@ def clean_prompt_content(raw_content: str) -> str:
 
 def evaluate_turn_governance(transcript_path: str) -> dict[str, str]:
     """Inspect the latest turn in transcript.jsonl for governance compliance."""
-    path = Path(transcript_path)
+    path = Path(transcript_path).expanduser()
     if not path.exists():
         return {"decision": "allow"}
 
@@ -112,17 +116,6 @@ def evaluate_turn_governance(transcript_path: str) -> dict[str, str]:
 
     cleaned_user_prompt = clean_prompt_content(last_user_content)
 
-    # Evaluate risk tier using lambda_scorer (Phase C1)
-    try:
-        sys.path.insert(0, str(REPO_ROOT / "src"))
-        from athena.core.lambda_scorer import compute_lambda
-        lambda_info = compute_lambda(cleaned_user_prompt)
-        if lambda_info["tier"] == "SNIPER":
-            return {"decision": "allow"}
-    except Exception:
-        if is_trivial_query(cleaned_user_prompt):
-            return {"decision": "allow"}
-
     # Inspect all steps following the last USER_INPUT
     turn_steps = steps[last_user_idx + 1:]
     tools_called: list[str] = []
@@ -135,7 +128,14 @@ def evaluate_turn_governance(transcript_path: str) -> dict[str, str]:
             for tc in t_calls:
                 if isinstance(tc, dict):
                     name = tc.get("name", "")
-                    if name:
+                    if name == "run_command":
+                        args = tc.get("args", {})
+                        cmd = args.get("CommandLine", "") if isinstance(args, dict) else ""
+                        cmd_clean = cmd.strip().lower()
+                        # Trivial commands like 'echo' or 'pwd' do not count as external grounding
+                        if not any(cmd_clean == t or cmd_clean.startswith(t + " ") for t in ("echo", "pwd", "true", "false", "date")):
+                            tools_called.append("run_command_verified")
+                    elif name:
                         tools_called.append(name)
 
         # Check content for model output
@@ -144,8 +144,33 @@ def evaluate_turn_governance(transcript_path: str) -> dict[str, str]:
             if content:
                 latest_model_output += "\n" + content
 
+    # Evaluate risk tier using lambda_scorer (Phase C1)
+    try:
+        sys.path.insert(0, str(REPO_ROOT / "src"))
+        from athena.core.lambda_scorer import compute_lambda
+        lambda_info = compute_lambda(cleaned_user_prompt)
+
+        # Protocol 509: If crisis, require that the referral hotline was actually emitted
+        if lambda_info.get("is_crisis"):
+            if any(h in latest_model_output for h in ("1-767", "6389 2222", "995")):
+                return {"decision": "allow"}
+            return {
+                "decision": "continue",
+                "reason": (
+                    "CRISIS REFERRAL REQUIRED (Protocol 509): Severe distress or self-harm signals detected. "
+                    "You MUST surface the emergency support referral hotlines (SOS 1-767, IMH 6389 2222, 995) "
+                    "before concluding this turn."
+                ),
+            }
+
+        if lambda_info["tier"] == "SNIPER":
+            return {"decision": "allow"}
+    except Exception:
+        if is_trivial_query(cleaned_user_prompt):
+            return {"decision": "allow"}
+
     # Check 1: Did the agent call ANY external verification tool?
-    external_called = any(t in EXTERNAL_TOOL_NAMES for t in tools_called)
+    external_called = any(t in EXTERNAL_TOOL_NAMES or t == "run_command_verified" for t in tools_called)
 
     if not external_called:
         return {
@@ -195,7 +220,10 @@ def main():
         return
 
     termination_reason = payload.get("terminationReason", "")
-    if termination_reason and termination_reason != "model_stop":
+    # Fail-CLOSED: only bypass for involuntary terminations.
+    # model_stop = agent chose to stop (must verify), everything else = interrupted.
+    NON_VOLUNTARY_TERMINATIONS = {"max_tokens", "error", "timeout", "cancelled", "tool_error"}
+    if termination_reason in NON_VOLUNTARY_TERMINATIONS:
         print(json.dumps({"decision": "allow"}))
         return
 
