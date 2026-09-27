@@ -1,14 +1,14 @@
 {
   "_comment": "Canonical inventory counts for Project Athena. Single source of truth for pre-commit caps, audit asserts, and AGENTS.md regeneration. Update via .agent/scripts/sync_agents_md.py (runs automatically: pre-commit Gate 4 + shutdown.py Phase 1.5), not by hand.",
-  "_generated": "2026-09-25",
+  "_generated": "2026-09-28",
   "_generator": "S411 sync_agents_md.py automation (TD-028)",
   "version": {
     "framework": "v8.2-stable",
     "system": "v9.9.9"
   },
   "protocols": {
-    "total": 455,
-    "active": 421,
+    "total": 456,
+    "active": 422,
     "archived": 34,
     "categories": 26,
     "cap": "uncapped",
@@ -22,8 +22,8 @@
   },
   "workflows": {
     "root": 55,
-    "domain": 19,
-    "total": 74,
+    "domain": 20,
+    "total": 75,
     "cap": "uncapped",
     "cap_policy": "Workflows are uncapped as of v9.8.0. Domain workflows are dormant by default (_domain/ tier) and only activate on query match. The constraint is attention budget, not inventory size. TD-017 is now structurally resolved."
   },
@@ -51,14 +51,10 @@
     "retrieval_audit_script": ".agent/scripts/retrieval_audit.py",
     "canonical_tier_analysis": ".agent/scripts/canonical_tier_analysis.py"
   },
-  "scripts": 279,
+  "scripts": 285,
   "memories": {
-    "total_files": 4960,
+    "total_files": 5043,
     "path": ".context/memories/"
-  },
-  "case_studies": {
-    "total_files": 503,
-    "note": "503 documented patterns across 15 domains, 7 archived. See CASE_STUDY_INDEX.md."
   },
   "paths": {
     "active_protocols": ".agent/skills/protocols/",
@@ -81,5 +77,10 @@
     "workflows_domain": "find .agent/workflows/_domain -type f -name '*.md' | wc -l",
     "conditional_skills": "grep -l 'context_trigger' .agent/skills/*/SKILL.md | wc -l",
     "scripts": "find .agent/scripts -type f | wc -l"
+  },
+  "case_studies": {
+    "total_files": 503,
+    "uppercase_convention": 497,
+    "note": "497 CS-*.md + 6 legacy cs-*.md (now renamed). 7 indexed without files, 3 unindexed. See CASE_STUDY_INDEX.md."
   }
 }
