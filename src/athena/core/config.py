@@ -73,15 +73,9 @@ CORE_DIRS = {
 
 # Extended Memory (Silos mapped to logical tables)
 EXTENDED_DIRS = [
-    (PROJECT_ROOT / "analysis", "case_studies"),
-    (PROJECT_ROOT / "Marketing", "system_docs"),
-    (PROJECT_ROOT / "proposals", "case_studies"),
-    (PROJECT_ROOT / "Winston", "system_docs"),
-    (PROJECT_ROOT / "docs" / "audit", "system_docs"),
-    (PROJECT_ROOT / "gem_knowledge_base", "system_docs"),
+    (PROJECT_ROOT / "docs", "system_docs"),
+    (PROJECT_ROOT / "examples", "system_docs"),
     (PROJECT_ROOT / ".athena", "system_docs"),
-    (PROJECT_ROOT / ".projects", "system_docs"),
-    (PROJECT_ROOT / "Reflection Essay", "case_studies"),
     (CONTEXT_DIR / "research", "case_studies"),
     (CONTEXT_DIR / "specs", "system_docs"),
 ]

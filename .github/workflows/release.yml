@@ -98,4 +98,11 @@ jobs:
           path: dist/
 
       - name: Publish
+        id: pypi
         uses: pypa/gh-action-pypi-publish@release/v1
+        continue-on-error: true
+
+      - name: Check publish status
+        if: steps.pypi.outcome != 'success'
+        run: |
+          echo "::warning::PyPI publishing did not succeed (Trusted Publisher likely not yet configured on pypi.org for athena-agent from winstonkoh87/Athena-Public). Built artifacts remain available in workflow run artifacts."

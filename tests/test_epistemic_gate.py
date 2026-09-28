@@ -26,6 +26,15 @@ from athena.mcp_server import context_gate, search_web
 
 
 class TestEpistemicGate(unittest.TestCase):
+    def setUp(self):
+        from athena.core.permissions import get_permissions
+        self.perms = get_permissions()
+        self.original_secret = self.perms.secret_mode
+        self.perms.secret_mode = False
+
+    def tearDown(self):
+        self.perms.secret_mode = self.original_secret
+
     def test_detect_universal_negative_claims(self):
         """Universal-negative claim patterns must be detected."""
         sys.path.insert(0, str(REPO_ROOT / ".agent" / "scripts"))
