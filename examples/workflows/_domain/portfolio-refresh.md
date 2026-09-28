@@ -26,21 +26,21 @@ tools:
 
 ### Private Data Blocklist (NEVER in public text)
 
-| Category | Examples (BLOCKED) |
+| Category | Description of Blocked Content |
 |:---|:---|
-| P&L / win rates / profit factors | +S$4,581, 85.80% WR, 4.85 PF, -S$1,674, 1.76 Net PF |
-| Broker names / tiers / commissions | IC Markets, Raw Pro, Raw Pro+, $3.00/lot, $2.00/lot |
-| Leverage ratios | 1:1000 |
-| Trade fill counts / campaign numbers | 3,841-fill, 440 campaigns, 19 journal campaigns, 3,574-Trade |
-| Proprietary trading strategy names | Duration Decay Law, Spring Coil, Golden Coil Zone, Elastic Snap Zone, Tight Stop Fallacy |
-| Poker / gambling platform names | Natural8, Craps (as platform context) |
-| Client assignment numbers / institutions | Assignment 73, Assignment 74, NYP BM4307 |
-| Client pricing / retainer amounts | $550/10-pack, Package #4 Retainer, rate card floor, Revenue Ledger |
-| Personal fitness pricing | Specific dollar amounts for PT packages |
-| Named case study subjects (real identities) | Takashi Kotegawa / BNF Capital |
-| Specific return percentages / account sizing | +2%/mo, +6% on 1R, USD 10K notional, $500 vs $5K vs $50K |
-| EV confidence intervals | +10.91% (95% CI [+7.17%, +14.47%]) |
-| Personal lifestyle strategy details | Specific travel arbitrage amounts, destination lists with pricing |
+| P&L / win rates / profit factors | Any realized/unrealized P&L figures, win-rate percentages, profit factors, or Sharpe/Sortino ratios |
+| Broker names / tiers / commissions | Commercial brokerage names, private account tier labels, commission rates per lot |
+| Leverage ratios | Specific account leverage multiples or margin bracket multipliers |
+| Trade fill counts / campaign numbers | Exact lifetime statement fill counts, trade setup tallies, or internal journal IDs |
+| Proprietary trading strategy names | Proprietary setup designations, execution zone labels, and edge mechanics |
+| Poker / gambling platform names | Platform names, rake structures, and bankroll figures |
+| Client assignment numbers / institutions | Commercial assignment IDs, client university names, course module codes |
+| Client pricing / retainer amounts | Package pricing, retainers, hourly rate floors, commercial deal figures |
+| Personal fitness pricing | Personal trainer package costs, session rates, contract terms |
+| Named case study subjects (real identities) | Names of counter-parties, clients, private individuals, or entities |
+| Specific return percentages / account sizing | Target yield percentages, notional account balances, tranche allocations |
+| EV confidence intervals | Numerical EV calculations with confidence interval bands |
+| Personal lifestyle strategy details | Personal living expenses, travel budgets, lease costs, or relocation models |
 
 ### Changelog & Release Note Rules
 
@@ -50,16 +50,14 @@ Describe the **TYPE** of work done, not the private content:
 ✅ "Filed new domain-specific case studies across trading and decision-making domains"
 ✅ "Updated trading risk parameters and performance tracking infrastructure"
 
-❌ "Codified FX Daytrading 3,841-fill macro statement deep dive (+S$4,581.54 net PnL / 85.80% win rate)"
-❌ "IC Markets Raw Pro tier codification (saving 57.1% commissions)"
-❌ "Assignment 73 Full-Funnel Architecture & 98-slide deck"
+❌ "[Domain] statement deep dive (+S$[Real PnL] / [Real Win Rate])"
+❌ "[Broker] [Account Tier] commission audit"
+❌ "Assignment [Client ID] deliverables compilation"
 ```
 
-### Privacy Verification Regex (Gate 2)
+### Privacy Verification (Gate 2)
 
-```bash
-grep -iE '(IC Markets|Natural8|S\$[0-9]{3,}|win.?rate.*[0-9]+%|profit.?factor.*[0-9]|net P.?L.*S\$|Assignment [0-9]{2}|NYP BM|Revenue Ledger|rate card floor|\$[0-9]+/lot|[0-9]+.?fill|[0-9]+ campaigns|lowball offer|poker rake|Takashi Kotegawa|BNF Capital|\+[0-9]+%/mo|USD [0-9]+K notional|Package #[0-9]+ Retainer)'
-```
+Run `.github/scripts/privacy_scan.py --all` before staging or committing any public release.
 
 ---
 
