@@ -12,10 +12,12 @@ tools:
 
 # /portfolio-refresh — GTO Digital Portfolio Sync & Feature Port
 
-> **Purpose**: Synchronized update of all public-facing digital surfaces to today's date, with autonomous upstream feature delta discovery and sanitized porting.
+> **Purpose**: Synchronized update of public-facing digital surfaces with autonomous upstream feature delta discovery and sanitized porting.
 > **Risk Level**: HIGH — public-facing. Private data leak = reputational ruin (Law #1).
-> **Cadence**: Daily via scheduled prompt, or on-demand via `/portfolio-refresh` or `/do`.
+> **Cadence**: Event-driven (on new feature/version releases) or Weekly. NEVER daily mindless date-bumping.
 > **Modes**: Interactive (user present, checkpoints active) or Scheduled (unattended, auto-approve safe categories).
+> **Hard Invariant**: Zero Zero-Delta Pushes. If no new features, protocols, or content changes exist, DO NOT touch timestamps, DO NOT bump sitemap <lastmod>, DO NOT ping IndexNow, and DO NOT push empty date-bump commits. Search engines penalize artificial date cycling.
+
 
 ---
 
@@ -176,24 +178,25 @@ For each approved file:
 >
 > **Privacy**: Every subagent enforces Phase 0 blocklist on all writes.
 >
-> **IndexNow keys**: Discover from filesystem (look for `*.txt` key verification files in each site's `public/` or root directory). Do NOT hardcode keys in prompts or commit messages.
+### Delta Gate (Phase 2 to Phase 3 Bridge)
+
+> **Zero-Delta Invariant**: If Phase 2 DELTA_LIST is empty AND canonical `CAPS.json` counts are unchanged AND no local markdown/code edits occurred across subagent repos:
+> **TERMINATE IMMEDIATELY**. Output:
+> `[STATUS: CLEAN — ZERO DELTA DETECTED. Public surfaces are current; skipping metadata bumps.]`
+> Do NOT touch sitemap `<lastmod>`, do NOT ping IndexNow, do NOT push empty date-bump commits.
 
 ### Subagent A: Athena-Public Core, Releases & Wiki
 
 **Core README & Docs** (`~/Athena-Public`):
-- Update `README.md`, `docs/ARCHITECTURE.md`, `docs/BENCHMARKS.md`, `docs/REFERENCES.md`.
-- Sync all metrics from `CAPS.json` and timestamps to today's date.
-- Add single-line changelog entry under `<details>`:
-  - If Phase 2 ran: `- **[Version] — Feature Port + Portfolio Refresh** ([Date]): Ported [X] new modules to public repo. Updated canonical CAPS counts ([read from CAPS.json]). [Generic domain description].`
-  - If Phase 2 skipped: `- **Full Synchronized Digital Portfolio Refresh** ([Date]): Synchronized portfolio update across all public surfaces. Updated canonical CAPS counts ([read from CAPS.json]).`
+- Update `README.md`, `docs/ARCHITECTURE.md`, `docs/BENCHMARKS.md`, `docs/REFERENCES.md` ONLY when metrics in `CAPS.json` or underlying code/protocols actually changed.
+- Add structured changelog entry under `<details>` ONLY when new features or protocols were ported.
 
 **Releases** (`winstonkoh87/Athena-Public`):
-- If Phase 2 ran (new version tag): create new release with structured sections (Architecture Highlights / New Protocols & Tooling / Canonical Metrics).
-- If Phase 2 skipped: edit latest release notes with today's date refresh section.
+- Create a new release tag and release notes ONLY when a new version is declared (e.g. patch/minor/major release with ported features).
+- NEVER edit release notes just to bump dates without feature additions.
 
 **Wiki** (`~/Athena-Public/Athena-Public.wiki`):
-- Update all 8 pages with current metrics and today's date:
-  `Home.md`, `Architecture-Overview.md`, `Getting-Started.md`, `FAQ.md`, `Philosophy.md`, `Use-Cases.md`, `Workflow-Reference.md`, `The-Compounding-Effect.md`.
+- Update wiki pages ONLY when canonical metrics, architecture, or workflow documentation change.
 
 **Inline Privacy Gate (before commit)**:
 ```bash
@@ -205,23 +208,22 @@ If clean → commit and push. Same for wiki repo.
 ### Subagent B: GitHub Profile + Personal Site + Commercial Site
 
 **B.2 — GitHub Profile** (`~/winstonkoh87`):
-- Update `README.md` with today's date, CAPS.json metrics, active engineering focus areas.
+- Update `README.md` ONLY when CAPS.json counts change or active engineering focus shifts.
 
 **B.3 — Personal Website** (`~/winstonkoh87.github.io`):
-- `src/data/site-stats.ts`: Read version and counts from CAPS.json.
-- `src/layouts/Layout.astro` & `src/pages/index.astro`: Schema.org `dateModified` to today.
-- `public/sitemap.xml`: All `<lastmod>` to today.
-- `README.md` & `package.json`: Bump timestamps.
+- `src/data/site-stats.ts`: Update version and counts when CAPS.json changes.
+- `public/sitemap.xml`: Update `<lastmod>` ONLY for URLs whose page source or component actually changed.
 - **Build verification**: `cd ~/winstonkoh87.github.io && npm run build` — must exit 0.
-- **IndexNow**: Discover key from filesystem, POST to `api.indexnow.org`.
+- **IndexNow**: Post to `api.indexnow.org` ONLY when pages are added or modified.
 
 **B.4 — Commercial Website** (`~/sg-assignment-helper`):
-- `index.html`: Schema.org JSON-LD `dateModified`.
-- `sitemap.xml`: All `<lastmod>` to today.
-- `README.md`: Bump timestamp.
-- **IndexNow**: Discover key from filesystem, POST to `api.indexnow.org`.
+- `index.html`: Update Schema.org `dateModified` ONLY on genuine copy/service edits.
+- `sitemap.xml`: Update `<lastmod>` ONLY for modified content.
+- **IndexNow**: Post to `api.indexnow.org` ONLY when content changed.
 
-**Push** (each repo): `git pull --rebase && git add -A && git diff --cached --quiet || git commit -m "chore: portfolio refresh [date]" && git push origin main`.
+**Push** (each repo): Commit only when `git diff --cached` has real changes:
+`git pull --rebase && git diff --cached --quiet || git commit -m "docs: sync portfolio metadata to [version]" && git push origin main`.
+
 
 ---
 
