@@ -18,6 +18,7 @@ Usage:
 import json
 from datetime import datetime, timedelta
 from pathlib import Path
+from typing import Any
 
 from athena.core.config import get_project_root
 
@@ -53,7 +54,7 @@ def log_skill_invocation(
     Returns:
         The record that was logged.
     """
-    record = {
+    record: dict[str, Any] = {
         "skill": skill_name,
         "session": session_id,
         "timestamp": datetime.now().isoformat(),

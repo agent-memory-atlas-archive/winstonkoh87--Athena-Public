@@ -14,7 +14,7 @@ Own the state. Rent the intelligence. Platforms forget. Athena doesn't.
 
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=for-the-badge&logo=github&color=10b981)](https://github.com/winstonkoh87/Athena-Public/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/v10.0.0-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/v10.0.1-10b981?style=for-the-badge&label=Version)](docs/CHANGELOG.md)
 [![Reddit Views](https://img.shields.io/badge/1M+_Views-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/ChatGPT/comments/1r1b3gl/)
 [![Open in Codespaces](https://img.shields.io/badge/Open_in_Codespaces-24292e?style=for-the-badge&logo=github)](https://codespaces.new/winstonkoh87/Athena-Public)
 
@@ -25,7 +25,7 @@ Own the state. Rent the intelligence. Platforms forget. Athena doesn't.
 
 [Quickstart](#-quickstart) · [How It Works](#-how-it-works) · [Scheduled Tasks & Self-RSI](docs/SCHEDULED_TASKS.md) · [llms.txt](https://winstonkoh87.com/llms.txt) · [Docs](docs/GETTING_STARTED.md) · [FAQ](Athena-Public.wiki/FAQ.md) · [Safety](SAFETY.md) · [Contributing](CONTRIBUTING.md)
 
-*Last updated: 28 September 2026* <!-- 2026-09-28 -->
+*Last updated: 29 September 2026* <!-- 2026-09-29 -->
 
 </div>
 
@@ -607,6 +607,7 @@ Athena-Public/
 <details>
 <summary><b>Recent Releases & Sync History</b></summary>
 
+- **v10.0.1 — Deliverable Audit Mode & Multi-Agent Launcher Hardening** (2026-09-29): Added Deliverable Audit mode for isolated fresh-context verification of built artifacts against the brief, wired into academic delivery pipeline with Step 7.5 audit gate. Hardened autonomous Daily Self-RSI launcher with candidate agent binary auto-resolution (Claude, AGY, Gemini, Cursor) and bounded ticket queue backpressure management.
 - **v10.0.0 — Major Architectural Sync & Ledger-Backed Engine Release** (2026-09-28): Synchronized core engine and test suite across private HQ and public release. Ported AST Codebase Graph engine, local FTS5/BM25 memory search, publication document compiler, fail-closed GTO candidate screening with Law #1 ruin floors, Protocol 509 crisis life-safety triage gate with emergency hotline referrals, and AgentGate command security suite. Adopted public-side features into upstream tracking, deduplicated script layouts, and expanded test suite to 43 modules (590+ tests green).
 - **v9.9.9 — Feature Port & Stability Syncs** (August–September 2026): Ported WCAG contrast checker (`contrast_check.py`), hierarchical AST contextual chunker (`contextual_chunker.py`), Crossref DOI verification engine, and GTO numerical engine veto screening. Reconciled least-privilege GitHub Actions workflow permissions (CodeQL alerts #12, #37, #45). Synchronized canonical CAPS counts across operational surfaces.
 - **Docs & Engine Transparency** (Jul 23 2026): `SEMANTIC_SEARCH.md` rewritten to the real pipeline (5 channels + opt-in web → RRF k=60 → CrossEncoder top-50; retired channels flagged; 2026-SOTA mapping with citations); new **`examples/engine/`** publishes the production search/vectors/reranker code with a reading guide; VECTORRAG diagram moved to the unified `search_all_vectors` RPC; SycEval upgraded to its formal AIES 2025 DOI; repo-wide OpSec sweep (blocklist scan over 895 files, 20 files genericized, privacy gate extended). All CI gates green.

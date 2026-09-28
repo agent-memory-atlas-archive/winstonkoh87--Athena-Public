@@ -1,10 +1,25 @@
 # Athena Changelog
 
-> **Last Updated**: 28 September 2026 <!-- 2026-09-28 -->
+> **Last Updated**: 29 September 2026 <!-- 2026-09-29 -->
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## [10.0.1] — Deliverable Audit Mode & Multi-Agent Launcher Hardening (29 September 2026)
+
+### Adversarial Review & Deliverable Verification
+- **Deliverable Audit Mode**: Codified isolated fresh-context audit protocol for built deliverables (docx, PDF, reports, slides, code artifacts) against specifications and rubrics in `red-team-review/deliverable-audit.md`.
+- **Physical Isolation Packet**: Structured pre-audit boundaries excluding answer keys, changelogs, prior audit notes, and author chat logs to eliminate circular confirmation bias.
+- **Executed Lenses L1–L6**: Codified active execution verification (spec compliance, zip/XML inspection of compiled outputs, code rerun, data cross-checks, folder inventory reconciliation, and marker rubric simulation).
+- **Academic Delivery Pipeline Gate**: Integrated Step 7.5 Deliverable Audit gate into `academic-delivery` skill to enforce compiled deliverable verification prior to sign-off.
+
+### Autonomous Runtime & Self-RSI Hardening
+- **Agent CLI Candidate Resolution**: Upgraded `scripts/daily_self_rsi.py` with multi-agent binary detection across `claude`, `agy`, `gemini`, `cursor`, `code`, well-known system paths, and `--agent` flag override.
+- **Bounded Queue Backpressure**: Calibrated Self-RSI ticket throttle to active 14-day window (<14d), isolating stale tickets (>14d) for archiving to prevent premature circuit breaker trips.
+- **SDK Typing & Quality**: Added type annotations to `src/athena/core/skill_telemetry.py`.
 
 ---
 

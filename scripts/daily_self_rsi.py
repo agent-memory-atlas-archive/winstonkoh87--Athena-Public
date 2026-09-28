@@ -16,13 +16,14 @@ from __future__ import annotations
 import argparse
 import hashlib
 import os
+import shutil
 import subprocess
 import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
 # Paths
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 PROMPT_PATH = PROJECT_ROOT / ".agent" / "prompts" / "daily_self_rsi.md"
 CAPS_PATH = PROJECT_ROOT / ".agent" / "config" / "CAPS.json"
 EVAL_DIR = PROJECT_ROOT / ".agent" / "eval" / "results"
@@ -30,27 +31,63 @@ BASELINE_PATH = PROJECT_ROOT / ".agent" / "eval" / "baseline.json"
 DAILY_DIR = PROJECT_ROOT / ".context" / "self_optimization" / "daily"
 LOG_DIR = PROJECT_ROOT / ".athena"
 
-AGENT_BIN = os.environ.get("ATHENA_AGENT_BIN", "claude")
+CANDIDATE_AGENTS = ["claude", "agy", "gemini", "cursor", "code"]
 AGENT_HEADLESS_FLAGS = os.environ.get("ATHENA_AGENT_FLAGS", "--bare -p").split()
 
 
-def get_unreviewed_ticket_count(days: int = 7) -> int:
-    """Counts daily tickets generated in the last N days that have uncompleted checkboxes."""
+def resolve_agent_bin(agent_override: str | None = None) -> str | None:
+    """Resolve agent binary via override, env var, candidate auto-detection, or well-known paths."""
+    if agent_override:
+        return agent_override
+    env_bin = os.environ.get("ATHENA_AGENT_BIN")
+    if env_bin:
+        return env_bin
+    for candidate in CANDIDATE_AGENTS:
+        resolved = shutil.which(candidate)
+        if resolved:
+            return resolved
+    # Fallback to well-known macOS locations
+    well_known = [
+        Path("/usr/local/bin/cursor"),
+        Path("/opt/homebrew/bin/claude"),
+        Path("/usr/local/bin/claude"),
+        Path.home() / ".local" / "bin" / "claude",
+    ]
+    for p in well_known:
+        if p.exists() and os.access(p, os.X_OK):
+            return str(p)
+    return None
+
+
+AGENT_BIN = resolve_agent_bin()
+
+
+def get_ticket_counts(active_days: int = 14) -> tuple[int, int, int]:
+    """
+    Returns (active_unreviewed, stale_unreviewed, lifetime_completed).
+    Active tickets are within active_days. Older unreviewed tickets (>14d) are stale.
+    """
     if not DAILY_DIR.exists():
-        return 0
-    cutoff = datetime.now() - timedelta(days=days)
-    unreviewed = 0
+        return 0, 0, 0
+    cutoff = datetime.now() - timedelta(days=active_days)
+    active_unreviewed = 0
+    stale_unreviewed = 0
+    completed = 0
     for ticket in DAILY_DIR.glob("*.md"):
         try:
             date_str = ticket.stem
             ticket_date = datetime.strptime(date_str, "%Y-%m-%d")
-            if ticket_date >= cutoff:
-                content = ticket.read_text(encoding="utf-8")
-                if "- [ ]" in content:
-                    unreviewed += 1
+            content = ticket.read_text(encoding="utf-8")
+            if "- [x]" in content:
+                completed += 1
+            if "- [ ]" in content:
+                if ticket_date >= cutoff:
+                    active_unreviewed += 1
+                else:
+                    stale_unreviewed += 1
         except Exception:
             continue
-    return unreviewed
+    return active_unreviewed, stale_unreviewed, completed
 
 
 def build_context_bundle() -> dict:
@@ -62,13 +99,15 @@ def build_context_bundle() -> dict:
     if CAPS_PATH.exists():
         caps_hash = hashlib.sha256(CAPS_PATH.read_bytes()).hexdigest()[:12]
 
-    unreviewed_count = get_unreviewed_ticket_count(7)
+    active_unreviewed, stale_unreviewed, completed = get_ticket_counts(14)
 
     return {
         "TODAY": today,
         "NOW_ISO": datetime.now().isoformat(timespec="seconds"),
         "caps_hash": caps_hash,
-        "unreviewed_tickets_7d": unreviewed_count,
+        "unreviewed_tickets_14d": active_unreviewed,
+        "stale_tickets_count": stale_unreviewed,
+        "completed_tickets_count": completed,
         "last_eval_path": str(last_eval.relative_to(PROJECT_ROOT)) if last_eval else "(none)",
         "baseline_path": str(BASELINE_PATH.relative_to(PROJECT_ROOT)) if BASELINE_PATH.exists() else "(none)",
         "project_root": str(PROJECT_ROOT),
@@ -83,23 +122,25 @@ def inject_prompt(template: str, bundle: dict) -> str:
     return template + injection
 
 
-def run_self_rsi(dry_run: bool = False, prompt_only: bool = False) -> int:
+def run_self_rsi(dry_run: bool = False, prompt_only: bool = False, agent: str | None = None) -> int:
     if not PROMPT_PATH.exists():
         print(f"❌ Error: Prompt template not found at {PROMPT_PATH}", file=sys.stderr)
         return 1
 
+    agent_bin = resolve_agent_bin(agent)
     bundle = build_context_bundle()
 
-    # Backpressure circuit breaker check
-    if bundle["unreviewed_tickets_7d"] >= 3:
-        print(f"⚠️ Circuit Breaker Tripped: {bundle['unreviewed_tickets_7d']} unreviewed tickets pending. Throttling daily run.")
+    # Backpressure circuit breaker check: only active tickets (<14d) count toward saturation
+    if bundle["unreviewed_tickets_14d"] >= 3:
+        print(f"⚠️ Circuit Breaker Tripped: {bundle['unreviewed_tickets_14d']} active unreviewed tickets pending. Throttling daily run.")
         if not dry_run and not prompt_only:
             DAILY_DIR.mkdir(parents=True, exist_ok=True)
             hibernation_file = DAILY_DIR / f"{bundle['TODAY']}.md"
             hibernation_file.write_text(
                 f"# 🧬 Daily Self-RSI — {bundle['TODAY']}\n\n"
                 f"**Status**: ⏸️ HIBERNATED (Backpressure Circuit Breaker Active)\n"
-                f"- Reason: {bundle['unreviewed_tickets_7d']} unreviewed tickets in queue.\n"
+                f"- Reason: {bundle['unreviewed_tickets_14d']} active unreviewed tickets in queue (< 14 days old).\n"
+                f"- Stale tickets pending archival (> 14 days old): {bundle['stale_tickets_count']}.\n"
                 f"- Action: Triage existing tickets before new horizon scans execute.\n",
                 encoding="utf-8"
             )
@@ -116,26 +157,36 @@ def run_self_rsi(dry_run: bool = False, prompt_only: bool = False) -> int:
         print("🔍 [DRY RUN] Injected context bundle:")
         for k, v in bundle.items():
             print(f"  {k}: {v}")
-        print(f"\nTarget Command: {AGENT_BIN} {' '.join(AGENT_HEADLESS_FLAGS)} \"<injected_prompt>\"")
+        target_bin = agent_bin if agent_bin else "NONE FOUND"
+        print(f"\nTarget Command: {target_bin} {' '.join(AGENT_HEADLESS_FLAGS)} \"<injected_prompt>\"")
         print("\n✅ Dry run verification successful. All paths and data contracts valid.")
         return 0
+
+    if not agent_bin:
+        searched = ", ".join(CANDIDATE_AGENTS)
+        print(
+            f"❌ Error: No agent CLI found. Searched: {searched}. "
+            f"Set ATHENA_AGENT_BIN or pass --agent.",
+            file=sys.stderr,
+        )
+        return 2
 
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     log_path = LOG_DIR / f"self_rsi.{bundle['TODAY']}.log"
 
-    print(f"🧬 Launching GTO Daily Self-RSI via {AGENT_BIN}...")
+    print(f"🧬 Launching GTO Daily Self-RSI via {agent_bin}...")
     try:
         with open(log_path, "a", encoding="utf-8") as log_file:
             log_file.write(f"\n=== {datetime.now().isoformat()} daily_self_rsi ===\n")
             proc = subprocess.run(
-                [AGENT_BIN, *AGENT_HEADLESS_FLAGS, injected_prompt],
+                [agent_bin, *AGENT_HEADLESS_FLAGS, injected_prompt],
                 cwd=str(PROJECT_ROOT),
                 stdout=log_file,
                 stderr=subprocess.STDOUT,
                 timeout=60 * 30,  # 30-minute autonomous timeout
             )
     except FileNotFoundError:
-        print(f"❌ Agent binary '{AGENT_BIN}' not found. Set ATHENA_AGENT_BIN or check PATH.", file=sys.stderr)
+        print(f"❌ Agent binary '{agent_bin}' not found. Set ATHENA_AGENT_BIN, pass --agent, or check PATH.", file=sys.stderr)
         return 2
     except subprocess.TimeoutExpired:
         print("❌ Autonomous timeout expired (30m cap). Process terminated.", file=sys.stderr)
@@ -154,6 +205,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Athena GTO Daily Self-RSI Launcher")
     parser.add_argument("--dry-run", action="store_true", help="Inspect injection without executing")
     parser.add_argument("--prompt-only", action="store_true", help="Print prompt to stdout")
+    parser.add_argument("--agent", type=str, default=None, help="Agent CLI binary name or path override")
     args = parser.parse_args()
 
-    sys.exit(run_self_rsi(dry_run=args.dry_run, prompt_only=args.prompt_only))
+    sys.exit(run_self_rsi(dry_run=args.dry_run, prompt_only=args.prompt_only, agent=args.agent))

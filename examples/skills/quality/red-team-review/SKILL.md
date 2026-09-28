@@ -1,10 +1,10 @@
 ---
 name: red-team-review
-description: "Unified adversarial review: v4.3 Strategic Matrix (MTA-004). 7-phase framework: Priors → Rubric → Adversarial Lenses → SWOT/TOWS → MCDA Decision Engine → Blind Spot/Kill Switch → Executive Summary. Absorbs: bias-detector."
+description: "Unified adversarial review, two modes. Strategic Matrix v4.3 (MTA-004) for arguments/plans/decisions: Priors → Rubric → Adversarial Lenses → SWOT/TOWS → MCDA → Blind Spot/Kill Switch → Summary. Deliverable Audit for built artefacts (assignments, reports, code outputs): isolated fresh-context hunt against the brief, executed lenses, evidence-only findings, red-run fixes. Absorbs: bias-detector."
 argument-hint: "review this | red team | what did I miss | QA | bias check | is this anchored | base rate"
-auto-invoke: false
+epistemic_status: agent-discretion
 model: default
-context_trigger: "review, red team, what did I miss, QA, bias check, critique, pre-mortem, is this ready, stress test, adversarial"
+context_trigger: "review, red team, what did I miss, QA, bias check, critique, pre-mortem, is this ready, stress test, adversarial, deliverable audit, audit the deliverables, audit the assignment, pre-submission check"
 ---
 
 # Red-Team Review (v4.3 — Strategic Matrix)
@@ -15,6 +15,15 @@ context_trigger: "review, red team, what did I miss, QA, bias check, critique, p
 > **Version History**: v4.0 (5-phase) → v4.1 → v4.2 → **v4.3 (Strategic Matrix, 7-phase)**
 
 This skill wraps MTA-004 (the canonical red-team protocol) and adds trigger routing + the bias detection suite from v4.0. For the full framework, load MTA-004 directly.
+
+## Mode Routing (pick before Phase 0)
+
+| Target | Mode |
+|:--|:--|
+| An argument, plan, strategy, price or claim to believe | **Strategic Matrix**: the 7 phases below |
+| A built artefact someone will receive or mark (docx/PDF, slides, notebook, code output, handoff folder) | **Deliverable Audit**: load [deliverable-audit.md](./deliverable-audit.md). Skip SWOT/MCDA. Severity = marks or users at risk. |
+
+Mixed targets (an essay's argument *and* its compiled file) get both: Strategic Matrix on the draft, Deliverable Audit on the compiled file. The Deliverable Audit core rule: cut the auditor off from the work's history (answer key, changelog, earlier audits, "verified" claims), never from the spec, and make it run things, not just read.
 
 ## Triggers
 
@@ -131,5 +140,7 @@ Invoke [Protocol 121 (MCDA/EEV/Pairwise)](../../../protocols/decision/DEC-121-mc
 ## Reference Protocols
 
 - [MTA-004: Red-Team Review v4.3](../../../protocols/meta/MTA-004-red-team-v4-3.md) — canonical protocol (this skill wraps it)
+- [Deliverable Audit mode](./deliverable-audit.md) — isolation packet, lenses L1–L6, evidence format, red-run fixes, stop/oscillation rules
+- [WFL-247: Red-Team Handoff](../../../protocols/workflow/WFL-247-red-team-handoff.md) — cross-model handoff prompt
 - [DEC-121: MCDA / EEV / Pairwise](../../../protocols/decision/DEC-121-mcda-eev-framework.md) — Phase 4 ranking engine
 - [DEC-500: GTO Problem Solver](../../../protocols/decision/DEC-500-gto-problem-solver.md) — capstone decision protocol

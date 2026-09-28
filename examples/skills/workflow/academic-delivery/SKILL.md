@@ -87,6 +87,15 @@ context_trigger: "*.docx, *.pdf, essay, report, assignment, capstone, coursework
 - **Compaction triage**: If over word count, cut from infrastructure (setup/transition/repetition) first, analytical core last. Ratio: 70% infrastructure cuts, 30% analysis cuts.
 - Paragraphing pass — wall-of-text paragraphs are a delivery failure, not a content failure.
 
+### Step 7.5: DELIVERABLE AUDIT (Mandatory — on the compiled file)
+
+> Step 5 reviews the *draft's reasoning*. This step audits the *file the marker opens*. A deliverable can pass multiple draft-level red-team rounds and still ship mislabelled headings, broken renders, or stale handoff guides.
+
+- Run `red-team-review` in **Deliverable Audit** mode ([deliverable-audit.md](../../quality/red-team-review/deliverable-audit.md)) on the compiled output.
+- The auditor gets the isolation packet only: brief, rubric, template, course notes, raw data, the final file and a folder listing. **No answer key, changelog, earlier audits or "verified" claims.** Where possible, use a different model family from the builder.
+- Minimum lenses on round 1: **L1** (every brief instruction mapped), **L2** (built file opened and parsed), **L5** (handoff docs vs the actual folder).
+- Triage with evidence. Fix through the pipeline with a red run. Re-audit with a new lens until a round finds only LOW items.
+
 ### Step 8: DELIVER
 
 - Final proofread (grammar, citation format, page numbers)
@@ -103,6 +112,7 @@ No deliverable leaves Step 8 without:
 - [x] Word count within ±5% of target
 - [x] All rubric criteria addressed
 - [x] Format compliant (citations, headers, cover page)
+- [x] Step 7.5 Deliverable Audit executed on the compiled file with 0 unaddressed HIGH/MED findings
 
 ## Reflexion Archive
 
