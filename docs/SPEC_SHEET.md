@@ -1,6 +1,6 @@
 # Athena Spec Sheet
 
-> **Version**: v10.0.0
+> **Version**: v10.0.1
 > **Date**: 6 June 2026
 > **Architect**: Winston Koh
 > **Status**: Production (1,900+ sessions)
