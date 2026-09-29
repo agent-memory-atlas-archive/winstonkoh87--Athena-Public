@@ -1,7 +1,9 @@
 """Tests that the 429 quota exhaustion breaker halts embedding attempts."""
 
 from unittest.mock import MagicMock, patch
+
 import pytest
+
 import athena.memory.vectors as vectors
 
 
@@ -34,11 +36,13 @@ def test_quota_exhausted_propagates_and_bounds_calls():
     EmbeddingQuotaExhausted = getattr(vectors, "EmbeddingQuotaExhausted", None)
     assert EmbeddingQuotaExhausted is not None, "EmbeddingQuotaExhausted class not defined in vectors.py"
 
-    with patch("requests.post", side_effect=mock_post), \
-         patch("time.sleep", return_value=None), \
-         patch.object(vectors.get_embedding_cache(), "get", return_value=None):
-        with pytest.raises(EmbeddingQuotaExhausted):
-            vectors.get_embeddings_batch(texts, batch_size=20)
+    with (
+        patch("requests.post", side_effect=mock_post),
+        patch("time.sleep", return_value=None),
+        patch.object(vectors.get_embedding_cache(), "get", return_value=None),
+        pytest.raises(EmbeddingQuotaExhausted),
+    ):
+        vectors.get_embeddings_batch(texts, batch_size=20)
 
     assert call_count <= 5, f"Expected <= 5 calls before halting, got {call_count}"
 
@@ -52,10 +56,12 @@ def test_payment_required_402_alerts_and_fails_immediately(capsys):
     mock_resp.text = "PAYMENT_REQUIRED: balance USD 0.00"
     mock_resp.raise_for_status.side_effect = requests.exceptions.HTTPError("402 Client Error: Payment Required")
 
-    with patch("requests.post", return_value=mock_resp), \
-         patch.object(vectors.get_embedding_cache(), "get", return_value=None):
-        with pytest.raises(requests.exceptions.HTTPError):
-            vectors.get_embedding("test query for payment check", max_retries=5)
+    with (
+        patch("requests.post", return_value=mock_resp),
+        patch.object(vectors.get_embedding_cache(), "get", return_value=None),
+        pytest.raises(requests.exceptions.HTTPError),
+    ):
+        vectors.get_embedding("test query for payment check", max_retries=5)
 
     captured = capsys.readouterr()
     assert "🚨 [ACTION REQUIRED: GOOGLE API CREDITS DEPLETED]" in captured.err

@@ -3,6 +3,7 @@ test_crisis_indirect.py — Regression probes for indirect crisis signals.
 """
 
 import pytest
+
 from athena.core.lambda_scorer import detect_crisis_signal
 
 INDIRECT_CRISIS_PROBES = [
