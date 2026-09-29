@@ -1,10 +1,26 @@
 # Athena Changelog
 
-> **Last Updated**: 29 September 2026 <!-- 2026-09-29 -->
+> **Last Updated**: 30 September 2026 <!-- 2026-09-30 -->
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
 > **Note**: Versions v1.0–v1.6 predate the v8.x versioning scheme adopted in January 2026. The version jump reflects a complete architectural rewrite, not skipped releases.
+
+---
+
+## [10.0.2] — Substrate Reliability, Halfvec HNSW Indexing, & Protocol 509 Safety Gates (30 September 2026)
+
+### Memory & Retrieval Substrate Hardening
+- **Consecutive Quota Breaker (Finding L0-1)**: Implemented 5-strike circuit breaker on consecutive `HTTP 429` rate limit responses (`EmbeddingQuotaExhausted`) in `src/athena/memory/vectors.py` to prevent runaway infinite retry loops.
+- **Proactive Credit Depletion Interceptor (TD-081)**: Intercepted `HTTP 402` (Payment Required / USD 0 balance) in single and batch embedding queries with actionable terminal alert banners directing operators to Google AI Studio top-up links.
+- **Search Cache Isolation & Degraded Result Protection (Finding L2-4)**: Isolated search cache scope via `SEARCH_SCHEMA_VERSION = "2026-09-30.1"`, added `ATHENA_SEARCH_CACHE=off` bypass flag, and blocked caching degraded results when vector channels fail.
+- **Uncalibrated Status Badges**: Tagged search results with `[UNCALIBRATED]` and emitted `<athena_grounding quality="degraded" missing="vector">` to prevent optimistic badge inflation during vector degradation.
+- **High-Performance Vector Indexing (Migration 018)**: Upgraded Supabase `document_chunks` table with `halfvec(3072)` HNSW indexing under Postgres 17 `pgvector 0.8.0`, reducing vector query execution latency from 11.7s to 895ms (13x speedup).
+
+### Safety Gates & Environment Isolation
+- **Protocol 509 Crisis & Life-Safety Enforcement**: Implemented dedicated `.agent/scripts/hook_crisis_gate.py` (`UserPromptSubmit`), wired Stop-side crisis referral verifier in `hook_stop_verify.py`, and broadened colloquial/indirect crisis pattern recognition in `src/athena/core/lambda_scorer.py`.
+- **Clean-Environment Law #1 Ruin Protection**: Added stdlib regex floor fallback to `.agent/scripts/security/block_ruin.py` to guarantee fail-closed ruin blocking even when executed under bare POSIX shells (`env -i`).
+- **POSIX Interpreter Contract (Finding L0-3)**: Created executable shim `.agent/scripts/athena-py` ensuring consistent virtual environment and package path resolution across all IDE hooks.
 
 ---
 
