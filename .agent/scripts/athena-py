@@ -1,0 +1,27 @@
+#!/bin/sh
+# POSIX interpreter shim for Athena (T1.1, Finding L0-3)
+# Guarantees a single consistent Python environment across hooks, workflows, and tools.
+set -e
+
+if [ -n "$CLAUDE_PROJECT_DIR" ] && [ -d "$CLAUDE_PROJECT_DIR" ]; then
+    REPO_DIR="$CLAUDE_PROJECT_DIR"
+else
+    SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+    REPO_DIR=$(CDPATH= cd -- "$SCRIPT_DIR/../.." && pwd)
+fi
+
+export PYTHONPATH="$REPO_DIR/src${PYTHONPATH:+:$PYTHONPATH}"
+
+VENV_PY="$REPO_DIR/.venv/bin/python3"
+if [ ! -x "$VENV_PY" ]; then
+    COMMON_DIR=$(git -C "$REPO_DIR" rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)
+    if [ -n "$COMMON_DIR" ] && [ -x "$COMMON_DIR/../.venv/bin/python3" ]; then
+        VENV_PY="$COMMON_DIR/../.venv/bin/python3"
+    fi
+fi
+
+if [ -x "$VENV_PY" ]; then
+    exec "$VENV_PY" "$@"
+else
+    exec python3 "$@"
+fi

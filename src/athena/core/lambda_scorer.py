@@ -73,10 +73,13 @@ CRISIS_IDIOM_EXCLUSIONS = [
 
 CRISIS_CORE_PATTERNS = [
     re.compile(r"\b(want to die|wanna die|wish i were dead|wish i was dead|wish i hadn'?t been born)\b", re.I),
-    re.compile(r"\b(better off dead|better off without me|everyone would be better off)\b", re.I),
-    re.compile(r"\b(end(ing)? (it all|my life)|take my (own )?life|kill(ing)? myself|suicid\w*)\b", re.I),
-    re.compile(r"\b(kms|unalive( myself)?)\b", re.I),
-    re.compile(r"\b(don'?t want to (live|be here|exist)|can'?t go on (living|anymore)|no (point|reason) (in |to )?(living|going on))\b", re.I),
+    re.compile(r"\b(better off dead|better off without me|everyone would be better off|everyone would be happier if i (was|were) gone)\b", re.I),
+    re.compile(r"\b(end(ing)? (it all|my life|things)|take my (own )?life|kill(ing)? myself|suicid\w*)\b", re.I),
+    re.compile(r"\b(kms|unaliv(e|ed|es|ing)( myself)?)\b", re.I),
+    re.compile(r"\b(giving (away )?my (stuff|belongings|things)|writing (goodbye )?letters to (everyone|people)|won'?t be around (much longer|anymore))\b", re.I),
+    re.compile(r"\b(don'?t want to (live|be here|exist|wake up)|can'?t go on (living|anymore)|no (point|reason) (in |to )?(living|going on)|tired of living|what'?s the point of living)\b", re.I),
+    re.compile(r"\b(want to disappear (forever|completely)|wanna disappear (forever|completely)|wish i could sleep and never wake up)\b", re.I),
+    re.compile(r"\b(plan to end (it|things|my life)|thinking about ending (things|it|it all))\b", re.I),
     re.compile(r"\b(took a bunch of pills|swallowed a bunch of pills|overdose[d]?|taking pills to end)\b", re.I),
     re.compile(r"\b(been cutting myself|cut(ting)? myself again|slit(ting)? my wrists?)\b", re.I),
     re.compile(r"\b(jump(ing)? off (my |the |a )?(hdb|block|building|bridge|roof|balcony|ledge))\b", re.I),

@@ -40,6 +40,13 @@ _embedding_cache_lock = threading.Lock()
 
 # Rate limiter: serialize embedding API calls to prevent 429 on free-tier Gemini
 _embedding_semaphore = threading.Semaphore(1)
+_consecutive_429_count = 0
+_consecutive_429_lock = threading.Lock()
+
+
+class EmbeddingQuotaExhausted(RuntimeError):
+    """Raised when consecutive HTTP 429 rate limit errors exceed the safety threshold."""
+    pass
 
 
 def get_embedding_cache():
@@ -218,6 +225,16 @@ def get_embedding(text: str, max_retries: int = 7) -> list[float]:
 
                 # If client error that is not 429, do not retry! It is non-retriable.
                 if response.status_code >= 400 and response.status_code < 500 and response.status_code != 429:
+                    if response.status_code == 402:
+                        print(
+                            "\n" + "=" * 60 + "\n"
+                            "🚨 [ACTION REQUIRED: GOOGLE API CREDITS DEPLETED]\n"
+                            "   Google API returned HTTP 402 (Payment Required).\n"
+                            "   Your Google AI Studio prepay balance on Project Athena is USD 0.00.\n"
+                            "   Please top up USD 20 at: https://aistudio.google.com\n"
+                            + "=" * 60 + "\n",
+                            file=sys.stderr,
+                        )
                     print(f"  ❌ Client error {response.status_code} in get_embedding: {response.text[:200]}")
                     response.raise_for_status()
 
@@ -229,6 +246,15 @@ def get_embedding(text: str, max_retries: int = 7) -> list[float]:
                         wait = min((2 ** attempt) + random.uniform(0, 1), 60)
                     print(f"  ⚠️  HTTP {response.status_code} in get_embedding (attempt {attempt+1}/{max_retries}). Retrying in {wait:.2f}s...")
                     last_error = f"HTTP {response.status_code}"
+                    if response.status_code == 429:
+                        with _consecutive_429_lock:
+                            global _consecutive_429_count
+                            _consecutive_429_count += 1
+                            if _consecutive_429_count >= 5:
+                                raise EmbeddingQuotaExhausted(
+                                    f"Aborting: {_consecutive_429_count} consecutive HTTP 429 errors. "
+                                    "Gemini API quota exhausted — retry later."
+                                )
                     if attempt < max_retries - 1:
                         import time
                         time.sleep(wait)
@@ -238,6 +264,8 @@ def get_embedding(text: str, max_retries: int = 7) -> list[float]:
 
                 response.raise_for_status()
                 embedding = response.json()["embedding"]["values"]
+                with _consecutive_429_lock:
+                    _consecutive_429_count = 0
                 cache.set(text_hash, embedding)
                 # Floor delay: prevent burst even on success (free-tier courtesy)
                 import time
@@ -336,6 +364,16 @@ def get_embeddings_batch(
 
                     # Fail immediately on non-retriable client errors
                     if resp.status_code >= 400 and resp.status_code < 500 and resp.status_code != 429:
+                        if resp.status_code == 402:
+                            print(
+                                "\n" + "=" * 60 + "\n"
+                                "🚨 [ACTION REQUIRED: GOOGLE API CREDITS DEPLETED]\n"
+                                "   Google API returned HTTP 402 (Payment Required).\n"
+                                "   Your Google AI Studio prepay balance on Project Athena is USD 0.00.\n"
+                                "   Please top up USD 20 at: https://aistudio.google.com\n"
+                                + "=" * 60 + "\n",
+                                file=sys.stderr,
+                            )
                         print(f"  ❌ Client error {resp.status_code} in batch query: {resp.text[:200]}")
                         resp.raise_for_status()
 
@@ -347,6 +385,15 @@ def get_embeddings_batch(
                             else min((2 ** attempt) + random.uniform(0, 1), 60)
                         )
                         print(f"  ⚠️  HTTP {resp.status_code} in batch query (attempt {attempt+1}/{max_retries}). Retrying in {wait:.2f}s...")
+                        if resp.status_code == 429:
+                            with _consecutive_429_lock:
+                                global _consecutive_429_count
+                                _consecutive_429_count += 1
+                                if _consecutive_429_count >= 5:
+                                    raise EmbeddingQuotaExhausted(
+                                        f"Aborting: {_consecutive_429_count} consecutive HTTP 429 errors. "
+                                        "Gemini API quota exhausted — retry later."
+                                    )
                         if attempt < max_retries - 1:
                             time.sleep(wait)
                             continue
@@ -354,8 +401,12 @@ def get_embeddings_batch(
 
                     resp.raise_for_status()
                     got = [e["values"] for e in resp.json()["embeddings"]]
+                    with _consecutive_429_lock:
+                        _consecutive_429_count = 0
                     time.sleep(1)  # free-tier courtesy: ONE delay per batch, not per text
                     break
+                except EmbeddingQuotaExhausted:
+                    raise
                 except Exception as e:
                     # If it's a client error (HTTP 400/413), raise immediately without retry so we fall back
                     if isinstance(e, requests.exceptions.HTTPError) and e.response is not None:
@@ -383,6 +434,8 @@ def get_embeddings_batch(
             for i, t, h in group:
                 try:
                     results[i] = get_embedding(t)
+                except EmbeddingQuotaExhausted:
+                    raise
                 except Exception as e:
                     print(f"    ❌ Failed to embed item: {e}")
                     results[i] = None

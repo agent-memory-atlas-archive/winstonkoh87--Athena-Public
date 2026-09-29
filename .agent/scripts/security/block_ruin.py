@@ -7,9 +7,44 @@ Blocks destructive or irreversible shell commands using StructuredRuinCheck (Law
 """
 
 import json
+import re
 import sys
+from pathlib import Path
 
-from athena.core.ruin_check import check_command
+# 1. Resolve repo src directory relative to this hook script
+_src_dir = Path(__file__).resolve().parents[3] / "src"
+if _src_dir.exists() and str(_src_dir) not in sys.path:
+    sys.path.insert(0, str(_src_dir))
+
+# 2. Inline stdlib regex floor fallback in case athena package import fails
+RUINOUS_PATTERNS_FLOOR = [
+    r"rm -rf \.context",
+    r"rm -rf \.agent",
+    r"rm -rf /",
+    r"truncate -s 0 \.context",
+    r"delete_file.*\.context",
+    r"overwrite_file.*\.context.*empty=True",
+    r"find\s+.*\.context.*\-(?:delete|exec\s+rm)",
+    r"mv\s+.*\.context\b",
+]
+
+_check_command_fn = None
+try:
+    from athena.core.ruin_check import check_command as _check_command_fn
+except ImportError:
+    print(
+        "⚠️  WARNING: Could not import athena.core.ruin_check. Using inline regex floor fallback.",
+        file=sys.stderr,
+    )
+
+
+def check_command_safe(command: str) -> bool:
+    if _check_command_fn is not None:
+        return _check_command_fn(command)
+    for pattern in RUINOUS_PATTERNS_FLOOR:
+        if re.search(pattern, command, re.IGNORECASE):
+            return False
+    return True
 
 
 def main():
@@ -17,7 +52,7 @@ def main():
     if sys.stdin.isatty():
         if len(sys.argv) > 1:
             cmd = " ".join(sys.argv[1:])
-            if not check_command(cmd):
+            if not check_command_safe(cmd):
                 print(f"🚨 BLOCKED: Command '{cmd}' violates Law #1 (No Ruin).", file=sys.stderr)
                 sys.exit(2)
         return
@@ -32,7 +67,7 @@ def main():
         tool_input = data.get("tool_input", {})
         command = tool_input.get("command") or tool_input.get("cmd") or ""
 
-        if command and not check_command(command):
+        if command and not check_command_safe(command):
             print(
                 f"🚨 BLOCKED by Athena Law #1 (No Irreversible Ruin):\n"
                 f"   Destructive command detected and halted: {command}",

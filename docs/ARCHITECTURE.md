@@ -1,9 +1,9 @@
 # Athena — Architecture Reference
 
-> **Last Updated**: 28 September 2026 <!-- 2026-09-28 -->
-> **Version**: v10.0.1
+> **Last Updated**: 24 September 2026
+> **Version**: v9.9.9
 > **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
-> **Bionic Unit Spec**: `BIONIC_UNIT_SPEC.md` — the definitive human-AI augmentation mapping (private workspace)
+> **Bionic Unit Spec**: [BIONIC_UNIT_SPEC.md](../.context/specs/BIONIC_UNIT_SPEC.md) — the definitive human-AI augmentation mapping
 
 ---
 
@@ -13,11 +13,11 @@
 Athena/
 ├── .agent/                        # Agent configuration
 │   ├── skills/                    #   43 active skills (42 with context_trigger)
-│   │   └── protocols/             #   422 active + 34 archived = 456 total, 26 categories
-│   │       └── archive/           #     15 deprecated protocols (read-only, see README)
-│   ├── workflows/                 #   55 root + 20 _domain = 75 slash-command workflows
+│   │   └── protocols/             #   421 active + 34 archived = 455 total, 26 categories
+│   │       └── archive/           #     34 deprecated protocols (read-only, see README)
+│   ├── workflows/                 #   55 root + 19 _domain = 74 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
-│   ├── scripts/                   #   285 automation scripts
+│   ├── scripts/                   #   279 automation scripts
 │   ├── telemetry/                 #   Retrieval instrumentation logs + tier maps
 │   ├── config/                    #   Agent manifests + CAPS.json (canonical counts)
 │   ├── CLUSTER_INDEX.md           #   15 cognitive clusters (routing map)
@@ -27,13 +27,11 @@ Athena/
 │   └── archive_skills/            #   17 sunset skills (read-only, see README)
 │
 ├── .context/                      # Personal knowledge base
-│   ├── memories/                  #   5,043 memory files (session logs + case studies + profile)
+│   ├── memories/                  #   4,939 memory files (session logs + case studies + profile)
 │   │   ├── session_logs/          #     Dated session records
-│   │   ├── case_studies/          #     503 documented patterns (15 domains, 7 archived)
+│   │   ├── case_studies/          #     503 documented patterns (14 domains)
 │   │   ├── profile/               #     Core profile, psychology, voice DNA
-│   │   ├── observations/          #     Session insights
-│   │   └── visualizations/        #     Charts, payoff curves, currency telemetry
-│   │       └── currency/          #       FX pair technical snapshots
+│   │   └── observations/          #     Session insights
 │   ├── memory_bank/               #   10 boot files (activeContext, userContext,
 │   │                              #     productContext, threatPlaybooks,
 │   │                              #     sessionArchive, decisionLog, etc.)
@@ -51,12 +49,12 @@ Athena/
 │   └── archive/                   #   v7 / v8.0 / v8.1 codex archive (historical)
 ├── .projects/                     # Isolated project workspaces
 │
-├── src/                           # Athena SDK source (96 Python files)
-├── tests/                         # Test suite (30 files, 368 tests)
+├── src/                           # Athena SDK source (87 Python files across 9 modules)
+├── tests/                         # Test suite (35 files, 400 tests, 100% passing)
 ├── supabase/                      # Cloud vector store migrations
 │
 ├── Athena-Public/                 # Public mirror (sibling repo)
-├── docs/                          # Documentation (76 files)
+├── docs/                          # Documentation (80 files)
 ├── FX Trading/                    # Active trading workspace
 ├── media-factory/                 # Content generation pipeline
 │
@@ -72,47 +70,51 @@ Athena/
 
 > Modeled after human sensory processing: **Parallel Activation → Attention Gate → Executive Function → Response**.
 > The brain doesn't classify-then-route; it activates-then-filters. Athena's runtime works the same way.
+> *(Epistemic status tags: `[code-enforced]` = deterministic script/gate; `[agent-discretion]` = heuristic applied by the LLM; `[aspirational]` = planned mechanism).*
 
 ```
                     ┌─────────────────────────────────────────┐
-  Prompt ──────────▶│  ① TRANSDUCTION (Parallel Activation)   │
-  (Stimulus)        │  ├── Semantic Memory    (CANONICAL, KB) │
-                    │  ├── Episodic Memory    (Session Logs)  │
-                    │  ├── Procedural Memory  (Skills/Protos) │
-                    │  └── Contextual Memory  (activeContext) │
-                    │  7 channels fire simultaneously via RRF  │
+  Prompt ──────────▶│  ① TRANSDUCTION [code-enforced]         │
+  (Stimulus)        │  ├── Semantic Memory    (Vectors)       │
+                    │  ├── Lexical / FTS      (BM25)          │
+                    │  ├── Structured Memory  (CANONICAL, KB) │
+                    │  ├── Entity / Tags      (Index files)   │
+                    │  └── Filesystem         (Filenames)     │
+                    │  5 channels (+ opt web) fire via RRF    │
                     └──────────────┬──────────────────────────┘
                                    │ raw activations
                                    ▼
                     ┌─────────────────────────────────────────┐
-                    │  ② ATTENTION GATE (Relevance Filter)    │
+                    │  ② ATTENTION GATE [code-enforced]       │
                     │  ├── Top-down: Prior context narrows    │
                     │  ├── Bottom-up: Novel/high-signal wins  │
-                    │  ├── Threshold: Only > threshold passes │
-                    │  └── Progressive Disclosure (Tier 1→2→3)│
+                    │  ├── Weighted RRF Fusion (k=60)         │
+                    │  └── Cross-Encoder Reranker (Top-K)     │
                     └──────────────┬──────────────────────────┘
                                    │↑ bidirectional feedback
                                    ▼
                     ┌─────────────────────────────────────────┐
                     │  ③ EXECUTIVE FUNCTION (Decision Layer)  │
-                    │  ├── Risk Gate    (Law #1 — No Ruin)    │
-                    │  ├── Inhibition   (Circuit Breaker)     │
-                    │  ├── Planning     (Working Memory)      │
-                    │  └── Calibration  (Λ Score → depth)     │
+                    │  ├── Ruin Gate [code-enforced] (Law #1) │
+                    │  ├── Crisis Gate [code-enforced] (P509) │
+                    │  ├── Circuit Breaker [agent-discretion] │
+                    │  └── Calibration [aspirational/agent]   │
+                    │      (Λ suppresses SNIPER web in code;  │
+                    │       depth scaling is agent discretion)│
                     └──────────────┬──────────────────────────┘
                                    │
                                    ▼
-                              Response (Action)
+                               Response (Action)
 ```
 
 ### How Each Stage Maps to Athena
 
-| Stage | Human Analog | Athena Implementation |
-|:------|:-------------|:----------------------|
-| **① Transduction** | Sensory receptors (eyes, ears, skin) fire simultaneously | `search.py` fires 7 parallel channels: Canonical, Vectors, SQLite, Tags, Filenames, Framework, Exocortex |
-| **② Attention Gate** | Thalamus filters — only relevant signals reach cortex | Weighted RRF fusion (k=60) + confidence threshold + progressive disclosure tiers |
-| **③ Executive Function** | Prefrontal cortex — plan, inhibit, decide | Λ score calibrates depth; Law #1 gates ruin; Circuit Breaker inhibits; Red Team reviews |
-| **Response** | Motor cortex — act | Agent generates output, files checkpoints, updates context |
+| Stage | Human Analog | Athena Implementation | Epistemic Status |
+|:------|:-------------|:----------------------|:-----------------|
+| **① Transduction** | Sensory receptors fire simultaneously | `search.py` fires 5 local channels (Canonical, Vectors, FTS BM25, Tags, Filenames) + optional Web Search | `code-enforced` |
+| **② Attention Gate** | Thalamus filters — only relevant signals pass | Weighted RRF fusion (k=60) + FlashRank cross-encoder reranker | `code-enforced` |
+| **③ Executive Function** | Prefrontal cortex — plan, inhibit, decide | Law #1 gates ruin (`block_ruin.py`); P509 crisis referral (`hook_crisis_gate.py`, `hook_stop_verify.py`); Circuit breaker (`circuit-breaker`); Λ scores risk (suppresses SNIPER web in code; depth is agent discretion) | Mixed (`code-enforced` gates + `agent-discretion`) |
+| **Response** | Motor cortex — act | Agent generates output, Stop verification gate checks formatting/hotlines/secrets | `code-enforced` Stop gate |
 
 ### What's NOT Linear
 
@@ -163,7 +165,7 @@ Clusters represent bundles of procedural knowledge that co-activate. When the at
 | 14 | Sovereign Safety | `circuit-breaker` + `context-compactor` | Safety |
 | 15 | Problem-Solving Engine | P504 + P115 + P505 + P506 + `red-team-review` | Reasoning |
 
-Full cluster details: `CLUSTER_INDEX.md` (private workspace — see table above for summary)
+Full cluster details: [CLUSTER_INDEX.md](../.agent/CLUSTER_INDEX.md)
 
 ### Inventory
 
@@ -171,9 +173,9 @@ Full cluster details: `CLUSTER_INDEX.md` (private workspace — see table above 
 |:------|------:|:------------|
 | Cognitive Domains | 8 | Memory activation targets (priority-ordered for tie-breaking) |
 | Cognitive Clusters | 15 | Co-activating procedural memory bundles |
-| Skills | 43 active (17 archived) |
-| Protocols | 422 active (34 archived; 456 total) |
-| Workflows | 75 (55 root + 20 _domain/) |
+| Skills | 40 active (17 archived) |
+| Protocols | 399 active (32 archived; 431 total) |
+| Workflows | 69 (51 root + 18 _domain/) |
 
 ---
 
@@ -261,20 +263,19 @@ The proactive layer can **inject context** into the reactive layer — e.g., whe
 src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 ├── Full SDK search (parallel hybrid RRF + semantic cache)
 │   ├── Canonical search (CANONICAL.md keyword matching, min 2-hit)
+│   ├── Tag search (grep against TAG_INDEX shards)
 │   ├── Vector search (Supabase pgvector, 11 parallel RPCs, threshold ≥0.3)
+│   ├── ~~GraphRAG search~~ (REMOVED 2026-06-06 — stale 16 months, user directive)
 │   ├── Filename search (find across project root, keyword OR logic)
 │   ├── Framework docs search (keyword matching in .framework/ + memory_bank/)
 │   ├── SQLite search (local athena.db — files + tags)
-│   └── Web search [opt-in, auto via needs_web()] (provider layer: Serper/Brave/DDG)
-├── Fusion: Weighted RRF (k=60, per-type weights in search.py::WEIGHTS, dynamic score modifiers)
-│   └── Weights live in search.py::WEIGHTS — do not mirror elsewhere
-├── Reranker: ONNX Cross-Encoder (top-50 → limit, crash-safe no-op if unavailable)
+│   └── Exocortex search (Wikipedia FTS5)
+├── Fusion: Weighted RRF (k=60, per-type weights, dynamic score modifiers)
 ├── Telemetry: retrieval_log.jsonl (quality: hit/partial/miss, source distribution)
 └── Grep fallback (runs if full search times out)
-    ├── CANONICAL.md (keyword content matching)
-    ├── PROTOCOL_SUMMARIES.md (keyword content matching)
-    ├── Session log filenames (find -iname)
-    ├── Session log content (grep last 200 files by mtime — P3.3)
+    ├── CANONICAL.md
+    ├── PROTOCOL_SUMMARIES.md
+    ├── Session log filenames
     └── Memory bank files
 ```
 
@@ -295,7 +296,7 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 | Index | Size | Purpose |
 |:------|-----:|:--------|
 | `CLUSTER_INDEX.md` | 18KB | Routing map (15 clusters → 26 skills) |
-| `WORKFLOW_INDEX.md` | 6KB | Workflow registry (74 workflows) |
+| `WORKFLOW_INDEX.md` | 6KB | Workflow registry (66 workflows) |
 | `PROTOCOL_SUMMARIES.md` | 24KB | All-protocol quick-lookup |
 | `KNOWLEDGE_GRAPH.md` | 15KB | Concept relationships |
 
@@ -303,37 +304,34 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 
 ---
 
-## Protocol Taxonomy (26 active categories)
+## Protocol Taxonomy (34 active categories)
 
 | Category | Count | Category | Count |
 |:---------|------:|:---------|------:|
-| architecture | 67 | psychology | 41 |
-| decision | 54 | business | 31 |
-| engineering | 28 | strategy | 25 |
-| workflow | 25 | communication | 19 |
-| pattern-detection | 16 | safety | 15 |
-| content | 13 | meta | 13 |
-| reasoning | 10 | marketing | 8 |
-| research | 7 | trading | 7 |
-| coding | 6 | singapore | 6 |
-| diagnostics | 5 | case-studies | 4 |
-| creation | 4 | memory | 3 |
-| qa | 2 | behavioral | 2 |
-| design | 1 | archive | 34 |
+| architecture | 60 | psychology | 40 |
+| decision | 46 | business | 28 |
+| workflow | 24 | strategy | 21 |
+| engineering | 21 | communication | 17 |
+| pattern-detection | 15 | content | 13 |
+| meta | 11 | safety | 9 |
+| marketing | 8 | reasoning | 8 |
+| research | 7 | coding | 6 |
+| trading | 6 | singapore | 5 |
+| diagnostics | 5 | archive | 32 |
 
 ---
 
-## CANONICAL Progressive Disclosure (v9.9.9)
+## CANONICAL Progressive Disclosure (v9.8.0)
 
-Section 4 (Strategic Frameworks) contains 199 entries, ~57KB. Progressive disclosure tiers:
+Section 4 (Strategic Frameworks) contains 172 entries, ~58KB. Progressive disclosure tiers:
 
 | Tier | Count | Size | Loading Strategy |
 |:-----|------:|-----:|:-----------------|
-| Tier 1 (Always Boot) | 40 | ~16KB | Loaded on every `/start` — universal laws, identity truths |
-| Tier 2 (Domain-Triggered) | 156 | ~40KB | Loaded when query matches domain keywords (trading, pricing, etc.) |
+| Tier 1 (Always Boot) | 29 | ~16KB | Loaded on every `/start` — universal laws, identity truths |
+| Tier 2 (Domain-Triggered) | 140 | ~41KB | Loaded when query matches domain keywords (trading, pricing, etc.) |
 | Tier 3 (On-Demand) | 3 | ~1KB | Loaded only via explicit search hit |
 
-**Boot savings**: 69% of Section 4 deferred = ~40KB saved per session.
+**Boot savings**: 72% of Section 4 deferred = ~42KB saved per session.
 
 Tier map: `.agent/telemetry/tier_map.json` (generated by `canonical_tier_analysis.py`).
 

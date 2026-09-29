@@ -9,6 +9,7 @@ Integrates Canonical, Tags, Vectors, and Filesystem.
 import argparse
 import contextlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -44,6 +45,9 @@ RESET = "\033[0m"
 
 # God Mode: Aggressive latency optimization
 GOD_MODE = True
+
+# Schema version for cache isolation — bump on any ranking/fusion change
+SEARCH_SCHEMA_VERSION = "2026-09-30.1"
 
 # Config
 # NOTE: Vector subtypes (case_study, session, protocol, etc.) each get their own
@@ -1095,8 +1099,14 @@ def run_search(
     effective_personal = False if privacy_mode else include_personal
     vector_failed = False  # FIX-03: Track vector channel health for degraded_recall flag
 
+    search_cache_enabled = (
+        os.environ.get("ATHENA_SEARCH_CACHE", "").strip().lower()
+        not in ("off", "false", "0", "no")
+    )
+
     # Define execution scope for strict cache isolation
     search_scope = {
+        "schema": SEARCH_SCHEMA_VERSION,
         "limit": limit,
         "strict": strict,
         "rerank": rerank,
@@ -1107,7 +1117,7 @@ def run_search(
 
     # 0. Check cache first
     cache = get_search_cache()
-    cached_results = cache.get(query, scope=search_scope)
+    cached_results = cache.get(query, scope=search_scope) if search_cache_enabled else None
 
     if cached_results is not None:
         if not json_output:
@@ -1140,7 +1150,11 @@ def run_search(
             finally:
                 signal.alarm(0)  # Disable alarm
 
-            semantic_hit = cache.get_semantic(query_embedding, scope=search_scope)
+            semantic_hit = (
+                cache.get_semantic(query_embedding, scope=search_scope)
+                if search_cache_enabled
+                else None
+            )
 
             if semantic_hit:
                 if not json_output:
@@ -1161,7 +1175,7 @@ def run_search(
                         file=sys.stderr,
                     )
                     print(
-                        f"   {DIM}Primary: TAG_INDEX & local channels active. [DEGRADED: vector channel failed — {e}]{RESET}\n",
+                        f"   {DIM}Local channels active (FTS, recency, graph). [DEGRADED: vector channel failed — {e}]{RESET}\n",
                         file=sys.stderr,
                     )
                 query_embedding = None  # Proceed without vectors
@@ -1294,7 +1308,8 @@ def run_search(
             fused_results = rerank_results(query, candidates, top_k=limit)
 
         # Cache the result (Exact + Semantic) with explicit scope isolation
-        if fused_results:
+        # Do not cache degraded results (vector channel failed) or if cache disabled
+        if fused_results and not vector_failed and search_cache_enabled:
             if query_embedding:
                 cache.set(
                     query,
@@ -1319,7 +1334,10 @@ def run_search(
         suppressed_count = 0
 
     if not json_output and fused_results:
-        print(f'\n<athena_grounding intent="{detected_intent}">')
+        if vector_failed:
+            print(f'\n<athena_grounding intent="{detected_intent}" quality="degraded" missing="vector">')
+        else:
+            print(f'\n<athena_grounding intent="{detected_intent}">')
         if detected_intent == "PERSONALISED_DECISION":
             print("   🎯 Intent: PERSONALISED DECISION (Prioritizing user profile, canonical constraints & precedent)")
 
@@ -1349,7 +1367,9 @@ def run_search(
     if not json_output:
         print(f"\n🏆 TOP {limit} RESULTS:")
         for i, doc in enumerate(fused_results[:limit], 1):
-            if doc.rrf_score >= CONFIDENCE_HIGH:
+            if vector_failed:
+                conf_badge = "[UNCALIBRATED]"
+            elif doc.rrf_score >= CONFIDENCE_HIGH:
                 conf_badge = "[HIGH]"
             elif doc.rrf_score >= CONFIDENCE_MED:
                 conf_badge = "[MED]"
