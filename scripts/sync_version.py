@@ -56,7 +56,6 @@ SURFACES: list[tuple[str, str, str]] = [
     ("AGENTS.md", r"\*\*System\*\*:\s*v([0-9][0-9A-Za-z.\-]*)", "agent-context system version"),
     ("CLAUDE.md", r"\*\*System\*\*:\s*v([0-9][0-9A-Za-z.\-]*)", "agent-context system version"),
     (".agent/config/CAPS.json", r'"system":\s*"v?([0-9][0-9A-Za-z.\-]*)"', "CAPS system version"),
-    ("README.md", r"img\.shields\.io/badge/v([0-9][0-9A-Za-z.\-]*)-", "README version badge"),
 ]
 
 # ── Exemptions ───────────────────────────────────────────────────────────────
