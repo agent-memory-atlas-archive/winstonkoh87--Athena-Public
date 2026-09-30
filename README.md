@@ -2,7 +2,7 @@
 
 # Athena
 
-**A compounding context layer for AI agents — portable across IDEs, owned by you.**
+**An agentic tool to compound your context over time, portable across IDEs.**
 
 *Own the state. Rent the intelligence.* A skeleton for your AI's memory: plain Markdown on your disk, plus a session routine that turns today's work into what tomorrow's session already knows. Any model can read it. You keep it.
 
