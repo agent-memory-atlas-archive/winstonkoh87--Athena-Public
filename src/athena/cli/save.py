@@ -34,22 +34,14 @@ def run_quicksave(summary: str, project_root: Path | None = None) -> bool:
         True if successful, False otherwise.
     """
     if project_root is None:
-        # Auto-discover project root
-        current = Path.cwd()
-        for parent in [current] + list(current.parents):
-            if (parent / ".athena_root").exists():
-                project_root = parent
-                break
-            if (parent / "pyproject.toml").exists() or (parent / ".git").exists():
-                project_root = parent
-                break
-        else:
-            project_root = current
+        from athena.core.config import get_project_root
+
+        project_root = get_project_root()
 
     # Check multiple possible session log locations
     possible_dirs = [
-        project_root / "session_logs",
         project_root / ".context" / "memories" / "session_logs",
+        project_root / "session_logs",
     ]
 
     session_file = None

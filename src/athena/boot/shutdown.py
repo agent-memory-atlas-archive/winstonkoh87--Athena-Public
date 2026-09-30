@@ -60,14 +60,9 @@ def run_shutdown(project_root: Path | None = None) -> bool:
     Returns True if successful.
     """
     if project_root is None:
-        # Auto-discover project root
-        current = Path.cwd()
-        for parent in [current] + list(current.parents):
-            if (parent / "pyproject.toml").exists() or (parent / ".git").exists():
-                project_root = parent
-                break
-        else:
-            project_root = current
+        from athena.core.config import get_project_root
+
+        project_root = get_project_root()
 
     print("━" * 60)
     print("🔚 ATHENA SHUTDOWN SEQUENCE")
@@ -75,8 +70,8 @@ def run_shutdown(project_root: Path | None = None) -> bool:
 
     # Check multiple possible session log locations
     possible_dirs = [
-        project_root / "session_logs",
         project_root / ".context" / "memories" / "session_logs",
+        project_root / "session_logs",
     ]
 
     session_file = None

@@ -156,6 +156,11 @@ def main():
 
     args = parser.parse_args()
 
+    if args.root:
+        from athena.core.config import set_project_root
+
+        set_project_root(args.root)
+
     if args.version:
         from athena import __version__
 

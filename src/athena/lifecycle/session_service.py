@@ -18,8 +18,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from athena.core import config
 from athena.core.cache import invalidate_search_cache
-from athena.core.config import SESSIONS_DIR
 from athena.core.permissions import get_permissions
 
 
@@ -29,7 +29,7 @@ class SessionService:
     """
 
     def __init__(self, sessions_dir: Path | None = None):
-        self.sessions_dir = sessions_dir or SESSIONS_DIR
+        self.sessions_dir = sessions_dir if sessions_dir is not None else config.SESSIONS_DIR
 
     def get_current_session(self) -> Path | None:
         """Find and return the active/latest session log file in self.sessions_dir."""

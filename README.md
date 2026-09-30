@@ -2,12 +2,11 @@
 
 # Athena
 
-**An agentic tool to compound your context over time, portable across IDEs.**
+**A compounding context layer for AI coding agents, portable across IDEs.**
 
-*Own the state. Rent the intelligence.* A skeleton for your AI's memory: plain Markdown on your disk, plus a session routine that turns today's work into what tomorrow's session already knows. Any model can read it. You keep it.
+*Own the state. Rent the intelligence.* An agentic tool to compound your context over time, portable across IDEs. Plain Markdown on your disk, plus a session routine that turns today's work into what tomorrow's session already knows. Any model can read it. You keep it.
 
 [![CI](https://github.com/winstonkoh87/Athena-Public/actions/workflows/ci.yml/badge.svg)](https://github.com/winstonkoh87/Athena-Public/actions/workflows/ci.yml)
-[![Version](https://img.shields.io/badge/v10.0.2-10b981?style=flat-square&label=Version)](docs/CHANGELOG.md)
 [![PyPI](https://img.shields.io/pypi/v/athena-agent?style=flat-square&color=10b981)](https://pypi.org/project/athena-agent/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/winstonkoh87/Athena-Public?style=flat-square&logo=github)](https://github.com/winstonkoh87/Athena-Public/stargazers)
@@ -22,24 +21,27 @@
 
 ## The Problem
 
-You've spent months teaching ChatGPT how you think. Then a model update resets it, or you switch to Claude, and you're back to zero. Platform memory is opaque, locked to one provider, and stays behind when you leave.
+You switch between Claude Code, Cursor, and Antigravity, and each one starts from zero. Rules files hold instructions, not memory. Memory features inside platform chats stay behind in the browser. A folder of Markdown on your disk doesn't get smarter by sitting there.
 
-Owning your notes doesn't fix that on its own. A folder of Markdown doesn't get smarter by sitting there. Something has to decide what gets saved, what's still true, and what the next session needs to know first.
+Something has to turn what happened today into what tomorrow's session already knows.
 
-Athena does both. The memory lives in files you own, and a fixed routine keeps them current. The model is just whoever's on shift.
+Athena provides that layer. Your memory lives in plain Markdown files on your disk, following an open structure. A fixed session routine keeps them current. Any coding agent can read them. You keep them.
 
-| System | Builds up across sessions | Your files, any model |
-|:-------|:--------------------------|:----------------------|
-| **Platform memory** (ChatGPT, Claude, Gemini) | ✅ | ❌ Tied to one platform |
-| **Memory stores** (MCP memory servers, vector DBs) | Save & recall; you supply the method | ✅ |
-| **Athena** | ✅ | ✅ |
+| System | Builds up across sessions | Portable across IDEs | Your files, any model |
+|:-------|:--------------------------|:---------------------|:----------------------|
+| **Platform memory** (ChatGPT, Claude web) | ✅ | ❌ Locked to web UI | ❌ Hosted |
+| **CLAUDE.md / AGENTS.md alone** | ❌ Static instructions | ✅ | ✅ Plain Markdown |
+| **Cline Memory Bank** | ✅ In-session prompts | 🟡 Cline-centric | ✅ Plain Markdown |
+| **Athena** | ✅ Session routine (`/start`, `/end`) | ✅ Multi-IDE shims | ✅ Plain Markdown |
+
+*Lineage: Athena's memory bank files (`userContext`, `productContext`, `activeContext`, `systemPatterns`) build upon the foundational open architecture introduced by [Cline Memory Bank](https://docs.cline.bot/features/memory-bank), adding multi-IDE portability, session lifecycle automation, and canonical fact tracking.*
 
 ## Quickstart
 
 ```bash
 git clone https://github.com/winstonkoh87/Athena-Public.git && cd Athena-Public
 python3 -m venv .venv && source .venv/bin/activate
-pip install -e ".[local]"               # lightweight — no cloud deps
+pip install -e ".[local]"               # lightweight install
 athena init --ide claude                # or: antigravity, cursor, gemini, vscode, kilocode, roocode
 athena doctor                           # expect 0 failures
 ```
@@ -47,33 +49,34 @@ athena doctor                           # expect 0 failures
 Then type `/start` in your IDE's AI chat panel. Work normally. Type `/end` to save.
 
 > **Full install** (cloud sync + reranking): `pip install -e ".[full]"`  
+> **Note on dependencies**: Minimal extras for local use. Cloud SDKs (Supabase, Anthropic) are installed in base dependencies for hybrid search; full decoupling is scheduled in v10.1.  
 > See [Getting Started](docs/GETTING_STARTED.md) for Windows, advanced config, and Supabase setup.  
-> Already have history elsewhere? See [Importing](docs/IMPORTING.md) for ChatGPT, Claude, or Gemini exports.
+> Already have history elsewhere? See [Importing](docs/IMPORTING.md) for instructions.
 
 ## How It Works
 
 ### The skeleton
 
-Your workspace starts as empty bones. You add the meat by working:
+Your workspace starts with a clean memory directory. You build context by working:
 
 ```
 .context/
 ├── memory_bank/
 │   ├── userContext.md       # who you are and how you work
 │   ├── productContext.md    # what you're building, and why
-│   ├── activeContext.md     # where you left off: one checkpoint per session
-│   └── systemPatterns.md    # approaches that keep working
-├── memories/session_logs/   # one log per session, written by /end
-└── CANONICAL.md             # facts you've confirmed are still true
+│   ├── activeContext.md     # where you left off: session checkpoints
+│   └── systemPatterns.md    # architectures and patterns that keep working
+├── memories/session_logs/   # session logs created at /start, finalized at /end
+└── project_state.md         # active tasks and milestones
 ```
 
 ### The loop
 
 1. `/start` loads about 2K tokens: who you are, and your last checkpoint.
 2. Work normally.
-3. `/end` writes the session log, appends a checkpoint to `activeContext.md`, and updates `CANONICAL.md` when something you've confirmed has changed.
+3. `/end` writes the session log, appends a checkpoint to `activeContext.md`, and updates `CANONICAL.md` when confirmed facts change.
 
-Session 50 starts where session 49 stopped. Short on tokens? Skip `/start` and just `/end` (~500 tokens). Planning something big? Use `/ultrastart` (~20K).
+Session 50 starts where session 49 stopped. Short on tokens? Skip `/start` and just `/end` (~500 tokens).
 
 ### The layers
 
@@ -100,18 +103,18 @@ Session 50 starts where session 49 stopped. Short on tokens? Skip `/start` and j
 
 ## What Moves Between Tools
 
-Your memory and the `/start`–`/end` routine are Markdown, so they go wherever you go. Guardrails are different: they run as hooks, hooks are tool-specific, and today they're wired in code for Claude Code only. In other tools, the same rules exist as instructions the model is asked to follow, not code that stops it.
+Your memory files and the `/start`–`/end` routine are Markdown, so they go wherever you go. Guardrails are different: they run as hooks, hooks are tool-specific, and today they're wired in code for Claude Code. In other tools, the same rules exist as instructions the model is asked to follow, not code that stops it.
 
-| Tool | `athena init --ide` writes | Memory + `/start` / `/end` | Guardrail hooks | Tested |
-|:-----|:---------------------------|:---------------------------|:----------------|:-------|
-| **Claude Code** | `claude` → `CLAUDE.md` | ✅ | ✅ 4 hooks | ✅ |
-| **Antigravity** | `antigravity` → `AGENTS.md` | ✅ | ❌ Rules only | ✅ |
-| **Cursor** | `cursor` → `.cursor/rules.md` | ✅ | ❌ Rules only | ✅ |
-| **Gemini CLI** | `gemini` → `.gemini/AGENTS.md` | ✅ | ❌ Rules only | ✅ |
-| **VS Code + Copilot** | `vscode` → `.vscode/settings.json` | ✅ | ❌ Rules only | ✅ |
-| **Kilo Code** | `kilocode` → `.kilocode/rules/athena.md` | ✅ | ❌ Rules only | ✅ |
-| **Roo Code** | `roocode` → `.roo/rules/athena.md` | ✅ | ❌ Rules only | ✅ |
-| **Codex** | Untested target; reads `AGENTS.md` | 🟡 | ❌ Rules only | ❌ Untested |
+| Tool | `athena init --ide` writes | Rules file loaded | Guardrail hooks | Load path status |
+|:-----|:---------------------------|:------------------|:----------------|:-----------------|
+| **Claude Code** | `claude` → `CLAUDE.md` | ✅ Loaded | 🟡 Clone only (installed hook in progress) | ✅ Verified |
+| **Antigravity** | `antigravity` → `AGENTS.md` | ✅ Loaded | ❌ Rules only | ✅ Verified |
+| **Cursor** | `cursor` → `.cursor/rules.md` | 🟡 Needs `.cursor/rules/*.mdc` (Phase 3) | ❌ Rules only | 🟡 In progress |
+| **Gemini CLI** | `gemini` → `.gemini/AGENTS.md` | 🟡 Reads `GEMINI.md` / `AGENTS.md` (Phase 3) | ❌ Rules only | 🟡 In progress |
+| **VS Code + Copilot** | `vscode` → `.vscode/settings.json` | 🟡 Needs `.github/copilot-instructions.md` | ❌ Rules only | 🟡 In progress |
+| **Kilo Code** | `kilocode` → `.kilocode/rules/athena.md` | ✅ Loaded | ❌ Rules only | ✅ Verified |
+| **Roo Code** | `roocode` → `.roo/rules/athena.md` | ✅ Loaded | ❌ Rules only | ✅ Verified |
+| **Codex** | Untested target; reads `AGENTS.md` | 🟡 Native `AGENTS.md` | ❌ Rules only | ❌ Untested |
 
 The four Claude Code hooks (configured in `.claude/settings.json`): a secret scan before file reads and edits, a ruin check before shell commands, a meta-awareness gate on each prompt, and an output check (math leaks, secrets, Python syntax) before each turn ends.
 
@@ -123,7 +126,8 @@ The four Claude Code hooks (configured in `.claude/settings.json`): a secret sca
 |:------|:-------|:---------|
 | **Storage & retrieval** — memories stored and surfaced when relevant | ✅ Shipped | Hybrid RAG with cross-encoder rerank, hardened through [production failures](docs/CHANGELOG.md) |
 | **Portability** — memory and routine move across models and tools | ✅ Shipped | Plain Markdown; see [What Moves Between Tools](#what-moves-between-tools) |
-| **Governed autonomy** — hooks block destructive commands and secrets | 🟡 Claude Code only | Ruin check blocks 14/16 destructive commands; 2 bypasses are [known and tracked](docs/TECH_DEBT.md). Other tools get these rules as prompts |
+| **Governed autonomy** — hooks block destructive commands and secrets | 🟡 Claude Code only | Blocks canonical destructive commands (`rm -rf`, force-push, `reset --hard`); regex-based, bypasses tracked in test suite |
+| **Compounding (/end writes checkpoint + CANONICAL)** | 🟡 Prompt-level | Model appends checkpoints based on workflow prompt; code-enforced writer in development |
 | **Compounding personalization** — session 500 recalls session 5 | 🟡 N=1 evidence | 1,900+ sessions by the author; no multi-user study |
 | **Anti-sycophancy** — personalization doesn't silently increase agreement | 🟡 Partial mitigation | Code-enforced meta-awareness gate (Claude Code only); see [honest limits](docs/ENGINEERING_DEPTH.md) |
 
@@ -135,16 +139,16 @@ The four Claude Code hooks (configured in `.claude/settings.json`): a secret sca
 # Run the tests yourself
 pytest tests/ -v --tb=short
 
-# Run the retrieval evaluator yourself (requires Supabase keys)
-python examples/scripts/evaluator.py --gold-set .agent/eval/gold_set.json
+# Run the retrieval evaluator yourself (requires Supabase keys and indexed corpus)
+python examples/scripts/evaluator.py
 ```
 
 | Metric | Value | Verification Command |
 |:-------|:------|:---------------------|
-| **Retrieval Hit@5 (Strict)** | **0.569** (37 / 65) | `python examples/scripts/evaluator.py` |
-| **Retrieval MRR@5 (Strict)** | **0.472** | `python examples/scripts/evaluator.py` |
+| **Retrieval Hit@5 (Strict)** | **0.569** (37 / 65) | `python examples/scripts/evaluator.py` (author-measured on 1,900-session corpus) |
+| **Retrieval MRR@5 (Strict)** | **0.472** | `python examples/scripts/evaluator.py` (author-measured on 1,900-session corpus) |
 | *Retrieval Hit@5 (Lenient)* | *0.892 (deprecated)* | *Partial substring match (inflated)* |
-| **Unit & Integration Tests** | 559 passed (100%) | `pytest tests/` |
+| **Unit & Integration Tests** | 602 passed, 7 skipped | `pytest tests/` |
 | **Secret Leaks (1,248 commits)** | 0 detected | Gitleaks in CI |
 | **Code Quality & Lints** | 0 ruff findings | `ruff check src/` |
 
