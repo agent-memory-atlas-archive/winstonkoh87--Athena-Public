@@ -65,4 +65,4 @@ def test_payment_required_402_alerts_and_fails_immediately(capsys):
 
     captured = capsys.readouterr()
     assert "🚨 [ACTION REQUIRED: GOOGLE API CREDITS DEPLETED]" in captured.err
-    assert "https://aistudio.google.com" in captured.err
+    assert "Please top up USD 20 at: https://aistudio.google.com" in captured.err
