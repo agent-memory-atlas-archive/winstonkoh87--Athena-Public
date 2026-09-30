@@ -112,7 +112,11 @@ class StructuredRuinCheck:
             if has_recursive and has_force:
                 red_flags.append("recursive_force_delete")
 
-        # 5. Path resolution & protected boundary check
+        # 5. Path resolution & protected boundary check (deduplicated)
+        context_flag = False
+        agent_flag = False
+        root_flag = False
+
         paths = self._extract_paths(tokens)
         for path_obj in paths:
             try:
@@ -124,21 +128,36 @@ class StructuredRuinCheck:
             agent_dir = (self.workspace_root / ".agent").resolve()
 
             if str(resolved) == str(context_dir) or str(resolved).startswith(str(context_dir) + "/"):
-                red_flags.append("targets_context_memory")
+                context_flag = True
             if str(resolved) == str(agent_dir) or str(resolved).startswith(str(agent_dir) + "/"):
-                red_flags.append("targets_agent_config")
+                agent_flag = True
             if resolved == self.workspace_root or str(resolved) == "/":
-                red_flags.append("targets_root_directory")
+                root_flag = True
+
+        if context_flag:
+            red_flags.append("targets_context_memory")
+        if agent_flag:
+            red_flags.append("targets_agent_config")
+        if root_flag:
+            red_flags.append("targets_root_directory")
 
         # 6. Capability level evaluation
         if self.capability_level >= 4 and len(red_flags) > 0:
             red_flags.append("dangerous_capability_active")
 
         # 7. Cumulative Veto Decision
+        has_destructive_action = bool(
+            {"destructive_token", "recursive_force_delete", "dangerous_capability_active"}.intersection(red_flags)
+        )
+        has_protected_target = bool(
+            {"targets_context_memory", "targets_agent_config"}.intersection(red_flags)
+        )
+
         veto = (
-            "targets_root_directory" in red_flags
-            or ("recursive_force_delete" in red_flags and ("targets_context_memory" in red_flags or "targets_agent_config" in red_flags))
-            or len(red_flags) >= 2
+            ("targets_root_directory" in red_flags and has_destructive_action)
+            or ("recursive_force_delete" in red_flags and has_protected_target)
+            or (has_destructive_action and has_protected_target)
+            or len([f for f in red_flags if f not in ("targets_context_memory", "targets_agent_config")]) >= 2
         )
 
         return (not veto), red_flags

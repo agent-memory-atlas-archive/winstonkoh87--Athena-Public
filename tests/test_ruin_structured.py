@@ -83,3 +83,12 @@ def test_safe_read_commands_allowed():
     assert checker.check_command("ls -la .context/memories")[0] is True
     assert checker.check_command("python3 -m pytest tests/")[0] is True
     assert checker.check_command("git log -n 5")[0] is True
+
+def test_read_only_multi_path_commands_allowed():
+    """Verify that harmless read-only commands targeting multiple protected paths are NOT blocked."""
+    checker = StructuredRuinCheck(Path("."))
+    assert checker.check_command("grep -rn 'def ' .agent/scripts/a.py .agent/scripts/b.py")[0] is True
+    assert checker.check_command("wc -l .agent/scripts/a.py .agent/scripts/b.py")[0] is True
+    assert checker.check_command("sed -n '1,10p' .agent/scripts/a.py .agent/scripts/b.py")[0] is True
+    assert checker.check_command("cat .context/CANONICAL.md .agent/config/CAPS.json")[0] is True
+

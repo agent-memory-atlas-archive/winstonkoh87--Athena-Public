@@ -2,11 +2,9 @@
 
 # Athena
 
-**Local-first memory and guardrails for AI agents in your IDE.**
+**Own the state. Rent the intelligence.**
 
-Your context lives in plain Markdown on your disk, works across Claude Code,
-Antigravity, Cursor, Gemini CLI and VS Code — and the rules are enforced by
-hooks, not just prompts.
+A skeleton for your AI's memory: plain Markdown on your disk, plus a session routine that turns today's work into what tomorrow's session already knows. Any model can read it. You keep it.
 
 [![CI](https://github.com/winstonkoh87/Athena-Public/actions/workflows/ci.yml/badge.svg)](https://github.com/winstonkoh87/Athena-Public/actions/workflows/ci.yml)
 [![Version](https://img.shields.io/badge/v10.0.2-10b981?style=flat-square&label=Version)](docs/CHANGELOG.md)
@@ -16,7 +14,7 @@ hooks, not just prompts.
 
 ![20-second demo: /start recalls last session → work → /end](docs/demo.gif)
 
-[Quickstart](#quickstart) · [How It Works](#how-it-works) · [Docs](docs/GETTING_STARTED.md) · [Why Athena?](docs/WHY_ATHENA.md) · [Safety](SAFETY.md)
+[Quickstart](#quickstart) · [How It Works](#how-it-works) · [What Moves Between Tools](#what-moves-between-tools) · [Docs](docs/GETTING_STARTED.md) · [Why Athena?](docs/WHY_ATHENA.md) · [Safety](SAFETY.md)
 
 </div>
 
@@ -24,11 +22,17 @@ hooks, not just prompts.
 
 ## The Problem
 
-You've spent months training ChatGPT to understand you. Then a model update resets the personality. You switch to Claude or Gemini — you start from zero.
+You've spent months teaching ChatGPT how you think. Then a model update resets it, or you switch to Claude, and you're back to zero. Platform memory is opaque, locked to one provider, and stays behind when you leave.
 
-Platform memory is unreliable, opaque, and locked to one provider. You don't own it and you can't take it with you.
+Owning your notes doesn't fix that on its own. A folder of Markdown doesn't get smarter by sitting there. Something has to decide what gets saved, what's still true, and what the next session needs to know first.
 
-Athena moves the memory layer to **your machine**: plain Markdown files that you own, version-control, and point at any model. The model is just whoever's on shift.
+Athena does both. The memory lives in files you own, and a fixed routine keeps them current. The model is just whoever's on shift.
+
+| System | Builds up across sessions | Your files, any model |
+|:-------|:--------------------------|:----------------------|
+| **Platform memory** (ChatGPT, Claude, Gemini) | ✅ | ❌ Tied to one platform |
+| **Memory stores** (MCP memory servers, vector DBs) | Save & recall; you supply the method | ✅ |
+| **Athena** | ✅ | ✅ |
 
 ## Quickstart
 
@@ -42,16 +46,42 @@ athena doctor                           # expect 0 failures
 
 Then type `/start` in your IDE's AI chat panel. Work normally. Type `/end` to save.
 
-> **Full install** (cloud sync + reranking): `pip install -e ".[full]"`
-> See [Getting Started](docs/GETTING_STARTED.md) for Windows, advanced config, and Supabase setup.
+> **Full install** (cloud sync + reranking): `pip install -e ".[full]"`  
+> See [Getting Started](docs/GETTING_STARTED.md) for Windows, advanced config, and Supabase setup.  
+> Already have history elsewhere? See [Importing](docs/IMPORTING.md) for ChatGPT, Claude, or Gemini exports.
 
 ## How It Works
+
+### The skeleton
+
+Your workspace starts as empty bones. You add the meat by working:
+
+```
+.context/
+├── memory_bank/
+│   ├── userContext.md       # who you are and how you work
+│   ├── productContext.md    # what you're building, and why
+│   ├── activeContext.md     # where you left off: one checkpoint per session
+│   └── systemPatterns.md    # approaches that keep working
+├── memories/session_logs/   # one log per session, written by /end
+└── CANONICAL.md             # facts you've confirmed are still true
+```
+
+### The loop
+
+1. `/start` loads about 2K tokens: who you are, and your last checkpoint.
+2. Work normally.
+3. `/end` writes the session log, appends a checkpoint to `activeContext.md`, and updates `CANONICAL.md` when something you've confirmed has changed.
+
+Session 50 starts where session 49 stopped. Short on tokens? Skip `/start` and just `/end` (~500 tokens). Planning something big? Use `/ultrastart` (~20K).
+
+### The layers
 
 ```
 ┌─────────────────────────────────────────────────────┐
 │  Your IDE (Claude Code / Antigravity / Cursor / …)  │
 └───────────────────┬─────────────────────────────────┘
-                    │ hooks (code-enforced, not prompt-based)
+                    │ rules file (all IDEs) + hooks (Claude Code)
                     ▼
 ┌─────────────────────────────────────────────────────┐
 │  Athena SDK                                         │
@@ -68,13 +98,22 @@ Then type `/start` in your IDE's AI chat panel. Work normally. Type `/end` to sa
 └─────────────────────────────────────────────────────┘
 ```
 
-**Three modes, one loop:**
+## What Moves Between Tools
 
-| Mode | Boot | Token Cost | When |
-|:-----|:-----|:-----------|:-----|
-| Lightweight | Just chat, then `/end` | ~500 | Quick questions |
-| Standard | `/start` → work → `/end` | ~2K–10K | Daily use |
-| Deep | `/ultrastart` → work → `/ultraend` | ~20K | Complex planning |
+Your memory and the `/start`–`/end` routine are Markdown, so they go wherever you go. Guardrails are different: they run as hooks, hooks are tool-specific, and today they're wired in code for Claude Code only. In other tools, the same rules exist as instructions the model is asked to follow, not code that stops it.
+
+| Tool | `athena init --ide` writes | Memory + `/start` / `/end` | Guardrail hooks | Tested |
+|:-----|:---------------------------|:---------------------------|:----------------|:-------|
+| **Claude Code** | `claude` → `CLAUDE.md` | ✅ | ✅ 4 hooks | ✅ |
+| **Antigravity** | `antigravity` → `AGENTS.md` | ✅ | ❌ Rules only | ✅ |
+| **Cursor** | `cursor` → `.cursor/rules.md` | ✅ | ❌ Rules only | ✅ |
+| **Gemini CLI** | `gemini` → `.gemini/AGENTS.md` | ✅ | ❌ Rules only | ✅ |
+| **VS Code + Copilot** | `vscode` → `.vscode/settings.json` | ✅ | ❌ Rules only | ✅ |
+| **Kilo Code** | `kilocode` → `.kilocode/rules/athena.md` | ✅ | ❌ Rules only | ✅ |
+| **Roo Code** | `roocode` → `.roo/rules/athena.md` | ✅ | ❌ Rules only | ✅ |
+| **Codex** | Untested target; reads `AGENTS.md` | 🟡 | ❌ Rules only | ❌ Untested |
+
+The four Claude Code hooks (configured in `.claude/settings.json`): a secret scan before file reads and edits, a ruin check before shell commands, a meta-awareness gate on each prompt, and an output check (math leaks, secrets, Python syntax) before each turn ends.
 
 ### What's enforced in code vs. by prompt
 
@@ -83,8 +122,8 @@ Then type `/start` in your IDE's AI chat panel. Work normally. Type `/end` to sa
 | Claim | Status | Evidence |
 |:------|:-------|:---------|
 | **Storage & retrieval** — memories stored and surfaced when relevant | ✅ Shipped | Hybrid RAG with cross-encoder rerank, hardened through [production failures](docs/CHANGELOG.md) |
-| **Portability** — Markdown on your disk, movable across models | ✅ Shipped | Structural — inspect the repo |
-| **Governed autonomy** — hooks block destructive commands and secrets | ✅ Shipped (partial) | Ruin check blocks 14/16 destructive commands; 2 bypasses are [known and tracked](docs/TECH_DEBT.md) |
+| **Portability** — memory and routine move across models and tools | ✅ Shipped | Plain Markdown; see [What Moves Between Tools](#what-moves-between-tools) |
+| **Governed autonomy** — hooks block destructive commands and secrets | 🟡 Claude Code only | Ruin check blocks 14/16 destructive commands; 2 bypasses are [known and tracked](docs/TECH_DEBT.md). Other tools get these rules as prompts |
 | **Compounding personalization** — session 500 recalls session 5 | 🟡 N=1 evidence | 1,900+ sessions by the author; no multi-user study |
 | **Anti-sycophancy** — personalization doesn't silently increase agreement | 🟡 Partial mitigation | Code-enforced meta-awareness gate (Claude Code only); see [honest limits](docs/ENGINEERING_DEPTH.md) |
 
@@ -105,23 +144,11 @@ python examples/scripts/evaluator.py --gold-set .agent/eval/gold_set.json
 | **Retrieval Hit@5 (Strict)** | **0.569** (37 / 65) | `python examples/scripts/evaluator.py` |
 | **Retrieval MRR@5 (Strict)** | **0.472** | `python examples/scripts/evaluator.py` |
 | *Retrieval Hit@5 (Lenient)* | *0.892 (deprecated)* | *Partial substring match (inflated)* |
-| **Unit & Integration Tests** | 558 passed (100%) | `pytest tests/` |
+| **Unit & Integration Tests** | 559 passed (100%) | `pytest tests/` |
 | **Secret Leaks (1,248 commits)** | 0 detected | Gitleaks in CI |
 | **Code Quality & Lints** | 0 ruff findings | `ruff check src/` |
 
 > **Anti-Goodhart Invariant**: Why did our reported Hit@5 shift from 0.89 to 0.57? Lenient substring matchers count partial word overlaps as "hits," inflating benchmark scores by ~36% without improving retrieval. We killed the lenient matcher because vanity metrics mask regressions. See the full breakdown: [Anti-Goodhart Benchmarking in RAG](docs/BENCHMARKS.md#the-anti-goodhart-shift-why-we-published-lower-numbers).
-
-## Agent Compatibility
-
-| IDE | Config file | Tested |
-|:----|:------------|:-------|
-| Claude Code | `CLAUDE.md` | ✅ |
-| Antigravity | `AGENTS.md` | ✅ |
-| Cursor | `.cursor/rules.md` | ✅ |
-| Gemini CLI | `.gemini/AGENTS.md` | ✅ |
-| VS Code + Copilot | `.vscode/settings.json` | ✅ |
-| Kilo Code | `.kilocode/rules/athena.md` | ✅ |
-| Roo Code | `.roo/rules/athena.md` | ✅ |
 
 ## Documentation
 
@@ -129,6 +156,7 @@ python examples/scripts/evaluator.py --gold-set .agent/eval/gold_set.json
 |:----|:---------------|
 | [Getting Started](docs/GETTING_STARTED.md) | Install, configure, first session |
 | [Your First Session](docs/YOUR_FIRST_SESSION.md) | 20-minute guided tutorial |
+| [Importing](docs/IMPORTING.md) | Bring in ChatGPT, Claude or Gemini exports |
 | [How It Works](docs/ARCHITECTURE.md) | Architecture and search pipeline |
 | [Why Athena?](docs/WHY_ATHENA.md) | Philosophy, use cases, cost analysis |
 | [Engineering Depth](docs/ENGINEERING_DEPTH.md) | Technical deep dives |
