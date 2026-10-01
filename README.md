@@ -1,10 +1,12 @@
 <div align="center">
 
-# Athena
+# Project Athena
 
-**A compounding context layer for AI coding agents, portable across IDEs.**
+**The compounding context layer for AI coding agents, portable across IDEs.**
 
-*Own the state. Rent the intelligence.* An agentic tool to compound your context over time, portable across IDEs. Plain Markdown on your disk, plus a session routine that turns today's work into what tomorrow's session already knows. Any model can read it. You keep it.
+*Own the state. Rent the intelligence.*
+
+Plain Markdown on your disk, driven by an automated session routine that turns today's work into what tomorrow's agent already knows. Swap models or switch IDEs on a whim. The intelligence is rented; the state belongs to you.
 
 [![CI](https://github.com/winstonkoh87/Athena-Public/actions/workflows/ci.yml/badge.svg)](https://github.com/winstonkoh87/Athena-Public/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/athena-agent?style=flat-square&color=10b981)](https://pypi.org/project/athena-agent/)
@@ -15,6 +17,8 @@
 
 [Quickstart](#quickstart) · [How It Works](#how-it-works) · [What Moves Between Tools](#what-moves-between-tools) · [Docs](docs/GETTING_STARTED.md) · [Why Athena?](docs/WHY_ATHENA.md) · [Safety](SAFETY.md)
 
+Last updated: 2nd Oct 2026
+
 </div>
 
 ---
@@ -23,18 +27,18 @@
 
 You switch between Claude Code, Cursor, and Antigravity, and each one starts from zero. Rules files hold instructions, not memory. Memory features inside platform chats stay behind in the browser. A folder of Markdown on your disk doesn't get smarter by sitting there.
 
-Something has to turn what happened today into what tomorrow's session already knows.
+Without an active distillation loop, every session starts from scratch.
 
-Athena provides that layer. Your memory lives in plain Markdown files on your disk, following an open structure. A fixed session routine keeps them current. Any coding agent can read them. You keep them.
+Project Athena provides that layer. Your memory lives in plain Markdown files on your disk, following an open structure. A fixed session routine keeps them current. Any coding agent can read them. You keep them.
 
 | System | Builds up across sessions | Portable across IDEs | Your files, any model |
 |:-------|:--------------------------|:---------------------|:----------------------|
 | **Platform memory** (ChatGPT, Claude web) | ✅ | ❌ Locked to web UI | ❌ Hosted |
 | **CLAUDE.md / AGENTS.md alone** | ❌ Static instructions | ✅ | ✅ Plain Markdown |
 | **Cline Memory Bank** | ✅ In-session prompts | 🟡 Cline-centric | ✅ Plain Markdown |
-| **Athena** | ✅ Session routine (`/start`, `/end`) | ✅ Multi-IDE shims | ✅ Plain Markdown |
+| **Project Athena** | ✅ Session routine (`/start`, `/end`) | ✅ Multi-IDE shims | ✅ Plain Markdown |
 
-*Lineage: Athena's memory bank files (`userContext`, `productContext`, `activeContext`, `systemPatterns`) build upon the foundational open architecture introduced by [Cline Memory Bank](https://docs.cline.bot/features/memory-bank), adding multi-IDE portability, session lifecycle automation, and canonical fact tracking.*
+*Lineage: Project Athena's memory bank files (`userContext`, `productContext`, `activeContext`, `systemPatterns`) build upon the foundational open architecture introduced by [Cline Memory Bank](https://docs.cline.bot/features/memory-bank), adding multi-IDE portability, session lifecycle automation, and canonical fact tracking.*
 
 ## Quickstart
 
@@ -87,7 +91,7 @@ Session 50 starts where session 49 stopped. Short on tokens? Skip `/start` and j
                     │ rules file (all IDEs) + hooks (Claude Code)
                     ▼
 ┌─────────────────────────────────────────────────────┐
-│  Athena SDK                                         │
+│  Project Athena SDK                                 │
 │  ├── Lifecycle: /start loads ~2K tokens, /end saves │
 │  ├── Memory: session logs + canonical facts         │
 │  ├── Search: hybrid (keyword + optional vectors)    │
@@ -131,7 +135,7 @@ The four Claude Code hooks (configured in `.claude/settings.json`): a secret sca
 | **Compounding personalization** — session 500 recalls session 5 | 🟡 N=1 evidence | 1,900+ sessions by the author; no multi-user study |
 | **Anti-sycophancy** — personalization doesn't silently increase agreement | 🟡 Partial mitigation | Code-enforced meta-awareness gate (Claude Code only); see [honest limits](docs/ENGINEERING_DEPTH.md) |
 
-> **Why publish this table?** Because the failure mode of this product category is self-mythologizing — describing aspirations in the present tense. Athena's own convention ([Epistemic Status](examples/workflows/_shared.md#epistemic-status-convention-anti-self-mythologizing)) requires labeling every mechanism as `code-enforced`, `agent-discretion`, or `aspirational`. This table is that convention applied to the README.
+> **Why publish this table?** Because the failure mode of this product category is self-mythologizing — describing aspirations in the present tense. Project Athena's own convention ([Epistemic Status](examples/workflows/_shared.md#epistemic-status-convention-anti-self-mythologizing)) requires labeling every mechanism as `code-enforced`, `agent-discretion`, or `aspirational`. This table is that convention applied to the README.
 
 ## Measured, Not Claimed
 
