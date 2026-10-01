@@ -17,8 +17,6 @@ Plain Markdown on your disk, driven by an automated session routine that turns t
 
 [Quickstart](#quickstart) · [How It Works](#how-it-works) · [What Moves Between Tools](#what-moves-between-tools) · [Docs](docs/GETTING_STARTED.md) · [Why Athena?](docs/WHY_ATHENA.md) · [Safety](SAFETY.md)
 
-Last updated: 2nd Oct 2026
-
 </div>
 
 ---
