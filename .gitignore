@@ -114,7 +114,7 @@ search_results.txt
 
 # Daemon-written runtime telemetry — never track (jams pushes)
 .agent/telemetry/retrieval_log.jsonl
-.athena/invocations.jsonl
+.athena/
 
 # SQLite databases (too large for GitHub file size limits)
 **/*.db

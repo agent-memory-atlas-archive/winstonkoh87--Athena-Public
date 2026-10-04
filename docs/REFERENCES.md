@@ -1,6 +1,6 @@
 ---
 created: 2026-02-12
-last_updated: 2026-09-28
+last_updated: 2026-10-04
 tags: #references #apa #academic #citations
 ---
 
@@ -8,9 +8,9 @@ tags: #references #apa #academic #citations
 
 > **Purpose**: Central academic reference list for the Athena framework. All citations follow APA 7th edition format. Documents within this repository use inline citations (Author, Year) that link back to this page.
 >
-> **Why this exists**: Athena synthesizes concepts from cognitive psychology, microeconomics, AI/ML research, and decision science. This reference list ensures every claim is traceable to its source — not opinion.
+> **Why this exists**: Athena synthesizes concepts from cognitive psychology, microeconomics, game theory, AI/ML research, and decision science. This reference list ensures every claim is traceable to its source — not opinion.
 >
-> **Verification policy**: AI-assembled citations are a known fabrication risk. Every DOI in this file was programmatically verified against the Crossref API and every arXiv ID against the arXiv export API on **21 July 2026** — **20/20 DOIs and 28/28 arXiv IDs resolved to the cited works, 0 failures** (the hooks doc's arXiv:2602.23971 was verified in the same sweep). New citations are not added without passing the same check.
+> **Verification policy**: AI-assembled citations are a known fabrication risk. Every DOI in this file was programmatically verified against the Crossref API and every arXiv ID against the arXiv export API on **4 October 2026** — **32/32 DOIs and 28/28 arXiv IDs resolved to the cited works, 0 failures** (the hooks doc's arXiv:2602.23971 was verified in the same sweep). New citations are not added without passing the same check.
 
 ---
 
@@ -66,7 +66,7 @@ Mas-Colell, A., Whinston, M. D., & Green, J. R. (1995). *Microeconomic theory*. 
 
 Nelson, P. (1970). Information and consumer behavior. *Journal of Political Economy, 78*(2), 311–329. <https://doi.org/10.1086/259630>
 
-> **Note**: Nelson's distinction between *search goods* (quality assessable before purchase) and *experience goods* (quality assessable only through use) explains why Athena's [Validation Status](../README.md#-validation-status--whats-proven-vs-whats-proposed) prescribes a personal trial rather than claiming spec-sheet superiority: compounding personalization is an experience good by construction — its value is a function of *your* accumulated context, which cannot exist before you use it.
+> **Note**: Nelson's distinction between *search goods* (quality assessable before purchase) and *experience goods* (quality assessable only through use) explains why Athena's [Validation Status](../README.md#whats-enforced-in-code-vs-by-prompt) prescribes a personal trial rather than claiming spec-sheet superiority: compounding personalization is an experience good by construction — its value is a function of *your* accumulated context, which cannot exist before you use it.
 
 von Neumann, J., & Morgenstern, O. (1944). *Theory of games and economic behavior*. Princeton University Press.
 
@@ -74,7 +74,7 @@ von Neumann, J., & Morgenstern, O. (1944). *Theory of games and economic behavio
 
 Pareto, V. (1896). *Cours d'économie politique* [Course of political economy]. F. Rouge.
 
-> **Note**: Pareto's work established the concept of *Pareto optimality* — a state where no dimension can be improved without degrading another. In Athena, this underpins Protocol 49 (Efficiency vs Robustness Trade-off): you operate on a Pareto frontier and choose your position explicitly. Protocol 106 (Min-Max Optimization) applies the same principle to procurement and resource allocation via the Sovereign Point ($S = \arg\max U(c)/c$).
+> **Note**: Pareto's work established the concept of *Pareto optimality* — a state where no dimension can be improved without degrading another. In Athena, this underpins Protocol 49 (Efficiency vs Robustness Trade-off): you operate on a Pareto frontier and choose your position explicitly. Protocol 106 (Min-Max Optimization) applies the same principle to procurement and resource allocation via the Sovereign Point (S = argmax U(c)/c).
 
 Deb, K., Pratap, A., Agarwal, S., & Meyarivan, T. (2002). A fast and elitist multiobjective genetic algorithm: NSGA-II. *IEEE Transactions on Evolutionary Computation, 6*(2), 182–197. <https://doi.org/10.1109/4235.996017>
 
@@ -87,6 +87,68 @@ Saaty, T. L. (1980). *The analytic hierarchy process: Planning, priority setting
 > **Note on MCDA**: Multi-Criteria Decision Analysis (MCDA) is a family of methods, not a single paper. Athena's implementation draws primarily from weighted-sum models (Fishburn, 1967) and pairwise comparison (Saaty, 1980). See also: Belton, V., & Stewart, T. J. (2002). *Multiple criteria decision analysis: An integrated approach*. Springer.
 
 Fishburn, P. C. (1967). Additive utilities with incomplete product sets: Application to priorities and assignments. *Operations Research, 15*(3), 537–542.
+
+---
+
+## Game Theory, Open Games & Strategic Decision Science
+
+> **Why this section exists**: Athena's capstone decision protocol (Protocol 500: GTO Problem Solver), Game Taxonomy (Protocol 422), and decision engine (`gto_engine.py`) address real-world strategic conflict, negotiation, and resource allocation. Real-world decisions violate textbook closed-game assumptions (unknown players, incomplete information, unmodeled moves, and non-ergodic ruin). This section grounds Athena's mathematical screening and strategic heuristics in formal game theory and decision science under uncertainty.
+
+Blackwell, D. (1956). An analog of the minimax theorem for vector payoffs. *Pacific Journal of Mathematics, 6*(1), 1–8. <https://doi.org/10.2140/pjm.1956.6.1>
+
+> **Note**: Blackwell introduced approachability theory and vector-valued payoffs for multi-objective repeated games. This grounds Athena's handling of multiple non-fungible utility dimensions (e.g., financial capital vs reputational standing vs physical survival) in Protocol 500 §1 and Protocol 180: non-negotiable existential dimensions are evaluated as hard constraints (screen first, rank second) rather than blended into scalar expected-value sums.
+
+Brandenburger, A. M., & Nalebuff, B. J. (1996). *Co-opetition*. Currency Doubleday.
+
+> **Note**: Introduced the PARTS model (Players, Added values, Rules, Tactics, Scope) for auditing business ecosystems beyond static binary zero-sum conflict. Referenced in Protocol 500 §0.5 and Protocol 422 for mapping boundary expansions and positive-sum value creation.
+
+Fudenberg, D., & Maskin, E. (1986). The folk theorem in repeated games with discounting or with incomplete information. *Econometrica, 54*(3), 533–554. <https://doi.org/10.2307/1911307>
+
+> **Note**: Established the formal conditions under which cooperative equilibria can be sustained indefinitely in repeated games through credible threats of punishment. Underpins Athena's defection response matrix (Protocol 500 §4D) across repeated interaction horizons.
+
+Fudenberg, D., & Tirole, J. (1985). Preemption and rent equalization in the adoption of new technology. *Review of Economic Studies, 52*(3), 383–401. <https://doi.org/10.2307/2297660>
+
+> **Note**: Modeled timing games and the strategic trade-off between first-mover preemption and waiting for information resolution. Formalizes Path E in Protocol 500 (Option Value of Delay vs Preemption).
+
+Gilboa, I., & Schmeidler, D. (1989). Maxmin expected utility with non-unique prior. *Journal of Mathematical Economics, 18*(2), 141–153. <https://doi.org/10.1016/0304-4068(89)90018-9>
+
+> **Note**: Formalized decision-making under Knightian ambiguity (multiple plausible priors), establishing maxmin expected utility as a robust criterion when probabilities cannot be empirically identified. Implemented in `gto_engine.py`'s maximin floor optimization.
+
+Halpern, J. Y., & Rego, L. C. (2014). Extensive games with possibly unaware players. *Mathematical Social Sciences, 70*, 42–58. <https://doi.org/10.1016/j.mathsocsci.2012.11.002>
+
+> **Note**: Extends extensive-form games to players who are unaware of certain actions until revealed. Directly grounds Athena's handling of open games: because players cannot anticipate all unmodeled moves or rule changes, survival requires structural downside bounding (position limits, defined-risk structures) rather than optimizing over a closed game tree.
+
+Harsanyi, J. C. (1967). Games with incomplete information played by "Bayesian" players, Part I: The basic model. *Management Science, 14*(3), 159–182. <https://doi.org/10.1287/mnsc.14.3.159>
+
+> **Note**: Founded the theory of games with asymmetric and incomplete information by modeling player types via common priors. Grounds Protocol 422 Rule 4 (separating stochastic noise from hidden information) and Protocol 500 Path D (cheap probes to screen counterparty types).
+
+Heifetz, A., Meier, M., & Schipper, B. C. (2006). Interactive unawareness. *Journal of Economic Theory, 130*(1), 78–94. <https://doi.org/10.1016/j.jet.2005.02.007>
+
+> **Note**: Provided the epistemic foundation for modeling mutual unawareness in multi-agent environments. Complements Halpern & Rego (2014) in formalizing the limits of textbook closed-world game theory.
+
+Maynard Smith, J., & Price, G. R. (1973). The logic of animal conflict. *Nature, 246*(5427), 15–18. <https://doi.org/10.1038/246015a0>
+
+> **Note**: Introduced the Hawk-Dove game and the concept of Evolutionarily Stable Strategies (ESS). Demonstrates that conflict games with costly escalation are fundamentally mixed-motive, not zero-sum, motivating structural de-escalation and commitment devices in Protocol 500 §4D.
+
+Myerson, R. B. (1998). Population uncertainty and Poisson games. *International Journal of Game Theory, 27*(3), 375–392. <https://doi.org/10.1007/s001820050079>
+
+> **Note**: Formally models games where the number of players is an unobserved random variable (Poisson distributed). Grounds Athena's Balance-Sheet Census (Protocol 500 §0.5): evaluating exposure across unknown potential participants by separating capacity to intervene from willingness to act.
+
+Savage, L. J. (1951). The theory of statistical decision. *Journal of the American Statistical Association, 46*(253), 55–67. <https://doi.org/10.1080/01621459.1951.10500768>
+
+> **Note**: Introduced the minimax regret decision criterion. Implemented in `gto_engine.py` (`compute_robustness`) to select policies that minimize worst-case opportunity loss across uncertain future scenarios.
+
+Schelling, T. C. (1960). *The strategy of conflict*. Harvard University Press.
+
+> **Note**: The foundational work on strategic commitment, focal points (Schelling points), and mixed-motive bargaining. Grounds Protocol 500 §4D (binding commitment devices, escrow, and staged execution) when parties operate under high mutual dependency.
+
+Taleb, N. N. (2007). *The black swan: The impact of the highly improbable*. Random House.
+
+> **Note**: Chapter 9 introduces the *Ludic Fallacy* — the fatal mistake of confusing the clean, bounded uncertainty of games (dice, casinos, textbook payoff matrices) with the open-ended, fat-tailed uncertainty of real life. Underpins Athena's refusal to compute closed Nash equilibria for real-world dilemmas, mandating structural exposure bounds (Law #1) and fail-closed ruin screening instead.
+
+Wu, J., & Axelrod, R. (1995). How to cope with noise in the iterated prisoner's dilemma. *Journal of Conflict Resolution, 39*(1), 183–189. <https://doi.org/10.1177/0022002795039001008>
+
+> **Note**: Demonstrated that in the presence of noise (misimplementation or misperception of moves), standard Tit-for-Tat triggers endless mutual defection loops. Generous Tit-for-Tat and Contrite Tit-for-Tat restore cooperation through calibrated tolerance, directly grounding Athena's noise-tolerant relational defection responses in Protocol 500 §4D.
 
 ---
 
@@ -142,7 +204,7 @@ Sumers, T. R., Yao, S., Narasimhan, K., & Griffiths, T. L. (2024). Cognitive arc
 
 Wu, D., Wang, H., Yu, W., Zhang, Y., Chang, K.-W., & Yu, D. (2024). LongMemEval: Benchmarking chat assistants on long-term interactive memory. *arXiv preprint arXiv:2410.10813*. <https://arxiv.org/abs/2410.10813>
 
-> **Note**: LongMemEval showed that commercial assistants' long-term memory degrades sharply on multi-session tasks (information extraction, temporal reasoning, knowledge updates across sessions) — the empirical case for Athena's central complaint about platform memory. It is also the closest existing template for the benchmark Athena's own [Validation Status](../README.md#-validation-status--whats-proven-vs-whats-proposed) table says is still missing: decision-quality-vs-session-count, not just recall accuracy.
+> **Note**: LongMemEval showed that commercial assistants' long-term memory degrades sharply on multi-session tasks (information extraction, temporal reasoning, knowledge updates across sessions) — the empirical case for Athena's central complaint about platform memory. It is also the closest existing template for the benchmark Athena's own [What's Enforced in Code](../README.md#whats-enforced-in-code-vs-by-prompt) table says is still missing: decision-quality-vs-session-count, not just recall accuracy.
 
 ---
 
@@ -234,7 +296,7 @@ Fanous, A., Goldberg, J., Agarwal, A. A., Lin, J., Zhou, A., Daneshjou, R., & Ko
 
 Jain, S., Park, C., Viana, M., Wilson, A., & Calacci, D. (2025). Interaction context often increases sycophancy in LLMs. *arXiv preprint arXiv:2509.12517*. <https://arxiv.org/abs/2509.12517>
 
-> **Note**: The load-bearing citation for Athena's honesty pass. Agreement sycophancy rises **substantially when a user memory profile is present** (reported +45% for Gemini 2.5 Pro) — i.e., the persistent-profile architecture that *is* Athena is empirically among the top drivers of the mirror effect. Cited directly in the README's [Validation Status](../README.md#-validation-status--whats-proven-vs-whats-proposed) as the strongest evidence against the design.
+> **Note**: The load-bearing citation for Athena's honesty pass. Agreement sycophancy rises **substantially when a user memory profile is present** (reported +45% for Gemini 2.5 Pro) — i.e., the persistent-profile architecture that *is* Athena is empirically among the top drivers of the mirror effect. Cited directly in the README's [What's Enforced in Code](../README.md#whats-enforced-in-code-vs-by-prompt) as the strongest evidence against the design.
 
 Kelley, S. W., & Riedl, C. (2026). Personalization increases affective alignment but has role-dependent effects on epistemic independence in LLMs. *arXiv preprint arXiv:2603.00024*. <https://arxiv.org/abs/2603.00024>
 
@@ -328,4 +390,4 @@ For AI/ML papers, arXiv links are provided alongside formal publication details 
 
 ---
 
-*Last verified: 22 July 2026 — added the "Sycophancy & the Personalization Tension" section (arXiv:2502.08177, 2509.12517, 2603.00024); corrected the Soelberg/OpenAI entry (incident and filing independently reported — N.D. Cal., filed 29 Dec 2025; SF Standard; Hagens Berman — caption/docket hedged pending PACER confirmation); SycEval author list completed against the arXiv record. **Full re-verification sweep this date: 20/20 DOIs (Crossref API) + 28/28 arXiv IDs (arXiv export API), 0 failures** — superseding the stale "18/18" count from the 5 July pass. Re-verified 23 July 2026: independently reconfirmed the 2025–2026 sycophancy cluster against live sources — Jain et al. (arXiv:2509.12517; now published at CHI '26), SycEval/Fanous et al. (arXiv:2502.08177; AIES 2025), and Kelley & Riedl (arXiv:2603.00024) — and upgraded SycEval to its formal AIES 2025 DOI (10.1609/aies.v8i1.36598, pp. 893–900). Previous fact-checks: 5 July 2026; 6 June 2026 (S437). Updated 5 September 2026: added "AI Benchmarks & Live Evaluation Infrastructure" section (Arena AI Agent Leaderboard, LMArena/Chatbot Arena).*
+*Last verified: 4 October 2026 — added the "Game Theory, Open Games & Strategic Decision Science" section grounding Protocol 500, Protocol 422, and gto_engine in formal decision science under uncertainty (Blackwell 1956, Schelling 1960, Harsanyi 1967, Maynard Smith & Price 1973, Fudenberg & Tirole 1985, Fudenberg & Maskin 1986, Gilboa & Schmeidler 1989, Wu & Axelrod 1995, Brandenburger & Nalebuff 1996, Myerson 1998, Savage 1951, Heifetz et al. 2006, Halpern & Rego 2014, Taleb 2007). **Full re-verification sweep this date: 32/32 DOIs (Crossref API) + 28/28 arXiv IDs (arXiv export API), 0 failures.** Previous fact-checks: 5 September 2026 (AI Benchmarks); 23 July 2026; 22 July 2026; 5 July 2026; 6 June 2026 (S437).*

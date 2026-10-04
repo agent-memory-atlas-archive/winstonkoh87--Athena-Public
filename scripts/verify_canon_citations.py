@@ -23,7 +23,15 @@ import re
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+
+def find_project_root() -> Path:
+    current = Path(__file__).resolve().parent
+    for p in [current, current.parent, current.parent.parent]:
+        if (p / ".context" / "CANONICAL.md").exists():
+            return p
+    return current.parent
+
+PROJECT_ROOT = find_project_root()
 CONTEXT_DIR = PROJECT_ROOT / ".context"
 CANONICAL_FILE = CONTEXT_DIR / "CANONICAL.md"
 
@@ -75,6 +83,130 @@ def parse_canonical_entry(line: str) -> dict | None:
         "fp": fp
     }
 
+STOPWORDS = frozenset([
+    "the", "and", "for", "with", "from", "that", "this", "over", "into",
+    "under", "about", "your", "have", "been", "were", "what", "when",
+    "where", "which", "will", "would", "could", "should",
+    "invariant", "invariants", "protocol", "protocols", "model", "models",
+    "rule", "rules", "trap", "traps", "law", "laws", "doctrine", "system",
+])
+
+
+def extract_distinctive_words(text: str) -> set[str]:
+    """Extract distinctive words (4+ letters, lowercase, excluding stoplist)."""
+    words = re.findall(r"[a-z]{4,}", text.lower())
+    return {w for w in words if w not in STOPWORDS}
+
+
+def is_canonical_citation(line: str, match_start: int, match_end: int) -> bool:
+    """Check if §NNN is a CANONICAL citation (in a CANONICAL link or within 80 chars)."""
+    # 1. Check if §NNN is inside a markdown link [...](...)
+    for link_match in re.finditer(r"\[([^\]]*)\]\(([^)]*)\)", line):
+        l_start, l_end = link_match.span()
+        if l_start <= match_start and match_end <= l_end:
+            link_text = link_match.group(1) + " " + link_match.group(2)
+            return "canonical" in link_text.lower()
+
+    # 2. If not inside a markdown link, check proximity (within 80 chars)
+    start_win = max(0, match_start - 80)
+    end_win = min(len(line), match_end + 80)
+    window = line[start_win:end_win]
+    return "canonical" in window.lower()
+
+
+def check_text_citations(
+    text: str,
+    canonical_lines: list[str] | None = None,
+    filename: str = "<stdin>",
+    min_ref: int = 0,
+) -> list[dict]:
+    """Inspect lines of text for CANONICAL citations and return findings."""
+    if canonical_lines is None:
+        canonical_lines = load_canonical_lines()
+    max_line = len(canonical_lines) - 1
+    citation_pattern = re.compile(r"§(\d+)")
+    findings: list[dict] = []
+
+    for i, line in enumerate(text.splitlines(), 1):
+        for match in citation_pattern.finditer(line):
+            cited_line_num = int(match.group(1))
+            if cited_line_num < min_ref:
+                continue
+
+            if not is_canonical_citation(line, match.start(), match.end()):
+                continue
+
+            if 1 <= cited_line_num <= max_line:
+                canon_line = canonical_lines[cited_line_num]
+                entry = parse_canonical_entry(canon_line)
+
+                if entry:
+                    name = entry["name"]
+                    session = entry["session"]
+                    fp = entry["fp"]
+
+                    title_words = extract_distinctive_words(name)
+                    line_words = extract_distinctive_words(line)
+                    shared_words = title_words & line_words
+
+                    ref_parts = []
+                    if session:
+                        ref_parts.append(session)
+                    if fp:
+                        ref_parts.append(f"fp: {fp}")
+                    ref_str = f" ({', '.join(ref_parts)})" if ref_parts else ""
+
+                    if not shared_words:
+                        msg = f"{filename}:{i}  §{cited_line_num} → MISMATCH: line {cited_line_num} is '{name}'{ref_str}, citing line does not match title"
+                        findings.append({
+                            "file": filename,
+                            "line": i,
+                            "cited_line": cited_line_num,
+                            "status": "MISMATCH",
+                            "name": name,
+                            "session": session,
+                            "fp": fp,
+                            "message": msg,
+                        })
+                    else:
+                        msg = f"{filename}:{i}  §{cited_line_num} → VALID: '{name}'{ref_str}"
+                        findings.append({
+                            "file": filename,
+                            "line": i,
+                            "cited_line": cited_line_num,
+                            "status": "VALID",
+                            "name": name,
+                            "session": session,
+                            "fp": fp,
+                            "message": msg,
+                        })
+                else:
+                    msg = f"{filename}:{i}  §{cited_line_num} → INVALID: line {cited_line_num} does not contain a named entry in CANONICAL.md"
+                    findings.append({
+                        "file": filename,
+                        "line": i,
+                        "cited_line": cited_line_num,
+                        "status": "INVALID",
+                        "name": None,
+                        "session": None,
+                        "fp": None,
+                        "message": msg,
+                    })
+            else:
+                msg = f"{filename}:{i}  §{cited_line_num} → INVALID: line {cited_line_num} does not exist in CANONICAL.md"
+                findings.append({
+                    "file": filename,
+                    "line": i,
+                    "cited_line": cited_line_num,
+                    "status": "INVALID",
+                    "name": None,
+                    "session": None,
+                    "fp": None,
+                    "message": msg,
+                })
+    return findings
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Verify §NNN citations in markdown files.")
     parser.add_argument("files", nargs="*", type=Path, help="Markdown files to scan")
@@ -113,15 +245,12 @@ def main() -> int:
         return 0
 
     canonical_lines = load_canonical_lines()
-    max_line = len(canonical_lines) - 1
-
-    citation_pattern = re.compile(r"§(\d+)")
-    has_invalid = False
+    has_error = False
 
     for md_file in sorted(files_to_scan):
         try:
             with open(md_file, encoding="utf-8") as f:
-                content_lines = f.readlines()
+                content = f.read()
         except Exception as e:
             print(f"Error reading {md_file}: {e}", file=sys.stderr)
             continue
@@ -131,55 +260,29 @@ def main() -> int:
         except ValueError:
             rel_path = md_file
 
-        for i, line in enumerate(content_lines, 1):
-            matches = citation_pattern.finditer(line)
-            for match in matches:
-                line_num_str = match.group(1)
-                cited_line_num = int(line_num_str)
+        findings = check_text_citations(content, canonical_lines, str(rel_path), args.min_ref)
+        for finding in findings:
+            print(finding["message"])
+            if finding["status"] in ("INVALID", "MISMATCH"):
+                has_error = True
 
-                if cited_line_num < args.min_ref:
-                    continue
+            if args.fix_suggestions and finding["status"] == "VALID" and finding["name"]:
+                name = finding["name"]
+                session = finding["session"]
+                fp = finding["fp"]
+                sugg_ref_parts = []
+                if session:
+                    sugg_ref_parts.append(session)
+                if fp:
+                    sugg_ref_parts.append(f"fp: {fp[:8]}")
+                sugg_ref_str = f" ({', '.join(sugg_ref_parts)})" if sugg_ref_parts else ""
+                short_name = name.split("&")[0].strip() if "&" in name else name
+                if len(short_name) > 30:
+                    short_name = short_name[:27] + "..."
+                print(f"  ⚠️  Fragile: §{finding['cited_line']} is a line number that shifts on edits. Recommend: '{short_name}{sugg_ref_str}'")
 
-                if 1 <= cited_line_num <= max_line:
-                    canon_line = canonical_lines[cited_line_num]
-                    entry = parse_canonical_entry(canon_line)
+    return 1 if has_error else 0
 
-                    if entry:
-                        name = entry["name"]
-                        session = entry["session"]
-                        fp = entry["fp"]
-
-                        ref_parts = []
-                        if session:
-                            ref_parts.append(session)
-                        if fp:
-                            ref_parts.append(f"fp: {fp}")
-
-                        ref_str = f" ({', '.join(ref_parts)})" if ref_parts else ""
-                        print(f"{rel_path}:{i}  §{cited_line_num} → VALID: '{name}'{ref_str}")
-
-                        if args.fix_suggestions:
-                            sugg_ref_parts = []
-                            if session:
-                                sugg_ref_parts.append(session)
-                            if fp:
-                                sugg_ref_parts.append(f"fp: {fp[:8]}")
-                            sugg_ref_str = f" ({', '.join(sugg_ref_parts)})" if sugg_ref_parts else ""
-
-                            # Shorten name roughly for suggestion
-                            short_name = name.split('&')[0].strip() if '&' in name else name
-                            if len(short_name) > 30:
-                                short_name = short_name[:27] + "..."
-
-                            print(f"  ⚠️  Fragile: §{cited_line_num} is a line number that shifts on edits. Recommend: '{short_name}{sugg_ref_str}'")
-                    else:
-                        print(f"{rel_path}:{i}  §{cited_line_num} → INVALID: line {cited_line_num} does not contain a named entry in CANONICAL.md")
-                        has_invalid = True
-                else:
-                    print(f"{rel_path}:{i}  §{cited_line_num} → INVALID: line {cited_line_num} does not exist in CANONICAL.md")
-                    has_invalid = True
-
-    return 1 if has_invalid else 0
 
 if __name__ == "__main__":
     sys.exit(main())

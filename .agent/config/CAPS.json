@@ -1,14 +1,14 @@
 {
   "_comment": "Canonical inventory counts for Project Athena. Single source of truth for pre-commit caps, audit asserts, and AGENTS.md regeneration. Update via .agent/scripts/sync_agents_md.py (runs automatically: pre-commit Gate 4 + shutdown.py Phase 1.5), not by hand.",
-  "_generated": "2026-09-28",
+  "_generated": "2026-10-04",
   "_generator": "S411 sync_agents_md.py automation (TD-028)",
   "version": {
     "framework": "v8.2-stable",
     "system": "v10.0.2"
   },
   "protocols": {
-    "total": 456,
-    "active": 422,
+    "total": 459,
+    "active": 425,
     "archived": 34,
     "categories": 26,
     "cap": "uncapped",

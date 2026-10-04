@@ -63,7 +63,7 @@ This protocol defines the quality bar for blog posts on the author's portfolio. 
 ### Do
 
 - ✅ **Justified text** with `hyphens: auto`
-- ✅ **The 3-Sentence Rule**: Paragraphs $\le 3$ sentences (Strict Readability)
+- ✅ **The 3-Sentence Rule**: Paragraphs <= 3 sentences (Strict Readability)
 - ✅ **Specific, relatable examples** (not generic "imagine if...")
 - ✅ **Soften polarizing statements** (e.g., "prompting is table stakes" instead of "prompting is just typing")
 - ✅ **Acknowledge counterpoints** ("Yes, AI will eliminate some roles...")

@@ -150,8 +150,8 @@ python examples/scripts/evaluator.py
 | **Retrieval Hit@5 (Strict)** | **0.569** (37 / 65) | `python examples/scripts/evaluator.py` (author-measured on 1,900-session corpus) |
 | **Retrieval MRR@5 (Strict)** | **0.472** | `python examples/scripts/evaluator.py` (author-measured on 1,900-session corpus) |
 | *Retrieval Hit@5 (Lenient)* | *0.892 (deprecated)* | *Partial substring match (inflated)* |
-| **Unit & Integration Tests** | 602 passed, 7 skipped | `pytest tests/` |
-| **Secret Leaks (1,248 commits)** | 0 detected | Gitleaks in CI |
+| **Unit & Integration Tests** | 630 passed, 7 skipped | `pytest tests/` |
+| **Secret Leaks (840+ commits)** | 0 detected | Gitleaks in CI |
 | **Code Quality & Lints** | 0 ruff findings | `ruff check src/` |
 
 > **Anti-Goodhart Invariant**: Why did our reported Hit@5 shift from 0.89 to 0.57? Lenient substring matchers count partial word overlaps as "hits," inflating benchmark scores by ~36% without improving retrieval. We killed the lenient matcher because vanity metrics mask regressions. See the full breakdown: [Anti-Goodhart Benchmarking in RAG](docs/BENCHMARKS.md#the-anti-goodhart-shift-why-we-published-lower-numbers).

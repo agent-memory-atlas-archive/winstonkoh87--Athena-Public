@@ -111,7 +111,7 @@ The core boot payload is **~10K tokens** — always loaded on `/start`. The full
 
 | Asset | Count | Size |
 |-------|-------|------|
-| Protocols & Workflows | 456 protocols (422 active + 34 archived), 75 workflows | ~2.5 MB |
+| Protocols & Workflows | 459 protocols (425 active + 34 archived), 75 workflows | ~2.5 MB |
 | Case Studies | 503 (15 domains) | ~4.8 MB |
 | Session Logs | 2,100+ | ~8.5 MB |
 | Memory Files | 5,043 | — |

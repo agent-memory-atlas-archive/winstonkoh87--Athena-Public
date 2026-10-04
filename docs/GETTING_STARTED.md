@@ -28,7 +28,7 @@ source .venv/bin/activate   # macOS / Linux
 # .venv\Scripts\activate    # Windows
 
 # Lightweight install (~30 seconds)
-pip install -e .
+pip install -e ".[local]"
 
 # OR full install with vector search (~5-10 min)
 # pip install -e ".[full]"
@@ -75,7 +75,7 @@ flowchart LR
 ```
 
 > [!TIP]
-> **Already have a project?** You don't need to move it. Open `Athena/` as your workspace and navigate to your project from there, or use **Multi-Root**: `File → Add Folder to Workspace` to have both open side-by-side. See the [README](../README.md#-quickstart) for all three workspace modes.
+> **Already have a project?** You don't need to move it. Open `Athena/` as your workspace and navigate to your project from there, or use **Multi-Root**: `File → Add Folder to Workspace` to have both open side-by-side. See the [README](../README.md#quickstart) for installation options and setup instructions.
 
 ---
 

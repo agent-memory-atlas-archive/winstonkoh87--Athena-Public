@@ -13,7 +13,7 @@
 Athena/
 ├── .agent/                        # Agent configuration
 │   ├── skills/                    #   43 active skills (42 with context_trigger)
-│   │   └── protocols/             #   424 active + 34 archived = 458 total, 26 categories
+│   │   └── protocols/             #   425 active + 34 archived = 459 total, 26 categories
 │   │       └── archive/           #     34 deprecated protocols (read-only, see README)
 │   ├── workflows/                 #   55 root + 20 _domain = 75 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
