@@ -48,7 +48,7 @@ athena init --ide claude                # or: antigravity, cursor, gemini, vscod
 athena doctor                           # expect 0 failures
 ```
 
-Then type `/start` in your IDE's AI chat panel. Work normally. Type `/end` to save.
+Open your IDE and start chatting. In hook-enabled environments (Claude Code, Antigravity), `/start` boots automatically on your first message—zero warmup ritual. In other tools, just type `/start`. Work normally, then type `/end` to distill and save.
 
 > **Full install** (cloud sync + reranking): `pip install -e ".[full]"`  
 > **Note on dependencies**: Minimal extras for local use. Cloud SDKs (Supabase, Anthropic) are installed in base dependencies for hybrid search; full decoupling is scheduled in v10.1.  
@@ -74,11 +74,11 @@ Your workspace starts with a clean memory directory. You build context by workin
 
 ### The loop
 
-1. `/start` loads about 2K tokens: who you are, and your last checkpoint.
-2. Work normally.
-3. `/end` writes the session log, appends a checkpoint to `activeContext.md`, and updates `CANONICAL.md` when confirmed facts change.
+1. **Zero-touch boot**: Loads about 2K tokens (who you are, and your last checkpoint). Automatically triggered on session start in supported tools, or run via `/start`.
+2. **Work normally**: Full context window stays free for your actual code.
+3. **One-command distillation**: `/end` writes the session log, appends a checkpoint to `activeContext.md`, and updates `CANONICAL.md` when confirmed facts change.
 
-Session 50 starts where session 49 stopped. Short on tokens? Skip `/start` and just `/end` (~500 tokens).
+Session 50 starts where session 49 stopped. Short on tokens? Skip boot and just `/end` (~500 tokens).
 
 ### The layers
 
