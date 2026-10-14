@@ -109,6 +109,21 @@ class ExocortexFTS:
         ''')
         conn.commit()
 
+    EXCLUDED_DIRS: set[str] = {
+        "raw_data",
+        "cache",
+        "self_optimization",
+        "archive",
+        "node_modules",
+        ".venv",
+        ".git",
+        ".worktrees",
+    }
+    NOISE_FILENAMES: set[str] = {
+        "graphrag_source_blob.md",
+        "scripts_compressed.md",
+    }
+
     def _get_md_files(self) -> list[Path]:
         files = []
 
@@ -121,9 +136,19 @@ class ExocortexFTS:
 
         for d in dirs_to_search:
             if d.exists() and d.is_dir():
-                for root, _, filenames in os.walk(d):
+                for root, dirnames, filenames in os.walk(d):
+                    # Prune noise, cache, archive, and hidden directories in-place
+                    dirnames[:] = [
+                        dn
+                        for dn in dirnames
+                        if dn not in self.EXCLUDED_DIRS and not dn.startswith(".")
+                    ]
                     for fname in filenames:
-                        if fname.endswith(".md"):
+                        if (
+                            fname.endswith(".md")
+                            and not fname.startswith(".")
+                            and fname not in self.NOISE_FILENAMES
+                        ):
                             files.append(Path(root) / fname)
 
         return list(set(files))

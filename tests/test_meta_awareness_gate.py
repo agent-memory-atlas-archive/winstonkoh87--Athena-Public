@@ -170,7 +170,7 @@ GOLDEN = {
                                  {"T5-FELT"}),
     "counterparty-pushback":    ("the client is pushing back hard on the quote",
                                  {"T1-INBOUND"}),
-    # v3.2 golden cases — A77 lessons: intake authority over-fitting and end-user capability mismatch
+    # v3.2 golden cases — intake authority over-fitting and end-user capability mismatch
     "intake-authority-cv":      ("new capstone project intake: the examiner is a veteran SCM director",
                                  {"T6-INTAKE-AUTHORITY"}),
     "end-user-anxiety":         ("the student has to present live and she doesn't know what CAGR means",

@@ -3,7 +3,7 @@
 > **The open-source compounding context layer for AI coding agents, portable across IDEs.**
 > Persistent memory, structured reasoning, and governed execution · Own the state, rent the intelligence · MIT Licensed
 
-*Last Updated: 2026-10-11 · v10.0.5*
+*Last Updated: 2026-10-15 · v10.0.5*
 
 Athena gives any LLM persistent memory and your lived context across coding sessions. It is the **persistent compounding layer** that operates seamlessly across Claude Code, Antigravity, Cursor, Gemini CLI, and VS Code.
 

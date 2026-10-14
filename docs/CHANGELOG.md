@@ -1,6 +1,6 @@
 # Athena Changelog
 
-> **Last Updated**: 11 October 2026 <!-- 2026-10-11 -->
+> **Last Updated**: 15 October 2026 <!-- 2026-10-15 -->
 
 This document provides detailed release notes. For the brief summary, see the README changelog.
 
@@ -8,14 +8,16 @@ This document provides detailed release notes. For the brief summary, see the RE
 
 ---
 
-## [10.0.5] — FTS5 Query Resilience, Multi-Channel RRF Unification, & IPC Modernization (8 October 2026)
+## [10.0.5] — FTS5 Query Resilience, Multi-Channel RRF Unification, & IPC Modernization (15 October 2026)
 
 ### Memory & Retrieval Substrate
 - **FTS5 Query Compiler & Syntax Resilience (`fts_search.py`)**: Implemented `compile_fts_query()` to sanitize search queries, quote hyphenated alphanumeric codes (`"CS-101"`), strip syntax-critical operators (`:`, `?`, `*`), and add resilient fallback on `sqlite3.OperationalError`.
+- **Corpus Hygiene & Path Exclusion Pruning (`fts_search.py`)**: Pruned noise directories (`raw_data`, `cache`, `self_optimization`, `archive`, `node_modules`, `.venv`, `.git`, `.worktrees`), hidden dotfiles, and large compilation blobs (`graphrag_source_blob.md`, `scripts_compressed.md`) in-place during directory walking, eliminating index noise.
 - **RRF Multi-Channel Identity Unification (`search.py`)**: Added `_normalize_rrf_key()` to unify document identity keys across FTS and vector channels to repo-relative paths (`file:...`), normalized raw BM25 scores to [0.2, 1.0], bounded dynamic score modifiers strictly to [0.5, 1.5], and eliminated intra-channel duplicate counting.
 - **SearchResult Deserialization Resilience (`models.py`)**: Added explicit `path` attribute and dynamic `**extra` kwargs absorption to `SearchResult` dataclass, preventing deserialization errors during cross-module payload passing.
 
 ### Governance & Protocol Integration
+- **Server-Side Asymmetric Constraints (`mcp_server.py`)**: Bound FastMCP instructions to server-side Law #1 Ruin Prevention, Epistemic Fidelity (Law #2 & #5 fact-grounding), write-time cross-repo memory scope declarations, and secrecy constraints, enforcing invariants server-side across all calling clients.
 - **MCP IPC Modernization (`mcp_server.py`)**: Eliminated `sys.stdout` buffer hijacking in search and context tools via direct `print_output=False` payload returns; integrated `decision_screen` tool for GTO numerical calculation evaluations.
 - **Stop Governance Gate Hardening (`stop_governance_gate.py`)**: Purged non-retrieval commands from Law #6 verification, tightened Protocol 509 crisis regex against numeric collisions, added hermetic loop guard tracking, and integrated retrieval receipt verification.
 - **CodeQL Security Remediation**: Resolved GitHub CodeQL CWE-20 (alert #47) incomplete URL substring sanitization in stop governance gate with comprehensive AST regression and unit test suite.
