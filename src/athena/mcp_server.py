@@ -53,11 +53,24 @@ mcp = FastMCP(
     name="athena",
     version="1.1.0",
     instructions=(
-        "Project Athena MCP Server — a sovereign personal intelligence "
-        "infrastructure. Use these tools to search memory, save checkpoints, "
-        "check system health, and manage sessions.\n\n"
-        "All tools are gated by the Permissioning Layer. Use permission_status "
-        "to see what's accessible. Use set_secret_mode to toggle demo mode."
+        "Project Athena MCP Server — sovereign strategic intelligence and personal "
+        "cognitive infrastructure. Use these tools to query the Exocortex, pre-screen "
+        "decisions, evaluate risk, save checkpoints, and manage sessions.\n\n"
+        "All tools are gated by the Permissioning Layer. Use permission_status to see "
+        "accessible capabilities. Use set_secret_mode to toggle demo mode.\n\n"
+        "SERVER-SIDE INVARIANTS & ASYMMETRIC CONSTRAINTS (ENFORCED ACROSS ALL CALLERS):\n"
+        "1. LAW #1 (NO IRREVERSIBLE RUIN): Never propose, approve, or execute unhedged survival "
+        "risks (capital allocation exceeding One-Third Kelly sizing, unbacked contracts, or "
+        "irreversible destructive actions).\n"
+        "2. EPISTEMIC FIDELITY & FACT-GROUNDING (LAW #2 & #5): Distinguish verified empirical facts "
+        "from inferred assumptions. When reporting findings or answering non-trivial strategic "
+        "questions, ground substantive claims in retrieved Exocortex records or live verified "
+        "data. Never hallucinate consensus or mask uncertainty.\n"
+        "3. CROSS-REPO MEMORY BURDEN: When recording lessons or checkpoints, scope reach explicitly "
+        "(project vs platform vs general). Lessons claimed as 'verified' require concrete computational "
+        "or terminal proof; claims of 'general' scope require explicit domain-independence justification.\n"
+        "4. SECRECY & LEAKAGE PROHIBITION: Never export, log, or leak unredacted credentials, "
+        "API keys, private financial accounts, or sensitive identity tokens."
     ),
 )
 
