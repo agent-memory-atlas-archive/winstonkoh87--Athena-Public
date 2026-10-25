@@ -13,11 +13,11 @@
 Athena/
 ├── .agent/                        # Agent configuration
 │   ├── skills/                    #   44 active skills (43 with context_trigger)
-│   │   └── protocols/             #   427 active + 34 archived = 461 total, 26 categories
+│   │   └── protocols/             #   428 active + 34 archived = 462 total, 26 categories
 │   │       └── archive/           #     34 deprecated protocols (read-only, see README)
 │   ├── workflows/                 #   56 root + 21 _domain = 77 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
-│   ├── scripts/                   #   300 automation scripts
+│   ├── scripts/                   #   299 automation scripts
 │   ├── telemetry/                 #   Retrieval instrumentation logs + tier maps
 │   ├── config/                    #   Agent manifests + CAPS.json (canonical counts)
 │   ├── CLUSTER_INDEX.md           #   15 cognitive clusters (routing map)
@@ -27,9 +27,9 @@ Athena/
 │   └── archive_skills/            #   17 sunset skills (read-only, see README)
 │
 ├── .context/                      # Personal knowledge base
-│   ├── memories/                  #   5,626 memory files (session logs + case studies + profile)
+│   ├── memories/                  #   5,636 memory files (session logs + case studies + profile)
 │   │   ├── session_logs/          #     Dated session records
-│   │   ├── case_studies/          #     604 documented patterns (14 domains)
+│   │   ├── case_studies/          #     605 documented patterns (14 domains)
 │   │   ├── profile/               #     Core profile, psychology, voice DNA
 │   │   └── observations/          #     Session insights
 │   ├── memory_bank/               #   10 boot files (activeContext, userContext,
@@ -174,7 +174,7 @@ Full cluster details: `CLUSTER_INDEX.md` (private workspace — see table above 
 | Cognitive Domains | 8 | Memory activation targets (priority-ordered for tie-breaking) |
 | Cognitive Clusters | 15 | Co-activating procedural memory bundles |
 | Skills | 44 active (17 archived) |
-| Protocols | 427 active (34 archived; 461 total) |
+| Protocols | 428 active (34 archived; 462 total) |
 | Workflows | 77 (56 root + 21 _domain/) |
 
 ---

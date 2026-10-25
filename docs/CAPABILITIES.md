@@ -9,17 +9,17 @@
 
 | Metric | Count |
 |--------|-------|
-| **Automation Scripts** | 300 |
-| **Decision Protocols** | 461 (427 active + 34 archived, 26 categories) |
+| **Automation Scripts** | 299 |
+| **Decision Protocols** | 462 (428 active + 34 archived, 26 categories) |
 | **Orchestration Workflows** | 77 (56 root + 21 domain) |
 | **Skills** | 44 active (43 with context_trigger), 17 archived |
-| **Case Studies** | 604 (15 domains) |
+| **Case Studies** | 605 (15 domains) |
 | **Total Sessions** | 2,100+ |
-| **Memory Files** | 5,626 |
+| **Memory Files** | 5,636 |
 
 ---
 
-## 🔧 Automation Scripts (300)
+## 🔧 Automation Scripts (299)
 
 ### Session Management
 
@@ -99,7 +99,7 @@
 
 ---
 
-## 📜 Decision Protocols (461 total: 427 active + 34 archived, 26 categories)
+## 📜 Decision Protocols (462 total: 428 active + 34 archived, 26 categories)
 
 ### Architecture (29)
 
