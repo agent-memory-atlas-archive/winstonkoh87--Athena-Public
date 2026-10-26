@@ -7,7 +7,8 @@ This directory contains executable examples, protocol specifications, templates,
 - [protocols/](protocols/) — Public reference protocols across Decision Science, Workflow Orchestration, Engineering, and Risk Management.
 - [workflows/](workflows/) — Domain-specific slash-command execution plans and multi-turn workflows.
 - [templates/](templates/) — Structured templates for session logs, task tracking, and decision registers.
-- [prompts/](prompts/) — Battle-tested prompt libraries for strategic reframing, bias reduction, and deep analytical reasoning.
+- [agents/](agents/) — Sample autonomous agent configurations and persona cards.
+- [case_studies/](case_studies/) — Sanitized case studies illustrating real-world application of cognitive protocols.
 
 ## 🚀 Usage
 
