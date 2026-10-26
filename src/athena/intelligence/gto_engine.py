@@ -2126,7 +2126,7 @@ def screen_ruin(
         elif isinstance(data, RuinResult):
             res = data
         elif isinstance(data, dict):
-            res = compute_ruin_probability(**data)  # type: ignore[arg-type]
+            res = compute_ruin_probability(**data)
         else:
             raise TypeError(f"ruin_inputs for '{cand}' must be dict, RuinResult, or RuinEstimate, got {type(data)}")
 

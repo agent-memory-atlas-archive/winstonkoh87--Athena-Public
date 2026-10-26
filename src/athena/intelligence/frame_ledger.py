@@ -47,7 +47,7 @@ import re
 import statistics
 import sys
 from collections.abc import Iterable
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, fields
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -313,7 +313,7 @@ class FrameRecord:
                 str(payload.get(k, "")) for k in ("session", "literal_request", "candidate_reframe")
             ).lower()
             payload["origin"] = "audit" if ("redteam" in blob or "red-team" in blob) else "user"
-        known = set(cls.__dataclass_fields__)  # type: ignore[attr-defined]
+        known = {f.name for f in fields(cls)}
         unknown = set(payload) - known
         if unknown:
             raise ValidationError(f"unknown frame fields: {sorted(unknown)}")

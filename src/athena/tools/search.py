@@ -13,6 +13,8 @@ import os
 import re
 import subprocess
 import sys
+import threading
+import time
 from collections import defaultdict
 from concurrent.futures import ALL_COMPLETED, ThreadPoolExecutor, wait
 from datetime import datetime, timezone
@@ -433,14 +435,24 @@ def collect_vectors(
         threshold = 0.3
         match_count = limit * 2  # Fetch slightly more to account for filtering
 
-        rpc_result = client.rpc(
-            "search_all_vectors",
-            {
-                "query_embedding": query_embedding,
-                "match_threshold": threshold,
-                "match_count": match_count,
-            }
-        ).execute()
+        rpc_result = None
+        max_attempts = 2
+        for attempt in range(max_attempts):
+            try:
+                rpc_result = client.rpc(
+                    "search_all_vectors",
+                    {
+                        "query_embedding": query_embedding,
+                        "match_threshold": threshold,
+                        "match_count": match_count,
+                    }
+                ).execute()
+                break
+            except Exception as rpc_err:
+                if attempt < max_attempts - 1:
+                    time.sleep(0.5)
+                else:
+                    raise rpc_err
 
         # The RPC returns source_table = document_chunks.table_name, which uses the
         # PLURAL Supabase table names ("sessions", "case_studies", ...). WEIGHTS keys
@@ -463,7 +475,7 @@ def collect_vectors(
             "entities": "entity",
         }
 
-        for item in rpc_result.data or []:
+        for item in (rpc_result.data if rpc_result else None) or []:
             raw_label = item.get("source_table", "unknown")
             type_label = TABLE_TO_TYPE.get(raw_label, raw_label)
             path = item.get("file_path", "")
@@ -554,7 +566,7 @@ def collect_vectors(
 
 def collect_filenames(query: str) -> list[SearchResult]:
     """Collect filename matches in Project Root — splits query into keyword tokens."""
-    results = []
+    results: list[SearchResult] = []
     stopwords = {"the", "and", "for", "is", "in", "to", "of", "a", "an"}
     keywords = [w for w in query.split() if len(w) >= 2 and w.lower() not in stopwords]
     if not keywords:
@@ -1306,14 +1318,17 @@ def run_search(
             def handler(signum, frame):
                 raise TimeoutError("Embedding fetch timed out")
 
-            # Set the signal handler and a 15-second alarm (allows exponential backoff retries)
-            signal.signal(signal.SIGALRM, handler)
-            signal.alarm(15)
+            # Set the signal handler and a 15-second alarm (main thread only; worker threads bypass signal)
+            is_main = threading.current_thread() is threading.main_thread()
+            if is_main:
+                signal.signal(signal.SIGALRM, handler)
+                signal.alarm(15)
 
             try:
                 query_embedding = get_embedding(query)
             finally:
-                signal.alarm(0)  # Disable alarm
+                if is_main:
+                    signal.alarm(0)  # Disable alarm
 
             semantic_hit = (
                 cache.get_semantic(query_embedding, scope=search_scope)

@@ -130,11 +130,35 @@ SKILL_REGISTRY: dict[str, dict] = {
         ],
         "hint": "Comprehensive paid advertising audit and optimization.",
     },
-    # --- Psychology ---
-    "Psychology L1-L5": {
-        "primary": ["attachment", "emotional-pattern", "stress-response", "growth"],
-        "secondary": ["psychology", "therapy", "fantasy", "validation", "boundary"],
-        "hint": "Layered psychological architecture. Deep self-analysis frameworks.",
+    # --- Psychology & Behavioral Profiling (Protocol 585) ---
+    "Protocol 585: Behavioral Investigative Analysis (L1-L5 & FBI Profiling)": {
+        "primary": [
+            "attachment",
+            "emotional-pattern",
+            "stress-response",
+            "growth",
+            "psychological profile",
+            "behavioral profile",
+            "mo vs signature",
+            "l1-l5",
+            "fbi profiling",
+            "behavioral investigative analysis",
+        ],
+        "secondary": [
+            "psychology",
+            "therapy",
+            "fantasy",
+            "validation",
+            "boundary",
+            "profile",
+            "fbi",
+            "signature",
+            "staging",
+            "counterparty",
+            "isomorphism",
+            "motive",
+        ],
+        "hint": "6-Stage FBI Behavioral Investigative Analysis (BIA), MO vs Signature vs Staging, and L1-L5 psyche stack.",
     },
     # --- Sandbox ---
     "Sandbox Execution": {

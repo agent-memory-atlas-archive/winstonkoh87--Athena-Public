@@ -53,6 +53,11 @@ T1_INBOUND = [
     # Co-founder / partner counterparty moves
     r"\b(co-?founder|partner|investor|shareholder|board)\b.{0,25}\b(wants?|asked|demanded|proposed|redo|chang\w*|restructur\w*|renegotiat\w*|dilut\w*)\b",
     r"\b(redo|restructur\w*|renegotiat\w*)\b.{0,20}\b(cap table|equity|terms|agreement|deal|split)\b",
+    # T1e — COUNTERPARTY & BEHAVIORAL PROFILING (Protocol 585 BIA)
+    r"\bprofile (him|her|them|this (guy|girl|person|client|seller|buyer|counterparty|founder|partner)|my (new )?(client|partner|boss|friend|trainer|coach))\b",
+    r"\b(psychological|behavioral|fbi) profile\b.{0,25}\b(on|of|for)\b",
+    r"\bwhat (kind|type|sort) of (person|guy|girl|client|seller|buyer|counterparty|partner) is\b",
+    r"\b(mo|modus operandi) (and|vs\.?|versus) signature\b",
 ]
 
 T2_OUTBOUND = [
@@ -197,6 +202,8 @@ NEGATIVE = [
     r"(update|compile|draft|write|edit|review) (the )?(HR|retrenchment|landlord|contract|performance) (policy|doc|report|stat|template|guide|form|page|section)",
     r"(search|grep|find|list|index) .{0,20}(HR|retrench|landlord|contract|performance)",
     r"(rename|refactor|move|delete|archive) .{0,20}(HR|retrench|landlord|contract|performance)",
+    r"\b(cprofile|cpu profile|memory profile)\b",
+    r"(update|compile|draft|write|edit|review) (the )?(user )?profile (doc|file|card|page|section)",
 ]
 
 REMINDER_TEMPLATE = """<system-reminder>

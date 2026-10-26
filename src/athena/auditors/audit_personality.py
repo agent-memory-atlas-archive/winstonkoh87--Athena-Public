@@ -19,6 +19,7 @@ import glob
 import re
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 # Paths
 CONTEXT_DIR = Path(__file__).parent.parent.parent / ".context"
@@ -136,7 +137,7 @@ MBTI_MARKERS = {
 }
 
 # Current baseline (from User_Profile_Core.md)
-CURRENT_PROFILE = {
+CURRENT_PROFILE: dict[str, Any] = {
     "MBTI": "INTJ-T",
     "Big_Five": {
         "Neuroticism": 85,
@@ -165,7 +166,7 @@ def get_latest_session_log():
 
 def extract_signals(session_content: str) -> dict:
     """Scan session content for signals requiring Living Doc updates."""
-    signals = {doc: [] for doc in LIVING_DOCS}
+    signals: dict[str, list[str]] = {doc: [] for doc in LIVING_DOCS}
 
     for doc, patterns in SIGNAL_PATTERNS.items():
         for pattern in patterns:
@@ -182,7 +183,7 @@ def extract_signals(session_content: str) -> dict:
 
 def detect_personality_drift(session_content: str) -> dict:
     """Detect signals that suggest personality score changes."""
-    drift = {
+    drift: dict[str, Any] = {
         "Big_Five": {},
         "MBTI_functions": {},
         "recommendations": []

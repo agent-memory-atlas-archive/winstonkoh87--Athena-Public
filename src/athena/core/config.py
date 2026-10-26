@@ -7,6 +7,7 @@ Centralized configuration and path discovery.
 
 import os
 from pathlib import Path
+from typing import Any
 
 # Global Cache for PROJECT_ROOT
 _PROJECT_ROOT_CACHE: Path | None = None
@@ -71,7 +72,7 @@ def set_project_root(root: Path | str | None) -> Path:
     try:
         import sys
         if "athena.boot.constants" in sys.modules:
-            bconst = sys.modules["athena.boot.constants"]
+            bconst: Any = sys.modules["athena.boot.constants"]
             bconst.PROJECT_ROOT = PROJECT_ROOT
             bconst.AGENT_DIR = AGENT_DIR
             bconst.CONTEXT_DIR = CONTEXT_DIR

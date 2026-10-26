@@ -1,0 +1,28 @@
+# Athena Documentation Index
+
+Welcome to the documentation for **Project Athena** — a local-first cognitive infrastructure, decision engine, and governance harness for AI agents.
+
+## 🗺️ Documentation Map
+
+### Architecture & System Design
+- [ARCHITECTURE.md](ARCHITECTURE.md) — Comprehensive technical blueprint, core architecture, memory subsystems, and biological stack model.
+- [SEMANTIC_SEARCH.md](SEMANTIC_SEARCH.md) — Hybrid vector search architecture, Reciprocal Rank Fusion (RRF), cross-encoder re-ranking, and caching layer.
+- [USER_DRIVEN_RSI.md](USER_DRIVEN_RSI.md) — Recursive Self-Improvement (RSI) protocol driven by user signals, feedback loops, and calibration mechanisms.
+- [CAPABILITIES.md](CAPABILITIES.md) — Shipped system capabilities, operational status, and verification matrix.
+
+### Onboarding & Guides
+- [GETTING_STARTED.md](GETTING_STARTED.md) — Step-by-step installation, environment setup, and CLI verification.
+- [YOUR_FIRST_SESSION.md](YOUR_FIRST_SESSION.md) — Hands-on walkthrough of a complete agent session lifecycle (`/start` to `/end`).
+- [FAQ.md](FAQ.md) — Frequently asked questions regarding local-first deployment, vector synchronization, and IDE integration.
+
+### Governance, Philosophy & Principles
+- [MANIFESTO.md](MANIFESTO.md) — Core philosophy: "Own the state. Rent the intelligence." Augmentation over delegation.
+- [ABOUT_ME.md](ABOUT_ME.md) — Background, origin story, and systemic rationale behind Athena's cognitive infrastructure.
+- [CHANGELOG.md](CHANGELOG.md) — Detailed version history, chronological releases, and technical migration notes.
+
+### Protocols
+- [protocols/](protocols/) — Public examples of structured decision protocols, adversarial reviews, and workflow contracts.
+
+---
+
+> For questions or community contributions, see [CONTRIBUTING.md](../CONTRIBUTING.md) and [SECURITY.md](../SECURITY.md).

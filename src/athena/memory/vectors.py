@@ -15,7 +15,11 @@ import sqlite3
 import sys
 import threading
 import time
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from typing import Any
+
+from athena.core.config import PROJECT_ROOT
 
 # This module's stdout belongs to callers that parse it. run_search(json_output=
 # True) pipes stdout straight into json.loads, so a single diagnostic line here
@@ -43,6 +47,85 @@ _embedding_cache_lock = threading.Lock()
 _embedding_semaphore = threading.Semaphore(1)
 _consecutive_429_count = 0
 _consecutive_429_lock = threading.Lock()
+
+_DEFAULT_API_USAGE_LOG_PATH = PROJECT_ROOT / ".agent" / "telemetry" / "api_usage.jsonl"
+API_USAGE_LOG_PATH = _DEFAULT_API_USAGE_LOG_PATH
+_api_usage_lock = threading.Lock()
+
+
+def record_api_usage(endpoint: str, texts_count: int, total_chars: int, status_code: int) -> None:
+    """Log structured API usage telemetry to .agent/telemetry/api_usage.jsonl (TD-081 Action 3)."""
+    try:
+        path = API_USAGE_LOG_PATH
+        if path == _DEFAULT_API_USAGE_LOG_PATH and os.environ.get("PYTEST_CURRENT_TEST"):
+            return
+        path.parent.mkdir(parents=True, exist_ok=True)
+        record = {
+            "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "model": "gemini-embedding-001",
+            "endpoint": endpoint,
+            "texts": texts_count,
+            "chars": total_chars,
+            "est_tokens": max(1, total_chars // 4),
+            "status": status_code,
+        }
+        with _api_usage_lock, open(path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(record) + "\n")
+    except Exception:
+        pass
+
+
+def get_api_usage_velocity(window_hours: float = 24.0, telemetry_file: Path | None = None) -> dict[str, Any]:
+    """Calculate rolling API consumption velocity and rate-limit hits over window_hours."""
+    path = telemetry_file or API_USAGE_LOG_PATH
+    summary = {
+        "requests": 0,
+        "texts": 0,
+        "chars": 0,
+        "est_tokens": 0,
+        "rate_limit_hits": 0,
+        "depleted_hits": 0,
+        "window_hours": window_hours,
+    }
+    if (
+        telemetry_file is None
+        and path == _DEFAULT_API_USAGE_LOG_PATH
+        and os.environ.get("PYTEST_CURRENT_TEST")
+    ):
+        return summary
+    if not path.exists():
+        return summary
+
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=window_hours)
+    try:
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    rec = json.loads(line)
+                    ts_str = rec.get("ts")
+                    if ts_str:
+                        rec_dt = datetime.fromisoformat(ts_str)
+                        if rec_dt.tzinfo is None:
+                            rec_dt = rec_dt.replace(tzinfo=timezone.utc)
+                        if rec_dt < cutoff:
+                            continue
+                    summary["requests"] += 1
+                    summary["texts"] += rec.get("texts", 0)
+                    summary["chars"] += rec.get("chars", 0)
+                    summary["est_tokens"] += rec.get("est_tokens", 0)
+                    status = rec.get("status", 200)
+                    if status == 429:
+                        summary["rate_limit_hits"] += 1
+                    elif status == 402:
+                        summary["depleted_hits"] += 1
+                except Exception:
+                    continue
+    except Exception:
+        pass
+    return summary
 
 
 class EmbeddingQuotaExhausted(RuntimeError):
@@ -291,7 +374,7 @@ def get_embedding(text: str, max_retries: int = 7) -> list[float]:
     # which is logged below — clear-text secret logging. The header is never logged.
     url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent"
     headers = {"x-goog-api-key": api_key}
-    payload = {
+    payload: dict[str, Any] = {
         "model": "models/gemini-embedding-001",
         "content": {"parts": [{"text": text}]},
     }
@@ -300,7 +383,8 @@ def get_embedding(text: str, max_retries: int = 7) -> list[float]:
     for attempt in range(max_retries):
         with _embedding_semaphore:
             try:
-                response = requests.post(url, json=payload, headers=headers, timeout=60)  # type: ignore[arg-type]
+                response = requests.post(url, json=payload, headers=headers, timeout=60)
+                record_api_usage("embedContent", 1, len(text), response.status_code)
 
                 # If client error that is not 429, do not retry! It is non-retriable.
                 if response.status_code >= 400 and response.status_code < 500 and response.status_code != 429:
@@ -421,7 +505,7 @@ def get_embeddings_batch(
 
     for start in range(0, len(misses), batch_size):
         group = misses[start : start + batch_size]
-        payload = {
+        payload: dict[str, Any] = {
             "requests": [
                 {"model": "models/gemini-embedding-001", "content": {"parts": [{"text": t}]}}
                 for _, t, _ in group
@@ -431,7 +515,8 @@ def get_embeddings_batch(
         for attempt in range(max_retries):
             with _embedding_semaphore:
                 try:
-                    resp = requests.post(url, json=payload, headers=headers, timeout=120)  # type: ignore[arg-type]
+                    resp = requests.post(url, json=payload, headers=headers, timeout=120)
+                    record_api_usage("batchEmbedContents", len(group), sum(len(t) for _, t, _ in group), resp.status_code)
 
                     # Fail immediately on non-retriable client errors
                     if resp.status_code >= 400 and resp.status_code < 500 and resp.status_code != 429:
