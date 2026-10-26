@@ -369,8 +369,9 @@ def test_derive_ruin_floors_and_gto_screen():
         "PathB_Safe": {"win_rate": 0.60, "payoff_ratio": 1.5, "risk_per_trade_fraction": 0.02},
     }
 
-    # derive_ruin_floors produces floor on Robustness
-    floors = derive_ruin_floors(candidates, ruin_inputs, target_criterion="Robustness", floor_value=5.0)
+    # derive_ruin_floors produces floor on Robustness (deprecated API check)
+    with pytest.deprecated_call():
+        floors = derive_ruin_floors(candidates, ruin_inputs, target_criterion="Robustness", floor_value=5.0)
     assert floors == {"Robustness": 5.0}
 
     # gto_screen auto-derives from ruin_inputs and vetoes PathA
@@ -507,8 +508,8 @@ def test_cli_barbell_and_devaluation():
     from athena.intelligence.gto_engine import main
 
     assert main(["--action", "barbell", "--fortress", "90000", "--arena", "10000", "--burn", "2500"]) == 0
-    assert main(["--action", "devaluation", "--current-burn", "10000", "--reduced-burn", "3000", "--capital", "30000"]) == 0
-    assert main(["--action", "borrow-audit", "--exposure", "10000", "--capital", "100000"]) == 0
+    assert main(["--action", "devaluation", "--current-burn", "10000", "--reduced-burn", "3000", "--liquid-reserves", "30000"]) == 0
+    assert main(["--action", "borrow-audit", "--exposure", "10000", "--net-worth", "100000"]) == 0
 
 
 def test_json_output_barbell():
@@ -546,7 +547,7 @@ def test_json_output_devaluation_infinite_runway():
             "--action", "devaluation",
             "--current-burn", "12000",
             "--reduced-burn", "3500",
-            "--capital", "50000",
+            "--liquid-reserves", "50000",
             "--post-shock-income", "4000",
             "--json",
         ])
@@ -573,7 +574,7 @@ def test_json_output_borrow_audit():
         rc = main([
             "--action", "borrow-audit",
             "--exposure", "25000",
-            "--capital", "100000",
+            "--net-worth", "100000",
             "--freeze-power",
             "--unhedged-credit",
             "--json",
