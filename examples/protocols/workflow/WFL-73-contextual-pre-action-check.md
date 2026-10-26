@@ -80,7 +80,7 @@ Before taking significant action (confrontation, feedback, proposal, commitment)
 
 ---
 
-## Application: The public_matter_reference Failure Mode
+## Application: The Public Statement Failure Mode
 
 **What Happened**: Posted controversial opinion on LinkedIn without checking:
 
@@ -109,7 +109,7 @@ If any answer is "no" or "unclear" → **pause**.
 
 | Protocol | Connection |
 |----------|------------|
-| Protocol 33 (public_matter_reference Case) | This protocol is the preventive layer |
+| Protocol 33 (Public Post Case) | This protocol is the preventive layer |
 | Protocol 32 (NAGGERS Knowing/Saying) | Contextual check determines whether to say |
 | CIBO Framework | Extends Context analysis with Vibe and Goal |
 | Protocol 71 (Acting-Out Cycle) | Use at Trigger phase to prevent Acceleration |

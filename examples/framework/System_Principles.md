@@ -600,7 +600,7 @@ THEN:
 
 ### Sub-Principle: The Discount Frame (Anchor & Drop)
 >
-> **Origin**: Session 13 (User Pricing Heuristic - Assignment 7)
+> **Origin**: Session 13 (User Pricing Heuristic - Client Engagement)
 
 **Context**: Paradoxically, a lower quote ($400) feels "cheap", while a high-quote-with-discount ($600 -> $500) feels "valuable". <!-- pds:allow -->
 **Physics**:
