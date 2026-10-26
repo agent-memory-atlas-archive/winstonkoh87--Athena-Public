@@ -27,9 +27,9 @@ Athena/
 │   └── archive_skills/            #   17 sunset skills (read-only, see README)
 │
 ├── .context/                      # Personal knowledge base
-│   ├── memories/                  #   5,636 memory files (session logs + case studies + profile)
+│   ├── memories/                  #   5,658 memory files (session logs + case studies + profile)
 │   │   ├── session_logs/          #     Dated session records
-│   │   ├── case_studies/          #     605 documented patterns (14 domains)
+│   │   ├── case_studies/          #     607 documented patterns (14 domains)
 │   │   ├── profile/               #     Core profile, psychology, voice DNA
 │   │   └── observations/          #     Session insights
 │   ├── memory_bank/               #   10 boot files (activeContext, userContext,
@@ -249,8 +249,8 @@ The proactive layer can **inject context** into the reactive layer — e.g., whe
 | Core Identity | `/start` | ~2K |
 | Memory Bank (3 files) | `/start` | ~3.5K |
 | Boot orchestrator | `/start` | ~2K |
-| CANONICAL Tier 1 (always boot) | `/start` | ~16K (29 entries) |
-| CANONICAL Tier 2 (domain-triggered) | Query match | ~41K (140 entries, loaded on demand) |
+| CANONICAL Tier 1 (always boot) | `/start` | ~16K (40 entries) |
+| CANONICAL Tier 2 (domain-triggered) | Query match | ~41K (156 entries, loaded on demand) |
 | Protocol (on-demand) | Attention gate pass | ~3-7K each |
 | Skill cluster (on-demand) | `context_trigger` match | ~5-15K per cluster |
 | Full context | `/fullload` | ~28K |
@@ -295,8 +295,8 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 
 | Index | Size | Purpose |
 |:------|-----:|:--------|
-| `CLUSTER_INDEX.md` | 18KB | Routing map (15 clusters → 26 skills) |
-| `WORKFLOW_INDEX.md` | 6KB | Workflow registry (66 workflows) |
+| `CLUSTER_INDEX.md` | 18KB | Routing map (15 clusters → 44 skills) |
+| `WORKFLOW_INDEX.md` | 6KB | Workflow registry (77 workflows) |
 | `PROTOCOL_SUMMARIES.md` | 24KB | All-protocol quick-lookup |
 | `KNOWLEDGE_GRAPH.md` | 15KB | Concept relationships |
 
@@ -304,7 +304,7 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 
 ---
 
-## Protocol Taxonomy (34 active categories)
+## Protocol Taxonomy (26 active categories)
 
 | Category | Count | Category | Count |
 |:---------|------:|:---------|------:|
@@ -323,12 +323,12 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 
 ## CANONICAL Progressive Disclosure (v9.8.0)
 
-Section 4 (Strategic Frameworks) contains 172 entries, ~58KB. Progressive disclosure tiers:
+Section 4 (Strategic Frameworks) contains 199 entries, ~58KB. Progressive disclosure tiers:
 
 | Tier | Count | Size | Loading Strategy |
 |:-----|------:|-----:|:-----------------|
-| Tier 1 (Always Boot) | 29 | ~16KB | Loaded on every `/start` — universal laws, identity truths |
-| Tier 2 (Domain-Triggered) | 140 | ~41KB | Loaded when query matches domain keywords (trading, pricing, etc.) |
+| Tier 1 (Always Boot) | 40 | ~16KB | Loaded on every `/start` — universal laws, identity truths |
+| Tier 2 (Domain-Triggered) | 156 | ~41KB | Loaded when query matches domain keywords (trading, pricing, etc.) |
 | Tier 3 (On-Demand) | 3 | ~1KB | Loaded only via explicit search hit |
 
 **Boot savings**: 72% of Section 4 deferred = ~42KB saved per session.
