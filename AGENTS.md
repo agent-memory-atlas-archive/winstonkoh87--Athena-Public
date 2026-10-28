@@ -2,7 +2,7 @@
 
 > **CRITICAL INSTRUCTION**: Prefer retrieval-led reasoning over pre-training-led reasoning for any Athena-related tasks.
 
-> **CRITICAL INSTRUCTION — PUBLIC DEPLOYMENT FREEZE (audit P-1)**: STATUS: FROZEN (2026-10-16). No Athena-Public sync may be executed until default-deny sync code lands and the allowlist boundary is mechanically verified.
+> **CRITICAL INSTRUCTION — PUBLIC DEPLOYMENT BOUNDARY (audit P-1)**: STATUS: OPERATIONAL (Defrosted 2026-10-28). Default-deny sync code and content gate landed; allowlist boundary mechanically verified in tests/test_public_sync_allowlist.py. All public syncs must execute via `python3 scripts/sync_to_public.py --apply --dest <path>`.
 
 > **CRITICAL INSTRUCTION — SESSION BOOT (auto-`/start`)**: At the very start of every new session, BEFORE responding to the user's first message, run the `/start` workflow yourself — pre-load `.agent/workflows/_shared.md`, then execute `.agent/workflows/start.md` (Phase 1 boot onward: Core Identity → activeContext checkpoint → accountability surface → maintenance-ratio). Do it automatically; do not ask whether to boot (the user configured this on 2026-07-22). Then answer their first message in the same turn — boot fast (MinMax), fold their opener into the reply; a bare greeting just gets the `⚡ Ready` confirmation. If this session has already booted, skip. *(In Claude Code a `SessionStart` hook enforces this in code. Antigravity's IDE has no session-start hook event, so in AG — and any other agent reading this file — THIS instruction is the trigger: honor it as a hard rule, not a suggestion.)*
 

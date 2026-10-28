@@ -11,7 +11,6 @@ Simulates the core Athena flow:
 import os
 import shutil
 import subprocess
-
 from PIL import Image, ImageDraw, ImageFont
 
 WIDTH = 1040

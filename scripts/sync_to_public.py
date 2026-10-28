@@ -122,6 +122,58 @@ def verify_blocklist_gate(blocklist_path: Path) -> None:
         sys.exit(2)
 
 
+def load_public_owned(manifest_data: dict, repo_root: Path) -> set[Path]:
+    """Files whose PUBLIC copy is canonical — sync must never overwrite them.
+
+    Some public files are deliberately sanitized variants of their private
+    counterparts (names, private folders, private topics replaced). The
+    2026-10-28 sync (Athena-Public 0fed626) copied the raw private versions
+    over them and published the very strings the sanitization removed; it also
+    reverted every public-only fix (CodeQL #12/#48/#49, link and version
+    repairs). Listing a file here keeps it out of the copy set entirely.
+    """
+    return {repo_root / entry for entry in (manifest_data.get("public_owned", []) or [])}
+
+
+def _load_privacy_scanner():
+    """The CI gate's own scanner, so the pre-copy check cannot drift from it."""
+    import importlib.util
+
+    scanner_path = REPO_ROOT / ".github" / "scripts" / "privacy_scan.py"
+    if not scanner_path.exists():
+        sys.stderr.write(f"FATAL: privacy scanner missing at {scanner_path}. Refusing to sync.\n")
+        sys.exit(2)
+    spec = importlib.util.spec_from_file_location("athena_privacy_scan", scanner_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def scan_sync_set(files: set[Path], private_patterns_path: Path) -> list[dict]:
+    """Content gate: scan every file about to be published.
+
+    verify_blocklist_gate() only proves the blocklist EXISTS; on its own it
+    could never fail on what a file contains. This is the check that does —
+    the same structural blocklist plus private patterns the public CI enforces
+    via the PRIVACY_EXTRA_PATTERNS secret, applied BEFORE anything is copied.
+    """
+    scanner = _load_privacy_scanner()
+    import re
+
+    patterns = scanner.load_blocklist()
+    for line in private_patterns_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#"):
+            patterns.append(re.compile(line, re.IGNORECASE))
+
+    violations: list[dict] = []
+    for f in sorted(files):
+        if f.suffix.lower() not in scanner.SCANNABLE_EXTENSIONS:
+            continue
+        violations.extend(scanner.scan_file(f, patterns))
+    return violations
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Default-deny public repo synchronizer")
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST, help="Path to manifest")
@@ -143,6 +195,30 @@ def main() -> int:
         sys.exit(2)
 
     print(f"Manifest validated successfully: {len(resolved_files)} files resolved.")
+
+    public_owned = load_public_owned(manifest_data, REPO_ROOT)
+    skipped = resolved_files & public_owned
+    resolved_files -= public_owned
+    if skipped:
+        print(f"Skipping {len(skipped)} public-owned file(s) (public copy is canonical):")
+        for p in sorted(skipped):
+            print(f"  [public-owned] {p.relative_to(REPO_ROOT)}")
+
+    # Content gate — runs in dry-run too, and before any copy, so a leak is
+    # caught while it is still only a plan.
+    violations = scan_sync_set(resolved_files, args.blocklist)
+    if violations:
+        sys.stderr.write(
+            f"FATAL: {len(violations)} privacy violation(s) in the sync set — nothing copied.\n"
+        )
+        for v in violations:
+            # Location and pattern index only: echoing the matched line or the
+            # private pattern would publish it to terminal logs and transcripts.
+            sys.stderr.write(f"  - {v['file']}:{v['line']}\n")
+        sys.stderr.write(
+            "Sanitize the file at source, or list it under public_owned in the manifest.\n"
+        )
+        return 2
 
     # Display files with SHA256 in dry-run mode
     for p in sorted(resolved_files):
