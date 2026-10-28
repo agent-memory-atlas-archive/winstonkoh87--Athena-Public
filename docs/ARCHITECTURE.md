@@ -1,6 +1,6 @@
 # Athena — Architecture Reference
 
-> **Last Updated**: 24 September 2026
+> **Last Updated**: 28 October 2026
 > **Version**: v10.0.6
 > **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
 > **Bionic Unit Spec**: `BIONIC_UNIT_SPEC.md` (private workspace) — the definitive human-AI augmentation mapping
@@ -53,16 +53,17 @@ Athena/
 ├── tests/                         # Test suite (35 files, 400 tests, 100% passing)
 ├── supabase/                      # Cloud vector store migrations
 │
-├── Athena-Public/                 # Public mirror (sibling repo)
 ├── docs/                          # Documentation (80 files)
-├── FX Trading/                    # Active trading workspace
-├── media-factory/                 # Content generation pipeline
 │
-├── README.md                      # Private repo README
-├── ARCHITECTURE.md                # This file
+├── README.md                      # Public repository README
+├── ARCHITECTURE.md                # System Architecture Reference
 ├── pyproject.toml                 # Python packaging
-└── .env                           # API keys (gitignored)
+└── .env.example                   # Environment template
 ```
+
+> **Decoupled Workspaces (External)**:
+> - **FX Trading Desk**: Isolated at `~/Desktop/FX Daytrading/` (independent repository). Athena supplies cognitive governance, risk gates (`trading-risk-gate`, `structural-trading-gate`), and variance shields (Law #1), while trade execution, MT4/MT5 scripts, and tick logs remain isolated.
+> - **Media Production**: Centralized in `~/.remotion-studio` and Vertex AI studio tools (`imagen-studio`, `veo-choreographer`). Binary renders and audio assets are never tracked in the core cognitive repository.
 
 ---
 
