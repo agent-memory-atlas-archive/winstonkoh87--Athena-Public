@@ -3,7 +3,7 @@
 > **Last Updated**: 28 October 2026
 > **Version**: v10.0.6
 > **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
-> **Bionic Unit Spec**: `BIONIC_UNIT_SPEC.md` (private workspace) — the definitive human-AI augmentation mapping
+> **Bionic Unit Spec**: [BIONIC_UNIT_SPEC.md](.context/specs/BIONIC_UNIT_SPEC.md) — the definitive human-AI augmentation mapping
 
 ---
 
@@ -14,7 +14,7 @@ Athena/
 ├── .agent/                        # Agent configuration
 │   ├── skills/                    #   44 active skills (43 with context_trigger)
 │   │   └── protocols/             #   428 active + 34 archived = 462 total, 26 categories
-│   │       └── archive/           #     34 deprecated protocols (read-only, see README)
+│   │       └── archive/           #     15 deprecated protocols (read-only, see README)
 │   ├── workflows/                 #   56 root + 21 _domain = 77 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
 │   ├── scripts/                   #   299 automation scripts
@@ -27,9 +27,9 @@ Athena/
 │   └── archive_skills/            #   17 sunset skills (read-only, see README)
 │
 ├── .context/                      # Personal knowledge base
-│   ├── memories/                  #   5,636 memory files (session logs + case studies + profile)
+│   ├── memories/                  #   5,700 memory files (session logs + case studies + profile)
 │   │   ├── session_logs/          #     Dated session records
-│   │   ├── case_studies/          #     605 documented patterns (14 domains)
+│   │   ├── case_studies/          #     611 documented patterns (14 domains)
 │   │   ├── profile/               #     Core profile, psychology, voice DNA
 │   │   ├── observations/          #     Session insights
 │   │   └── visualizations/        #     Charts, payoff curves, currency telemetry
@@ -55,12 +55,13 @@ Athena/
 ├── tests/                         # Test suite (35 files, 400 tests, 100% passing)
 ├── supabase/                      # Cloud vector store migrations
 │
+├── Athena-Public/                 # Public mirror (sibling repo, gitignored)
 ├── docs/                          # Documentation (80 files)
 │
-├── README.md                      # Public repository README
-├── ARCHITECTURE.md                # System Architecture Reference
+├── README.md                      # Private repo README
+├── ARCHITECTURE.md                # This file
 ├── pyproject.toml                 # Python packaging
-└── .env.example                   # Environment template
+└── .env                           # API keys (gitignored)
 ```
 
 > **Decoupled Workspaces (External)**:
@@ -168,7 +169,7 @@ Clusters represent bundles of procedural knowledge that co-activate. When the at
 | 14 | Sovereign Safety | `circuit-breaker` + `context-compactor` | Safety |
 | 15 | Problem-Solving Engine | P504 + P115 + P505 + P506 + `red-team-review` | Reasoning |
 
-Full cluster details: `CLUSTER_INDEX.md` (private workspace — see table above for summary)
+Full cluster details: [CLUSTER_INDEX.md](.agent/CLUSTER_INDEX.md)
 
 ### Inventory
 

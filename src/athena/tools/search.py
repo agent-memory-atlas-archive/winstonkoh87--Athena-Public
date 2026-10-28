@@ -154,6 +154,8 @@ def classify_query_intent(query: str) -> str:
         r"\b(?:weighted_rrf|collect_vectors|run_search|get_embedding|classify_query_intent)\b",
         r"\b(?:bionic-decision-engine|sovereign-economics-engine|social-physics-filter|structural-trading-gate)\b",
         r"\b(?:explain|describe|show|list)\s+(?:the\s+)?(?:\w+-)+(?:skill|engine|protocol|module)\b",
+        r"\b(?:acra|bizfile|companies act|s145(?:\(\d+\))?|statutory basis|statutory invariant)\b",
+        r"\b(?:reranker for \d+ candidates|cross-encoder|candidates pool)\b",
     ]
     if any(re.search(p, q_lower) for p in system_patterns):
         return "SYSTEM_KNOWLEDGE"
@@ -171,6 +173,7 @@ def classify_query_intent(query: str) -> str:
         # Additional personal crisis / life decision patterns
         r"\b(?:what do i do|what should i do|how do i handle|how do i deal|how do i calculate)\b",
         r"\b(?:cheat(?:ed|ing)?|divorce|breakup|break up|separation|custody|affair|spouse)\b",
+        r"\b(?:maximum fuse|fuse limit|layering grid|xauusd|btcusd|half-kelly|kelly criterion|drawdown limit|risk gate|quantization floor)\b",
     ]
     if any(re.search(p, q_lower) for p in decision_phrases):
         return "PERSONALISED_DECISION"
@@ -183,12 +186,13 @@ def classify_query_intent(query: str) -> str:
         "partner", "negotiate", "pipeline", "drought", "schema",
         "bto", "hdb", "cpf", "mortgage", "wife", "husband", "spouse", "affair",
         "settlement", "alimony", "flat", "mop", "leverage", "proceeds", "sscs",
+        "xauusd", "btcusd", "fuse", "layering", "grid", "a92", "a30",
     }
     decision_verbs = {
         "should", "would", "decide", "decision", "advise", "recommend", "worth",
         "take", "accept", "proceed", "prioritise", "prioritize", "evaluate",
         "feel", "feeling", "deconstruct", "want", "negotiate", "handle",
-        "calculate", "use", "rent", "keep", "sell", "split",
+        "calculate", "use", "rent", "keep", "sell", "split", "fuse",
     }
     tokens = set(re.findall(r"\b\w+\b", q_lower))
     if (tokens & personal_keywords) and (tokens & decision_verbs):
@@ -272,7 +276,14 @@ class _ChannelHealthDict(dict):
 
 
 # Module-level channel health tracking (Fix for silent degradation TD-064)
+HEALTHY_STATUSES = frozenset({"ok"})
+FAILURE_STATUSES = frozenset({"failed", "degraded", "depleted", "timeout", "empty", "circuit_broken"})
 _channel_health: dict[str, dict] = _ChannelHealthDict()
+
+
+def reset_channel_health() -> None:
+    """Clear channel health records for a new query execution."""
+    _channel_health.clear()
 
 
 def _record_channel_health(
@@ -1045,19 +1056,25 @@ def weighted_rrf(
             if source in {"session", "case_study"}:
                 doc_path = doc.metadata.get("path", "") if doc.metadata else ""
                 target_str = f"{doc_path} {doc.id}"
-                if re.search(r"(?:^|[/_\-\s])2026(?:[/_\-.\s]|$)", target_str):
-                    temporal_mod = 1.15
-                elif re.search(r"(?:^|[/_\-\s])2025(?:[/_\-.\s]|$)", target_str):
-                    temporal_mod = 0.90
-                elif re.search(r"(?:^|[/_\-\s])2024(?:[/_\-.\s]|$)", target_str):
-                    temporal_mod = 0.75
+                curr_year = datetime.now().year
+                year_match = re.search(r"(?:^|[/_\-\s])(20\d\d)(?:[/_\-.\s]|$)", target_str)
+                if year_match:
+                    doc_year = int(year_match.group(1))
+                    diff_years = curr_year - doc_year
+                    if diff_years <= 0:
+                        temporal_mod = 1.15
+                    elif diff_years == 1:
+                        temporal_mod = 0.90
+                    elif diff_years == 2:
+                        temporal_mod = 0.75
+                    else:
+                        temporal_mod = 0.60
 
             # Web result freshness decay (based on fetched_at)
             if source == "web_search" and hasattr(doc, 'metadata') and doc.metadata:
                 fetched_at_str = doc.metadata.get("fetched_at", "")
                 if fetched_at_str:
                     try:
-                        from datetime import datetime, timezone
                         fetched_at = datetime.fromisoformat(fetched_at_str)
                         age_hours = (datetime.now(timezone.utc) - fetched_at).total_seconds() / 3600
                         if age_hours < 1:
@@ -1275,13 +1292,20 @@ def run_search(
     effective_web = web
     effective_personal = False if privacy_mode else include_personal
     vector_failed = False  # FIX-03: Track vector channel health for degraded_recall flag
+    channel_failures: list[str] = []
+    rerank_used: bool = False
+
+    # Reset channel health per query execution to prevent stale global pollution (F-01 fix)
+    _channel_health.clear()
 
     search_cache_enabled = (
         os.environ.get("ATHENA_SEARCH_CACHE", "").strip().lower()
         not in ("off", "false", "0", "no")
     )
 
-    # Define execution scope for strict cache isolation
+    canonical_mtime = int(CANONICAL_PATH.stat().st_mtime) if CANONICAL_PATH.exists() else 0
+
+    # Define execution scope for strict cache isolation (F-07 fix: include corpus_fp)
     search_scope = {
         "schema": SEARCH_SCHEMA_VERSION,
         "limit": limit,
@@ -1290,6 +1314,7 @@ def run_search(
         "personal": effective_personal,
         "intent": detected_intent,
         "web": effective_web,
+        "corpus_fp": canonical_mtime,
     }
 
     # 0. Check cache first
@@ -1325,7 +1350,7 @@ def run_search(
                 signal.alarm(15)
 
             try:
-                query_embedding = get_embedding(query)
+                query_embedding = get_embedding(query, task_type="RETRIEVAL_QUERY")
             finally:
                 if is_main:
                     signal.alarm(0)  # Disable alarm
@@ -1348,7 +1373,8 @@ def run_search(
         except Exception as e:
             # Embedding failed or semantic miss - continue with hybrid search
             # Make embedding optional for non-vector search methods
-            if "404" in str(e) or "GOOGLE_API_KEY" in str(e) or "timed out" in str(e):
+            err_str = str(e)
+            if any(term in err_str for term in ("404", "429", "402", "Payment", "QuotaExhausted", "GOOGLE_API_KEY", "timed out", "Timeout")):
                 if not json_output:
                     print(
                         f"\n   {YELLOW}⚠️  FALLBACK [DEGRADED]: Vector search unavailable ({e}){RESET}",
@@ -1360,6 +1386,7 @@ def run_search(
                     )
                 query_embedding = None  # Proceed without vectors
                 vector_failed = True  # FIX-03: Flag degraded recall
+                _record_channel_health("vector", "depleted" if ("429" in err_str or "402" in err_str or "Quota" in err_str) else "failed", err_str)
 
             # Fallback to full search
             if not json_output:
@@ -1476,11 +1503,8 @@ def run_search(
 
             fused_results = weighted_rrf(lists, intent=detected_intent)
 
-        # Sync vector failure with module channel health tracker (C-2 fix)
-        if _channel_health.get("vector", {}).get("status") in ("failed", "degraded"):
-            vector_failed = True
-
         # 3. Rerank
+        rerank_used = False
         if rerank and fused_results:
             # 50-candidate pool (was 25): the reranker can't rescue what fusion
             # buried below the cutoff; 50→top-k is the 2025-consensus shape.
@@ -1490,10 +1514,17 @@ def run_search(
             from athena.tools.reranker import rerank_results
 
             fused_results = rerank_results(query, candidates, top_k=limit)
+            if fused_results and any(r.signals and "reranker" in r.signals for r in fused_results):
+                rerank_used = True
+
+        # Sync vector failure with module channel health tracker (C-2 & F-01 fix)
+        vector_status = _channel_health.get("vector", {}).get("status")
+        if vector_status and vector_status not in HEALTHY_STATUSES:
+            vector_failed = True
 
         # Cache the result (Exact + Semantic) with explicit scope isolation
-        # Do not cache degraded results (vector channel failed or any channel degraded)
-        channel_failures = [k for k, v in _channel_health.items() if v.get("status") in ("failed", "degraded")]
+        # Do not cache degraded results (vector channel failed or any channel degraded/depleted)
+        channel_failures = [k for k, v in _channel_health.items() if v.get("status") not in HEALTHY_STATUSES]
         if fused_results and not vector_failed and not channel_failures and search_cache_enabled:
             if query_embedding:
                 cache.set(
@@ -1582,12 +1613,15 @@ def run_search(
     else:
         # JSON output logic
         output = [doc.to_dict() for doc in fused_results[:limit]]
+        is_degraded = vector_failed or bool(channel_failures)
         json_payload: dict[str, Any] = {
             "results": output,
             "suppressed": suppressed_count,
             "intent": detected_intent,
-            "degraded_recall": vector_failed,  # FIX-03: Surface vector health to MCP consumers
-            "quality": "degraded" if vector_failed else "hit",
+            "degraded_recall": is_degraded,  # FIX-03 & F-01: Surface true health to MCP consumers
+            "quality": "degraded" if is_degraded else "hit",
+            "channels_failed": channel_failures,
+            "rerank_used": rerank_used,
             "lambda": {
                 "score": lambda_info["score"],
                 "tier": lambda_info["tier"],
@@ -1722,8 +1756,8 @@ def run_search(
             "query_hash": hashlib.sha256(query.encode("utf-8")).hexdigest()[:16],
             "intent": detected_intent,
             "tier": lambda_info["tier"] if lambda_info else "STANDARD",
-            "channels_ok": [k for k, v in _channel_health.items() if v.get("status") == "ok"],
-            "channels_failed": [k for k, v in _channel_health.items() if v.get("status") in ("failed", "degraded")],
+            "channels_ok": [k for k, v in _channel_health.items() if v.get("status") in HEALTHY_STATUSES],
+            "channels_failed": [k for k, v in _channel_health.items() if v.get("status") not in HEALTHY_STATUSES],
             "result_count": len(fused_results),
             "quality": quality,
         }

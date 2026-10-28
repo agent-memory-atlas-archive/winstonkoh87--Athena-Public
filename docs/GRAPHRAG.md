@@ -10,7 +10,7 @@
 ---
 
 > [!CAUTION]
-> **GraphRAG is EXPENSIVE.** Building this knowledge graph cost **~$50 in API fees** (using Gemini 3 Flash). Entity extraction requires calling an LLM for every single document chunk. For most use cases, **VectorRAG is FREE and sufficient**. See [VECTORRAG.md](VECTORRAG.md) for the recommended approach.
+> **GraphRAG is EXPENSIVE.** Building this knowledge graph cost **~$50 in API fees** (using Gemini 3 Flash). Entity extraction requires calling an LLM for every single document chunk. For most use cases, **VectorRAG is FREE and sufficient**. See [VECTORRAG.md](./VECTORRAG.md) for the recommended approach.
 
 ---
 
@@ -45,15 +45,15 @@ Documents → Entity Extraction → Knowledge Graph → Community Detection → 
 
 ---
 
-## Retrieval Weight
+## Historical Retrieval Weight (Pre-Deprecation)
 
-GraphRAG is weighted **2.0x** in the RRF fusion algorithm — at parity with Vector for balanced retrieval:
+> *Historical Note*: Prior to its formal removal in S435, GraphRAG was weighted 2.0x in the legacy fusion configuration. In the live production stack, GraphRAG is completely unweighted (0x) and no longer queried.
 
-| Source | Weight | Rationale |
-|--------|--------|-----------|
+| Source | Historical Weight | Rationale |
+|--------|-------------------|-----------|
 | **Canonical** | 3.0x | Curated single source of truth |
-| **GraphRAG** | 2.0x | Structured knowledge clusters |
-| **Vector** | 2.0x | Semantic similarity (parity with Graph) |
+| **GraphRAG** | 2.0x (Retired) | Structured knowledge clusters |
+| **Vector** | 2.0x | Semantic similarity |
 | Tags | 1.5x | Explicit keyword matches |
 | Filename | 1.0x | Literal file matching |
 
@@ -145,9 +145,9 @@ This regenerates:
 
 ## Related Documentation
 
-- [VECTORRAG.md](VECTORRAG.md) — Semantic vector search layer
-- [ARCHITECTURE.md](ARCHITECTURE.md) — Overall system design
-- [SEMANTIC_SEARCH.md](SEMANTIC_SEARCH.md) — Hybrid RAG implementation
+- [VECTORRAG.md](./VECTORRAG.md) — Semantic vector search layer
+- [ARCHITECTURE.md](../ARCHITECTURE.md) — Overall system design
+- [SEMANTIC_SEARCH.md](./SEMANTIC_SEARCH.md) — Hybrid RAG implementation
 
 ---
 
@@ -184,7 +184,7 @@ Athena (Orchestrator)  →  Generates Parsing Prompts  →  User
 User  ←  Pastes LLM Response Back  ←  Athena assembles results
 ```
 
-**Result**: SOTA entity extraction (Gemini 3.1 Pro, Claude Fable 5) at **$0 cost**.
+**Result**: SOTA entity extraction (Gemini 3.1 Pro, Claude Opus 4.6) at **$0 cost**.
 
 ### Why This Works
 
@@ -239,4 +239,4 @@ The only paid component (LLM inference) is replaced by **human bandwidth** — a
 
 Built by **Winston Koh** — 10+ years in financial services, now building AI systems.
 
-→ **[About Me](ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**
+→ **[About Me](./ABOUT_ME.md)** | **[GitHub](https://github.com/winstonkoh87)** | **[LinkedIn](https://www.linkedin.com/in/winstonkoh87/)**

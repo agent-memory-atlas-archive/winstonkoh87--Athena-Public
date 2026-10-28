@@ -31,11 +31,27 @@ os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
 import sys
 from pathlib import Path
+from typing import Any
 
 from athena.core.models import SearchResult
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
-ONNX_DIR = PROJECT_ROOT / ".agent" / "models" / "reranker-onnx"
+
+
+def get_onnx_dir() -> Path:
+    """Resolve ONNX model directory across local repo, custom env var, or user cache."""
+    if os.environ.get("ATHENA_RERANKER_DIR"):
+        return Path(os.environ["ATHENA_RERANKER_DIR"])
+    repo_dir = PROJECT_ROOT / ".agent" / "models" / "reranker-onnx"
+    if repo_dir.exists():
+        return repo_dir
+    cache_dir = Path.home() / ".cache" / "athena" / "models" / "reranker-onnx"
+    if cache_dir.exists():
+        return cache_dir
+    return repo_dir
+
+
+ONNX_DIR = get_onnx_dir()
 # Prefer the arm64-quantized model (4x smaller, faster); fall back to fp32.
 ONNX_MODEL_CANDIDATES = ["model_qint8_arm64.onnx", "model.onnx"]
 MAX_LENGTH = 512
@@ -52,6 +68,50 @@ _model = None  # CrossEncoder fallback
 # can never be rescued. The ONNX fast path scores 50 pairs in ~0.1s, so the old
 # torch-latency rationale for a tight cap no longer applies.
 RERANK_CANDIDATE_CAP = 50
+
+
+def check_reranker_health() -> dict[str, Any]:
+    """Check availability of ONNX reranker model and libraries for doctor / telemetry (F-04 fix)."""
+    onnx_dir = get_onnx_dir()
+    has_onnx_dir = onnx_dir.exists()
+    model_file = next(
+        (onnx_dir / name for name in ONNX_MODEL_CANDIDATES if (onnx_dir / name).exists()),
+        None,
+    ) if has_onnx_dir else None
+    has_tokenizer = (onnx_dir / "tokenizer.json").exists() if has_onnx_dir else False
+
+    can_import_onnx = False
+    can_import_tokenizers = False
+    try:
+        import onnxruntime
+        can_import_onnx = True
+    except ImportError:
+        pass
+    try:
+        from tokenizers import Tokenizer
+        can_import_tokenizers = True
+    except ImportError:
+        pass
+
+    can_import_torch = False
+    try:
+        from sentence_transformers import CrossEncoder
+        can_import_torch = True
+    except ImportError:
+        pass
+
+    is_operational = bool((model_file and has_tokenizer and can_import_onnx and can_import_tokenizers) or can_import_torch)
+
+    return {
+        "operational": is_operational,
+        "mode": "onnx" if (model_file and has_tokenizer and can_import_onnx and can_import_tokenizers) else ("torch" if can_import_torch else "none"),
+        "model_path": str(model_file) if model_file else None,
+        "has_model_file": model_file is not None,
+        "has_tokenizer": has_tokenizer,
+        "has_onnxruntime": can_import_onnx,
+        "has_tokenizers": can_import_tokenizers,
+        "has_torch_fallback": can_import_torch,
+    }
 
 
 def _get_onnx():

@@ -25,7 +25,7 @@ class TestDoctorModule:
         from athena.cli.doctor import ALL_CHECKS, run_doctor
 
         assert run_doctor is not None
-        assert len(ALL_CHECKS) == 16
+        assert len(ALL_CHECKS) == 17
 
     def test_check_result_str(self):
         """Verify CheckResult renders correctly."""
@@ -69,6 +69,16 @@ class TestDoctorModule:
                 assert r.status in ("pass", "warn", "fail", "skip"), (
                     f"Check {name} invalid status: {r.status}"
                 )
+
+    def test_retrieval_substrate_check(self, project_root):
+        """Verify check_16_retrieval_substrate probes reranker and cache (R-03 / F-04)."""
+        from athena.cli.doctor import check_16_retrieval_substrate
+
+        results = check_16_retrieval_substrate(Path(project_root))
+        assert len(results) >= 2
+        names = [r.name for r in results]
+        assert "Cross-Encoder Reranker" in names
+        assert "Embedding Cache" in names
 
 
 class TestDoctorJson:

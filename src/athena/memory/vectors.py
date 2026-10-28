@@ -341,19 +341,33 @@ class PersistentEmbeddingCache:
             pass
 
 
-def _hash_text(text: str) -> str:
-    return hashlib.md5(text.encode()).hexdigest()
+def _hash_text(
+    text: str,
+    model: str = "gemini-embedding-001",
+    task_type: str = "RETRIEVAL_QUERY",
+    dims: int | None = None,
+) -> str:
+    """Deterministic namespaced hash including model, task_type, and dims (F-03 fix)."""
+    dims_str = str(dims) if dims else "default"
+    namespace = f"{model}:{task_type}:{dims_str}:{text}"
+    return hashlib.sha256(namespace.encode("utf-8")).hexdigest()
 
 
-def get_embedding(text: str, max_retries: int = 7) -> list[float]:
+def get_embedding(
+    text: str,
+    task_type: str = "RETRIEVAL_QUERY",
+    dims: int | None = None,
+    max_retries: int = 7,
+) -> list[float]:
     """Generate embedding with persistent disk caching and exponential backoff.
 
-    Uses gemini-embedding-001 (3072 dimensions).
+    Uses gemini-embedding-001 (3072 dimensions, or MRL truncated if dims specified).
     Retries on 429 (rate limit) and 5xx (server error) with exponential backoff + jitter.
     Semaphore-gated (1 concurrent) to prevent thundering herd on free-tier Gemini API.
     Backoff ceiling: 60s. Floor delay: 1s per call to avoid burst patterns.
     """
-    text_hash = _hash_text(text)
+    model_name = "gemini-embedding-001"
+    text_hash = _hash_text(text, model=model_name, task_type=task_type, dims=dims)
     cache = get_embedding_cache()
     cached = cache.get(text_hash)
     if cached:
@@ -372,12 +386,15 @@ def get_embedding(text: str, max_retries: int = 7) -> list[float]:
     # Pass the key via header, NOT the query string. A key in the URL leaks into
     # every requests exception/response repr (the URL is echoed in error messages),
     # which is logged below — clear-text secret logging. The header is never logged.
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:embedContent"
     headers = {"x-goog-api-key": api_key}
     payload: dict[str, Any] = {
-        "model": "models/gemini-embedding-001",
+        "model": f"models/{model_name}",
         "content": {"parts": [{"text": text}]},
+        "taskType": task_type,
     }
+    if dims:
+        payload["outputDimensionality"] = dims
 
     last_error = None
     for attempt in range(max_retries):
@@ -450,7 +467,11 @@ def get_embedding(text: str, max_retries: int = 7) -> list[float]:
 
 
 def get_embeddings_batch(
-    texts: list[str], batch_size: int = 25, max_retries: int = 7
+    texts: list[str],
+    task_type: str = "RETRIEVAL_DOCUMENT",
+    dims: int | None = None,
+    batch_size: int = 25,
+    max_retries: int = 7,
 ) -> list[list[float] | None]:
     """Embed many texts via Gemini :batchEmbedContents, warming the persistent cache.
 
@@ -465,11 +486,12 @@ def get_embeddings_batch(
     Side effect: populates the on-disk embedding cache, so a subsequent per-file
     get_embedding(text) for the same text is an instant cache hit.
     """
+    model_name = "gemini-embedding-001"
     cache = get_embedding_cache()
     results: list[list[float] | None] = [None] * len(texts)
     misses = []  # list of (index, text, hash)
     for i, t in enumerate(texts):
-        h = _hash_text(t)
+        h = _hash_text(t, model=model_name, task_type=task_type, dims=dims)
         cached = cache.get(h)
         if cached is not None:
             results[i] = cached
@@ -490,8 +512,8 @@ def get_embeddings_batch(
     # Key goes in a header, never the query string — a key in the URL leaks into
     # logged requests exceptions/response reprs (clear-text secret logging).
     url = (
-        "https://generativelanguage.googleapis.com/v1beta/models/"
-        "gemini-embedding-001:batchEmbedContents"
+        f"https://generativelanguage.googleapis.com/v1beta/models/"
+        f"{model_name}:batchEmbedContents"
     )
     headers = {"x-goog-api-key": api_key}
 
@@ -505,12 +527,17 @@ def get_embeddings_batch(
 
     for start in range(0, len(misses), batch_size):
         group = misses[start : start + batch_size]
-        payload: dict[str, Any] = {
-            "requests": [
-                {"model": "models/gemini-embedding-001", "content": {"parts": [{"text": t}]}}
-                for _, t, _ in group
-            ]
-        }
+        reqs = []
+        for _, t, _ in group:
+            req = {
+                "model": f"models/{model_name}",
+                "content": {"parts": [{"text": t}]},
+                "taskType": task_type,
+            }
+            if dims:
+                req["outputDimensionality"] = dims
+            reqs.append(req)
+        payload: dict[str, Any] = {"requests": reqs}
         got: list[list[float]] | None = None
         for attempt in range(max_retries):
             with _embedding_semaphore:

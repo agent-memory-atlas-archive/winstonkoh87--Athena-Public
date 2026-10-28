@@ -56,17 +56,19 @@ We evaluate retrieval against a 65-query gold set across all 5 channels with cro
 | **Hit@5** | **0.569** (37 / 65) | 0.892 (58 / 65) | -36.2% |
 | **MRR@5** | **0.472** | 0.769 | -38.6% |
 | **Coverage** | **0.604** | 0.639 | -5.5% |
-| **p50 Latency** | **15ms** | 15ms | 0ms |
+| **Rerank Inference** | **~15ms** (ONNX forward pass) | ~15ms | 0ms |
+
+*Note on Latency*: The ~15ms figure reflects the local ONNX cross-encoder batch inference time on 50 candidate pairs. End-to-end multi-channel retrieval latency (incorporating cloud pgvector HTTP round-trips, SQLite FTS5, and rerank) is typically 3,500ms–8,500ms depending on network and cache warmth.
 
 #### The Anti-Goodhart Shift: Why We Published Lower Numbers
 *“When a measure becomes a target, it ceases to be a good measure.”* — Goodhart’s Law
 
 Our earlier evaluator used lenient substring containment (`expected in result_title`). This counted incidental keyword fragments and generic taxonomy tokens as true retrieval successes, producing an impressive **0.892 Hit@5**.
 
-When we audited the failure modes in production, we found that loose matching masked real retrieval misses. We rewrote `examples/scripts/evaluator.py` to require **strict exact-stem and identifier matching** (`_extract_source_identifiers()`). Scores dropped to **0.569 Hit@5 / 0.472 MRR**.
+When we audited the failure modes in production, we found that loose matching masked real retrieval misses. We updated `.agent/eval/run_eval.py` to require **strict exact-stem and identifier matching** (`_extract_source_identifiers()`). Scores dropped to **0.569 Hit@5 / 0.472 MRR**.
 
 We deliberately report the strict numbers:
-1. **Falsifiability**: Anyone can run `python examples/scripts/evaluator.py` and get the exact same deterministic score.
+1. **Falsifiability**: Anyone can run `python3 .agent/eval/run_eval.py` and get the exact same deterministic score.
 2. **Regression Detection**: A strict evaluator catches real regressions when adjusting channel weights or chunk boundaries.
 3. **No Metric Gaming**: In alignment with Athena's Law #1 (Process Integrity), we never optimize the indicator over the property.
 

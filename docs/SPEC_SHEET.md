@@ -115,7 +115,7 @@ Total: 8,079 tags
 
 | Tool | Permission | Latency |
 |------|-----------|---------|
-| `smart_search` | read | < 200ms |
+| `smart_search` | read | < 50ms (cache hit) / 3–8s (full cloud hybrid) |
 | `agentic_search` | read | < 2s (multi-step) |
 | `quicksave` | write | < 100ms |
 | `health_check` | read | < 500ms |
@@ -129,7 +129,7 @@ Total: 8,079 tags
 | `frame_resolve` | write | < 50ms |
 | `frame_status` | read | < 50ms |
 | `decision_screen` | read | < 50ms |
-| `context_gate` | read | < 50ms |
+| `context_gate` | read | < 50ms (cache hit) / 3–8s (uncached) |
 | `meta_awareness_check` | read | < 50ms |
 | `classify_turn` | read | instant |
 | `search_web` / `report_external_web_search` | read | < 1s |
@@ -148,10 +148,10 @@ Query → [Semantic Search (pgvector)] ──┘
 
 | Metric | Value |
 |--------|-------|
-| **Search MRR** | 0.44 (vs 0.21 baseline, +105%) |
-| **Latency** | < 200ms (p95) |
+| **Search MRR** | 0.472 (strict) / 0.755 (rerank-on A/B) |
+| **Latency** | < 50ms (cache hit) / ~15ms (reranker forward pass) / 3–8s (uncached pgvector) |
 | **Index Size** | 8,079 tags, 78MB vectors |
-| **Fusion Method** | Reciprocal Rank Fusion (RRF) with score-modulated weights |
+| **Fusion Method** | Reciprocal Rank Fusion (RRF) with intent-specific weights |
 
 ---
 
@@ -189,7 +189,7 @@ Query → [Semantic Search (pgvector)] ──┘
 | Metric | Target | Actual |
 |--------|--------|--------|
 | Boot time | < 2 min | **~1m 45s (1–2 min)** |
-| Search latency | < 500ms | **< 200ms** |
+| Search latency | < 500ms (cached) | **< 50ms (cached) / 3–8s (uncached pgvector)** |
 | Context injection | < 20K tokens (10% ECL) | **~10K tokens** |
 | Quicksave overhead | < 500ms | **< 100ms** |
 | Session log write | < 1s | **< 500ms** |

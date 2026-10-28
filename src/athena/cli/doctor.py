@@ -719,6 +719,44 @@ def check_15_harness_integrity(root: Path, fix: bool = False) -> list[CheckResul
     return results
 
 
+def check_16_retrieval_substrate(root: Path, fix: bool = False) -> list[CheckResult]:
+    """Check 16: Retrieval Substrate & Reranker Diagnostics (R-03 / F-04)."""
+    results = []
+
+    # 1. Reranker Health Probe
+    try:
+        from athena.tools.reranker import check_reranker_health
+
+        info = check_reranker_health()
+        if info["operational"]:
+            msg = f"Operational ({info['mode'].upper()} mode)"
+            results.append(CheckResult("Cross-Encoder Reranker", PASS, msg))
+        else:
+            details = (
+                f"ONNX Model: {'Found' if info['has_model_file'] else 'MISSING'}, "
+                f"Tokenizer: {'Found' if info['has_tokenizer'] else 'MISSING'}, "
+                f"onnxruntime: {'Installed' if info['has_onnxruntime'] else 'MISSING'}, "
+                f"tokenizers: {'Installed' if info['has_tokenizers'] else 'MISSING'}"
+            )
+            results.append(CheckResult("Cross-Encoder Reranker", FAIL, "Reranker unavailable", details))
+    except Exception as e:
+        results.append(CheckResult("Cross-Encoder Reranker", WARN, f"Probe error: {e}"))
+
+    # 2. Embedding Cache Health Probe
+    try:
+        from athena.memory.vectors import get_embedding_cache
+
+        cache = get_embedding_cache()
+        if cache and cache.db_path.exists():
+            results.append(CheckResult("Embedding Cache", PASS, f"SQLite WAL ({cache.db_path.name})"))
+        else:
+            results.append(CheckResult("Embedding Cache", WARN, "Cache database not initialized"))
+    except Exception as e:
+        results.append(CheckResult("Embedding Cache", WARN, f"Cache probe error: {e}"))
+
+    return results
+
+
 # ═══════════════════════════════════════════════════════════════
 # MAIN ORCHESTRATOR
 # ═══════════════════════════════════════════════════════════════
@@ -740,6 +778,7 @@ ALL_CHECKS = [
     ("Context Freshness", check_13_stale_context),
     ("Workspace Tips", check_14_workspace_tips),
     ("Harness Integrity", check_15_harness_integrity),
+    ("Retrieval Substrate", check_16_retrieval_substrate),
 ]
 
 

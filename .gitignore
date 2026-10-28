@@ -114,6 +114,7 @@ search_results.txt
 
 # Daemon-written runtime telemetry — never track (jams pushes)
 .agent/telemetry/retrieval_log.jsonl
+.agent/telemetry/api_usage.jsonl
 .athena/invocations.jsonl
 .athena/retrieval_receipts.jsonl
 .athena/receipts/
@@ -130,6 +131,8 @@ search_results.txt
 .agent/telemetry/vector_sync.pid
 .agent/telemetry/vector_sync_status.json
 Athena-Public.LEGACY-DO-NOT-PUSH/
+.archive/Athena-Public.LEGACY-DO-NOT-PUSH/
+.worktrees/
 
 # Credential and recovered notes dumps (NEVER TRACK)
 recovered_notes.txt
@@ -137,6 +140,4 @@ recovered_notes.txt
 
 
 .context/telemetry/
-
 .athena/
-
