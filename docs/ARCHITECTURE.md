@@ -3,7 +3,7 @@
 > **Last Updated**: 28 October 2026
 > **Version**: v10.0.6
 > **Canonical Counts**: See `.agent/config/CAPS.json` — if numbers in this file diverge, CAPS wins.
-> **Bionic Unit Spec**: [BIONIC_UNIT_SPEC.md](../.context/specs/BIONIC_UNIT_SPEC.md) — the definitive human-AI augmentation mapping
+> **Bionic Unit Spec**: `BIONIC_UNIT_SPEC.md` (private workspace) — the definitive human-AI augmentation mapping
 
 ---
 
@@ -12,12 +12,12 @@
 ```
 Athena/
 ├── .agent/                        # Agent configuration
-│   ├── skills/                    #   43 active skills (42 with context_trigger)
-│   │   └── protocols/             #   421 active + 34 archived = 455 total, 26 categories
+│   ├── skills/                    #   44 active skills (43 with context_trigger)
+│   │   └── protocols/             #   428 active + 34 archived = 462 total, 26 categories
 │   │       └── archive/           #     34 deprecated protocols (read-only, see README)
-│   ├── workflows/                 #   55 root + 19 _domain = 74 slash-command workflows
+│   ├── workflows/                 #   56 root + 21 _domain = 77 slash-command workflows
 │   │   └── _domain/               #     Domain-scoped, conditionally activated
-│   ├── scripts/                   #   279 automation scripts
+│   ├── scripts/                   #   299 automation scripts
 │   ├── telemetry/                 #   Retrieval instrumentation logs + tier maps
 │   ├── config/                    #   Agent manifests + CAPS.json (canonical counts)
 │   ├── CLUSTER_INDEX.md           #   15 cognitive clusters (routing map)
@@ -27,9 +27,9 @@ Athena/
 │   └── archive_skills/            #   17 sunset skills (read-only, see README)
 │
 ├── .context/                      # Personal knowledge base
-│   ├── memories/                  #   4,939 memory files (session logs + case studies + profile)
+│   ├── memories/                  #   5,692 memory files (session logs + case studies + profile)
 │   │   ├── session_logs/          #     Dated session records
-│   │   ├── case_studies/          #     503 documented patterns (14 domains)
+│   │   ├── case_studies/          #     609 documented patterns (14 domains)
 │   │   ├── profile/               #     Core profile, psychology, voice DNA
 │   │   └── observations/          #     Session insights
 │   ├── memory_bank/               #   10 boot files (activeContext, userContext,
@@ -53,13 +53,12 @@ Athena/
 ├── tests/                         # Test suite (35 files, 400 tests, 100% passing)
 ├── supabase/                      # Cloud vector store migrations
 │
-├── Athena-Public/                 # Public mirror (sibling repo, gitignored)
 ├── docs/                          # Documentation (80 files)
 │
-├── README.md                      # Private repo README
-├── ARCHITECTURE.md                # This file
+├── README.md                      # Public repository README
+├── ARCHITECTURE.md                # System Architecture Reference
 ├── pyproject.toml                 # Python packaging
-└── .env                           # API keys (gitignored)
+└── .env.example                   # Environment template
 ```
 
 > **Decoupled Workspaces (External)**:
@@ -167,7 +166,7 @@ Clusters represent bundles of procedural knowledge that co-activate. When the at
 | 14 | Sovereign Safety | `circuit-breaker` + `context-compactor` | Safety |
 | 15 | Problem-Solving Engine | P504 + P115 + P505 + P506 + `red-team-review` | Reasoning |
 
-Full cluster details: [CLUSTER_INDEX.md](../.agent/CLUSTER_INDEX.md)
+Full cluster details: `CLUSTER_INDEX.md` (private workspace — see table above for summary)
 
 ### Inventory
 
@@ -175,9 +174,9 @@ Full cluster details: [CLUSTER_INDEX.md](../.agent/CLUSTER_INDEX.md)
 |:------|------:|:------------|
 | Cognitive Domains | 8 | Memory activation targets (priority-ordered for tie-breaking) |
 | Cognitive Clusters | 15 | Co-activating procedural memory bundles |
-| Skills | 40 active (17 archived) |
-| Protocols | 399 active (32 archived; 431 total) |
-| Workflows | 69 (51 root + 18 _domain/) |
+| Skills | 44 active (17 archived) |
+| Protocols | 428 active (34 archived; 462 total) |
+| Workflows | 77 (56 root + 21 _domain/) |
 
 ---
 
@@ -251,8 +250,8 @@ The proactive layer can **inject context** into the reactive layer — e.g., whe
 | Core Identity | `/start` | ~2K |
 | Memory Bank (3 files) | `/start` | ~3.5K |
 | Boot orchestrator | `/start` | ~2K |
-| CANONICAL Tier 1 (always boot) | `/start` | ~16K (29 entries) |
-| CANONICAL Tier 2 (domain-triggered) | Query match | ~41K (140 entries, loaded on demand) |
+| CANONICAL Tier 1 (always boot) | `/start` | ~16K (40 entries) |
+| CANONICAL Tier 2 (domain-triggered) | Query match | ~41K (156 entries, loaded on demand) |
 | Protocol (on-demand) | Attention gate pass | ~3-7K each |
 | Skill cluster (on-demand) | `context_trigger` match | ~5-15K per cluster |
 | Full context | `/fullload` | ~28K |
@@ -297,8 +296,8 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 
 | Index | Size | Purpose |
 |:------|-----:|:--------|
-| `CLUSTER_INDEX.md` | 18KB | Routing map (15 clusters → 26 skills) |
-| `WORKFLOW_INDEX.md` | 6KB | Workflow registry (66 workflows) |
+| `CLUSTER_INDEX.md` | 18KB | Routing map (15 clusters → 44 skills) |
+| `WORKFLOW_INDEX.md` | 6KB | Workflow registry (77 workflows) |
 | `PROTOCOL_SUMMARIES.md` | 24KB | All-protocol quick-lookup |
 | `KNOWLEDGE_GRAPH.md` | 15KB | Concept relationships |
 
@@ -306,7 +305,7 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 
 ---
 
-## Protocol Taxonomy (34 active categories)
+## Protocol Taxonomy (26 active categories)
 
 | Category | Count | Category | Count |
 |:---------|------:|:---------|------:|
@@ -325,12 +324,12 @@ src/athena/tools/search.py (12s God Mode timeout + grep fallback)
 
 ## CANONICAL Progressive Disclosure (v9.8.0)
 
-Section 4 (Strategic Frameworks) contains 172 entries, ~58KB. Progressive disclosure tiers:
+Section 4 (Strategic Frameworks) contains 199 entries, ~58KB. Progressive disclosure tiers:
 
 | Tier | Count | Size | Loading Strategy |
 |:-----|------:|-----:|:-----------------|
-| Tier 1 (Always Boot) | 29 | ~16KB | Loaded on every `/start` — universal laws, identity truths |
-| Tier 2 (Domain-Triggered) | 140 | ~41KB | Loaded when query matches domain keywords (trading, pricing, etc.) |
+| Tier 1 (Always Boot) | 40 | ~16KB | Loaded on every `/start` — universal laws, identity truths |
+| Tier 2 (Domain-Triggered) | 156 | ~41KB | Loaded when query matches domain keywords (trading, pricing, etc.) |
 | Tier 3 (On-Demand) | 3 | ~1KB | Loaded only via explicit search hit |
 
 **Boot savings**: 72% of Section 4 deferred = ~42KB saved per session.

@@ -18,6 +18,7 @@ onnx/model_qint8_arm64.onnx + tokenizer.json from the HF repo
 cross-encoder/ms-marco-MiniLM-L6-v2 into .agent/models/reranker-onnx/.
 """
 
+import importlib.util
 import os
 
 # CRITICAL (S527): force transformers onto the PyTorch backend BEFORE it is imported.
@@ -80,25 +81,11 @@ def check_reranker_health() -> dict[str, Any]:
     ) if has_onnx_dir else None
     has_tokenizer = (onnx_dir / "tokenizer.json").exists() if has_onnx_dir else False
 
-    can_import_onnx = False
-    can_import_tokenizers = False
-    try:
-        import onnxruntime
-        can_import_onnx = True
-    except ImportError:
-        pass
-    try:
-        from tokenizers import Tokenizer
-        can_import_tokenizers = True
-    except ImportError:
-        pass
-
-    can_import_torch = False
-    try:
-        from sentence_transformers import CrossEncoder
-        can_import_torch = True
-    except ImportError:
-        pass
+    # Availability probes only — find_spec checks importability without
+    # paying the import cost (torch alone is seconds) or binding unused names.
+    can_import_onnx = importlib.util.find_spec("onnxruntime") is not None
+    can_import_tokenizers = importlib.util.find_spec("tokenizers") is not None
+    can_import_torch = importlib.util.find_spec("sentence_transformers") is not None
 
     is_operational = bool((model_file and has_tokenizer and can_import_onnx and can_import_tokenizers) or can_import_torch)
 

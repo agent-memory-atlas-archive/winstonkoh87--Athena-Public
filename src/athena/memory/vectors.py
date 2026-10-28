@@ -529,7 +529,7 @@ def get_embeddings_batch(
         group = misses[start : start + batch_size]
         reqs = []
         for _, t, _ in group:
-            req = {
+            req: dict[str, Any] = {
                 "model": f"models/{model_name}",
                 "content": {"parts": [{"text": t}]},
                 "taskType": task_type,

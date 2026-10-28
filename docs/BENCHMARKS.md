@@ -65,10 +65,10 @@ We evaluate retrieval against a 65-query gold set across all 5 channels with cro
 
 Our earlier evaluator used lenient substring containment (`expected in result_title`). This counted incidental keyword fragments and generic taxonomy tokens as true retrieval successes, producing an impressive **0.892 Hit@5**.
 
-When we audited the failure modes in production, we found that loose matching masked real retrieval misses. We updated `.agent/eval/run_eval.py` to require **strict exact-stem and identifier matching** (`_extract_source_identifiers()`). Scores dropped to **0.569 Hit@5 / 0.472 MRR**.
+When we audited the failure modes in production, we found that loose matching masked real retrieval misses. We rewrote `examples/scripts/evaluator.py` to require **strict exact-stem and identifier matching** (`_extract_source_identifiers()`). Scores dropped to **0.569 Hit@5 / 0.472 MRR**.
 
 We deliberately report the strict numbers:
-1. **Falsifiability**: Anyone can run `python3 .agent/eval/run_eval.py` and get the exact same deterministic score.
+1. **Falsifiability**: Anyone can run `python examples/scripts/evaluator.py` and get the exact same deterministic score.
 2. **Regression Detection**: A strict evaluator catches real regressions when adjusting channel weights or chunk boundaries.
 3. **No Metric Gaming**: In alignment with Athena's Law #1 (Process Integrity), we never optimize the indicator over the property.
 

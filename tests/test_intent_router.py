@@ -3,6 +3,7 @@ tests/test_intent_router.py — Regression tests for query intent routing (F-05)
 """
 
 import pytest
+
 from athena.tools.search import classify_query_intent
 
 

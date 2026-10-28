@@ -110,27 +110,28 @@ def test_cache_invalidates_on_corpus_fingerprint_change(tmp_path, capsys):
 
     with (
         patch.object(athena.tools.search, "get_search_cache", return_value=tmp_cache),
+        patch("athena.memory.vectors.get_embedding", return_value=[0.01] * 768),
         patch("athena.tools.search.collect_vectors", return_value=[]),
+        patch.object(athena.tools.search, "CANONICAL_PATH", tmp_path / "CANONICAL.md"),
     ):
         # Query 1: Initial run with current corpus
-        with patch.object(athena.tools.search, "CANONICAL_PATH", tmp_path / "CANONICAL.md"):
-            canonical_file = tmp_path / "CANONICAL.md"
-            canonical_file.write_text("Law #1: No Ruin.")
-            os.utime(canonical_file, (1000, 1000))
+        canonical_file = tmp_path / "CANONICAL.md"
+        canonical_file.write_text("Law #1: No Ruin.")
+        os.utime(canonical_file, (1000, 1000))
 
-            run_search("corpus test query", json_output=True, limit=2)
-            assert len(tmp_cache._cache) == 1, "Expected 1 cached entry after initial query"
+        run_search("corpus test query", json_output=True, limit=2)
+        assert len(tmp_cache._cache) == 1, "Expected 1 cached entry after initial query"
 
-            # Query 2: Identical query with same mtime -> Cache Hit
-            run_search("corpus test query", json_output=True, limit=2)
-            assert len(tmp_cache._cache) == 1
+        # Query 2: Identical query with same mtime -> Cache Hit
+        run_search("corpus test query", json_output=True, limit=2)
+        assert len(tmp_cache._cache) == 1
 
-            # Modify CANONICAL.md mtime (corpus update)
-            os.utime(canonical_file, (2000, 2000))
+        # Modify CANONICAL.md mtime (corpus update)
+        os.utime(canonical_file, (2000, 2000))
 
-            # Query 3: Identical query with updated mtime -> New scope hash, old cache entry bypassed!
-            run_search("corpus test query", json_output=True, limit=2)
-            assert len(tmp_cache._cache) == 2, "Expected new cache entry under updated corpus fingerprint"
+        # Query 3: Identical query with updated mtime -> New scope hash, old cache entry bypassed!
+        run_search("corpus test query", json_output=True, limit=2)
+        assert len(tmp_cache._cache) == 2, "Expected new cache entry under updated corpus fingerprint"
 
 
 
